@@ -53,6 +53,8 @@ Remember, your group is expected to adhere to the following norms:
 <!-- The partner whose family name starts first alphabetically starts as the  -->
 <!-- Developer (typing and listening to instructions from the Coder! -->
 
+Name of the person starting as the Developer (typing): 
+
 ## Step 1: Install the `palmerpenguins` Package
 
 We will be creating visualizations using the `ggplot2` package.

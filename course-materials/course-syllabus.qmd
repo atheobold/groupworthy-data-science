@@ -1,5 +1,5 @@
 ---
-title: '**STAT 331**, Fall 2024'
+title: '**STAT 331**, Fall 2025'
 format: 
   html: 
     number-sections: true
@@ -17,51 +17,29 @@ editor: source
 Statistical Computing with R[^1]
 :::
 
-TR 12:10pm - 2:00pm
+-   Section 70: TR 9:10am - 11:00am
+-   Section 71: TR 12:10pm - 2:00pm
 
-**Textbook:**
-
-<https://r4ds.hadley.nz/>
-
-**Website:**
-
-<https://canvas.calpoly.edu>
-::::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="40%"}
-![Image by Alison Horst](../images/r-flowers.png){fig-alt="Two round creatures painting and decorating the R logo with flowers."}
-:::
-:::::::
-
-[^1]: The classroom is a dynamic learning community. If necessary, I may make changes to the syllabus as the semester goes on to best suit the needs of all students. I promise to notify you in advance if I make any changes. Any changes to the syllabus made after the first day of class will be indicated in [**red**]{style="color: #FF0000;"}.
-
-</br>
-
-:::::: columns
-::: {.column width="55%"}
 **Dr. Allison Theobold** (they / them)
 
 **Assistant Professor of Statistics**
 
 **Office:** Building 25, Office 105
 
-**Student Hours:** Wednesdays 4-5pm [(by appointment)](https://outlook.office.com/bookwithme/user/2932b686c5c44ecc8d1ef6bd7ebe3534@calpoly.edu/meetingtype/ZJbPQIwWkUifPIEtMdA6fA2?anonymous&ep=mlink) & Thursdays 2pm to 3pm
+**Student Hours:** Mondays 2-3pm & Thursdays 3-4pm
 
 **Email:** [atheobol\@calpoly.edu](mailto:atheobol@calpoly.edu)
-:::
+::::
 
 ::: {.column width="5%"}
 :::
 
 ::: {.column width="40%"}
-![](/images/headshot-theobold.jpg){width="200"}
+![](../images/r-hearts.gif){fig-alt="The R logo with pink hearts floating next to it."}
 :::
-::::::
+:::::::
 
-</br>
+[^1]: The classroom is a dynamic learning community. If necessary, I may make changes to the syllabus as the semester goes on to best suit the needs of all students. I promise to notify you in advance if I make any changes. Any changes to the syllabus made after the first day of class will be indicated in [**red**]{style="color: #FF0000;"}.
 
 # What will you learn?
 
@@ -71,7 +49,7 @@ Have you ever wondered...
 
 ...how are the visualizations you see in the media made?\
 ...how do people cut down large datasets to address a specific question?\
-...how the applet simulations in your statistics classes work?
+...how the applet simulations in your introductory statistics class worked?
 
 We'll answer these questions and more by studying the principles of "statistical computing" methods in the programming language called R.
 :::
@@ -98,7 +76,7 @@ In order to learn statistical computing, it's not enough to simply listen to you
 :::::::: columns
 ::: {.column width="30%"}
 [**Before class,**]{style="color: #34605f; font-size: 1.25em"}\
-you'll complete **Preview Activities** / **Check-ins** which will guide you through your first contact with new concepts. Practice Activities involve readings, videos, and exercises to build your basic skill fluency. For example, you might be asked to read a chapter from the course textbook, watch a few videos discussing some concepts from the chapter, and then complete some preliminary exercises to get you started thinking about how to apply the concepts in the context of real data.
+you'll complete **Preview Activities** / **Check-ins** which will guide you through your first contact with new concepts. Preview Activities involve readings, videos, and exercises to build your basic skill fluency. For example, you might be asked to read a chapter from the course textbook, watch a few videos discussing some concepts from the chapter, and then complete some preliminary exercises to get you started thinking about how to apply the concepts in the context of real data.
 :::
 
 ::: {.column width="2%"}
@@ -114,9 +92,9 @@ you'll be working with your classmates to complete **Practice Activities**, whic
 
 ::: {.column width="30%"}
 [**After class,**]{style="color: #34605f; font-size: 1.25em"}\
-you can reinforce the material through **Lab Assignments**, which are an opportunity to demonstrate mastery of the skills that you've learned. If you got something wrong, don't worry! You'll have a chance to try again.
+you can reinforce the material through **Lab Assignments**, which are an opportunity to demonstrate proficiency of the skills that you've learned. If you got something wrong, don't worry! You'll have a chance to try again.
 
-Each Lab Assignment will have **Challenge Problems**, which asks you to extend the skills you've learned in class in some way. Frequently, you have the choice of what you would like to learn. The only requirement is that you extend your thinking in some (measurable) way.
+Each Lab Assignment will have **Challenge Problems**, which ask you to extend the skills you've learned in class in some way. Frequently, you have the choice of what you would like to learn. The only requirement is that you extend your thinking in some (measurable) way.
 :::
 ::::::::
 
@@ -133,7 +111,7 @@ The grading scheme we'll be using is probably unlike what you've had in previous
 [**Preview Activities**]{style="color: #34605f; font-size: 1.25em"}\
 will be scored as Complete or Incomplete. You'll receive credit for a Preview Activity as long as:
 
-1.  **The assignment is submitted by the deadline -- the beginning of class on Tuesday (12:10pm).**
+1.  **The assignment is submitted by the deadline -- before classes start on Tuesday (9:10am).**
 
 2.  **Every item has a response that shows a good-faith effort.** Submissions that have items left blank will receive no credit, as will submissions with responses such as "I don't know" or "I don't understand" or random guesses with no supporting work. Note that **correctness is not factored into the grade**, so you should feel free to give your best effort on each one without fear of being counted off for wrong answers.
 :::
@@ -147,7 +125,7 @@ will be worked on in your assigned team, during class on Tuesdays. Your team wil
 
 Only the responses to the Practice Activity will be scored, as **Complete or Incomplete**, based on the answer your group finds. However, the work you perform (in your Quarto document) will act as an artifact demonstrating your skills and will be submitted for feedback.
 
-**Practice Activities are due every Thursday by noon.**
+**Practice Activities are due by 5pm on Wednesday**, but you should have sufficient time to complete the activity during Tuesday's class.
 :::
 
 ::: {.column width="1%"}
@@ -157,7 +135,7 @@ Only the responses to the Practice Activity will be scored, as **Complete or Inc
 [**Lab Assignments**]{style="color: #34605f; font-size: 1.25em"}\
 are aligned with the course's Learning Targets, which describe exactly what you should be able to do after taking this course. You'll receive a score for each Learning Target according to the **SGN rubric** above, as well as feedback to help you improve.
 
-**Lab Assignments are due every Sunday by midnight.**
+**Lab Assignments are due every Monday by 5pm**[^2].
 :::
 
 ::: {.column width="1%"}
@@ -167,9 +145,11 @@ are aligned with the course's Learning Targets, which describe exactly what you 
 [**Challenge Problems**]{style="color: #34605f; font-size: 1.25em"}\
 Each Challenge Problem will receive a single holistic score on the **SGN rubric**. If you earn a **G**, you'll receive specific written feedback, which you can use to revise and resubmit your work repeatedly until you're satisfied with the results. If you receive an **N**, you'll need to meet with me before you revise your work. (This is so you understand the expectations of the assignment.)
 
-**Challenges are due every Sunday by midnight.**
+**Challenges are due every Monday by 5pm.**
 :::
 ::::::::::
+
+[^2]: **Note that I have chosen this deadline because I'm juggling two competing desires, (1) to step away from my email on the weekend, and (2) to make sure people's questions get answered before the assignment is due.**
 
 ## Revisions
 
@@ -185,7 +165,7 @@ It's not enough to say "\[x\] was wrong, so I fixed it"—I need you to talk abo
 
 -   Submit your revision to the **same** assignment box on Canvas as your original. This helps me keep track of any outstanding revisions each person has.
 
-It is my goal to have your lab and challenge assignments (which are due on Sunday night) back to you no later than Thursday, so we can spend time talking about the revisions during class. You will then have **until the following Friday to complete your revisions** on the problems you received a **G** or an **N** on.
+It is my goal to have your lab and challenge assignments (which are due on Monday at 5pm) back to you no later than Thursday, so we can spend time talking about the revisions during class. You will then have **until the following Friday to complete your revisions** on the problems you received a **G** or an **N** on.
 
 # **How will your final grade be decided?**
 
@@ -240,7 +220,7 @@ During the first week of class, each of you will be placed in a group with one o
 
 One of my favorite sayings is "Programs must be written for people to read, and only incidentally for machines to execute." Code review has two major benefits, (1) you get feedback on the readability, tidiness, and efficiency of your code, and (2) by reviewing someone else's code you learn more about your own code!
 
-[Here are some guidelines and examples of what you should be looking for and how to phrase your peer code reviews.](https://atheobold.github.io/stat-331/Syllabus/code-review/code_review_feedback.html)
+[Here are some guidelines and examples of what you should be looking for and how to phrase your peer code reviews.](../code-review/code-review-guidelines.qmd)
 
 You hopefully noticed that writing "tidy" and "efficient" code are two of the Learning Targets for this course. To demonstrate proficiency in these targets, you will earn badges from your peers. For each lab assignment, everyone in the class will provide an anonymous review of someone's code. The reviewer will provide feedback on the tidiness and efficiency of the code they are reviewing. I will provide some examples of helpful and unhelpful feedback, to guide your feedback. It's easy to be a jerk when making comments; don't. Think about the comments you would like to receive that would help you improve your code! **Be good to each other.**
 
@@ -258,9 +238,9 @@ We will have an in-person, 5-minute meeting during Week 7 to discuss your propos
 
 ### Week 10 Reflection
 
-Your final reflection will be submitted at the end of Week 10 (December 7). This reflection will accompany the final portfolio you assemble.
+Your final reflection will be submitted at the end of Week 10 (December 5). This reflection will accompany the final portfolio you assemble.
 
-We will have in-person, 5-minute meetings on Monday, December 9. Meetings will be held during the ordinary final exam time, between 10:10am and 1:00pm and will be reserved a week in advance.
+We will have in-person, 10-minute meetings on Saturday, December 6th and Monday, December 8th. Meetings on Saturday will most likely take place between 10:10am and 1pm, but I will update you once I hear from the registrar's office. Meetings on Monday will be updated based on the timing of Saturday.
 
 # **How will my final portfolio look?** {#sec-portfolio}
 
@@ -284,69 +264,69 @@ At the end of the term, **you're going to tell me how you did and thus what grad
 
 We will generate the descriptions / expectations of these grades together after you've had the chance to see how this course looks. Specifically, we will dedicate a portion of class during Week 3 to writing these expectations together.
 
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Letter Grade             | Description of Work and Participation                                                                                                                                                                                                                                                                                                                                   |
-+==========================+=========================================================================================================================================================================================================================================================================================================================================================================+
-| **A**\                   | ::: {style="color: red"}                                                                                                                                                                                                                                                                                                                                                |
-| (Superior Achievement)   | **Learning Targets:** [Meets the criteria for a B and also demonstrates proficiency with DVS-3, DVS-7, and PE-3, demonstrating proficiency with nearly every learning target.]{style="color: #FF0000;"}\                                                                                                                                                                |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | **Revising Thinking:** Submits revisions for *all but a few* assignments, includes thoughtful reflections on why revisions are being requested, demonstrating an understanding of the "bigger picture" ideas. Takes all feedback into account (including problems receiving an S) and incorporates into future assignments. **\                                         |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Extending Thinking:** *Consistently* making an effort to push oneself, attempting and succeeding at more difficult challenge problems, and incorporating what is learned into future assignments. **\                                                                                                                                                                   |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Collaborative Group Member:** Is *always* patient and respectful when collaborating, makes a concerted effort to follow coder / developer roles, excellent communication, willing to discuss and listen, open to new ideas, not controlling.\                                                                                                                           |
-|                          | **\                                                                                                                                                                                                                                                                                                                                                                     |
-|                          | Peer-Code Review:** *Every week* provides specific, constructive feedback, which is honest and kind and demonstrates a desire to help others grow.                                                                                                                                                                                                                      |
-|                          | :::                                                                                                                                                                                                                                                                                                                                                                     |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **B**\                   | ::: {style="color: red"}                                                                                                                                                                                                                                                                                                                                                |
-| (Good Achievement)       | **Learning Targets:** Meets the criteria for a C and also demonstrates proficiency with objectives WD-5 through WD-7, DVS-2, PE-1, PE-2, PE-4, DSSM-1, and DSSM-2; effort is made toward DVS-3, DVS-7, and PE-3, but not at the level of proficiency\                                                                                                                   |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | **Revising Thinking:** Submits revisions for *most* assignments (more than half), includes reflections on why revisions are being requested but reflections may miss some of the "bigger picture" ideas. These mistakes are fixed in future assignments, but additional feedback provided (on problems receiving an S) is not incorporated into future assignments. **\ |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Extending Thinking:** *Sometimes* making an effort to push oneself, attempting and succeeding at more difficult challenge problems. *Sometimes* what is learned is incorporated into future assignments. **\                                                                                                                                                            |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Collaborative Group Member:** Is *always* patient and respectful when collaborating, excellent communication *mostly* follows coder / developer roles, but sometimes performs tasks outside their role.\                                                                                                                                                                |
-|                          | **\                                                                                                                                                                                                                                                                                                                                                                     |
-|                          | Peer-Code Review:** *Most* weeks provides specific, constructive feedback, which is honest and kind and demonstrates a desire to help others grow.                                                                                                                                                                                                                      |
-|                          | :::                                                                                                                                                                                                                                                                                                                                                                     |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **C**\                   | ::: {style="color: red"}                                                                                                                                                                                                                                                                                                                                                |
-| (Acceptable Achievement) | **Learning Targets:** Demonstrates proficiency with objectives WD-1 through WD-4, R-1, R-2, DVS-4, DVS-5; slight effort is made toward WD-5 through WD-7 and PE-1 through PE-4, but not at the level of proficiency. **\                                                                                                                                                |
-|                          | **\                                                                                                                                                                                                                                                                                                                                                                     |
-|                          | **Revising Thinking:** Submits revisions for some assignments (less than half), frequently fails to include reflections on why revisions are being requested. Mistakes continue to be made in future assignments, and additional feedback provided (on problems receiving an S) is not incorporated into future assignments. **\                                        |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Extending Thinking:** Rarely making an effort to push oneself, mainly completing the easier challenges. **\                                                                                                                                                                                                                                                             |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Collaborative Group Member:** Is *mostly* respectful when collaborating, but *does not* follow coder / developer roles, making *little effort* to collaborate with their partner.\                                                                                                                                                                                      |
-|                          | **\                                                                                                                                                                                                                                                                                                                                                                     |
-|                          | Peer-Code Review:** *Rarely* provides feedback on peer's assignments. When feedback is given, it is vague and does not offer concrete ways the person's code formatting could be improved.                                                                                                                                                                              |
-|                          | :::                                                                                                                                                                                                                                                                                                                                                                     |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **D**                    | ::: {style="color: red"}                                                                                                                                                                                                                                                                                                                                                |
-|                          | **Learning Targets:** Demonstrates proficiency with objectives WD-1 through WD-4, R-1, R-2, DVS-4, DVS-5. No effort is made toward additional learning targets.\                                                                                                                                                                                                        |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | **Revising Thinking:** Seldom if ever submits revisions. When revisions are submitted, reflections on why revisions are being requested are not included. Mistakes are not fixed in future assignments. **\                                                                                                                                                             |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Extending Thinking:** Seldom if ever makes an effort to push oneself, only completing the easier challenges. **\                                                                                                                                                                                                                                                        |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Collaborative Group Member:** Is *mostly* respectful when collaborating, but *does not* follow coder / developer roles, making *little effort* to collaborate with their partner.\                                                                                                                                                                                      |
-|                          | **\                                                                                                                                                                                                                                                                                                                                                                     |
-|                          | Peer-Code Review:** *Never* provides feedback on peer's assignments.                                                                                                                                                                                                                                                                                                    |
-|                          | :::                                                                                                                                                                                                                                                                                                                                                                     |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **F**                    | ::: {style="color: red"}                                                                                                                                                                                                                                                                                                                                                |
-|                          | **Learning Targets:** Does not satisfy the criteria for a D.\                                                                                                                                                                                                                                                                                                           |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | **Revising Thinking:** Does not satisfy the criteria for a D. **\                                                                                                                                                                                                                                                                                                       |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Extending Thinking:** Does not satisfy the criteria for a D. **\                                                                                                                                                                                                                                                                                                        |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Collaborative Group Member:** Does not satisfy the criteria for a D. **\                                                                                                                                                                                                                                                                                                |
-|                          | \                                                                                                                                                                                                                                                                                                                                                                       |
-|                          | Peer-Code Review:** Does not satisfy the criteria for a D.                                                                                                                                                                                                                                                                                                              |
-|                          | :::                                                                                                                                                                                                                                                                                                                                                                     |
-+--------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------------------+--------------------------------------------------------------------------+
+| Letter Grade             | Description of Work and Participation                                    |
++==========================+==========================================================================+
+| **A**\                   | ::: {style="color: red"}                                                 |
+| (Superior Achievement)   | **Learning Targets:** \                                                  |
+|                          | \                                                                        |
+|                          | **Revising Thinking:** **\                                               |
+|                          | \                                                                        |
+|                          | Extending Thinking:** **\                                                |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:** \                                          |
+|                          | **\                                                                      |
+|                          | Peer-Code Review:**                                                      |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
+| **B**\                   | ::: {style="color: red"}                                                 |
+| (Good Achievement)       | **Learning Targets:** \                                                  |
+|                          | \                                                                        |
+|                          | **Revising Thinking:** **\                                               |
+|                          | \                                                                        |
+|                          | Extending Thinking:** **\                                                |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:** \                                          |
+|                          | **\                                                                      |
+|                          | Peer-Code Review:**                                                      |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
+| **C**\                   | ::: {style="color: red"}                                                 |
+| (Acceptable Achievement) | **Learning Targets:** **\                                                |
+|                          | **\                                                                      |
+|                          | **Revising Thinking:** **\                                               |
+|                          | \                                                                        |
+|                          | Extending Thinking:** **\                                                |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:** \                                          |
+|                          | **\                                                                      |
+|                          | Peer-Code Review:**                                                      |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
+| **D**                    | ::: {style="color: red"}                                                 |
+|                          | **Learning Targets:** \                                                  |
+|                          | \                                                                        |
+|                          | **Revising Thinking:** **\                                               |
+|                          | \                                                                        |
+|                          | Extending Thinking:** **\                                                |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:** \                                          |
+|                          | **\                                                                      |
+|                          | Peer-Code Review:**                                                      |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
+| **F**                    | ::: {style="color: red"}                                                 |
+|                          | **Learning Targets:** Does not satisfy the criteria for a D.\            |
+|                          | \                                                                        |
+|                          | **Revising Thinking:** Does not satisfy the criteria for a D. **\        |
+|                          | \                                                                        |
+|                          | Extending Thinking:** Does not satisfy the criteria for a D. **\         |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:** Does not satisfy the criteria for a D. **\ |
+|                          | \                                                                        |
+|                          | Peer-Code Review:** Does not satisfy the criteria for a D.               |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
 
 # What if I need to miss class?
 
@@ -370,7 +350,7 @@ We will use Discord to manage questions and responses regarding course content. 
 
 # What if I need to turn something in late?
 
-You'll start the semester with four (4) virtual "Tokens" that you can use for extra flexibility. One token can purchase a 3-day extension for a Lab or Challenge Assignment (not a Preview Activity or Practice Activity). If you want to use a token for a deadline extension, you are required to complete the Deadline Extension Form. Akin to how the "real world" works, deadline extensions are requested to be done before the deadline. If you thought you were going to get an assignment in but you just missed the 11:59 deadline for an assignment, please go complete a deadline extension request ASAP. I will not provide feedback on assignments which missed the deadline and no extension request was completed.
+You'll start the semester with four (4) virtual "Tokens" that you can use for extra flexibility. One token can purchase a 24-hour extension for a Lab or Challenge Assignment (not a Preview Activity or Practice Activity). If you want to use a token for a deadline extension, you are required to complete the Deadline Extension Form. Akin to how the "real world" works, deadline extensions are requested to be done before the deadline. If you thought you were going to get an assignment in but you just missed the deadline for an assignment, please go complete a deadline extension request ASAP. I will not provide feedback on assignments which missed the deadline and no extension request was completed.
 
 Tokens cannot be "stacked"; you cannot use multiple tokens to purchase a 6-day extension. You can keep track of how many Tokens you have on Canvas.
 
@@ -388,7 +368,7 @@ I enthusiastically support the mission of [Disability Resource Center](https://d
 
 Following Ihab Hassan, I strive to teach statistics so that people will stop killing each other. In my classroom, diversity and individual differences are respected, appreciated, and recognized as a source of strength. Students in this class are encouraged and expected to speak up and participate during class meetings, and to carefully and respectfully listen to each other. During the first few weeks of class, we'll work together to create a set of norms that will govern our interactions with each other, to ensure that we're always respectful of everyone.
 
-So that everyone feels comfortable participating, every member of this class **must** show respect for every other member of this class. Any attitude or belief that espouses the superiority of one group of people over another is **not welcome** in my classroom. Such beliefs are directly destructive to the sense of community that we strive to create, and will sabotage our ability to learn from each other (and thus sabotage the entire structure of the course).\
+So that everyone feels comfortable participating, every member of this class **must** show respect for every other member of this class. Any attitude or belief that espouses the superiority of one group of people over another is **not welcome** in my classroom. Such beliefs are directly destructive to the sense of community that we strive to create, and will sabotage our ability to learn from each other (and thus sabotage the entire structure of the course).
 
 In summary: Be good to each other.
 
@@ -601,8 +581,8 @@ Reproducibility
 :::
 
 -   **R-1**: I can create professional looking, reproducible analyses using RStudio projects, Quarto documents, and the `here` package <!-- we will want to add a target about file structure --> <!-- we will want to add a target about version control -->
--   **R-2**: I can write well documented[^2] and tidy code[^3]
--   **R-3**: I can write robust programs[^4] that are resistant to changes in inputs
+-   **R-2**: I can write well documented[^3] and tidy code[^4]
+-   **R-3**: I can write robust programs[^5] that are resistant to changes in inputs
 :::::
 
 ::: {.column width="10%"}
@@ -628,7 +608,7 @@ Program Efficiency
 -   **PE-1**: I can write concise code which does not repeat itself.
 -   **PE-2**: I can write functions to reduce repetition in my code.
 -   **PE-3**: I can use iteration to reduce repetition in my code.
--   **PE-4**: I can use modern tools[^5] when carrying out my analysis.
+-   **PE-4**: I can use modern tools[^6] when carrying out my analysis.
 
 ::: {style="font-size: 1.5em; color: #34605f;"}
 Data Simulation & Statistical Models
@@ -639,7 +619,9 @@ Data Simulation & Statistical Models
 ::::::
 :::::::::::
 
-[^2]: "well documented" code has elements of the following:
+[^3]: Note that I have chosen this deadline because I'm juggling two competing desires, (1) to step away from my email on the weekend, and (2) to make sure people's questions get answered before the assignment is due.
+
+[^4]: "well documented" code has elements of the following:
 
     -   code comments (e.g., \# function to rescale columns between 0 and 1)
 
@@ -647,20 +629,12 @@ Data Simulation & Statistical Models
 
     -   sections in Quarto file which describe the process(es) being implemented
 
-[^3]: "tidy code" is code which adheres to the tidyverse style guidelines
+[^5]: "tidy code" is code which adheres to the tidyverse style guidelines
 
-[^4]: The follow are some examples of code I would consider "robust":
+[^6]: The follow are some examples of code I would consider "robust":
 
     -   using column names rather than column positions
 
     -   including function stops when writing functions
 
     -   using processes that don't depend on you remembering a particular sequence of steps (e.g., `arrange()` then `slice()` versus `slice_max()`)
-
-[^5]: **The following are some examples of tools I would consider are "modern":**
-
-    -   functions which are not superseded
-
-    -   functions which are not deprecated
-
-    -   using the pipe operator to decrease the number of intermediate objects created

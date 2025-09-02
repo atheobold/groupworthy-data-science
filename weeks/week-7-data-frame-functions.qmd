@@ -31,17 +31,17 @@ By the end of the week you should have a grasp of:
 
 ------------------------------------------------------------------------
 
-#### `r emo::ji("play button")` Watch Videos: 20 minutes
+#### 📽 Watch Videos: 20 minutes
 
-#### `r emo::ji("book")` Readings: 60-75 minutes
+#### 📖 Readings: 60-75 minutes
 
-#### `r emo::ji("check")` Preview Activities: 1 (broken into two parts)
+#### ✅  Preview Activities: 1 (broken into two parts)
 
 ------------------------------------------------------------------------
 
 # Writing Data Frame Functions in R
 
-### `r emo::ji("book")` [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#data-frame-functions)
+### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#data-frame-functions)
 
 ::: callout-caution
 # Read only Section 3 (Data frame functions)!
@@ -62,7 +62,7 @@ If you are interested in learning more about tidy evaluation, I would highly rec
         variable names into `dplyr` functions, whereas we now use embracing `{{}}`. 🤗
 -   this [vignette for tidy evaluation with `dplyr`](https://dplyr.tidyverse.org/articles/programming.html#:~:text=arrange()%20%2C%20count()%20%2C%20filter,my_variable%20not%20df%24my_variable%20)
 
-### `r emo::ji("check")` **Check-in 7.2: Writing Data Frame Functions**
+### ✅  **Check-in 7.2: Writing Data Frame Functions**
 
 ::: callout-note
 # Data Structure
@@ -131,13 +131,13 @@ nycflights |>
 
 # Writing Plotting Functions in R
 
-### `r emo::ji("book")` [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions)
+### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions)
 
 ::: callout-caution
 # Read only Section 4 (Data frame functions)!
 :::
 
-### `r emo::ji("check")` **Check-in 7.2: Writing Data Frame Functions**
+### ✅  **Check-in 7.2: Writing Data Frame Functions**
 
 **Question 4**: Fill in the code below to build a rich plotting function which:
 

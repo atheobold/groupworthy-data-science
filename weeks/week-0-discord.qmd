@@ -8,8 +8,7 @@ editor: source
 ```{r packages}
 #| include: false
 library(tidyverse)
-library(flair)
-library(emo)
+library(fontawesome)
 ```
 
 Welcome!
@@ -18,11 +17,13 @@ In this coursework, you'll get set up with the Class Discord, learn about what i
 
 ## Course TODOs
 
-`r emo::ji("book")` Readings: 15 minutes
+📖 Readings: 15 minutes
 
-`r emo::ji("computer")` Activities: 0 min
+📽 Videos: 0
 
-`r emo::ji("check")` Check-ins: 3
+💻 Activities: 0 min
+
+✅  Check-ins: 3
 
 ------------------------------------------------------------------------
 
@@ -132,7 +133,7 @@ Last but not least - for the teams you are a part of, you may want to use Discor
 
 ## See you at the Party!
 
-## `r emo::ji("check")` Check-in 1.5: Discord Server
+## `r fa("square-check")` Check-in 1.5: Discord Server
 
 Introduce yourself in the "Introductions" channel of the Discord Server.
 
@@ -184,7 +185,7 @@ Although you may discuss ideas with your classmates and seek help from the usual
 
 Challenges will be submitted on Canvas. All revisions to Challenges will be submitted to the **same** Canvas portal as the original assignment.
 
-## `r emo::ji("check")` Check-in 1.1: Syllabus Quiz
+## `r fa("square-check")` Check-in 1.1: Syllabus Quiz
 
 **Question 1:** Where can you visit me for student hours?
 

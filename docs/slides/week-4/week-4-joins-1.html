@@ -1,405 +1,508 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.42">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Joins + Pivots – Introduction to Statistical Computing in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.57">
-
-  <title>Introduction to Statistical Computing in R – Data Joins + Pivots</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-      vertical-align: middle;
-    }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-  </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto.css">
-  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-
-  .callout {
-    margin-top: 1em;
-    margin-bottom: 1em;  
-    border-radius: .25rem;
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c5847375ff276ab9ec22c81632fc8b74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-b789fcca2e53c512b93527ce53c12a14.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
+}</script>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  .callout.callout-style-simple { 
-    padding: 0em 0.5em;
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-    display: flex;
-  }
 
-  .callout.callout-style-default {
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-  }
-
-  .callout .callout-body-container {
-    flex-grow: 1;
-  }
-
-  .callout.callout-style-simple .callout-body {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-style-default .callout-body {
-    font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-titled.callout-style-simple .callout-body {
-    margin-top: 0.2em;
-  }
-
-  .callout:not(.callout-titled) .callout-body {
-      display: flex;
-  }
-
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
-    padding-left: 1.6em;
-  }
-
-  .callout.callout-titled .callout-header {
-    padding-top: 0.2em;
-    margin-bottom: -0.2em;
-  }
-
-  .callout.callout-titled .callout-title  p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-    
-  .callout.callout-titled.callout-style-simple .callout-content  p {
-    margin-top: 0;
-  }
-
-  .callout.callout-titled.callout-style-default .callout-content  p {
-    margin-top: 0.7em;
-  }
-
-  .callout.callout-style-simple div.callout-title {
-    border-bottom: none;
-    font-size: .9rem;
-    font-weight: 600;
-    opacity: 75%;
-  }
-
-  .callout.callout-style-default  div.callout-title {
-    border-bottom: none;
-    font-weight: 600;
-    opacity: 85%;
-    font-size: 0.9rem;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-default div.callout-content {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-simple .callout-icon::before {
-    height: 1rem;
-    width: 1rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  }
-
-  .callout.callout-style-default .callout-icon::before {
-    height: 0.9rem;
-    width: 0.9rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 0.9rem 0.9rem;
-  }
-
-  .callout-title {
-    display: flex
-  }
-    
-  .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  .callout.no-icon::before {
-    display: none !important;
-  }
-
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
-  }
-
-  .callout.callout-titled .callout-icon::before {
-    margin-top: .5rem;
-    padding-right: .5rem;
-  }
-
-  .callout:not(.callout-titled) .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  /* Callout Types */
-
-  div.callout-note {
-    border-left-color: #4582ec !important;
-  }
-
-  div.callout-note .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
-  }
-
-  div.callout-note.callout-style-default .callout-title {
-    background-color: #dae6fb
-  }
-
-  div.callout-important {
-    border-left-color: #d9534f !important;
-  }
-
-  div.callout-important .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-important.callout-style-default .callout-title {
-    background-color: #f7dddc
-  }
-
-  div.callout-warning {
-    border-left-color: #f0ad4e !important;
-  }
-
-  div.callout-warning .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-warning.callout-style-default .callout-title {
-    background-color: #fcefdc
-  }
-
-  div.callout-tip {
-    border-left-color: #02b875 !important;
-  }
-
-  div.callout-tip .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-tip.callout-style-default .callout-title {
-    background-color: #ccf1e3
-  }
-
-  div.callout-caution {
-    border-left-color: #fd7e14 !important;
-  }
-
-  div.callout-caution .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
-  }
-
-  div.callout-caution.callout-style-default .callout-title {
-    background-color: #ffe5d0
-  }
-
-  </style>
-  <style type="text/css">
-    .reveal div.sourceCode {
-      margin: 0;
-      overflow: auto;
-    }
-    .reveal div.hanging-indent {
-      margin-left: 1em;
-      text-indent: -1em;
-    }
-    .reveal .slide:not(.center) {
-      height: 100%;
-    }
-    .reveal .slide.scrollable {
-      overflow-y: auto;
-    }
-    .reveal .footnotes {
-      height: 100%;
-      overflow-y: auto;
-    }
-    .reveal .slide .absolute {
-      position: absolute;
-      display: block;
-    }
-    .reveal .footnotes ol {
-      counter-reset: ol;
-      list-style-type: none; 
-      margin-left: 0;
-    }
-    .reveal .footnotes ol li:before {
-      counter-increment: ol;
-      content: counter(ol) ". "; 
-    }
-    .reveal .footnotes ol li > p:first-child {
-      display: inline-block;
-    }
-    .reveal .slide ul,
-    .reveal .slide ol {
-      margin-bottom: 0.5em;
-    }
-    .reveal .slide ul li,
-    .reveal .slide ol li {
-      margin-top: 0.4em;
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide ul[role="tablist"] li {
-      margin-bottom: 0;
-    }
-    .reveal .slide ul li > *:first-child,
-    .reveal .slide ol li > *:first-child {
-      margin-block-start: 0;
-    }
-    .reveal .slide ul li > *:last-child,
-    .reveal .slide ol li > *:last-child {
-      margin-block-end: 0;
-    }
-    .reveal .slide .columns:nth-child(3) {
-      margin-block-start: 0.8em;
-    }
-    .reveal blockquote {
-      box-shadow: none;
-    }
-    .reveal .tippy-content>* {
-      margin-top: 0.2em;
-      margin-bottom: 0.7em;
-    }
-    .reveal .tippy-content>*:last-child {
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide > img.stretch.quarto-figure-center,
-    .reveal .slide > img.r-stretch.quarto-figure-center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-left,
-    .reveal .slide > img.r-stretch.quarto-figure-left  {
-      display: block;
-      margin-left: 0;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-right,
-    .reveal .slide > img.r-stretch.quarto-figure-right  {
-      display: block;
-      margin-left: auto;
-      margin-right: 0; 
-    }
-  </style>
-  <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
-  <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
-<body class="quarto-light">
-  <div class="reveal">
-    <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Data Joins + Pivots</h1>
+<body class="nav-sidebar docked">
 
-<div class="quarto-title-authors">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Data Joins + Pivots</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../../index.html" class="sidebar-logo-link">
+      <img src="../../images/r-flowers.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/atheobold/groupworthy-data-science" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
+    <a href="https://canvas.calpoly.edu" title="Cal Poly Canvas" class="quarto-navigation-tool px-1" aria-label="Cal Poly Canvas"><i class="bi bi-person-fill"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-materials/course-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Overview</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-materials/course-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-materials/course-support.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Support</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-materials/course-team.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Teaching team</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schedule</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-materials/computing-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../course-materials/course_resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">R Resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Weekly materials</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-0-discord.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 0 - Course Set-up</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-1-r-rstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 1, Part 1 - R &amp; RStudio</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-1-quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 1, Part 2 - Quarto</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-1-version-control.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 1, Part 3 - Version Control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-2-ggplot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2, Part 1 - ggplot</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-2-projects-data-import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 2, Part 2 - Data Import</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-3-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 3 - dplyr</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-4-reshaping-joining.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4, Part 1 - Data Transformation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-4-factors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 4, Part 2 - Factors</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-5-strings-dates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 5 - Strings &amp; Dates</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../portfolio/midterm-portfolio-targets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 6 - Midterm Portfolio Week</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-7-vector-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7, Part 1 – Vector Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-7-data-frame-functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 7, Part 1 – Data Frame Functions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-8-iteration.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 8 - Iteration</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../weeks/week-9-simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 9 - Simulating Data</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Labs</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/lab-1-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 1 &amp; Challenge 1 Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/lab-2-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 2 Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/challenge-2-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Challenge 2 Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/lab-3-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 3 Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/challenge-3-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Challenge 3 Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/lab-4-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 4 &amp; Challenge 4 Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/lab-5-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 5 Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/lab-7-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 7 Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/challenge-7-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Challenge 7 Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/instructions/lab-8-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab 8 Instructions</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Gallary of Student Work</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../labs/exemplars/student-work.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exemplary Student Work</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Portfolio</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../portfolio/portfolio-instructions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Portfolio Instructions</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../portfolio/midterm-portfolio-targets.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Midterm Portfolio Learning Targets</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tuesday-october-15" id="toc-tuesday-october-15" class="nav-link active" data-scroll-target="#tuesday-october-15">Tuesday, October 15</a></li>
+  <li><a href="#discord-deadline-extension-tokens" id="toc-discord-deadline-extension-tokens" class="nav-link" data-scroll-target="#discord-deadline-extension-tokens">Discord &amp; Deadline Extension Tokens</a></li>
+  <li><a href="#discord-deadline-extension-tokens-1" id="toc-discord-deadline-extension-tokens-1" class="nav-link" data-scroll-target="#discord-deadline-extension-tokens-1">Discord &amp; Deadline Extension Tokens</a></li>
+  <li><a href="#grade-expectations" id="toc-grade-expectations" class="nav-link" data-scroll-target="#grade-expectations">Grade Expectations</a></li>
+  <li><a href="#grade-expectations-1" id="toc-grade-expectations-1" class="nav-link" data-scroll-target="#grade-expectations-1">Grade Expectations</a></li>
+  <li><a href="#grade-expectations-2" id="toc-grade-expectations-2" class="nav-link" data-scroll-target="#grade-expectations-2">Grade Expectations</a></li>
+  <li><a href="#data-layouts" id="toc-data-layouts" class="nav-link" data-scroll-target="#data-layouts">Data Layouts</a>
+  <ul class="collapse">
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy Data</a></li>
+  <li><a href="#creating-tidy-data" id="toc-creating-tidy-data" class="nav-link" data-scroll-target="#creating-tidy-data">Creating Tidy Data</a></li>
+  <li><a href="#cereal-data" id="toc-cereal-data" class="nav-link" data-scroll-target="#cereal-data">Cereal Data</a></li>
+  <li><a href="#creating-tidy-data-1" id="toc-creating-tidy-data-1" class="nav-link" data-scroll-target="#creating-tidy-data-1">Creating Tidy Data</a></li>
+  <li><a href="#tidying-the-cereals-data" id="toc-tidying-the-cereals-data" class="nav-link" data-scroll-target="#tidying-the-cereals-data">Tidying the Cereals Data</a></li>
+  </ul></li>
+  <li><a href="#pivoting-data" id="toc-pivoting-data" class="nav-link" data-scroll-target="#pivoting-data">Pivoting Data</a>
+  <ul class="collapse">
+  <li><a href="#manual-method" id="toc-manual-method" class="nav-link" data-scroll-target="#manual-method">Manual Method</a></li>
+  <li><a href="#manual-method-steps" id="toc-manual-method-steps" class="nav-link" data-scroll-target="#manual-method-steps">Manual Method: Steps</a></li>
+  <li><a href="#manual-method-steps-1" id="toc-manual-method-steps-1" class="nav-link" data-scroll-target="#manual-method-steps-1">Manual Method: Steps</a></li>
+  <li><a href="#manual-method-steps-2" id="toc-manual-method-steps-2" class="nav-link" data-scroll-target="#manual-method-steps-2">Manual Method: Steps</a></li>
+  <li><a href="#manual-method-steps-3" id="toc-manual-method-steps-3" class="nav-link" data-scroll-target="#manual-method-steps-3">Manual Method: Steps</a></li>
+  <li><a href="#computational-approach" id="toc-computational-approach" class="nav-link" data-scroll-target="#computational-approach">Computational Approach</a></li>
+  <li><a href="#pivot_longer" id="toc-pivot_longer" class="nav-link" data-scroll-target="#pivot_longer"><code>pivot_longer()</code></a></li>
+  <li><a href="#pivot_longer-1" id="toc-pivot_longer-1" class="nav-link" data-scroll-target="#pivot_longer-1"><code>pivot_longer()</code></a></li>
+  <li><a href="#pivot_wider" id="toc-pivot_wider" class="nav-link" data-scroll-target="#pivot_wider"><code>pivot_wider()</code></a></li>
+  <li><a href="#pivot_wider-1" id="toc-pivot_wider-1" class="nav-link" data-scroll-target="#pivot_wider-1"><code>pivot_wider()</code></a></li>
+  <li><a href="#pivot_wider-2" id="toc-pivot_wider-2" class="nav-link" data-scroll-target="#pivot_wider-2"><code>pivot_wider()</code></a></li>
+  <li><a href="#better-names-in-pivot_wider" id="toc-better-names-in-pivot_wider" class="nav-link" data-scroll-target="#better-names-in-pivot_wider">Better names in <code>pivot_wider()</code></a></li>
+  </ul></li>
+  <li><a href="#data-joins" id="toc-data-joins" class="nav-link" data-scroll-target="#data-joins">Data Joins</a>
+  <ul class="collapse">
+  <li><a href="#relational-data" id="toc-relational-data" class="nav-link" data-scroll-target="#relational-data">Relational Data</a></li>
+  <li><a href="#data-joins-1" id="toc-data-joins-1" class="nav-link" data-scroll-target="#data-joins-1">Data Joins</a></li>
+  <li><a href="#keys" id="toc-keys" class="nav-link" data-scroll-target="#keys">Keys</a></li>
+  <li><a href="#inner_join" id="toc-inner_join" class="nav-link" data-scroll-target="#inner_join"><code>inner_join()</code></a></li>
+  <li><a href="#inner_join-imdb-example" id="toc-inner_join-imdb-example" class="nav-link" data-scroll-target="#inner_join-imdb-example"><code>inner_join()</code>: IMDb Example</a></li>
+  <li><a href="#inner_join-imdb-example-1" id="toc-inner_join-imdb-example-1" class="nav-link" data-scroll-target="#inner_join-imdb-example-1"><code>inner_join()</code>: IMDb Example</a></li>
+  <li><a href="#piping-joins" id="toc-piping-joins" class="nav-link" data-scroll-target="#piping-joins">Piping Joins</a></li>
+  <li><a href="#more-mutating-joins" id="toc-more-mutating-joins" class="nav-link" data-scroll-target="#more-mutating-joins">More Mutating Joins</a></li>
+  <li><a href="#more-mutating-joins-1" id="toc-more-mutating-joins-1" class="nav-link" data-scroll-target="#more-mutating-joins-1">More Mutating Joins</a></li>
+  <li><a href="#filtering-joins-semi_join" id="toc-filtering-joins-semi_join" class="nav-link" data-scroll-target="#filtering-joins-semi_join">Filtering Joins: <code>semi_join()</code></a></li>
+  <li><a href="#filtering-joins-semi_join-1" id="toc-filtering-joins-semi_join-1" class="nav-link" data-scroll-target="#filtering-joins-semi_join-1">Filtering Joins: <code>semi_join()</code></a></li>
+  <li><a href="#filtering-joins-anti_join" id="toc-filtering-joins-anti_join" class="nav-link" data-scroll-target="#filtering-joins-anti_join">Filtering Joins: <code>anti_join()</code></a></li>
+  <li><a href="#filtering-joins-anti_join-1" id="toc-filtering-joins-anti_join-1" class="nav-link" data-scroll-target="#filtering-joins-anti_join-1">Filtering Joins: <code>anti_join()</code></a></li>
+  <li><a href="#pa-4-military-spending" id="toc-pa-4-military-spending" class="nav-link" data-scroll-target="#pa-4-military-spending">PA 4: Military Spending</a></li>
+  <li><a href="#this-activity-will-require-knowledge-of" id="toc-this-activity-will-require-knowledge-of" class="nav-link" data-scroll-target="#this-activity-will-require-knowledge-of">This activity will require knowledge of:</a></li>
+  <li><a href="#dplyr-resources" id="toc-dplyr-resources" class="nav-link" data-scroll-target="#dplyr-resources">dplyr Resources</a></li>
+  <li><a href="#tidyr-resources" id="toc-tidyr-resources" class="nav-link" data-scroll-target="#tidyr-resources">tidyr Resources</a></li>
+  <li><a href="#task-card" id="toc-task-card" class="nav-link" data-scroll-target="#task-card">Task Card</a></li>
+  <li><a href="#pair-programming-expectations" id="toc-pair-programming-expectations" class="nav-link" data-scroll-target="#pair-programming-expectations">Pair Programming Expectations</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li><a href="#external-resources" id="toc-external-resources" class="nav-link" data-scroll-target="#external-resources">External Resources</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  </ul></li>
+  <li><a href="#exit-ticket" id="toc-exit-ticket" class="nav-link" data-scroll-target="#exit-ticket">Exit Ticket</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="week-4-joins-1.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Joins + Pivots</h1>
 </div>
 
-</section>
-<section id="tuesday-october-15" class="slide level2">
-<h2>Tuesday, October 15</h2>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="tuesday-october-15" class="level2">
+<h2 class="anchored" data-anchor-id="tuesday-october-15">Tuesday, October 15</h2>
 <p>Today we will discuss…</p>
 <ul>
 <li>Discord &amp; Tokens</li>
@@ -415,69 +518,64 @@
 <li><a href="../../group-activities/week-4/PA4-tidyr.qmd">PA 4: Military Spending</a></li>
 </ul>
 </section>
-<section id="discord-deadline-extension-tokens" class="title-slide slide level1 center">
+<section id="discord-deadline-extension-tokens" class="level1">
 <h1>Discord &amp; Deadline Extension Tokens</h1>
-
 </section>
-
-<section id="discord-deadline-extension-tokens-1" class="title-slide slide level1 center">
+<section id="discord-deadline-extension-tokens-1" class="level1">
 <h1>Discord &amp; Deadline Extension Tokens</h1>
-<blockquote>
+<blockquote class="blockquote">
 <p>If you answer / respond to another student’s question on Discord, you will earn one additional “token” (3-day deadline extension request).</p>
 </blockquote>
 </section>
-
-<section id="grade-expectations" class="title-slide slide level1 center">
+<section id="grade-expectations" class="level1">
 <h1>Grade Expectations</h1>
-
 </section>
-
-<section id="grade-expectations-1" class="title-slide slide level1 center">
+<section id="grade-expectations-1" class="level1">
 <h1>Grade Expectations</h1>
-<blockquote>
+<blockquote class="blockquote">
 <p>The <a href="../../course-materials/course-syllabus.html#sec-grades">course syllabus</a> has been updated to reflect the grade criteria you all proposed.</p>
 </blockquote>
 </section>
-
-<section id="grade-expectations-2" class="title-slide slide level1 center">
+<section id="grade-expectations-2" class="level1">
 <h1>Grade Expectations</h1>
-<blockquote>
+<blockquote class="blockquote">
 <p>The <a href="../../course-materials/course-syllabus.html#sec-grades">course syllabus</a> has been updated to reflect the grade criteria you all proposed.</p>
 </blockquote>
 <p>You have until Sunday <a href="https://canvas.calpoly.edu/courses/138158/quizzes/247752">to vote</a> on whether you agree with the proposed criteria, and to suggest ways these criteria could be revised.</p>
 </section>
-
-<section>
-<section id="data-layouts" class="title-slide slide level1 center">
+<section id="data-layouts" class="level1">
 <h1>Data Layouts</h1>
-
-</section>
-<section id="tidy-data" class="slide level2">
-<h2>Tidy Data</h2>
+<section id="tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-data">Tidy Data</h2>
 <p>Tidy data…</p>
 <ul>
 <li>is rectangular.</li>
 <li>has observations as rows and variables as columns.</li>
 <li><strong>has different formats for different tasks.</strong></li>
 </ul>
-
-<img data-src="https://r4ds.hadley.nz/images/tidy-1.png" alt="This image shows a visual representation of the three key concepts in tidy data: variables, observations, and values. It is divided into three sections. The first section on the left highlights vertical arrows pointing down each column of a table, labeled 'variables,' showing that each column represents a different variable (country, year, cases, population). The middle section has horizontal arrows pointing across rows of the same table, labeled 'observations,' indicating that each row is an observation or data point. The third section on the right has circles around individual data points within the table, labeled 'values,' indicating the actual values for each variable in the dataset." class="r-stretch"></section>
-<section id="creating-tidy-data" class="slide level2">
-<h2>Creating Tidy Data</h2>
+<p><img src="https://r4ds.hadley.nz/images/tidy-1.png" class="img-fluid" alt="This image shows a visual representation of the three key concepts in tidy data: variables, observations, and values. It is divided into three sections. The first section on the left highlights vertical arrows pointing down each column of a table, labeled 'variables,' showing that each column represents a different variable (country, year, cases, population). The middle section has horizontal arrows pointing across rows of the same table, labeled 'observations,' indicating that each row is an observation or data point. The third section on the right has circles around individual data points within the table, labeled 'values,' indicating the actual values for each variable in the dataset."></p>
+</section>
+<section id="creating-tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="creating-tidy-data">Creating Tidy Data</h2>
 <p>We may need to <strong>transform</strong> our data to turn it into the <strong>version of tidy</strong> that is best for a task at hand.</p>
-
-<img data-src="https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg" alt="An illustration of two round, fluffy characters, one green and one purple, holding a large table between them labeled 'TIDY.' The table is held by clamps on either side labeled 'WRANGLE' in orange and pink. The green character on the left is smiling with one arm raised, while the purple character on the right is cheering with both arms up. The table represents tidy data, and the clamps labeled 'WRANGLE' suggest data manipulation or preparation." class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section>
-<section id="cereal-data" class="slide level2">
-<h2>Cereal Data</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg" class="img-fluid figure-img" alt="An illustration of two round, fluffy characters, one green and one purple, holding a large table between them labeled 'TIDY.' The table is held by clamps on either side labeled 'WRANGLE' in orange and pink. The green character on the left is smiling with one arm raised, while the purple character on the right is cheering with both arms up. The table represents tidy data, and the clamps labeled 'WRANGLE' suggest data manipulation or preparation."></p>
+<figcaption>Image by Allison Horst</figcaption>
+</figure>
+</div>
+</section>
+<section id="cereal-data" class="level2">
+<h2 class="anchored" data-anchor-id="cereal-data">Cereal Data</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(liver)</span>
-<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cereal)</span>
-<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cereal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(liver)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cereal)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(cereal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:450px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">name</th>
@@ -614,38 +712,37 @@
 </div>
 </div>
 </section>
-<section id="creating-tidy-data-1" class="slide level2">
-<h2>Creating Tidy Data</h2>
+<section id="creating-tidy-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="creating-tidy-data-1">Creating Tidy Data</h2>
 <p>Let’s say we want to look at <code>mean</code> <strong>cereal nutrients</strong> based on <code>shelf</code>.</p>
-<div class="fragment">
+<p>. . .</p>
 <p>Currently, the data are in a <strong>wide</strong> format – a separate column for each nutrient.</p>
 <p><strong>Transforming</strong> the data will make plotting easier.</p>
-</div>
 </section>
-<section id="tidying-the-cereals-data" class="slide level2">
-<h2>Tidying the Cereals Data</h2>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Wide</a></li><li><a href="#tabset-1-2">Wide Plot</a></li><li><a href="#tabset-1-3">Long</a></li><li><a href="#tabset-1-4">Long Plot</a></li></ul>
+<section id="tidying-the-cereals-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidying-the-cereals-data">Tidying the Cereals Data</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Wide</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Wide Plot</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Long</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-4" role="tab" aria-controls="tabset-1-4" aria-selected="false">Long Plot</a></li></ul>
 <div class="tab-content">
-<div id="tabset-1-1">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="small">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="3-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>cereal_wide <span class="ot">&lt;-</span> cereal <span class="sc">|&gt;</span> </span>
-<span id="cb2-2"><a></a>  <span class="fu">group_by</span>(shelf) <span class="sc">|&gt;</span> </span>
-<span id="cb2-3"><a></a>  <span class="fu">summarise</span>(</span>
-<span id="cb2-4"><a></a>    <span class="fu">across</span>(<span class="at">.cols =</span> calories<span class="sc">:</span>vitamins, </span>
-<span id="cb2-5"><a></a>           <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x)</span>
-<span id="cb2-6"><a></a>           )</span>
-<span id="cb2-7"><a></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>cereal_wide <span class="ot">&lt;-</span> cereal <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="fu">group_by</span>(shelf) <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb2-4"><a href="#cb2-4"></a>    <span class="fu">across</span>(<span class="at">.cols =</span> calories<span class="sc">:</span>vitamins, </span>
+<span id="cb2-5"><a href="#cb2-5"></a>           <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x)</span>
+<span id="cb2-6"><a href="#cb2-6"></a>           )</span>
+<span id="cb2-7"><a href="#cb2-7"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">shelf</th>
@@ -704,50 +801,54 @@
 </div>
 </div>
 </div>
-<div id="tabset-1-2">
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <div class="small">
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="5-8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"calories_col"</span> <span class="ot">=</span> <span class="st">"steelblue"</span>, <span class="st">"sugars_col"</span> <span class="ot">=</span> <span class="st">"orange3"</span>)</span>
-<span id="cb3-2"><a></a></span>
-<span id="cb3-3"><a></a>cereal_wide <span class="sc">|&gt;</span> </span>
-<span id="cb3-4"><a></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
-<span id="cb3-5"><a></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, <span class="at">y =</span> calories, <span class="at">color =</span> <span class="st">"calories_col"</span>)) <span class="sc">+</span></span>
-<span id="cb3-6"><a></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, <span class="at">y =</span> calories, <span class="at">color =</span> <span class="st">"calories_col"</span>)) <span class="sc">+</span> </span>
-<span id="cb3-7"><a></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, <span class="at">y =</span> sugars, <span class="at">color =</span> <span class="st">"sugars_col"</span>)) <span class="sc">+</span></span>
-<span id="cb3-8"><a></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, <span class="at">y =</span> sugars, <span class="at">color =</span> <span class="st">"sugars_col"</span>)) <span class="sc">+</span></span>
-<span id="cb3-9"><a></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors, <span class="at">labels =</span> <span class="fu">names</span>(my_colors)) <span class="sc">+</span></span>
-<span id="cb3-10"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Shelf"</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">subtitle =</span> <span class="st">"Mean Amount"</span>, <span class="at">color =</span> <span class="st">"Nutrient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"calories_col"</span> <span class="ot">=</span> <span class="st">"steelblue"</span>, <span class="st">"sugars_col"</span> <span class="ot">=</span> <span class="st">"orange3"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>cereal_wide <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, <span class="at">y =</span> calories, <span class="at">color =</span> <span class="st">"calories_col"</span>)) <span class="sc">+</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, <span class="at">y =</span> calories, <span class="at">color =</span> <span class="st">"calories_col"</span>)) <span class="sc">+</span> </span>
+<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, <span class="at">y =</span> sugars, <span class="at">color =</span> <span class="st">"sugars_col"</span>)) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>  <span class="fu">geom_line</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, <span class="at">y =</span> sugars, <span class="at">color =</span> <span class="st">"sugars_col"</span>)) <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> my_colors, <span class="at">labels =</span> <span class="fu">names</span>(my_colors)) <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Shelf"</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">subtitle =</span> <span class="st">"Mean Amount"</span>, <span class="at">color =</span> <span class="st">"Nutrient"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="week-4-joins-1_files/figure-revealjs/cereal-wide-plot-1.png" class="quarto-figure quarto-figure-center" alt="A line chart displaying the relationship between the mean amount of two nutrients ('calories_col' and 'sugars_col') and their corresponding shelf number (1, 2, 3). The y-axis represents the mean amount, ranging from 0 to 100, and the x-axis represents the shelf numbers (1, 2, 3). The blue line represents 'calories_col,' with a relatively flat trend around 90 across the shelves. The orange line represents 'sugars_col,' which remains close to zero across the same shelves. The legend on the right identifies the nutrient lines." width="576"></p>
+<figure class="figure">
+<p><img src="week-4-joins-1_files/figure-html/cereal-wide-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="A line chart displaying the relationship between the mean amount of two nutrients ('calories_col' and 'sugars_col') and their corresponding shelf number (1, 2, 3). The y-axis represents the mean amount, ranging from 0 to 100, and the x-axis represents the shelf numbers (1, 2, 3). The blue line represents 'calories_col,' with a relatively flat trend around 90 across the shelves. The orange line represents 'sugars_col,' which remains close to zero across the same shelves. The legend on the right identifies the nutrient lines." width="576"></p>
 </figure>
 </div>
 </div>
 </div>
 </div>
 </div>
-<div id="tabset-1-3">
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="small">
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="5-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>cereal_long <span class="ot">&lt;-</span> cereal <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> calories<span class="sc">:</span>vitamins,</span>
-<span id="cb4-3"><a></a>               <span class="at">names_to =</span> <span class="st">"Nutrient"</span>,</span>
-<span id="cb4-4"><a></a>               <span class="at">values_to =</span> <span class="st">"Amount"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-5"><a></a>  <span class="fu">group_by</span>(shelf, Nutrient) <span class="sc">|&gt;</span> </span>
-<span id="cb4-6"><a></a>  <span class="fu">summarise</span>(<span class="at">mean_amount =</span> <span class="fu">mean</span>(Amount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>cereal_long <span class="ot">&lt;-</span> cereal <span class="sc">|&gt;</span> </span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> calories<span class="sc">:</span>vitamins,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>               <span class="at">names_to =</span> <span class="st">"Nutrient"</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>               <span class="at">values_to =</span> <span class="st">"Amount"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="fu">group_by</span>(shelf, Nutrient) <span class="sc">|&gt;</span> </span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="fu">summarise</span>(<span class="at">mean_amount =</span> <span class="fu">mean</span>(Amount))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'shelf'. You can override using the
+`.groups` argument.</code></pre>
+</div>
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">shelf</th>
@@ -898,26 +999,26 @@
 </div>
 </div>
 </div>
-<div id="tabset-1-4">
+<div id="tabset-1-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-4-tab">
 <div class="small">
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="2-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>cereal_long <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, </span>
-<span id="cb5-3"><a></a>                       <span class="at">y =</span> mean_amount, </span>
-<span id="cb5-4"><a></a>                       <span class="at">color =</span> Nutrient)</span>
-<span id="cb5-5"><a></a>         ) <span class="sc">+</span></span>
-<span id="cb5-6"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb5-7"><a></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb5-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Shelf"</span>, </span>
-<span id="cb5-9"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
-<span id="cb5-10"><a></a>       <span class="at">subtitle =</span> <span class="st">"Mean Amount"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>cereal_long <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> shelf, </span>
+<span id="cb6-3"><a href="#cb6-3"></a>                       <span class="at">y =</span> mean_amount, </span>
+<span id="cb6-4"><a href="#cb6-4"></a>                       <span class="at">color =</span> Nutrient)</span>
+<span id="cb6-5"><a href="#cb6-5"></a>         ) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Shelf"</span>, </span>
+<span id="cb6-9"><a href="#cb6-9"></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb6-10"><a href="#cb6-10"></a>       <span class="at">subtitle =</span> <span class="st">"Mean Amount"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="week-4-joins-1_files/figure-revealjs/cereal-long-plot-1.png" class="quarto-figure quarto-figure-center" width="576"></p>
+<figure class="figure">
+<p><img src="week-4-joins-1_files/figure-html/cereal-long-plot-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="576"></p>
 </figure>
 </div>
 </div>
@@ -926,47 +1027,51 @@
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="pivoting-data" class="title-slide slide level1 center">
+</section>
+</section>
+<section id="pivoting-data" class="level1">
 <h1>Pivoting Data</h1>
 <div class="columns">
 <div class="column">
-<p><img data-src="https://github.com/gadenbuie/tidyexplain/raw/main/images/static/png/original-dfs-tidy.png" alt="Two tables side by side, illustrating the difference between 'wide' and 'long' data formats. The left table labeled 'wide' has columns: 'id,' 'x,' 'y,' and 'z.' The 'id' column contains the values 1 and 2, and the 'x,' 'y,' and 'z' columns contain the values a, b, c, d, e, and f spread across the rows. The right table labeled 'long' has columns: 'id,' 'key,' and 'val.' The 'id' column has repeated values (1 and 2), the 'key' column contains 'x,' 'y,' and 'z,' and the 'val' column contains 'a' through 'f,' corresponding to the wide table but reorganized in a 'long' format."></p>
+<p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/static/png/original-dfs-tidy.png" class="img-fluid" alt="Two tables side by side, illustrating the difference between 'wide' and 'long' data formats. The left table labeled 'wide' has columns: 'id,' 'x,' 'y,' and 'z.' The 'id' column contains the values 1 and 2, and the 'x,' 'y,' and 'z' columns contain the values a, b, c, d, e, and f spread across the rows. The right table labeled 'long' has columns: 'id,' 'key,' and 'val.' The 'id' column has repeated values (1 and 2), the 'key' column contains 'x,' 'y,' and 'z,' and the 'val' column contains 'a' through 'f,' corresponding to the wide table but reorganized in a 'long' format."></p>
 </div><div class="column">
-<p><img data-src="https://github.com/gadenbuie/tidyexplain/raw/main/images/tidyr-pivoting.gif" alt="A gif showing the visual transformation of the data pictured, going from the wide format to the long format. Above the image is the R code that would produce each data layout."></p>
-</div></div>
-</section>
-<section id="manual-method" class="slide level2">
-<h2>Manual Method</h2>
+<p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/tidyr-pivoting.gif" class="img-fluid" alt="A gif showing the visual transformation of the data pictured, going from the wide format to the long format. Above the image is the R code that would produce each data layout."></p>
+</div>
+</div>
+<section id="manual-method" class="level2">
+<h2 class="anchored" data-anchor-id="manual-method">Manual Method</h2>
 <p>Consider daily rainfall observed in SLO in January 2023.</p>
 <ul>
 <li>The data is in a human-friendly form (like a calendar).</li>
 <li>Each week has a row, and each day has a column.</li>
 </ul>
-
-<img data-src="images/slo-rainfall.jpg" alt="A spreadsheet displaying a table with days of the week as column headers (Sunday to Saturday) and weeks numbered 1 to 5 in the first column. The table contains numerical values corresponding to each day of the week for each week. Some cells contain 'NA,' indicating missing values, while other cells contain numerical values like 0.12, 0.27, 4.26, and so on. Several cells contain zeros, and a few cells are left empty." class="r-stretch quarto-figure-center"><p class="caption"><a href="cesanluisobispo.ucanr.edu">Data source</a></p><p>How would you <strong>manually</strong> convert this to <strong>long format</strong>?</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/slo-rainfall.jpg" class="img-fluid figure-img" alt="A spreadsheet displaying a table with days of the week as column headers (Sunday to Saturday) and weeks numbered 1 to 5 in the first column. The table contains numerical values corresponding to each day of the week for each week. Some cells contain 'NA,' indicating missing values, while other cells contain numerical values like 0.12, 0.27, 4.26, and so on. Several cells contain zeros, and a few cells are left empty."></p>
+<figcaption><a href="cesanluisobispo.ucanr.edu">Data source</a></figcaption>
+</figure>
+</div>
+<p>How would you <strong>manually</strong> convert this to <strong>long format</strong>?</p>
 </section>
-<section id="manual-method-steps" class="slide level2">
-<h2>Manual Method: Steps</h2>
-<div>
+<section id="manual-method-steps" class="level2">
+<h2 class="anchored" data-anchor-id="manual-method-steps">Manual Method: Steps</h2>
+<div class="incremental">
 <div class="small">
-<ol start="0" type="1">
-<li class="fragment">Keep the column <code>Week</code>.</li>
-<li class="fragment">Create a new column <code>Day_of_Week</code>.</li>
-<li class="fragment">Create a new column <code>Rainfall</code> (hold daily rainfall values).</li>
-<li class="fragment">Now we have three columns – move Sunday values over.</li>
+<ol class="incremental" start="0" type="1">
+<li>Keep the column <code>Week</code>.</li>
+<li>Create a new column <code>Day_of_Week</code>.</li>
+<li>Create a new column <code>Rainfall</code> (hold daily rainfall values).</li>
+<li>Now we have three columns – move Sunday values over.</li>
 </ol>
 </div>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <center>
-<p><img data-src="images/pivot_rain1.png" style="width:25.0%" alt="A spreadsheet displaying a table with days of the week as column headers (Sunday to Saturday) and weeks numbered 1 to 5 in the first column. The table contains numerical values corresponding to each day of the week for each week. Some cells contain 'NA,' indicating missing values, while other cells contain numerical values like 0.12, 0.27, 4.26, and so on. Several cells contain zeros, and a few cells are left empty."></p>
+<p><img src="images/pivot_rain1.png" class="img-fluid" style="width:25.0%" alt="A spreadsheet displaying a table with days of the week as column headers (Sunday to Saturday) and weeks numbered 1 to 5 in the first column. The table contains numerical values corresponding to each day of the week for each week. Some cells contain 'NA,' indicating missing values, while other cells contain numerical values like 0.12, 0.27, 4.26, and so on. Several cells contain zeros, and a few cells are left empty."></p>
 </center>
-</div>
 </section>
-<section id="manual-method-steps-1" class="slide level2">
-<h2>Manual Method: Steps</h2>
+<section id="manual-method-steps-1" class="level2">
+<h2 class="anchored" data-anchor-id="manual-method-steps-1">Manual Method: Steps</h2>
 <div class="small">
 <ol start="0" type="1">
 <li>Keep the column <code>Week</code>.</li>
@@ -977,11 +1082,11 @@
 </ol>
 </div>
 <center>
-<img data-src="images/pivot_rain2.png" style="width:25.0%" alt="A table with three columns: 'Week,' 'Day_of_Week,' and 'Rainfall.' The 'Week' column contains numbers 1 to 5, while the 'Day_of_Week' column alternates between 'Sunday' and 'Monday.' The 'Rainfall' column lists numerical values for each week and day. For Sunday, the rainfall values are 0, 0.27, 0.34, 0, and 'NA' for weeks 1 through 5, respectively. For Monday, the rainfall values are 0.12, 4.26, 0.33, 0, and 'NA' for weeks 1 through 5, respectively.">
+<img src="images/pivot_rain2.png" class="img-fluid" style="width:25.0%" alt="A table with three columns: 'Week,' 'Day_of_Week,' and 'Rainfall.' The 'Week' column contains numbers 1 to 5, while the 'Day_of_Week' column alternates between 'Sunday' and 'Monday.' The 'Rainfall' column lists numerical values for each week and day. For Sunday, the rainfall values are 0, 0.27, 0.34, 0, and 'NA' for weeks 1 through 5, respectively. For Monday, the rainfall values are 0.12, 4.26, 0.33, 0, and 'NA' for weeks 1 through 5, respectively.">
 </center>
 </section>
-<section id="manual-method-steps-2" class="slide level2">
-<h2>Manual Method: Steps</h2>
+<section id="manual-method-steps-2" class="level2">
+<h2 class="anchored" data-anchor-id="manual-method-steps-2">Manual Method: Steps</h2>
 <div class="small">
 <ol start="0" type="1">
 <li>Keep the column <code>Week</code>.</li>
@@ -993,8 +1098,8 @@
 </ol>
 </div>
 </section>
-<section id="manual-method-steps-3" class="slide level2">
-<h2>Manual Method: Steps</h2>
+<section id="manual-method-steps-3" class="level2">
+<h2 class="anchored" data-anchor-id="manual-method-steps-3">Manual Method: Steps</h2>
 <div class="small">
 <ol start="0" type="1">
 <li>Keep the column <code>Week</code>.</li>
@@ -1007,13 +1112,13 @@
 </ol>
 </div>
 </section>
-<section id="computational-approach" class="slide level2">
-<h2>Computational Approach</h2>
-
-<img data-src="images/slo-rainfall-sketch.png" alt="A table showing rainfall data for each day of the week across five weeks, with annotations explaining how to reshape the data from wide to long format. The table has columns for 'Week,' followed by the days of the week (Sunday to Saturday), and contains numerical values representing rainfall. There are three color-coded annotations: the 'Week' column is highlighted in green, labeled 'key' with the note 'keep this column, but repeat it many times.' The day names (Sunday through Saturday) are highlighted in red with the note 'turn into new column: Day_of_Week (repeat day of week many times).' The data cells are highlighted in blue with the note 'turn into new column: Rainfall (values for each week # and day of week).'" class="r-stretch"><p>We can use <code>pivot_longer()</code> to turn a <strong>wide</strong> dataset into a <strong>long(er)</strong> dataset.</p>
+<section id="computational-approach" class="level2">
+<h2 class="anchored" data-anchor-id="computational-approach">Computational Approach</h2>
+<p><img src="images/slo-rainfall-sketch.png" class="img-fluid" alt="A table showing rainfall data for each day of the week across five weeks, with annotations explaining how to reshape the data from wide to long format. The table has columns for 'Week,' followed by the days of the week (Sunday to Saturday), and contains numerical values representing rainfall. There are three color-coded annotations: the 'Week' column is highlighted in green, labeled 'key' with the note 'keep this column, but repeat it many times.' The day names (Sunday through Saturday) are highlighted in red with the note 'turn into new column: Day_of_Week (repeat day of week many times).' The data cells are highlighted in blue with the note 'turn into new column: Rainfall (values for each week # and day of week).'"></p>
+<p>We can use <code>pivot_longer()</code> to turn a <strong>wide</strong> dataset into a <strong>long(er)</strong> dataset.</p>
 </section>
-<section id="pivot_longer" class="slide level2">
-<h2><code>pivot_longer()</code></h2>
+<section id="pivot_longer" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_longer"><code>pivot_longer()</code></h2>
 <p>Take a <strong>wide</strong> dataset and turn it into a <strong>long</strong> dataset.</p>
 <ul>
 <li><code>cols</code> – specify the columns that should be pivoted.
@@ -1024,18 +1129,26 @@
 <li><code>values_to</code> – the name of the new column containing the old column values.</li>
 </ul>
 </section>
-<section id="pivot_longer-1" class="slide level2">
-<h2><code>pivot_longer()</code></h2>
+<section id="pivot_longer-1" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_longer-1"><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>slo_rainfall <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Sunday<span class="sc">:</span>Saturday,</span>
-<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Day_of_Week"</span>,</span>
-<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Daily_Rainfall"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>slo_rainfall <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> Sunday<span class="sc">:</span>Saturday,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Day_of_Week"</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Daily_Rainfall"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: There were 4 warnings in `mutate()`.
+The first warning was:
+ℹ In argument: `across(Sunday:Saturday, as.numeric)`.
+Caused by warning:
+! NAs introduced by coercion
+ℹ Run `dplyr::last_dplyr_warnings()` to see the 3 remaining warnings.</code></pre>
+</div>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">Week</th>
@@ -1226,8 +1339,8 @@
 </div>
 </div>
 </section>
-<section id="pivot_wider" class="slide level2">
-<h2><code>pivot_wider()</code></h2>
+<section id="pivot_wider" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_wider"><code>pivot_wider()</code></h2>
 <p>Take a <strong>long</strong> dataset and turn it into a <strong>wide</strong> dataset.</p>
 <ul>
 <li><code>id_cols</code> – specify the column(s) that contain the ID for unique rows in the wide dataset.</li>
@@ -1235,18 +1348,22 @@
 <li><code>values_from</code> – the name of the column containing the new column values.</li>
 </ul>
 </section>
-<section id="pivot_wider-1" class="slide level2">
-<h2><code>pivot_wider()</code></h2>
+<section id="pivot_wider-1" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_wider-1"><code>pivot_wider()</code></h2>
 <p>Let’s say we calculate the <code>mean</code> amount of <code>protein</code> for cereals on each <code>shelf</code> and for each <code>manuf</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>mean_protein <span class="ot">&lt;-</span> cereal <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manuf, shelf) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_protein =</span> <span class="fu">mean</span>(protein))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>mean_protein <span class="ot">&lt;-</span> cereal <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manuf, shelf) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_protein =</span> <span class="fu">mean</span>(protein))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'manuf'. You can override using the
+`.groups` argument.</code></pre>
+</div>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">manuf</th>
@@ -1352,21 +1469,21 @@
 </div>
 </div>
 </section>
-<section id="pivot_wider-2" class="slide level2">
-<h2><code>pivot_wider()</code></h2>
+<section id="pivot_wider-2" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_wider-2"><code>pivot_wider()</code></h2>
 <p>We can make this dataset more easily readable…</p>
-<div class="fragment">
+<p>. . .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>mean_protein <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(shelf) <span class="sc">|&gt;</span> </span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> manuf,</span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> shelf,</span>
-<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> mean_protein)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>mean_protein <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(shelf) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> manuf,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> shelf,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> mean_protein)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:420px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">manuf</th>
@@ -1424,22 +1541,21 @@
 
 </div>
 </div>
-</div>
 </section>
-<section id="better-names-in-pivot_wider" class="slide level2">
-<h2>Better names in <code>pivot_wider()</code></h2>
+<section id="better-names-in-pivot_wider" class="level2">
+<h2 class="anchored" data-anchor-id="better-names-in-pivot_wider">Better names in <code>pivot_wider()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>mean_protein <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a></a>  <span class="fu">arrange</span>(shelf) <span class="sc">|&gt;</span> </span>
-<span id="cb9-3"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> manuf,</span>
-<span id="cb9-4"><a></a>              <span class="at">names_from =</span> shelf,</span>
-<span id="cb9-5"><a></a>              <span class="at">values_from =</span> mean_protein,</span>
-<span id="cb9-6"><a></a>              <span class="at">names_prefix =</span> <span class="st">"Shelf_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>mean_protein <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">arrange</span>(shelf) <span class="sc">|&gt;</span> </span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> manuf,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>              <span class="at">names_from =</span> shelf,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>              <span class="at">values_from =</span> mean_protein,</span>
+<span id="cb12-6"><a href="#cb12-6"></a>              <span class="at">names_prefix =</span> <span class="st">"Shelf_"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:420px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">manuf</th>
@@ -1497,22 +1613,25 @@
 
 </div>
 </div>
-</section></section>
-<section>
-<section id="data-joins" class="title-slide slide level1 center">
-<h1>Data Joins</h1>
-
 </section>
-<section id="relational-data" class="slide level2">
-<h2>Relational Data</h2>
+</section>
+<section id="data-joins" class="level1">
+<h1>Data Joins</h1>
+<section id="relational-data" class="level2">
+<h2 class="anchored" data-anchor-id="relational-data">Relational Data</h2>
 <p>Multiple, interconnected tables of data are called <strong>relational</strong>.</p>
 <ul>
 <li>It is the <em>relation</em> between datasets, not just the individual datasets themselves, that are important.</li>
 </ul>
-
-<img data-src="images/imdb_relational.png" alt="A diagram depicting the relationships between various tables in a movie database. The tables and their columns are as follows. directors_genres: Contains 'director_id' (int), 'genre' (varchar), and 'prob' (float). Linked to the 'directors' table by 'director_id.' movies_directors: Contains 'director_id' (int) and 'movie_id' (int). Linked to both the 'directors' and 'movies' tables by 'director_id' and 'movie_id.' movies_genres: Contains 'movie_id' (int) and 'genre' (varchar). Linked to the 'movies' table by 'movie_id.' roles: Contains 'actor_id' (int), 'movie_id' (int), and 'role' (varchar). Linked to both the 'actors' and 'movies' tables by 'actor_id' and 'movie_id.' The following entity tables are represented at the bottom: directors: Contains 'id' (int), 'first_name' (varchar), and 'last_name' (varchar). movies: Contains 'id' (int), 'name' (varchar), 'year' (int), and 'rank' (float). actors: Contains 'id' (int), 'first_name' (varchar), 'last_name' (varchar), and 'gender' (char). Arrows represent relationships between the various tables, with foreign keys connecting them." class="r-stretch quarto-figure-center"><p class="caption">IMDb movie relational data</p></section>
-<section id="data-joins-1" class="slide level2">
-<h2>Data Joins</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/imdb_relational.png" class="img-fluid figure-img" alt="A diagram depicting the relationships between various tables in a movie database. The tables and their columns are as follows. directors_genres: Contains 'director_id' (int), 'genre' (varchar), and 'prob' (float). Linked to the 'directors' table by 'director_id.' movies_directors: Contains 'director_id' (int) and 'movie_id' (int). Linked to both the 'directors' and 'movies' tables by 'director_id' and 'movie_id.' movies_genres: Contains 'movie_id' (int) and 'genre' (varchar). Linked to the 'movies' table by 'movie_id.' roles: Contains 'actor_id' (int), 'movie_id' (int), and 'role' (varchar). Linked to both the 'actors' and 'movies' tables by 'actor_id' and 'movie_id.' The following entity tables are represented at the bottom: directors: Contains 'id' (int), 'first_name' (varchar), and 'last_name' (varchar). movies: Contains 'id' (int), 'name' (varchar), 'year' (int), and 'rank' (float). actors: Contains 'id' (int), 'first_name' (varchar), 'last_name' (varchar), and 'gender' (char). Arrows represent relationships between the various tables, with foreign keys connecting them."></p>
+<figcaption>IMDb movie relational data</figcaption>
+</figure>
+</div>
+</section>
+<section id="data-joins-1" class="level2">
+<h2 class="anchored" data-anchor-id="data-joins-1">Data Joins</h2>
 <p>We can <strong>combine</strong> (join) data tables based on their relations.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -1525,39 +1644,52 @@
 <p><strong>Filtering Joins</strong></p>
 <p>Filter <em>observations</em> based on values in new dataframe.</p>
 <p><code>semi_join()</code>, <code>anti_join()</code></p>
-</div></div>
+</div>
+</div>
 </section>
-<section id="keys" class="slide level2">
-<h2>Keys</h2>
+<section id="keys" class="level2">
+<h2 class="anchored" data-anchor-id="keys">Keys</h2>
 <p>A key uniquely identifies an observation in a data set.</p>
 <ul>
 <li>To combine (join) two datasets, the <strong>key</strong> needs to be present in both.</li>
 </ul>
-<div class="fragment">
-<p><img data-src="images/imdb-keys.png" alt="A similar entity-relationship diagram (ERD) to the previous one, with the same tables and relationships between movie-related data. However, in this version, key columns in the tables are color-coded to highlight relationships. Orange highlights the 'director_id' in the 'directors_genres,' 'movies_directors,' and 'directors' tables, showing the connection between directors and their genres and movies. Blue highlights the 'movie_id' in the 'movies_directors,' 'movies_genres,' 'roles,' and 'movies' tables, showing the relationship between movies, genres, and roles. Green highlights the 'actor_id' in the 'roles' and 'actors' tables, showing the connection between actors and their roles in movies. Arrows continue to represent relationships between tables, following foreign key connections, now emphasized with the color coding."></p>
-</div>
+<p>. . .</p>
+<p><img src="images/imdb-keys.png" class="img-fluid" alt="A similar entity-relationship diagram (ERD) to the previous one, with the same tables and relationships between movie-related data. However, in this version, key columns in the tables are color-coded to highlight relationships. Orange highlights the 'director_id' in the 'directors_genres,' 'movies_directors,' and 'directors' tables, showing the connection between directors and their genres and movies. Blue highlights the 'movie_id' in the 'movies_directors,' 'movies_genres,' 'roles,' and 'movies' tables, showing the relationship between movies, genres, and roles. Green highlights the 'actor_id' in the 'roles' and 'actors' tables, showing the connection between actors and their roles in movies. Arrows continue to represent relationships between tables, following foreign key connections, now emphasized with the color coding."></p>
 </section>
-<section id="inner_join" class="slide level2">
-<h2><code>inner_join()</code></h2>
+<section id="inner_join" class="level2">
+<h2 class="anchored" data-anchor-id="inner_join"><code>inner_join()</code></h2>
 <p>Keeps observations when their keys are present in <strong>both</strong> datasets.</p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><img data-src="images/join_xy.png" alt="This image shows two tables on the left, labeled 'x' and 'y.' The 'x' table contains two columns: a key column with values 1, 2, and 3, and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table also has two columns: a key column with values 1, 2, and 4, and a value column with 'y1,' 'y2,' and 'y3.'"></p>
+<p><img src="images/join_xy.png" class="img-fluid" alt="This image shows two tables on the left, labeled 'x' and 'y.' The 'x' table contains two columns: a key column with values 1, 2, and 3, and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table also has two columns: a key column with values 1, 2, and 4, and a value column with 'y1,' 'y2,' and 'y3.'"></p>
 </div><div class="column" style="width:50%;">
-<p><img data-src="images/inner_join.png" alt="This table combines data from both 'x' and 'y.' based on the 'key' column. It contains three columns: 'key,' 'val_x,' and 'val_y.' For key values 1 and 2, the corresponding values from both 'x' and 'y' are shown ('x1' with 'y1' and 'x2' with 'y2'), while the third rows from both original tables are excluded due to the mismatch in key values."></p>
-</div></div>
+<p><img src="images/inner_join.png" class="img-fluid" alt="This table combines data from both 'x' and 'y.' based on the 'key' column. It contains three columns: 'key,' 'val_x,' and 'val_y.' For key values 1 and 2, the corresponding values from both 'x' and 'y' are shown ('x1' with 'y1' and 'x2' with 'y2'), while the third rows from both original tables are excluded due to the mismatch in key values."></p>
+</div>
+</div>
 </section>
-<section id="inner_join-imdb-example" class="slide level2">
-<h2><code>inner_join()</code>: IMDb Example</h2>
+<section id="inner_join-imdb-example" class="level2">
+<h2 class="anchored" data-anchor-id="inner_join-imdb-example"><code>inner_join()</code>: IMDb Example</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>directors_genres_subset <span class="ot">&lt;-</span> directors_genres <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(director_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">429</span>, <span class="dv">2931</span>, <span class="dv">11652</span>, <span class="dv">14927</span>, <span class="dv">15092</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(director_id) <span class="sc">|&gt;</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> prob, <span class="at">n =</span> <span class="dv">2</span>, <span class="at">with_ties =</span> F)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>movies_directors_subset <span class="ot">&lt;-</span> movies_directors <span class="sc">|&gt;</span> </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(director_id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">429</span>, <span class="dv">9247</span>, <span class="dv">11652</span>, <span class="dv">14927</span>, <span class="dv">15092</span>))</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>directors_subset <span class="ot">&lt;-</span> directors <span class="sc">|&gt;</span> </span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">429</span>, <span class="dv">9247</span>, <span class="dv">11652</span>, <span class="dv">14927</span>, <span class="dv">15092</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>directors_genres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>directors_genres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:160px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -1624,12 +1756,12 @@
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>movies_directors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>movies_directors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:160px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -1671,18 +1803,29 @@
 
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <p><font size="6"></font></p><font size="6">
 <p>ID: 429, <strong>2931</strong>, 11652, 14927, 15092       ID: 429, <strong>9247</strong>, 11652, 14927, 15092</p>
 </font><p><font size="6"></font></p>
-<div class="fragment">
+<p>. . .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(directors_genres, movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(directors_genres, movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(director_id)`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in inner_join(directors_genres_subset, movies_directors_subset): Detected an unexpected many-to-many relationship between `x` and `y`.
+ℹ Row 5 of `x` matches multiple rows in `y`.
+ℹ Row 1 of `y` matches multiple rows in `x`.
+ℹ If a many-to-many relationship is expected, set `relationship =
+  "many-to-many"` to silence this warning.</code></pre>
+</div>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:160px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -1773,20 +1916,19 @@
 <p><font size="6"></font></p><font size="6">
 <p>ID: 429, <del><strong>2931</strong></del>, <del><strong>9247</strong></del>, 11652, 14927, 15092</p>
 </font><p><font size="6"></font></p>
-</div>
 </section>
-<section id="inner_join-imdb-example-1" class="slide level2">
-<h2><code>inner_join()</code>: IMDb Example</h2>
+<section id="inner_join-imdb-example-1" class="level2">
+<h2 class="anchored" data-anchor-id="inner_join-imdb-example-1"><code>inner_join()</code>: IMDb Example</h2>
 <p>What if our <strong>key</strong> does not have the same name?</p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>directors_genres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>directors_genres</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:170px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -1853,12 +1995,12 @@
 </div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>directors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>directors</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:170px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">id</th>
@@ -1898,17 +2040,18 @@
 
 </div>
 </div>
-</div></div>
-<div class="fragment">
+</div>
+</div>
+<p>. . .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a><span class="fu">inner_join</span>(directors_genres, </span>
-<span id="cb15-2"><a></a>           directors, </span>
-<span id="cb15-3"><a></a>           <span class="at">by =</span> <span class="fu">join_by</span>(director_id <span class="sc">==</span> id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">inner_join</span>(directors_genres, </span>
+<span id="cb21-2"><a href="#cb21-2"></a>           directors, </span>
+<span id="cb21-3"><a href="#cb21-3"></a>           <span class="at">by =</span> <span class="fu">join_by</span>(director_id <span class="sc">==</span> id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:170px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">id</th>
@@ -1981,27 +2124,25 @@
 
 </div>
 </div>
-</div>
 </section>
-<section id="piping-joins" class="slide level2">
-<h2>Piping Joins</h2>
+<section id="piping-joins" class="level2">
+<h2 class="anchored" data-anchor-id="piping-joins">Piping Joins</h2>
 <p>Remember: the dataset you pipe in becomes the <strong>first argument</strong> of the function you are piping into!</p>
 <ul>
 <li>So if you are using a pipe, you will only be specifying the <strong>right</strong> dataset inside the <code>join</code> function.</li>
 </ul>
-<div class="fragment">
+<p>. . .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(directors_genres, movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(directors_genres, movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>…is equivalent to…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span> </span>
-<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span> </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="more-mutating-joins" class="slide level2">
-<h2>More Mutating Joins</h2>
+<section id="more-mutating-joins" class="level2">
+<h2 class="anchored" data-anchor-id="more-mutating-joins">More Mutating Joins</h2>
 <div class="small">
 <ul>
 <li><p><code>left_join()</code> – keep only (and all) observations present in the left data set</p></li>
@@ -2009,11 +2150,11 @@
 <li><p><code>full_join()</code> – keep only (and all) observations present in <strong>both</strong> data sets</p></li>
 </ul>
 </div>
+<p><img src="images/joins.png" class="img-fluid" style="width:50.0%" alt="Four Venn diagrams illustrating different types of joins between two datasets, labeled 'x' and 'y.' inner_join(x, y): Shows two overlapping circles with only the intersection shaded, representing records that are common to both 'x' and 'y.' left_join(x, y): Shows two overlapping circles with the left circle ('x') fully shaded and the intersection shaded, representing all records from 'x' and the matching records from 'y.' right_join(x, y): Shows two overlapping circles with the right circle ('y') fully shaded and the intersection shaded, representing all records from 'y' and the matching records from 'x.' full_join(x, y): Shows two overlapping circles with both circles fully shaded, representing all records from both 'x' and 'y,' including those without matches."></p>
 
-
-<img data-src="images/joins.png" style="width:50.0%" alt="Four Venn diagrams illustrating different types of joins between two datasets, labeled 'x' and 'y.' inner_join(x, y): Shows two overlapping circles with only the intersection shaded, representing records that are common to both 'x' and 'y.' left_join(x, y): Shows two overlapping circles with the left circle ('x') fully shaded and the intersection shaded, representing all records from 'x' and the matching records from 'y.' right_join(x, y): Shows two overlapping circles with the right circle ('y') fully shaded and the intersection shaded, representing all records from 'y' and the matching records from 'x.' full_join(x, y): Shows two overlapping circles with both circles fully shaded, representing all records from both 'x' and 'y,' including those without matches." class="r-stretch"></section>
-<section id="more-mutating-joins-1" class="slide level2">
-<h2>More Mutating Joins</h2>
+</section>
+<section id="more-mutating-joins-1" class="level2">
+<h2 class="anchored" data-anchor-id="more-mutating-joins-1">More Mutating Joins</h2>
 <p>Which directors would <strong>remain</strong> for each of the following?</p>
 <div class="small">
 <ul>
@@ -2025,13 +2166,13 @@
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(director_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(director_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:320px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -2061,13 +2202,13 @@
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>movies_directors <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(director_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>movies_directors <span class="sc">|&gt;</span> </span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(director_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:320px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -2095,37 +2236,42 @@
 
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
-<section id="filtering-joins-semi_join" class="slide level2">
-<h2>Filtering Joins: <code>semi_join()</code></h2>
+<section id="filtering-joins-semi_join" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-joins-semi_join">Filtering Joins: <code>semi_join()</code></h2>
 <p>Keeps observations when their keys are present in <strong>both</strong> datasets, <strong>but only keeps variables from the first dataset</strong>.</p>
 <div class="columns">
 <div class="column" style="width:60%;">
-<p><img data-src="images/semi1.png" alt="An illustration of a semi join between two tables, each with two columns. The table labeled 'x,' has a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The table labeled 'y,' has a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"></p>
+<p><img src="images/semi1.png" class="img-fluid" alt="An illustration of a semi join between two tables, each with two columns. The table labeled 'x,' has a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The table labeled 'y,' has a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"></p>
 </div><div class="column" style="width:15%;">
 <p><br></p>
 <div class="r-fit-text">
 <p>→  </p>
 </div>
 </div><div class="column" style="width:25%;">
-<p><img data-src="images/semi2.png" alt="An arrow points from the first two tables (x and y) toward the right where a single table is displayed. This table is the result of a semi join, where only the values of x that had a match in y are kept. The resulting table includes rows with matching key values from both 'x' and 'y' (keys 1 and 2), displaying only the 'x' values ('x1' and 'x2'). Rows with non-matching keys (3 and 4) are excluded."></p>
-</div></div>
+<p><img src="images/semi2.png" class="img-fluid" alt="An arrow points from the first two tables (x and y) toward the right where a single table is displayed. This table is the result of a semi join, where only the values of x that had a match in y are kept. The resulting table includes rows with matching key values from both 'x' and 'y' (keys 1 and 2), displaying only the 'x' values ('x1' and 'x2'). Rows with non-matching keys (3 and 4) are excluded."></p>
+</div>
+</div>
 </section>
-<section id="filtering-joins-semi_join-1" class="slide level2">
-<h2>Filtering Joins: <code>semi_join()</code></h2>
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1"><code>semi_join()</code></a></li><li><a href="#tabset-2-2">Connection to <code>filter()</code></a></li></ul>
+<section id="filtering-joins-semi_join-1" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-joins-semi_join-1">Filtering Joins: <code>semi_join()</code></h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>semi_join()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Connection to <code>filter()</code></a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span> </span>
-<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(director_id)`</code></pre>
+</div>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:320px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -2182,15 +2328,15 @@
 </div>
 <p>Movie Directors: 429, <del><strong>2931</strong></del>, 11652, 14927, 15092</p>
 </div>
-<div id="tabset-2-2">
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span></span>
-<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(director_id <span class="sc">%in%</span> movies_directors<span class="sc">$</span>director_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(director_id <span class="sc">%in%</span> movies_directors<span class="sc">$</span>director_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:320px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -2249,12 +2395,12 @@
 </div>
 </div>
 </section>
-<section id="filtering-joins-anti_join" class="slide level2">
-<h2>Filtering Joins: <code>anti_join()</code></h2>
+<section id="filtering-joins-anti_join" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-joins-anti_join">Filtering Joins: <code>anti_join()</code></h2>
 <p><strong>Removes</strong> observations when their keys are present in <strong>both</strong> datasets, and <strong>only keeps variables from the first dataset</strong>.</p>
 <div class="columns">
 <div class="column" style="width:60%;">
-<p><img data-src="images/semi1.png" alt="Two tables on the left labeled 'x' and 'y,' each with two columns, show key-value pairs. The 'x' table contains a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table contains a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"></p>
+<p><img src="images/semi1.png" class="img-fluid" alt="Two tables on the left labeled 'x' and 'y,' each with two columns, show key-value pairs. The 'x' table contains a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table contains a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"></p>
 </div><div class="column" style="width:15%;">
 <p><br></p>
 <div class="r-fit-text">
@@ -2262,23 +2408,27 @@
 </div>
 </div><div class="column" style="width:25%;">
 <p><br></p>
-<p><img data-src="images/anti2.png" data-fi-alt="An arrow points to the right, showing the result of an anti join. The resulting table includes the row from 'x' where the key (3) does not have a corresponding match in 'y.' It contains only the key-value pair (3, x3), demonstrating that the anti join keeps only the unmatched rows from the left table ('x')."></p>
-</div></div>
+<p><img src="images/anti2.png" class="img-fluid" data-fi-alt="An arrow points to the right, showing the result of an anti join. The resulting table includes the row from 'x' where the key (3) does not have a corresponding match in 'y.' It contains only the key-value pair (3, x3), demonstrating that the anti join keeps only the unmatched rows from the left table ('x')."></p>
+</div>
+</div>
 </section>
-<section id="filtering-joins-anti_join-1" class="slide level2">
-<h2>Filtering Joins: <code>anti_join()</code></h2>
-<div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1"><code>anti_join()</code></a></li><li><a href="#tabset-3-2">Connection to <code>filter()</code></a></li></ul>
+<section id="filtering-joins-anti_join-1" class="level2">
+<h2 class="anchored" data-anchor-id="filtering-joins-anti_join-1">Filtering Joins: <code>anti_join()</code></h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><code>anti_join()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Connection to <code>filter()</code></a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(movies_directors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
+<div class="cell-output cell-output-stderr">
+<pre><code>Joining with `by = join_by(director_id)`</code></pre>
+</div>
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -2305,15 +2455,15 @@
 </div>
 <p>Movie Directors: <del>429</del>, <strong>2931</strong>, <del>11652</del>, <del>14927</del>, <del>15092</del></p>
 </div>
-<div id="tabset-3-2">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span></span>
-<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>director_id <span class="sc">%in%</span> movies_directors<span class="sc">$</span>director_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>directors_genres <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>director_id <span class="sc">%in%</span> movies_directors<span class="sc">$</span>director_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">director_id</th>
@@ -2342,12 +2492,12 @@
 </div>
 </div>
 </section>
-<section id="pa-4-military-spending" class="slide level2">
-<h2><a href="../../group-activities/week-4/PA-4-tidyr.html">PA 4: Military Spending</a></h2>
+<section id="pa-4-military-spending" class="level2">
+<h2 class="anchored" data-anchor-id="pa-4-military-spending"><a href="../../group-activities/week-4/PA-4-tidyr.html">PA 4: Military Spending</a></h2>
 <p>Today you will be tidying messy data to explore the relationship between countries of the world and military spending.</p>
 </section>
-<section id="this-activity-will-require-knowledge-of" class="slide level2">
-<h2>This activity will require knowledge of:</h2>
+<section id="this-activity-will-require-knowledge-of" class="level2">
+<h2 class="anchored" data-anchor-id="this-activity-will-require-knowledge-of">This activity will require knowledge of:</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="small">
@@ -2368,10 +2518,11 @@
 
 </div><div class="column" style="width:35%;">
 <p><span class="midi"><strong>None of us have all these abilities. Each of us has some of these abilities.</strong></span></p>
-</div></div>
+</div>
+</div>
 </section>
-<section id="dplyr-resources" class="slide level2">
-<h2>dplyr Resources</h2>
+<section id="dplyr-resources" class="level2">
+<h2 class="anchored" data-anchor-id="dplyr-resources">dplyr Resources</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <p>Every group should have a <strong>dplyr</strong> cheatsheet!</p>
@@ -2382,11 +2533,12 @@
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:35%;">
-<p><img data-src="images/dplyr-cheatsheet-back.png" alt="A picture of the dplyr cheatsheet, which contains helpful information on working with data in a variety of ways."></p>
-</div></div>
+<p><img src="images/dplyr-cheatsheet-back.png" class="img-fluid" alt="A picture of the dplyr cheatsheet, which contains helpful information on working with data in a variety of ways."></p>
+</div>
+</div>
 </section>
-<section id="tidyr-resources" class="slide level2">
-<h2>tidyr Resources</h2>
+<section id="tidyr-resources" class="level2">
+<h2 class="anchored" data-anchor-id="tidyr-resources">tidyr Resources</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <p>Every group should have a <strong>tidyr</strong> cheatsheet!</p>
@@ -2394,13 +2546,14 @@
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:35%;">
-<p><img data-src="images/tidyr-cheatsheet.png" alt="A picture of the tidyr cheatsheet, which contains helpful information on transforming data in a variety of ways."></p>
-</div></div>
+<p><img src="images/tidyr-cheatsheet.png" class="img-fluid" alt="A picture of the tidyr cheatsheet, which contains helpful information on transforming data in a variety of ways."></p>
+</div>
+</div>
 </section>
-<section id="task-card" class="slide level2">
-<h2>Task Card</h2>
+<section id="task-card" class="level2">
+<h2 class="anchored" data-anchor-id="task-card">Task Card</h2>
 <p>Every group should have a <strong>task card</strong>!</p>
-<div class="fragment">
+<p>. . .</p>
 <div class="columns">
 <div class="column" style="width:40%;">
 <p><strong>On the Front</strong></p>
@@ -2419,11 +2572,11 @@
 <li>guidelines for formatting <code>dplyr</code> and <code>tidyr</code> code</li>
 </ul>
 </div>
-</div></div>
+</div>
 </div>
 </section>
-<section id="pair-programming-expectations" class="slide level2">
-<h2>Pair Programming Expectations</h2>
+<section id="pair-programming-expectations" class="level2">
+<h2 class="anchored" data-anchor-id="pair-programming-expectations">Pair Programming Expectations</h2>
 <div class="columns">
 <div class="column" style="width:49%;">
 <p><strong>Developer</strong></p>
@@ -2454,10 +2607,11 @@
 </ul>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
-<section id="getting-started" class="slide level2">
-<h2>Getting Started</h2>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <div class="small">
 <p>First, both of you will do the following:</p>
 <ul>
@@ -2470,7 +2624,7 @@
 <li>Open the <code>PA4-dplyr.qmd</code> file</li>
 </ul>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <div class="small">
 <p>Then, the partner who woke up the earliest today starts as the Developer (typing and listening to instructions from the Coder)!</p>
 <ul>
@@ -2481,12 +2635,11 @@
 <li>The Developer <strong>only types what they are told to type</strong>.</li>
 </ul>
 </div>
-</div>
 </section>
-<section id="external-resources" class="slide level2">
-<h2>External Resources</h2>
+<section id="external-resources" class="level2">
+<h2 class="anchored" data-anchor-id="external-resources">External Resources</h2>
 <p>During the Practice Activity, you <strong>are not</strong> permitted to use Google or ChatGPT for help.</p>
-<div class="fragment">
+<p>. . .</p>
 <p><br></p>
 <p>You <strong>are</strong> permitted to use:</p>
 <ul>
@@ -2495,10 +2648,9 @@
 <li>the course textbook, and</li>
 <li>the course slides.</li>
 </ul>
-</div>
 </section>
-<section id="submission" class="slide level2">
-<h2>Submission</h2>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
 <ul>
 <li>Each person will input your responses to Canvas Questions 1, 2, and 3 into the PA4 Canvas quiz.</li>
 <li>The person who last occupied the role of Developer will download and submit the <code>PA-4.html</code> file for the group.
@@ -2506,451 +2658,592 @@
 <li>Only one submission per group!</li>
 </ul></li>
 </ul>
-</section></section>
-<section id="exit-ticket" class="title-slide slide level1 center">
+</section>
+</section>
+<section id="exit-ticket" class="level1">
 <h1>Exit Ticket</h1>
 
-<div class="quarto-auto-generated-content">
-<div class="footer footer-default">
 
-</div>
-</div>
 </section>
-    </div>
-  </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://revealjs.com/config/
-      Reveal.initialize({
-'controlsAuto': true,
-'previewLinksAuto': false,
-'pdfSeparateFragments': false,
-'autoAnimateEasing': "ease",
-'autoAnimateDuration': 1,
-'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
- 
-        // Display controls in the bottom right corner
-        controls: false,
-
-        // Help the user learn the controls by providing hints, for example by
-        // bouncing the down arrow when they first encounter a vertical slide
-        controlsTutorial: false,
-
-        // Determines where controls appear, "edges" or "bottom-right"
-        controlsLayout: 'edges',
-
-        // Visibility rule for backwards navigation arrows; "faded", "hidden"
-        // or "visible"
-        controlsBackArrows: 'faded',
-
-        // Display a presentation progress bar
-        progress: true,
-
-        // Display the page number of the current slide
-        slideNumber: false,
-
-        // 'all', 'print', or 'speaker'
-        showSlideNumber: 'all',
-
-        // Add the current slide number to the URL hash so that reloading the
-        // page/copying the URL will return you to the same slide
-        hash: true,
-
-        // Start with 1 for the hash rather than 0
-        hashOneBasedIndex: false,
-
-        // Flags if we should monitor the hash and change slides accordingly
-        respondToHashChanges: true,
-
-        // Push each slide change to the browser history
-        history: true,
-
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-
-        // Enable the slide overview mode
-        overview: true,
-
-        // Disables the default reveal.js slide layout (scaling and centering)
-        // so that you can use custom CSS layout
-        disableLayout: false,
-
-        // Vertical centering of slides
-        center: false,
-
-        // Enables touch navigation on devices with touch input
-        touch: true,
-
-        // Loop the presentation
-        loop: false,
-
-        // Change the presentation direction to be RTL
-        rtl: false,
-
-        // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'linear',
-
-        // Randomizes the order of slides each time the presentation loads
-        shuffle: false,
-
-        // Turns fragments on and off globally
-        fragments: true,
-
-        // Flags whether to include the current fragment in the URL,
-        // so that reloading brings you to the same fragment position
-        fragmentInURL: false,
-
-        // Flags if the presentation is running in an embedded mode,
-        // i.e. contained within a limited portion of the screen
-        embedded: false,
-
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-
-        // Flags if it should be possible to pause the presentation (blackout)
-        pause: true,
-
-        // Flags if speaker notes should be visible to all viewers
-        showNotes: false,
-
-        // Global override for autoplaying embedded media (null/true/false)
-        autoPlayMedia: null,
-
-        // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
-
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
-
-        // Use this method for navigation when auto-sliding
-        autoSlideMethod: null,
-
-        // Specify the average time in seconds that you think you will spend
-        // presenting each slide. This is used to show a pacing timer in the
-        // speaker view
-        defaultTiming: null,
-
-        // Enable slide navigation via mouse wheel
-        mouseWheel: false,
-
-        // The display mode that will be used to show slides
-        display: 'block',
-
-        // Hide cursor if inactive
-        hideInactiveCursor: true,
-
-        // Time before the cursor is hidden (in ms)
-        hideCursorTime: 5000,
-
-        // Opens links in an iframe preview overlay
-        previewLinks: false,
-
-        // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
-
-        // Transition speed (default/fast/slow)
-        transitionSpeed: 'default',
-
-        // Transition style for full page slide backgrounds
-        // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
-
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
-
-        // Number of slides away from the current that are visible on mobile
-        // devices. It is advisable to set this to a lower number than
-        // viewDistance in order to save resources.
-        mobileViewDistance: 2,
-
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: 1050,
-
-        height: 700,
-
-        // Factor of the display size that should remain empty around the content
-        margin: 0.1,
-
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
-
-          RevealMath,
-          RevealNotes,
-          RevealSearch,
-          RevealZoom
-        ]
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
       });
-    </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
         }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
-    <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
         } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
+          toggle.classList.remove("alternate");
         }
       }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
       }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/github\.com\/atheobold\/groupworthy-data-science");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
-        return false;
       }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/github\.com\/atheobold\/groupworthy-data-science");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
-          });
-        }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
       }
     });
-    </script>
-    
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Allison Theobold &amp; Judith Canner</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
 
 </body></html>

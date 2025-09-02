@@ -33,11 +33,11 @@ tasks
 
 ------------------------------------------------------------------------
 
-#### `r emo::ji("play button")` Watch Videos: 10 minutes
+#### 📽 Watch Videos: 10 minutes
 
-#### `r emo::ji("book")` Readings: 45-60 minutes
+#### 📖 Readings: 45-60 minutes
 
-#### `r emo::ji("check")` Check-ins: 2 
+#### ✅  Check-ins: 2 
 
 ------------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ section at the bottom. Click the "Run examples" link to view the output for all
 the examples.
 :::
 
-### `r emo::ji("check")`: Check-in 8.1: Connecting `across()` with
+### ✅ : Check-in 8.1: Connecting `across()` with
 `pivot_wider()` and `pivot_longer()`
 
 1. Fill in the code below to convert all numeric columns in the `diamonds`
@@ -500,19 +500,19 @@ I believe this structure makes it easier to solve complex problems, while also m
 
 ## Reading, Videos & Tutorial
 
-### `r emo::ji("book")` [Required Reading: *R4DS* -- The `map()` Functions](https://r4ds.had.co.nz/iteration.html#the-map-functions)
+### 📖 [Required Reading: *R4DS* -- The `map()` Functions](https://r4ds.had.co.nz/iteration.html#the-map-functions)
 
 ::: {.callout-warning}
 ## Yes, you should be reading the first edition of R4DS, not the second edition.
 :::
 
-### `r emo::ji("book")` [Optional Reading: *Advanced R* - Functionals](https://adv-r.hadley.nz/functionals.html)
+### 📖 [Optional Reading: *Advanced R* - Functionals](https://adv-r.hadley.nz/functionals.html)
 
 ::: callout-note
 # If you want to learn more about the concept of functionals! 
 :::
 
-### `r emo::ji("play button")` [Required Video: Iteration with the `map()` family (6 minutes)](https://www.youtube.com/watch?v=FPD3a6IHO6w)
+### 📽 [Required Video: Iteration with the `map()` family (6 minutes)](https://www.youtube.com/watch?v=FPD3a6IHO6w)
 
 ::::: column-margin
 ::: callout-tip
@@ -522,7 +522,7 @@ Cheatsheet for purrr functions can be found [here](https://github.com/rstudio/ch
 :::
 :::::
 
-### `r emo::ji("check")`: Check-in 8.2: Working with the `map()` Functions
+### ✅ : Check-in 8.2: Working with the `map()` Functions
 
 1. Fill in the correct map functions to:
 

@@ -14,24 +14,23 @@ execute:
 ```{r}
 #| include: false
 library(tidyverse)
-library(flair)
 ```
 
 > The greatest possibilities of visual display lie in vividness and inescapability of the intended message. A visual display can stop your mental flow in its tracks and make you think. A visual display can force you to notice what you never expected to see. ("Why, that scatter diagram has a hole in the middle!") -- John Tukey, [Data Based Graphics: Visual Display in the Decades to Come](https://projecteuclid.org/euclid.ss/1177012101)
 
-#### `r emo::ji("play button")` Watch Videos: 50 minutes
+#### 📽 Watch Videos: 50 minutes
 
 -   I've broken the videos up into smaller \~5 minute increments!
 
-#### `r emo::ji("book")` Readings: 45 minutes
+#### 📖 Readings: 45 minutes
 
 -   I've added an optional video on how to take notes in a programming textbook [here](http://somup.com/crffFPbHQ2).
 
-#### `r emo::ji("computer")` Activities: 45-60 minutes
+#### 💻 Activities: 45-60 minutes
 
 -   You'll be working through a series of tutorials helping you practice making plots with ggplot.
 
-#### `r emo::ji("check")` Check-ins: 1 (8 questions broken out by sections)
+#### ✅  Check-ins: 1 (8 questions broken out by sections)
 
 ## Learning Objectives
 
@@ -64,7 +63,7 @@ library("tidyverse") # (my preference!)
 
 This coursework will walk you through the different sections of Chapter Nine in *R for Data Science*.
 
-`r emo::ji("book")` [Required Reading: Layers](https://r4ds.hadley.nz/layers).
+📖 [Required Reading: Layers](https://r4ds.hadley.nz/layers).
 
 ## The Grammar of Graphics
 
@@ -80,16 +79,16 @@ This has a few advantages:
 
 ## Making Your First ggplot
 
-`r emo::ji("play button")` [Required Video: ggplot2 First Steps (4 minutes)](https://www.youtube.com/watch?v=1Jmbfh6GotI)
+📽 [Required Video: ggplot2 First Steps (4 minutes)](https://www.youtube.com/watch?v=1Jmbfh6GotI)
 
-`r emo::ji("computer")` Required Tutorials
+💻 Required Tutorials
 
 -   [Bar Charts](https://r-primers.andrewheiss.com/visualize-data/02-bar-charts/)
 -   [Histograms](https://r-primers.andrewheiss.com/visualize-data/03-histograms/)
 -   [Scatterplots](https://r-primers.andrewheiss.com/visualize-data/03-histograms/)
 -   [Line Plots](https://r-primers.andrewheiss.com/visualize-data/06-line-graphs/)
 
-### `r emo::ji("check")` Check-in 2.1
+### ✅  Check-in 2.1
 
 **Question 1** -- What specifically does the code `ggplot(data = mpg)` do?
 
@@ -99,9 +98,9 @@ This has a few advantages:
 
 ## Aesthetics
 
-`r emo::ji("play button")` [Required Video: What is an aesthetic? (7 minutes)](https://www.youtube.com/watch?v=oYVuzW_t93w)
+📽 [Required Video: What is an aesthetic? (7 minutes)](https://www.youtube.com/watch?v=oYVuzW_t93w)
 
-### `r emo::ji("check")` Check-in 2.1
+### ✅  Check-in 2.1
 
 ```{r}
 ggplot(data = mpg) +
@@ -150,7 +149,7 @@ geom_point(
 
 ## geoms
 
-`r emo::ji("play button")` [Required Video: What is a geometric object?](https://www.youtube.com/watch?v=pMC2l2YhjMI)
+📽 [Required Video: What is a geometric object?](https://www.youtube.com/watch?v=pMC2l2YhjMI)
 
 ### What type of chart to use?
 
@@ -168,7 +167,7 @@ It can be hard to know what type of chart to use for a particular type of data. 
 
 Once you've thought through this, take a look through catalogs like the [R Graph Gallery](https://r-graph-gallery.com/) to see what visualizations match your data and use-case.
 
-### `r emo::ji("check")` Check-in 2.1
+### ✅  Check-in 2.1
 
 **Question 4:** Match each plot with the `geom_XXX()` function used to create it!
 
@@ -199,9 +198,9 @@ In this section we dig a bit deeper into how we can make our code more efficient
 
 ### Global vs. local aesthetics
 
-`r emo::ji("play button")` [Required Video: Global vs. local aesthetics (4 minutes)](http://youtu.be/y3BWlYa7q-Q?hd=1)
+📽 [Required Video: Global vs. local aesthetics (4 minutes)](http://youtu.be/y3BWlYa7q-Q?hd=1)
 
-### `r emo::ji("check")` Check-in 2.1
+### ✅  Check-in 2.1
 
 **Question 5:** Match the code to the type of aesthetics that are being used:
 
@@ -240,17 +239,17 @@ ggplot(data = mpg) +
 
 ## Facets
 
-`r emo::ji("play button")` [Required Video: Adding a third variable with facets](http://somup.com/crffbHbH1h)
+📽 [Required Video: Adding a third variable with facets](http://somup.com/crffbHbH1h)
 
 ## Data transformations
 
-`r emo::ji("play button")` [Required Video: What is being plotted? (6 minutes)](http://somup.com/crffb8bH1x)
+📽 [Required Video: What is being plotted? (6 minutes)](http://somup.com/crffb8bH1x)
 
 ## Changing the positions of bars
 
-`r emo::ji("play button")` [Required Video: How do I change positions?](http://somup.com/crffFibH1R)
+📽 [Required Video: How do I change positions?](http://somup.com/crffFibH1R)
 
-### `r emo::ji("check")` Check-in 2.1
+### ✅  Check-in 2.1
 
 **Question 6:** What arguments for `geom_jitter()` control the amount of jittering?
 
@@ -267,11 +266,11 @@ ggplot(data = mpg) +
 
 ## Plot Customizations
 
-`r emo::ji("book")` [Required Reading: Communication](https://r4ds.hadley.nz/communication#annotations)
+📖 [Required Reading: Communication](https://r4ds.hadley.nz/communication#annotations)
 
-<!-- `r emo::ji("play button")` [Required Video: Axis labels, color themes, and legends, oh my! (7 minutes)](http://somup.com/crffFDbHiU) -->
+<!-- 📽 [Required Video: Axis labels, color themes, and legends, oh my! (7 minutes)](http://somup.com/crffFDbHiU) -->
 
-### `r emo::ji("check")` Check-in 2.1
+### ✅  Check-in 2.1
 
 **Question 7:** What can the `labs()` function do? Select all that apply.
 

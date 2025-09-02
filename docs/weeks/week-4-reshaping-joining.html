@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.42">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -90,12 +90,12 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c5847375ff276ab9ec22c81632fc8b74.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-b789fcca2e53c512b93527ce53c12a14.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -486,7 +486,7 @@ div.csl-indent {
 </ul>
 <hr>
 <section id="watch-videos-25-minutes" class="level4">
-<h4 class="anchored" data-anchor-id="watch-videos-25-minutes">▶️ Watch Videos: 25-minutes</h4>
+<h4 class="anchored" data-anchor-id="watch-videos-25-minutes">📽 Watch Videos: 25-minutes</h4>
 </section>
 <section id="readings-75-minutes" class="level4">
 <h4 class="anchored" data-anchor-id="readings-75-minutes">📖 Readings: 75-minutes</h4>
@@ -922,9 +922,9 @@ Do we always want our data in the same layout?
 
 <div class="no-row-height column-margin column-container"><div class="">
 <p><img src="images/week-4/tidyr.png" class="img-fluid" style="width:50.0%" alt="Hexagonal sticker for the 'tidyr' package from RStudio. The design features a tidy broom sweeping across, symbolizing data cleaning and organization. The background is a soft gradient of blues, and the package name 'tidyr' is prominently displayed in white near the bottom."></p>
-</div></div><p>▶️ <a href="http://somup.com/crfFrmF6VQ">Required Video: Data Layouts – 7 minutes</a></p>
-<p>▶️ <a href="http://somup.com/crfF3NF6hg">Required Video: Pivoting Longer – 9 minutes</a></p>
-<p>▶️ <a href="http://somup.com/crfqebF63k">Required Video: Pivoting Wider – 9 minutes</a></p>
+</div></div><p>📽 <a href="http://somup.com/crfFrmF6VQ">Required Video: Data Layouts – 7 minutes</a></p>
+<p>📽 <a href="http://somup.com/crfF3NF6hg">Required Video: Pivoting Longer – 9 minutes</a></p>
+<p>📽 <a href="http://somup.com/crfqebF63k">Required Video: Pivoting Wider – 9 minutes</a></p>
 <section id="check-in-4.1-practice-with-pivoting" class="level3">
 <h3 class="anchored" data-anchor-id="check-in-4.1-practice-with-pivoting">✅ <strong>Check-in 4.1: Practice with Pivoting</strong></h3>
 <p>Load in the cereal data set:</p>
@@ -1344,8 +1344,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1456,7 +1454,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

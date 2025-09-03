@@ -43,11 +43,11 @@ Discord is a platform for text chatting, voice chatting, and screen sharing.
 
 In particular, course office hours are held **in-person**. The office hours for this class are:
 
-#### Tuesdays & Thursdays immediately following class (from 2:10 - 3:00pm)
+#### Mondays & Thursdays from 2:10 - 3:00pm
 
 ## Join the server
 
-Join the [Stat 331 Server (https://discord.gg/cvHfDEp7CG)](https://discord.gg/cvHfDEp7CG) to start experimenting with the interface.
+Join the [Stat 331 Server (https://discord.gg/jKwhUbes8J)](https://discord.gg/jKwhUbes8J) to start experimenting with the interface.
 
 When you join the server, you will be given some suggestions to get started.
 
@@ -141,17 +141,15 @@ Introduce yourself in the "Introductions" channel of the Discord Server.
 
 # Course Structure
 
-## What your typical week will look like
-
-### Coursework
+## Coursework
 
 Each week, you will be expected to work through a sequence of readings, videos, and preview activities. (Much like this one!)
 
 These are meant to replace the in-class lecture experience; thus, you should plan to devote about 1 - 3 hours a week to this coursework.
 
-### Preview Activities
+## Preview Activities
 
-*Due Tuesdays before the beginning of class (at 12pm)*
+*Due Tuesday mornings at 8am*
 
 Before class, you'll complete Preview Activities which will guide you through your first contact with new concepts.
 
@@ -169,7 +167,7 @@ The course meetings on Tuesdays will have at least 1-hour dedicated to working o
 
 ### Lab Assignments
 
-*Due Sundays at midnight*
+*Due Mondays at 5pm*
 
 After class, you can reinforce the material through Lab Assignments, which are an opportunity to demonstrate mastery of the skills that you've learned. If you got something wrong, don't worry! You'll have a chance to try again.
 
@@ -177,7 +175,7 @@ Labs will be submitted on Canvas. All revisions to Lab Assignments will be submi
 
 ### Challenges
 
-*Due Sundays at midnight*
+*Due Mondays at 5pm*
 
 Each Lab Assignment will have a Challenge Problem, which asks you to extend the skills you've learned in class in some way. Frequently, you have the choice of what you would like to learn. The only requirement is that you extend your thinking in some (measurable) way.
 

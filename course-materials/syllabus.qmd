@@ -11,6 +11,76 @@ format:
 editor: source
 ---
 
+```{r}
+#| include: false
+#| eval: true
+#| label: make-class-calendar
+
+library(tidyverse)
+library(gt)
+
+# Create a calendar for your syllabus ----
+# Source: http://svmiller.com/blog/2020/08/a-ggplot-calendar-for-your-semester/
+# Format: YYYYMMDD
+
+# What are the full dates of the semester?
+semester_dates <- seq(ymd(20250918), ymd(20251208), by = 1)
+
+# Weekday(s) of class
+class_wdays <- c("Tue", "Thu")
+
+# Breaks
+not_here_dates <- c(
+  ymd(20251111),
+  # Fall Break
+  seq(ymd(20251124), ymd(20251128), by = 1)
+  )
+
+# Dates of Portfolios
+
+portfolio_dates <- c(
+  ymd(20251021), 
+  ymd(20251023),
+  ymd(20251203), 
+  ymd(20251205)
+  )
+
+conferences <- c(
+  ymd(20251027),
+  ymd(20251029), 
+  ymd(20251206), 
+  ymd(20251207)
+  )
+
+# Custom function for treating the first day of the month as the first week 
+# of the month up until the first Sunday 
+# (unless Sunday was the start of the month)
+wom <- function(date) {
+    first <- wday(as.Date(paste(year(date), month(date), 1, sep = "-")))
+    return((mday(date) + (first - 2)) %/% 7 + 1)
+}
+
+# Create a data frame of dates, assign to Cal
+Cal <- tibble(date = seq(ymd(20250915), ymd(20251212), by = 1))  |> 
+  mutate(mon         = lubridate::month(date, label = T, abbr = F),
+         wkdy        = weekdays(date, abbreviate = T),
+         wkdy        = fct_relevel(wkdy, "Sun", "Mon", "Tue", "Wed", "Thu","Fri", "Sat"), # make sure Sunday comes first
+         semester    = date %in% semester_dates, 
+         portfolio   = date %in% portfolio_dates,
+         conferences = date %in% conferences, # is it an exam?
+         not_here    = date %in% not_here_dates, # is it a day off?
+         day         = lubridate::mday(date), 
+         week        = wom(date)
+         ) |> 
+  mutate(category = case_when(portfolio ~ "Portfolio",
+                              conferences ~ "Conferences",
+                              not_here ~ "Cal Poly Holiday",
+                              wkdy %in% class_wdays & !not_here & !portfolio & date %in% semester_dates ~ "Class Day",
+                           #   date %in% ymd(20250121) ~ "Class Day",
+                              TRUE ~ "NA")
+         )
+```
+
 ::::::: columns
 :::: {.column width="55%"}
 ::: {style="font-size: 2em; color: #000000;"}
@@ -23,21 +93,76 @@ Statistical Computing with R[^1]
 **Dr. Allison Theobold** (they / them)
 
 **Assistant Professor of Statistics**
-
-**Office:** Building 25, Office 105
-
-**Student Hours:** Mondays 2-3pm & Thursdays 3-4pm
-
-**Email:** [atheobol\@calpoly.edu](mailto:atheobol@calpoly.edu)
 ::::
 
 ::: {.column width="5%"}
 :::
 
 ::: {.column width="40%"}
-![](../images/r-hearts.gif){fig-alt="The R logo with pink hearts floating next to it."}
+![](../images/r-hearts.gif){fig-alt="The R logo with pink hearts floating next to it." width=50%}
+
+
+
 :::
 :::::::
+
+**Email:** [atheobol\@calpoly.edu](mailto:atheobol@calpoly.edu)
+
+**Student Hours:** Are held in my office in Building 25, Office 105 during the 
+following times:
+
+```{r}
+#| label: office-hour-calendar
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 7
+#| fig-height: 1.5
+#| out-width: 90%
+#| fig-align: center
+#| fig-pos: H
+
+# Weekday(s) of office hours
+officehr_days <- c("Mon", "Thu")
+
+# Create a data frame of dates, assign to Cal
+Cal2 <- tibble(date = seq(ymd(20250921), ymd(20250927), by = 1))  |> 
+  mutate(mon      = lubridate::month(date, label = T, abbr = F),
+         wkdy     = weekdays(date, abbreviate = T),
+         wkdy     = fct_relevel(wkdy, "Sun", "Mon", "Tue", "Wed", "Thu","Fri", "Sat"), # make sure Sunday comes first
+         week     = wom(date),
+         classday = wkdy %in% class_wdays,
+         officehrday = wkdy %in% officehr_days,
+         officehrtime = case_when(wkdy == "Mon" ~ "2:10pm-\n3:00pm",
+                                  wkdy == "Thu" ~ "2:10pm-\n4:00pm",
+                                  .default = NA_character_)
+  )
+
+Cal2 |> 
+  ggplot(aes(wkdy, week)) +
+  theme_bw() +
+  theme(aspect.ratio = 0.15, 
+        panel.grid.major.x = element_blank(),
+        legend.position = "right",
+        legend.title = element_blank(),
+        axis.title.y = element_blank(), 
+        axis.title.x = element_blank(),
+        axis.ticks.y = element_blank(), 
+        axis.text.y = element_blank()) +
+  geom_tile(alpha = 0., 
+            aes(fill = officehrday), 
+            color="black", 
+            linewidth = 0.45,
+            show.legend = F
+  ) +
+  geom_text(aes(label = officehrtime), color = "black") +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_discrete(expand = c(0,0)) +
+  scale_fill_manual(values=c("white", "gray")
+  )
+
+```
+
 
 [^1]: The classroom is a dynamic learning community. If necessary, I may make changes to the syllabus as the semester goes on to best suit the needs of all students. I promise to notify you in advance if I make any changes. Any changes to the syllabus made after the first day of class will be indicated in [**red**]{style="color: #FF0000;"}.
 
@@ -328,7 +453,57 @@ We will generate the descriptions / expectations of these grades together after 
 |                          | :::                                                                      |
 +--------------------------+--------------------------------------------------------------------------+
 
-# What if I need to miss class?
+# Academic Integrity and Class Conduct
+
+**Our academic community is at its best when we treat each other with fairness, honesty, respect, and trust. Unfortunately, sometimes students slip up and do something that gives themselves (or someone else) an unfair advantage over other students.  Such actions will not be tolerated in this class.**
+
+It is most likely that a student will slip up if they are feeling overwhelmed or unsure of how to approach a problem that they are stuck on. So **let's be proactive to prevent those situations!!** If you are helpless in an assignment or in studying, post on discord, come to office hours, or email me or one of your classmates! I am working hard to provide all of the resources you need to succeed
+
+
+However, **the college doesn't really care if you break the rules on purpose or by accident.** If I suspect you have done something that violates academic integrity on any graded elements of the course (included those graded for completion), you will receive an email to tell you about my suspicion and how the situation will be handled. **Typically, students earn a 0 for the  assignment on which academic misconduct is found.** University policy dictates that we must report every instance of suspected academic dishonesty to the Office of Student Rights and Responsibilities, no matter how small. For more information on academic misconduct and what constitutes cheating and
+plagiarism, please see
+[academicprograms.calpoly.edu/content/academicpolicies/Cheating](https://academicprograms.calpoly.edu/content/academicpolicies/Cheating).
+
+It is important to note that paraphrasing or quoting another's work
+without proper citation is a form of academic misconduct. This includes
+the `R` code produced by someone else! Writing code is like writing a
+paper, it is obvious if you copied-and-pasted a sentence from someone
+else into your paper because the way each person writes is different.
+
+Even inadvertent or unintentional misuse or appropriation of another’s
+work (such as relying heavily on source material that is not expressly
+acknowledged) is considered plagiarism. This includes using **Chat GPT,
+which should only be used to help you problem solve just as a tutor or
+peer would, and not as a substitute for your own work.** If you are
+struggling with writing the `R` code for an assignment, please reach out
+to me. I would prefer that I get to help you rather than you spending
+hours Googling things and get nowhere!
+
+::: callout-tip
+## Always Cite Outside Resources!
+
+In this class the assumed knowledge is the course materials, including the course textbook, coursework pages, and course slides.  If you use outside resources on assignments I expect that you will *cite those resources.* This means that
+
+- If you use any **`R` functions or code that are not in the course materials**, you must cite where you found it. e.g., if you look up the help file for `mutate()` and you learn about a function not covered in the course materials, you are required to cite the documentation when using that function.
+- If you use **Google** you are expected to “inform” me of any resources you used by pasting the link to the resource in a code comment next to where you used that resource.
+- If you use **ChatGPT** you are expected to “inform” me by stating that you used it in a code comment next to where you used it including **the full prompt that you gave ChatGPT**.
+- If you **work with classmates** on an assignment, you are expected to "inform" me by including a note with their names. 
+:::
+
+::: {.callout-warning}
+The first incident of failing to cite your resources, will result in a warning. The second incident of failing to cite your resources will result in a 0 on the assignment, meaning you will not be able to include **any** code from that Lab or Challenge in your Final Portfolio. You will also be reported to the Office of Student Rights and Responsibilities.
+:::
+
+**If you have any questions about using and citing sources, you are
+expected to ask for clarification.**
+
+# Learning Environment and Support
+
+My priority is your success in this course. I understand that things happen unexpectedly and obtaining official accommodations can be slow. 
+
+If you feel that any circumstances or factors beyond your control may affect your presence and work in this class, **please reach out to me** and we will work to accommodate your needs. You do not need to share personal information with me when you reach out, unless you would like to.
+
+## What if I need to miss class?
 
 I encourage you to attend every class session, but policies are for narcs. I put a great deal of time into making each class session engaging and worth your time. Attendance in this course is not explicitly required, but it may be incredibly difficult to articulate how you've grown as a team member and leader and / or contributed to creating a respectful classroom learning community if you regularly do not attend class. 
 
@@ -342,13 +517,13 @@ Here's what you should do if you do miss a class:
 
 If you miss a bunch of classes, please come talk to me. I'm working from the assumption that you care and are trying, but something is getting in your way (health issues? depression / anxiety? college stress?); let's figure out what that is and how I can help.
 
-# What if I need help?
+## What if I need help?
 
 This quarter, I am instating a policy that I do not respond to emails with questions of general interest, such as deadline clarifications or conceptual questions. If you have one of these questions, please ask your question on our course Discord server.
 
 We will use Discord to manage questions and responses regarding course content. There are channels for the different components of each week (e.g., Week 1 Lab Assignment). Please do not send an email about homework questions or questions about the course material. It is incredibly helpful for others in the course to see the questions you have and the responses to those questions. I will try to answer any questions posted to Discord within 3-4 hours (unless it is posted at midnight). If you think you can answer another student's question, please respond!
 
-# What if I need to turn something in late?
+## What if I need to turn something in late?
 
 You'll start the semester with four (4) virtual "Tokens" that you can use for extra flexibility. One token can purchase a 24-hour extension for a Lab or Challenge Assignment (not a Preview Activity or Practice Activity). If you want to use a token for a deadline extension, you are required to complete the Deadline Extension Form. Akin to how the "real world" works, deadline extensions are requested to be done before the deadline. If you thought you were going to get an assignment in but you just missed the deadline for an assignment, please go complete a deadline extension request ASAP. I will not provide feedback on assignments which missed the deadline and no extension request was completed.
 
@@ -360,11 +535,11 @@ You'll also have opportunities to earn more tokens during the quarter! You can e
 -   Completing an exemplary Challenge Assignment -- applauded by Dr. Theobold for going above and beyond
 -   Attending every class session (including portfolio parties)
 
-# What if I have accommodations or feel that accommodations would be beneficial to my learning?
+## What if I have accommodations or feel that accommodations would be beneficial to my learning?
 
 I enthusiastically support the mission of [Disability Resource Center](https://drc.calpoly.edu/) to make education accessible to all. I design all my courses with accessibility at the forefront of my thinking, but if you have any suggestions for ways I can make things more accessible, please let me know. Come talk to me if you need accommodation for your disabilities. I honor self-diagnosis: lets talk to each other about how we can make the course as accessible as possible. See also the [standard syllabus statements](https://ctlt.calpoly.edu/syllabus-statements), which include more information about formal processes.
 
-# How can I expect to be treated in this course?
+## How can I expect to be treated in this course?
 
 Following Ihab Hassan, I strive to teach statistics so that people will stop killing each other. In my classroom, diversity and individual differences are respected, appreciated, and recognized as a source of strength. Students in this class are encouraged and expected to speak up and participate during class meetings, and to carefully and respectfully listen to each other. During the first few weeks of class, we'll work together to create a set of norms that will govern our interactions with each other, to ensure that we're always respectful of everyone.
 
@@ -372,191 +547,104 @@ So that everyone feels comfortable participating, every member of this class **m
 
 In summary: Be good to each other.
 
-## How do you define plagiarism in a programming class?
-
-Paraphrasing or quoting another’s work without citing the source is a form of academic misconduct. This included the R code produced by someone else! Writing code is like writing a paper, it is obvious if you copied-and-pasted a sentence from someone else into your paper because the way each person writes is different.
-
-In this class the assumed knowledge is the course materials, including the course textbook, coursework pages, and course slides. Any functions / code used outside of these materials require direct references. This includes any functions learned through R documentation for functions we have learned. Meaning, if you look up the help file for `mutate()` and you learn about a function not covered in the course materials, you are required to cite the documentation when using that function.
-
-Even inadvertent or unintentional misuse or appropriation of another's work (such as relying heavily on source material that is not expressly acknowledged) is considered plagiarism. If you use external resources such as Google or ChatGPT, I expect you to indicate this in your assignment.
-
--   If you used Google, you are expected to "inform" me of any resources you used by **pasting the link to the resource in a code comment next to where you used that resource**.
-
--   If you used ChatGPT, you are expected to "inform" me of the assistance you received by (1) indicating somewhere in the problem that you used ChatGPT (e.g., below the question prompt or as a code comment), and (2) pasting the link to your chat (using the Share button from ChatGPT) so I can see your **entire** conversation with ChatGPT.
-
-**ChatGPT cannot be used for group activities (e.g., Practice Activities), only individual assignments (e.g., Labs, Challenges).**
-
-It is both good professional practice and academic integrity to cite any resources you used during your work. The first incident of failing to cite your resources, will result in a warning. The second incident of failing to cite your resources will result in a 0 on the assignment, meaning you will not be able to include **any** code from that Lab or Challenge in your Final Portfolio. You will also be reported to the Office of Student Rights and Responsibilities.
-
-If you have any questions about using and citing sources, you are expected to ask for clarification.
-
-# I’m having difficulty paying for food and rent, what can I do?
+## I’m having difficulty paying for food and rent, what can I do?
 
 If you have difficulty affording groceries or accessing sufficient food to eat every day, or if you lack a safe and stable place to live, and you believe this may affect your performance in the course, I urge you to contact the Dean of Students for support. Furthermore, please notify me if you are comfortable in doing so. This will enable me to advocate for you and to connect you with other campus resources.
 
-# My mental health is impairing my ability to engage in my classes, what should I do?
+## My mental health is impairing my ability to engage in my classes, what should I do?
 
 National surveys of college students have consistently found that stress, sleep problems, anxiety, depression, interpersonal concerns, death of a significant other and alcohol use are among the top ten health impediments to academic performance. If you are experiencing **any** mental health issues, I and Cal Poly are here to help you. Cal Poly's Counseling Services (805-756-2511) is a free and confidential resource for assistance, support and advocacy.
 
-# Someone is threatening me, what can I do?
+## Someone is threatening me, what can I do?
 
 I will listen and believe you if someone is threatening you. I will help you get the help you need. I commit to changing campus culture that responds poorly to dating violence and stalking.
 
-<!-- # Course Schedule -->
+# Class Schedule
+
+```{r}
+#| label: plot-of-class-calendar
+#| echo: false
+
+Cal |> 
+  ggplot(aes(wkdy, week)) +
+  theme_bw() +
+  theme(aspect.ratio = 1, 
+        panel.grid.major.x = element_blank(),
+        legend.position = "right",
+        legend.title = element_blank(),
+        axis.title.y = element_blank(), 
+        axis.title.x = element_blank(),
+        axis.ticks.y = element_blank(), 
+        axis.text.y = element_blank()) +
+  geom_tile(alpha = 0.8, 
+            aes(fill = category), 
+            color="black", 
+            linewidth = 0.45
+            ) +
+  facet_wrap(~ mon, scales = "free", ncol=3) +
+  geom_text(aes(label = day, color = semester & (!not_here))) +
+  # put your y-axis down, flip it, and reverse it
+  scale_y_reverse(breaks = NULL) +
+  # manually fill scale colors to something you like...
+  scale_color_manual(values = c("FALSE" = "grey80", "TRUE" = "black"), guide = "none") + 
+  scale_fill_manual(values=c("Class Day"="steelblue", 
+                             "Finals"="white",
+                             "Cal Poly Holiday" = "grey10",
+                             "NA" = "white", # I like these whited out...
+                             "Conferences"="orange3",
+                             "Portfolio"="#c994c7"),
+                    #... but also suppress a label for a non-class semester day
+                    breaks = c("Finals", "Cal Poly Holiday", "Class Day", "Portfolio", "Conferences"))
+
+```
+
+```{r}
+#| label: table-of-course-topics
+#| echo: false
+#| tbl-cap: "Tentative schedule of class topics and important due dates"
+
+conference_days <- Cal |> 
+  filter(category == "Conferences", 
+         mon == "December") |> 
+  mutate(topic = c("Final Conferences")
+         ) |> 
+  rowwise() |> 
+  mutate(sem_week = isoweek(date),
+         Date = paste(format(date, "%b %e"), sep = ",", collapse = ", "))
+
+class_days <- Cal |> 
+  filter(date %in% semester_dates,
+         category %in% c("Class Day", "Portfolio")
+         ) |>  
+  mutate(sem_week = isoweek(date)) |> 
+  group_by(sem_week) |> 
+  summarize(Date = paste(format(date, "%b %e"), sep = ",", collapse = ", ")) |> 
+  ungroup() |>
+  mutate(topic = c(
+    "Introduction to R", #1
+    "Basics of Graphics", #2
+    "Data Cleaning and Manipulation", #3
+    "Data Transformations + Factors", #4
+    "Special Data Types", #5
+    "Midterm Portfolio & Version Control", #6
+    "Portfolio Conferences", #7
+    "Functions",
+    "Functional Programming",
+    "Simulation",
+    "Final Portfolio")) |> 
+  bind_rows(conference_days) |> 
+  arrange(sem_week) |> 
+  select(Date, Topic = topic)
+
+
+class_days |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  )
+```
 
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | Week        | Day      | Date                | Topic                                                | Assignment Due                       | -->
-
-<!-- +=============+==========+=====================+======================================================+======================================+ -->
-
-<!-- | 1           | Tues     | 9/24                | Introduction to R & Reproducibility                  | Week 1 Preview Activities            | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Wed      | 9/25                | Introduction to Base R                               | Practice Activity 1                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Thurs    | 9/26                | Introduction to Version Control                      |                                      | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sun      | 9/29                |                                                      | Lab 1 & Challenge 1                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 2           | Tues     | 10/1                | Data Visualization with \*\*ggplot2\*\*              | Week 2 Preview Activities            | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Wed      | 10/2                |                                                      | Practice Activity 2                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sun      | 10/6                |                                                      | Lab 2 & Challenge 2                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 3           | Tues     | 10/8                | Data Wrangling with **dplyr**                        | Week 3 Preview Activities            | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Wed      | 10/9                |                                                      | Practice Activity 3                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sun      | 10/13               |                                                      | Lab 3 & Challenge 3                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 4           | Tues     | 10/15               | Data Organization & Relational Data with **tidyr**   | Week 4 Preview Activities            | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Wed      | 10/16               |                                                      | Practice Activity 4                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sun      | 10/20               |                                                      | Lab 4 & Challenge 4                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 5           | Tues     | 10/22               | Working with Special Data Types                      | Week 5 Preview Activities            | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Wed      | 10/23               | Strings & Regular Expressions                        | Practice Activity 5                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Thurs    | 10/24               | Dates                                                |                                      | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sun      | 10/27               |                                                      | Lab 5 & Challenge 5                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 6           | Tues     | 10/29               | Simple User-Defined (Vector) Functions               | Week 6 Preview Activities            | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Wed      | 10/30               |                                                      | Practice Activity 6                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Thurs    | 10/31               | Portfolio Party                                      |                                      | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sun      | 11/3                |                                                      | Week 6 Reflections & Draft Portfolio | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 7           | Tues     | 11/5                | Dataframe Functions & 5-minute Portfolio Conferences | Week 7 Preview Activities            | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Thurs    | 11/7                |                                                      | Practice Activity 7                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sun      | 11/10               |                                                      | Lab 7 & Challenge 7                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 8           | Tues     | 11/12               | Introduction to Iteration                            | Week 8 Preview Activities            | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Wed      | 11/13               |                                                      | Practice Activity 8                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sun      | 11/17               |                                                      | Lab 8 & Challenge 8                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 9           | Tues     | 11/19               | Webscraping                                          | Week 9 Preview Activities            | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Wed      | 11/20               |                                                      | Practice Activity 9                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sun      | 11/24               |                                                      | Lab 9 & Challenge 9                  | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 10          | Tues     | 11/26               | No Class Fall Break                                  |                                      | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Thurs    | 11/28               | No Class Fall Break                                  |                                      | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | 11          | Tues     | 12/3                | Distributions & Simulation                           | Week 10 Preview Activities           | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Wed      | 12/4                |                                                      | Practice Activity 10                 | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Thurs    | 12/5                | Portfolio Party!                                     |                                      | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- |             | Sat      | 12/7                |                                                      | Final Portfolio & Reflections        | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
-
-<!-- | Finals Week | Mon      | 12/9, 10:10am - 1pm | 10-minute Portfolio & Grade Conferences              |                                      | -->
-
-<!-- +-------------+----------+---------------------+------------------------------------------------------+--------------------------------------+ -->
 
 # Learning Targets
 

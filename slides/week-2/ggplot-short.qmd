@@ -1,0 +1,559 @@
+---
+title: "Basics of Graphics"
+format: 
+  revealjs:
+    theme: ../style.scss
+editor: source
+---
+
+```{r}
+#| include: false
+#| label: setup
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Tuesday, October 1
+
+Today we will...
+
++ Warm-up for `ggplot2` practice activity (30-minutes)
++ Set-up for the practice activity (15-minutes)
+  + Review pair programming norms
+  + Learn how to access practice activities
+  + Find your partner!
++ Complete practice activity (60-minutes)
+
+## Data Context for Today
+
+::: columns
+::: {.column width="45%"}
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: false
+#| label: loading-data-help
+#| code-line-numbers: false
+
+library(palmerpenguins)
+
+?penguins
+```
+:::
+:::
+
+::: {.column width="55%"}
+![](images/penguins-docs.png){fig-alt="A screenshot of the R documentation page for the penguins dataset. The documentation page describes the context of the data (body measurements of penguins from the Palmer Archipeligo of Antarctica), the variables included in the data (species, island, bill_length_mm, etc.), and the units for each variable."}
+:::
+:::
+
+::: {.callout-important}
+# What do you notice about these data?
+:::
+
+## Grammar of Graphics
+
+The Grammar of Graphics (GoG) is a principled way of specifying **exactly** how
+to create a particular graph from a given data set. It helps us to 
+systematically design new graphs.
+
+. . .
+
+<br>
+
+Think of a graph or a data visualization as a mapping...
+
+...**FROM variables** in the data set (or statistics computed from the data)...
+
+...**TO visual attributes** (or "aesthetics") **of marks** (or "geometric elements") on the page/screen.
+
+## How to Build a Graphic
+
+Complete this template to build a basic graphic:
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+ggplot(
+  data = <DATA>, 
+  mapping = aes(<MAPPINGS>)
+  ) +
+  <GEOM FUNCTION>() + 
+  any other arguments...
+```
+
+. . .
+
+Notice, every `+` adds another **layer** to our graphic.
+
+. . .
+
+::: {.callout-tip}
+Notice that I'm using **named arguments** to make my code easier to read.
+:::
+
+##
+
+::: panel-tabset
+
+### Add data
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+ggplot(data = penguins)
+```
+
+What do you expect to see after running this code?
+
+::: {.fragment}
+
+```{r}
+#| echo: false
+#| code-line-numbers: false
+#| fig-align: center
+#| fig-height: 4.5
+#| fig-width: 4.5
+#| label: blank-plot
+#| fig-alt: "An image of a blank gray square representing a blank plotting canvas."
+
+ggplot(data = penguins)
+```
+:::
+
+### Add aesthetics
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+ggplot(data = penguins, 
+       mapping = aes(x = species, y = bill_length_mm)
+       )
+```
+
+What do you expect to see after running this code?
+
+::: {.fragment}
+
+```{r}
+#| echo: false
+#| code-line-numbers: "2"
+#| fig-align: center
+#| fig-height: 4.5
+#| fig-width: 4.5
+#| label: add-variables-to-aesthetics
+#| fig-alt: "An image of a gray square with white gridlines representing a plotting canvas where the variables have been assigned to the x and y aesthetics. On the x-axis there is a variable named 'class' with seven different values mapped to a particular white gridline---2seater, compact, midsize, minivan, pickup, subcompact, suv. On the y-axis there is a variable named 'hwy' with three printed values mapped to different white gridlines---20, 30, and 40. The spaces between these gridlines represent values between the printed values (e.g., 25)."
+
+
+ggplot(data = penguins, 
+       mapping = aes(x = species, y = bill_length_mm)
+       )
+```
+:::
+
+### Add one `geom` per layer
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+ggplot(data = penguins, 
+       mapping = aes(x = species, y = bill_length_mm)
+       ) +
+  geom_jitter() +
+  geom_boxplot()
+```
+:::
+
+
+**What do you expect to see after running this code?**
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| fig-height: 4
+#| fig-width: 4.5
+#| fig-align: center
+#| label: adding-jittered-points-and-boxplots
+#| fig-alt: "The same visualization is presented, except there are not boxplots superimposed on top of the points (dots) for each vehicle type. The boxplots display the median (center line), quantiles (edges), and min / max (whiskers) of each vehicle's mileage."
+
+ggplot(data = penguins, 
+       mapping = aes(x = species, y = bill_length_mm)
+       ) +
+  geom_jitter() +
+  geom_boxplot()
+```
+:::
+:::
+
+## Aesthetics
+
+We map **variables** (columns) from the data to **aesthetics** on the graphic using the `aes()` function.
+
+What aesthetics can we set?
+
++ x, y
++ color, fill
++ linetype
++ shape
++ size
+
+::: {.callout-tip}
+See `ggplot2` cheat sheet for more!
+:::
+
+## Geometric Objects
+
+Wee use a `geom_XXX()` function to represent data points.
+
+. . .
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {.small}
+**one variable**
+
++ `geom_density()`
++ `geom_bar()`
++ `geom_dotplot()`
++ `geom_histogram()`
++ `geom_boxplot()`
+:::
+:::
+
+::: {.column width="50%"}
+::: {.small}
+**two variable**
+
++ `geom_point()`
++ `geom_line()`
+:::
+:::
+::::
+
+</br>
+
+::: {.callout-tip}
+See `ggplot2` cheat sheet for more!
+:::
+
+## Creating a Graphic
+
+::: {.midi}
+To create a specific type of graphic, we will **combine** aesthetics and
+geometric objects. When sitting down to create a plot, it's great to start with
+a **game plan**!
+:::
+
+. . .
+
+::: {.midi}
+1. What variables are you interested in?
+2. What types of variables are these?
+3. Where do you want to put each of these variables? (i.e., what `aes`thetics)
+4. What type(s) of `geom`etries do you need?
+:::
+
+## How many penguins were captured on each island?
+
+. . .
+
+::: columns
+::: {.column width="30%"}
+1. What type of variable is `island`? 
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+2. What type of plot would you make for this type of variable?
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+3. What `geom` would you use to get this plot?
+:::
+:::
+
+## What are the most common bill lengths for the penguins included in these data?
+
+. . .
+
+::: columns
+::: {.column width="30%"}
+1. What type of variable is `bill_length`? 
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+2. What type of plot would you make for this type of variable?
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+3. What `geom` would you use to get this plot?
+:::
+:::
+
+## What is the relationship between a penguin's bill length and body mass?
+
+. . .
+
+::: columns
+::: {.column width="30%"}
+1. What type of variables are `bill_length` and `body_mass`? 
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+2. What type of plot would you make for these types of variables?
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+3. What `geom` would you use to get this plot?
+:::
+:::
+
+## How would you recreate this plot?
+
+```{r}
+#| echo: false
+#| label: example-plot-with-colors-facets
+#| warning: false
+#| fig-align: center
+#| fig-alt: "Multiple scatterplots showing the relationship between penguins' bill length (on the x-axis) and their body mass (on the y-axis). There are separate plots for each species of penguin (Biscoe, Torgensen, Chinstrap) and different colors for male and female penguins within each plot."
+
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = sex)
+       ) + 
+  geom_point() +
+  facet_wrap(~ island)
+```
+
+. . .
+
+What additional code would you add to make the plot more clear?
+
+
+# PA 2: Using Data Visualization to Find the Penguins
+
+![Artwork by Allison Horst](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
+
+## Using Data Visualization to Find the Penguins
+
+::: columns
+::: {.column width="60%"}
+::: {.small}
+This puzzle activity will require knowledge of:
+
+- types of variables
+- types of visualizations
+- what visualization(s) go with different variable types
+- **ggplot2** functions to create visualizations
+- choosing between different aesthetic options
+:::
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="35%"}
+::: {.fragment}
+::: {.midi}
+**None of us have all these abilities. Each of us has some of these abilities.**
+:::
+:::
+:::
+:::
+
+## Pair Programming Expectations
+
+::: {.small}
+During your collaboration, you and your partner will alternate between two roles: 
+:::
+
+. . .
+
+::: columns
+::: {.column width="49%"}
+**Developer**
+
+::: {.small}
+-   Reads prompt and ensures Coder understands what is being asked. 
+-   Types the code specified by the Coder into the Quarto document.
+<!-- -   Listens carefully, asks the Coder to repeat statements if needed, or to slow -->
+<!-- down. -->
+<!-- -   Encourages the Coder to vocalize their thinking. -->
+<!-- -   Asks the Coder clarifying questions. -->
+<!-- -   Checks for accuracy by asking the solution to be restated for clarity. -->
+<!-- -   **Does not** give hints to the Coder for how to solve the problem.  -->
+<!-- -   **Does not** solve the problem themselves.  -->
+-   Runs the code provided by the Coder. 
+-   Works with Coder to debug the code. 
+<!-- -   **Does not** tell the Coder how to correct an error. -->
+-   Evaluates the output.  
+-   Works with Coder to write code comments. 
+:::
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="49%"}
+::: {.fragment}
+**Coder**
+
+::: {.small}
+-   Reads out instructions or prompts
+-   Directs the Developer what to type. 
+-   Talks with Developer about their ideas. 
+<!-- -   **Does not** ask the Developer how they would solve the problem.  -->
+-   Manages resources (e.g., cheatsheets, textbook). 
+<!-- -   **Does not** ask the developer what functions / tools they should use.  -->
+-   Works with Developer to debug the code. 
+<!-- -   **Does not** ask the Developer to debug the code.  -->
+-   Works with Developer to write code comments. 
+:::
+:::
+:::
+:::
+
+## 
+
+::: {.callout-tip}
+## Group Norms
+
+1.  Think and work together. Do not divide the work.
+2.  You are smarter together.
+3.  Be open minded. 
+4.  No cross-talk with other groups.
+5.  Communicate with each other! 
+:::
+
+<!-- Add other norms that are relevant -->
+
+<!-- Add in discussion of benefits of speaking your code out loud -->
+<!-- - deeper understanding -->
+<!-- - practice communicating ideas -->
+<!-- - explaining your thinking -->
+
+## ggplot2 Resources
+
+Every person should have a **ggplot2** cheatsheet! 
+
+::: columns
+::: {.column width="37%"}
+::: {.fragment}
+**On the Front**
+
+::: {.incremental}
+::: {.small}
+- Column 1: the "template" for making a ggplot
+- Column 3: creating plots for two continuous variables
+- Column 4: creating plots for one discrete or one continuous variable
+:::
+:::
+:::
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="37%"}
+::: {.fragment}
+**On the Back**
+
+::: {.incremental}
+::: {.small}
+- Column 4: adding facets and labels to your plot
+- Column 3: adding themes to your plot (if you have extra time)
+:::
+:::
+:::
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="15%"}
+![](images/ggplot-cheatsheet.png){fig-alt="A picture of the ggplot2 cheatsheet, which contains helpful information on assembling a variety of visualizations all using the ggplot2 package."}
+
+:::
+:::
+
+## Opening the Practice Activity in Google Colab
+
+The partner whose family name starts first alphabetically starts as the
+Developer! The Developer needs to:
+
+::: columns
+::: {.column width="40%"}
+- Click on the Practice Activity 2 link from Canvas
+- Log-in to your Google account
+- Make a copy of the Colab notebook
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+![](images/save-copy-colab.png){fig-alt="A screenshot of the options provided when you click on the File pane within Google Colab. The option to save a copy in Drive is highlighted, to demonstrate how each student needs to make a copy of the notebook before sharing it with their partner." width=50%}
+
+:::
+:::
+
+## Sharing with Your Partner
+
+Once you have your copy, you need to:
+
+::: columns
+::: {.column width="40%"}
+- Share your copy with your partner's Google account
+- Make sure the Coder can open the file
+- The Developer should plug their laptop into the monitor
+- The Coder should close their computer
+- Get started! 
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+![](images/share-colab.png){fig-alt="A screenshot of the options provided when you click on the Share pane (in the upper right corner) within Google Colab. The user has typed in a Gmail address to share it with Laura Smith, who will receive an email with a link to the document when the Notify option is checked." width=50%}
+:::
+:::
+
+## Submission
+
+- When you have completed the visualization tasks, you will work as a group to
+answer the five questions posed at the end of the document. 
+
+- Each person will input the answers to these questions in the PA2 Canvas quiz.
+- The person who last occupied the role of Developer will print the notebook as 
+a PDF and submit the PDF for the group.
+  + Only one submission per group!

@@ -1,0 +1,77 @@
+---
+title: "{{< fa calendar >}} Schedule"
+---
+
+This page contains an outline of the topics, content, and assignments for the quarter. Note that this schedule will be updated as the quarter progresses, with all changes documented here.
+
+```{r}
+#| label: packages
+#| echo: false
+#| message: false
+#| warning: false
+
+library(googlesheets4)
+library(gt)
+library(tidyverse)
+```
+
+```{r}
+#| label: google-sheets-calendar
+#| echo: false
+#| message: false
+#| warning: false
+
+gs4_deauth()
+d <- read_sheet("https://docs.google.com/spreadsheets/d/1e1qJGTkZfXEYxhU-ni-UL-2s1DbewhebtL1dYYjalgU/edit?usp=sharing")
+```
+
+
+```{r}
+#| label: format-calendar-entries
+#| echo: false
+
+d %>% 
+  select(-n) |>
+  mutate(
+    date = as.Date(date),
+    week = ifelse(is.na(week), "", week)) %>%
+  gt() %>%
+    text_transform(cells_body(columns = c(prepare)),
+                 fn = function(x){
+                   ifelse(is.na(x), fontawesome::fa('book', fill_opacity = 0.1), 
+                          glue::glue("<a href = {x}>{fontawesome::fa('book')}</a>"))
+                 }) %>%
+  text_transform(cells_body(columns = c(slides)),
+                 fn = function(x){
+                   ifelse(is.na(x), fontawesome::fa('laptop', fill_opacity = 0.1), 
+                          glue::glue("<a href = {x}>{fontawesome::fa('laptop')}</a>"))
+                 }) %>%
+  text_transform(cells_body(columns = c(appex)),
+                 fn = function(x){
+                   ifelse(is.na(x), fontawesome::fa('users', fill_opacity = 0.1),
+                          glue::glue("<a href = {x}>{fontawesome::fa('users')}</a>"))
+                   
+                 }) %>%
+  text_transform(cells_body(columns = c(assignment)),
+                 fn = function(x){
+                   ifelse(is.na(x), fontawesome::fa('sticky-note', fill_opacity = 0.1), 
+                          glue::glue("<a href = {x}>{fontawesome::fa('sticky-note')}</a>"))
+                   
+                 }) %>%
+  text_transform(cells_body(columns = c(assessment)),
+                 fn = function(x){
+                   ifelse(is.na(x), fontawesome::fa('file-alt', fill_opacity = 0.1), 
+                          glue::glue("<a href = {x}>{fontawesome::fa('file-alt')}</a>"))
+                 }) %>%
+  fmt_date(date, date_style = 9) %>%
+  sub_missing(columns = date, missing_text = "") |>
+  as_raw_html() -> t
+```
+
+```{r}
+#| echo: false
+#| results: "asis"
+#| label: output-calendar
+
+cat(t)
+```

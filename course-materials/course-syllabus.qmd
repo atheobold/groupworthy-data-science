@@ -268,25 +268,25 @@ We will generate the descriptions / expectations of these grades together after 
 | Letter Grade             | Description of Work and Participation                                    |
 +==========================+==========================================================================+
 | **A**\                   | ::: {style="color: red"}                                                 |
-| (Superior Achievement)   | **Learning Targets:** \                                                  |
+| (Superior Achievement)   | **Learning Targets:**\                                                   |
 |                          | \                                                                        |
 |                          | **Revising Thinking:** **\                                               |
 |                          | \                                                                        |
 |                          | Extending Thinking:** **\                                                |
 |                          | \                                                                        |
-|                          | Collaborative Group Member:** \                                          |
+|                          | Collaborative Group Member:**\                                           |
 |                          | **\                                                                      |
 |                          | Peer-Code Review:**                                                      |
 |                          | :::                                                                      |
 +--------------------------+--------------------------------------------------------------------------+
 | **B**\                   | ::: {style="color: red"}                                                 |
-| (Good Achievement)       | **Learning Targets:** \                                                  |
+| (Good Achievement)       | **Learning Targets:**\                                                   |
 |                          | \                                                                        |
 |                          | **Revising Thinking:** **\                                               |
 |                          | \                                                                        |
 |                          | Extending Thinking:** **\                                                |
 |                          | \                                                                        |
-|                          | Collaborative Group Member:** \                                          |
+|                          | Collaborative Group Member:**\                                           |
 |                          | **\                                                                      |
 |                          | Peer-Code Review:**                                                      |
 |                          | :::                                                                      |
@@ -298,19 +298,19 @@ We will generate the descriptions / expectations of these grades together after 
 |                          | \                                                                        |
 |                          | Extending Thinking:** **\                                                |
 |                          | \                                                                        |
-|                          | Collaborative Group Member:** \                                          |
+|                          | Collaborative Group Member:**\                                           |
 |                          | **\                                                                      |
 |                          | Peer-Code Review:**                                                      |
 |                          | :::                                                                      |
 +--------------------------+--------------------------------------------------------------------------+
 | **D**                    | ::: {style="color: red"}                                                 |
-|                          | **Learning Targets:** \                                                  |
+|                          | **Learning Targets:**\                                                   |
 |                          | \                                                                        |
 |                          | **Revising Thinking:** **\                                               |
 |                          | \                                                                        |
 |                          | Extending Thinking:** **\                                                |
 |                          | \                                                                        |
-|                          | Collaborative Group Member:** \                                          |
+|                          | Collaborative Group Member:**\                                           |
 |                          | **\                                                                      |
 |                          | Peer-Code Review:**                                                      |
 |                          | :::                                                                      |

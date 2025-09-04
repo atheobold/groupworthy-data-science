@@ -21,13 +21,13 @@ website:
     left: "&copy; Copyright 2024, Allison Theobold & Judith Canner"
     background: "#c896ff"
     
-  favicon: "/img/stat-331-hex.png"
+  favicon: "images/stat-331-hex.png"
 
   navbar:
     pinned: true
     background: "#c896ff"
     right:
-      - href: schedule.qmd
+      - href: course-materials/calendar.qmd
         text: Schedule
       - href: course-materials/syllabus.qmd
         text: Syllabus

@@ -30,42 +30,43 @@ d <- read_sheet("https://docs.google.com/spreadsheets/d/1e1qJGTkZfXEYxhU-ni-UL-2
 #| label: format-calendar-entries
 #| echo: false
 
-d %>% 
-  select(-n) |>
+t <- d |>
   mutate(
-    date = as.Date(date),
+    date = ymd(date),
     week = ifelse(is.na(week), "", week)) %>%
   gt() %>%
     text_transform(cells_body(columns = c(prepare)),
                  fn = function(x){
                    ifelse(is.na(x), fontawesome::fa('book', fill_opacity = 0.1), 
-                          glue::glue("<a href = {x}>{fontawesome::fa('book')}</a>"))
+                          glue::glue('<a href="{x}"><i class="fa fa-book" style="color: purple;"></i></a>'))
                  }) %>%
   text_transform(cells_body(columns = c(slides)),
                  fn = function(x){
                    ifelse(is.na(x), fontawesome::fa('laptop', fill_opacity = 0.1), 
-                          glue::glue("<a href = {x}>{fontawesome::fa('laptop')}</a>"))
+                          glue::glue('<a href="{x}"><i class="fa fa-laptop" style="color: purple;"></i></a>'))
                  }) %>%
-  text_transform(cells_body(columns = c(appex)),
+  
+  
+  text_transform(cells_body(columns = c(activity)),
                  fn = function(x){
                    ifelse(is.na(x), fontawesome::fa('users', fill_opacity = 0.1),
-                          glue::glue("<a href = {x}>{fontawesome::fa('users')}</a>"))
+                          glue::glue('<a href="{x}"><i class="fa fa-users" style="color: purple;"></i></a>'))
                    
                  }) %>%
-  text_transform(cells_body(columns = c(assignment)),
+  text_transform(cells_body(columns = c(lab)),
                  fn = function(x){
-                   ifelse(is.na(x), fontawesome::fa('sticky-note', fill_opacity = 0.1), 
-                          glue::glue("<a href = {x}>{fontawesome::fa('sticky-note')}</a>"))
+                   ifelse(is.na(x), fontawesome::fa('pencil', fill_opacity = 0.1), 
+                          glue::glue('<a href="{x}"><i class="fa fa-pencil" style="color: purple;"></i></a>'))
                    
                  }) %>%
-  text_transform(cells_body(columns = c(assessment)),
+  text_transform(cells_body(columns = c(portfolio)),
                  fn = function(x){
                    ifelse(is.na(x), fontawesome::fa('file-alt', fill_opacity = 0.1), 
-                          glue::glue("<a href = {x}>{fontawesome::fa('file-alt')}</a>"))
+                          glue::glue('<a href="{x}"><i class="fa fa-file-alt" style="color: purple;"></i></a>'))
                  }) %>%
   fmt_date(date, date_style = 9) %>%
   sub_missing(columns = date, missing_text = "") |>
-  as_raw_html() -> t
+  as_raw_html() 
 ```
 
 ```{r}

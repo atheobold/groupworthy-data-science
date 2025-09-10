@@ -72,10 +72,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-e545211a98bf4afed2ccb544e18970eb.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-f56605a463272a292668bb4ab65f5cb9.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-be11573b6374e633292ee320d3d6b571.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -185,8 +185,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#introduction-to-rstudio" id="toc-introduction-to-rstudio" class="nav-link" data-scroll-target="#introduction-to-rstudio"><span class="header-section-number">5</span> Introduction to RStudio</a>
   <ul class="collapse">
-  <li><a href="#required-reading-a-tour-of-rstudio" id="toc-required-reading-a-tour-of-rstudio" class="nav-link" data-scroll-target="#required-reading-a-tour-of-rstudio">📖 Required Reading: A tour of RStudio</a></li>
-  <li><a href="#navigating-rstudio" id="toc-navigating-rstudio" class="nav-link" data-scroll-target="#navigating-rstudio">Navigating RStudio</a></li>
+  <li><a href="#recommended-video-a-tour-of-rstudio" id="toc-recommended-video-a-tour-of-rstudio" class="nav-link" data-scroll-target="#recommended-video-a-tour-of-rstudio">📖 Recommended Video: A tour of RStudio</a></li>
   <li><a href="#exploring-the-panes" id="toc-exploring-the-panes" class="nav-link" data-scroll-target="#exploring-the-panes">Exploring the Panes</a></li>
   </ul></li>
   <li><a href="#installing-packages" id="toc-installing-packages" class="nav-link" data-scroll-target="#installing-packages"><span class="header-section-number">6</span> Installing Packages</a>
@@ -249,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="step-1-installing-r" class="level1 page-columns page-full" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Step 1: Installing <code>R</code></h1>
-<p>As mentioned above, you will need to have local installations of both R (the software) and RStudio (the interface for working in R). <strong>Do not skip this step if you already have both R and RStudio installed on your computer</strong>, as you need to ensure you are using the most up to date version of R and RStudio.</p>
+<p>As mentioned above, you will need to have local installations of both R (the software) and RStudio (the interface for working in R). <strong><em>Do not skip this step if you already have both R and RStudio installed on your computer</em></strong>, as you need to ensure you are using the most up to date version of R and RStudio.</p>
 <section id="updating-your-version-of-r" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="updating-your-version-of-r"><span class="header-section-number">1.1</span> Updating Your Version of R</h2>
 <p>If you already have <code>R</code> downloaded, you need to confirm that you have the most up to date version of <code>R</code>. <strong>Do not ignore these instructions.</strong> If you neglect to update your version of R, you may find that updating a package will make it so your code will not run.</p>
@@ -257,8 +256,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Step 1: Open RStudio</li>
 <li>Step 2: At the top of the the Console it will say what version of R you are using</li>
 </ul>
-<p><img src="images/week-1/r-version.png" class="img-fluid">{fig-alt = “A screenshot of what version of R should appear when you open RStudio. The version reads ‘R version 4.4.1 (2024-06-14) – ’Race for Your Life’.”}</p>
-<p>If the version <strong>is not</strong> 4.4.1 (like the image above), you need to update your version of R! The simplest way to do this is to follow the instructions below to install R.</p>
+<p><img src="images/week-1/r-feb-2025.png" class="img-fluid" alt="A screenshot of what version of R should appear when you open RStudio. The version reads 'R version 4.4.1 (2024-06-14) -- 'Race for Your Life'."></p>
+<p>If the version <strong>is not</strong> 4.4.3 (like the image above), you need to update your version of R! The simplest way to do this is to follow the instructions below to install R.</p>
 </section>
 <section id="installing-r" class="level2 page-columns page-full" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="installing-r"><span class="header-section-number">1.2</span> Installing R</h2>
@@ -362,7 +361,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction-to-r" class="level1" data-number="4">
 <h1 data-number="4"><span class="header-section-number">4</span> Introduction to R</h1>
-<p>R is a statistical programming language. Unlike more general-purpose languages, R is optimized for working with data and doing statistics. R was created by Ross Ihaka and Robert Gentleman in 1993 (hence “R”) and was formally released by the <strong>R Core Group</strong> in 1997 (a group of 20-ish volunteers who are the <em>only</em> people who can change the base (built-in) functionality of <code>R</code>). If you want to build an independent, standalone graphical interface, or run a web server, R is probably not the ideal language to use (you might want C / Python or PHP / Python, respectively). If you want to vacuum up a bunch of data, fit several regression models, and then compare the models, R is a great option and will be faster than working in a more general-purpose language like C or base Python.</p>
+<p>R is a statistical programming language. Unlike more general-purpose languages, R is optimized for working with data and doing statistics. R was created by Ross Ihaka and Robert Gentleman in 1993 (hence “R”) and was formally released by the <strong>R Core Group</strong> in 1997 (a group of 20-ish volunteers who are the <em>only</em> people who can change the base, built-in functionality of <code>R</code>). If you want to build an independent, standalone graphical interface, or run a web server, R is probably not the ideal language to use (you might want C / Python or PHP / Python, respectively). If you want to vacuum up a bunch of data, fit several regression models, and then compare the models, R is a great option and will be faster than working in a more general-purpose language like C or base Python.</p>
 <p>In general, R is…</p>
 <ul>
 <li>vector-based</li>
@@ -420,20 +419,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction-to-rstudio" class="level1" data-number="5">
 <h1 data-number="5"><span class="header-section-number">5</span> Introduction to RStudio</h1>
-<section id="required-reading-a-tour-of-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="required-reading-a-tour-of-rstudio">📖 <a href="https://rladiessydney.org/courses/ryouwithme/01-basicbasics-1/">Required Reading: A tour of RStudio</a></h3>
+<section id="recommended-video-a-tour-of-rstudio" class="level3">
+<h3 class="anchored" data-anchor-id="recommended-video-a-tour-of-rstudio">📖 <a href="https://youtu.be/kfcX5DEMAp4?si=okE0641GKkf8ZrSJ">Recommended Video: A tour of RStudio</a></h3>
 <ul>
-<li><a href="https://github.com/rstudio/cheatsheets/blob/main/rstudio-ide.pdf">Click Here</a> to download a “cheatsheet” (easy reference page) for navigating the RStudio IDE.</li>
+<li><a href="https://rstudio.github.io/cheatsheets/rstudio-ide.pdf">Click Here</a> to download a “cheatsheet” (easy reference page) for navigating the RStudio IDE.</li>
 </ul>
-</section>
-<section id="navigating-rstudio" class="level3">
-<h3 class="anchored" data-anchor-id="navigating-rstudio">Navigating RStudio</h3>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/Rstudio-important-buttons.png" class="img-fluid figure-img"></p>
-<figcaption>The RStudio window will look something like this.</figcaption>
-</figure>
-</div>
 </section>
 <section id="exploring-the-panes" class="level3">
 <h3 class="anchored" data-anchor-id="exploring-the-panes">Exploring the Panes</h3>

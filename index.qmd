@@ -18,8 +18,6 @@ We’ll answer these questions and more by studying the principles of “statist
 
 In this course, we will learn the foundational skills for programming in R and a variety of skills for working with data. We will then build on these skills to consider how to write programs which are more efficient.
 
-![Artwork by [\@allison_horst](https://allisonhorst.com/allison-horst).](/images/r-sad-happy.png){fig-alt="A digital cartoon with two illustrations: the top shows the R-logo with a scary face, and a small scared little fuzzy monster holding up a white flag in surrender while under a dark storm cloud. The text above says 'at first I was like…' The lower cartoon is a friendly, smiling R-logo jumping up to give a happy fuzzy monster a high-five under a smiling sun and next to colorful flowers. The text above the bottom illustration reads 'but now it’s like…'"}
-
 ### Teaching Team and Office Hours
 
 Instructor: [{{< var instructor.name >}}]({{< var instructor.url >}})
@@ -61,3 +59,5 @@ Instructor: [{{< var instructor.name >}}]({{< var instructor.url >}})
 ### Materials
 
 This class is very hands on; be sure to bring a fully charged laptop to every class.
+
+![Artwork by [\@allison_horst](https://allisonhorst.com/allison-horst).](/images/r-sad-happy.png){fig-alt="A digital cartoon with two illustrations: the top shows the R-logo with a scary face, and a small scared little fuzzy monster holding up a white flag in surrender while under a dark storm cloud. The text above says 'at first I was like…' The lower cartoon is a friendly, smiling R-logo jumping up to give a happy fuzzy monster a high-five under a smiling sun and next to colorful flowers. The text above the bottom illustration reads 'but now it’s like…'"}

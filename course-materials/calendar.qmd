@@ -25,7 +25,6 @@ gs4_deauth()
 d <- read_sheet("https://docs.google.com/spreadsheets/d/1e1qJGTkZfXEYxhU-ni-UL-2s1DbewhebtL1dYYjalgU/edit?usp=sharing")
 ```
 
-
 ```{r}
 #| label: format-calendar-entries
 #| echo: false

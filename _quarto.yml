@@ -44,7 +44,7 @@ format:
       - united
       - style/stat331.scss
     mainfont: "Atkinson Hyperlegible"
-    highlight-style: monokai
+    # highlight-style: monokai
     code-copy: true
     code-overflow: wrap
     toc: true

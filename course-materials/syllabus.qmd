@@ -236,7 +236,7 @@ The grading scheme we'll be using is probably unlike what you've had in previous
 [**Preview Activities**]{style="color: #34605f; font-size: 1.25em"}\
 will be scored as Complete or Incomplete. You'll receive credit for a Preview Activity as long as:
 
-1.  **The assignment is submitted by the deadline -- before classes start on Tuesday (9:10am).**
+1.  **The assignment is submitted by the deadline -- before classes start on Tuesday (8am).**
 
 2.  **Every item has a response that shows a good-faith effort.** Submissions that have items left blank will receive no credit, as will submissions with responses such as "I don't know" or "I don't understand" or random guesses with no supporting work. Note that **correctness is not factored into the grade**, so you should feel free to give your best effort on each one without fear of being counted off for wrong answers.
 :::
@@ -525,7 +525,7 @@ We will use Discord to manage questions and responses regarding course content. 
 
 ## What if I need to turn something in late?
 
-You'll start the semester with four (4) virtual "Tokens" that you can use for extra flexibility. One token can purchase a 24-hour extension for a Lab or Challenge Assignment (not a Preview Activity or Practice Activity). If you want to use a token for a deadline extension, you are required to complete the Deadline Extension Form. Akin to how the "real world" works, deadline extensions are requested to be done before the deadline. If you thought you were going to get an assignment in but you just missed the deadline for an assignment, please go complete a deadline extension request ASAP. I will not provide feedback on assignments which missed the deadline and no extension request was completed.
+You'll start the semester with three (3) virtual "Tokens" that you can use for extra flexibility. One token can purchase a 24-hour extension for a Lab or Challenge Assignment (not a Preview Activity or Practice Activity). If you want to use a token for a deadline extension, you are required to complete the Deadline Extension Form. Akin to how the "real world" works, deadline extensions are requested to be done before the deadline. If you thought you were going to get an assignment in but you just missed the deadline for an assignment, please go complete a deadline extension request ASAP. I will not provide feedback on assignments which missed the deadline and no extension request was completed.
 
 Tokens cannot be "stacked"; you cannot use multiple tokens to purchase a 6-day extension. You can keep track of how many Tokens you have on Canvas.
 

@@ -2377,7 +2377,7 @@
     "href": "labs/instructions/lab-1-instructions.html",
     "title": "Lab 1: Introduction to Quarto",
     "section": "",
-    "text": "For the first few weeks of the quarter, we will use GitHub Classroom to create our lab repositories. GitHub Classroom is a wonderful tool, as it makes it incredibly simple to copy the contents of a repository.\nUse these steps to make a copy of the Lab 1 repository: List of Steps to Copy the Lab Assignment from GitHub Classroom\n\n\n\nOnce you complete these steps, a dialogue box will open with messages about cloning (making a copy) of your Lab 1 repository. When the messages are finished, you should have a new RStudio session open. You should notice a few things:\n\nIn the upper right corner you should see a blue R cube with introdcution-to-quarto written next to it , this tells you that you are working in an R Project (we’ll learn more about these next week).\nIn the “Files” pane, you should see a list of all the files included in the lab-1 repository you copied.\nIn the upper right pane, you should see a tab labeled “Git”.\nNothing should be displayed in this pane, since you haven’t made any changes to the files that were copied!\n\n\n\n\nNow, find the lab-1-student.qmd file in the “Files” tab in the lower right hand corner. Click on this file to open it.\nAt the top of the document (in the YAML) there is an author line that says \"Your name here!\". Change this to be your name and save your file either by clicking on the blue floppy disk or with a shortcut (command / control + s).\n\n\n\nNow for our last step, we need to commit the files to our repo.\n\nClick the “Git” tab in upper right pane\nCheck the “Staged” box for the lab-1-student.qmd file\nClick “Commit”\nIn the box that opens, type a message in “Commit message”, such as “Added my name”.\nClick “Commit”.\nClick the green “Push” button to send your local changes to GitHub.\n\nRStudio will display something like:\n&gt;&gt;&gt; /usr/bin/git push origin HEAD:refs/heads/main\nTo https://github.com/atheobold/introduction-to-quarto-allison-theobold.git\n   3a2171f..6d58539  HEAD -&gt; main\n\n\n\nGo back to your browser. I assume you’re still viewing the GitHub repo you just cloned. Refresh the page. You should see all the project files you committed there. If you click on “commits”, you should see one with the message you used, e.g. “Added my name”.\n\n\n\nNow that you’ve added your name, go ahead and get started with the rest of the lab!"
+    "text": "Download the template Lab 1 Quarto file here: lab-1-student.qmd\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save the file in the Lab 1 folder, inside your Week 1 folder, inside your STAT 331 folder!"
   },
   {
     "objectID": "labs/instructions/lab-1-instructions.html#step-1-making-a-copy-from-github-classroom",
@@ -2433,35 +2433,35 @@
     "href": "labs/instructions/lab-1-instructions.html#running-the-provided-code",
     "title": "Lab 1: Introduction to Quarto",
     "section": "2.2 Running the Provided Code",
-    "text": "2.2 Running the Provided Code\nNext, click on the “Play” button on the right of the first auto-populated code chunk. Alternatively, you can highlight (or simply put your cursor on the line of) the code you want to run and hit ctrl + Enter (for PCs) or ⌘ + Enter (for Macs).\nYou should see the code appear in the console, as well as the result of the code (2). Keep in mind the [1] before the 2 is vector notation. This means the result is a vector of length 1, whose first element is 2.\nQuestion 3 – Let’s spice this code up a bit. Delete 1 + 1 from the code chunk and paste in the following code:\n\n# Load a dataset into the R Environment.\ndata(ToothGrowth)\n\n# Look at the summary of the variables in the dataset.\nsummary(ToothGrowth)\n\nNow run this code. You should see a six-number summary of the variables len and dose included in the ToothGrowth dataset, as well as the frequency of the levels contained in the supp variable. Further, if you inspect the Environment tab, the ToothGrowth dataset should appear. You can click on the dataset name (not the blue play button!) to look at the data.\n\nCheck the Data Documentation\nQuestion 4 – In your console (not in the Quarto document), type ?ToothGrowth (or alternatively help(ToothGrowth)). Use the information that pops up in the Help pane in RStudio to fill in the blanks below.\nThis dataset investigates the effect of __________ on tooth growth in _________________.\nThe two supplement delivery methods include OJ (______________) and VC (_______________).\nToothGrowth is a data frame with ____ observations and ____ variables.\nQuestion 5 – Before the code chunk, change the “Running the Provided Code” section header to a header that better describes the contents of this section (e.g., Tooth Growth Dataset)."
+    "text": "2.2 Running the Provided Code\nNext, click on the “Play” button on the right of the first auto-populated code chunk. Alternatively, you can highlight (or simply put your cursor on the line of) the code you want to run and hit ctrl + Enter (for PCs) or ⌘ + Enter (for Macs).\nYou should see the code appear in the console, as well as the result of the code (2). Keep in mind the [1] before the 2 is vector notation. This means the result is a vector of length 1, whose first element is 2.\nQuestion 3 – Let’s spice this code up a bit. Delete 1 + 1 from the code chunk and paste in the following code:\n\n# Load a dataset into the R Environment.\ndata(ToothGrowth)\n\n# Look at the summary of the variables in the dataset.\nsummary(ToothGrowth)\n\nNow run this code. You should see a six-number summary of the variables len and dose included in the ToothGrowth dataset, as well as the frequency of the levels contained in the supp variable. Further, if you inspect the Environment tab, the ToothGrowth dataset should appear. You can click on the dataset name (not the blue play button!) to look at the data."
   },
   {
     "objectID": "labs/instructions/lab-1-instructions.html#creating-a-plot",
     "href": "labs/instructions/lab-1-instructions.html#creating-a-plot",
     "title": "Lab 1: Introduction to Quarto",
-    "section": "2.3 Creating a Plot",
-    "text": "2.3 Creating a Plot\nYour second code chunk is just as boring as your first, so let’s spice it up!\nQuestion 6 – Replace the plot(pressure) code with the following (we will talk about graphics next week!):\n\nlibrary(tidyverse)\n\nggplot(data = ToothGrowth, \n       mapping = aes(x = supp, y = len)) +\n  geom_boxplot() +\n  labs(x = \"Supplement\", y = \"Length of Teeth (mm)\")\n\nToothGrowth %&gt;% \n  mutate(dose = as.factor(dose)) %&gt;% \n  ggplot(mapping = aes(x = dose, y = len)) +\n  geom_boxplot() +\n  labs(x = \"Dose of Supplement (mg/day)\", y = \"Length of Teeth (mm)\")\n\nNow, run this code chunk! You should see two side-by-side boxplots, one plot comparing tooth length between the two supplement delivery methods and one plot comparing tooth length between the three different dosages uses.\nQuestion 7 – Read over the Quarto documentation on figure options and add an option (#|) to the above code chunk to make the figures print side-by-side (i.e., in one row) in the rendered HTML file.\nQuestion 8 – Specify in the code chunk options that these boxplots should be center aligned.\nQuestion 9 – Specify a figure caption for the boxplots (using a code-chunk option)."
+    "section": "2.4 Creating a Plot",
+    "text": "2.4 Creating a Plot\nYour second code chunk is just as boring as your first, so let’s spice it up!\nQuestion 6 – Replace the plot(pressure) code with the following (we will talk about graphics next week!):\n\nlibrary(tidyverse)\n\nggplot(data = ToothGrowth, \n       mapping = aes(x = supp, y = len)) +\n  geom_boxplot() +\n  labs(x = \"Supplement\", y = \"Length of Teeth (mm)\")\n\nToothGrowth %&gt;% \n  mutate(dose = as.factor(dose)) %&gt;% \n  ggplot(mapping = aes(x = dose, y = len)) +\n  geom_boxplot() +\n  labs(x = \"Dose of Supplement (mg/day)\", y = \"Length of Teeth (mm)\")\n\nNow, run this code chunk! You should see two side-by-side boxplots, one plot comparing tooth length between the two supplement delivery methods and one plot comparing tooth length between the three different dosages uses.\nQuestion 7 – Read over the Quarto documentation on figure options and add an option (#|) to the above code chunk to make the figures print side-by-side (i.e., in one row) in the rendered HTML file.\nQuestion 8 – Specify in the code chunk options that these boxplots should be center aligned (also found in the Quarto documentation).\nQuestion 9 – Specify a figure caption for the boxplots (using a code-chunk option).\n\n\n\n\n\n\nTipLook at the Quarto documentation!\n\n\n\nThis is a bit tricky! There are two plots, so you will need to figure out how to specify a different caption for each plot."
   },
   {
     "objectID": "labs/instructions/lab-1-instructions.html#inserting-a-new-code-chunk",
     "href": "labs/instructions/lab-1-instructions.html#inserting-a-new-code-chunk",
     "title": "Lab 1: Introduction to Quarto",
-    "section": "2.4 Inserting a New Code Chunk",
-    "text": "2.4 Inserting a New Code Chunk\nNavigate to the last sentence of your the Quarto document. We’re now going to insert a new R code chunk at the bottom of the document.\nThere are four different ways to do this:\n\nType ctrl + alt + i (on a PC) or ⌘ + ⌥ + i (on a Mac).\nClick on the  symbol. This should automatically default to R code, but if you have a Python compiler on your computer, you might need to select “R” from the options.\nIf you are using the Visual editor, click on the “Insert” button, then select “Code Chunk”, and finally select “R”.\nManually add the code chunk by typing ```{r}. Make sure to close your code chunk with ```."
+    "section": "2.5 Inserting a New Code Chunk",
+    "text": "2.5 Inserting a New Code Chunk\nNavigate to the last sentence of your the Quarto document. We’re now going to insert a new R code chunk at the bottom of the document.\nThere are four different ways to do this:\n\nType ctrl + alt + i (on a PC) or ⌘ + ⌥ + i (on a Mac).\nClick on the  symbol. This should automatically default to R code, but if you have a Python compiler on your computer, you might need to select “R” from the options.\nIf you are using the Visual editor, click on the “Insert” button, then select “Code Chunk”, and finally select “R”.\nManually add the code chunk by typing ```{r}. Make sure to close your code chunk with ```."
   },
   {
     "objectID": "labs/instructions/lab-1-instructions.html#conducting-a-t-test-for-two-independent-samples",
     "href": "labs/instructions/lab-1-instructions.html#conducting-a-t-test-for-two-independent-samples",
     "title": "Lab 1: Introduction to Quarto",
-    "section": "2.5 Conducting a t-test for Two Independent Samples",
-    "text": "2.5 Conducting a t-test for Two Independent Samples\nIn this section, we are going to conduct a two-sample independent t-test to compare tooth length between the two supplement methods in the ToothGrowth dataset. I have outlined the null and alternative hypotheses we will be testing:\n\\(H_0\\): The treatment mean tooth length for the OJ supplement delivery method is the same as the treatment mean tooth length for the VC supplement delivery method.\n\\(H_A\\): The treatment mean tooth length for the OJ supplement delivery method is different from the treatment mean tooth length for the VC supplement delivery method.\nWhile a second course in statistics is a pre-requisite for this class, you may want to go here for a refresher on conducting two-sample independent t-tests.\nCarry out the following steps:\nQuestion 10 – Using the t.test() function, write code to carry out the analysis. You can assume unequal variances and a two-sided alternative.\n\n\n\n\n\n\nTipFunction Documentation\n\n\n\nLook up the help documentation for t.test() for directions on how your inputs should look. Hint: specifically look at the examples at the bottom for comparing extra across groups in the sleep dataset.\n\n\nQuestion 11 – Run your code chunk to obtain the output for your statistical test.\nQuestion 12 – Create a numbered list containing:\n\nYour conclusion (in the context of these data) based on the p-value.\nAn interpretation of the confidence interval (make sure to read what confidence level is used by default).\n\nQuestion 13 – Create another section header, describing the contents of this section."
+    "section": "2.6 Conducting a t-test for Two Independent Samples",
+    "text": "2.6 Conducting a t-test for Two Independent Samples\nIn this section, we are going to conduct a two-sample independent t-test to compare tooth length between the two supplement methods in the ToothGrowth dataset. I have outlined the null and alternative hypotheses we will be testing:\n\\(H_0\\): The treatment mean tooth length for the OJ supplement delivery method is the same as the treatment mean tooth length for the VC supplement delivery method.\n\\(H_A\\): The treatment mean tooth length for the OJ supplement delivery method is different from the treatment mean tooth length for the VC supplement delivery method.\nWhile a second course in statistics is a pre-requisite for this class, you may want to go here for a refresher on conducting two-sample independent t-tests.\nCarry out the following steps:\nQuestion 10 – Using the t.test() function, write code to carry out the analysis. You can assume unequal variances and a two-sided alternative.\n\n\n\n\n\n\nTipFunction Documentation\n\n\n\nLook up the help documentation for t.test() for directions on how your inputs should look. Hint: specifically look at the examples at the bottom for comparing extra across groups in the sleep dataset.\n\n\nQuestion 11 – Run your code chunk to obtain the output for your statistical test.\nQuestion 12 – Create a numbered list containing:\n\nYour conclusion (in the context of these data) based on the p-value.\nAn interpretation of the confidence interval (make sure to read what confidence level is used by default).\n\nQuestion 13 – Create another section header, describing the contents of this section."
   },
   {
     "objectID": "labs/instructions/lab-1-instructions.html#render-your-document",
     "href": "labs/instructions/lab-1-instructions.html#render-your-document",
     "title": "Lab 1: Introduction to Quarto",
-    "section": "2.6 Render Your Document",
-    "text": "2.6 Render Your Document\nRender your document as an html file. Use the “Render” button (the blue arrow!) at the top of your screen.\nIf you run into trouble rendering your document, try restarting R and running your code chunks in order, and see if you can find the problem.\nAnother common issue is deleting the tick marks (```) that surround your code chunks. If you notice that the code chunks are not showing a “Play” button (), or that they are not highlighted in gray, double check your tick marks!\nRecall we included error: true in our YAML execution options. This means that your document will still render even if there are errors. Make sure you are double checking your work!\nYou will notice that there is auto-generated text that is unrelated to the work that you completed. It is always a good idea to delete this extra text!"
+    "section": "2.7 Render Your Document",
+    "text": "2.7 Render Your Document\nRender your document as an html file. Use the “Render” button (the blue arrow!) at the top of your screen.\nIf you run into trouble rendering your document, try restarting R and running your code chunks in order, and see if you can find the problem.\nAnother common issue is deleting the tick marks (```) that surround your code chunks. If you notice that the code chunks are not showing a “Play” button (), or that they are not highlighted in gray, double check your tick marks!\nRecall we included error: true in our YAML execution options. This means that your document will still render even if there are errors. Make sure you are double checking your work!\nYou will notice that there is auto-generated text that is unrelated to the work that you completed. It is always a good idea to delete this extra text!"
   },
   {
     "objectID": "labs/instructions/lab-1-instructions.html#render-again",
@@ -3306,49 +3306,49 @@
   {
     "objectID": "slides/week-1/week-1-intro-R.html#tuesday-september-24",
     "href": "slides/week-1/week-1-intro-R.html#tuesday-september-24",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "Tuesday, September 24",
     "text": "Tuesday, September 24\nToday we will…\n\nWelcome to Stat 331 / 531: Statistical Computing in R\nIntroductions (Me + You)\nCourse Layout\nBasics of R\nGroup collaboration warm-up\nData wrangling / visualization puzzle"
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#hi-im-dr.-theobold",
     "href": "slides/week-1/week-1-intro-R.html#hi-im-dr.-theobold",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "Hi, I’m Dr. Theobold!",
     "text": "Hi, I’m Dr. Theobold!\n\n\n\n\nI am originally from Colorado, but went to grad school in Montana.\nMy favorite things are being outside, drinking coffee, and watching women’s basketball.\n\n\n\n\n\n\n\n\n\n\n\n\nI love cats!\nI’ve been programming in R since 2014!\nI absolutely love teaching this course!"
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#on-a-personal-note",
     "href": "slides/week-1/week-1-intro-R.html#on-a-personal-note",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "On a personal note…",
     "text": "On a personal note…\n\n\nI prefer you refer to me as “Dr. Theobold”, or “Dr. T”, or “Professor Theobold.”\nPlease don’t call me “Allison” or “Professor.”\n\n\nI use they / them pronouns. If you are not sure what this means, I’d encourage you to read more about gender identity and pronouns. 🙂"
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#our-classroom-learning-assistant",
     "href": "slides/week-1/week-1-intro-R.html#our-classroom-learning-assistant",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "Our Classroom Learning Assistant!",
     "text": "Our Classroom Learning Assistant!\nWe will be joined in class by Jasmine.\n\nJasmine is…\n\na forth-year Statistics major pursuing a Data Science minor,\noriginally from Irvine, CA,\nsomeone who loves sushi, hanging out with friends, watching Netflix, and working out."
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#you",
     "href": "slides/week-1/week-1-intro-R.html#you",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "You!",
     "text": "You!\nI am looking forward to reading your introductions on Discord!\n\nPlease read the intros of your classmates so you can discover who you will be learning with this quarter!"
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#beginning-of-the-week",
     "href": "slides/week-1/week-1-intro-R.html#beginning-of-the-week",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "Beginning of the Week",
     "text": "Beginning of the Week\n\nBefore Tuesday’s ClassDuring Class on TuesdayAfter Tuesday’s Class\n\n\n\nLook over the coursework page\nRead the required chapter(s)\nWatch the required video(s)\nComplete the Check-ins\n\n\n\n\nReview chapter content\nAsk clarifying questions\nDiscuss example analyses\nWork in pairs to complete the Practice Activity\n\n\n\n\nFinish whatever remains of the Practice Activity\nComplete any additional reading / videos / Check-ins"
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#end-of-the-week",
     "href": "slides/week-1/week-1-intro-R.html#end-of-the-week",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "End of the Week",
     "text": "End of the Week\n\nDuring Class on ThursdayAfter Thursday’s Class\n\n\n\nDebrief Practice Activity\nWarm-up review\nStart Lab Assignment\n\n\n\n\nFinish remaining problems of the Lab Assignment\nComplete Challenge Assignment\n\n\n\n\n\n\n\nLabs & Challenges Due Sunday by Midnight\n\n\nTo keep everyone on track with the coursework, your Lab and Challenges are due by midnight every Sunday. You are permitted to request up to four (4) deadline extensions by filling out the deadline extension form."
   },
@@ -3390,28 +3390,28 @@
   {
     "objectID": "slides/week-1/week-1-intro-R.html#broken-circles",
     "href": "slides/week-1/week-1-intro-R.html#broken-circles",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "Broken Circles",
     "text": "Broken Circles\n\n\n\nTo set the stage for your future group collaborations, we will complete an activity that explores how working in groups can be more / less successful.\nLet’s start by dividing the class into groups of 6 students."
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#activity-guidelines",
     "href": "slides/week-1/week-1-intro-R.html#activity-guidelines",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "Activity Guidelines",
     "text": "Activity Guidelines\n\nNo talking or other noises!\nNo pointing or hand signals!\nNo taking pieces. You may only give pieces to others.\n\nYour group is finished once everyone has a complete circle."
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#discussion",
     "href": "slides/week-1/week-1-intro-R.html#discussion",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "Discussion",
     "text": "Discussion\n\nWhat do you think this game was about? What was its purpose?\nWhat did your group did that made you cooperate more successfully?\nWhat did your group did that made cooperation harder?\nWhat are some behaviors that could be implemented in the future to make cooperation easier?"
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#consent-to-participate",
     "href": "slides/week-1/week-1-intro-R.html#consent-to-participate",
-    "title": "Intro to STAT 331 / 531 + Intro to R",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
     "section": "Consent to Participate",
     "text": "Consent to Participate\n\n\nIf you agree to participate…\n\nyou will be recorded once a week for 10-weeks while participating in pair programming to complete collaborative tasks.\nyou will complete a pre- and post-survey about your prior computing experiences and your attitudes toward data science.\n\n\n\n\n\n\nYour participation in this research will not affect your course grade.\n\n\n\n\n\n\n\n\n\nConsent Form\n\n\nPlease complete the consent form (https://forms.gle/oax73hoe7uRSVLYw8) by Monday, 9/30."
   },
@@ -3762,15 +3762,15 @@
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#thursday-october-10",
     "href": "slides/week-3/week-3-dplyr-pt2.html#thursday-october-10",
     "title": "Extending Data Wrangling Verbs",
-    "section": "Thursday, October 10",
-    "text": "Thursday, October 10\nToday we will…\n\n\nDebrief PA 3\nDebrief Lab 2 & Challenge 2\nDiscuss Lab 2 Peer Review\nOutline Grade Expectations for Syllabus\nNew Material\n\nExtend dplyr verbs to have more functionality\n\nLab 3: Teacher Evaluations"
+    "section": "",
+    "text": "Today we will…\n\n\nDebrief PA 3\nDebrief Lab 2 & Challenge 2\nDiscuss Lab 2 Peer Review\nOutline Grade Expectations for Syllabus\nNew Material\n\nExtend dplyr verbs to have more functionality\n\nLab 3: Teacher Evaluations"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#efficient-coding",
     "href": "slides/week-3/week-3-dplyr-pt2.html#efficient-coding",
     "title": "Extending Data Wrangling Verbs",
     "section": "Efficient Coding",
-    "text": "Efficient Coding\nFor the final problem, many groups’ code looked like this:\n\ncolleges_clean |&gt; \n  filter(REGION == 7) |&gt;\n  filter(ADM_RATE &gt; median(ADM_RATE)) |&gt;\n  filter(TUITION_DIFF != 0) |&gt;\n  filter(SAT_AVG %% 2 == 1) |&gt;\n  filter(STABBR != \"ID\") |&gt;\n  filter(UGDS &lt; 10000) |&gt;\n  filter(STABBR != \"MT\") |&gt; \n  slice_min(order_by = ADM_RATE) \n\n\n\nIs there a more “efficient” way do this?"
+    "text": "Efficient Coding\nFor the final problem, many groups’ code looked like this:\n\ncolleges_clean |&gt; \n  filter(REGION == 7) |&gt;\n  filter(ADM_RATE &gt; median(ADM_RATE)) |&gt;\n  filter(TUITION_DIFF != 0) |&gt;\n  filter(SAT_AVG %% 2 == 1) |&gt;\n  filter(STABBR != \"ID\") |&gt;\n  filter(UGDS &lt; 10000) |&gt;\n  filter(STABBR != \"MT\") |&gt; \n  slice_min(order_by = ADM_RATE) \n\n. . .\n\nIs there a more “efficient” way do this?"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#a-few-words-about-drop_na",
@@ -3784,14 +3784,14 @@
     "href": "slides/week-3/week-3-dplyr-pt2.html#grading-feedback-revisions",
     "title": "Extending Data Wrangling Verbs",
     "section": "Grading / Feedback & Revisions",
-    "text": "Grading / Feedback & Revisions\n\n\nEach question will earn a score of “Success” or “Growing”.\n\nQuestions marked “Growing” will receive feedback on how to improve your solution.\nThese questions can be resubmitted for additional feedback.\n\n\n\n\n\n\nEarning a “Success” doesn’t necessarily mean your solution is without error.\n\nYou may still receive feedback on how to improve your solution.\nThese questions cannot be resubmitted for additional feedback.\n\n\n\n\n\n\n\nRevisions for Lab 2 & Challenge 2 are due next Friday (October 18th)\n\nYou must submit your revised HTML to the original Lab 2 / Challenge 2 assignment portal.\nYou must include reflections on what you learned by completing the revisions."
+    "text": "Grading / Feedback & Revisions\n\n\nEach question will earn a score of “Success” or “Growing”.\n\nQuestions marked “Growing” will receive feedback on how to improve your solution.\nThese questions can be resubmitted for additional feedback.\n\n\n\n. . .\n\n\nEarning a “Success” doesn’t necessarily mean your solution is without error.\n\nYou may still receive feedback on how to improve your solution.\nThese questions cannot be resubmitted for additional feedback.\n\n\n\n. . .\n\n\nRevisions for Lab 2 & Challenge 2 are due next Friday (October 18th)\n\nYou must submit your revised HTML to the original Lab 2 / Challenge 2 assignment portal.\nYou must include reflections on what you learned by completing the revisions."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#lab-2-growing-points",
     "href": "slides/week-3/week-3-dplyr-pt2.html#lab-2-growing-points",
     "title": "Extending Data Wrangling Verbs",
     "section": "Lab 2 Growing Points",
-    "text": "Lab 2 Growing Points\n\n\nQ1: Loading in data with the here() function\n\nIn this class, we use a package oriented workflow to read in the data.\nWe do not specify relative paths to read in our data.\n\n\n\n\n\n\nQ5: Adding transparency\n\nOnly variables being mapped to aesthetics are inserted into the aes() function!\nHard coded values (e.g., alpha = 0.5) belong outside the aes() function.\n\n\n\n\n\n\n\nReport formatting: No messages or warnings should be output in the HTML document!\n\nUse code chunk options and execute options to suppress these messages and warnings."
+    "text": "Lab 2 Growing Points\n\n\nQ1: Loading in data with the here() function\n\nIn this class, we use a package oriented workflow to read in the data.\nWe do not specify relative paths to read in our data.\n\n\n\n. . .\n\n\nQ5: Adding transparency\n\nOnly variables being mapped to aesthetics are inserted into the aes() function!\nHard coded values (e.g., alpha = 0.5) belong outside the aes() function.\n\n\n\n. . .\n\n\nReport formatting: No messages or warnings should be output in the HTML document!\n\nUse code chunk options and execute options to suppress these messages and warnings."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#dont-make-people-tilt-their-head",
@@ -3812,49 +3812,49 @@
     "href": "slides/week-3/week-3-dplyr-pt2.html#defining-grades-in-331",
     "title": "Extending Data Wrangling Verbs",
     "section": "Defining Grades in 331",
-    "text": "Defining Grades in 331\n\nA: Superior Attainment of Course Objectives\nB: Good Attainment of Course Objectives\nC: Acceptable Attainment of Course Objectives\nD: Poor Attainment of Course Objectives\n\n\nWe need to define criteria for each of these grades based on the four objectives of this course—learning targets, revising thinking, extending thinking, collaborating with peers."
+    "text": "Defining Grades in 331\n\nA: Superior Attainment of Course Objectives\nB: Good Attainment of Course Objectives\nC: Acceptable Attainment of Course Objectives\nD: Poor Attainment of Course Objectives\n\n. . .\nWe need to define criteria for each of these grades based on the four objectives of this course—learning targets, revising thinking, extending thinking, collaborating with peers."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#example-data-set-cereal",
     "href": "slides/week-3/week-3-dplyr-pt2.html#example-data-set-cereal",
     "title": "Extending Data Wrangling Verbs",
     "section": "Example Data set – Cereal",
-    "text": "Example Data set – Cereal\n\n\nlibrary(liver)\ndata(cereal)\n\nglimpse(cereal)\n\nRows: 77\nColumns: 16\n$ name     &lt;fct&gt; 100% Bran, 100% Natural Bran, All-Bran, All-Bran with Extra F…\n$ manuf    &lt;fct&gt; N, Q, K, K, R, G, K, G, R, P, Q, G, G, G, G, R, K, K, G, K, N…\n$ type     &lt;fct&gt; cold, cold, cold, cold, cold, cold, cold, cold, cold, cold, c…\n$ calories &lt;int&gt; 70, 120, 70, 50, 110, 110, 110, 130, 90, 90, 120, 110, 120, 1…\n$ protein  &lt;int&gt; 4, 3, 4, 4, 2, 2, 2, 3, 2, 3, 1, 6, 1, 3, 1, 2, 2, 1, 1, 3, 3…\n$ fat      &lt;int&gt; 1, 5, 1, 0, 2, 2, 0, 2, 1, 0, 2, 2, 3, 2, 1, 0, 0, 0, 1, 3, 0…\n$ sodium   &lt;int&gt; 130, 15, 260, 140, 200, 180, 125, 210, 200, 210, 220, 290, 21…\n$ fiber    &lt;dbl&gt; 10.0, 2.0, 9.0, 14.0, 1.0, 1.5, 1.0, 2.0, 4.0, 5.0, 0.0, 2.0,…\n$ carbo    &lt;dbl&gt; 5.0, 8.0, 7.0, 8.0, 14.0, 10.5, 11.0, 18.0, 15.0, 13.0, 12.0,…\n$ sugars   &lt;int&gt; 6, 8, 5, 0, 8, 10, 14, 8, 6, 5, 12, 1, 9, 7, 13, 3, 2, 12, 13…\n$ potass   &lt;int&gt; 280, 135, 320, 330, -1, 70, 30, 100, 125, 190, 35, 105, 45, 1…\n$ vitamins &lt;int&gt; 25, 0, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25…\n$ shelf    &lt;int&gt; 3, 3, 3, 3, 3, 1, 2, 3, 1, 3, 2, 1, 2, 3, 2, 1, 1, 2, 2, 3, 2…\n$ weight   &lt;dbl&gt; 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.33, 1.00, 1.00, 1…\n$ cups     &lt;dbl&gt; 0.33, 1.00, 0.33, 0.50, 0.75, 0.75, 1.00, 0.75, 0.67, 0.67, 0…\n$ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.50954, 3…"
+    "text": "Example Data set – Cereal\n\n\nlibrary(liver)\n\n\nAttaching package: 'liver'\n\n\nThe following object is masked from 'package:base':\n\n    transform\n\ndata(cereal)\n\nglimpse(cereal)\n\nRows: 77\nColumns: 16\n$ name     &lt;fct&gt; 100% Bran, 100% Natural Bran, All-Bran, All-Bran with Extra F…\n$ manuf    &lt;fct&gt; N, Q, K, K, R, G, K, G, R, P, Q, G, G, G, G, R, K, K, G, K, N…\n$ type     &lt;fct&gt; cold, cold, cold, cold, cold, cold, cold, cold, cold, cold, c…\n$ calories &lt;int&gt; 70, 120, 70, 50, 110, 110, 110, 130, 90, 90, 120, 110, 120, 1…\n$ protein  &lt;int&gt; 4, 3, 4, 4, 2, 2, 2, 3, 2, 3, 1, 6, 1, 3, 1, 2, 2, 1, 1, 3, 3…\n$ fat      &lt;int&gt; 1, 5, 1, 0, 2, 2, 0, 2, 1, 0, 2, 2, 3, 2, 1, 0, 0, 0, 1, 3, 0…\n$ sodium   &lt;int&gt; 130, 15, 260, 140, 200, 180, 125, 210, 200, 210, 220, 290, 21…\n$ fiber    &lt;dbl&gt; 10.0, 2.0, 9.0, 14.0, 1.0, 1.5, 1.0, 2.0, 4.0, 5.0, 0.0, 2.0,…\n$ carbo    &lt;dbl&gt; 5.0, 8.0, 7.0, 8.0, 14.0, 10.5, 11.0, 18.0, 15.0, 13.0, 12.0,…\n$ sugars   &lt;int&gt; 6, 8, 5, 0, 8, 10, 14, 8, 6, 5, 12, 1, 9, 7, 13, 3, 2, 12, 13…\n$ potass   &lt;int&gt; 280, 135, 320, 330, -1, 70, 30, 100, 125, 190, 35, 105, 45, 1…\n$ vitamins &lt;int&gt; 25, 0, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25, 25…\n$ shelf    &lt;int&gt; 3, 3, 3, 3, 3, 1, 2, 3, 1, 3, 2, 1, 2, 3, 2, 1, 1, 2, 2, 3, 2…\n$ weight   &lt;dbl&gt; 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.00, 1.33, 1.00, 1.00, 1…\n$ cups     &lt;dbl&gt; 0.33, 1.00, 0.33, 0.50, 0.75, 0.75, 1.00, 0.75, 0.67, 0.67, 0…\n$ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.50954, 3…"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#count-with-count",
     "href": "slides/week-3/week-3-dplyr-pt2.html#count-with-count",
     "title": "Extending Data Wrangling Verbs",
     "section": "Count with count()",
-    "text": "Count with count()\nHow many cereals does each manuf have in this dataset?\n\n\ncereal |&gt; \n  group_by(manuf) |&gt; \n  count()\n\n\n\n\n\n\n\nmanuf\nn\n\n\n\n\nA\n1\n\n\nG\n22\n\n\nK\n23\n\n\nN\n6\n\n\nP\n9\n\n\nQ\n8\n\n\nR\n8"
+    "text": "Count with count()\nHow many cereals does each manuf have in this dataset?\n. . .\n\ncereal |&gt; \n  group_by(manuf) |&gt; \n  count()\n\n\n\n\n\n\n\nmanuf\nn\n\n\n\n\nA\n1\n\n\nG\n22\n\n\nK\n23\n\n\nN\n6\n\n\nP\n9\n\n\nQ\n8\n\n\nR\n8"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#group_by-slice",
     "href": "slides/week-3/week-3-dplyr-pt2.html#group_by-slice",
     "title": "Extending Data Wrangling Verbs",
     "section": "group_by() + slice()",
-    "text": "group_by() + slice()\nFor each manuf, find the cereal with the most fiber.\n\n\ncereal |&gt; \n  group_by(manuf) |&gt; \n  slice_max(order_by = fiber)\n\n\n\n\n\n\n\n\nname\nmanuf\ntype\ncalories\nprotein\nfat\nsodium\nfiber\ncarbo\nsugars\npotass\nvitamins\nshelf\nweight\ncups\nrating\n\n\n\n\nMaypo\nA\nhot\n100\n4\n1\n0\n0.0\n16\n3\n95\n25\n2\n1.00\n1.00\n54.85092\n\n\nTotal Raisin Bran\nG\ncold\n140\n3\n1\n190\n4.0\n15\n14\n230\n100\n3\n1.50\n1.00\n28.59278\n\n\nAll-Bran with Extra Fiber\nK\ncold\n50\n4\n0\n140\n14.0\n8\n0\n330\n25\n3\n1.00\n0.50\n93.70491\n\n\n100% Bran\nN\ncold\n70\n4\n1\n130\n10.0\n5\n6\n280\n25\n3\n1.00\n0.33\n68.40297\n\n\nPost Nat. Raisin Bran\nP\ncold\n120\n3\n1\n200\n6.0\n11\n14\n260\n25\n3\n1.33\n0.67\n37.84059\n\n\nQuaker Oatmeal\nQ\nhot\n100\n5\n2\n0\n2.7\n-1\n-1\n110\n0\n1\n1.00\n0.67\n50.82839\n\n\nBran Chex\nR\ncold\n90\n2\n1\n200\n4.0\n15\n6\n125\n25\n1\n1.00\n0.67\n49.12025"
+    "text": "group_by() + slice()\nFor each manuf, find the cereal with the most fiber.\n. . .\n\ncereal |&gt; \n  group_by(manuf) |&gt; \n  slice_max(order_by = fiber)\n\n\n\n\n\n\n\n\nname\nmanuf\ntype\ncalories\nprotein\nfat\nsodium\nfiber\ncarbo\nsugars\npotass\nvitamins\nshelf\nweight\ncups\nrating\n\n\n\n\nMaypo\nA\nhot\n100\n4\n1\n0\n0.0\n16\n3\n95\n25\n2\n1.00\n1.00\n54.85092\n\n\nTotal Raisin Bran\nG\ncold\n140\n3\n1\n190\n4.0\n15\n14\n230\n100\n3\n1.50\n1.00\n28.59278\n\n\nAll-Bran with Extra Fiber\nK\ncold\n50\n4\n0\n140\n14.0\n8\n0\n330\n25\n3\n1.00\n0.50\n93.70491\n\n\n100% Bran\nN\ncold\n70\n4\n1\n130\n10.0\n5\n6\n280\n25\n3\n1.00\n0.33\n68.40297\n\n\nPost Nat. Raisin Bran\nP\ncold\n120\n3\n1\n200\n6.0\n11\n14\n260\n25\n3\n1.33\n0.67\n37.84059\n\n\nQuaker Oatmeal\nQ\nhot\n100\n5\n2\n0\n2.7\n-1\n-1\n110\n0\n1\n1.00\n0.67\n50.82839\n\n\nBran Chex\nR\ncold\n90\n2\n1\n200\n4.0\n15\n6\n125\n25\n1\n1.00\n0.67\n49.12025"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#multiple-variables-in-slice",
     "href": "slides/week-3/week-3-dplyr-pt2.html#multiple-variables-in-slice",
     "title": "Extending Data Wrangling Verbs",
     "section": "Multiple Variables in slice()",
-    "text": "Multiple Variables in slice()\nFind the 3 cereals with the highest fiber and potass.\n\n\nIf you are ordering by multiple variables, wrap them in a data.frame!\n\n\ncereal |&gt; \n  slice_max(order_by = data.frame(fiber, potass),\n            n = 3)\n\n\n\n\n\n\n\n\nname\nmanuf\ntype\ncalories\nprotein\nfat\nsodium\nfiber\ncarbo\nsugars\npotass\nvitamins\nshelf\nweight\ncups\nrating\n\n\n\n\nAll-Bran with Extra Fiber\nK\ncold\n50\n4\n0\n140\n14\n8\n0\n330\n25\n3\n1\n0.50\n93.70491\n\n\n100% Bran\nN\ncold\n70\n4\n1\n130\n10\n5\n6\n280\n25\n3\n1\n0.33\n68.40297\n\n\nAll-Bran\nK\ncold\n70\n4\n1\n260\n9\n7\n5\n320\n25\n3\n1\n0.33\n59.42551"
+    "text": "Multiple Variables in slice()\nFind the 3 cereals with the highest fiber and potass.\n. . .\n\nIf you are ordering by multiple variables, wrap them in a data.frame!\n\n\ncereal |&gt; \n  slice_max(order_by = data.frame(fiber, potass),\n            n = 3)\n\n\n\n\n\n\n\n\nname\nmanuf\ntype\ncalories\nprotein\nfat\nsodium\nfiber\ncarbo\nsugars\npotass\nvitamins\nshelf\nweight\ncups\nrating\n\n\n\n\nAll-Bran with Extra Fiber\nK\ncold\n50\n4\n0\n140\n14\n8\n0\n330\n25\n3\n1\n0.50\n93.70491\n\n\n100% Bran\nN\ncold\n70\n4\n1\n130\n10\n5\n6\n280\n25\n3\n1\n0.33\n68.40297\n\n\nAll-Bran\nK\ncold\n70\n4\n1\n260\n9\n7\n5\n320\n25\n3\n1\n0.33\n59.42551"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#discretize-with-if_else",
     "href": "slides/week-3/week-3-dplyr-pt2.html#discretize-with-if_else",
     "title": "Extending Data Wrangling Verbs",
     "section": "Discretize with if_else()",
-    "text": "Discretize with if_else()\nFor each cereal, label the potass as “high” or “low”.\n\n\nif_else(&lt;CONDITION&gt;, &lt;TRUE OUTPUT&gt;, &lt;FALSE OUTPUT&gt;)\n\n\n\n\ncereal |&gt; \n  mutate(po_category = if_else(potass &lt;= 100, \n                               \"low\", \n                               \"high\"),\n         .after = potass)\n\n\n\n\n\n\n\nname\nmanuf\ntype\ncalories\nprotein\nfat\nsodium\nfiber\ncarbo\nsugars\npotass\npo_category\nvitamins\nshelf\nweight\ncups\nrating\n\n\n\n\n100% Bran\nN\ncold\n70\n4\n1\n130\n10.0\n5.0\n6\n280\nhigh\n25\n3\n1.00\n0.33\n68.40297\n\n\n100% Natural Bran\nQ\ncold\n120\n3\n5\n15\n2.0\n8.0\n8\n135\nhigh\n0\n3\n1.00\n1.00\n33.98368\n\n\nAll-Bran\nK\ncold\n70\n4\n1\n260\n9.0\n7.0\n5\n320\nhigh\n25\n3\n1.00\n0.33\n59.42551\n\n\nAll-Bran with Extra Fiber\nK\ncold\n50\n4\n0\n140\n14.0\n8.0\n0\n330\nhigh\n25\n3\n1.00\n0.50\n93.70491\n\n\nAlmond Delight\nR\ncold\n110\n2\n2\n200\n1.0\n14.0\n8\n-1\nlow\n25\n3\n1.00\n0.75\n34.38484\n\n\nApple Cinnamon Cheerios\nG\ncold\n110\n2\n2\n180\n1.5\n10.5\n10\n70\nlow\n25\n1\n1.00\n0.75\n29.50954\n\n\nApple Jacks\nK\ncold\n110\n2\n0\n125\n1.0\n11.0\n14\n30\nlow\n25\n2\n1.00\n1.00\n33.17409\n\n\nBasic 4\nG\ncold\n130\n3\n2\n210\n2.0\n18.0\n8\n100\nlow\n25\n3\n1.33\n0.75\n37.03856\n\n\nBran Chex\nR\ncold\n90\n2\n1\n200\n4.0\n15.0\n6\n125\nhigh\n25\n1\n1.00\n0.67\n49.12025\n\n\nBran Flakes\nP\ncold\n90\n3\n0\n210\n5.0\n13.0\n5\n190\nhigh\n25\n3\n1.00\n0.67\n53.31381\n\n\nCap'n'Crunch\nQ\ncold\n120\n1\n2\n220\n0.0\n12.0\n12\n35\nlow\n25\n2\n1.00\n0.75\n18.04285\n\n\nCheerios\nG\ncold\n110\n6\n2\n290\n2.0\n17.0\n1\n105\nhigh\n25\n1\n1.00\n1.25\n50.76500\n\n\nCinnamon Toast Crunch\nG\ncold\n120\n1\n3\n210\n0.0\n13.0\n9\n45\nlow\n25\n2\n1.00\n0.75\n19.82357\n\n\nClusters\nG\ncold\n110\n3\n2\n140\n2.0\n13.0\n7\n105\nhigh\n25\n3\n1.00\n0.50\n40.40021\n\n\nCocoa Puffs\nG\ncold\n110\n1\n1\n180\n0.0\n12.0\n13\n55\nlow\n25\n2\n1.00\n1.00\n22.73645\n\n\nCorn Chex\nR\ncold\n110\n2\n0\n280\n0.0\n22.0\n3\n25\nlow\n25\n1\n1.00\n1.00\n41.44502\n\n\nCorn Flakes\nK\ncold\n100\n2\n0\n290\n1.0\n21.0\n2\n35\nlow\n25\n1\n1.00\n1.00\n45.86332\n\n\nCorn Pops\nK\ncold\n110\n1\n0\n90\n1.0\n13.0\n12\n20\nlow\n25\n2\n1.00\n1.00\n35.78279\n\n\nCount Chocula\nG\ncold\n110\n1\n1\n180\n0.0\n12.0\n13\n65\nlow\n25\n2\n1.00\n1.00\n22.39651\n\n\nCracklin' Oat Bran\nK\ncold\n110\n3\n3\n140\n4.0\n10.0\n7\n160\nhigh\n25\n3\n1.00\n0.50\n40.44877\n\n\nCream of Wheat (Quick)\nN\nhot\n100\n3\n0\n80\n1.0\n21.0\n0\n-1\nlow\n0\n2\n1.00\n1.00\n64.53382\n\n\nCrispix\nK\ncold\n110\n2\n0\n220\n1.0\n21.0\n3\n30\nlow\n25\n3\n1.00\n1.00\n46.89564\n\n\nCrispy Wheat & Raisins\nG\ncold\n100\n2\n1\n140\n2.0\n11.0\n10\n120\nhigh\n25\n3\n1.00\n0.75\n36.17620\n\n\nDouble Chex\nR\ncold\n100\n2\n0\n190\n1.0\n18.0\n5\n80\nlow\n25\n3\n1.00\n0.75\n44.33086\n\n\nFroot Loops\nK\ncold\n110\n2\n1\n125\n1.0\n11.0\n13\n30\nlow\n25\n2\n1.00\n1.00\n32.20758\n\n\nFrosted Flakes\nK\ncold\n110\n1\n0\n200\n1.0\n14.0\n11\n25\nlow\n25\n1\n1.00\n0.75\n31.43597\n\n\nFrosted Mini-Wheats\nK\ncold\n100\n3\n0\n0\n3.0\n14.0\n7\n100\nlow\n25\n2\n1.00\n0.80\n58.34514\n\n\nFruit & Fibre Dates; Walnuts; and Oats\nP\ncold\n120\n3\n2\n160\n5.0\n12.0\n10\n200\nhigh\n25\n3\n1.25\n0.67\n40.91705\n\n\nFruitful Bran\nK\ncold\n120\n3\n0\n240\n5.0\n14.0\n12\n190\nhigh\n25\n3\n1.33\n0.67\n41.01549\n\n\nFruity Pebbles\nP\ncold\n110\n1\n1\n135\n0.0\n13.0\n12\n25\nlow\n25\n2\n1.00\n0.75\n28.02576\n\n\nGolden Crisp\nP\ncold\n100\n2\n0\n45\n0.0\n11.0\n15\n40\nlow\n25\n1\n1.00\n0.88\n35.25244\n\n\nGolden Grahams\nG\ncold\n110\n1\n1\n280\n0.0\n15.0\n9\n45\nlow\n25\n2\n1.00\n0.75\n23.80404\n\n\nGrape Nuts Flakes\nP\ncold\n100\n3\n1\n140\n3.0\n15.0\n5\n85\nlow\n25\n3\n1.00\n0.88\n52.07690\n\n\nGrape-Nuts\nP\ncold\n110\n3\n0\n170\n3.0\n17.0\n3\n90\nlow\n25\n3\n1.00\n0.25\n53.37101\n\n\nGreat Grains Pecan\nP\ncold\n120\n3\n3\n75\n3.0\n13.0\n4\n100\nlow\n25\n3\n1.00\n0.33\n45.81172\n\n\nHoney Graham Ohs\nQ\ncold\n120\n1\n2\n220\n1.0\n12.0\n11\n45\nlow\n25\n2\n1.00\n1.00\n21.87129\n\n\nHoney Nut Cheerios\nG\ncold\n110\n3\n1\n250\n1.5\n11.5\n10\n90\nlow\n25\n1\n1.00\n0.75\n31.07222\n\n\nHoney-comb\nP\ncold\n110\n1\n0\n180\n0.0\n14.0\n11\n35\nlow\n25\n1\n1.00\n1.33\n28.74241\n\n\nJust Right Crunchy Nuggets\nK\ncold\n110\n2\n1\n170\n1.0\n17.0\n6\n60\nlow\n100\n3\n1.00\n1.00\n36.52368\n\n\nJust Right Fruit & Nut\nK\ncold\n140\n3\n1\n170\n2.0\n20.0\n9\n95\nlow\n100\n3\n1.30\n0.75\n36.47151\n\n\nKix\nG\ncold\n110\n2\n1\n260\n0.0\n21.0\n3\n40\nlow\n25\n2\n1.00\n1.50\n39.24111\n\n\nLife\nQ\ncold\n100\n4\n2\n150\n2.0\n12.0\n6\n95\nlow\n25\n2\n1.00\n0.67\n45.32807\n\n\nLucky Charms\nG\ncold\n110\n2\n1\n180\n0.0\n12.0\n12\n55\nlow\n25\n2\n1.00\n1.00\n26.73451\n\n\nMaypo\nA\nhot\n100\n4\n1\n0\n0.0\n16.0\n3\n95\nlow\n25\n2\n1.00\n1.00\n54.85092\n\n\nMuesli Raisins; Dates; & Almonds\nR\ncold\n150\n4\n3\n95\n3.0\n16.0\n11\n170\nhigh\n25\n3\n1.00\n1.00\n37.13686\n\n\nMuesli Raisins; Peaches; & Pecans\nR\ncold\n150\n4\n3\n150\n3.0\n16.0\n11\n170\nhigh\n25\n3\n1.00\n1.00\n34.13976\n\n\nMueslix Crispy Blend\nK\ncold\n160\n3\n2\n150\n3.0\n17.0\n13\n160\nhigh\n25\n3\n1.50\n0.67\n30.31335\n\n\nMulti-Grain Cheerios\nG\ncold\n100\n2\n1\n220\n2.0\n15.0\n6\n90\nlow\n25\n1\n1.00\n1.00\n40.10596\n\n\nNut&Honey Crunch\nK\ncold\n120\n2\n1\n190\n0.0\n15.0\n9\n40\nlow\n25\n2\n1.00\n0.67\n29.92429\n\n\nNutri-Grain Almond-Raisin\nK\ncold\n140\n3\n2\n220\n3.0\n21.0\n7\n130\nhigh\n25\n3\n1.33\n0.67\n40.69232\n\n\nNutri-grain Wheat\nK\ncold\n90\n3\n0\n170\n3.0\n18.0\n2\n90\nlow\n25\n3\n1.00\n1.00\n59.64284\n\n\nOatmeal Raisin Crisp\nG\ncold\n130\n3\n2\n170\n1.5\n13.5\n10\n120\nhigh\n25\n3\n1.25\n0.50\n30.45084\n\n\nPost Nat. Raisin Bran\nP\ncold\n120\n3\n1\n200\n6.0\n11.0\n14\n260\nhigh\n25\n3\n1.33\n0.67\n37.84059\n\n\nProduct 19\nK\ncold\n100\n3\n0\n320\n1.0\n20.0\n3\n45\nlow\n100\n3\n1.00\n1.00\n41.50354\n\n\nPuffed Rice\nQ\ncold\n50\n1\n0\n0\n0.0\n13.0\n0\n15\nlow\n0\n3\n0.50\n1.00\n60.75611\n\n\nPuffed Wheat\nQ\ncold\n50\n2\n0\n0\n1.0\n10.0\n0\n50\nlow\n0\n3\n0.50\n1.00\n63.00565\n\n\nQuaker Oat Squares\nQ\ncold\n100\n4\n1\n135\n2.0\n14.0\n6\n110\nhigh\n25\n3\n1.00\n0.50\n49.51187\n\n\nQuaker Oatmeal\nQ\nhot\n100\n5\n2\n0\n2.7\n-1.0\n-1\n110\nhigh\n0\n1\n1.00\n0.67\n50.82839\n\n\nRaisin Bran\nK\ncold\n120\n3\n1\n210\n5.0\n14.0\n12\n240\nhigh\n25\n2\n1.33\n0.75\n39.25920\n\n\nRaisin Nut Bran\nG\ncold\n100\n3\n2\n140\n2.5\n10.5\n8\n140\nhigh\n25\n3\n1.00\n0.50\n39.70340\n\n\nRaisin Squares\nK\ncold\n90\n2\n0\n0\n2.0\n15.0\n6\n110\nhigh\n25\n3\n1.00\n0.50\n55.33314\n\n\nRice Chex\nR\ncold\n110\n1\n0\n240\n0.0\n23.0\n2\n30\nlow\n25\n1\n1.00\n1.13\n41.99893\n\n\nRice Krispies\nK\ncold\n110\n2\n0\n290\n0.0\n22.0\n3\n35\nlow\n25\n1\n1.00\n1.00\n40.56016\n\n\nShredded Wheat\nN\ncold\n80\n2\n0\n0\n3.0\n16.0\n0\n95\nlow\n0\n1\n0.83\n1.00\n68.23588\n\n\nShredded Wheat 'n'Bran\nN\ncold\n90\n3\n0\n0\n4.0\n19.0\n0\n140\nhigh\n0\n1\n1.00\n0.67\n74.47295\n\n\nShredded Wheat spoon size\nN\ncold\n90\n3\n0\n0\n3.0\n20.0\n0\n120\nhigh\n0\n1\n1.00\n0.67\n72.80179\n\n\nSmacks\nK\ncold\n110\n2\n1\n70\n1.0\n9.0\n15\n40\nlow\n25\n2\n1.00\n0.75\n31.23005\n\n\nSpecial K\nK\ncold\n110\n6\n0\n230\n1.0\n16.0\n3\n55\nlow\n25\n1\n1.00\n1.00\n53.13132\n\n\nStrawberry Fruit Wheats\nN\ncold\n90\n2\n0\n15\n3.0\n15.0\n5\n90\nlow\n25\n2\n1.00\n1.00\n59.36399\n\n\nTotal Corn Flakes\nG\ncold\n110\n2\n1\n200\n0.0\n21.0\n3\n35\nlow\n100\n3\n1.00\n1.00\n38.83975\n\n\nTotal Raisin Bran\nG\ncold\n140\n3\n1\n190\n4.0\n15.0\n14\n230\nhigh\n100\n3\n1.50\n1.00\n28.59278\n\n\nTotal Whole Grain\nG\ncold\n100\n3\n1\n200\n3.0\n16.0\n3\n110\nhigh\n100\n3\n1.00\n1.00\n46.65884\n\n\nTriples\nG\ncold\n110\n2\n1\n250\n0.0\n21.0\n3\n60\nlow\n25\n3\n1.00\n0.75\n39.10617\n\n\nTrix\nG\ncold\n110\n1\n1\n140\n0.0\n13.0\n12\n25\nlow\n25\n2\n1.00\n1.00\n27.75330\n\n\nWheat Chex\nR\ncold\n100\n3\n1\n230\n3.0\n17.0\n3\n115\nhigh\n25\n1\n1.00\n0.67\n49.78744\n\n\nWheaties\nG\ncold\n100\n3\n1\n200\n3.0\n17.0\n3\n110\nhigh\n25\n1\n1.00\n1.00\n51.59219\n\n\nWheaties Honey Gold\nG\ncold\n110\n2\n1\n200\n1.0\n16.0\n8\n60\nlow\n25\n1\n1.00\n0.75\n36.18756\n\n\n\n\n\n\n\n\nWhat do you think .after does?"
+    "text": "Discretize with if_else()\nFor each cereal, label the potass as “high” or “low”.\n. . .\n\nif_else(&lt;CONDITION&gt;, &lt;TRUE OUTPUT&gt;, &lt;FALSE OUTPUT&gt;)\n\n. . .\n\ncereal |&gt; \n  mutate(po_category = if_else(potass &lt;= 100, \n                               \"low\", \n                               \"high\"),\n         .after = potass)\n\n\n\n\n\n\n\nname\nmanuf\ntype\ncalories\nprotein\nfat\nsodium\nfiber\ncarbo\nsugars\npotass\npo_category\nvitamins\nshelf\nweight\ncups\nrating\n\n\n\n\n100% Bran\nN\ncold\n70\n4\n1\n130\n10.0\n5.0\n6\n280\nhigh\n25\n3\n1.00\n0.33\n68.40297\n\n\n100% Natural Bran\nQ\ncold\n120\n3\n5\n15\n2.0\n8.0\n8\n135\nhigh\n0\n3\n1.00\n1.00\n33.98368\n\n\nAll-Bran\nK\ncold\n70\n4\n1\n260\n9.0\n7.0\n5\n320\nhigh\n25\n3\n1.00\n0.33\n59.42551\n\n\nAll-Bran with Extra Fiber\nK\ncold\n50\n4\n0\n140\n14.0\n8.0\n0\n330\nhigh\n25\n3\n1.00\n0.50\n93.70491\n\n\nAlmond Delight\nR\ncold\n110\n2\n2\n200\n1.0\n14.0\n8\n-1\nlow\n25\n3\n1.00\n0.75\n34.38484\n\n\nApple Cinnamon Cheerios\nG\ncold\n110\n2\n2\n180\n1.5\n10.5\n10\n70\nlow\n25\n1\n1.00\n0.75\n29.50954\n\n\nApple Jacks\nK\ncold\n110\n2\n0\n125\n1.0\n11.0\n14\n30\nlow\n25\n2\n1.00\n1.00\n33.17409\n\n\nBasic 4\nG\ncold\n130\n3\n2\n210\n2.0\n18.0\n8\n100\nlow\n25\n3\n1.33\n0.75\n37.03856\n\n\nBran Chex\nR\ncold\n90\n2\n1\n200\n4.0\n15.0\n6\n125\nhigh\n25\n1\n1.00\n0.67\n49.12025\n\n\nBran Flakes\nP\ncold\n90\n3\n0\n210\n5.0\n13.0\n5\n190\nhigh\n25\n3\n1.00\n0.67\n53.31381\n\n\nCap'n'Crunch\nQ\ncold\n120\n1\n2\n220\n0.0\n12.0\n12\n35\nlow\n25\n2\n1.00\n0.75\n18.04285\n\n\nCheerios\nG\ncold\n110\n6\n2\n290\n2.0\n17.0\n1\n105\nhigh\n25\n1\n1.00\n1.25\n50.76500\n\n\nCinnamon Toast Crunch\nG\ncold\n120\n1\n3\n210\n0.0\n13.0\n9\n45\nlow\n25\n2\n1.00\n0.75\n19.82357\n\n\nClusters\nG\ncold\n110\n3\n2\n140\n2.0\n13.0\n7\n105\nhigh\n25\n3\n1.00\n0.50\n40.40021\n\n\nCocoa Puffs\nG\ncold\n110\n1\n1\n180\n0.0\n12.0\n13\n55\nlow\n25\n2\n1.00\n1.00\n22.73645\n\n\nCorn Chex\nR\ncold\n110\n2\n0\n280\n0.0\n22.0\n3\n25\nlow\n25\n1\n1.00\n1.00\n41.44502\n\n\nCorn Flakes\nK\ncold\n100\n2\n0\n290\n1.0\n21.0\n2\n35\nlow\n25\n1\n1.00\n1.00\n45.86332\n\n\nCorn Pops\nK\ncold\n110\n1\n0\n90\n1.0\n13.0\n12\n20\nlow\n25\n2\n1.00\n1.00\n35.78279\n\n\nCount Chocula\nG\ncold\n110\n1\n1\n180\n0.0\n12.0\n13\n65\nlow\n25\n2\n1.00\n1.00\n22.39651\n\n\nCracklin' Oat Bran\nK\ncold\n110\n3\n3\n140\n4.0\n10.0\n7\n160\nhigh\n25\n3\n1.00\n0.50\n40.44877\n\n\nCream of Wheat (Quick)\nN\nhot\n100\n3\n0\n80\n1.0\n21.0\n0\n-1\nlow\n0\n2\n1.00\n1.00\n64.53382\n\n\nCrispix\nK\ncold\n110\n2\n0\n220\n1.0\n21.0\n3\n30\nlow\n25\n3\n1.00\n1.00\n46.89564\n\n\nCrispy Wheat & Raisins\nG\ncold\n100\n2\n1\n140\n2.0\n11.0\n10\n120\nhigh\n25\n3\n1.00\n0.75\n36.17620\n\n\nDouble Chex\nR\ncold\n100\n2\n0\n190\n1.0\n18.0\n5\n80\nlow\n25\n3\n1.00\n0.75\n44.33086\n\n\nFroot Loops\nK\ncold\n110\n2\n1\n125\n1.0\n11.0\n13\n30\nlow\n25\n2\n1.00\n1.00\n32.20758\n\n\nFrosted Flakes\nK\ncold\n110\n1\n0\n200\n1.0\n14.0\n11\n25\nlow\n25\n1\n1.00\n0.75\n31.43597\n\n\nFrosted Mini-Wheats\nK\ncold\n100\n3\n0\n0\n3.0\n14.0\n7\n100\nlow\n25\n2\n1.00\n0.80\n58.34514\n\n\nFruit & Fibre Dates; Walnuts; and Oats\nP\ncold\n120\n3\n2\n160\n5.0\n12.0\n10\n200\nhigh\n25\n3\n1.25\n0.67\n40.91705\n\n\nFruitful Bran\nK\ncold\n120\n3\n0\n240\n5.0\n14.0\n12\n190\nhigh\n25\n3\n1.33\n0.67\n41.01549\n\n\nFruity Pebbles\nP\ncold\n110\n1\n1\n135\n0.0\n13.0\n12\n25\nlow\n25\n2\n1.00\n0.75\n28.02576\n\n\nGolden Crisp\nP\ncold\n100\n2\n0\n45\n0.0\n11.0\n15\n40\nlow\n25\n1\n1.00\n0.88\n35.25244\n\n\nGolden Grahams\nG\ncold\n110\n1\n1\n280\n0.0\n15.0\n9\n45\nlow\n25\n2\n1.00\n0.75\n23.80404\n\n\nGrape Nuts Flakes\nP\ncold\n100\n3\n1\n140\n3.0\n15.0\n5\n85\nlow\n25\n3\n1.00\n0.88\n52.07690\n\n\nGrape-Nuts\nP\ncold\n110\n3\n0\n170\n3.0\n17.0\n3\n90\nlow\n25\n3\n1.00\n0.25\n53.37101\n\n\nGreat Grains Pecan\nP\ncold\n120\n3\n3\n75\n3.0\n13.0\n4\n100\nlow\n25\n3\n1.00\n0.33\n45.81172\n\n\nHoney Graham Ohs\nQ\ncold\n120\n1\n2\n220\n1.0\n12.0\n11\n45\nlow\n25\n2\n1.00\n1.00\n21.87129\n\n\nHoney Nut Cheerios\nG\ncold\n110\n3\n1\n250\n1.5\n11.5\n10\n90\nlow\n25\n1\n1.00\n0.75\n31.07222\n\n\nHoney-comb\nP\ncold\n110\n1\n0\n180\n0.0\n14.0\n11\n35\nlow\n25\n1\n1.00\n1.33\n28.74241\n\n\nJust Right Crunchy Nuggets\nK\ncold\n110\n2\n1\n170\n1.0\n17.0\n6\n60\nlow\n100\n3\n1.00\n1.00\n36.52368\n\n\nJust Right Fruit & Nut\nK\ncold\n140\n3\n1\n170\n2.0\n20.0\n9\n95\nlow\n100\n3\n1.30\n0.75\n36.47151\n\n\nKix\nG\ncold\n110\n2\n1\n260\n0.0\n21.0\n3\n40\nlow\n25\n2\n1.00\n1.50\n39.24111\n\n\nLife\nQ\ncold\n100\n4\n2\n150\n2.0\n12.0\n6\n95\nlow\n25\n2\n1.00\n0.67\n45.32807\n\n\nLucky Charms\nG\ncold\n110\n2\n1\n180\n0.0\n12.0\n12\n55\nlow\n25\n2\n1.00\n1.00\n26.73451\n\n\nMaypo\nA\nhot\n100\n4\n1\n0\n0.0\n16.0\n3\n95\nlow\n25\n2\n1.00\n1.00\n54.85092\n\n\nMuesli Raisins; Dates; & Almonds\nR\ncold\n150\n4\n3\n95\n3.0\n16.0\n11\n170\nhigh\n25\n3\n1.00\n1.00\n37.13686\n\n\nMuesli Raisins; Peaches; & Pecans\nR\ncold\n150\n4\n3\n150\n3.0\n16.0\n11\n170\nhigh\n25\n3\n1.00\n1.00\n34.13976\n\n\nMueslix Crispy Blend\nK\ncold\n160\n3\n2\n150\n3.0\n17.0\n13\n160\nhigh\n25\n3\n1.50\n0.67\n30.31335\n\n\nMulti-Grain Cheerios\nG\ncold\n100\n2\n1\n220\n2.0\n15.0\n6\n90\nlow\n25\n1\n1.00\n1.00\n40.10596\n\n\nNut&Honey Crunch\nK\ncold\n120\n2\n1\n190\n0.0\n15.0\n9\n40\nlow\n25\n2\n1.00\n0.67\n29.92429\n\n\nNutri-Grain Almond-Raisin\nK\ncold\n140\n3\n2\n220\n3.0\n21.0\n7\n130\nhigh\n25\n3\n1.33\n0.67\n40.69232\n\n\nNutri-grain Wheat\nK\ncold\n90\n3\n0\n170\n3.0\n18.0\n2\n90\nlow\n25\n3\n1.00\n1.00\n59.64284\n\n\nOatmeal Raisin Crisp\nG\ncold\n130\n3\n2\n170\n1.5\n13.5\n10\n120\nhigh\n25\n3\n1.25\n0.50\n30.45084\n\n\nPost Nat. Raisin Bran\nP\ncold\n120\n3\n1\n200\n6.0\n11.0\n14\n260\nhigh\n25\n3\n1.33\n0.67\n37.84059\n\n\nProduct 19\nK\ncold\n100\n3\n0\n320\n1.0\n20.0\n3\n45\nlow\n100\n3\n1.00\n1.00\n41.50354\n\n\nPuffed Rice\nQ\ncold\n50\n1\n0\n0\n0.0\n13.0\n0\n15\nlow\n0\n3\n0.50\n1.00\n60.75611\n\n\nPuffed Wheat\nQ\ncold\n50\n2\n0\n0\n1.0\n10.0\n0\n50\nlow\n0\n3\n0.50\n1.00\n63.00565\n\n\nQuaker Oat Squares\nQ\ncold\n100\n4\n1\n135\n2.0\n14.0\n6\n110\nhigh\n25\n3\n1.00\n0.50\n49.51187\n\n\nQuaker Oatmeal\nQ\nhot\n100\n5\n2\n0\n2.7\n-1.0\n-1\n110\nhigh\n0\n1\n1.00\n0.67\n50.82839\n\n\nRaisin Bran\nK\ncold\n120\n3\n1\n210\n5.0\n14.0\n12\n240\nhigh\n25\n2\n1.33\n0.75\n39.25920\n\n\nRaisin Nut Bran\nG\ncold\n100\n3\n2\n140\n2.5\n10.5\n8\n140\nhigh\n25\n3\n1.00\n0.50\n39.70340\n\n\nRaisin Squares\nK\ncold\n90\n2\n0\n0\n2.0\n15.0\n6\n110\nhigh\n25\n3\n1.00\n0.50\n55.33314\n\n\nRice Chex\nR\ncold\n110\n1\n0\n240\n0.0\n23.0\n2\n30\nlow\n25\n1\n1.00\n1.13\n41.99893\n\n\nRice Krispies\nK\ncold\n110\n2\n0\n290\n0.0\n22.0\n3\n35\nlow\n25\n1\n1.00\n1.00\n40.56016\n\n\nShredded Wheat\nN\ncold\n80\n2\n0\n0\n3.0\n16.0\n0\n95\nlow\n0\n1\n0.83\n1.00\n68.23588\n\n\nShredded Wheat 'n'Bran\nN\ncold\n90\n3\n0\n0\n4.0\n19.0\n0\n140\nhigh\n0\n1\n1.00\n0.67\n74.47295\n\n\nShredded Wheat spoon size\nN\ncold\n90\n3\n0\n0\n3.0\n20.0\n0\n120\nhigh\n0\n1\n1.00\n0.67\n72.80179\n\n\nSmacks\nK\ncold\n110\n2\n1\n70\n1.0\n9.0\n15\n40\nlow\n25\n2\n1.00\n0.75\n31.23005\n\n\nSpecial K\nK\ncold\n110\n6\n0\n230\n1.0\n16.0\n3\n55\nlow\n25\n1\n1.00\n1.00\n53.13132\n\n\nStrawberry Fruit Wheats\nN\ncold\n90\n2\n0\n15\n3.0\n15.0\n5\n90\nlow\n25\n2\n1.00\n1.00\n59.36399\n\n\nTotal Corn Flakes\nG\ncold\n110\n2\n1\n200\n0.0\n21.0\n3\n35\nlow\n100\n3\n1.00\n1.00\n38.83975\n\n\nTotal Raisin Bran\nG\ncold\n140\n3\n1\n190\n4.0\n15.0\n14\n230\nhigh\n100\n3\n1.50\n1.00\n28.59278\n\n\nTotal Whole Grain\nG\ncold\n100\n3\n1\n200\n3.0\n16.0\n3\n110\nhigh\n100\n3\n1.00\n1.00\n46.65884\n\n\nTriples\nG\ncold\n110\n2\n1\n250\n0.0\n21.0\n3\n60\nlow\n25\n3\n1.00\n0.75\n39.10617\n\n\nTrix\nG\ncold\n110\n1\n1\n140\n0.0\n13.0\n12\n25\nlow\n25\n2\n1.00\n1.00\n27.75330\n\n\nWheat Chex\nR\ncold\n100\n3\n1\n230\n3.0\n17.0\n3\n115\nhigh\n25\n1\n1.00\n0.67\n49.78744\n\n\nWheaties\nG\ncold\n100\n3\n1\n200\n3.0\n17.0\n3\n110\nhigh\n25\n1\n1.00\n1.00\n51.59219\n\n\nWheaties Honey Gold\nG\ncold\n110\n2\n1\n200\n1.0\n16.0\n8\n60\nlow\n25\n1\n1.00\n0.75\n36.18756\n\n\n\n\n\n\n. . .\nWhat do you think .after does?"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#re-level-with-case_when",
     "href": "slides/week-3/week-3-dplyr-pt2.html#re-level-with-case_when",
     "title": "Extending Data Wrangling Verbs",
     "section": "Re-level with case_when()",
-    "text": "Re-level with case_when()\nFor each manufacturer, change the manuf code to the name of the manufacturer.\n\nA series of if-else statements.\n\ncereal |&gt; \n  mutate(manuf = case_when(manuf == \"A\" ~ \"American Home Food Products\", \n                           manuf == \"G\" ~ \"General Mills\", \n                           manuf == \"K\" ~ \"Kelloggs\", \n                           manuf == \"N\" ~ \"Nabisco\", \n                           manuf == \"P\" ~ \"Post\", \n                           manuf == \"Q\" ~ \"Quaker Oats\", \n                           manuf == \"R\" ~ \"Ralston Purina\")\n         )\n\n\n\nDoes this code create a new variable or change an existing variable?"
+    "text": "Re-level with case_when()\nFor each manufacturer, change the manuf code to the name of the manufacturer.\n. . .\nA series of if-else statements.\n\ncereal |&gt; \n  mutate(manuf = case_when(manuf == \"A\" ~ \"American Home Food Products\", \n                           manuf == \"G\" ~ \"General Mills\", \n                           manuf == \"K\" ~ \"Kelloggs\", \n                           manuf == \"N\" ~ \"Nabisco\", \n                           manuf == \"P\" ~ \"Post\", \n                           manuf == \"Q\" ~ \"Quaker Oats\", \n                           manuf == \"R\" ~ \"Ralston Purina\")\n         )\n\n. . .\nDoes this code create a new variable or change an existing variable?"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#section",
@@ -3868,14 +3868,14 @@
     "href": "slides/week-3/week-3-dplyr-pt2.html#calculate-a-summary-statistic-for-many-columns",
     "title": "Extending Data Wrangling Verbs",
     "section": "Calculate a Summary Statistic for Many Columns",
-    "text": "Calculate a Summary Statistic for Many Columns\nFor each type of cereal, calculate the mean nutrient levels.\n\n\ncereal |&gt; \n  group_by(type) |&gt; \n  summarize(mean_cal = mean(calories), \n            mean_protein = mean(protein), \n            mean_fat = mean(fat), \n            mean_sodium = mean(sodium), \n            mean_fiber = mean(fiber), \n            mean_carbs = mean(carbo), \n            mean_sugars = mean(sugars), \n            mean_potassium = mean(potass)\n            )\n\n\n\nDoes this seem like the most efficient way we could do this?"
+    "text": "Calculate a Summary Statistic for Many Columns\nFor each type of cereal, calculate the mean nutrient levels.\n\n\ncereal |&gt; \n  group_by(type) |&gt; \n  summarize(mean_cal = mean(calories), \n            mean_protein = mean(protein), \n            mean_fat = mean(fat), \n            mean_sodium = mean(sodium), \n            mean_fiber = mean(fiber), \n            mean_carbs = mean(carbo), \n            mean_sugars = mean(sugars), \n            mean_potassium = mean(potass)\n            )\n\n\n. . .\nDoes this seem like the most efficient way we could do this?"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#summarize-multiple-columns-with-across",
     "href": "slides/week-3/week-3-dplyr-pt2.html#summarize-multiple-columns-with-across",
     "title": "Extending Data Wrangling Verbs",
     "section": "Summarize multiple columns with across()",
-    "text": "Summarize multiple columns with across()\nWithin the summarize() function, we use the across() function, with three arguments:\n\n.cols – to specify the columns to apply functions to.\n.fns – to specify the function(s) to apply.\n.x – as a placeholder (alias) for the variables being passed into the function.\n\n\nWe use lambda functions: ~ &lt;FUN_NAME&gt;(.x, &lt;ARGS&gt;) to specify what function(s) to apply"
+    "text": "Summarize multiple columns with across()\nWithin the summarize() function, we use the across() function, with three arguments:\n\n.cols – to specify the columns to apply functions to.\n.fns – to specify the function(s) to apply.\n.x – as a placeholder (alias) for the variables being passed into the function.\n\n. . .\nWe use lambda functions: ~ &lt;FUN_NAME&gt;(.x, &lt;ARGS&gt;) to specify what function(s) to apply"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#summarize-multiple-columns-with-across-1",
@@ -3896,14 +3896,14 @@
     "href": "slides/week-3/week-3-dplyr-pt2.html#getting-fancy-with-names",
     "title": "Extending Data Wrangling Verbs",
     "section": "Getting Fancy with Names",
-    "text": "Getting Fancy with Names\n\n\n\n.names\n\n\n\n\n\nA glue specification that describes how to name the output columns. This can use {.col} to stand for the selected column name, and {.fn} to stand for the name of the function being applied. The default (NULL) is equivalent to \"{.col}\" for the single function case and \"{.col}_{.fn}\" for the case where a list is used for .fns.\n\n\n\n\n\n\ncereal |&gt; \n  group_by(type) |&gt; \n  summarise(\n    across(.cols = calories:potass, \n           .fns = ~ mean(.x), \n           .names = \"mean_{.col}\"\n           )\n    )\n\n\n\n\n\n\n\n\n\ntype\nmean_calories\nmean_protein\nmean_fat\nmean_sodium\nmean_fiber\nmean_carbo\nmean_sugars\nmean_potass\n\n\n\n\ncold\n107.1622\n2.486486\n1.013513\n165.06757\n2.189189\n14.7027\n7.1756757\n97.21622\n\n\nhot\n100.0000\n4.000000\n1.000000\n26.66667\n1.233333\n12.0000\n0.6666667\n68.00000"
+    "text": "Getting Fancy with Names\n\n\n\n.names\n\n\n\n\n\nA glue specification that describes how to name the output columns. This can use {.col} to stand for the selected column name, and {.fn} to stand for the name of the function being applied. The default (NULL) is equivalent to \"{.col}\" for the single function case and \"{.col}_{.fn}\" for the case where a list is used for .fns.\n\n\n\n. . .\n\n\n\ncereal |&gt; \n  group_by(type) |&gt; \n  summarise(\n    across(.cols = calories:potass, \n           .fns = ~ mean(.x), \n           .names = \"mean_{.col}\"\n           )\n    )\n\n\n\n\n\n\n\n\n\ntype\nmean_calories\nmean_protein\nmean_fat\nmean_sodium\nmean_fiber\nmean_carbo\nmean_sugars\nmean_potass\n\n\n\n\ncold\n107.1622\n2.486486\n1.013513\n165.06757\n2.189189\n14.7027\n7.1756757\n97.21622\n\n\nhot\n100.0000\n4.000000\n1.000000\n26.66667\n1.233333\n12.0000\n0.6666667\n68.00000"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#piping-into-ggplot",
     "href": "slides/week-3/week-3-dplyr-pt2.html#piping-into-ggplot",
     "title": "Extending Data Wrangling Verbs",
     "section": "Piping into ggplot()",
-    "text": "Piping into ggplot()\nPlot the mean protein per cup for each manuf.\n\n\ncereal |&gt; \n  mutate(manuf = case_when(manuf == \"A\" ~ \"American Home Food Products\", \n                           manuf == \"G\" ~ \"General Mills\", \n                           manuf == \"K\" ~ \"Kelloggs\", \n                           manuf == \"N\" ~ \"Nabisco\", \n                           manuf == \"P\" ~ \"Post\", \n                           manuf == \"Q\" ~ \"Quaker Oats\", \n                           manuf == \"R\" ~ \"Ralston Purina\")) |&gt; \n  filter(type == \"cold\") |&gt; \n  mutate(pro_per_cup = protein / cups) |&gt; \n  group_by(manuf) |&gt; \n  summarise(mean_pro_per_cup = mean(pro_per_cup)) |&gt; \n  ggplot(mapping = aes(y = manuf, \n                       x = mean_pro_per_cup, \n                       shape = manuf)) +\n  geom_point(show.legend = FALSE,\n             size = 6) +\n  labs(subtitle = \"for 77 different breakfast cereals\",\n       title = \"Mean Grams of Protein per Cup\", \n       x = \"\", \n       y = \"\") +\n  theme_bw() +\n  theme(plot.title = element_text(size = 24),\n        plot.subtitle = element_text(size = 18),\n        axis.text = element_text(size = 22)\n        ) +\n  scale_x_continuous(limits = c(0, 10))"
+    "text": "Piping into ggplot()\nPlot the mean protein per cup for each manuf.\n. . .\n\ncereal |&gt; \n  mutate(manuf = case_when(manuf == \"A\" ~ \"American Home Food Products\", \n                           manuf == \"G\" ~ \"General Mills\", \n                           manuf == \"K\" ~ \"Kelloggs\", \n                           manuf == \"N\" ~ \"Nabisco\", \n                           manuf == \"P\" ~ \"Post\", \n                           manuf == \"Q\" ~ \"Quaker Oats\", \n                           manuf == \"R\" ~ \"Ralston Purina\")) |&gt; \n  filter(type == \"cold\") |&gt; \n  mutate(pro_per_cup = protein / cups) |&gt; \n  group_by(manuf) |&gt; \n  summarise(mean_pro_per_cup = mean(pro_per_cup)) |&gt; \n  ggplot(mapping = aes(y = manuf, \n                       x = mean_pro_per_cup, \n                       shape = manuf)) +\n  geom_point(show.legend = FALSE,\n             size = 6) +\n  labs(subtitle = \"for 77 different breakfast cereals\",\n       title = \"Mean Grams of Protein per Cup\", \n       x = \"\", \n       y = \"\") +\n  theme_bw() +\n  theme(plot.title = element_text(size = 24),\n        plot.subtitle = element_text(size = 18),\n        axis.text = element_text(size = 22)\n        ) +\n  scale_x_continuous(limits = c(0, 10))"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt2.html#piping-into-ggplot-output",
@@ -5283,5 +5283,523 @@
     "title": "Week 1, Part 3: Version Control with Git and GitHub",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nYes, I’m aware that this sounds paranoid. It’s been a very rare occasion that I’ve needed to restore something from another backup. You don’t want to take chances.↩︎"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#tuesday-september-24",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#tuesday-september-24",
+    "title": "Intro to STAT 331 / 531 + Intro to R + Intro to Quarto",
+    "section": "Tuesday, September 24",
+    "text": "Tuesday, September 24\nToday we will…\n\nWelcome to Stat 331 / 531: Statistical Computing in R\nIntroductions (Me + You)\nCourse Layout\nBasics of R\nGroup collaboration warm-up\nData wrangling / visualization puzzle"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#hi-im-dr.-theobold",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#hi-im-dr.-theobold",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Hi, I’m Dr. Theobold!",
+    "text": "Hi, I’m Dr. Theobold!\n\n\n\n\nI am originally from Colorado, but went to grad school in Montana.\nMy favorite things are being outside, drinking coffee, and watching women’s basketball.\n\n\n\n\n\n\n\n\n\n\n\n\nI love cats!\nI’ve been programming in R since 2014!\nI absolutely love teaching this course!"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#on-a-personal-note",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#on-a-personal-note",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "On a personal note…",
+    "text": "On a personal note…\n\n\nI prefer you refer to me as “Dr. Theobold”, or “Dr. T”, or “Professor Theobold.”\nPlease don’t call me “Allison” or “Professor.”\n\n\nI use they / them pronouns. If you are not sure what this means, I’d encourage you to read more about gender identity and pronouns. 🙂"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#our-classroom-learning-assistant",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#our-classroom-learning-assistant",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Our Classroom Learning Assistant!",
+    "text": "Our Classroom Learning Assistant!\n\n\nOn Tuesdays, we will be joined in class by Jasmine.\nJasmine is…\n\na Statistics master’s student,\noriginally from Irvine, CA,\nsomeone who loves sushi, hanging out with friends, watching Netflix, and working out."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#you",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#you",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "You!",
+    "text": "You!\nI am looking forward to reading your introductions on Discord!\n\nPlease read the intros of your classmates so you can discover who you will be learning with this quarter!"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#beginning-of-the-week",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#beginning-of-the-week",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Beginning of the Week",
+    "text": "Beginning of the Week\n\nBefore Tuesday’s ClassDuring Class on TuesdayAfter Tuesday’s Class\n\n\n\nLook over the coursework page\nRead the required chapter(s)\nWatch the required video(s)\nComplete the Preview Activities by 8am\n\n\n\n\nDiscuss example analyses\nAsk clarifying questions\nWork in pairs to complete the Practice Activity\n\n\n\n\nFinish whatever remains of the Practice Activity\nComplete any additional reading / videos / Preview Activities"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#end-of-the-week",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#end-of-the-week",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "End of the Week",
+    "text": "End of the Week\n\nDuring Class on ThursdayAfter Thursday’s Class\n\n\n\nDebrief Practice Activity\nDiscuss ways to extend that week’s skills\n\nStart Lab Assignment\n\n\n\n\nFinish remaining problems of the Lab Assignment\nComplete Challenge Assignment\n\n\n\n\n\n\n\nLabs & Challenges Due Monday by 5pm\n\n\nTo keep everyone on track with the coursework, your Lab and Challenges are due by 5pm every Monday. You are permitted to request up to four (3) deadline extensions by filling out the deadline extension form linked on Canvas."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#broken-circles",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#broken-circles",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Broken Circles",
+    "text": "Broken Circles\n\n\n\nTo set the stage for your future group collaborations, we will complete an activity that explores how working in groups can be more or less successful.\nLet’s start by dividing the class into groups of 6 students."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#activity-guidelines",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#activity-guidelines",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Activity Guidelines",
+    "text": "Activity Guidelines\n\nNo talking or other noises!\nNo pointing or hand signals!\nNo taking pieces. You may only give pieces to others.\n\nYour group is finished once everyone has a complete circle."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#discussion",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#discussion",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Discussion",
+    "text": "Discussion\nHow did that feel?\n\nWhat did you notice about how your group worked together?\nWhat kinds of things helped your group finish?"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#consent-to-participate",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#consent-to-participate",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Consent to Participate",
+    "text": "Consent to Participate\n\n\nIf you agree to participate…\n\nyou will be recorded once a week for 8-weeks while participating in pair programming to complete collaborative tasks.\nyou will complete a pre- and post-survey about your prior computing experiences and your attitudes toward data science.\n\n\n\n\n\n\nYour participation in this research will not affect your course grade.\n\n\n\n\n\n\n\nConsent Form\n\n\nPlease complete the consent form (https://forms.gle/oax73hoe7uRSVLYw8) by Monday, September 22nd."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#thursday-september-18",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#thursday-september-18",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Thursday, September 18",
+    "text": "Thursday, September 18\nToday we will…\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#what-does-ungrading-mean",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#what-does-ungrading-mean",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "What does “ungrading” mean?",
+    "text": "What does “ungrading” mean?\n\n“Ungrading is a pedagogical practice which entirely removes grades as a focus of the course. Instead, ungrading exclusively focuses on providing students with feedback aimed at helping them build proficiency to accomplish the course’s learning goals.”"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#how-does-this-system-work",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#how-does-this-system-work",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "How does this system work?",
+    "text": "How does this system work?\n\nEach problem on an assignment is marked for proficiency (e.g., success, growing).\n\nThese marks are not attached to a grade outcome (e.g., A, B, C, D).\n\nGrades are defined from a set of criteria, co-developed between you and me.\n\nAt the end of the course, you propose the grade you believe you’ve earned based on a portfolio of your work and the criteria we established."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#collaboration-skills",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#collaboration-skills",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Collaboration Skills",
+    "text": "Collaboration Skills\nSometimes, you had to give away a piece without knowing if you’d get what you needed in return. What was that like?\nWhat helped you trust your teammates in those moments?\n\n\nWas there a time when you gave up something you needed because you saw someone else needed it more? Why did you make that choice?\n\n\n\nWhat would have happened if everyone only thought about themselves?"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#how-did-that-feel",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#how-did-that-feel",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "How did that feel?",
+    "text": "How did that feel?\n\nWhat did you notice about how your group worked together?\nWhat kinds of things helped your group finish?"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#scripts",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#scripts",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Scripts",
+    "text": "Scripts\n\nScripts (File &gt; New File &gt; R Script) are files of code that are meant to be run on their own.\n\n\n\nScripts can be run in RStudio by clicking the Run button at the top of the editor window when the script is open.\nYou can also run code interactively in a script by:\n\nhighlighting lines of code and hitting run.\nplacing your cursor on a line of code and hitting run.\nplacing your cursor on a line of code and hitting ctrl + enter or command + enter."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#notebooks",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#notebooks",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Notebooks",
+    "text": "Notebooks\nNotebooks are an implementation of literate programming.\n\nThey allow you to integrate code, output, text, images, etc. into a single document.\nE.g.,\n\nQuarto notebook\nR Markdown notebook\nJupyter notebook\n\n\nWe love notebooks because they help us produce a reproducible analysis!"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#what-is-markdown",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#what-is-markdown",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "What is Markdown?",
+    "text": "What is Markdown?\nMarkdown is a markup language.\nIt uses special symbols and formatting to make pretty documents.\n\n\n*italics* – makes italics\n**bold** – makes bold text\n# – makes headers\n! – includes images or HTML links\n&lt; &gt; – embeds URLs\n\n\n\nMarkdown files have the .md extension."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#what-is-quarto",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#what-is-quarto",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\nQuarto unifies and extends the RMarkdown ecosystem.\n\nQuarto files have the .qmd extension."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#highlights-of-quarto",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#highlights-of-quarto",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Highlights of Quarto",
+    "text": "Highlights of Quarto\n\nConsistent implementation of attractive and handy features across outputs:\n\nE.g., tabsets, code-folding, syntax highlighting, etc.\n\nMore accessible defaults and better support for accessibility.\nGuardrails that are helpful when learning:\n\nE.g., YAML completion, informative syntax errors, etc.\n\nSupport for other languages like Python, Julia, Observable, and more."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#quarto-formats",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#quarto-formats",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Quarto Formats",
+    "text": "Quarto Formats\nQuarto makes moving between outputs straightforward.\nAll that needs to change between these formats is a few lines in the front matter (YAML)!\n\n\nDocument\ntitle: \"Lesson 1\"\nformat: html\nPresentation\ntitle: \"Lesson 1\"\nformat: revealjs\n\nWebsite\nproject:\n  type: website\n\nwebsite: \n  navbar: \n    left:\n      - lesson-1.qmd"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#quarto-components",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#quarto-components",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Quarto Components",
+    "text": "Quarto Components\n\n\nHow does Quarto know that a section of text should be interpreted as R code?"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#r-code-options-in-quarto",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#r-code-options-in-quarto",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "R Code Options in Quarto",
+    "text": "R Code Options in Quarto\nR code chunk options are included at the top of each code chunk, prefaced with a #| (hashpipe).\nThese options control how the following code is run and reported in the final Quarto document."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#r-code-options-in-quarto-1",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#r-code-options-in-quarto-1",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "R Code Options in Quarto",
+    "text": "R Code Options in Quarto"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#chunk-option-completion-in-quarto",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#chunk-option-completion-in-quarto",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Chunk Option Completion in Quarto",
+    "text": "Chunk Option Completion in Quarto"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Rendering your Quarto Document",
+    "text": "Rendering your Quarto Document\nTo take your .qmd file and make it look pretty, you have to render it."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document-1",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document-1",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Rendering your Quarto Document",
+    "text": "Rendering your Quarto Document\nWhen you click Render:\n\n\nYour file is saved.\nThe R code written in your .qmd file gets run in order.\n\n\nIt starts from scratch, even if you previously ran some of the code in RStudio.\n\n\nA new file is created.\n\n\nIf your Quarto file is called “Lab1.qmd”, then a file called “Lab1.html” will be created.\nThis will be saved in the same folder as “Lab1.qmd”."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document-2",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document-2",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Rendering your Quarto Document",
+    "text": "Rendering your Quarto Document\nWhen you click Render:\n\n\nYour file is saved.\nThe R code written in your .qmd file gets run in order.\n\n\nIt starts from scratch, even if you previously ran some of the code in RStudio.\n\n\nA new file is created.\n\n\nIf your Quarto file is called “Lab1.qmd”, then a file called “Lab1.html” will be created.\nThis will be saved in the same folder as “Lab1.qmd”."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#section",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#section",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "",
+    "text": "Scripts\n(File &gt; New File &gt; R Script) are files of code that are meant to be run on their own.\n\n\n\n\nNotebooks\nallow you to integrate code, output, text, images, etc. into a single document (e.g., Quarto documents, RMarkdown documents, Jupyter notebooks).\n\n\n\n\n\n\n\n\n\nImportant\n\n\nIn this class, we will not be using R scripts. There are specific cases where scripts are preferred, which is covered in STAT 541 (in the spring!)."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#quarto-documents-utilize-markdown-syntax",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#quarto-documents-utilize-markdown-syntax",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Quarto Documents Utilize Markdown Syntax",
+    "text": "Quarto Documents Utilize Markdown Syntax\nMarkdown is a markup language.\nIt uses special symbols and formatting to make pretty documents.\n\n\n*italics* – makes italics\n**bold** – makes bold text\n# – makes headers\n! – includes images or HTML links\n&lt; &gt; – embeds URLs"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#global-code-chunk-options",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#global-code-chunk-options",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Global Code Chunk Options",
+    "text": "Global Code Chunk Options\nSome R code options can also be included in the front matter (YAML) which would be applied globally to the entire document.\ntitle: \"Lesson 1\"\nformat: html\nexecute: \n  echo: true\n  warning: false"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#global-code-chunk-options-1",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#global-code-chunk-options-1",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Global Code Chunk Options",
+    "text": "Global Code Chunk Options\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nIn general, I would encourage you to always set the following global options:\n\necho: true\nwarning: false"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-pt2.html",
+    "href": "slides/week-3/week-3-dplyr-pt2.html",
+    "title": "Extending Data Wrangling Verbs",
+    "section": "",
+    "text": "Today we will…\n\n\nDebrief PA 3\nDebrief Lab 2 & Challenge 2\nDiscuss Lab 2 Peer Review\nOutline Grade Expectations for Syllabus\nNew Material\n\nExtend dplyr verbs to have more functionality\n\nLab 3: Teacher Evaluations"
+  },
+  {
+    "objectID": "group-activities/week-3/data-cleaning-viz-steps.html#view-original-data",
+    "href": "group-activities/week-3/data-cleaning-viz-steps.html#view-original-data",
+    "title": "Master Script Data Processing",
+    "section": "View Original Data",
+    "text": "View Original Data"
+  },
+  {
+    "objectID": "group-activities/week-3/data-cleaning-viz-steps.html#filter-just-us-based-jobs",
+    "href": "group-activities/week-3/data-cleaning-viz-steps.html#filter-just-us-based-jobs",
+    "title": "Master Script Data Processing",
+    "section": "Filter Just US Based Jobs",
+    "text": "Filter Just US Based Jobs"
+  },
+  {
+    "objectID": "group-activities/week-3/data-cleaning-viz-steps.html#filter-out-entry-level-jobs-only",
+    "href": "group-activities/week-3/data-cleaning-viz-steps.html#filter-out-entry-level-jobs-only",
+    "title": "Master Script Data Processing",
+    "section": "Filter out entry level jobs only",
+    "text": "Filter out entry level jobs only"
+  },
+  {
+    "objectID": "group-activities/week-3/data-cleaning-viz-steps.html#count-of-positions-by-remote-work-and-company-size",
+    "href": "group-activities/week-3/data-cleaning-viz-steps.html#count-of-positions-by-remote-work-and-company-size",
+    "title": "Master Script Data Processing",
+    "section": "Count of positions by Remote Work and Company Size",
+    "text": "Count of positions by Remote Work and Company Size"
+  },
+  {
+    "objectID": "group-activities/week-3/data-cleaning-viz-steps.html#graph-of-remote-work-and-company-size",
+    "href": "group-activities/week-3/data-cleaning-viz-steps.html#graph-of-remote-work-and-company-size",
+    "title": "Master Script Data Processing",
+    "section": "Graph of Remote Work and Company Size",
+    "text": "Graph of Remote Work and Company Size"
+  },
+  {
+    "objectID": "group-activities/week-3/data-cleaning-viz-steps.html#group-and-calculate-average-salary-by-year",
+    "href": "group-activities/week-3/data-cleaning-viz-steps.html#group-and-calculate-average-salary-by-year",
+    "title": "Master Script Data Processing",
+    "section": "Group and Calculate Average Salary by year",
+    "text": "Group and Calculate Average Salary by year"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html",
+    "href": "slides/week-1/week-1-intro-quarto.html",
+    "title": "Scripts & Notebooks",
+    "section": "",
+    "text": "Today we will…\n\n\nChanges to Student Hours\nAnswer Clarifying Questions:\n\nSyllabus?\nUngrading?\nParticipating in Dr. Theobold’s research on group collaborations?\n\nNew Material\n\nScripts + Notebooks\nVersion Control\n\nLab 1: Introduction to Quarto\nChallenge 1: Modifying your Quarto Document"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#thursday-september-26",
+    "href": "slides/week-1/week-1-intro-quarto.html#thursday-september-26",
+    "title": "Scripts & Notebooks",
+    "section": "",
+    "text": "Today we will…\n\n\nChanges to Student Hours\nAnswer Clarifying Questions:\n\nSyllabus?\nUngrading?\nParticipating in Dr. Theobold’s research on group collaborations?\n\nNew Material\n\nScripts + Notebooks\nVersion Control\n\nLab 1: Introduction to Quarto\nChallenge 1: Modifying your Quarto Document"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#consent-to-participate",
+    "href": "slides/week-1/week-1-intro-quarto.html#consent-to-participate",
+    "title": "Scripts & Notebooks",
+    "section": "Consent to Participate",
+    "text": "Consent to Participate\n\n\nIf you agree to participate…\n\nyou will be recorded once a week for 10-weeks while participating in pair programming to complete collaborative tasks.\nyou will complete a pre- and post-survey about your prior computing experiences and your attitudes toward data science.\n\n\n\n. . .\n\n\nYour participation in this research will not affect your course grade.\n\n. . .\n\n\n\n\n\n\nWarningConsent Form\n\n\n\nPlease complete the consent form (https://forms.gle/oax73hoe7uRSVLYw8) by Monday, September 22nd."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#my-collaborator",
+    "href": "slides/week-1/week-1-intro-quarto.html#my-collaborator",
+    "title": "Scripts & Notebooks",
+    "section": "My Collaborator",
+    "text": "My Collaborator\n\n\nJudith Canner, Professor of Statistics\n\n\nJoined faculty at CSUMB in 2010\nIs CSUMB’s Statistics and Data Science Program Coordinator.\nFavorite classes to teach are Data Visualization and Statistical Computing.\nLearned how to program in R in 2005 when my PhD adviser handed me some code and said “modify this.”\nGoal is to see statistics and data science education that is accessible to everyone!"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#scripts",
+    "href": "slides/week-1/week-1-intro-quarto.html#scripts",
+    "title": "Scripts & Notebooks",
+    "section": "Scripts",
+    "text": "Scripts\n\nScripts (File &gt; New File &gt; R Script) are files of code that are meant to be run on their own.\n\n. . .\n\nScripts can be run in RStudio by clicking the Run button at the top of the editor window when the script is open.\nYou can also run code interactively in a script by:\n\nhighlighting lines of code and hitting run.\nplacing your cursor on a line of code and hitting run.\nplacing your cursor on a line of code and hitting ctrl + enter or command + enter."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#notebooks",
+    "href": "slides/week-1/week-1-intro-quarto.html#notebooks",
+    "title": "Scripts & Notebooks",
+    "section": "Notebooks",
+    "text": "Notebooks\nNotebooks are an implementation of literate programming.\n\nThey allow you to integrate code, output, text, images, etc. into a single document.\nE.g.,\n\nQuarto notebook\nR Markdown notebook\nJupyter notebook\n\n\nWe love notebooks because they help us produce a reproducible analysis!"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#what-is-markdown",
+    "href": "slides/week-1/week-1-intro-quarto.html#what-is-markdown",
+    "title": "Scripts & Notebooks",
+    "section": "What is Markdown?",
+    "text": "What is Markdown?\nMarkdown is a markup language.\nIt uses special symbols and formatting to make pretty documents.\n. . .\n\n*italics* – makes italics\n**bold** – makes bold text\n# – makes headers\n! – includes images or HTML links\n&lt; &gt; – embeds URLs\n\n. . .\nMarkdown files have the .md extension."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#what-is-quarto",
+    "href": "slides/week-1/week-1-intro-quarto.html#what-is-quarto",
+    "title": "Scripts & Notebooks",
+    "section": "What is Quarto?",
+    "text": "What is Quarto?\nQuarto unifies and extends the R Markdown ecosystem.\n\n\n\n\n\n\n\n\n\nQuarto files have the .qmd extension."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#highlights-of-quarto",
+    "href": "slides/week-1/week-1-intro-quarto.html#highlights-of-quarto",
+    "title": "Scripts & Notebooks",
+    "section": "Highlights of Quarto",
+    "text": "Highlights of Quarto\n\nConsistent implementation of attractive and handy features across outputs:\n\nE.g., tabsets, code-folding, syntax highlighting, etc.\n\nMore accessible defaults and better support for accessibility.\nGuardrails that are helpful when learning:\n\nE.g., YAML completion, informative syntax errors, etc.\n\nSupport for other languages like Python, Julia, Observable, and more."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#quarto-formats",
+    "href": "slides/week-1/week-1-intro-quarto.html#quarto-formats",
+    "title": "Scripts & Notebooks",
+    "section": "Quarto Formats",
+    "text": "Quarto Formats\nQuarto makes moving between outputs straightforward.\n\nAll that needs to change between these formats is a few lines in the front matter (YAML)!\n\n\n\nDocument\ntitle: \"Lesson 1\"\nformat: html\nPresentation\ntitle: \"Lesson 1\"\nformat: revealjs\n\nWebsite\nproject:\n  type: website\n\nwebsite: \n  navbar: \n    left:\n      - lesson-1.qmd"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#quarto-components",
+    "href": "slides/week-1/week-1-intro-quarto.html#quarto-components",
+    "title": "Scripts & Notebooks",
+    "section": "Quarto Components",
+    "text": "Quarto Components\n\n. . .\nHow does Quarto know that a section of text should be interpreted as R code?"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#r-code-options-in-quarto",
+    "href": "slides/week-1/week-1-intro-quarto.html#r-code-options-in-quarto",
+    "title": "Scripts & Notebooks",
+    "section": "R Code Options in Quarto",
+    "text": "R Code Options in Quarto\nR code chunk options are included at the top of each code chunk, prefaced with a #| (hashpipe).\n\nThese options control how the following code is run and reported in the final Quarto document.\nSome R code options can also be included in the front matter (YAML) which would be applied globally to the entire document."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#r-code-options-in-quarto-1",
+    "href": "slides/week-1/week-1-intro-quarto.html#r-code-options-in-quarto-1",
+    "title": "Scripts & Notebooks",
+    "section": "R Code Options in Quarto",
+    "text": "R Code Options in Quarto"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#chunk-option-completion-in-quarto",
+    "href": "slides/week-1/week-1-intro-quarto.html#chunk-option-completion-in-quarto",
+    "title": "Scripts & Notebooks",
+    "section": "Chunk Option Completion in Quarto",
+    "text": "Chunk Option Completion in Quarto"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#rendering-your-quarto-document",
+    "href": "slides/week-1/week-1-intro-quarto.html#rendering-your-quarto-document",
+    "title": "Scripts & Notebooks",
+    "section": "Rendering your Quarto Document",
+    "text": "Rendering your Quarto Document\nTo take your .qmd file and make it look pretty, you have to render it."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#rendering-your-quarto-document-1",
+    "href": "slides/week-1/week-1-intro-quarto.html#rendering-your-quarto-document-1",
+    "title": "Scripts & Notebooks",
+    "section": "Rendering your Quarto Document",
+    "text": "Rendering your Quarto Document\nQuarto CLI (command line interface) orchestrates each step of rendering:\n\nProcess the executable code chunks with either knitr or jupyter.\nConvert the resulting Markdown file to the desired output."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-quarto.html#rendering-your-quarto-document-2",
+    "href": "slides/week-1/week-1-intro-quarto.html#rendering-your-quarto-document-2",
+    "title": "Scripts & Notebooks",
+    "section": "Rendering your Quarto Document",
+    "text": "Rendering your Quarto Document\nWhen you click Render:\n\n\n\nYour file is saved.\nThe R code written in your .qmd file gets run in order.\n\n\nIt starts from scratch, even if you previously ran some of the code in RStudio.\n\n\nA new file is created.\n\n\nIf your Quarto file is called “Lab1.qmd”, then a file called “Lab1.html” will be created.\nThis will be saved in the same folder as “Lab1.qmd”."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html",
+    "href": "slides/week-6/week-6-version-control.html",
+    "title": "Introduction to Version Control",
+    "section": "",
+    "text": "A process of tracking changes to a file or set of files over time so that you can recall specific versions later.\n\n\n\n\n\n\nknitr::include_graphics(\"https://bornsql.ca/wp-content/uploads/2022/03/Git-Logo-2Color.png\") \n\n\n\n\n\n\n\n\n\nA system for version control that manages a collection of files in a structured way.\nUses the command line or a GUI.\nGit is local.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA system for version control that manages a collection of files in a structured way.\nUses the command line or a GUI.\nGit is local.\n\n\n\n\n\n\n\n\nA cloud-based service that lets you use git across many computers.\nBasic services are free, advanced services are paid (like RStudio!).\nGitHub is remote.\n\n\n\n\n\n\n\nGitHub provides a structured way for tracking changes to files over the course of a project.\n\n\nThink Google Docs or Dropbox history, but more structured and powerful!\n\n\nGitHub makes it easy to have multiple people working on the same files at the same time.\nYou can host a URL of fun things (like the class text, these slides, the course website, etc.) with GitHub pages.\n\n\n\n\nGit is based on repositories.\n\n\n\nThink of a repository (repo) as a directory (folder) for a single project.\n\nThis directory will likely contain code, documentation, data, to do lists, etc. associated with the project.\nYou can link a local repo with a remote copy."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#git-vs-github",
+    "href": "slides/week-6/week-6-version-control.html#git-vs-github",
+    "title": "Introduction to Version Control",
+    "section": "",
+    "text": "knitr::include_graphics(\"https://bornsql.ca/wp-content/uploads/2022/03/Git-Logo-2Color.png\") \n\n\n\n\n\n\n\n\n\nA system for version control that manages a collection of files in a structured way.\nUses the command line or a GUI.\nGit is local."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#git-vs-github-1",
+    "href": "slides/week-6/week-6-version-control.html#git-vs-github-1",
+    "title": "Introduction to Version Control",
+    "section": "",
+    "text": "A system for version control that manages a collection of files in a structured way.\nUses the command line or a GUI.\nGit is local.\n\n\n\n\n\n\n\n\nA cloud-based service that lets you use git across many computers.\nBasic services are free, advanced services are paid (like RStudio!).\nGitHub is remote."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#why-learn-github",
+    "href": "slides/week-6/week-6-version-control.html#why-learn-github",
+    "title": "Introduction to Version Control",
+    "section": "",
+    "text": "GitHub provides a structured way for tracking changes to files over the course of a project.\n\n\nThink Google Docs or Dropbox history, but more structured and powerful!\n\n\nGitHub makes it easy to have multiple people working on the same files at the same time.\nYou can host a URL of fun things (like the class text, these slides, the course website, etc.) with GitHub pages."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#git-repositories",
+    "href": "slides/week-6/week-6-version-control.html#git-repositories",
+    "title": "Introduction to Version Control",
+    "section": "",
+    "text": "Git is based on repositories.\n\n\n\nThink of a repository (repo) as a directory (folder) for a single project.\n\nThis directory will likely contain code, documentation, data, to do lists, etc. associated with the project.\nYou can link a local repo with a remote copy."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#cloning-a-repo",
+    "href": "slides/week-6/week-6-version-control.html#cloning-a-repo",
+    "title": "Introduction to Version Control",
+    "section": "Cloning a Repo",
+    "text": "Cloning a Repo\n\n\n\nCreate an exact copy of a remote repo on your local machine."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#committing-changes",
+    "href": "slides/week-6/week-6-version-control.html#committing-changes",
+    "title": "Introduction to Version Control",
+    "section": "Committing Changes",
+    "text": "Committing Changes\nTell git you have made changes you want to add to the repo.\n\nAlso provide a commit message – a short label describing what the changes are and why they exist.\n\n\n\nThe red line is a change we commit (add) to the repo.\n\n\n\n\n\n\n\n\n. . .\nThe log of these changes is called your commit history.\n\nYou can always go back to old copies!"
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#commit-tips",
+    "href": "slides/week-6/week-6-version-control.html#commit-tips",
+    "title": "Introduction to Version Control",
+    "section": "Commit Tips",
+    "text": "Commit Tips\n\nUse short, but informative commit messages.\nCommit small blocks of changes – commit every time you accomplish a small task (e.g., one problem in the lab).\n\nYou’ll have a set of bite-sized changes (with description) to serve as a record of what you’ve done.\nWith frequent commits, its easier to find the issue if / when you mess up!"
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#pushing-changes",
+    "href": "slides/week-6/week-6-version-control.html#pushing-changes",
+    "title": "Introduction to Version Control",
+    "section": "Pushing Changes",
+    "text": "Pushing Changes\n\n\n\nUpdate the copy of your repo on GitHub so it has the most recent changes you’ve made on your machine."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#pulling-changes",
+    "href": "slides/week-6/week-6-version-control.html#pulling-changes",
+    "title": "Introduction to Version Control",
+    "section": "Pulling Changes",
+    "text": "Pulling Changes\n\n\n\nUpdate the local copy of your repo (the copy on your computer) with the version on GitHub."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#workflow",
+    "href": "slides/week-6/week-6-version-control.html#workflow",
+    "title": "Introduction to Version Control",
+    "section": "Workflow",
+    "text": "Workflow\nWhen you have an existing local repo:\n\n\nPull the repo to make sure you have the most up to date version (especially if you are working on different computers).\nMake some changes locally.\nCommit the changes to git.\nPush your changes to GitHub."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#previous-steps",
+    "href": "slides/week-6/week-6-version-control.html#previous-steps",
+    "title": "Introduction to Version Control",
+    "section": "Previous Steps",
+    "text": "Previous Steps\nYou were asked to complete the following steps before coming to class today:\n\nCreate a GitHub account\nIntroduce yourself to git (in RStudio)\nGenerate a Personal Access Token (PAT)\nStore your PAT in RStudio"
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#verifying-your-connection",
+    "href": "slides/week-6/week-6-version-control.html#verifying-your-connection",
+    "title": "Introduction to Version Control",
+    "section": "Verifying Your Connection",
+    "text": "Verifying Your Connection\n\n\nOpen RStudio and run the following code in your console (lower left pane):\n\n\n\n\n\nusethis::git_sitrep()\n\n\n\n. . .\nYou should see something like:\n\n── GitHub user \n• Default GitHub host: 'https://github.com'\n• Personal access token for 'https://github.com': '&lt;discovered&gt;'\n• GitHub user: 'atheobold'\n• Token scopes: 'admin:org, admin:public_key, delete:packages, delete_repo, gist, notifications, repo, user, workflow, write:packages'\n• Email(s): 'atheobol@calpoly.edu (primary)', 'theobold.allison970@gmail.com', '12439090+atheobold@users.noreply.github.com'\nℹ No active usethis project\n\n. . .\nIf that is not the case, Dr. Theobold will help you troubleshoot in 5-minutes!"
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#once-youve-cloned-the-repo",
+    "href": "slides/week-6/week-6-version-control.html#once-youve-cloned-the-repo",
+    "title": "Introduction to Version Control",
+    "section": "Once You’ve Cloned the Repo",
+    "text": "Once You’ve Cloned the Repo\nStep 4: Open the lab-1.qmd file\nStep 5: Change your name\nStep 6: Commit your change (with a nice message!)\nStep 7: Push your change"
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#to-do",
+    "href": "slides/week-6/week-6-version-control.html#to-do",
+    "title": "Introduction to Version Control",
+    "section": "To do…",
+    "text": "To do…\n\nLab 1: Introduction to Quarto\n\nDue Sunday (9/29) at 11:59pm\n\nChallenge 1: Modifying Your Quarto Document\n\nDue Sunday (9/29) at 11:59pm\n\nComplete the Week 2 Coursework\n\nCheck-ins 2.1, 2.2, 2.3 due Tuesday (10/1) by the start of class"
+  },
+  {
+    "objectID": "labs/instructions/lab-1-instructions.html#check-the-data-documentation",
+    "href": "labs/instructions/lab-1-instructions.html#check-the-data-documentation",
+    "title": "Lab 1: Introduction to Quarto",
+    "section": "2.3 Check the Data Documentation",
+    "text": "2.3 Check the Data Documentation\nQuestion 4 – In your console (not in the Quarto document), type ?ToothGrowth (or alternatively help(ToothGrowth)). Use the information that pops up in the Help pane in RStudio to fill in the blanks below.\nThis dataset investigates the effect of __________ on tooth growth in _________________.\nThe two supplement delivery methods include OJ (______________) and VC (_______________).\nToothGrowth is a data frame with ____ observations and ____ variables.\nQuestion 5 – Before the code chunk, change the “Running the Provided Code” section header to a header that better describes the contents of this section (e.g., Tooth Growth Dataset)."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#exploring-quarto-documents",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#exploring-quarto-documents",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Exploring Quarto Documents",
+    "text": "Exploring Quarto Documents\nFor this lab you will:\n\nspecify global and local execution options\ninterpret the output of code\nlook up function and data documentation\nlook up Quarto documentation for plot outputs\nconduct a t-test for two independent samples\n\n\n\n\n\n\n\n\nExternal Resources\n\n\nEverything you need to successfully complete this assignment can be found in the documentation inside R or online. You will likely have more success with these resources than Chat. However, if you do use Chat, please be sure you cite your work as instructed in the syllabus."
   }
 ]

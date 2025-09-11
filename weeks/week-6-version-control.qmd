@@ -290,4 +290,70 @@ this week's lab!
 - [A quick guide to the command line (Terminal)](https://towardsdatascience.com/a-quick-guide-to-using-command-line-terminal-96815b97b955) [@weiQuickGuideUsing2019]
 :::
 
+<!-- From Lab 1 instructions -->
+<!-- # Part One: Workflow for GitHub -->
+
+<!-- ## Step 1: Making a Copy from GitHub Classroom -->
+
+<!-- For the first few weeks of the quarter, we will use GitHub Classroom to create -->
+<!-- our lab repositories. GitHub Classroom is a wonderful tool, as it makes it -->
+<!-- **incredibly** simple to copy the contents of a repository.  -->
+
+<!-- Use these steps to make a copy of the Lab 1 repository: [List of Steps to Copy the Lab Assignment from GitHub Classroom](https://scribehow.com/shared/Copying_the_Lab_Assignment_with_GitHub_Classroom__jKUfxzJUQjOQ2lqJy2UPoQ)  -->
+
+<!-- ## Step 2: Inspecting the Lab -->
+
+<!-- Once you complete these steps, a dialogue box will open with messages about -->
+<!-- cloning (making a copy) of your Lab 1 repository. When the messages are -->
+<!-- finished, you should have a new RStudio session open. You should notice a few -->
+<!-- things: -->
+
+<!-- -   In the upper right corner you should see a blue R cube with  -->
+<!-- `introdcution-to-quarto` written next to it ![](images/r-project.png){width="15%" fig-alt="A picture of a blue cube with an R inside, next to the text 'introduction-to-quarto-allison-theobold'"}, this tells -->
+<!-- you that you are working in an R Project (we'll learn more about these next -->
+<!-- week). -->
+<!-- -   In the "Files" pane, you should see a list of all the files included in the -->
+<!-- `lab-1` repository you copied. -->
+<!-- -   In the upper right pane, you should see a tab labeled "Git". -->
+<!-- -   Nothing should be displayed in this pane, since you haven't made any changes  -->
+<!-- to the files that were copied!  -->
+
+<!-- ## Step 3: Making a Small Change -->
+
+<!-- Now, find the `lab-1-student.qmd` file in the "Files" tab in the lower right  -->
+<!-- hand corner. Click on this file to open it.  -->
+
+<!-- At the top of the document (in the YAML) there is an `author` line that says  -->
+<!-- `"Your name here!"`. Change this to be your name and save your file either by -->
+<!-- clicking on the blue floppy disk or with a shortcut (command / control + s).  -->
+
+<!-- ## Step 4: Pushing Your Lab to GitHub -->
+
+<!-- Now for our last step, we need to [commit the files to our repo](https://happygitwithr.com/existing-github-first#stage-and-commit).  -->
+
+<!-- -   Click the "Git" tab in upper right pane -->
+<!-- -   Check the "Staged" box for the `lab-1-student.qmd` file  -->
+<!-- -   Click "Commit" -->
+<!-- -   In the box that opens, type a message in "Commit message", such as -->
+<!-- "Added my name". -->
+<!-- -   Click "Commit". -->
+<!-- -   Click the green "Push" button to send your local changes to GitHub. -->
+
+<!-- RStudio will display something like: -->
+
+<!-- ```          -->
+<!-- >>> /usr/bin/git push origin HEAD:refs/heads/main -->
+<!-- To https://github.com/atheobold/introduction-to-quarto-allison-theobold.git -->
+<!--    3a2171f..6d58539  HEAD -> main -->
+<!-- ``` -->
+
+<!-- ## Step 5: Verifying Your Changes -->
+
+<!-- Go back to your browser. I assume you're still viewing the GitHub repo you just cloned. Refresh the page. You should see all the project files you committed there. If you click on "commits", you should see one with the message you used, e.g. "Added my name". -->
+
+<!-- ## Step 6: Let's get started working with Quarto! -->
+
+<!-- Now that you've added your name, go ahead and get started with the rest of the  -->
+<!-- lab!  -->
+
 ### References {-}

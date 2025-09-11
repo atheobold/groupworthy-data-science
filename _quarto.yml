@@ -8,6 +8,9 @@ project:
     - "!/group-activities/group-formation"
     - "!/portfolio/midterm-portfolio-checklist.docx"
 
+resources:
+  - student/lab-1-student.qmd
+
 website:
   page-navigation: true
   title: "Introduction to Statistical Computing in R"

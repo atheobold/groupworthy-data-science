@@ -14,7 +14,7 @@ execute:
 
 # Accessing the Lab
 
-Download the template Lab 1 Quarto file here: <a href="student/lab-1-student.qmd" download>`lab-1-student.qmd`</a> 
+Download the template Lab 1 Quarto file here: <a href="../student/lab-1-student.qmd" download>`lab-1-student.qmd`</a> 
 
 
 ::: {.callout-important}

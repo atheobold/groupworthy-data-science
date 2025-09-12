@@ -4,8 +4,6 @@ format:
   revealjs:
     theme: ../style.scss
 editor: source
-execute: 
-  eval: false
 ---
 
 ```{r}
@@ -21,22 +19,16 @@ library(palmerpenguins)
 
 Today we will...
 
-::: small
--   Debrief PA 1
--   Debrief Lab 1
+::: midi
+-   Debrief PA 1 (10-minutes)
+-   Debrief Lab 1 (10-minutes)
     -   Content Related to Lab 2
--   New Material
-    -   Tidy Data
-    -   Load External Data
-    -   Graphical Perception
-    -   Colors in ggplot
--   [Lab 2: Exploring Rodents with ggplot2](https://classroom.github.com/a/4e-4Et4D)
+-   Tidy Data & Loading External Data (5-minutes)
+-   More Advanced Visualization Customizations (25-minutes)
+-   10-minute Break
+-   Introduction to Lab 2 (10-minutes)
     -   Using External Resources
 :::
-
-<!-- Be sure to update with new GH Classroom assignment link! -->
-
-
 
 # PA 1: Using Data Visualization to Find the Penguins
 
@@ -55,7 +47,7 @@ Today we will...
 
 ggplot(data = penguins) +
     geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species, shape = island )) + 
-    labs(title = "Relashonship Between Bill Length and Bill Depth", x = "Bill Length (mm)" , y = "Bill Depth (mm)",)
+    labs(title = "Relationship Between Bill Length and Bill Depth", x = "Bill Length (mm)" , y = "Bill Depth (mm)",)
 ```
 :::
 
@@ -82,42 +74,151 @@ ggplot(data = penguins,
 :::
 :::::
 
-## Somethings I also noticed...
+## Faceting
 
-::: incremental
--   Code chunk options need to have a space before the option (`#| label:` not `#|label:`).
--   Make sure your code is visible (`echo: true`)!
--   Make sure you remove the `messages` and `warnings` from your final document!\
-:::
+::: {.midi}
+Extracts subsets of data and places them in side-by-side plots.
+::: 
 
-## Did you notice that your figures were not included in the HTML your group submitted to Canvas?
+::: panel-tabset
 
-. . .
+## One Variable
 
-::: small
-By default, Quarto **does not** embed plots in the HTML document. Instead, it creates a "PA-2-files" folder which stores all your plots.
-:::
+::: {.small}
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 12
+#| code-line-numbers: "6"
+#| code-fold: true
 
-. . .
-
-::: small
-So, when you submit your HTML file, your plots are not included! How do we fix this????
-:::
-
-. . .
-
-::: small
-Add an `embed-resources: true` line to your YAML (at the beginning of your document)!
-
-```         
----
-title: "PA 2: Using Data Visualization to Find the Penguins"
-author: "Dr. T!"
-format: html
-editor: source
-embed-resources: true
----
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island) +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
 ```
+:::
+
+## Two Variables
+
+::: {.small}
+```{r}
+#| fig-height: 3.5
+#| fig-width: 8
+#| code-line-numbers: "6"
+#| echo: true
+#| code-fold: true
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_grid(sex ~ island) +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
+
+```
+:::
+:::
+
+
+## Changing the Facet Scales
+
+::: {.small}
+You can set scales to let axis limits vary across facets using the `scales`
+argument.
+:::
+
+::: panel-tabset
+
+## `free_x`
+
+::: {.midi}
+The x-axis limits adjust to individual facets. 
+:::
+
+::: {.small}
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 12
+#| code-line-numbers: "6"
+#| code-fold: true
+#| label: free-x-facets
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island, scales = "free_x") +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
+```
+:::
+
+## `free_y`
+
+::: {.midi}
+`"free_y"` -- only y-axis limits adjust to individual facets. 
+:::
+
+::: {.small}
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 12
+#| code-line-numbers: "6"
+#| code-fold: true
+#| label: free-y-facets
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island, scales = "free_y") +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
+```
+:::
+
+## `free` everyone!
+
+::: {.midi}
+Both x- and y-axis limits adjust to individual facets.
+:::
+
+::: {.small}
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 12
+#| code-line-numbers: "6"
+#| code-fold: true
+#| label: free-everyone-facets
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island, scales = "free") +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
+
+```
+:::
 :::
 
 # Lab 1
@@ -141,7 +242,8 @@ embed-resources: true
 ## Growing Points
 
 ::: incremental
--   Q2: **All** your code should be visible!
+-   **All** your code should be visible (`echo: true`)!
+-   Code chunk options need to have a space before the option (`#| label:` not `#|label:`).
 -   Q9: Captions should include more information than what is already present in the plot!
 -   Q11: There's no need to save intermediate objects if they are never used later!
 :::
@@ -150,11 +252,62 @@ embed-resources: true
 
 ::: incremental
 -   Every lab and challenge is expected to use code-folding.
--   There should be no messages / warnings output in your final rendered HTML.
+-   There should never be any messages or warnings output in your final rendered
+HTML.
 -   You should reduce the amount of "intermediate object junk" in your workspace.
     -   Ask yourself, do I need to use this later?
     -   If the answer is no, then you should not save that object.
+    -   Just output the plot! 
 :::
+
+## Why is there an `embed-resources: true` line in the YAML?
+
+</br>
+
+::: {.midi}
+By default, Quarto **does not** embed plots in the HTML document. Instead, it
+creates a "Lab-1-files" folder which stores all your plots.
+:::
+
+. . .
+
+::: midi
+This means that **by default** your plots **are not** included in your HTML
+file!
+:::
+
+. . .
+
+</br> 
+
+::: columns
+::: {.column width="35%"}
+::: small
+```         
+---
+title: "Lab 1"
+author: "Dr. T!"
+format: html
+editor: source
+embed-resources: true
+---
+```
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="60%"}
+::: midi
+The `embed-resources: true` line in the YAML forces the visualizations to be 
+**embedded** in your HTML!
+:::
+:::
+:::
+
+
+
 
 # Tidy Data
 
@@ -162,112 +315,9 @@ embed-resources: true
 
 ![Artwork by Allison Horst](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/85520b8f-4629-4763-8a2a-9ceff27458bf_rw_1920.jpg?h=21007b20ac00cf37318dca645c215453){fig-alt="An educational graphic explaining 'Tidy Data' with text and a simple table. The main text at the top reads, 'TIDY DATA is a standard way of mapping the meaning of a dataset to its structure,' followed by the attribution to Hadley Wickham. Below, it explains the concept of tidy data: 'In tidy data: each variable forms a column, each observation forms a row, each cell is a single measurement.' To the right, there is a small table with three columns labeled 'id,' 'name,' and 'color,' demonstrating how each column is a variable and each row is an observation. The table contains entries such as 'floof' (gray), 'max' (black), and 'panda' (calico). The image ends with a citation for Hadley Wickham's 2014 paper on Tidy Data."}
 
-## Same Data, Different Formats
+<!-- ## Tidy Data -->
 
-Different formats of the data are **tidy** in different ways.
-
-```{r}
-#| echo: false
-#| label: creating-small-data-set-wide-format
-
-bb_wide <- tibble(Team     = c("A", "B", "C", "D"),
-                       Points   = c(88, 91, 99, 94),
-                       Assists  = c(12, 17, 24, 28),
-                       Rebounds = c(22, 28, 30, 31)
-                       )
-```
-
-::: panel-tabset
-### Option 1
-
-```{r}
-#| echo: false
-#| label: displaying-wide-data
-
-bb_wide |> 
-  knitr::kable()
-```
-
-### Option 2
-
-```{r}
-#| echo: false
-#| label: transforming-to-long
-
-bb_long <- bb_wide |> 
-  pivot_longer(cols      = c(Points, Assists, Rebounds),
-               names_to  = "Statistic",
-               values_to = "Value"
-               )
-
-bb_long |> 
-  knitr::kable()
-```
-:::
-
-## Connection to ggplot
-
-Let's make a plot of each team's statistics!
-
-::::: panel-tabset
-### Option 1 - Wide Data
-
-::: small
-```{r}
-#| echo: true
-#| label: plot-with-wide-data
-#| code-fold: true
-#| fig-width: 6
-#| fig-height: 4
-#| fig-align: center
-
-ggplot(data = bb_wide, 
-       mapping = aes(x = Team)
-       ) +
-  geom_point(mapping = aes(y = Points, 
-                           color = "Points"), 
-             size = 4) +
-  geom_point(mapping = aes(y = Assists, 
-                           color = "Assists"), 
-             size = 4) +
-  geom_point(mapping = aes(y = Rebounds, 
-                           color = "Rebounds"), 
-             size = 4) + 
-  scale_colour_manual(
-    values = c("darkred", "steelblue", "forestgreen")
-  ) +
-  labs(color = "Statistic")
-```
-:::
-
-### Option 2 - Long Data
-
-::: small
-```{r}
-#| echo: true
-#| label: plot-with-long-data
-#| code-fold: true
-#| fig-width: 6
-#| fig-height: 4
-#| fig-align: center
-
-ggplot(data = bb_long, 
-       mapping = aes(x = Team, 
-                     y = Value, 
-                     color = Statistic)
-       ) +
-  geom_point(size = 4) + 
-  scale_colour_manual(
-    values = c("darkred", "steelblue", "forestgreen")
-  ) +
-  labs(color = "Statistic")
-```
-:::
-:::::
-
-## Tidy Data
-
-![Artwork by Allison Horst](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/40488240-4609-4dc3-8920-693e078b55ce_rw_1920.jpg?h=2e96a7e21e19c43867546498da026649){fig-alt="An illustration featuring a cute, cartoonish scene with three characters sitting on a bench. In the center, there is a smiling blue rectangular character resembling a tidy data table, holding an ice cream cone. On either side of the table are two round, fluffy creatures: one pink on the left and one green on the right, both also holding ice cream cones. Above the characters, the text reads 'make friends with tidy data.' The overall tone of the image is friendly and inviting, encouraging positive feelings toward tidy data."}
+<!-- ![Artwork by Allison Horst](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/40488240-4609-4dc3-8920-693e078b55ce_rw_1920.jpg?h=2e96a7e21e19c43867546498da026649){fig-alt="An illustration featuring a cute, cartoonish scene with three characters sitting on a bench. In the center, there is a smiling blue rectangular character resembling a tidy data table, holding an ice cream cone. On either side of the table are two round, fluffy creatures: one pink on the left and one green on the right, both also holding ice cream cones. Above the characters, the text reads 'make friends with tidy data.' The overall tone of the image is friendly and inviting, encouraging positive feelings toward tidy data."} -->
 
 # Working with External Data
 
@@ -310,22 +360,25 @@ Joe, 40
 ::: panel-tabset
 ### File A
 
-![](images/csv_file.png)
+![](images/csv_file.png){fig-alt="A screenshot of a raw data file. The top row is the name of the columns in quotations (LatD, LatM, LatS, NS, LonG, LonS, EW, City, State). The subsequent rows are the observations for the data with values for each of the variables. The entries of the data file are separated with commas."}
+What is the delimiter for this file?
 
 ### File B
 
-![](images/tsv_file.png)
+![](images/tsv_file.png){fig-alt="A screenshot of a raw data file. The top row is the name of the columns (FID, AFFGEOID, TRACTCE ST, STATE, ST_ABBR, STCNTY, FIPS, AREA_SQMI, E_TOTPOP). The subsequent rows are the observations for the data with values for each of the variables. The entries of the data file are separated by tabs."}
+What is the delimiter for this file?
 
 ### File C
 
-![](images/pipe_file.png)
-
-### Sources
-
--   [File A](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html)
--   [File B](https://github.com/ccusa/Disaster_Vulnerability_Map/blob/master/sample-data.tsv)
--   [File C](https://chadbaldwin.net/2021/03/24/quick-parse-csv-file.html)
+![](images/pipe_file.png){fig-alt="A screenshot of a raw data file. There is no top row indicating column names. Rather, the data file starts with the first observation. The entries of the data file are separated with bars (|)."}
+What is the delimiter for this file?
 :::
+<!-- Sources -->
+
+<!-- -   [File A](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html) -->
+<!-- -   [File B](https://github.com/ccusa/Disaster_Vulnerability_Map/blob/master/sample-data.tsv) -->
+<!-- -   [File C](https://chadbaldwin.net/2021/03/24/quick-parse-csv-file.html) -->
+
 
 ## Loading External Data
 
@@ -337,7 +390,8 @@ Using **base** `R` functions:
 
 ## Loading External Data
 
-The **tidyverse** has some cleaned-up versions in the `readr` and `readxl` packages:
+The **tidyverse** has some cleaned-up versions of the base R functions in the
+`readr` and `readxl` packages:
 
 ::: small
 -   `read_csv()` is for comma-separated data.
@@ -357,14 +411,14 @@ Remember to load the `readr` and `readxl` packages first!
 
 :::::: columns
 ::: {.column width="47%"}
-![](images/read.csv_doc.png)
+![](images/read.csv_doc.png){fig-alt="A screenshot of the function arguments for the read.csv() function. The function has seven arguments: file, header, sep, quote, dec, fill, and comment.char."}
 :::
 
 ::: {.column width="3%"}
 :::
 
 ::: {.column width="48%"}
-![](images/read_csv_doc.png)
+![](images/read_csv_doc.png){fig-alt="A screenshot of the function arguments for the read_csv() function. The function has twenty arguments. The first two arguments are the same as read.csv() (file, column names), there is no sep argument as it assumes the file is separated with a comma (since it is a csv). The additional arguments allow the user to control aspects of how the data are read in, such as what data type should be used for each column, if certain rows should be skipped, or if only certain columns should be selected."}
 :::
 ::::::
 
@@ -372,45 +426,9 @@ Remember to load the `readr` and `readxl` packages first!
 
 <!-- ![](images/here-horst.png){fig-alt="A cartoon showing two paths side-by-side. On the left is a scary spooky forest, with spiderwebs and gnarled trees, with file paths written on the branches like '~/mmm/nope.csv' and 'setwd(/haha/good/luck/)', with a scared looking cute fuzzy monster running out of it. On the right is a bright, colorful path with flowers, rainbow and sunshine, with signs saying 'here!' and 'it’s all right here!' A monster facing away from us in a backpack and walking stick is looking toward the right path. Stylized text reads 'here: find your path.'"} -->
 
-# Graphics
+# More Advanced Graphics
 
-<!-- Slides deleted from ggplot: -->
-
-<!-- ## Special Properties of Aesthetics -->
-
-<!-- ::: panel-tabset -->
-
-<!-- ## Mapping Aesthetics -->
-
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-<!-- #| label: mapping-a-color -->
-
-<!-- ggplot(data = housingsub) + -->
-<!--   geom_point(mapping = aes(x = date,  -->
-<!--                            y = median, -->
-<!--                            color = city) -->
-<!--              ) -->
-<!-- ``` -->
-
-<!-- ## Setting Aesthetics -->
-
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-<!-- #| label: setting-a-color -->
-
-<!-- ggplot(data = housingsub) + -->
-<!--   geom_point(mapping = aes(x = date,  -->
-<!--                            y = median),  -->
-<!--              color = "blue") -->
-<!-- ``` -->
-<!-- ::: -->
-
-# Graphics
+# More Advanced Graphics
 
 -   **Structure:** boxplot, scatterplot, etc.
 
@@ -458,10 +476,7 @@ knitr::include_graphics("images/pre-atten2.png")
 
 . . .
 
-There is a **hierarchy** of features:
-
--   Color is stronger than shape.
--   Combinations of pre-attentive features may **not** be pre-attentive due to interference.
+There is a **hierarchy** of features (e.g., color is stronger than shape). 
 
 ## Gestalt Principles
 
@@ -579,12 +594,7 @@ knitr::include_graphics("images/big_gradient.png")
 
 ## Color Guidelines
 
--   For **quantitative** data, use mappings from data to color that are **numerically and perceptually uniform**.
-    -   Relative discriminability of two colors should be proportional to the difference between the corresponding data values.
-
-## Color Guidelines
-
-**To make your graphic color deficiency friendly...**
+**To make your graphic friendly for people with different color vision deficiencies...**
 
 -   use **double encoding** - when you use color, **also** use another aesthetic (line type, shape, facet, etc.).
 
@@ -598,7 +608,7 @@ knitr::include_graphics("images/double.png")
 
 ## Color Guidelines
 
-**To make your graphic color deficiency friendly...**
+**To make your graphic friendly for people with different color vision deficiencies...**
 
 -   with a unidirectional scale (e.g., all + values), use a **monochromatic** color gradient.
 
@@ -622,7 +632,7 @@ knitr::include_graphics("images/PuOr.png")
 
 ## Color Guidelines
 
-**To make your graphic color deficiency friendly...**
+**To make your graphic friendly for people with different color vision deficiencies...**
 
 -   print your chart out in black and white -- if you can still read it, it will be safe for all users.
 
@@ -662,69 +672,132 @@ These packages have color palettes that are aesthetically pleasing and, in many 
 
 You can also take a look at other [ways to find nice color palettes](https://lisacharlottemuth.com/2016/04/22/Colors-for-DataVis/).
 
-# [Lab 2: Exploring Rodents with ggplot2](../../labs/instructions/lab-2-instructions.qmd) & [Challenge 2: Spicing things up with ggplot2](../../labs/instructions/challenge-2-instructions.qmd)
+## Further Customizations
+
+::: panel-tabset
+
+### Plot Labels
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: "7-10"
+#| fig-height: 3
+#| fig-width: 12
+#| fig-align: center
+#| code-fold: true
+#| label: example-labs-specifications
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island) +
+  labs(x = "Bill Length",
+       y = "", 
+       color = "Species of Penguin",
+       title = "Do penguins with shorter bills have deeper bills?")
+```
+:::
+
+### Facet Labels
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: "1-5,12"
+#| fig-height: 3
+#| fig-width: 12
+#| fig-align: center
+#| code-fold: true
+#| label: example-facet-labels
+
+custom_labels <- c(
+  Dream = "Dream Island",
+  Torgersen = "Torgersen Island",
+  Biscoe = "Biscoe Island"
+)
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island, labeller = as_labeller(custom_labels)) +
+  labs(x = "Bill Length",
+       y = "", 
+       color = "Species of Penguin",
+       title = "Do penguins with shorter bills have deeper bills?")
+```
+:::
+
+### Themes
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: "11-12"
+#| fig-height: 3
+#| fig-width: 12
+#| fig-align: center
+#| code-fold: true
+#| label: example-themes
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island) +
+  labs(x = "Bill Length",
+       y = "", 
+       color = "Species of Penguin",
+       title = "Do penguins with shorter bills have deeper bills?") +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+:::
+
+### Axes Ticks
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: "11-13"
+#| fig-height: 3
+#| fig-width: 12
+#| fig-align: center
+#| code-fold: true
+#| label: example-axis-ticks
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island) +
+  labs(x = "Bill Length",
+       y = "", 
+       color = "Species of Penguin",
+       title = "Do penguins with shorter bills have deeper bills?") +
+  scale_y_continuous(limits = c(10, 30),
+                     breaks = seq(from = 10, to = 30, by = 5)
+                     )
+```
+:::
+:::
+
+# Lab 2 & Challenge 2 Exploring Rodents with ggplot2
 
 ## Peer Code Review
 
 Starting with Lab 2, your labs **will** have an appearance / code format portion.
 
--   Review the [code formatting guidelines](../../code-review/code-review-guidelines.qmd) *before* you submit your lab!
+-   Review the [code formatting guidelines](../../code-review/code-review-guidelines.qmd) *before* you submit
+your lab!
 
 -   Each week, you will be assigned one of your peer's labs to review their code formatting.
-
-## On the Use of External Resources...
-
-::: small
-Part of learning to program is learning from a variety of resources. Thus, I expect you will use resources that you find on the internet.
-
-In this class the assumed knowledge is the course materials, including the course textbook, coursework pages, and course slides. Any functions / code used outside of these materials require direct references.
-:::
-
-. . .
-
-::: small
--   If you used Google:
-    -   paste the link to the resource in a code comment next to where you used that resource
--   If you used ChatGPT:
-    -   indicate somewhere in the problem that you used ChatGPT
-    -   paste the link to your chat (using the Share button from ChatGPT)
-:::
-
-<!-- Additionally, you are permitted and encouraged to work with your peers as you -->
-
-<!-- complete lab assignments, but **you are expected to do your own work**. Copying -->
-
-<!-- from each other is cheating, and letting people copy from you is also cheating. -->
-
-<!-- Please don't do either of those things. -->
-
-## Things You Should Know About ChatGPT...
-
-. . .
-
-::: small
--   GPT uses machine learning to predict what words to give you
-    -   This method is entirely probabilistic, meaning, the same question may produce different answers for different people.
-:::
-
-. . .
-
-::: small
--   The answers GPT gives rely a lot on the context you provide (or don't provide)
-    -   It is good to give lots of background information (e.g., what R package you are using)
-:::
-
-. . .
-
-::: small
--   ChatGPT is a pretty decent tutor.
-    -   Did you use GPT to help you with some code?
-    -   Do you not understand what the code is doing?
-    -   Ask GPT to explain code to you!
-:::
-
-
-# Nicely Formatted Code
 
 ## ggplot Code
 
@@ -791,501 +864,69 @@ ggplot(data = mpg,
 :::
 :::
 
+## On the Use of External Resources...
+
+::: midi
+Part of learning to program is learning from a variety of resources. Thus, I
+expect you will use resources that you find on the internet.
+
+In this class the assumed knowledge is the course materials, including the
+course textbook, coursework pages, and course slides. Any functions / code used
+outside of these materials require direct references.
+:::
+
+. . .
+
+::: small
+-   If you used Google:
+    -   paste the link to the resource in a code comment next to where you used that resource
+-   If you used ChatGPT:
+    -   indicate somewhere in the problem that you used ChatGPT
+    -   paste the link to your chat (using the Share button from ChatGPT)
+:::
+
+<!-- Additionally, you are permitted and encouraged to work with your peers as you -->
+
+<!-- complete lab assignments, but **you are expected to do your own work**. Copying -->
+
+<!-- from each other is cheating, and letting people copy from you is also cheating. -->
+
+<!-- Please don't do either of those things. -->
+
+## Things You Should Know About ChatGPT...
+
+. . .
+
+::: small
+-   GPT uses machine learning to predict what words to give you
+    -   This method is entirely probabilistic, meaning, the same question may produce different answers for different people.
+:::
+
+. . .
+
+::: small
+-   The answers GPT gives rely a lot on the context you provide (or don't provide)
+    -   It is good to give lots of background information (e.g., what R package you are using)
+:::
+
+. . .
+
+::: small
+-   ChatGPT is a pretty decent tutor.
+    -   Did you use GPT to help you with some code?
+    -   Do you not understand what the code is doing?
+    -   Ask GPT to explain code to you!
+:::
+
 ## To do...
 
 -   **Lab 2: Exploring rodents with ggplot2**
-    -   due Sunday, October 6 at 11:59pm
--   **Lab 2: Spicing things up with ggplot2**
-    -   due Sunday, October 6 at 11:59pm
+    -   due Monday, September 29 at 5pm
+-   **Challenge 2: Spicing things up with ggplot2**
+    -   due Monday, September 29 at 5pm
 -   **Complete Week 3 Coursework: Data Wrangling with dplyr**
-    -   **Check-ins 3.1 and 3.2** due Tuesday, October 8 at 12pm
+    -   **Check-ins 3.1 and 3.2** due Tuesday, September 30 at 8am
 
 
-<!-- ### The Goal -->
 
-<!-- Start with the TX housing data. -->
-
-<!-- ![](images/tx_housing.png) -->
-
-<!-- Make a plot of <span style="color:teal"> median house price </span> over <span style="color:purple"> time </span> (including both <span style="color:green"> individual data points </span> and <span style="color:darkorange"> a smoothed trend line</span>), distinguishing between <span style="color:blue"> different cities </span>. -->
-
-
-<!-- ### Game Plan -->
-
-<!-- ![](images/txhousing_plan.png) -->
-
-<!-- ### ggplot -->
-
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| label: texas-metro-data -->
-
-<!-- sm_tx <- txhousing |> -->
-<!--   filter(city %in% c("Dallas", -->
-<!--                      "Fort Worth", -->
-<!--                      "Austin", -->
-<!--                      "Houston",  -->
-<!--                      "El Paso") -->
-<!--          ) -->
-<!-- ``` -->
-
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- #| label: median-home-price-over-time-for-tx-metro -->
-
-<!-- ggplot(data = sm_tx, -->
-<!--        mapping = aes(x = date,  -->
-<!--                      y = median,  -->
-<!--                      color = city) -->
-<!--        ) +  -->
-<!--   geom_point() +  -->
-<!--   geom_smooth(method = "loess") +  -->
-<!--   labs(x = "Date", -->
-<!--        y = "", -->
-<!--        color = " ", -->
-<!--        title = "Changes in Median Home Price for Texas Metro Areas") + -->
-<!--   scale_y_continuous(labels = scales::label_dollar()) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-
-<!-- ### Scales -->
-
-<!-- ::: {.small} -->
-<!-- You can set scales to let axis limits vary across facets: -->
-
-<!-- `facet_grid(y ~ x, scales = ______)` -->
-
-<!--   + `"free"` -- both x- and y-axis limits adjust to individual facets -->
-<!--   + `"free_x"` -- only x-axis limits adjust -->
-<!--   + `"free_y"` -- only y-axis limits adjust -->
-
-<!-- ::: -->
-
-<!-- ### Labels -->
-
-<!-- ::: {.small} -->
-<!-- You can set a labeller to adjust facet labels. -->
-
-<!-- Include both the variable name and factor name in the labels: -->
-
-<!-- + `facet_wrap(~ b, labeller = label_both)` -->
-
-<!-- Display math symbols in the labels: -->
-
-<!-- + `facet_wrap(~ b, labeller = label_bquote(alpha ^ .(b)))` -->
-<!-- + `facet_wrap(~ b, labeller = label_parsed)` -->
-
-<!-- ::: -->
-:::
-
-
-<!-- ## Statistical Transformation: `stat` -->
-
-<!-- A `stat` transforms an existing variable into a new variable to plot. -->
-
-<!-- + `identity` leaves the data as is. -->
-<!-- + `count` counts the number of observations. -->
-<!-- + `summary` allows you to specify a desired transformation function. -->
-
-<!-- . . . -->
-
-<!-- Sometimes these statistical transformations happen under the hood when we use  -->
-<!-- a specific `geom_XXX()`. -->
-
-
-
-
-<!-- ## Statistical Transformation: `stat` -->
-
-<!-- ::: panel-tabset -->
-
-<!-- ### `stat_count()` -->
-
-<!-- :::: {.columns} -->
-<!-- ::: {.column width="50%"} -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-<!-- #| label: default-stat-with-geom-bar -->
-
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = class) -->
-<!--        ) + -->
-<!--   geom_bar() -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-
-<!-- ::: {.column width="50%"} -->
-<!-- ::: {.small} -->
-
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-<!-- #| label: using-stat-count-with-specific-geom -->
-
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = class) -->
-<!--        ) + -->
-<!--   stat_count(geom = "bar") -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-<!-- :::: -->
-
-<!-- ### `stat_summary()` -->
-
-<!-- :::: {.columns} -->
-<!-- ::: {.column width="50%"} -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "5-6" -->
-<!-- #| label: using-stat-summary-with-mean-for-bars -->
-
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = class, -->
-<!--                      y = hwy) -->
-<!--        ) + -->
-<!--   stat_summary(geom = "bar", -->
-<!--                fun = "mean") + -->
-<!--   scale_y_continuous(limits = c(0, 45)) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-
-<!-- ::: {.column width="50%"} -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "5-6" -->
-<!-- #| label: using-stat-summary-with-max-for-bars -->
-
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = class, -->
-<!--                      y = hwy) -->
-<!--        ) + -->
-<!--   stat_summary(geom = "bar", -->
-<!--                fun = "max") + -->
-<!--   scale_y_continuous(limits = c(0, 45)) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-
-<!-- :::: -->
-<!-- ::: -->
-
-<!-- ## Position Adjustements -->
-
-<!-- Position adjustments determine how to arrange `geom`'s that would otherwise occupy the same space. -->
-
-<!-- ::: {.small} -->
-
-<!-- + `position = "dodge"`: Arrange elements side by side. -->
-<!-- + `position = "fill"`: Stack elements on top of one another + normalize height. -->
-<!-- + `position = "stack"`: Stack elements on top of one another. -->
-<!-- + `position = "jitter"`: Add random noise to `x` & `y` position of each element to -->
-<!-- avoid overplotting (see `geom_jitter()`). -->
-<!-- ::: -->
-
-<!-- ## Position Adjustements -->
-
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(fl, fill = drv) -->
-<!--        ) +  -->
-<!--   geom_bar(position = "_____") -->
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- ![](images/position.png) -->
-
-
-<!-- ## Plot Customizations -->
-
-<!-- ::: panel-tabset -->
-
-<!-- ### Labels -->
-
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "5-8" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| code-fold: true -->
-<!-- #| label: example-labs-specifications -->
-
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(x = displ, y = hwy, color = cyl) -->
-<!--        ) +  -->
-<!--   geom_jitter() +  -->
-<!--   labs(x = "Engine Displacement (liters)",  -->
-<!--        y = " ",  -->
-<!--        color = "Cylinders", -->
-<!--        title = "Cars with More Cylinders Have Larger Engine Displacement\n and Lower Fuel Efficiency") -->
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- ### Themes -->
-
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "9" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| code-fold: true -->
-<!-- #| label: example-theme -->
-
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(x = displ, y = hwy, color = cyl) -->
-<!--        ) +  -->
-<!--   geom_jitter() +  -->
-<!--   labs(x = "Engine Displacement (liters)",  -->
-<!--        y = " ",  -->
-<!--        color = "Cylinders", -->
-<!--        title = "Cars with More Cylinders Have Larger Engine Displacement\n and Lower Fuel Efficiency") + -->
-<!--   theme_bw() + -->
-<!--   theme(legend.position = "bottom") -->
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- ### Scales: Axes Ticks -->
-
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "9-11" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| code-fold: true -->
-<!-- #| label: example-axis-ticks -->
-
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(x = displ, y = hwy, color = cyl) -->
-<!--        ) +  -->
-<!--   geom_jitter() +  -->
-<!--   labs(x = "Engine Displacement (liters)",  -->
-<!--        y = " ",  -->
-<!--        color = "Cylinders", -->
-<!--        title = "Cars with More Cylinders Have Larger Engine Displacement\n and Lower Fuel Efficiency") + -->
-<!--   scale_y_continuous(limits = c(0, 50), -->
-<!--                      breaks = seq(from = 0, to = 50, by = 5) -->
-<!--                      ) -->
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- ### Scales: Color -->
-
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "9" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| code-fold: true -->
-<!-- #| label: example-colors -->
-
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(x = displ, y = hwy, color = cyl) -->
-<!--        ) +  -->
-<!--   geom_jitter() +  -->
-<!--   labs(x = "Engine Displacement (liters)",  -->
-<!--        y = " ",  -->
-<!--        color = "Cylinders", -->
-<!--        title = "Cars with More Cylinders Have Larger Engine Displacement\n and Lower Fuel Efficiency") + -->
-<!--   scale_color_gradient(low = "white", high = "green4") -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-
-
-<!-- ## Same Data, Three Different Plots -->
-
-<!-- ::: panel-tabset -->
-
-<!-- ### geom_point() -->
-
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- #| code-line-numbers: "6" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| label: example-scatterplot -->
-
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = cty,  -->
-<!--                      y = hwy, -->
-<!--                      color = class) -->
-<!--        ) + -->
-<!--   geom_point() + -->
-<!--   labs(x = "City (mpg)",  -->
-<!--        y = "Highway (mpg)",  -->
-<!--        color = " ") + -->
-<!--   theme(axis.title = element_text(size = 14), -->
-<!--         legend.position = "top", -->
-<!--         legend.text = element_text(size = 14) -->
-<!--         ) -->
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- ### geom_text() -->
-
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- #| code-line-numbers: "6" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| label: example-word-plot -->
-
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = cty, -->
-<!--                      y = hwy, -->
-<!--                      color = class) -->
-<!--        ) + -->
-<!--   geom_text(mapping = aes(label = class)) + -->
-<!--   labs(x = "City (mpg)",  -->
-<!--        y = "Highway (mpg)",  -->
-<!--        color = " ") + -->
-<!--   theme(axis.title = element_text(size = 14), -->
-<!--         legend.position = "top", -->
-<!--         legend.text = element_text(size = 14) -->
-<!--         ) -->
-<!-- ``` -->
-<!-- ::: -->
-
-<!-- ### geom_smooth() -->
-
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- #| code-line-numbers: "6" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| label: example-line-plot -->
-
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = cty, -->
-<!--                      y = hwy, -->
-<!--                      color = class) -->
-<!--        ) + -->
-<!--   geom_smooth() + -->
-<!--   labs(x = "City (mpg)",  -->
-<!--        y = "Highway (mpg)",  -->
-<!--        color = " ") + -->
-<!--   theme(axis.title = element_text(size = 14), -->
-<!--         legend.position = "top", -->
-<!--         legend.text = element_text(size = 14) -->
-<!--         ) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-
-
-## Faceting
-
-Extracts subsets of data and places them in side-by-side plots.
-
-```{r}
-#| echo: true
-#| fig-height: 3
-#| fig-width: 12
-#| code-line-numbers: "6"
-#| code-fold: true
-
-ggplot(data = sm_tx,
-       mapping = aes(x = date, 
-                     y = median)
-       ) + 
-  geom_point() + 
-  facet_wrap(~city) +
-  geom_smooth(method = "loess") + 
-  labs(x = "Date",
-       y = "",
-       color = " ",
-       title = "Changes in Median Home Price for Texas Metro Areas") +
-  scale_y_continuous(labels = scales::label_dollar())
-```
-
-
-```{r}
-#| echo: false
-#| label: create-month-categorical-variable
-
-sm_tx <- mutate(sm_tx, 
-                month_cat = case_when(month == 1 ~ "January", 
-                                      month == 2 ~ "February", 
-                                      month == 3 ~ "March", 
-                                      month == 4 ~ "April", 
-                                      month == 5 ~ "May", 
-                                      month == 6 ~ "June", 
-                                      month == 7 ~ "July", 
-                                      month == 8 ~ "August", 
-                                      month == 9 ~ "September", 
-                                      month == 10 ~ "October", 
-                                      month == 11 ~ "November", 
-                                      month == 12 ~ "December")
-                )
-```
-
-```{r}
-#| fig-height: 3.5
-#| fig-width: 8
-#| code-line-numbers: "4"
-#| echo: false
-#| fig-align: center
-#| eval: false
-
-ggplot(data = sm_tx,
-       mapping = aes(x = date, 
-                     y = median)
-       ) + 
-  geom_point() + 
-  facet_wrap(city ~ month_cat) +
-  geom_smooth(method = "loess") + 
-  labs(x = "Date",
-       y = "",
-       color = " ",
-       title = "Changes in Median Home Price for Texas Metro Areas") +
-  scale_y_continuous(labels = scales::label_dollar())
-
-```
-
-
-## Faceting
-
-::: panel-tabset
-
-### Options
-
-::: {.small}
-+ `facet_wrap(~ b)`: facets by one variable
-  * `nrow` controls the number of rows the facets are output into 
-  * `ncol` controls the number of columns the facets are output into
-+ `facet_grid(a ~ b)`: facet by two variables
-  * variable `a` will be assigned to the rows
-  * variable `b` will be assigned to the columns into both rows and columns
-:::
 

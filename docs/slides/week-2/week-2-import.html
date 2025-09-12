@@ -202,27 +202,22 @@
 <section id="thursday-october-1" class="slide level2">
 <h2>Thursday, October 1</h2>
 <p>Today we will…</p>
-<div class="small">
+<div class="midi">
 <ul>
-<li>Debrief PA 1</li>
-<li>Debrief Lab 1
+<li>Debrief PA 1 (10-minutes)</li>
+<li>Debrief Lab 1 (10-minutes)
 <ul>
 <li>Content Related to Lab 2</li>
 </ul></li>
-<li>New Material
-<ul>
-<li>Tidy Data</li>
-<li>Load External Data</li>
-<li>Graphical Perception</li>
-<li>Colors in ggplot</li>
-</ul></li>
-<li><a href="https://classroom.github.com/a/4e-4Et4D">Lab 2: Exploring Rodents with ggplot2</a>
+<li>Tidy Data &amp; Loading External Data (5-minutes)</li>
+<li>More Advanced Visualization Customizations (25-minutes)</li>
+<li>10-minute Break</li>
+<li>Introduction to Lab 2 (10-minutes)
 <ul>
 <li>Using External Resources</li>
 </ul></li>
 </ul>
 </div>
-<!-- Be sure to update with new GH Classroom assignment link! -->
 </section>
 <section>
 <section id="pa-1-using-data-visualization-to-find-the-penguins" class="title-slide slide level1 center">
@@ -241,8 +236,15 @@
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins) <span class="sc">+</span></span>
 <span id="cb1-2"><a></a>    <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, <span class="at">y =</span> bill_depth_mm, <span class="at">color =</span> species, <span class="at">shape =</span> island )) <span class="sc">+</span> </span>
-<span id="cb1-3"><a></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relashonship Between Bill Length and Bill Depth"</span>, <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span> , <span class="at">y =</span> <span class="st">"Bill Depth (mm)"</span>,)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Relationship Between Bill Length and Bill Depth"</span>, <span class="at">x =</span> <span class="st">"Bill Length (mm)"</span> , <span class="at">y =</span> <span class="st">"Bill Depth (mm)"</span>,)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/student-code-step-8-shapes-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -261,43 +263,172 @@
 <span id="cb2-8"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
 <span id="cb2-9"><a></a>       <span class="at">title =</span> <span class="st">"Changes in Bill Depth versus Length"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/student-code-step-8-facets-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 </div>
 </section>
-<section id="somethings-i-also-noticed" class="slide level2">
-<h2>Somethings I also noticed…</h2>
-<ul>
-<li class="fragment">Code chunk options need to have a space before the option (<code>#| label:</code> not <code>#|label:</code>).</li>
-<li class="fragment">Make sure your code is visible (<code>echo: true</code>)!</li>
-<li class="fragment">Make sure you remove the <code>messages</code> and <code>warnings</code> from your final document!<br>
-</li>
-</ul>
+<section id="faceting" class="slide level2">
+<h2>Faceting</h2>
+<div class="midi">
+<p>Extracts subsets of data and places them in side-by-side plots.</p>
+</div>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">One Variable</a></li><li><a href="#tabset-2-2">Two Variables</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="small">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb3-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb3-3"><a></a>                     <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb3-4"><a></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb3-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb3-6"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island) <span class="sc">+</span></span>
+<span id="cb3-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>,</span>
+<span id="cb3-8"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb3-9"><a></a>       <span class="at">title =</span> <span class="st">"Changes in Bill Depth versus Length"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/unnamed-chunk-4-1.png" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="small">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb4-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb4-3"><a></a>                     <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb4-4"><a></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb4-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb4-6"><a></a>  <span class="fu">facet_grid</span>(sex <span class="sc">~</span> island) <span class="sc">+</span></span>
+<span id="cb4-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>,</span>
+<span id="cb4-8"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb4-9"><a></a>       <span class="at">title =</span> <span class="st">"Changes in Bill Depth versus Length"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/unnamed-chunk-5-1.png" width="768"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="did-you-notice-that-your-figures-were-not-included-in-the-html-your-group-submitted-to-canvas" class="slide level2">
-<h2>Did you notice that your figures were not included in the HTML your group submitted to Canvas?</h2>
-<div class="fragment">
+<section id="changing-the-facet-scales" class="slide level2">
+<h2>Changing the Facet Scales</h2>
 <div class="small">
-<p>By default, Quarto <strong>does not</strong> embed plots in the HTML document. Instead, it creates a “PA-2-files” folder which stores all your plots.</p>
+<p>You can set scales to let axis limits vary across facets using the <code>scales</code> argument.</p>
 </div>
+<div class="panel-tabset">
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1"><code>free_x</code></a></li><li><a href="#tabset-3-2"><code>free_y</code></a></li><li><a href="#tabset-3-3"><code>free</code> everyone!</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1">
+<div class="midi">
+<p>The x-axis limits adjust to individual facets.</p>
 </div>
-<div class="fragment">
 <div class="small">
-<p>So, when you submit your HTML file, your plots are not included! How do we fix this????</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb5-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb5-3"><a></a>                     <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb5-4"><a></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb5-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb5-6"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">scales =</span> <span class="st">"free_x"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>,</span>
+<span id="cb5-8"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb5-9"><a></a>       <span class="at">title =</span> <span class="st">"Changes in Bill Depth versus Length"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/free-x-facets-1.png" width="1152"></p>
+</figure>
 </div>
 </div>
-<div class="fragment">
+</div>
+</div>
+</div>
+<div id="tabset-3-2">
+<div class="midi">
+<p><code>"free_y"</code> – only y-axis limits adjust to individual facets.</p>
+</div>
 <div class="small">
-<p>Add an <code>embed-resources: true</code> line to your YAML (at the beginning of your document)!</p>
-<pre><code>---
-title: "PA 2: Using Data Visualization to Find the Penguins"
-author: "Dr. T!"
-format: html
-editor: source
-embed-resources: true
----</code></pre>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb6-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb6-3"><a></a>                     <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb6-4"><a></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb6-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb6-6"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">scales =</span> <span class="st">"free_y"</span>) <span class="sc">+</span></span>
+<span id="cb6-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>,</span>
+<span id="cb6-8"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb6-9"><a></a>       <span class="at">title =</span> <span class="st">"Changes in Bill Depth versus Length"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/free-y-facets-1.png" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-3-3">
+<div class="midi">
+<p>Both x- and y-axis limits adjust to individual facets.</p>
+</div>
+<div class="small">
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb7-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb7-3"><a></a>                     <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb7-4"><a></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb7-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb7-6"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">scales =</span> <span class="st">"free"</span>) <span class="sc">+</span></span>
+<span id="cb7-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>,</span>
+<span id="cb7-8"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb7-9"><a></a>       <span class="at">title =</span> <span class="st">"Changes in Bill Depth versus Length"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/free-everyone-facets-1.png" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section></section>
@@ -332,7 +463,8 @@ embed-resources: true
 <section id="growing-points" class="slide level2">
 <h2>Growing Points</h2>
 <ul>
-<li class="fragment">Q2: <strong>All</strong> your code should be visible!</li>
+<li class="fragment"><strong>All</strong> your code should be visible (<code>echo: true</code>)!</li>
+<li class="fragment">Code chunk options need to have a space before the option (<code>#| label:</code> not <code>#|label:</code>).</li>
 <li class="fragment">Q9: Captions should include more information than what is already present in the plot!</li>
 <li class="fragment">Q11: There’s no need to save intermediate objects if they are never used later!</li>
 </ul>
@@ -341,13 +473,47 @@ embed-resources: true
 <h2>How this translates into Lab 2…</h2>
 <ul>
 <li class="fragment">Every lab and challenge is expected to use code-folding.</li>
-<li class="fragment">There should be no messages / warnings output in your final rendered HTML.</li>
+<li class="fragment">There should never be any messages or warnings output in your final rendered HTML.</li>
 <li class="fragment">You should reduce the amount of “intermediate object junk” in your workspace.
 <ul>
 <li class="fragment">Ask yourself, do I need to use this later?</li>
 <li class="fragment">If the answer is no, then you should not save that object.</li>
+<li class="fragment">Just output the plot!</li>
 </ul></li>
 </ul>
+</section>
+<section id="why-is-there-an-embed-resources-true-line-in-the-yaml" class="slide level2">
+<h2>Why is there an <code>embed-resources: true</code> line in the YAML?</h2>
+<p><br></p>
+<div class="midi">
+<p>By default, Quarto <strong>does not</strong> embed plots in the HTML document. Instead, it creates a “Lab-1-files” folder which stores all your plots.</p>
+</div>
+<div class="fragment">
+<div class="midi">
+<p>This means that <strong>by default</strong> your plots <strong>are not</strong> included in your HTML file!</p>
+</div>
+</div>
+<div class="fragment">
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:35%;">
+<div class="small">
+<pre><code>---
+title: "Lab 1"
+author: "Dr. T!"
+format: html
+editor: source
+embed-resources: true
+---</code></pre>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:60%;">
+<div class="midi">
+<p>The <code>embed-resources: true</code> line in the YAML forces the visualizations to be <strong>embedded</strong> in your HTML!</p>
+</div>
+</div></div>
+</div>
 </section></section>
 <section>
 <section id="tidy-data" class="title-slide slide level1 center">
@@ -357,79 +523,9 @@ embed-resources: true
 <section id="tidy-data-1" class="slide level2">
 <h2>Tidy Data</h2>
 
-<img data-src="https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/85520b8f-4629-4763-8a2a-9ceff27458bf_rw_1920.jpg?h=21007b20ac00cf37318dca645c215453" alt="An educational graphic explaining 'Tidy Data' with text and a simple table. The main text at the top reads, 'TIDY DATA is a standard way of mapping the meaning of a dataset to its structure,' followed by the attribution to Hadley Wickham. Below, it explains the concept of tidy data: 'In tidy data: each variable forms a column, each observation forms a row, each cell is a single measurement.' To the right, there is a small table with three columns labeled 'id,' 'name,' and 'color,' demonstrating how each column is a variable and each row is an observation. The table contains entries such as 'floof' (gray), 'max' (black), and 'panda' (calico). The image ends with a citation for Hadley Wickham's 2014 paper on Tidy Data." class="r-stretch quarto-figure-center"><p class="caption">Artwork by Allison Horst</p></section>
-<section id="same-data-different-formats" class="slide level2">
-<h2>Same Data, Different Formats</h2>
-<p>Different formats of the data are <strong>tidy</strong> in different ways.</p>
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1">Option 1</a></li><li><a href="#tabset-2-2">Option 2</a></li></ul>
-<div class="tab-content">
-<div id="tabset-2-1">
-
-</div>
-<div id="tabset-2-2">
-
-</div>
-</div>
-</div>
-</section>
-<section id="connection-to-ggplot" class="slide level2">
-<h2>Connection to ggplot</h2>
-<p>Let’s make a plot of each team’s statistics!</p>
-<div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Option 1 - Wide Data</a></li><li><a href="#tabset-3-2">Option 2 - Long Data</a></li></ul>
-<div class="tab-content">
-<div id="tabset-3-1">
-<div class="small">
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> bb_wide, </span>
-<span id="cb4-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Team)</span>
-<span id="cb4-3"><a></a>       ) <span class="sc">+</span></span>
-<span id="cb4-4"><a></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> Points, </span>
-<span id="cb4-5"><a></a>                           <span class="at">color =</span> <span class="st">"Points"</span>), </span>
-<span id="cb4-6"><a></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb4-7"><a></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> Assists, </span>
-<span id="cb4-8"><a></a>                           <span class="at">color =</span> <span class="st">"Assists"</span>), </span>
-<span id="cb4-9"><a></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span></span>
-<span id="cb4-10"><a></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> Rebounds, </span>
-<span id="cb4-11"><a></a>                           <span class="at">color =</span> <span class="st">"Rebounds"</span>), </span>
-<span id="cb4-12"><a></a>             <span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb4-13"><a></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb4-14"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkred"</span>, <span class="st">"steelblue"</span>, <span class="st">"forestgreen"</span>)</span>
-<span id="cb4-15"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb4-16"><a></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Statistic"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</div>
-</div>
-<div id="tabset-3-2">
-<div class="small">
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> bb_long, </span>
-<span id="cb5-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Team, </span>
-<span id="cb5-3"><a></a>                     <span class="at">y =</span> Value, </span>
-<span id="cb5-4"><a></a>                     <span class="at">color =</span> Statistic)</span>
-<span id="cb5-5"><a></a>       ) <span class="sc">+</span></span>
-<span id="cb5-6"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">4</span>) <span class="sc">+</span> </span>
-<span id="cb5-7"><a></a>  <span class="fu">scale_colour_manual</span>(</span>
-<span id="cb5-8"><a></a>    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">"darkred"</span>, <span class="st">"steelblue"</span>, <span class="st">"forestgreen"</span>)</span>
-<span id="cb5-9"><a></a>  ) <span class="sc">+</span></span>
-<span id="cb5-10"><a></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"Statistic"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="tidy-data-2" class="slide level2">
-<h2>Tidy Data</h2>
-
-<img data-src="https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/40488240-4609-4dc3-8920-693e078b55ce_rw_1920.jpg?h=2e96a7e21e19c43867546498da026649" alt="An illustration featuring a cute, cartoonish scene with three characters sitting on a bench. In the center, there is a smiling blue rectangular character resembling a tidy data table, holding an ice cream cone. On either side of the table are two round, fluffy creatures: one pink on the left and one green on the right, both also holding ice cream cones. Above the characters, the text reads 'make friends with tidy data.' The overall tone of the image is friendly and inviting, encouraging positive feelings toward tidy data." class="r-stretch quarto-figure-center"><p class="caption">Artwork by Allison Horst</p></section></section>
+<!-- ## Tidy Data -->
+<!-- ![Artwork by Allison Horst](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/40488240-4609-4dc3-8920-693e078b55ce_rw_1920.jpg?h=2e96a7e21e19c43867546498da026649){fig-alt="An illustration featuring a cute, cartoonish scene with three characters sitting on a bench. In the center, there is a smiling blue rectangular character resembling a tidy data table, holding an ice cream cone. On either side of the table are two round, fluffy creatures: one pink on the left and one green on the right, both also holding ice cream cones. Above the characters, the text reads 'make friends with tidy data.' The overall tone of the image is friendly and inviting, encouraging positive feelings toward tidy data."} -->
+<img data-src="https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/85520b8f-4629-4763-8a2a-9ceff27458bf_rw_1920.jpg?h=21007b20ac00cf37318dca645c215453" alt="An educational graphic explaining 'Tidy Data' with text and a simple table. The main text at the top reads, 'TIDY DATA is a standard way of mapping the meaning of a dataset to its structure,' followed by the attribution to Hadley Wickham. Below, it explains the concept of tidy data: 'In tidy data: each variable forms a column, each observation forms a row, each cell is a single measurement.' To the right, there is a small table with three columns labeled 'id,' 'name,' and 'color,' demonstrating how each column is a variable and each row is an observation. The table contains entries such as 'floof' (gray), 'max' (black), and 'panda' (calico). The image ends with a citation for Hadley Wickham's 2014 paper on Tidy Data." class="r-stretch quarto-figure-center"><p class="caption">Artwork by Allison Horst</p></section></section>
 <section>
 <section id="working-with-external-data" class="title-slide slide level1 center">
 <h1>Working with External Data</h1>
@@ -466,26 +562,23 @@ Joe, 40</code></pre>
 <section id="common-types-of-data-files-1" class="slide level2">
 <h2>Common Types of Data Files</h2>
 <div class="panel-tabset">
-<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">File A</a></li><li><a href="#tabset-4-2">File B</a></li><li><a href="#tabset-4-3">File C</a></li><li><a href="#tabset-4-4">Sources</a></li></ul>
+<ul id="tabset-4" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-4-1">File A</a></li><li><a href="#tabset-4-2">File B</a></li><li><a href="#tabset-4-3">File C</a></li></ul>
 <div class="tab-content">
 <div id="tabset-4-1">
-<p><img data-src="images/csv_file.png"></p>
+<p><img data-src="images/csv_file.png" alt="A screenshot of a raw data file. The top row is the name of the columns in quotations (LatD, LatM, LatS, NS, LonG, LonS, EW, City, State). The subsequent rows are the observations for the data with values for each of the variables. The entries of the data file are separated with commas."> What is the delimiter for this file?</p>
 </div>
 <div id="tabset-4-2">
-<p><img data-src="images/tsv_file.png"></p>
+<p><img data-src="images/tsv_file.png" alt="A screenshot of a raw data file. The top row is the name of the columns (FID, AFFGEOID, TRACTCE ST, STATE, ST_ABBR, STCNTY, FIPS, AREA_SQMI, E_TOTPOP). The subsequent rows are the observations for the data with values for each of the variables. The entries of the data file are separated by tabs."> What is the delimiter for this file?</p>
 </div>
 <div id="tabset-4-3">
-<p><img data-src="images/pipe_file.png"></p>
-</div>
-<div id="tabset-4-4">
-<ul>
-<li><a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html">File A</a></li>
-<li><a href="https://github.com/ccusa/Disaster_Vulnerability_Map/blob/master/sample-data.tsv">File B</a></li>
-<li><a href="https://chadbaldwin.net/2021/03/24/quick-parse-csv-file.html">File C</a></li>
-</ul>
+<p><img data-src="images/pipe_file.png" alt="A screenshot of a raw data file. There is no top row indicating column names. Rather, the data file starts with the first observation. The entries of the data file are separated with bars (|)."> What is the delimiter for this file?</p>
 </div>
 </div>
 </div>
+<!-- Sources -->
+<!-- -   [File A](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html) -->
+<!-- -   [File B](https://github.com/ccusa/Disaster_Vulnerability_Map/blob/master/sample-data.tsv) -->
+<!-- -   [File C](https://chadbaldwin.net/2021/03/24/quick-parse-csv-file.html) -->
 </section>
 <section id="loading-external-data" class="slide level2">
 <h2>Loading External Data</h2>
@@ -497,7 +590,7 @@ Joe, 40</code></pre>
 </section>
 <section id="loading-external-data-1" class="slide level2">
 <h2>Loading External Data</h2>
-<p>The <strong>tidyverse</strong> has some cleaned-up versions in the <code>readr</code> and <code>readxl</code> packages:</p>
+<p>The <strong>tidyverse</strong> has some cleaned-up versions of the base R functions in the <code>readr</code> and <code>readxl</code> packages:</p>
 <div class="small">
 <ul>
 <li><p><code>read_csv()</code> is for comma-separated data.</p></li>
@@ -513,48 +606,22 @@ Joe, 40</code></pre>
 <h2>What’s the difference?</h2>
 <div class="columns">
 <div class="column" style="width:47%;">
-<p><img data-src="images/read.csv_doc.png"></p>
+<p><img data-src="images/read.csv_doc.png" alt="A screenshot of the function arguments for the read.csv() function. The function has seven arguments: file, header, sep, quote, dec, fill, and comment.char."></p>
 </div><div class="column" style="width:3%;">
 
 </div><div class="column" style="width:48%;">
-<p><img data-src="images/read_csv_doc.png"></p>
+<p><img data-src="images/read_csv_doc.png" alt="A screenshot of the function arguments for the read_csv() function. The function has twenty arguments. The first two arguments are the same as read.csv() (file, column names), there is no sep argument as it assumes the file is separated with a comma (since it is a csv). The additional arguments allow the user to control aspects of how the data are read in, such as what data type should be used for each column, if certain rows should be skipped, or if only certain columns should be selected."></p>
 </div></div>
 <!-- # Reading in Data -->
 <!-- ![](images/here-horst.png){fig-alt="A cartoon showing two paths side-by-side. On the left is a scary spooky forest, with spiderwebs and gnarled trees, with file paths written on the branches like '~/mmm/nope.csv' and 'setwd(/haha/good/luck/)', with a scared looking cute fuzzy monster running out of it. On the right is a bright, colorful path with flowers, rainbow and sunshine, with signs saying 'here!' and 'it’s all right here!' A monster facing away from us in a backpack and walking stick is looking toward the right path. Stylized text reads 'here: find your path.'"} -->
 </section></section>
-<section id="graphics" class="title-slide slide level1 center">
-<h1>Graphics</h1>
-<!-- Slides deleted from ggplot: -->
-<!-- ## Special Properties of Aesthetics -->
-<!-- ::: panel-tabset -->
-<!-- ## Mapping Aesthetics -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-<!-- #| label: mapping-a-color -->
-<!-- ggplot(data = housingsub) + -->
-<!--   geom_point(mapping = aes(x = date,  -->
-<!--                            y = median, -->
-<!--                            color = city) -->
-<!--              ) -->
-<!-- ``` -->
-<!-- ## Setting Aesthetics -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-<!-- #| label: setting-a-color -->
-<!-- ggplot(data = housingsub) + -->
-<!--   geom_point(mapping = aes(x = date,  -->
-<!--                            y = median),  -->
-<!--              color = "blue") -->
-<!-- ``` -->
-<!-- ::: -->
+<section id="more-advanced-graphics" class="title-slide slide level1 center">
+<h1>More Advanced Graphics</h1>
+
 </section>
 
-<section id="graphics-1" class="title-slide slide level1 center">
-<h1>Graphics</h1>
+<section id="more-advanced-graphics-1" class="title-slide slide level1 center">
+<h1>More Advanced Graphics</h1>
 <ul>
 <li><p><strong>Structure:</strong> boxplot, scatterplot, etc.</p></li>
 <li><p><strong>Aesthetics:</strong> features such as color, shape, and size that map other variables to structural features.</p></li>
@@ -576,10 +643,12 @@ Joe, 40</code></pre>
 </section>
 <section id="pre-attentive-features-2" class="slide level2">
 <h2>Pre-attentive Features</h2>
-</section>
+
+<img data-src="images/pre-atten1.png" class="quarto-figure quarto-figure-center r-stretch" alt="A white background scattered with various green triangles and a single green circle. The triangles are evenly spaced but randomly oriented and positioned, with no apparent pattern or alignment. The single circle stands out among the triangles due to its different shape." width="887"></section>
 <section id="pre-attentive-features-3" class="slide level2">
 <h2>Pre-attentive Features</h2>
-</section>
+
+<img data-src="images/pre-atten2.png" class="quarto-figure quarto-figure-center r-stretch" alt="A white background scattered with various red circles and a single green circle. The circles are evenly spaced but randomly oriented and positioned, with no apparent pattern or alignment. The single circle stands out among the other circles due to its different color." width="887"></section>
 <section id="pre-attentive-features-4" class="slide level2">
 <h2>Pre-attentive Features</h2>
 <blockquote>
@@ -590,11 +659,7 @@ Joe, 40</code></pre>
 <li><p>E.g., color, form, movement, spatial location.</p></li>
 </ul>
 <div class="fragment">
-<p>There is a <strong>hierarchy</strong> of features:</p>
-<ul>
-<li>Color is stronger than shape.</li>
-<li>Combinations of pre-attentive features may <strong>not</strong> be pre-attentive due to interference.</li>
-</ul>
+<p>There is a <strong>hierarchy</strong> of features (e.g., color is stronger than shape).</p>
 </div>
 </section>
 <section id="gestalt-principles" class="slide level2">
@@ -638,10 +703,12 @@ Joe, 40</code></pre>
 </section>
 <section id="double-encoding" class="slide level2">
 <h2>Double Encoding</h2>
-</section>
+
+<img data-src="images/double.png" class="quarto-figure quarto-figure-center r-stretch" width="887"></section>
 <section id="no-double-encoding" class="slide level2">
 <h2>No Double Encoding</h2>
-</section></section>
+
+<img data-src="images/no_double.png" class="quarto-figure quarto-figure-center r-stretch" width="887"></section></section>
 <section>
 <section id="color" class="title-slide slide level1 center">
 <h1><a href="https://www.youtube.com/watch?v=zALBl5f1ib4">Color</a></h1>
@@ -658,9 +725,25 @@ Joe, 40</code></pre>
 </ul>
 <div class="columns">
 <div class="column" style="width:30%;">
-
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="images/hue.png" style="width:90.0%" alt="This image is a color wheel that displays the concept of 'Hue.' The wheel is divided into 12 segments, each representing a different color. The colors transition smoothly around the wheel, moving from yellow to yellow-orange, orange, red-orange, red, red-violet, violet, blue-violet, blue, blue-green, green, and yellow-green. The word 'HUE' is written in the center of the wheel, indicating that the image is meant to illustrate the variety of hues that make up the color spectrum."></p>
+</figure>
+</div>
+</div>
+</div>
 </div><div class="column" style="width:70%;">
-
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="images/intensity.png" alt="This image illustrates the concept of color intensity. It shows a yellow square labeled 'YELLOW (HUE)' on the left, a gray square labeled 'GRAY' in the middle, and a square of desaturated yellow labeled 'LESS INTENSE' on the right. The image conveys that adding gray to a pure hue, such as yellow, results in a color that is less intense or more muted. The mathematical symbols '+' and '=' are used to show the combination of the yellow hue with gray, leading to a less intense color." width="683"></p>
+</figure>
+</div>
+</div>
+</div>
 </div></div>
 </section>
 <section id="color-guidelines" class="slide level2">
@@ -674,59 +757,119 @@ Joe, 40</code></pre>
 </ul>
 <div class="columns">
 <div class="column" style="width:44%;">
-
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/rainbow.png" class="quarto-figure quarto-figure-center" alt="This image is a color-coded map of Texas, showing the percentage of people in each county who identify as white. The map uses a rainbow gradient scale to represent different percentages: red and orange for lower percentages (0% to 25%), transitioning through yellow and green (around 50%), to blue and purple for higher percentages (75% to 100%). Each county in Texas is colored according to where it falls on this scale, indicating the variation in racial identification across the state. The legend at the bottom of the map clarifies the percentage range associated with each color." width="576"></p>
+</figure>
+</div>
+</div>
+</div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:40%;">
-
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/red_green.png" class="quarto-figure quarto-figure-center" alt="This image is a bar chart comparing the energy sources of six countries: Mexico, Brazil, Turkey, Russia, Indonesia, and China. Each bar represents a country and is divided into two color-coded segments: red for 'Low-carbon sources' and green for 'Fossil fuels sources.' The chart shows the proportion of energy generated from each source in each country. The purpose of this image is not to demonstrate what fuels each country is using but to highlight how the graph uses red and green hues to separate the two types of fuel. Not only are these colors are difficult for some people's eyes to differentiate, but the plot has swapped what we would ordinarily think of as 'good' and 'bad' colors with fuels that are worse and better for the planet." width="456"></p>
+</figure>
+</div>
+</div>
+</div>
 </div></div>
 </section>
 <section id="color-guidelines-1" class="slide level2">
 <h2>Color Guidelines</h2>
 <p>For <strong>categorical</strong> data, try not to use more than 7 colors:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/small_gradient.png" class="quarto-figure quarto-figure-center" style="width:30.0%" alt="This image is a rectangular strip divided into seven equal vertical sections, each filled with a different solid color. The colors from left to right are: Red, Blue, Green, Purple, Orange, Yellow, Brown. Each section is distinctly separated by thin black lines, with no gradients or transitions between the colors. The image represents a simple color spectrum or palette."></p>
+</figure>
+</div>
+</div>
+</div>
 <div class="fragment">
 <p>If you need to, you can use <code>colorRampPalette()</code> from the <code>RColorBrewer</code> package to produce larger palettes:</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/big_gradient.png" class="quarto-figure quarto-figure-center" alt="This image is a rectangular strip divided into 19 equal vertical sections, each filled with a different solid color. The colors from left to right are red, maroon, dark blue, teal, green, light green, gray, purple, dark maroon, orange, light orange, yellow, light yellow, gold, brown, pink, light pink, mauve, and light gray. Each section is distinctly separated by thin black lines, with no gradients or transitions between the colors. The image represents an extended color spectrum or palette with a nuanced range of colors." width="778"></p>
+</figure>
+</div>
+</div>
+</div>
 </div>
 </section>
 <section id="color-guidelines-2" class="slide level2">
 <h2>Color Guidelines</h2>
-<ul>
-<li>For <strong>quantitative</strong> data, use mappings from data to color that are <strong>numerically and perceptually uniform</strong>.
-<ul>
-<li>Relative discriminability of two colors should be proportional to the difference between the corresponding data values.</li>
-</ul></li>
-</ul>
-</section>
-<section id="color-guidelines-3" class="slide level2">
-<h2>Color Guidelines</h2>
-<p><strong>To make your graphic color deficiency friendly…</strong></p>
+<p><strong>To make your graphic friendly for people with different color vision deficiencies…</strong></p>
 <ul>
 <li>use <strong>double encoding</strong> - when you use color, <strong>also</strong> use another aesthetic (line type, shape, facet, etc.).</li>
 </ul>
-</section>
-<section id="color-guidelines-4" class="slide level2">
+
+<img data-src="images/double.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%" alt="This image features a pattern of small shapes scattered across a white background. The shapes are orange triangles and green circles, distributed randomly throughout the image. The triangles and circles do not overlap and are spaced unevenly, creating a dispersed, non-repetitive pattern. The image appears to represent a simple, abstract design with two distinct shapes and colors."></section>
+<section id="color-guidelines-3" class="slide level2">
 <h2>Color Guidelines</h2>
-<p><strong>To make your graphic color deficiency friendly…</strong></p>
+<p><strong>To make your graphic friendly for people with different color vision deficiencies…</strong></p>
 <ul>
 <li>with a unidirectional scale (e.g., all + values), use a <strong>monochromatic</strong> color gradient.</li>
 </ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/blues.png" class="quarto-figure quarto-figure-center" style="width:50.0%" alt="This image features a horizontal gradient transitioning smoothly from light to dark blue. On the left side, the gradient starts with a very light, almost white blue and gradually deepens in color, moving through medium blue tones in the center, and finally ending with a deep, dark blue on the right side. The gradient creates a seamless transition across the spectrum of blue hues, visually representing the full range of the color from light to dark."></p>
+</figure>
+</div>
+</div>
+</div>
 <ul>
 <li>with a bidirectional scale (e.g., + and - values), use a <strong>purple-white-orange</strong> color gradient. Transition through white!</li>
 </ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/PuOr.png" class="quarto-figure quarto-figure-center" style="width:70.0%" alt="This image features a horizontal gradient transitioning between two different color families. On the left side, the gradient starts with a deep purple and gradually lightens to a pale lavender near the center. The gradient then transitions to white in the middle, which serves as a dividing point between the two color families. From the center to the right, the gradient shifts into warm tones, moving from a light peach to a deeper orange, and finally ending with a rich brown on the far right. This gradient smoothly blends the cool purples with the warm oranges, creating a balanced and visually appealing transition between the two color spectrums."></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="color-guidelines-5" class="slide level2">
+<section id="color-guidelines-4" class="slide level2">
 <h2>Color Guidelines</h2>
-<p><strong>To make your graphic color deficiency friendly…</strong></p>
+<p><strong>To make your graphic friendly for people with different color vision deficiencies…</strong></p>
 <ul>
 <li>print your chart out in black and white – if you can still read it, it will be safe for all users.</li>
 </ul>
 <div class="columns">
 <div class="column" style="width:45%;">
-
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/nyt_color.png" class="quarto-figure quarto-figure-center" alt="This image is a bar chart titled 'How Often Teens Say They Use Each Platform,' depicting the frequency of usage of various social media platforms by teenagers. The platforms listed from top to bottom are YouTube, TikTok, Snapchat, Instagram, and Facebook. Each platform's usage is broken down into six categories, represented as different segments in the bar: Almost constantly (dark blue), Several times a day (medium blue), About once a day (light blue), Less often (lightest blue), Don’t use (gray)." width="713"></p>
+</figure>
+</div>
+</div>
+</div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:45%;">
-
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/nyt_bw.png" class="quarto-figure quarto-figure-center" alt="This image is a copy of the previous image, but the blue tones have been replaced with grey tones." width="713"></p>
+</figure>
+</div>
+</div>
+</div>
 </div></div>
 </section>
 <section id="color-in-ggplot2" class="slide level2">
@@ -740,10 +883,133 @@ Joe, 40</code></pre>
 </ul>
 <p>These packages have color palettes that are aesthetically pleasing and, in many cases, color deficiency friendly.</p>
 <p>You can also take a look at other <a href="https://lisacharlottemuth.com/2016/04/22/Colors-for-DataVis/">ways to find nice color palettes</a>.</p>
+</section>
+<section id="further-customizations" class="slide level2">
+<h2>Further Customizations</h2>
+<div class="panel-tabset">
+<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Plot Labels</a></li><li><a href="#tabset-5-2">Facet Labels</a></li><li><a href="#tabset-5-3">Themes</a></li><li><a href="#tabset-5-4">Axes Ticks</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1">
+<div class="small">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" data-code-line-numbers="7-10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb10-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb10-3"><a></a>                     <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb10-4"><a></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb10-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb10-6"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island) <span class="sc">+</span></span>
+<span id="cb10-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>,</span>
+<span id="cb10-8"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb10-9"><a></a>       <span class="at">color =</span> <span class="st">"Species of Penguin"</span>,</span>
+<span id="cb10-10"><a></a>       <span class="at">title =</span> <span class="st">"Do penguins with shorter bills have deeper bills?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/example-labs-specifications-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-2">
+<div class="small">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11" data-code-line-numbers="1-5,12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>custom_labels <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb11-2"><a></a>  <span class="at">Dream =</span> <span class="st">"Dream Island"</span>,</span>
+<span id="cb11-3"><a></a>  <span class="at">Torgersen =</span> <span class="st">"Torgersen Island"</span>,</span>
+<span id="cb11-4"><a></a>  <span class="at">Biscoe =</span> <span class="st">"Biscoe Island"</span></span>
+<span id="cb11-5"><a></a>)</span>
+<span id="cb11-6"><a></a></span>
+<span id="cb11-7"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb11-8"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb11-9"><a></a>                     <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb11-10"><a></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb11-11"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb11-12"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island, <span class="at">labeller =</span> <span class="fu">as_labeller</span>(custom_labels)) <span class="sc">+</span></span>
+<span id="cb11-13"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>,</span>
+<span id="cb11-14"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb11-15"><a></a>       <span class="at">color =</span> <span class="st">"Species of Penguin"</span>,</span>
+<span id="cb11-16"><a></a>       <span class="at">title =</span> <span class="st">"Do penguins with shorter bills have deeper bills?"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/example-facet-labels-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-3">
+<div class="small">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12" data-code-line-numbers="11-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb12-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb12-3"><a></a>                     <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb12-4"><a></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb12-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb12-6"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island) <span class="sc">+</span></span>
+<span id="cb12-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>,</span>
+<span id="cb12-8"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb12-9"><a></a>       <span class="at">color =</span> <span class="st">"Species of Penguin"</span>,</span>
+<span id="cb12-10"><a></a>       <span class="at">title =</span> <span class="st">"Do penguins with shorter bills have deeper bills?"</span>) <span class="sc">+</span></span>
+<span id="cb12-11"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb12-12"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/example-themes-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-5-4">
+<div class="small">
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13" data-code-line-numbers="11-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> penguins,</span>
+<span id="cb13-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> bill_length_mm, </span>
+<span id="cb13-3"><a></a>                     <span class="at">y =</span> bill_depth_mm, </span>
+<span id="cb13-4"><a></a>                     <span class="at">color =</span> species)) <span class="sc">+</span></span>
+<span id="cb13-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb13-6"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>island) <span class="sc">+</span></span>
+<span id="cb13-7"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Bill Length"</span>,</span>
+<span id="cb13-8"><a></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb13-9"><a></a>       <span class="at">color =</span> <span class="st">"Species of Penguin"</span>,</span>
+<span id="cb13-10"><a></a>       <span class="at">title =</span> <span class="st">"Do penguins with shorter bills have deeper bills?"</span>) <span class="sc">+</span></span>
+<span id="cb13-11"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">30</span>),</span>
+<span id="cb13-12"><a></a>                     <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">10</span>, <span class="at">to =</span> <span class="dv">30</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb13-13"><a></a>                     )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="week-2-import_files/figure-revealjs/example-axis-ticks-1.png" class="quarto-figure quarto-figure-center" width="1152"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section></section>
 <section>
-<section id="lab-2-exploring-rodents-with-ggplot2-challenge-2-spicing-things-up-with-ggplot2" class="title-slide slide level1 center">
-<h1><a href="../../labs/instructions/lab-2-instructions.html">Lab 2: Exploring Rodents with ggplot2</a> &amp; <a href="../../labs/instructions/challenge-2-instructions.html">Challenge 2: Spicing things up with ggplot2</a></h1>
+<section id="lab-2-challenge-2-exploring-rodents-with-ggplot2" class="title-slide slide level1 center">
+<h1>Lab 2 &amp; Challenge 2 Exploring Rodents with ggplot2</h1>
 
 </section>
 <section id="peer-code-review" class="slide level2">
@@ -754,9 +1020,59 @@ Joe, 40</code></pre>
 <li><p>Each week, you will be assigned one of your peer’s labs to review their code formatting.</p></li>
 </ul>
 </section>
+<section id="ggplot-code" class="slide level2">
+<h2>ggplot Code</h2>
+<div class="small">
+<p>It is good practice to put each <code>geom</code> and <code>aes</code> on a new line.</p>
+<ul>
+<li>This makes code easier to read!</li>
+<li>Generally: no line of code should be over 80 characters long.</li>
+</ul>
+</div>
+<div class="panel-tabset">
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Bad</a></li><li><a href="#tabset-6-2">Good</a></li><li><a href="#tabset-6-3">Amazing</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1">
+<div class="small">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City (mpg)"</span>, <span class="at">y =</span> <span class="st">"Highway (mpg)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div id="tabset-6-2">
+<div class="small">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, </span>
+<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
+<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb15-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb15-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City (mpg)"</span>, <span class="at">y =</span> <span class="st">"Highway (mpg)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+<div id="tabset-6-3">
+<div class="small">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, </span>
+<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
+<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> cty, </span>
+<span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> hwy, </span>
+<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> class</span>
+<span id="cb16-6"><a aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb16-7"><a aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span> </span>
+<span id="cb16-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb16-9"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
+<span id="cb16-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City (mpg)"</span>, </span>
+<span id="cb16-11"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Highway (mpg)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
 <section id="on-the-use-of-external-resources" class="slide level2">
 <h2>On the Use of External Resources…</h2>
-<div class="small">
+<div class="midi">
 <p>Part of learning to program is learning from a variety of resources. Thus, I expect you will use resources that you find on the internet.</p>
 <p>In this class the assumed knowledge is the course materials, including the course textbook, coursework pages, and course slides. Any functions / code used outside of these materials require direct references.</p>
 </div>
@@ -814,445 +1130,25 @@ Joe, 40</code></pre>
 </ul>
 </div>
 </div>
-</section></section>
-<section>
-<section id="nicely-formatted-code" class="title-slide slide level1 center">
-<h1>Nicely Formatted Code</h1>
-
-</section>
-<section id="ggplot-code" class="slide level2">
-<h2>ggplot Code</h2>
-<div class="small">
-<p>It is good practice to put each <code>geom</code> and <code>aes</code> on a new line.</p>
-<ul>
-<li>This makes code easier to read!</li>
-<li>Generally: no line of code should be over 80 characters long.</li>
-</ul>
-</div>
-<div class="panel-tabset">
-<ul id="tabset-5" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-5-1">Bad</a></li><li><a href="#tabset-5-2">Good</a></li><li><a href="#tabset-5-3">Amazing</a></li></ul>
-<div class="tab-content">
-<div id="tabset-5-1">
-<div class="small">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City (mpg)"</span>, <span class="at">y =</span> <span class="st">"Highway (mpg)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-<div id="tabset-5-2">
-<div class="small">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, </span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> cty, <span class="at">y =</span> hwy, <span class="at">color =</span> class)) <span class="sc">+</span> </span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City (mpg)"</span>, <span class="at">y =</span> <span class="st">"Highway (mpg)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-<div id="tabset-5-3">
-<div class="small">
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, </span>
-<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> cty, </span>
-<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> hwy, </span>
-<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> class</span>
-<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>         )</span>
-<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span> </span>
-<span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb9-9"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb9-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City (mpg)"</span>, </span>
-<span id="cb9-11"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Highway (mpg)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</div>
-</div>
-</div>
-</div>
 </section>
 <section id="to-do" class="slide level2">
 <h2>To do…</h2>
 <ul>
 <li><strong>Lab 2: Exploring rodents with ggplot2</strong>
 <ul>
-<li>due Sunday, October 6 at 11:59pm</li>
+<li>due Monday, September 29 at 5pm</li>
 </ul></li>
-<li><strong>Lab 2: Spicing things up with ggplot2</strong>
+<li><strong>Challenge 2: Spicing things up with ggplot2</strong>
 <ul>
-<li>due Sunday, October 6 at 11:59pm</li>
+<li>due Monday, September 29 at 5pm</li>
 </ul></li>
 <li><strong>Complete Week 3 Coursework: Data Wrangling with dplyr</strong>
 <ul>
-<li><strong>Check-ins 3.1 and 3.2</strong> due Tuesday, October 8 at 12pm</li>
+<li><strong>Check-ins 3.1 and 3.2</strong> due Tuesday, September 30 at 8am</li>
 </ul></li>
 </ul>
-<!-- ### The Goal -->
-<!-- Start with the TX housing data. -->
-<!-- ![](images/tx_housing.png) -->
-<!-- Make a plot of <span style="color:teal"> median house price </span> over <span style="color:purple"> time </span> (including both <span style="color:green"> individual data points </span> and <span style="color:darkorange"> a smoothed trend line</span>), distinguishing between <span style="color:blue"> different cities </span>. -->
-<!-- ### Game Plan -->
-<!-- ![](images/txhousing_plan.png) -->
-<!-- ### ggplot -->
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| label: texas-metro-data -->
-<!-- sm_tx <- txhousing |> -->
-<!--   filter(city %in% c("Dallas", -->
-<!--                      "Fort Worth", -->
-<!--                      "Austin", -->
-<!--                      "Houston",  -->
-<!--                      "El Paso") -->
-<!--          ) -->
-<!-- ``` -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- #| label: median-home-price-over-time-for-tx-metro -->
-<!-- ggplot(data = sm_tx, -->
-<!--        mapping = aes(x = date,  -->
-<!--                      y = median,  -->
-<!--                      color = city) -->
-<!--        ) +  -->
-<!--   geom_point() +  -->
-<!--   geom_smooth(method = "loess") +  -->
-<!--   labs(x = "Date", -->
-<!--        y = "", -->
-<!--        color = " ", -->
-<!--        title = "Changes in Median Home Price for Texas Metro Areas") + -->
-<!--   scale_y_continuous(labels = scales::label_dollar()) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-<!-- ### Scales -->
-<!-- ::: {.small} -->
-<!-- You can set scales to let axis limits vary across facets: -->
-<!-- `facet_grid(y ~ x, scales = ______)` -->
-<!--   + `"free"` -- both x- and y-axis limits adjust to individual facets -->
-<!--   + `"free_x"` -- only x-axis limits adjust -->
-<!--   + `"free_y"` -- only y-axis limits adjust -->
-<!-- ::: -->
-<!-- ### Labels -->
-<!-- ::: {.small} -->
-<!-- You can set a labeller to adjust facet labels. -->
-<!-- Include both the variable name and factor name in the labels: -->
-<!-- + `facet_wrap(~ b, labeller = label_both)` -->
-<!-- Display math symbols in the labels: -->
-<!-- + `facet_wrap(~ b, labeller = label_bquote(alpha ^ .(b)))` -->
-<!-- + `facet_wrap(~ b, labeller = label_parsed)` -->
-<!-- ::: -->
-<p>:::</p>
-<!-- ## Statistical Transformation: `stat` -->
-<!-- A `stat` transforms an existing variable into a new variable to plot. -->
-<!-- + `identity` leaves the data as is. -->
-<!-- + `count` counts the number of observations. -->
-<!-- + `summary` allows you to specify a desired transformation function. -->
-<!-- . . . -->
-<!-- Sometimes these statistical transformations happen under the hood when we use  -->
-<!-- a specific `geom_XXX()`. -->
-<!-- ## Statistical Transformation: `stat` -->
-<!-- ::: panel-tabset -->
-<!-- ### `stat_count()` -->
-<!-- :::: {.columns} -->
-<!-- ::: {.column width="50%"} -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-<!-- #| label: default-stat-with-geom-bar -->
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = class) -->
-<!--        ) + -->
-<!--   geom_bar() -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-<!-- ::: {.column width="50%"} -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-<!-- #| label: using-stat-count-with-specific-geom -->
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = class) -->
-<!--        ) + -->
-<!--   stat_count(geom = "bar") -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-<!-- :::: -->
-<!-- ### `stat_summary()` -->
-<!-- :::: {.columns} -->
-<!-- ::: {.column width="50%"} -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "5-6" -->
-<!-- #| label: using-stat-summary-with-mean-for-bars -->
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = class, -->
-<!--                      y = hwy) -->
-<!--        ) + -->
-<!--   stat_summary(geom = "bar", -->
-<!--                fun = "mean") + -->
-<!--   scale_y_continuous(limits = c(0, 45)) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-<!-- ::: {.column width="50%"} -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "5-6" -->
-<!-- #| label: using-stat-summary-with-max-for-bars -->
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = class, -->
-<!--                      y = hwy) -->
-<!--        ) + -->
-<!--   stat_summary(geom = "bar", -->
-<!--                fun = "max") + -->
-<!--   scale_y_continuous(limits = c(0, 45)) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-<!-- :::: -->
-<!-- ::: -->
-<!-- ## Position Adjustements -->
-<!-- Position adjustments determine how to arrange `geom`'s that would otherwise occupy the same space. -->
-<!-- ::: {.small} -->
-<!-- + `position = "dodge"`: Arrange elements side by side. -->
-<!-- + `position = "fill"`: Stack elements on top of one another + normalize height. -->
-<!-- + `position = "stack"`: Stack elements on top of one another. -->
-<!-- + `position = "jitter"`: Add random noise to `x` & `y` position of each element to -->
-<!-- avoid overplotting (see `geom_jitter()`). -->
-<!-- ::: -->
-<!-- ## Position Adjustements -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "4" -->
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(fl, fill = drv) -->
-<!--        ) +  -->
-<!--   geom_bar(position = "_____") -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ![](images/position.png) -->
-<!-- ## Plot Customizations -->
-<!-- ::: panel-tabset -->
-<!-- ### Labels -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "5-8" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| code-fold: true -->
-<!-- #| label: example-labs-specifications -->
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(x = displ, y = hwy, color = cyl) -->
-<!--        ) +  -->
-<!--   geom_jitter() +  -->
-<!--   labs(x = "Engine Displacement (liters)",  -->
-<!--        y = " ",  -->
-<!--        color = "Cylinders", -->
-<!--        title = "Cars with More Cylinders Have Larger Engine Displacement\n and Lower Fuel Efficiency") -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ### Themes -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "9" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| code-fold: true -->
-<!-- #| label: example-theme -->
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(x = displ, y = hwy, color = cyl) -->
-<!--        ) +  -->
-<!--   geom_jitter() +  -->
-<!--   labs(x = "Engine Displacement (liters)",  -->
-<!--        y = " ",  -->
-<!--        color = "Cylinders", -->
-<!--        title = "Cars with More Cylinders Have Larger Engine Displacement\n and Lower Fuel Efficiency") + -->
-<!--   theme_bw() + -->
-<!--   theme(legend.position = "bottom") -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ### Scales: Axes Ticks -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "9-11" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| code-fold: true -->
-<!-- #| label: example-axis-ticks -->
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(x = displ, y = hwy, color = cyl) -->
-<!--        ) +  -->
-<!--   geom_jitter() +  -->
-<!--   labs(x = "Engine Displacement (liters)",  -->
-<!--        y = " ",  -->
-<!--        color = "Cylinders", -->
-<!--        title = "Cars with More Cylinders Have Larger Engine Displacement\n and Lower Fuel Efficiency") + -->
-<!--   scale_y_continuous(limits = c(0, 50), -->
-<!--                      breaks = seq(from = 0, to = 50, by = 5) -->
-<!--                      ) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ### Scales: Color -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "9" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| code-fold: true -->
-<!-- #| label: example-colors -->
-<!-- ggplot(data = mpg,  -->
-<!--        mapping = aes(x = displ, y = hwy, color = cyl) -->
-<!--        ) +  -->
-<!--   geom_jitter() +  -->
-<!--   labs(x = "Engine Displacement (liters)",  -->
-<!--        y = " ",  -->
-<!--        color = "Cylinders", -->
-<!--        title = "Cars with More Cylinders Have Larger Engine Displacement\n and Lower Fuel Efficiency") + -->
-<!--   scale_color_gradient(low = "white", high = "green4") -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-<!-- ## Same Data, Three Different Plots -->
-<!-- ::: panel-tabset -->
-<!-- ### geom_point() -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- #| code-line-numbers: "6" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| label: example-scatterplot -->
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = cty,  -->
-<!--                      y = hwy, -->
-<!--                      color = class) -->
-<!--        ) + -->
-<!--   geom_point() + -->
-<!--   labs(x = "City (mpg)",  -->
-<!--        y = "Highway (mpg)",  -->
-<!--        color = " ") + -->
-<!--   theme(axis.title = element_text(size = 14), -->
-<!--         legend.position = "top", -->
-<!--         legend.text = element_text(size = 14) -->
-<!--         ) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ### geom_text() -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- #| code-line-numbers: "6" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| label: example-word-plot -->
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = cty, -->
-<!--                      y = hwy, -->
-<!--                      color = class) -->
-<!--        ) + -->
-<!--   geom_text(mapping = aes(label = class)) + -->
-<!--   labs(x = "City (mpg)",  -->
-<!--        y = "Highway (mpg)",  -->
-<!--        color = " ") + -->
-<!--   theme(axis.title = element_text(size = 14), -->
-<!--         legend.position = "top", -->
-<!--         legend.text = element_text(size = 14) -->
-<!--         ) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ### geom_smooth() -->
-<!-- ::: {.small} -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-fold: true -->
-<!-- #| code-line-numbers: "6" -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-align: center -->
-<!-- #| label: example-line-plot -->
-<!-- ggplot(data = mpg, -->
-<!--        mapping = aes(x = cty, -->
-<!--                      y = hwy, -->
-<!--                      color = class) -->
-<!--        ) + -->
-<!--   geom_smooth() + -->
-<!--   labs(x = "City (mpg)",  -->
-<!--        y = "Highway (mpg)",  -->
-<!--        color = " ") + -->
-<!--   theme(axis.title = element_text(size = 14), -->
-<!--         legend.position = "top", -->
-<!--         legend.text = element_text(size = 14) -->
-<!--         ) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: -->
-</section>
-<section id="faceting" class="slide level2">
-<h2>Faceting</h2>
-<p>Extracts subsets of data and places them in side-by-side plots.</p>
-<div class="cell">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10" data-code-line-numbers="6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">ggplot</span>(<span class="at">data =</span> sm_tx,</span>
-<span id="cb10-2"><a></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> date, </span>
-<span id="cb10-3"><a></a>                     <span class="at">y =</span> median)</span>
-<span id="cb10-4"><a></a>       ) <span class="sc">+</span> </span>
-<span id="cb10-5"><a></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb10-6"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>city) <span class="sc">+</span></span>
-<span id="cb10-7"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"loess"</span>) <span class="sc">+</span> </span>
-<span id="cb10-8"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Date"</span>,</span>
-<span id="cb10-9"><a></a>       <span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb10-10"><a></a>       <span class="at">color =</span> <span class="st">" "</span>,</span>
-<span id="cb10-11"><a></a>       <span class="at">title =</span> <span class="st">"Changes in Median Home Price for Texas Metro Areas"</span>) <span class="sc">+</span></span>
-<span id="cb10-12"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
-</div>
-</section>
-<section id="faceting-1" class="slide level2">
-<h2>Faceting</h2>
-<div class="panel-tabset">
-<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Options</a></li></ul>
-<div class="tab-content">
-<div id="tabset-6-1">
-<div class="small">
-<ul>
-<li><code>facet_wrap(~ b)</code>: facets by one variable
-<ul>
-<li><code>nrow</code> controls the number of rows the facets are output into</li>
-<li><code>ncol</code> controls the number of columns the facets are output into</li>
-</ul></li>
-<li><code>facet_grid(a ~ b)</code>: facet by two variables
-<ul>
-<li>variable <code>a</code> will be assigned to the rows</li>
-<li>variable <code>b</code> will be assigned to the columns into both rows and columns</li>
-</ul></li>
-</ul>
-</div>
 
 
-</div>
-</div>
-</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">

@@ -1579,14 +1579,14 @@
     "href": "slides/week-2/week-2-import.html#thursday-october-1",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Thursday, October 1",
-    "text": "Thursday, October 1\nToday we will…\n\n\nDebrief PA 1\nDebrief Lab 1\n\nContent Related to Lab 2\n\nNew Material\n\nTidy Data\nLoad External Data\nGraphical Perception\nColors in ggplot\n\nLab 2: Exploring Rodents with ggplot2\n\nUsing External Resources"
+    "text": "Thursday, October 1\nToday we will…\n\n\nDebrief PA 1 (10-minutes)\nDebrief Lab 1 (10-minutes)\n\nContent Related to Lab 2\n\nTidy Data & Loading External Data (5-minutes)\nMore Advanced Visualization Customizations (25-minutes)\n10-minute Break\nIntroduction to Lab 2 (10-minutes)\n\nUsing External Resources"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#multiple-categorical-variables",
     "href": "slides/week-2/week-2-import.html#multiple-categorical-variables",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Multiple Categorical Variables",
-    "text": "Multiple Categorical Variables\n\nColors & ShapesColors & Facets\n\n\n\n\n\nCode\nggplot(data = penguins) +\n    geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species, shape = island )) + \n    labs(title = \"Relashonship Between Bill Length and Bill Depth\", x = \"Bill Length (mm)\" , y = \"Bill Depth (mm)\",)\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")"
+    "text": "Multiple Categorical Variables\n\nColors & ShapesColors & Facets\n\n\n\n\n\nCode\nggplot(data = penguins) +\n    geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species, shape = island )) + \n    labs(title = \"Relationship Between Bill Length and Bill Depth\", x = \"Bill Length (mm)\" , y = \"Bill Depth (mm)\",)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#somethings-i-also-noticed",
@@ -1614,35 +1614,35 @@
     "href": "slides/week-2/week-2-import.html#growing-points",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Growing Points",
-    "text": "Growing Points\n\nQ2: All your code should be visible!\nQ9: Captions should include more information than what is already present in the plot!\nQ11: There’s no need to save intermediate objects if they are never used later!"
+    "text": "Growing Points\n\nAll your code should be visible (echo: true)!\nCode chunk options need to have a space before the option (#| label: not #|label:).\nQ9: Captions should include more information than what is already present in the plot!\nQ11: There’s no need to save intermediate objects if they are never used later!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#how-this-translates-into-lab-2",
     "href": "slides/week-2/week-2-import.html#how-this-translates-into-lab-2",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "How this translates into Lab 2…",
-    "text": "How this translates into Lab 2…\n\nEvery lab and challenge is expected to use code-folding.\nThere should be no messages / warnings output in your final rendered HTML.\nYou should reduce the amount of “intermediate object junk” in your workspace.\n\nAsk yourself, do I need to use this later?\nIf the answer is no, then you should not save that object."
+    "text": "How this translates into Lab 2…\n\nEvery lab and challenge is expected to use code-folding.\nThere should never be any messages or warnings output in your final rendered HTML.\nYou should reduce the amount of “intermediate object junk” in your workspace.\n\nAsk yourself, do I need to use this later?\nIf the answer is no, then you should not save that object.\nJust output the plot!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#tidy-data-1",
     "href": "slides/week-2/week-2-import.html#tidy-data-1",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Tidy Data",
-    "text": "Tidy Data\n\nArtwork by Allison Horst"
+    "text": "Tidy Data\n\n\n\nArtwork by Allison Horst"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#same-data-different-formats",
     "href": "slides/week-2/week-2-import.html#same-data-different-formats",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Same Data, Different Formats",
-    "text": "Same Data, Different Formats\nDifferent formats of the data are tidy in different ways.\n\nOption 1Option 2"
+    "text": "Same Data, Different Formats\nDifferent formats of the data are tidy in different ways.\n\nOption 1Option 2\n\n\n\n\n\n\n\nTeam\nPoints\nAssists\nRebounds\n\n\n\n\nA\n88\n12\n22\n\n\nB\n91\n17\n28\n\n\nC\n99\n24\n30\n\n\nD\n94\n28\n31\n\n\n\n\n\n\n\n\n\n\n\n\nTeam\nStatistic\nValue\n\n\n\n\nA\nPoints\n88\n\n\nA\nAssists\n12\n\n\nA\nRebounds\n22\n\n\nB\nPoints\n91\n\n\nB\nAssists\n17\n\n\nB\nRebounds\n28\n\n\nC\nPoints\n99\n\n\nC\nAssists\n24\n\n\nC\nRebounds\n30\n\n\nD\nPoints\n94\n\n\nD\nAssists\n28\n\n\nD\nRebounds\n31"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#connection-to-ggplot",
     "href": "slides/week-2/week-2-import.html#connection-to-ggplot",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Connection to ggplot",
-    "text": "Connection to ggplot\nLet’s make a plot of each team’s statistics!\n\nOption 1 - Wide DataOption 2 - Long Data\n\n\n\n\n\nCode\nggplot(data = bb_wide, \n       mapping = aes(x = Team)\n       ) +\n  geom_point(mapping = aes(y = Points, \n                           color = \"Points\"), \n             size = 4) +\n  geom_point(mapping = aes(y = Assists, \n                           color = \"Assists\"), \n             size = 4) +\n  geom_point(mapping = aes(y = Rebounds, \n                           color = \"Rebounds\"), \n             size = 4) + \n  scale_colour_manual(\n    values = c(\"darkred\", \"steelblue\", \"forestgreen\")\n  ) +\n  labs(color = \"Statistic\")\n\n\n\n\n\n\n\n\nCode\nggplot(data = bb_long, \n       mapping = aes(x = Team, \n                     y = Value, \n                     color = Statistic)\n       ) +\n  geom_point(size = 4) + \n  scale_colour_manual(\n    values = c(\"darkred\", \"steelblue\", \"forestgreen\")\n  ) +\n  labs(color = \"Statistic\")"
+    "text": "Connection to ggplot\nLet’s make a plot of each team’s statistics!\n\nOption 1 - Wide DataOption 2 - Long Data\n\n\n\n\n\nCode\nggplot(data = bb_wide, \n       mapping = aes(x = Team)\n       ) +\n  geom_point(mapping = aes(y = Points, \n                           color = \"Points\"), \n             size = 4) +\n  geom_point(mapping = aes(y = Assists, \n                           color = \"Assists\"), \n             size = 4) +\n  geom_point(mapping = aes(y = Rebounds, \n                           color = \"Rebounds\"), \n             size = 4) + \n  scale_colour_manual(\n    values = c(\"darkred\", \"steelblue\", \"forestgreen\")\n  ) +\n  labs(color = \"Statistic\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = bb_long, \n       mapping = aes(x = Team, \n                     y = Value, \n                     color = Statistic)\n       ) +\n  geom_point(size = 4) + \n  scale_colour_manual(\n    values = c(\"darkred\", \"steelblue\", \"forestgreen\")\n  ) +\n  labs(color = \"Statistic\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#tidy-data-2",
@@ -1663,7 +1663,7 @@
     "href": "slides/week-2/week-2-import.html#common-types-of-data-files-1",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Common Types of Data Files",
-    "text": "Common Types of Data Files\n\nFile AFile BFile CSources\n\n\n\n\n\n\n\n\n\n\n\n\nFile A\nFile B\nFile C"
+    "text": "Common Types of Data Files\n\nFile AFile BFile C\n\n\n What is the delimiter for this file?\n\n\n What is the delimiter for this file?\n\n\n What is the delimiter for this file?"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#loading-external-data",
@@ -1677,7 +1677,7 @@
     "href": "slides/week-2/week-2-import.html#loading-external-data-1",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Loading External Data",
-    "text": "Loading External Data\nThe tidyverse has some cleaned-up versions in the readr and readxl packages:\n\n\nread_csv() is for comma-separated data.\nread_tsv() is for tab-separated data.\nread_table() is for white-space-separated data.\nread_delim() is any data with “columns” (you specify the separator). The above are special cases.\nread_xls() and read_xlsx() are specifically for dealing with Excel files.\n\n\nRemember to load the readr and readxl packages first!"
+    "text": "Loading External Data\nThe tidyverse has some cleaned-up versions of the base R functions in the readr and readxl packages:\n\n\nread_csv() is for comma-separated data.\nread_tsv() is for tab-separated data.\nread_table() is for white-space-separated data.\nread_delim() is any data with “columns” (you specify the separator). The above are special cases.\nread_xls() and read_xlsx() are specifically for dealing with Excel files.\n\n\nRemember to load the readr and readxl packages first!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#whats-the-difference",
@@ -1712,7 +1712,7 @@
     "href": "slides/week-2/week-2-import.html#pre-attentive-features-4",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Pre-attentive Features",
-    "text": "Pre-attentive Features\n\nfeatures that we see and perceive before we even think about it\n\n\nThey will jump out at us in less than 250 ms.\nE.g., color, form, movement, spatial location.\n\n\nThere is a hierarchy of features:\n\nColor is stronger than shape.\nCombinations of pre-attentive features may not be pre-attentive due to interference."
+    "text": "Pre-attentive Features\n\nfeatures that we see and perceive before we even think about it\n\n\nThey will jump out at us in less than 250 ms.\nE.g., color, form, movement, spatial location.\n\n\nThere is a hierarchy of features (e.g., color is stronger than shape)."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#gestalt-principles",
@@ -1754,28 +1754,28 @@
     "href": "slides/week-2/week-2-import.html#color-guidelines-1",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color Guidelines",
-    "text": "Color Guidelines\nFor categorical data, try not to use more than 7 colors:\n\nIf you need to, you can use colorRampPalette() from the RColorBrewer package to produce larger palettes:"
+    "text": "Color Guidelines\nFor categorical data, try not to use more than 7 colors:\n\n\n\n\n\n\n\n\n\n\nIf you need to, you can use colorRampPalette() from the RColorBrewer package to produce larger palettes:"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-guidelines-2",
     "href": "slides/week-2/week-2-import.html#color-guidelines-2",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color Guidelines",
-    "text": "Color Guidelines\n\nFor quantitative data, use mappings from data to color that are numerically and perceptually uniform.\n\nRelative discriminability of two colors should be proportional to the difference between the corresponding data values."
+    "text": "Color Guidelines\nTo make your graphic friendly for people with different color vision deficiencies…\n\nuse double encoding - when you use color, also use another aesthetic (line type, shape, facet, etc.)."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-guidelines-3",
     "href": "slides/week-2/week-2-import.html#color-guidelines-3",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color Guidelines",
-    "text": "Color Guidelines\nTo make your graphic color deficiency friendly…\n\nuse double encoding - when you use color, also use another aesthetic (line type, shape, facet, etc.)."
+    "text": "Color Guidelines\nTo make your graphic friendly for people with different color vision deficiencies…\n\nwith a unidirectional scale (e.g., all + values), use a monochromatic color gradient.\n\n\n\n\n\n\n\n\n\n\n\nwith a bidirectional scale (e.g., + and - values), use a purple-white-orange color gradient. Transition through white!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-guidelines-4",
     "href": "slides/week-2/week-2-import.html#color-guidelines-4",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color Guidelines",
-    "text": "Color Guidelines\nTo make your graphic color deficiency friendly…\n\nwith a unidirectional scale (e.g., all + values), use a monochromatic color gradient.\n\n\nwith a bidirectional scale (e.g., + and - values), use a purple-white-orange color gradient. Transition through white!"
+    "text": "Color Guidelines\nTo make your graphic friendly for people with different color vision deficiencies…\n\nprint your chart out in black and white – if you can still read it, it will be safe for all users."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-guidelines-5",
@@ -1824,14 +1824,14 @@
     "href": "slides/week-2/week-2-import.html#to-do",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "To do…",
-    "text": "To do…\n\nLab 2: Exploring rodents with ggplot2\n\ndue Sunday, October 6 at 11:59pm\n\nLab 2: Spicing things up with ggplot2\n\ndue Sunday, October 6 at 11:59pm\n\nComplete Week 3 Coursework: Data Wrangling with dplyr\n\nCheck-ins 3.1 and 3.2 due Tuesday, October 8 at 12pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n:::"
+    "text": "To do…\n\nLab 2: Exploring rodents with ggplot2\n\ndue Monday, September 29 at 5pm\n\nChallenge 2: Spicing things up with ggplot2\n\ndue Monday, September 29 at 5pm\n\nComplete Week 3 Coursework: Data Wrangling with dplyr\n\nCheck-ins 3.1 and 3.2 due Tuesday, September 30 at 8am"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#faceting",
     "href": "slides/week-2/week-2-import.html#faceting",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Faceting",
-    "text": "Faceting\nExtracts subsets of data and places them in side-by-side plots.\n\n\nCode\nggplot(data = sm_tx,\n       mapping = aes(x = date, \n                     y = median)\n       ) + \n  geom_point() + \n  facet_wrap(~city) +\n  geom_smooth(method = \"loess\") + \n  labs(x = \"Date\",\n       y = \"\",\n       color = \" \",\n       title = \"Changes in Median Home Price for Texas Metro Areas\") +\n  scale_y_continuous(labels = scales::label_dollar())"
+    "text": "Faceting\n\nExtracts subsets of data and places them in side-by-side plots.\n\n\nOne VariableTwo Variables\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_grid(sex ~ island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#faceting-1",
@@ -5381,5 +5381,33 @@
     "title": "Loops and Iteration",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI fully support more R packages being cat themed.↩︎"
+  },
+  {
+    "objectID": "slides/week-2/week-2-import.html#why-is-there-an-embed-resources-true-line-in-the-yaml",
+    "href": "slides/week-2/week-2-import.html#why-is-there-an-embed-resources-true-line-in-the-yaml",
+    "title": "Tidy Data, Importing Data & More Advanced Graphics",
+    "section": "Why is there an embed-resources: true line in the YAML?",
+    "text": "Why is there an embed-resources: true line in the YAML?\n\n\nBy default, Quarto does not embed plots in the HTML document. Instead, it creates a “Lab-1-files” folder which stores all your plots.\n\n\n\nThis means that by default your plots are not included in your HTML file!\n\n\n\n\n\n\n\n---\ntitle: \"Lab 1\"\nauthor: \"Dr. T!\"\nformat: html\neditor: source\nembed-resources: true\n---\n\n\n\n\n\nThe embed-resources: true line in the YAML forces the visualizations to be embedded in your HTML!"
+  },
+  {
+    "objectID": "slides/week-2/week-2-import.html#scales",
+    "href": "slides/week-2/week-2-import.html#scales",
+    "title": "Tidy Data, Importing Data & More Advanced Graphics",
+    "section": "Scales",
+    "text": "Scales\n\nYou can set scales to let axis limits vary across facets:\nfacet_grid(y ~ x, scales = ______)\n\n\"free\" – both x- and y-axis limits adjust to individual facets\n\"free_x\" – only x-axis limits adjust\n\"free_y\" – only y-axis limits adjust\n\n\n\n\n\n\n\n\n\n\n\n:::"
+  },
+  {
+    "objectID": "slides/week-2/week-2-import.html#changing-the-facet-scales",
+    "href": "slides/week-2/week-2-import.html#changing-the-facet-scales",
+    "title": "Tidy Data, Importing Data & More Advanced Graphics",
+    "section": "Changing the Facet Scales",
+    "text": "Changing the Facet Scales\n\nYou can set scales to let axis limits vary across facets using the scales argument.\n\n\nfree_xfree_yfree everyone!\n\n\n\nThe x-axis limits adjust to individual facets.\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, scales = \"free_x\") +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\"free_y\" – only y-axis limits adjust to individual facets.\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, scales = \"free_y\") +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nBoth x- and y-axis limits adjust to individual facets.\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, scales = \"free\") +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")"
+  },
+  {
+    "objectID": "slides/week-2/week-2-import.html#further-customizations",
+    "href": "slides/week-2/week-2-import.html#further-customizations",
+    "title": "Tidy Data, Importing Data & More Advanced Graphics",
+    "section": "Further Customizations",
+    "text": "Further Customizations\n\nPlot LabelsFacet LabelsThemesAxes Ticks\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\ncustom_labels &lt;- c(\n  Dream = \"Dream Island\",\n  Torgersen = \"Torgersen Island\",\n  Biscoe = \"Biscoe Island\"\n)\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, labeller = as_labeller(custom_labels)) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\") +\n  theme_bw() +\n  theme(legend.position = \"top\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\") +\n  scale_y_continuous(limits = c(10, 30),\n                     breaks = seq(from = 10, to = 30, by = 5)\n                     )"
   }
 ]

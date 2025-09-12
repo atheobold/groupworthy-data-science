@@ -268,8 +268,91 @@
 <section id="creating-tidy-data" class="slide level2">
 <h2>Creating Tidy Data</h2>
 <p>We may need to <strong>transform</strong> our data to turn it into the <strong>version of tidy</strong> that is best for a task at hand.</p>
-
-<img data-src="https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg" alt="An illustration of two round, fluffy characters, one green and one purple, holding a large table between them labeled 'TIDY.' The table is held by clamps on either side labeled 'WRANGLE' in orange and pink. The green character on the left is smiling with one arm raised, while the purple character on the right is cheering with both arms up. The table represents tidy data, and the clamps labeled 'WRANGLE' suggest data manipulation or preparation." class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section>
+<p><img data-src="https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg" alt="An illustration of two round, fluffy characters, one green and one purple, holding a large table between them labeled 'TIDY.' The table is held by clamps on either side labeled 'WRANGLE' in orange and pink. The green character on the left is smiling with one arm raised, while the purple character on the right is cheering with both arms up. The table represents tidy data, and the clamps labeled 'WRANGLE' suggest data manipulation or preparation."> <!-- OLD SLIDES FROM WEEK 2 --> <!-- ## Same Data, Different Formats --></p>
+<!-- Different formats of the data are **tidy** in different ways. -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| label: creating-small-data-set-wide-format -->
+<!-- bb_wide <- tibble(Team     = c("A", "B", "C", "D"), -->
+<!--                        Points   = c(88, 91, 99, 94), -->
+<!--                        Assists  = c(12, 17, 24, 28), -->
+<!--                        Rebounds = c(22, 28, 30, 31) -->
+<!--                        ) -->
+<!-- ``` -->
+<!-- ::: panel-tabset -->
+<!-- ### Option 1 -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| label: displaying-wide-data -->
+<!-- bb_wide |>  -->
+<!--   knitr::kable() -->
+<!-- ``` -->
+<!-- ### Option 2 -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| label: transforming-to-long -->
+<!-- bb_long <- bb_wide |>  -->
+<!--   pivot_longer(cols      = c(Points, Assists, Rebounds), -->
+<!--                names_to  = "Statistic", -->
+<!--                values_to = "Value" -->
+<!--                ) -->
+<!-- bb_long |>  -->
+<!--   knitr::kable() -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ## Connection to ggplot -->
+<!-- Let's make a plot of each team's statistics! -->
+<!-- ::::: panel-tabset -->
+<!-- ### Option 1 - Wide Data -->
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| label: plot-with-wide-data -->
+<!-- #| code-fold: true -->
+<!-- #| fig-width: 6 -->
+<!-- #| fig-height: 4 -->
+<!-- #| fig-align: center -->
+<!-- ggplot(data = bb_wide,  -->
+<!--        mapping = aes(x = Team) -->
+<!--        ) + -->
+<!--   geom_point(mapping = aes(y = Points,  -->
+<!--                            color = "Points"),  -->
+<!--              size = 4) + -->
+<!--   geom_point(mapping = aes(y = Assists,  -->
+<!--                            color = "Assists"),  -->
+<!--              size = 4) + -->
+<!--   geom_point(mapping = aes(y = Rebounds,  -->
+<!--                            color = "Rebounds"),  -->
+<!--              size = 4) +  -->
+<!--   scale_colour_manual( -->
+<!--     values = c("darkred", "steelblue", "forestgreen") -->
+<!--   ) + -->
+<!--   labs(color = "Statistic") -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ### Option 2 - Long Data -->
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| label: plot-with-long-data -->
+<!-- #| code-fold: true -->
+<!-- #| fig-width: 6 -->
+<!-- #| fig-height: 4 -->
+<!-- #| fig-align: center -->
+<!-- ggplot(data = bb_long,  -->
+<!--        mapping = aes(x = Team,  -->
+<!--                      y = Value,  -->
+<!--                      color = Statistic) -->
+<!--        ) + -->
+<!--   geom_point(size = 4) +  -->
+<!--   scale_colour_manual( -->
+<!--     values = c("darkred", "steelblue", "forestgreen") -->
+<!--   ) + -->
+<!--   labs(color = "Statistic") -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::::: -->
+</section>
 <section id="cereal-data" class="slide level2">
 <h2>Cereal Data</h2>
 <div class="cell">

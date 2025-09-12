@@ -63,6 +63,11 @@ t <- d |>
                    ifelse(is.na(x), fontawesome::fa('file-alt', fill_opacity = 0.1), 
                           glue::glue('<a href="{x}"><i class="fa fa-file-alt" style="color: purple;"></i></a>'))
                  }) %>%
+  text_transform(cells_body(columns = c(notes)),
+                 fn = function(x){
+                   ifelse(is.na(x), fontawesome::fa('clipboard', fill_opacity = 0.1), 
+                          glue::glue('<a href="{x}"><i class="fa fa-clipboard" style="color: purple;"></i></a>'))
+                 }) |> 
   fmt_date(date, date_style = 9) %>%
   sub_missing(columns = date, missing_text = "") |>
   as_raw_html() 

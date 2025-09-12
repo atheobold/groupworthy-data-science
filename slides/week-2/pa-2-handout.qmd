@@ -13,8 +13,7 @@ library(palmerpenguins)
 
 # Data Context
 
-![](images/penguins-docs.png){fig-alt="A screenshot of the R documentation page for the penguins dataset. The documentation page describes the context of the data (body measurements of penguins from the Palmer Archipeligo of Antarctica), the variables included in the data (species, island, bill_length_mm, etc.), and the units for each variable."}
-**What variables are included in these data? What units are the variables measured in? What do you think each row in the data represents?**
+![](images/penguins-docs.png){fig-alt="A screenshot of the R documentation page for the penguins dataset. The documentation page describes the context of the data (body measurements of penguins from the Palmer Archipeligo of Antarctica), the variables included in the data (species, island, bill_length_mm, etc.), and the units for each variable."} **What variables are included in these data? What units are the variables measured in? What do you think each row in the data represents?**
 
 \pagebreak
 
@@ -56,7 +55,7 @@ ggplot(data = penguins,
 
 \vspace{2cm}
 
-::: {.midi}
+::: midi
 ```{r}
 #| echo: true
 #| eval: false
@@ -73,17 +72,18 @@ ggplot(data = penguins,
 **What do you expect to see after running this code?**
 
 \vspace{2cm}
+
 ## `aes`thetics & `geom`etries
 
-::: columns
+:::::: columns
 ::: {.column width="40%"}
 **Common `aes`thetics**
 
-+ x, y
-+ color, fill
-+ linetype
-+ shape
-+ size
+-   x, y
+-   color, fill
+-   linetype
+-   shape
+-   size
 :::
 
 ::: {.column width="5%"}
@@ -92,81 +92,80 @@ ggplot(data = penguins,
 ::: {.column width="55%"}
 **Common `geom`etries**
 
-+ `geom_density()`
-+ `geom_bar()`
-+ `geom_histogram()`
-+ `geom_boxplot()`
-+ `geom_point()`
-+ `geom_line()`
+-   `geom_density()`
+-   `geom_bar()`
+-   `geom_histogram()`
+-   `geom_boxplot()`
+-   `geom_point()`
+-   `geom_line()`
 :::
-:::
-
+::::::
 
 ## How many penguins were captured on each island?
 
-::: columns
+:::::::: columns
 ::: {.column width="30%"}
-1. What type of variable is `island`? 
+1.  What type of variable is `island`?
 :::
 
 ::: {.column width="3%"}
 :::
 
 ::: {.column width="30%"}
-2. What type of plot would you make for this type of variable?
+2.  What type of plot would you make for this type of variable?
 :::
 
 ::: {.column width="3%"}
 :::
 
 ::: {.column width="30%"}
-3. What `geom` would you use to get this plot?
+3.  What `geom` would you use to get this plot?
 :::
-:::
+::::::::
 
 ## What are the most common bill lengths for the penguins included in these data?
 
-::: columns
+:::::::: columns
 ::: {.column width="30%"}
-1. What type of variable is `island`? 
+1.  What type of variable is `island`?
 :::
 
 ::: {.column width="3%"}
 :::
 
 ::: {.column width="30%"}
-2. What type of plot would you make for this type of variable?
+2.  What type of plot would you make for this type of variable?
 :::
 
 ::: {.column width="3%"}
 :::
 
 ::: {.column width="30%"}
-3. What `geom` would you use to get this plot?
+3.  What `geom` would you use to get this plot?
 :::
-:::
+::::::::
 
 ## What is the relationship between a penguin's bill length and body mass?
 
-::: columns
+:::::::: columns
 ::: {.column width="30%"}
-1. What type of variable is `island`? 
+1.  What type of variable is `island`?
 :::
 
 ::: {.column width="3%"}
 :::
 
 ::: {.column width="30%"}
-2. What type of plot would you make for this type of variable?
+2.  What type of plot would you make for this type of variable?
 :::
 
 ::: {.column width="3%"}
 :::
 
 ::: {.column width="30%"}
-3. What `geom` would you use to get this plot?
+3.  What `geom` would you use to get this plot?
 :::
-:::
+::::::::
 
 ## How would you recreate this plot?
 
@@ -184,23 +183,23 @@ ggplot(data = penguins,
   facet_wrap(~ island)
 ```
 
-::: columns
+::::::: columns
 ::: {.column width="25%"}
-1. What variables are included? 
+1.  What variables are included?
 :::
 
 ::: {.column width="25%"}
-2. What aesthetics are being used?
+2.  What aesthetics are being used?
 :::
 
 ::: {.column width="25%"}
-3. What geometries are being used? 
+3.  What geometries are being used?
 :::
 
 ::: {.column width="25%"}
-4. What functions would you need?
+4.  What functions would you need?
 :::
-:::
+:::::::
 
 </br>
 

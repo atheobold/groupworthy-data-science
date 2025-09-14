@@ -19,29 +19,25 @@ library(palmerpenguins)
 
 Today we will...
 
-::: {.small}
-+ Debrief PA 1
-+ Debrief Lab 1 
-  + Content Related to Lab 2
-+ New Material
-  + Tidy Data
-  + Load External Data
-  + Graphical Perception
-  + Colors in ggplot
-+ [Lab 2: Exploring Rodents with ggplot2](https://classroom.github.com/a/4e-4Et4D)
-  + Using External Resources
+::: midi
+-   Debrief PA 1 (10-minutes)
+-   Debrief Lab 1 (10-minutes)
+    -   Content Related to Lab 2
+-   Tidy Data & Loading External Data (5-minutes)
+-   More Advanced Visualization Customizations (25-minutes)
+-   10-minute Break
+-   Introduction to Lab 2 (10-minutes)
+    -   Using External Resources
 :::
-<!-- Be sure to update with new GH Classroom assignment link! -->
 
 # PA 1: Using Data Visualization to Find the Penguins
 
 ## Multiple Categorical Variables
 
-::: panel-tabset
-
+::::: panel-tabset
 ## Colors & Shapes
 
-::: {.small}
+::: small
 ```{r}
 #| code-fold: true
 #| echo: true
@@ -51,13 +47,13 @@ Today we will...
 
 ggplot(data = penguins) +
     geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species, shape = island )) + 
-    labs(title = "Relashonship Between Bill Length and Bill Depth", x = "Bill Length (mm)" , y = "Bill Depth (mm)",)
+    labs(title = "Relationship Between Bill Length and Bill Depth", x = "Bill Length (mm)" , y = "Bill Depth (mm)",)
 ```
 :::
 
 ## Colors & Facets
 
-::: {.small}
+::: small
 ```{r}
 #| code-fold: true
 #| echo: true
@@ -76,88 +72,242 @@ ggplot(data = penguins,
        title = "Changes in Bill Depth versus Length")
 ```
 :::
-:::
+:::::
 
-## Somethings I also noticed...
+## Faceting
 
-::: {.incremental}
-- Code chunk options need to have a space before the option
-(`#| label:` not `#|label:`).
-- Make sure your code is visible (`echo: true`)!
-- Make sure you remove the `messages` and `warnings` from your final document!  
-:::
+::: {.midi}
+Extracts subsets of data and places them in side-by-side plots.
+::: 
 
-## Did you notice that your figures were not included in the HTML your group submitted to Canvas?
+::: panel-tabset
 
-. . .
+## One Variable
 
 ::: {.small}
-By default, Quarto **does not** embed plots in the HTML document. Instead, it
-creates a "PA-2-files" folder which stores all your plots. 
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 12
+#| code-line-numbers: "6"
+#| code-fold: true
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island) +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
+```
 :::
 
-. . .
+## Two Variables
 
 ::: {.small}
-So, when you submit your HTML file, your plots are not included! How do we fix
-this????
-:::
+```{r}
+#| fig-height: 3.5
+#| fig-width: 8
+#| code-line-numbers: "6"
+#| echo: true
+#| code-fold: true
 
-. . .
-
-::: {.small}
-Add an `embed-resources: true` line to your YAML (at the beginning of your 
-document)!
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_grid(sex ~ island) +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
 
 ```
----
-title: "PA 2: Using Data Visualization to Find the Penguins"
-author: "Dr. T!"
-format: html
-editor: source
-embed-resources: true
----
-```
+:::
+:::
 
+
+## Changing the Facet Scales
+
+::: {.small}
+You can set scales to let axis limits vary across facets using the `scales`
+argument.
+:::
+
+::: panel-tabset
+
+## `free_x`
+
+::: {.midi}
+The x-axis limits adjust to individual facets. 
+:::
+
+::: {.small}
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 12
+#| code-line-numbers: "6"
+#| code-fold: true
+#| label: free-x-facets
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island, scales = "free_x") +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
+```
+:::
+
+## `free_y`
+
+::: {.midi}
+`"free_y"` -- only y-axis limits adjust to individual facets. 
+:::
+
+::: {.small}
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 12
+#| code-line-numbers: "6"
+#| code-fold: true
+#| label: free-y-facets
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island, scales = "free_y") +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
+```
+:::
+
+## `free` everyone!
+
+::: {.midi}
+Both x- and y-axis limits adjust to individual facets.
+:::
+
+::: {.small}
+```{r}
+#| echo: true
+#| fig-height: 3
+#| fig-width: 12
+#| code-line-numbers: "6"
+#| code-fold: true
+#| label: free-everyone-facets
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island, scales = "free") +
+  labs(x = "Bill Length",
+       y = "", 
+       title = "Changes in Bill Depth versus Length")
+
+```
+:::
 :::
 
 # Lab 1
 
 ## Grading / Feedback
 
-::: {.small}
-+ Each question will earn a score of "Success" or "Growing".
-  * Questions marked "Growing" will receive feedback on how to improve your
-  solution.
-  * These questions can be resubmitted for additional feedback. 
+::: small
+-   Each question will earn a score of "Success" or "Growing".
+    -   Questions marked "Growing" will receive feedback on how to improve your solution.
+    -   These questions can be resubmitted for additional feedback.
 :::
 
 . . .
 
-::: {.small}
-+ Earning a "Success" doesn't necessarily mean your solution is without error.
-  * You may still receive feedback on how to improve your solution.
-  * These questions cannot be resubmitted for additional feedback.
+::: small
+-   Earning a "Success" doesn't necessarily mean your solution is without error.
+    -   You may still receive feedback on how to improve your solution.
+    -   These questions cannot be resubmitted for additional feedback.
 :::
 
 ## Growing Points
 
-::: {.incremental}
-- Q2: **All** your code should be visible! 
-- Q9: Captions should include more information than what is already present in
-the plot!
-- Q11: There's no need to save intermediate objects if they are never used later! 
+::: incremental
+-   **All** your code should be visible (`echo: true`)!
+-   Code chunk options need to have a space before the option (`#| label:` not `#|label:`).
+-   Q9: Captions should include more information than what is already present in the plot!
+-   Q11: There's no need to save intermediate objects if they are never used later!
 :::
 
 ## How this translates into Lab 2...
 
-::: {.incremental}
-- Every lab and challenge is expected to use code-folding. 
-- There should be no messages / warnings output in your final rendered HTML. 
-- You should reduce the amount of "intermediate object junk" in your workspace. 
-  + Ask yourself, do I need to use this later?
-  + If the answer is no, then you should not save that object. 
+::: incremental
+-   Every lab and challenge is expected to use code-folding.
+-   There should never be any messages or warnings output in your final rendered
+HTML.
+-   You should reduce the amount of "intermediate object junk" in your workspace.
+    -   Ask yourself, do I need to use this later?
+    -   If the answer is no, then you should not save that object.
+    -   Just output the plot! 
 :::
+
+## Why is there an `embed-resources: true` line in the YAML?
+
+</br>
+
+::: {.midi}
+By default, Quarto **does not** embed plots in the HTML document. Instead, it
+creates a "Lab-1-files" folder which stores all your plots.
+:::
+
+. . .
+
+::: midi
+This means that **by default** your plots **are not** included in your HTML
+file!
+:::
+
+. . .
+
+</br> 
+
+::: columns
+::: {.column width="35%"}
+::: small
+```         
+---
+title: "Lab 1"
+author: "Dr. T!"
+format: html
+editor: source
+embed-resources: true
+---
+```
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="60%"}
+::: midi
+The `embed-resources: true` line in the YAML forces the visualizations to be 
+**embedded** in your HTML!
+:::
+:::
+:::
+
+
+
 
 # Tidy Data
 
@@ -165,116 +315,9 @@ the plot!
 
 ![Artwork by Allison Horst](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/85520b8f-4629-4763-8a2a-9ceff27458bf_rw_1920.jpg?h=21007b20ac00cf37318dca645c215453){fig-alt="An educational graphic explaining 'Tidy Data' with text and a simple table. The main text at the top reads, 'TIDY DATA is a standard way of mapping the meaning of a dataset to its structure,' followed by the attribution to Hadley Wickham. Below, it explains the concept of tidy data: 'In tidy data: each variable forms a column, each observation forms a row, each cell is a single measurement.' To the right, there is a small table with three columns labeled 'id,' 'name,' and 'color,' demonstrating how each column is a variable and each row is an observation. The table contains entries such as 'floof' (gray), 'max' (black), and 'panda' (calico). The image ends with a citation for Hadley Wickham's 2014 paper on Tidy Data."}
 
+<!-- ## Tidy Data -->
 
-## Same Data, Different Formats
-
-Different formats of the data are **tidy** in different ways.
-
-```{r}
-#| echo: false
-#| label: creating-small-data-set-wide-format
-
-bb_wide <- tibble(Team     = c("A", "B", "C", "D"),
-                       Points   = c(88, 91, 99, 94),
-                       Assists  = c(12, 17, 24, 28),
-                       Rebounds = c(22, 28, 30, 31)
-                       )
-```
-
-::: panel-tabset
-### Option 1
-
-```{r}
-#| echo: false
-#| label: displaying-wide-data
-
-bb_wide |> 
-  knitr::kable()
-```
-
-### Option 2
-
-```{r}
-#| echo: false
-#| label: transforming-to-long
-
-bb_long <- bb_wide |> 
-  pivot_longer(cols      = c(Points, Assists, Rebounds),
-               names_to  = "Statistic",
-               values_to = "Value"
-               )
-
-bb_long |> 
-  knitr::kable()
-```
-
-:::
-
-## Connection to ggplot
-
-Let's make a plot of each team's statistics! 
-
-::: panel-tabset
-### Option 1 - Wide Data
-
-::: {.small}
-```{r}
-#| echo: true
-#| label: plot-with-wide-data
-#| code-fold: true
-#| fig-width: 6
-#| fig-height: 4
-#| fig-align: center
-
-ggplot(data = bb_wide, 
-       mapping = aes(x = Team)
-       ) +
-  geom_point(mapping = aes(y = Points, 
-                           color = "Points"), 
-             size = 4) +
-  geom_point(mapping = aes(y = Assists, 
-                           color = "Assists"), 
-             size = 4) +
-  geom_point(mapping = aes(y = Rebounds, 
-                           color = "Rebounds"), 
-             size = 4) + 
-  scale_colour_manual(
-    values = c("darkred", "steelblue", "forestgreen")
-  ) +
-  labs(color = "Statistic")
-```
-:::
-
-### Option 2 - Long Data
-
-::: {.small}
-```{r}
-#| echo: true
-#| label: plot-with-long-data
-#| code-fold: true
-#| fig-width: 6
-#| fig-height: 4
-#| fig-align: center
-
-ggplot(data = bb_long, 
-       mapping = aes(x = Team, 
-                     y = Value, 
-                     color = Statistic)
-       ) +
-  geom_point(size = 4) + 
-  scale_colour_manual(
-    values = c("darkred", "steelblue", "forestgreen")
-  ) +
-  labs(color = "Statistic")
-```
-:::
-
-:::
-
-## Tidy Data
-
-![Artwork by Allison Horst](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/40488240-4609-4dc3-8920-693e078b55ce_rw_1920.jpg?h=2e96a7e21e19c43867546498da026649){fig-alt="An illustration featuring a cute, cartoonish scene with three characters sitting on a bench. In the center, there is a smiling blue rectangular character resembling a tidy data table, holding an ice cream cone. On either side of the table are two round, fluffy creatures: one pink on the left and one green on the right, both also holding ice cream cones. Above the characters, the text reads 'make friends with tidy data.' The overall tone of the image is friendly and inviting, encouraging positive feelings toward tidy data."}
-
+<!-- ![Artwork by Allison Horst](https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/40488240-4609-4dc3-8920-693e078b55ce_rw_1920.jpg?h=2e96a7e21e19c43867546498da026649){fig-alt="An illustration featuring a cute, cartoonish scene with three characters sitting on a bench. In the center, there is a smiling blue rectangular character resembling a tidy data table, holding an ice cream cone. On either side of the table are two round, fluffy creatures: one pink on the left and one green on the right, both also holding ice cream cones. Above the characters, the text reads 'make friends with tidy data.' The overall tone of the image is friendly and inviting, encouraging positive feelings toward tidy data."} -->
 
 # Working with External Data
 
@@ -284,117 +327,112 @@ Look at the **file extension** for the type of data file.
 
 . . .
 
-:::: {.columns}
-
+::::: columns
 ::: {.column width="70%"}
-
-`.csv` :  "comma-separated values"
-
+`.csv` : "comma-separated values"
 :::
 
 ::: {.column width="30%"}
-```
+```         
 Name, Age
 Bob, 49
 Joe, 40
 ```
 :::
-
-::::
-
-. . .
-
-`.xls`, `.xlsx`:  Microsoft Excel spreadsheet
-
-  + Common approach: save as `.csv`
-  + Nicer approach:  use the `readxl` package
+:::::
 
 . . .
 
-`.txt`:  plain text
+`.xls`, `.xlsx`: Microsoft Excel spreadsheet
 
-  + Could have any sort of delimiter...
-  + Need to let R know what to look for!
+-   Common approach: save as `.csv`
+-   Nicer approach: use the `readxl` package
 
+. . .
+
+`.txt`: plain text
+
+-   Could have any sort of delimiter...
+-   Need to let R know what to look for!
 
 ## Common Types of Data Files
 
 ::: panel-tabset
 ### File A
 
-![](images/csv_file.png)
+![](images/csv_file.png){fig-alt="A screenshot of a raw data file. The top row is the name of the columns in quotations (LatD, LatM, LatS, NS, LonG, LonS, EW, City, State). The subsequent rows are the observations for the data with values for each of the variables. The entries of the data file are separated with commas."}
+What is the delimiter for this file?
 
 ### File B
 
-![](images/tsv_file.png)
+![](images/tsv_file.png){fig-alt="A screenshot of a raw data file. The top row is the name of the columns (FID, AFFGEOID, TRACTCE ST, STATE, ST_ABBR, STCNTY, FIPS, AREA_SQMI, E_TOTPOP). The subsequent rows are the observations for the data with values for each of the variables. The entries of the data file are separated by tabs."}
+What is the delimiter for this file?
 
 ### File C
 
-![](images/pipe_file.png)
-
-### Sources
-
-+ [File A](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html)
-+ [File B](https://github.com/ccusa/Disaster_Vulnerability_Map/blob/master/sample-data.tsv)
-+ [File C](https://chadbaldwin.net/2021/03/24/quick-parse-csv-file.html)
-
+![](images/pipe_file.png){fig-alt="A screenshot of a raw data file. There is no top row indicating column names. Rather, the data file starts with the first observation. The entries of the data file are separated with bars (|)."}
+What is the delimiter for this file?
 :::
+<!-- Sources -->
+
+<!-- -   [File A](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html) -->
+<!-- -   [File B](https://github.com/ccusa/Disaster_Vulnerability_Map/blob/master/sample-data.tsv) -->
+<!-- -   [File C](https://chadbaldwin.net/2021/03/24/quick-parse-csv-file.html) -->
 
 
 ## Loading External Data
 
 Using **base** `R` functions:
 
-- `read.csv()` is for reading in `.csv` files.
+-   `read.csv()` is for reading in `.csv` files.
 
-- `read.table()` and `read.delim()` are for any data with "columns" (you specify the separator).
-
+-   `read.table()` and `read.delim()` are for any data with "columns" (you specify the separator).
 
 ## Loading External Data
 
-The **tidyverse** has some cleaned-up versions in the `readr` and `readxl` packages: 
+The **tidyverse** has some cleaned-up versions of the base R functions in the
+`readr` and `readxl` packages:
 
-::: {.small}
-- `read_csv()` is for comma-separated data.
+::: small
+-   `read_csv()` is for comma-separated data.
 
-- `read_tsv()` is for tab-separated data.
+-   `read_tsv()` is for tab-separated data.
 
-- `read_table()` is for white-space-separated data.
+-   `read_table()` is for white-space-separated data.
 
-- `read_delim()` is any data with "columns" (you specify the separator). The above are special cases.
+-   `read_delim()` is any data with "columns" (you specify the separator). The above are special cases.
 
-- `read_xls()` and `read_xlsx()`  are specifically for dealing with Excel files.
+-   `read_xls()` and `read_xlsx()` are specifically for dealing with Excel files.
 :::
 
 Remember to load the `readr` and `readxl` packages first!
 
-
 ## What's the difference?
 
-::: columns
+:::::: columns
 ::: {.column width="47%"}
-![](images/read.csv_doc.png)
+![](images/read.csv_doc.png){fig-alt="A screenshot of the function arguments for the read.csv() function. The function has seven arguments: file, header, sep, quote, dec, fill, and comment.char."}
 :::
 
 ::: {.column width="3%"}
 :::
 
 ::: {.column width="48%"}
-![](images/read_csv_doc.png)
+![](images/read_csv_doc.png){fig-alt="A screenshot of the function arguments for the read_csv() function. The function has twenty arguments. The first two arguments are the same as read.csv() (file, column names), there is no sep argument as it assumes the file is separated with a comma (since it is a csv). The additional arguments allow the user to control aspects of how the data are read in, such as what data type should be used for each column, if certain rows should be skipped, or if only certain columns should be selected."}
 :::
-:::
+::::::
 
 <!-- # Reading in Data -->
 
 <!-- ![](images/here-horst.png){fig-alt="A cartoon showing two paths side-by-side. On the left is a scary spooky forest, with spiderwebs and gnarled trees, with file paths written on the branches like '~/mmm/nope.csv' and 'setwd(/haha/good/luck/)', with a scared looking cute fuzzy monster running out of it. On the right is a bright, colorful path with flowers, rainbow and sunshine, with signs saying 'here!' and 'it’s all right here!' A monster facing away from us in a backpack and walking stick is looking toward the right path. Stylized text reads 'here: find your path.'"} -->
 
-# Graphics
+# More Advanced Graphics
 
-# Graphics
+# More Advanced Graphics
 
-+ **Structure:** boxplot, scatterplot, etc.
+-   **Structure:** boxplot, scatterplot, etc.
 
-+ **Aesthetics:** features such as color, shape, and size that map other variables to structural features.
+-   **Aesthetics:** features such as color, shape, and size that map other variables to structural features.
 
 **Both** the structure and aesthetics should help viewers interpret the information.
 
@@ -432,44 +470,43 @@ knitr::include_graphics("images/pre-atten2.png")
 
 > features that we see and perceive before we even think about it
 
-+ They will jump out at us in less than 250 ms.
+-   They will jump out at us in less than 250 ms.
 
-+ E.g., color, form, movement, spatial location.
+-   E.g., color, form, movement, spatial location.
 
 . . .
 
-There is a **hierarchy** of features:
-
-+ Color is stronger than shape.
-+ Combinations of pre-attentive features may **not** be pre-attentive due to interference.
+There is a **hierarchy** of features (e.g., color is stronger than shape). 
 
 ## Gestalt Principles
 
-Gestalt Hierarchy	| Graphical Feature
-------------------| ------------------
-1. Enclosure	    | Facets
-2. Connection     |	Lines
-3. Proximity	    | White Space
-4. Similarity	    | Color/Shape
+| Gestalt Hierarchy | Graphical Feature |
+|-------------------|-------------------|
+| 1\. Enclosure     | Facets            |
+| 2\. Connection    | Lines             |
+| 3\. Proximity     | White Space       |
+| 4\. Similarity    | Color/Shape       |
 
 . . .
 
 </br>
 
-::: {.small}
+::: small
 Implications for practice:
 
-+ Know that we perceive some groups before others.
-+ Design to facilitate and emphasize the most important comparisons.
+-   Know that we perceive some groups before others.
+-   Design to facilitate and emphasize the most important comparisons.
 :::
 
 ## Double Encoding
+
 ```{r}
 #| fig-align: center
 knitr::include_graphics("images/double.png")
 ```
 
 ## No Double Encoding
+
 ```{r}
 #| fig-align: center
 knitr::include_graphics("images/no_double.png")
@@ -479,39 +516,37 @@ knitr::include_graphics("images/no_double.png")
 
 ## Color
 
-+ Color, hue, and intensity are pre-attentive features, and bigger contrasts lead to faster detection.
-  + **Hue**: main color family (red, orange, yellow...)
-  + **Intensity**: amount of color
+-   Color, hue, and intensity are pre-attentive features, and bigger contrasts lead to faster detection.
+    -   **Hue**: main color family (red, orange, yellow...)
+    -   **Intensity**: amount of color
 
-:::: {.columns}
+::::: columns
 ::: {.column width="30%"}
-
 ```{r}
 #| out-width: 90%
 #| fig-alt: "This image is a color wheel that displays the concept of 'Hue.' The wheel is divided into 12 segments, each representing a different color. The colors transition smoothly around the wheel, moving from yellow to yellow-orange, orange, red-orange, red, red-violet, violet, blue-violet, blue, blue-green, green, and yellow-green. The word 'HUE' is written in the center of the wheel, indicating that the image is meant to illustrate the variety of hues that make up the color spectrum."
 knitr::include_graphics("images/hue.png")
 ```
-
 :::
+
 ::: {.column width="70%"}
-  
 ```{r}
 #| fig-alt: "This image illustrates the concept of color intensity. It shows a yellow square labeled 'YELLOW (HUE)' on the left, a gray square labeled 'GRAY' in the middle, and a square of desaturated yellow labeled 'LESS INTENSE' on the right. The image conveys that adding gray to a pure hue, such as yellow, results in a color that is less intense or more muted. The mathematical symbols '+' and '=' are used to show the combination of the yellow hue with gray, leading to a less intense color."
 
 knitr::include_graphics("images/intensity.png")
 ```
-
 :::
-::::
-  
+:::::
+
 ## Color Guidelines
 
-+ Do not use rainbow color gradients!
+-   Do not use rainbow color gradients!
 
-+ Be conscious of what certain colors “mean”.
-  + Good idea to use red for "good" and green for "bad"?
+-   Be conscious of what certain colors “mean”.
 
-::: columns
+    -   Good idea to use red for "good" and green for "bad"?
+
+:::::: columns
 ::: {.column width="44%"}
 ```{r}
 #| fig-align: center
@@ -519,7 +554,6 @@ knitr::include_graphics("images/intensity.png")
 
 knitr::include_graphics("images/rainbow.png")
 ```
-
 :::
 
 ::: {.column width="5%"}
@@ -533,11 +567,10 @@ knitr::include_graphics("images/rainbow.png")
 knitr::include_graphics("images/red_green.png")
 ```
 :::
-:::
-
+::::::
 
 ## Color Guidelines
-  
+
 For **categorical** data, try not to use more than 7 colors:
 
 ```{r}
@@ -550,8 +583,7 @@ knitr::include_graphics("images/small_gradient.png")
 
 . . .
 
-If you need to, you can use `colorRampPalette()` from the `RColorBrewer` package
-to produce larger palettes:
+If you need to, you can use `colorRampPalette()` from the `RColorBrewer` package to produce larger palettes:
 
 ```{r}
 #| fig-align: center
@@ -560,18 +592,11 @@ to produce larger palettes:
 knitr::include_graphics("images/big_gradient.png")
 ```
 
-
 ## Color Guidelines
 
-+ For **quantitative** data, use mappings from data to color that are **numerically and perceptually uniform**.
-  + Relative discriminability of two colors should be proportional to the difference between the corresponding data values.
+**To make your graphic friendly for people with different color vision deficiencies...**
 
-
-## Color Guidelines
-
-**To make your graphic color deficiency friendly...**
-  
-+ use **double encoding** - when you use color, **also** use another aesthetic (line type, shape, facet, etc.).
+-   use **double encoding** - when you use color, **also** use another aesthetic (line type, shape, facet, etc.).
 
 ```{r}
 #| fig-align: center
@@ -583,9 +608,9 @@ knitr::include_graphics("images/double.png")
 
 ## Color Guidelines
 
-**To make your graphic color deficiency friendly...**
-  
-+ with a unidirectional scale (e.g., all + values), use a **monochromatic** color gradient.
+**To make your graphic friendly for people with different color vision deficiencies...**
+
+-   with a unidirectional scale (e.g., all + values), use a **monochromatic** color gradient.
 
 ```{r}
 #| fig-align: center
@@ -595,7 +620,7 @@ knitr::include_graphics("images/double.png")
 knitr::include_graphics("images/blues.png")
 ```
 
-+ with a bidirectional scale (e.g., + and - values), use a **purple-white-orange** color gradient. Transition through white!
+-   with a bidirectional scale (e.g., + and - values), use a **purple-white-orange** color gradient. Transition through white!
 
 ```{r}
 #| fig-align: center
@@ -605,14 +630,13 @@ knitr::include_graphics("images/blues.png")
 knitr::include_graphics("images/PuOr.png")
 ```
 
-
 ## Color Guidelines
 
-**To make your graphic color deficiency friendly...**
+**To make your graphic friendly for people with different color vision deficiencies...**
 
-+ print your chart out in black and white -- if you can still read it, it will be safe for all users.
+-   print your chart out in black and white -- if you can still read it, it will be safe for all users.
 
-::: columns
+:::::: columns
 ::: {.column width="45%"}
 ```{r}
 #| fig-align: center
@@ -620,7 +644,6 @@ knitr::include_graphics("images/PuOr.png")
 
 knitr::include_graphics("images/nyt_color.png")
 ```
-
 :::
 
 ::: {.column width="5%"}
@@ -633,43 +656,219 @@ knitr::include_graphics("images/nyt_color.png")
 
 knitr::include_graphics("images/nyt_bw.png")
 ```
-
 :::
-:::
+::::::
 
 ## Color in ggplot2
 
 There are several packages with color scheme options:
 
-+ Rcolorbrewer
-+ ggsci
-+ viridis
-+ wesanderson
+-   Rcolorbrewer
+-   ggsci
+-   viridis
+-   wesanderson
 
-These packages have color palettes that are aesthetically pleasing and, in many
-cases, color deficiency friendly.
+These packages have color palettes that are aesthetically pleasing and, in many cases, color deficiency friendly.
 
 You can also take a look at other [ways to find nice color palettes](https://lisacharlottemuth.com/2016/04/22/Colors-for-DataVis/).
 
+## Further Customizations
 
-# [Lab 2: Exploring Rodents with ggplot2](../../labs/instructions/lab-2-instructions.qmd) & [Challenge 2: Spicing things up with ggplot2](../../labs/instructions/challenge-2-instructions.qmd)
+::: panel-tabset
+
+### Plot Labels
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: "7-10"
+#| fig-height: 3
+#| fig-width: 12
+#| fig-align: center
+#| code-fold: true
+#| label: example-labs-specifications
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island) +
+  labs(x = "Bill Length",
+       y = "", 
+       color = "Species of Penguin",
+       title = "Do penguins with shorter bills have deeper bills?")
+```
+:::
+
+### Facet Labels
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: "1-5,12"
+#| fig-height: 3
+#| fig-width: 12
+#| fig-align: center
+#| code-fold: true
+#| label: example-facet-labels
+
+custom_labels <- c(
+  Dream = "Dream Island",
+  Torgersen = "Torgersen Island",
+  Biscoe = "Biscoe Island"
+)
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island, labeller = as_labeller(custom_labels)) +
+  labs(x = "Bill Length",
+       y = "", 
+       color = "Species of Penguin",
+       title = "Do penguins with shorter bills have deeper bills?")
+```
+:::
+
+### Themes
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: "11-12"
+#| fig-height: 3
+#| fig-width: 12
+#| fig-align: center
+#| code-fold: true
+#| label: example-themes
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island) +
+  labs(x = "Bill Length",
+       y = "", 
+       color = "Species of Penguin",
+       title = "Do penguins with shorter bills have deeper bills?") +
+  theme_bw() +
+  theme(legend.position = "top")
+```
+:::
+
+### Axes Ticks
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: "11-13"
+#| fig-height: 3
+#| fig-width: 12
+#| fig-align: center
+#| code-fold: true
+#| label: example-axis-ticks
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_length_mm, 
+                     y = bill_depth_mm, 
+                     color = species)) +
+  geom_point() + 
+  facet_wrap(~island) +
+  labs(x = "Bill Length",
+       y = "", 
+       color = "Species of Penguin",
+       title = "Do penguins with shorter bills have deeper bills?") +
+  scale_y_continuous(limits = c(10, 30),
+                     breaks = seq(from = 10, to = 30, by = 5)
+                     )
+```
+:::
+:::
+
+# Lab 2 & Challenge 2 Exploring Rodents with ggplot2
 
 ## Peer Code Review
 
-Starting with Lab 2, your labs **will** have an appearance / code format 
-portion. 
+Starting with Lab 2, your labs **will** have an appearance / code format portion.
 
-- Review the [code formatting guidelines](../../code-review/code-review-guidelines.qmd)
-*before* you submit your lab!
+-   Review the [code formatting guidelines](../../code-review/code-review-guidelines.qmd) *before* you submit
+your lab!
 
-- Each week, you will be assigned one of your peer's labs to review their code
-formatting.
+-   Each week, you will be assigned one of your peer's labs to review their code formatting.
+
+## ggplot Code
+
+::: {.small}
+It is good practice to put each `geom` and `aes` on a new line.
+
++ This makes code easier to read! 
++ Generally: no line of code should be over 80 characters long.
+:::
+
+::: panel-tabset
+
+### Bad
+
+::: {.small}
+```{r}
+#| echo: true
+#| eval: false
+#| label: poorly-formatted-code
+#| code-line-numbers: false
+
+ggplot(data = mpg, mapping = aes(x = cty, y = hwy, color = class)) + geom_point() + theme_bw() + labs(x = "City (mpg)", y = "Highway (mpg)")
+```
+:::
+
+### Good
+
+::: {.small}
+```{r}
+#| echo: true
+#| eval: false
+#| label: medium-formatted-code
+#| code-line-numbers: false
+
+ggplot(data = mpg, 
+       mapping = aes(x = cty, y = hwy, color = class)) + 
+  geom_point() + 
+  theme_bw() + 
+  labs(x = "City (mpg)", y = "Highway (mpg)")
+```
+:::
+
+### Amazing
+
+::: {.small}
+```{r}
+#| echo: true
+#| eval: false
+#| label: nicely-formatted-code
+#| code-line-numbers: false
+
+ggplot(data = mpg, 
+       mapping = aes(
+         x = cty, 
+         y = hwy, 
+         color = class
+         )
+       ) + 
+  geom_point() + 
+  theme_bw() + 
+  labs(x = "City (mpg)", 
+       y = "Highway (mpg)")
+```
+:::
+:::
 
 ## On the Use of External Resources...
 
-::: {.small}
+::: midi
 Part of learning to program is learning from a variety of resources. Thus, I
-expect you will use resources that you find on the internet. 
+expect you will use resources that you find on the internet.
 
 In this class the assumed knowledge is the course materials, including the
 course textbook, coursework pages, and course slides. Any functions / code used
@@ -678,55 +877,56 @@ outside of these materials require direct references.
 
 . . .
 
-::: {.small}
-- If you used Google: 
-  + paste the link to the resource in a code comment next to where you used that
-  resource
-
-- If you used ChatGPT: 
-  + indicate somewhere in the problem that you used ChatGPT
-  + paste the link to your chat (using the Share button from ChatGPT)
+::: small
+-   If you used Google:
+    -   paste the link to the resource in a code comment next to where you used that resource
+-   If you used ChatGPT:
+    -   indicate somewhere in the problem that you used ChatGPT
+    -   paste the link to your chat (using the Share button from ChatGPT)
 :::
 
 <!-- Additionally, you are permitted and encouraged to work with your peers as you -->
+
 <!-- complete lab assignments, but **you are expected to do your own work**. Copying -->
+
 <!-- from each other is cheating, and letting people copy from you is also cheating. -->
+
 <!-- Please don't do either of those things. -->
 
 ## Things You Should Know About ChatGPT...
 
 . . .
 
-::: {.small}
-- GPT uses machine learning to predict what words to give you
-  + This method is entirely probabilistic, meaning, the same question may
-  produce different answers for different people.
+::: small
+-   GPT uses machine learning to predict what words to give you
+    -   This method is entirely probabilistic, meaning, the same question may produce different answers for different people.
 :::
 
 . . .
 
-::: {.small}
-- The answers GPT gives rely a lot on the context you provide (or don't provide)
-  + It is good to give lots of background information (e.g., what R package you
-  are using)
+::: small
+-   The answers GPT gives rely a lot on the context you provide (or don't provide)
+    -   It is good to give lots of background information (e.g., what R package you are using)
 :::
 
 . . .
 
-::: {.small}
-- ChatGPT is a pretty decent tutor.
-  + Did you use GPT to help you with some code? 
-  + Do you not understand what the code is doing?
-  + Ask GPT to explain code to you!
+::: small
+-   ChatGPT is a pretty decent tutor.
+    -   Did you use GPT to help you with some code?
+    -   Do you not understand what the code is doing?
+    -   Ask GPT to explain code to you!
 :::
 
 ## To do...
 
-+ **Lab 2: Exploring rodents with ggplot2**
-  + due Sunday, October 6 at 11:59pm
-  
-+ **Lab 2: Spicing things up with ggplot2**
-  + due Sunday, October 6 at 11:59pm
-  
-+ **Complete Week 3 Coursework: Data Wrangling with dplyr**
-  + **Check-ins 3.1 and 3.2** due Tuesday, October 8 at 12pm
+-   **Lab 2: Exploring rodents with ggplot2**
+    -   due Monday, September 29 at 5pm
+-   **Challenge 2: Spicing things up with ggplot2**
+    -   due Monday, September 29 at 5pm
+-   **Complete Week 3 Coursework: Data Wrangling with dplyr**
+    -   **Check-ins 3.1 and 3.2** due Tuesday, September 30 at 8am
+
+
+
+

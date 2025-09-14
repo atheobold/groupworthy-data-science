@@ -1,0 +1,29 @@
+---
+title: "Introduction to Quarto"
+format: docx
+---
+
+1.  What is the top of a Quarto document called? Where the options for the document are specified?
+
+2.  How does Quarto know that a section of text is R code? What symbols is Quarto looking for?
+
+3.  In an R code chunk, what does the `#|` do?
+
+4.  What do each of these code chunk options do?
+
+| Option      | Purpose |
+|-------------|---------|
+| `echo`      |         |
+| `eval`      |         |
+| `message`   |         |
+| `fig-align` |         |
+| `fig-alt`   |         |
+| `fig-cap`   |         |
+
+5.  If you wanted **every** code chunk to have `warning: false` what should you do?\
+
+6.  How do you make a section header in Markdown?\
+
+7.  Can you save your file without rendering?\
+
+8.  When you render does R use the code you already ran in RStudio? (i.e., the stuff saved in your Environment tab)

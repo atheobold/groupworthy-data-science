@@ -37,8 +37,8 @@ me know as soon as possible so we can figure something out.
 # Step 1: Installing `R`
 
 As mentioned above, you will need to have local installations of both R (the
-software) and RStudio (the interface for working in R). **Do not skip this step
-if you already have both R and RStudio installed on your computer**, as you need
+software) and RStudio (the interface for working in R). ***Do not skip this step
+if you already have both R and RStudio installed on your computer***, as you need
 to ensure you are using the most up to date version of R and RStudio.
 
 ## Updating Your Version of R
@@ -52,9 +52,9 @@ so your code will not run.
 -   Step 2: At the top of the the Console it will say what version of R you are
 using
 
-![](images/week-1/r-version.png){fig-alt = "A screenshot of what version of R should appear when you open RStudio. The version reads 'R version 4.4.1 (2024-06-14) -- 'Race for Your Life'."}
+![](images/week-1/r-feb-2025.png){fig-alt="A screenshot of what version of R should appear when you open RStudio. The version reads 'R version 4.4.1 (2024-06-14) -- 'Race for Your Life'."}
 
-If the version **is not** 4.4.1 (like the image above), you need to update your
+If the version **is not** 4.4.3 (like the image above), you need to update your
 version of R! The simplest way to do this is to follow the instructions below to
 install R.
 
@@ -196,7 +196,7 @@ R is a statistical programming language. Unlike more general-purpose languages,
 R is optimized for working with data and doing statistics. R was created by Ross
 Ihaka and Robert Gentleman in 1993 (hence "R") and was formally released by the
 **R Core Group** in 1997 (a group of 20-ish volunteers who are the *only* people
-who can change the base (built-in) functionality of `R`). If you want to build
+who can change the base, built-in functionality of `R`). If you want to build
 an independent, standalone graphical interface, or run a web server, R is
 probably not the ideal language to use (you might want C / Python or PHP /
 Python, respectively). If you want to vacuum up a bunch of data, fit several
@@ -250,13 +250,9 @@ programming language, including:
 
 # Introduction to RStudio
 
-### 📖 [Required Reading: A tour of RStudio](https://rladiessydney.org/courses/ryouwithme/01-basicbasics-1/)
+### 📖 [Recommended Video: A tour of RStudio](https://youtu.be/kfcX5DEMAp4?si=okE0641GKkf8ZrSJ)
 
--   [Click Here](https://github.com/rstudio/cheatsheets/blob/main/rstudio-ide.pdf) to download a "cheatsheet" (easy reference page) for navigating the RStudio IDE.
-
-### Navigating RStudio
-
-![The RStudio window will look something like this.](images/Rstudio-important-buttons.png)
+-   [Click Here](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf) to download a "cheatsheet" (easy reference page) for navigating the RStudio IDE.
 
 ### Exploring the Panes
 

@@ -1,0 +1,37 @@
+author: Allison Theobold
+
+instructor:
+  name: Dr. Allison Theobold
+  name_no_title: Allison Theobold
+  email: atheobol@calpoly.edu
+  url: "https://atheobold.github.io/"
+  github: atheobold
+  office: "Building 25 Office 105"
+  officehrs: "Mondays from 2:10 to 3:00 & Thursdays from 2:10 to 4:00"
+
+la: 
+  name: "Jasmine Cabrera"
+
+ta: 
+  name: "Emi Degembri"
+
+course:
+  title: "Statistical Computing in R"
+  subtitle: "In this course, we will learn the foundational skills for programming in R and a variety of skills for working with data."
+  number: "STAT 331"
+  semester: "Fall 2025"
+  time: "T/R 9:10-11am or 12:10-2:00pm"
+  location: "Building 38 Room 122"
+  github: "https://github.com/atheobold/groupworthy-data-science"
+  url: "https://atheobold.github.io/groupworthy-data-science/"
+  copyright_year: "2025"
+  text: | 
+    The main text book is: [R for Data Science](https://r4ds.hadley.nz/) by Wickham, Cetinkaya-Rundel, and Grolemund. The book is freely available online, but feel free to purchase a printed copy if you would like one!
+
+university:
+  name: Cal Poly, San Luis Obispo
+  url: "https://www.calpoly.edu"
+
+school:
+  name: Department of Statistics
+  url: "https://statistics.calpoly.edu/"

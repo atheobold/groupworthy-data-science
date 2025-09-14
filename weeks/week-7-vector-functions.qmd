@@ -37,11 +37,11 @@ By the end of the week, you should have a grasp of:
 
 ------------------------------------------------------------------------
 
-#### `r emo::ji("play button")` Watch Videos: 20 minutes
+#### 📽 Watch Videos: 20 minutes
 
-#### `r emo::ji("book")` Readings: 60-75 minutes
+#### 📖 Readings: 60-75 minutes
 
-#### `r emo::ji("check")` Preview Activities: 1 (broken into three sections)
+#### ✅  Preview Activities: 1 (broken into three sections)
 
 ------------------------------------------------------------------------
 
@@ -86,7 +86,7 @@ the article here: <https://journals.plos.org/plosbiology/article?id=10.1371/jour
 
 # Part 2: How to Write Functions in R
 
-### `r emo::ji("book")` [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#vector-functions)
+### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#vector-functions)
 
 ::: {.callout-caution}
 # Read only Section 2 (Vector functions)! 
@@ -194,7 +194,7 @@ my_mean(1:10)
 :::
 :::
 
-### `r emo::ji("check")` **Check-in 7.1: Writing Vector Functions**
+### ✅  **Check-in 7.1: Writing Vector Functions**
 
 **Question 1** -- In the second variant of `rescale01()`, infinite values are
 left unchanged. Fill in the code below to rewrite `rescale01()` so `-Inf` is
@@ -371,7 +371,7 @@ misused. If you're interested, Wikipedia has [more about defensive programming](
 
 </br>
 
-### `r emo::ji("check")` **Check-in 7.1: Writing Vector Functions**
+### ✅  **Check-in 7.1: Writing Vector Functions**
 
 ::: {.callout-caution}
 # Questions 4 through 6
@@ -650,7 +650,7 @@ f(10)
 :::
 :::
 
-### `r emo::ji("check")` **Check-in 7.1: Writing Vector Functions**
+### ✅  **Check-in 7.1: Writing Vector Functions**
 
 ::: {.callout-caution}
 # Questions 7 through 10
@@ -858,7 +858,7 @@ You should have already read the sections of the Tidyverse Style Guide relevant
 to piping, plotting, and naming objects. This week we are extending these style
 guides to functions.
 
-### `r emo::ji("book")` [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#style)
+### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#style)
 
 ::: {.callout-caution}
 # Read only Section 5 (Style)! 
@@ -896,7 +896,7 @@ Designing functions is somewhat subjective, but there are a few principles that 
     -   They should not alter the Global Environment
     -   *Functions should **never** load or install packages!*
 
-### `r emo::ji("check")` **Check-in 7.1: Writing Vector Functions**
+### ✅  **Check-in 7.1: Writing Vector Functions**
 
 **Question 11** -- Which of the tidyverse style guidelines does this function
 violate?

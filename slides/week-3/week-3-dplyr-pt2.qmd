@@ -180,6 +180,25 @@ ggplot(data = surveys, mapping = aes(x=hindfoot_length,y= weight)) +
 We need to define criteria for each of these grades based on the [four objectives of this course](../../course-materials/course-syllabus.qmd)---learning targets, 
 revising thinking, extending thinking, collaborating with peers. 
 
+
+<!-- # A Data Puzzle -->
+
+<!-- # A Data Puzzle -->
+
+<!-- > Arrange the different pieces (tables and graphs) based on the actions that led -->
+<!-- > to each new table / graph. -->
+
+<!-- . . . -->
+
+<!-- </br>  -->
+
+<!-- Once you have arranged each of the tables and graphs, answer the following -->
+<!-- questions: -->
+
+<!-- 1. What is the most common type of work location - remote or in-person?  -->
+<!-- 2. Does work location type vary by company size? -->
+
+
 # Extending `dplyr` verbs
 
 ## Example Data set -- [Cereal](https://search.r-project.org/CRAN/refmans/liver/html/cereal.html)

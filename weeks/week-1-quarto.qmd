@@ -6,7 +6,7 @@ editor: source
 ---
 
 The theme of this lesson is good management of your files and data. In part two
-of this week's coursework you will learn how to identify **folders** and
+of this week's coursework you will learn how to identify **folders** and 
 **paths**, and create **Quarto documents**.
 
 #### 📖 Readings: 45 minutes
@@ -19,7 +19,7 @@ of this week's coursework you will learn how to identify **folders** and
 
 # Principles of Reproducibility
 
-::: {.column-margin}
+::: column-margin
 {{< video https://youtu.be/86Bz3lE4HGs?si=2Q20CRw9-W4lFJoG >}}
 :::
 
@@ -29,83 +29,172 @@ As boring as it sounds, file management is arguably one of the most important
 skills a data scientist should have. The reproducibility of a project depends
 just as much on the way in which the project was stored as the computing tools
 used. While using R and Quarto make an important step in creating a reproducible
-analysis, there are other pieces that are arguably just as important---such as 
+analysis, there are other pieces that are arguably just as important---such as
 file management.
 
-Believe it or not, your computer has **multiple** locations\*\* where files can
-be stored. There has been a bit of a generational shift as computers have
-evolved: the "file system" metaphor itself is outdated because no one uses
-physical files anymore. 
-[This article]((https://futurism.com/the-byte/gen-z-kids-file-systems) makes the
-argument that with modern search capabilities, most people use their computers
-as a laundry hamper instead of as a nice, organized filing cabinet. However, the
-laundry hamper approach doesn't play nicely with working in R and creating
-Quarto documents.
+Evidently, there has been a bit of generational shift as computers have evolved:
+the "file system" metaphor itself is outdated because no one uses physical files
+anymore. [This article](https://futurism.com/the-byte/gen-z-kids-file-systems) 
+is an interesting discussion of the problem: it makes the argument that with
+modern search capabilities, most people use their computers as a laundry hamper
+instead of as a nice, organized filing cabinet.
 
-In this class, we will store files according to the 
-[Project TIER protocol](https://www.projecttier.org/tier-protocol/protocol-4-0/). 
-More specifically, you will have:
+### File Systems 
 
--   a "Stat 331" folder in your Documents folder, containing **all** your
-materials associated with STAT 331
--   a sub-folder for each week (e.g., Week 1, Week 2)
--   separate folders within each week for each assignment (e.g., Practice
-Activity, Lab)
--   a separate R Studio Project (and GitHub repository) associated with each
-assignment
+Regardless of how you tend to organize your personal files, it is probably 
+helpful to understand the basics of what is meant by a computer **file system**
+-- a way to organize data stored on a hard drive. Since data is always stored as
+0's and 1's, it's important to have some way to figure out what type of data is
+stored in a specific location, and how to interpret it.
 
-For example, if you come to my office for help on your lab assignment for Week
-2, I would expect your files to look like this:
+::: column-margin
+{{< video https://www.youtube.com/embed/BV0-EPUYuQc >}}
+Stop watching at 4:16.
+:::
+
+### File Paths 
+
+That's not enough, though - we also need to know how computers remember the
+location of what is stored where. Specifically, we need to understand
+**file paths**.
+
+When you write a program, you may have to reference external files - data stored
+in a `.csv` file, for instance, or a picture. Best practice is to create a file
+structure that contains everything you need to run your entire project in a
+single file folder (you can, and sometimes should, have sub-folders).
+
+::: column-margin
+{{< video https://www.youtube.com/embed/BMT3JUWmqYY >}}
+:::
+
+For now, it is enough to know how to find files using file paths, and how to
+refer to a file using a relative file path from your base folder. In this
+situation, your "base folder" is known as your **working directory** - the place
+your program thinks of as home.
+
+
+## Directories, Paths, and Projects {#directories-and-projects}
+
+In `R`, there are two ways to set up your file path and file system organization:
+
+1.  Set your working directory in `R` (do not recommend)
+2.  Use RProjects (preferred!)
+
+### Working Directories in `R`
+
+To find where your working directory is in `R`, you can either look at the top
+of your console or type `getwd()` into your console.
+
+```{r}
+#| out-width: "70%"
+#| echo: false
+knitr::include_graphics("images/week-1/working-directory-console.png")
+```
+
+```{r}
+getwd()
+```
+
+Although it is not recommended, you can set your working directory in `R` with `setwd()`.
+
+```{r}
+#| eval: false
+setwd("/path/to/my/assignment/folder")
+```
+
+### R Projects
+
+#### 📖 [Required Reading: Workflow and Projects](https://r4ds.had.co.nz/workflow-projects.html)
+
+Since there are often many files necessary for a project (e.g. data sources, 
+images, etc.), `R` has a nice built in system for setting up your project
+organization with R Projects. You can either create a new folder on your
+computer containing an R Project (e.g., you have not yet created a folder for
+this class) or you can add an R Project to an existing folder on your computer
+(e.g., you have already created a folder for this class).
 
 ::: panel-tabset
-## File Storage on Windows
 
-![](images/week-1/pc-save-to-documents.png){width="50%" fig-alt="A screenshot of the folders included in the Documents on Dr. Theobold's PC. The image shows six folders, including a folder titled 'STAT 331'."}
+#### Create with a new folder
 
-I have six total folders in my Documents, one of which is a folder named "STAT 331." 
+To create a R Project, first open RStudio on your computer and click 
+`File > New Project`, then:
 
-![](images/week-1/pc-file-path.png){width="50%" fig-alt="A screenshot of the folders included in the Documents on Dr. Theobold's Mac. The image shows six folders, with the subfolder structure highlighted for the folder named 'STAT 331'."}
+```{r}
+#| out-width: "70%"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("images/week-1/create-new-rproj-step1.png")
+knitr::include_graphics("images/week-1/create-new-rproj-step2.png")
+```
 
-Inside my STAT 331 folder is a sub-folder named "Week 1," which also has a sub-folder (a sub-sub-folder) named "Lab 1." You can tell what folders Lab 1 lives inside based on the information included at the top of the screen. This is called a "file path," which tells your computer where a folder / file lives on the computer. 
+Give your folder a name (it doesn't have to be my-stat331). However, it is good
+practice for this file folder name to not contain spaces.
 
-On a PC, every file lives on the C Drive, so the "full path" to get to my Lab 1 folder would be:
+Then, browse on your computer for a location to save this folder to. For
+example, mine is saved in my Documents. Make sure you know how to find this; it
+should NOT be saved in your Downloads!
 
-`C:/Users/atheobold/Documents/STAT 331/Week 1/Lab 1`
+```{r}
+#| out-width: "70%"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("images/week-1/create-new-rproj-step3.png")
+```
 
-## File Storage on a Mac
+This new folder, `my-stat331` should now live in your Documents folder (or
+wherever you save it to) and contain a `my-stat331.Rproj` file. This is your new
+"home" base for this class - whenever you refer to a file with a relative path
+it will begin to look for it here.
 
-![](images/week-1/file-save-mac.png){width="50%" fig-alt="A screenshot of the folders included in the Documents on Dr. Theobold's Mac. The image shows six folders, with the subfolder structure highlighted for the folder named 'STAT 331'."}
+#### Add to an existing folder
 
-I have six total folders in my Documents, one of which is a folder named "STAT
-331." Inside this folder is a sub-folder named "Week 1," which also has a
-sub-folder (a sub-sub-folder) named "Lab 1."
+To add a R Project to an existing folder on your computer (e.g., you already
+created a folder for this class), first open RStudio on your computer and click
+`File > New Project`, then:
 
-On a Mac, every file lives on the hard drive (it doesn't have letters like a
-PC), so the "full path" to get to my Lab 1 folder would be:
+```{r}
+#| out-width: "70%"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("images/week-1/create-existing-rproj-step1.png")
+```
 
-`/Users/atheobold/Documents/STAT 331/Week 1/Lab 1`
+Then, browse on your computer to select the existing folder you wish to add your
+R Project to. For example, mine is saved in my Documents and called `my-stat331`.
+
+```{r}
+#| out-width: "70%"
+#| echo: false
+#| fig-align: center
+knitr::include_graphics("images/week-1/create-existing-rproj-step2.png")
+```
+
+Your existing folder, `my-stat331` should now contain a `my-stat331.Rproj` file.
+This is your new "home" base for this class - whenever you refer to a file with
+a relative path it will begin to look for it here.
 
 :::
 
-## ✅ Check-in 1.3:  Stat 331 Folder
-
-Take a screenshot of your class directory, showing:
-
-1.  the location of your Stat 331 folder
-2.  a Week 1 sub-folder
-3.  a Lab 1 sub-sub-folder (inside the Week 1 folder)
-
-::: callout-caution
-# Your folder cannot synch with anything online! 
+::: {.callout-caution}
+# Your folder cannot synch with anything online!
 
 Your STAT 331 folder **cannot** be in a folder stored on OneDrive or iCloud!
 Storing your folder in this location will cause your code to periodically not
 run and I cannot help you fix it.
 :::
 
+## ✅ Check-in 1.3: Stat 331 Folder & R Project
+
+Take a screenshot of your class directory, showing:
+
+1.  the location of your Stat 331 folder
+2.  an R Project included in your Stat 331 folder 
+2.  a Week 1 sub-folder
+
 # Reproducible Documents
 
-Over the last ten years, science has experienced a "reproducibility" crisis.
+Over the last ten years, science has experienced a "reproducibility" crisis. 
 Meaning, a substantial portion of scientific findings were unable to be
 recreated because people didn't sufficiently document the processes they used.
 As such, a foundational aspect of scientific research is using tools which allow
@@ -146,12 +235,12 @@ computer, you need to download Quarto: <https://quarto.org/docs/download/>
 ### HTML Documents
 
 We will exclusively use HTML documents in this course. If you are interested in
-learning more about formatting options for Quarto HTML documents, I would
+learning more about formatting options for Quarto HTML documents, I would 
 recommend checking out:
 
 -   [a discussion of the basics of formatting HTML documents in Quarto](https://quarto.org/docs/output-formats/html-basics.html)
 
--   [the list of all HTML Ffrmatting pptions for Quarto documents](https://quarto.org/docs/reference/formats/html.html)
+-   [the list of all HTML formatting options for Quarto documents](https://quarto.org/docs/reference/formats/html.html)
 
 ## ✅ Check-in: 1.4 Quarto Documents
 
@@ -180,12 +269,12 @@ c)  `*`
 
 d)  `#`
 
-**Question 4**: When working in a Quarto document, the [visual / source]
-editor will display the raw Quarto document, whereas the [visual / source] will
-display the document as it will appear when it is rendered.
+**Question 4**: When working in a Quarto document, the \[visual / source\] 
+editor will display the raw Quarto document, whereas the \[visual / source\] 
+will display the document as it will appear when it is rendered.
 
-**Question 5**: To produce an HTML report from your Quarto document, you need
-to click the \_\_\_\_ button.
+**Question 5**: To produce an HTML report from your Quarto document, you need to
+click the \_\_\_\_ button.
 
 a)  Visual
 

@@ -15,13 +15,10 @@ execute:
 #| label: set-up
 
 library(tidyverse)
+library(fontawesome)
+library(palmerpenguins)
+library(ggtext)
 
-surveys <- read_csv(
-  here::here("labs",
-             "student", 
-             "data", 
-             "surveys.csv")
-  )
 ```
 
 For this week's Challenge, you will have three different options to explore.
@@ -45,7 +42,7 @@ Create another code chunk and paste in your code from Question 14 or Question 15
 in Lab 2 -- we will be modifying the box plot of weights by species!
 :::
 
-# `r emo::ji("hot_pepper")` Medium: Ridge Plots
+# `r fa("pepper-hot")` Medium: Ridge Plots
 
 In Lab 2, you used side-by-side **boxplots** to visualize the distribution of
 weight within each species of rodent. Boxplots have [substantial flaws](https://www.data-to-viz.com/caveat/boxplot.html), namely that they
@@ -53,11 +50,12 @@ disguise distributions with multiple modes.
 
 A "superior" alternative is the density plot. However, `ggplot2` does not allow
 for side-by-side density plots using `geom_density()`. Instead, we will need to
-make use of the `ggridges` package to create side-by-side density (ridge) plots.
+make use of the **ggridges** package to create side-by-side density (ridge)
+plots.
 
-> **For this challenge you are to change your boxplots to ridge plots. You will need to install the `ggridges` package and explore the `geom_density_ridges()` function.**
+> **For this challenge you are to change your boxplots to ridge plots. You will need to install the ggridges package and explore the `geom_density_ridges()` function.**
 
-# `r emo::ji("hot_pepper")` `r emo::ji("hot_pepper")` Spicy: Exploring Color Themes
+# `r fa("pepper-hot")` `r fa("pepper-hot")` Spicy: Exploring Color Themes
 
 The built-in `ggplot()` color scheme may not include the colors you were looking
 for. Don't worry -- there are many other color palettes available to use!
@@ -75,40 +73,39 @@ and directly specify the colors you want to use. You can either:
 2.  create a vector of colors using hex numbers and store that vector as a
 variable. Then, call that vector in the `scale_color_manual()` function.
 
-Here are some example hex color schemes:
+Here is an example color schemes from my favorite Rothko painting:
 
 ```{r}
 #| echo: true
 #| label: example-manual-colors
 
-# A vector of a RG color deficient friendly palette with gray:
-cdPalette_grey <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+untitled_red <- c("#c8251d", "#a11b26", "#ef6552")
 
-# A vector of a RG color deficient friendly palette with black:
-cdPalette_blk <- c("#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 ```
 
 ::: callout-note
-If you are interested in using specific hex colors, I like the [image color picker app](https://imagecolorpicker.com/en) to find the colors I want. 
+I figured out what hex colors to use with this [image color picker app](https://imagecolorpicker.com/en). 
 :::
 
 ```{r}
-#| include: false
+#| label: example-color-specification
+#| warning: false
+#| echo: true
 
-ggplot(data = surveys, 
-       mapping = aes(x = weight, y = species, color = genus)
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm, y = species, color = island)
        ) +
   geom_boxplot() +
-  scale_color_manual(values = cdPalette_grey) +
-  labs(x = "Weight (g)", 
+  scale_color_manual(values = untitled_red) +
+  labs(x = "Bill Length (mm)", 
        y = "", 
-       subtitle = "by Rodent Species", 
-       legend = "Genus")
+       title = "", 
+       legend = "Island")
 ```
 
 ### Package Specification
 
-While manual specification may be necessary for some contexts, it can be a 
+While manual specification may be useful for some contexts, it can be a 
 real pain to handpick 5+ colors. This is where color scales built-in to R
 packages come in handy! Popular packages for colors include:
 
@@ -125,38 +122,56 @@ use (e.g. `scale_color_aaas()`).
 [This website](https://github.com/EmilHvitfeldt/r-color-palettes) provides an exhaustive list of color themes available through various packages.
 :::
 
-> **In this challenge you are expected to use this information to modify the boxplots you created Lab 2. First, you are to color the boxplots based on the variable `genus`. Next, you are to change the colors used for `genus` using either manual color specification or any of the packages listed here (or others!).**
+> **In this challenge you are expected to use this information to modify the boxplots you created Lab 2. First, you are to color the boxplots based on the variable `sex`. Next, you are to change the colors used for `sex` using either manual color specification or any of the packages listed here (or others!).**
 
-# `r emo::ji("hot_pepper")` `r emo::ji("hot_pepper")` `r emo::ji("hot_pepper")` Hot: Exploring `ggplot2` Annotation
+# `r fa("pepper-hot")` `r fa("pepper-hot")` `r fa("pepper-hot")` Hot: Embedding the Legend in the Plot Title
 
 Some data scientists advocate that we should try to eliminate legends from our
-plots to make them more clear. Instead of using legends, which cause the 
-reader's eye to stray from the plot, we should use **annotation**.
+plots to make them more clear. Legends cause a reader's eye to stray from the
+plot, which can make it more difficult to understand. There are a few ways to 
+do this, but this week we're going to explore how to embed the legend in the 
+plot title.
 
-We can add annotation(s) to a `ggplot()` using the `annotate()` function:
+## Embedding Legend in Plot Title
+
+The **ggtext** package allows you to add hex colors and other HTML elements 
+(e.g., italics, boldface) to plot titles. The process involves two main steps:
+
+1. Wrap your text in HTML tags within the `labs()` function. 
+
+2. Tell ggplot to render the HTML by adding `plot.title = element_markdown()`
+inside the `theme()` function. 
+
+Let's see how this can look! I've added the hex colors for the islands to the
+subtitle of my plot:
 
 ```{r}
 #| echo: true
-#| label: example-annotation
+#| label: html-subtitle
 
-ggplot(data = surveys, 
-       mapping = aes(x = weight, y = species, color = genus)
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm, y = species, color = island)
        ) +
   geom_boxplot() +
-  scale_color_manual(values = cdPalette_grey) + 
-  annotate("text", y = 6, x = 200, label = "Sigmodon") +
-  annotate("text", y = 4, x = 200, label = "Perognathus") +
-  theme(legend.position = "none") +
-  labs(x = "Weight (g)",
-       y = "",
-       subtitle = "by Species and Genera",
-       title = "Rodent Weight")
+  scale_color_manual(values = untitled_red) +
+  labs(x = "Bill Length (mm)", 
+       y = "", 
+       title = "Length of Different Penguin Species' Bills", 
+       subtitle = "Separated by <span style = 'color:#c8251d;'>Biscoe</span>, <span style = 'color:#a11b26;'>Dream</span> and <span style = 'color:#ef6552;'>Torgenson</span> Islands") +
+  theme(
+    legend.position = "none", 
+    plot.subtitle = element_markdown()
+    )
 ```
 
-Note that I've labeled the "Sigmodon" and "Perognathus" genera, so the reader
-can tell that these boxplots are associated with their respective genus.
+Notice that the subtitle is still specified as a string. Inside the string there
+are HTML elements (`<span>`) that declare the colors of the text. For example, 
+`<span style = 'color:#c8251d;'>Biscoe</span>` declares that the text "Biscoe"
+should be printed with the color `#c8251d`. The beginning of the span (`<span `)
+and the end of the span (`</span>`) declare when the coloring starts and ends. 
 
-> **In this challenge you are expected to use this information to modify the boxplots you created in Lab 2. First, you are to color the boxplots based on the variable `genus`. Next, you are to add annotations for each genus next to the boxplot(s) associated with that genus. Finally, you are expected to use the `theme()` function to remove the color legend from the plot, since it is no longer needed!**
+> **In this challenge you are expected to use this information to modify the boxplots you created in Lab 2. First, you are to color the boxplots based on the variable `sex`. Next, you need to move the legend colors for each level of `sex` into 
+the plot title or subtitle. Finally, you are expected to use the `theme()` function to remove the color legend from the plot, since it is no longer needed!**
 
 # Challenge 2 Submission
 

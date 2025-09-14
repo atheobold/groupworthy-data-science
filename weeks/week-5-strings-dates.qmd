@@ -14,7 +14,6 @@ execute:
 #| include: false
 
 library(tidyverse)
-library(flair)
 library(lubridate)
 ```
 
@@ -28,11 +27,11 @@ able to:
 
 ------------------------------------------------------------------------
 
-#### `r emo::ji("play button")` Watch Videos: 20 minutes
+#### 📽 Watch Videos: 20 minutes
 
-#### `r emo::ji("book")` Readings: 60-75 minutes
+#### 📖 Readings: 60-75 minutes
 
-#### `r emo::ji("check")` Preview Activities: 2
+#### ✅   Preview Activities: 2
 
 ------------------------------------------------------------------------
 
@@ -48,7 +47,7 @@ complicated).
 {{< video https://www.youtube.com/embed/Oo_MtXwpi2Q >}} 
 :::
 
-### `r emo::ji("book")` [Required Reading: *R4DS* -- Strings](https://r4ds.had.co.nz/strings.html)
+### 📖 [Required Reading: *R4DS* -- Strings](https://r4ds.had.co.nz/strings.html)
 
 > Some people, when confronted with a problem, think "I know, I'll use regular expressions." Now they have two problems. - Jamie Zawinski
 
@@ -119,7 +118,7 @@ you'll have exponentially more power to do good (or evil) when working with
 strings. You can get by without regular expressions if you're creative, but
 often they're much simpler.
 
-### `r emo::ji("book")` [Recommended Reading: *R4DS* Chapter 15 (Regular Expressions)](https://r4ds.hadley.nz/regexps.html)
+### 📖 [Recommended Reading: *R4DS* Chapter 15 (Regular Expressions)](https://r4ds.hadley.nz/regexps.html)
 
 ::: {.callout-tip}
 # Read at least through **Section 15.4.1**.
@@ -304,7 +303,7 @@ tibble(
 ```
 :::
 
-### `r emo::ji("check")` **Check-in 5.1: Functions from `stringr`**
+### ✅   **Check-in 5.1: Functions from `stringr`**
 
 **1 Which of the follow are differences between `length()` and `str_length()`?**
 
@@ -354,7 +353,7 @@ easier.
 {{< video https://www.youtube.com/embed/SEPjN2AJqbo >}} 
 :::
 
-### `r emo::ji("book")` [Required Reading: *R4DS* -- Dates and Times](https://r4ds.hadley.nz/datetimes.html)
+### 📖 [Required Reading: *R4DS* -- Dates and Times](https://r4ds.hadley.nz/datetimes.html)
 
 ::: {.callout-tip collapse="true"}
 # Extra resources
@@ -368,7 +367,7 @@ easier.
 -   [A tutorial on lubridate](https://data.library.virginia.edu/working-with-dates-and-time-in-r-using-the-lubridate-package/) - scroll down for details on intervals if you have trouble with `%within%` and `%--%`
 :::
 
-### `r emo::ji("check")` **Check-in 5.2: Functions from `lubridate`**
+### ✅   **Check-in 5.2: Functions from `lubridate`**
 
 **Q1** Which of the following is true about the `year()` function?
 

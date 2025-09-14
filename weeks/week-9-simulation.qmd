@@ -32,11 +32,11 @@ data from different statistical distributions
 
 ------------------------------------------------------------------------
 
-#### `r emo::ji("play button")` Watch Videos: 17 minutes
+#### 📽 Watch Videos: 17 minutes
 
-#### `r emo::ji("book")` Readings: 15-20 minutes
+#### 📖 Readings: 15-20 minutes
 
-#### `r emo::ji("check")` Check-ins: 1 
+#### ✅  Check-ins: 1 
 
 ------------------------------------------------------------------------
 
@@ -47,13 +47,13 @@ simulate data from statistical distributions using R.
 
 ## Simulation in R
 
-### `r emo::ji("book")` [Required Reading: *R Programming for Data Science* : Simulation](https://bookdown.org/rdpeng/rprogdatascience/simulation.html)
+### 📖 [Required Reading: *R Programming for Data Science* : Simulation](https://bookdown.org/rdpeng/rprogdatascience/simulation.html)
 
 ::: column-margin
 {{< video https://www.youtube.com/embed/J5XQaxmznNE >}} 
 :::
 
-### `r emo::ji("check")`: Check-in 9.1: Distributions & Simulation
+### ✅ : Check-in 9.1: Distributions & Simulation
 
 **Question 1:** What does the output of `pnorm(-4, mean = 2, sd = 4)` mean?
 

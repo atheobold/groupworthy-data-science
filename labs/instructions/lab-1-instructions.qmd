@@ -6,76 +6,23 @@ number-sections: true
 number-depth: 2
 editor: source
 code-block-background: true
+resources: 
+  - ../student/lab-1-student.qmd
 execute:
   echo: false
 ---
 
-# Part One: Workflow for GitHub
+# Accessing the Lab
 
-## Step 1: Making a Copy from GitHub Classroom
+Download the template Lab 1 Quarto file here: <a href="../student/lab-1-student.qmd" download>`lab-1-student.qmd`</a> 
 
-For the first few weeks of the quarter, we will use GitHub Classroom to create
-our lab repositories. GitHub Classroom is a wonderful tool, as it makes it
-**incredibly** simple to copy the contents of a repository. 
 
-Use these steps to make a copy of the Lab 1 repository: [List of Steps to Copy the Lab Assignment from GitHub Classroom](https://scribehow.com/shared/Copying_the_Lab_Assignment_with_GitHub_Classroom__jKUfxzJUQjOQ2lqJy2UPoQ) 
+::: {.callout-important}
+Be sure to save the file in the Lab 1 folder, inside your Week 1 folder, 
+inside your STAT 331 folder! 
+:::
 
-## Step 2: Inspecting the Lab
-
-Once you complete these steps, a dialogue box will open with messages about
-cloning (making a copy) of your Lab 1 repository. When the messages are
-finished, you should have a new RStudio session open. You should notice a few
-things:
-
--   In the upper right corner you should see a blue R cube with 
-`introdcution-to-quarto` written next to it ![](images/r-project.png){width="15%" fig-alt="A picture of a blue cube with an R inside, next to the text 'introduction-to-quarto-allison-theobold'"}, this tells
-you that you are working in an R Project (we'll learn more about these next
-week).
--   In the "Files" pane, you should see a list of all the files included in the
-`lab-1` repository you copied.
--   In the upper right pane, you should see a tab labeled "Git".
--   Nothing should be displayed in this pane, since you haven't made any changes 
-to the files that were copied! 
-
-## Step 3: Making a Small Change
-
-Now, find the `lab-1-student.qmd` file in the "Files" tab in the lower right 
-hand corner. Click on this file to open it. 
-
-At the top of the document (in the YAML) there is an `author` line that says 
-`"Your name here!"`. Change this to be your name and save your file either by
-clicking on the blue floppy disk or with a shortcut (command / control + s). 
-
-## Step 4: Pushing Your Lab to GitHub
-
-Now for our last step, we need to [commit the files to our repo](https://happygitwithr.com/existing-github-first#stage-and-commit). 
-
--   Click the "Git" tab in upper right pane
--   Check the "Staged" box for the `lab-1-student.qmd` file 
--   Click "Commit"
--   In the box that opens, type a message in "Commit message", such as
-"Added my name".
--   Click "Commit".
--   Click the green "Push" button to send your local changes to GitHub.
-
-RStudio will display something like:
-
-```         
->>> /usr/bin/git push origin HEAD:refs/heads/main
-To https://github.com/atheobold/introduction-to-quarto-allison-theobold.git
-   3a2171f..6d58539  HEAD -> main
-```
-
-## Step 5: Verifying Your Changes
-
-Go back to your browser. I assume you're still viewing the GitHub repo you just cloned. Refresh the page. You should see all the project files you committed there. If you click on "commits", you should see one with the message you used, e.g. "Added my name".
-
-## Step 6: Let's get started working with Quarto!
-
-Now that you've added your name, go ahead and get started with the rest of the 
-lab! 
-
-# Part Two: Exploring Quarto Documents
+# Lab 1: Exploring Quarto Documents
 
 ## Specifying Global Execute Options
 
@@ -134,7 +81,7 @@ the levels contained in the `supp` variable. Further, if you inspect the
 Environment tab, the `ToothGrowth` dataset should appear. You can click on the
 dataset name (not the blue play button!) to look at the data.
 
-### Check the Data Documentation
+## Check the Data Documentation
 
 **Question 4** -- In your **console** (*not* in the Quarto document), type
 `?ToothGrowth` (or alternatively `help(ToothGrowth)`). Use the information that
@@ -191,10 +138,17 @@ option (`#|`) to the above code chunk to make the figures print side-by-side
 (i.e., in one row) in the rendered HTML file.
 
 **Question 8** -- Specify in the code chunk options that these boxplots should
-be **center aligned**.
+be **center aligned** (also found in the Quarto documentation).
 
 **Question 9** -- Specify a **figure caption** for the boxplots (using a
 code-chunk option).
+
+::: {.callout-tip}
+# Look at the Quarto documentation! 
+
+This is a bit tricky! There are two plots, so you will need
+to figure out how to specify a different caption for each plot.
+:::
 
 ## Inserting a New Code Chunk
 
@@ -289,9 +243,11 @@ Make the following changes to your document:
 
 1.  Specify **"code-folding"** in your YAML document options.
 
-2.  Add a **table of contents** to your document.
+2.  Integrate **"code-tools"** in your YAML document options. 
 
-3.  Add a color theme to your document.
+3.  Add a **table of contents** to your document.
+
+4.  Add a color theme to your document.
 
 ## Render again!
 

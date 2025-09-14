@@ -1,0 +1,728 @@
+---
+title: '**STAT 331**, Fall 2025'
+format: 
+  html: 
+    number-sections: true
+    number-depth: 2
+    table-of-contents: true
+    section-divs: true
+    reference-location: section
+    footnotes-hover: true
+editor: source
+---
+
+```{r}
+#| include: false
+#| eval: true
+#| label: make-class-calendar
+
+library(tidyverse)
+library(gt)
+
+# Create a calendar for your syllabus ----
+# Source: http://svmiller.com/blog/2020/08/a-ggplot-calendar-for-your-semester/
+# Format: YYYYMMDD
+
+# What are the full dates of the semester?
+semester_dates <- seq(ymd(20250918), ymd(20251208), by = 1)
+
+# Weekday(s) of class
+class_wdays <- c("Tue", "Thu")
+
+# Breaks
+not_here_dates <- c(
+  ymd(20251111),
+  # Fall Break
+  seq(ymd(20251124), ymd(20251128), by = 1)
+  )
+
+# Dates of Portfolios
+
+portfolio_dates <- c(
+  ymd(20251021), 
+  ymd(20251023),
+  ymd(20251203), 
+  ymd(20251205)
+  )
+
+conferences <- c(
+  ymd(20251027),
+  ymd(20251029), 
+  ymd(20251206), 
+  ymd(20251207)
+  )
+
+# Custom function for treating the first day of the month as the first week 
+# of the month up until the first Sunday 
+# (unless Sunday was the start of the month)
+wom <- function(date) {
+    first <- wday(as.Date(paste(year(date), month(date), 1, sep = "-")))
+    return((mday(date) + (first - 2)) %/% 7 + 1)
+}
+
+# Create a data frame of dates, assign to Cal
+Cal <- tibble(date = seq(ymd(20250915), ymd(20251212), by = 1))  |> 
+  mutate(mon         = lubridate::month(date, label = T, abbr = F),
+         wkdy        = weekdays(date, abbreviate = T),
+         wkdy        = fct_relevel(wkdy, "Sun", "Mon", "Tue", "Wed", "Thu","Fri", "Sat"), # make sure Sunday comes first
+         semester    = date %in% semester_dates, 
+         portfolio   = date %in% portfolio_dates,
+         conferences = date %in% conferences, # is it an exam?
+         not_here    = date %in% not_here_dates, # is it a day off?
+         day         = lubridate::mday(date), 
+         week        = wom(date)
+         ) |> 
+  mutate(category = case_when(portfolio ~ "Portfolio",
+                              conferences ~ "Conferences",
+                              not_here ~ "Cal Poly Holiday",
+                              wkdy %in% class_wdays & !not_here & !portfolio & date %in% semester_dates ~ "Class Day",
+                           #   date %in% ymd(20250121) ~ "Class Day",
+                              TRUE ~ "NA")
+         )
+```
+
+::::::: columns
+:::: {.column width="55%"}
+::: {style="font-size: 2em; color: #000000;"}
+Statistical Computing with R[^1]
+:::
+
+-   Section 70: TR 9:10am - 11:00am
+-   Section 71: TR 12:10pm - 2:00pm
+
+**Dr. Allison Theobold** (they / them)
+
+**Assistant Professor of Statistics**
+::::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="40%"}
+![](../images/r-hearts.gif){fig-alt="The R logo with pink hearts floating next to it." width=50%}
+
+
+
+:::
+:::::::
+
+**Email:** [atheobol\@calpoly.edu](mailto:atheobol@calpoly.edu)
+
+**Student Hours:** Are held in my office in Building 25, Office 105 during the 
+following times:
+
+```{r}
+#| label: office-hour-calendar
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-width: 7
+#| fig-height: 1.5
+#| out-width: 90%
+#| fig-align: center
+#| fig-pos: H
+
+# Weekday(s) of office hours
+officehr_days <- c("Mon", "Thu")
+
+# Create a data frame of dates, assign to Cal
+Cal2 <- tibble(date = seq(ymd(20250921), ymd(20250927), by = 1))  |> 
+  mutate(mon      = lubridate::month(date, label = T, abbr = F),
+         wkdy     = weekdays(date, abbreviate = T),
+         wkdy     = fct_relevel(wkdy, "Sun", "Mon", "Tue", "Wed", "Thu","Fri", "Sat"), # make sure Sunday comes first
+         week     = wom(date),
+         classday = wkdy %in% class_wdays,
+         officehrday = wkdy %in% officehr_days,
+         officehrtime = case_when(wkdy == "Mon" ~ "2:10pm-\n3:00pm",
+                                  wkdy == "Thu" ~ "2:10pm-\n4:00pm",
+                                  .default = NA_character_)
+  )
+
+Cal2 |> 
+  ggplot(aes(wkdy, week)) +
+  theme_bw() +
+  theme(aspect.ratio = 0.15, 
+        panel.grid.major.x = element_blank(),
+        legend.position = "right",
+        legend.title = element_blank(),
+        axis.title.y = element_blank(), 
+        axis.title.x = element_blank(),
+        axis.ticks.y = element_blank(), 
+        axis.text.y = element_blank()) +
+  geom_tile(alpha = 0., 
+            aes(fill = officehrday), 
+            color="black", 
+            linewidth = 0.45,
+            show.legend = F
+  ) +
+  geom_text(aes(label = officehrtime), color = "black") +
+  scale_x_discrete(expand = c(0,0)) +
+  scale_y_discrete(expand = c(0,0)) +
+  scale_fill_manual(values=c("white", "gray")
+  )
+
+```
+
+
+[^1]: The classroom is a dynamic learning community. If necessary, I may make changes to the syllabus as the semester goes on to best suit the needs of all students. I promise to notify you in advance if I make any changes. Any changes to the syllabus made after the first day of class will be indicated in [**red**]{style="color: #FF0000;"}.
+
+# What will you learn?
+
+:::::::: columns
+::: {.column width="30%"}
+Have you ever wondered...
+
+...how are the visualizations you see in the media made?\
+...how do people cut down large datasets to address a specific question?\
+...how the applet simulations in your introductory statistics class worked?
+
+We'll answer these questions and more by studying the principles of "statistical computing" methods in the programming language called R.
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="30%"}
+There is not an expectation that you have seen R before, only that you have some experiences with computing (writing code and executing code). For those who have not seen R before, it is an open-source programming language developed by Statisticians, and is one of the main "languages" you will find people use when doing statistics in the wild.
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="30%"}
+In this course, we will learn the foundational skills for programming in R and a variety of skills for working with data. We will then build on these skills to consider how to write programs which are more efficient.
+:::
+::::::::
+
+# How will you learn?
+
+In order to learn statistical computing, it's not enough to simply listen to your professor talk about statistical computing—you must do statistical computing. So, to learn the concepts in this course, you'll be doing a variety of active learning tasks both inside and outside of class:
+
+:::::::: columns
+::: {.column width="30%"}
+[**Before class,**]{style="color: #34605f; font-size: 1.25em"}\
+you'll complete **Preview Activities** / **Check-ins** which will guide you through your first contact with new concepts. Preview Activities involve readings, videos, and exercises to build your basic skill fluency. For example, you might be asked to read a chapter from the course textbook, watch a few videos discussing some concepts from the chapter, and then complete some preliminary exercises to get you started thinking about how to apply the concepts in the context of real data.
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="30%"}
+[**During class,**]{style="color: #34605f; font-size: 1.25em"}\
+you'll be working with your classmates to complete **Practice Activities**, which take your Preview Activities a step further. You will collaborate with your team to solve a puzzle, requiring that you accomplish a series of tasks, each of which applies the statistical computing concepts from that week. The purpose of in-class time is for you to be doing statistical computing, with me there to guide you if / when you get lost.
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="30%"}
+[**After class,**]{style="color: #34605f; font-size: 1.25em"}\
+you can reinforce the material through **Lab Assignments**, which are an opportunity to demonstrate proficiency of the skills that you've learned. If you got something wrong, don't worry! You'll have a chance to try again.
+
+Each Lab Assignment will have **Challenge Problems**, which ask you to extend the skills you've learned in class in some way. Frequently, you have the choice of what you would like to learn. The only requirement is that you extend your thinking in some (measurable) way.
+:::
+::::::::
+
+# How will you know how well you are doing?
+
+The grading scheme we'll be using is probably unlike what you've had in previous statistics courses. Instead of the traditional percentage-based system, we will be using [Ungrading](https://www.jessestommel.com/ungrading-an-introduction/). Do not let the name mislead you, "ungrading" is a system which privileges the process of revising one's thinking rather than assessing what you know at a specific point in time (e.g., midterm exam). The intent of which is to give you as many chances as you need (within reason) to learn the skills of the course. You're not being graded on how quickly you learn—only what you have shown you understand by the end of the quarter. Many grades are not final; you'll often have the chance to revise and resubmit your work to improve its quality.
+
+![](../images/sgn.png)
+
+</br>
+
+:::::::::: columns
+::: {.column width="28%"}
+[**Preview Activities**]{style="color: #34605f; font-size: 1.25em"}\
+will be scored as Complete or Incomplete. You'll receive credit for a Preview Activity as long as:
+
+1.  **The assignment is submitted by the deadline -- before classes start on Tuesday (8am).**
+
+2.  **Every item has a response that shows a good-faith effort.** Submissions that have items left blank will receive no credit, as will submissions with responses such as "I don't know" or "I don't understand" or random guesses with no supporting work. Note that **correctness is not factored into the grade**, so you should feel free to give your best effort on each one without fear of being counted off for wrong answers.
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="24%"}
+[**Practice Activities**]{style="color: #34605f; font-size: 1.25em"}\
+will be worked on in your assigned team, during class on Tuesdays. Your team will be tasked with applying the skills you learned in the Preview Activities, to come up with a solution to the Practice Activity.
+
+Only the responses to the Practice Activity will be scored, as **Complete or Incomplete**, based on the answer your group finds. However, the work you perform (in your Quarto document) will act as an artifact demonstrating your skills and will be submitted for feedback.
+
+**Practice Activities are due by 5pm on Wednesday**, but you should have sufficient time to complete the activity during Tuesday's class.
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="21%"}
+[**Lab Assignments**]{style="color: #34605f; font-size: 1.25em"}\
+are aligned with the course's Learning Targets, which describe exactly what you should be able to do after taking this course. You'll receive a score for each Learning Target according to the **SGN rubric** above, as well as feedback to help you improve.
+
+**Lab Assignments are due every Monday by 5pm**[^2].
+:::
+
+::: {.column width="1%"}
+:::
+
+::: {.column width="24%"}
+[**Challenge Problems**]{style="color: #34605f; font-size: 1.25em"}\
+Each Challenge Problem will receive a single holistic score on the **SGN rubric**. If you earn a **G**, you'll receive specific written feedback, which you can use to revise and resubmit your work repeatedly until you're satisfied with the results. If you receive an **N**, you'll need to meet with me before you revise your work. (This is so you understand the expectations of the assignment.)
+
+**Challenges are due every Monday by 5pm.**
+:::
+::::::::::
+
+[^2]: **Note that I have chosen this deadline because I'm juggling two competing desires, (1) to step away from my email on the weekend, and (2) to make sure people's questions get answered before the assignment is due.**
+
+## Revisions
+
+The grading system for this class encourages you to submit revisions on Lab and Challenge problems you were not initially successful with. When I grade your Lab and Challenge assignments, I will mark each problem with an **S**, a **G**, or an **N**. You will have the option to retry any Learning Targets for which you scored a **G** or an **N** on. When you complete revisions, you will submit a new HTML containing your revisions, alongside written reflections of how your understanding changed from when you first attempted the problem. These reflections are expected to be written immediately below the problem which you revised.
+
+It's not enough to say "\[x\] was wrong, so I fixed it"—I need you to talk about why you got \[x\] wrong in the first place and what you learned that changed your mind. What do you know now that you didn't know before? Who or what helped you learn?
+
+-   If your revision does not include reflections, I'll ask you to add them.
+
+-   If your revisions do not include reflections by the deadline, your revisions are not eligible to be regraded.
+
+-   See some [examples of really good reflections here](https://docs.google.com/document/d/1JNR3cVONeEPwe7umURI1gv0w9qbMz5fyC_S2_qXkHII/edit?usp=sharing) -- they're (mostly) from my STAT 313 course, but I think you'll get the idea.
+
+-   Submit your revision to the **same** assignment box on Canvas as your original. This helps me keep track of any outstanding revisions each person has.
+
+It is my goal to have your lab and challenge assignments (which are due on Monday at 5pm) back to you no later than Thursday, so we can spend time talking about the revisions during class. You will then have **until the following Friday to complete your revisions** on the problems you received a **G** or an **N** on.
+
+# **How will your final grade be decided?**
+
+This course utilizes a system called "ungrading," where you will be the arbiter of your own grade. It is likely you've never heard of "ungrading," so let me try to define it for you. **Ungrading** is a form of "grading" in which you will still do work, which is aligned with clearly defined learning standards. But, none of the work gets a grade, or as non-Americans would say a "[mark](https://gradingforgrowth.com/p/giving-marks-that-indicate-progress?s=r)". Instead of a mark, your work is carefully evaluated and gets lots of [helpful feedback](https://gradingforgrowth.com/p/the-care-and-feeding-of-helpful-feedback?s=r). You will use this feedback to engage in a feedback loop system, whereby you can revise and resubmit, and get more feedback, and so on until the work is deemed to have met whatever standard is in place.\
+\
+The goal of ungrading is to remove marks from the picture, so you are able to focus your attention on the work itself and engage in the feedback loop. I am removing distractions ([marks are distractors](https://gradingforgrowth.com/p/words-numbers-or-nothing)) to help you build metacognition and self-evaluation skills, and grow in your learning over time.
+
+One of the four pillars of this grading system is having clearly identified standards, so you know what is expected of you. In this course, there are three dimensions where you will assess your progress against the goals stated for you, these are:
+
+1.  Accomplishment of Learning Targets
+2.  Evidence of Continued Learning
+3.  Growth as a Team Member
+
+You will work on each of these dimensions throughout the course. Periodically, you will be asked to reflect on your learning and discuss how you have grown in each area. Accompanying each reflection will be an estimation of the grade you have earned in the course. You will be provided feedback on each reflection, letting you know if I agree with your assessment, and, if not, where the discrepancies lie. I want you to view your grade as a conversation between you and me.
+
+Let's unpack how you are expected to evaluate yourself in these three dimensions.
+
+## Accomplishment of Learning Targets
+
+Each week, a set of learning targets will be outlined. These learning targets will not exist solely within a given week. You will find that the skills you learn early in the course will be used throughout the course. Whereas, some skills, learned later in the course, will not be used as often. You can demonstrate proficiency with these skills through three main avenues: Group-based Practice Activities Lab Assignments Challenge Assignments
+
+However, evidence of continued learning can only be demonstrated within individual lab assignments. You can keep track of your progress yourself using this [Interactive Checklist](https://docs.google.com/spreadsheets/d/1GpiDk3BDI8erN0tHWuouh-VDormk_dNS70WC9l5h0e8/edit?usp=sharing).
+
+## Evidence of Continued Learning
+
+Each week, you will be required to complete a Lab and Challenge assignment where you demonstrate your understanding of that week's learning targets in the context of a new dataset. These assignments provide two different perspectives of your continued learning.
+
+1.  They demonstrate your ability to extend your thinking beyond what you've learned in class.
+2.  They demonstrate your ability to revise your thinking.
+
+### Extend Your Thinking
+
+Each Lab Assignment will have a Challenge Problem which asks you to extend the skills you've learned in class in a new way. You will often have the choice of what direction you would like to expand your knowledge. There are no specific requirements for how you extend your skills, only that you extend your thinking in some (measurable) way.
+
+### Revise Your Thinking
+
+For the problems in each Lab Assignment, I will give copious written feedback, but I'll also summarize my feedback with a letter on the **SGN** scale (as discussed previously). To demonstrate your ability to revise your thinking, I encourage you to revise and resubmit any problems marked **G** or **N**.
+
+## **Growth as a Team Member**
+
+There are two ways you will evaluate your growth as a team member. The first is through your collaboration with your team members. The second is through the code reviews you provide your peers.
+
+### Collaborative Group Work
+
+This course uses collaborative learning to provide a supportive community when initially exploring the concepts associated with each week. On Tuesdays, you will collaborate in assigned teams to complete a Practice Activity. Collaborating on the Practice Activity is more than independently coding each task and asking someone a question when you get stuck. Collaborating is working together with your team to accomplish each question.
+
+Many people are uncomfortable working in a team for a variety of reasons, such as fearing looking dumb, being rejected, or being disrespected. It is my hope that our weekly collaborations will offer opportunities for you to grow as a group member, by becoming more aware of how you interact with others.
+
+During the first week of class, each of you will be placed in a group with one other student. During Weeks 2-5, you will work with this person on the Practice Activities we complete during class on Tuesdays. To make group collaborations more equitable, I expect for you and your partner to alternative between two "roles"—Developer and Coder. We will discuss these roles in class, but you can find descriptions of the scope of each role on the [Pair Programming Roles document](/group-activities/pair-programming-norms.qmd "Pair Programming Roles document").
+
+### Peer Code Review
+
+One of my favorite sayings is "Programs must be written for people to read, and only incidentally for machines to execute." Code review has two major benefits, (1) you get feedback on the readability, tidiness, and efficiency of your code, and (2) by reviewing someone else's code you learn more about your own code!
+
+[Here are some guidelines and examples of what you should be looking for and how to phrase your peer code reviews.](../code-review/code-review-guidelines.qmd)
+
+You hopefully noticed that writing "tidy" and "efficient" code are two of the Learning Targets for this course. To demonstrate proficiency in these targets, you will earn badges from your peers. For each lab assignment, everyone in the class will provide an anonymous review of someone's code. The reviewer will provide feedback on the tidiness and efficiency of the code they are reviewing. I will provide some examples of helpful and unhelpful feedback, to guide your feedback. It's easy to be a jerk when making comments; don't. Think about the comments you would like to receive that would help you improve your code! **Be good to each other.**
+
+<!-- ## **Attention to Personal Goals** -->
+
+<!-- During Week 1 of this course, you will be asked to write down at least three measurable things you hope to get out of this class. There is no specific requirement regarding the "size" of the things you write, just that you are able to "measure" your progress toward accomplishing these goals throughout the course. You will hopefully find that some of your goals align with or build off of other aspects of this course! -->
+
+# **When will I work on my portfolio?**
+
+I encourage you to work on your portfolio every week, inserting snippets of code which satisfy the learning objectives. However, I know that life gets busy and sometimes other things will come before your portfolio. So, I have scheduled a mid-quarter portfolio check-in.
+
+At the end of Week 6, you will submit your first reflection and your draft portfolio. See @sec-portfolio below for a description of what should be included in your portfolio. At the end of your portfolio, you will include a proposal for the grade you've earned in the course. Your portfolio acts as the "data" to support your proposed grade.
+
+We will have an in-person, 5-minute meeting during Week 7 to discuss your proposed grade.
+
+### Week 10 Reflection
+
+Your final reflection will be submitted at the end of Week 10 (December 5). This reflection will accompany the final portfolio you assemble.
+
+We will have in-person, 10-minute meetings on Saturday, December 6th and Monday, December 8th. Meetings on Saturday will most likely take place between 10:10am and 1pm, but I will update you once I hear from the registrar's office. Meetings on Monday will be updated based on the timing of Saturday.
+
+# **How will my final portfolio look?** {#sec-portfolio}
+
+Your Final Portfolio will be a collection of artifacts from your work in 331 which demonstrate, (1) your proficiency with the learning targets, (2) your continued learning, and (3) evidence for how you have contributed to the classroom community.
+
+For **each** learning target, you'll choose your favorite and best work from your lab assignments, challenges, and practice activities. To save yourself time, try and choose lab assignments which demonstrate your proficiency in as many of the learning targets as possible. For example, if you are selecting an assignment for the "selecting columns" and "filtering rows" learning targets, I would recommend choosing **one** question where you demonstrate your understanding of **both** these targets over one problem per target.
+
+Your selection will also include some surrounding discussion, which might include things like:
+
+-   how this work demonstrates your learning;
+
+-   why you chose this work in particular -- what makes it your favorite, why you think it's your best work, etc.
+
+For evidence of your continued learning, you will (1) choose Challenge assignments which demonstrate evidence of how you extended what you learned in class, and (2) choose problems where you were required to submit revisions. Your revised problems should include a description of how you revised your thinking when completing the revision.
+
+For evidence of your contribution to the classroom community you may include descriptions of how you grew as a team member, screenshots of the peer reviews you completed, and screenshots of how supported your peers through posing / answering questions on Discord, etc.
+
+# Are there "guidelines" for how I should award myself a grade? {#sec-grades}
+
+At the end of the term, **you're going to tell me how you did and thus what grade you earned in the course**. This will be done in your Week 10 reflection, to be submitted alongside your Final Portfolio. As I previously stated, you should think of your portfolio as the "evidence" for the grade you propose in your reflection. I will probably agree with you, because you know yourself, your work, and your understanding pretty well. If I don't, we'll talk about it.
+
+We will generate the descriptions / expectations of these grades together after you've had the chance to see how this course looks. Specifically, we will dedicate a portion of class during Week 3 to writing these expectations together.
+
++--------------------------+--------------------------------------------------------------------------+
+| Letter Grade             | Description of Work and Participation                                    |
++==========================+==========================================================================+
+| **A**\                   | ::: {style="color: red"}                                                 |
+| (Superior Achievement)   | **Learning Targets:**\                                                   |
+|                          | \                                                                        |
+|                          | **Revising Thinking:** **\                                               |
+|                          | \                                                                        |
+|                          | Extending Thinking:** **\                                                |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:**\                                           |
+|                          | **\                                                                      |
+|                          | Peer-Code Review:**                                                      |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
+| **B**\                   | ::: {style="color: red"}                                                 |
+| (Good Achievement)       | **Learning Targets:**\                                                   |
+|                          | \                                                                        |
+|                          | **Revising Thinking:** **\                                               |
+|                          | \                                                                        |
+|                          | Extending Thinking:** **\                                                |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:**\                                           |
+|                          | **\                                                                      |
+|                          | Peer-Code Review:**                                                      |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
+| **C**\                   | ::: {style="color: red"}                                                 |
+| (Acceptable Achievement) | **Learning Targets:** **\                                                |
+|                          | **\                                                                      |
+|                          | **Revising Thinking:** **\                                               |
+|                          | \                                                                        |
+|                          | Extending Thinking:** **\                                                |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:**\                                           |
+|                          | **\                                                                      |
+|                          | Peer-Code Review:**                                                      |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
+| **D**                    | ::: {style="color: red"}                                                 |
+|                          | **Learning Targets:**\                                                   |
+|                          | \                                                                        |
+|                          | **Revising Thinking:** **\                                               |
+|                          | \                                                                        |
+|                          | Extending Thinking:** **\                                                |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:**\                                           |
+|                          | **\                                                                      |
+|                          | Peer-Code Review:**                                                      |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
+| **F**                    | ::: {style="color: red"}                                                 |
+|                          | **Learning Targets:** Does not satisfy the criteria for a D.\            |
+|                          | \                                                                        |
+|                          | **Revising Thinking:** Does not satisfy the criteria for a D. **\        |
+|                          | \                                                                        |
+|                          | Extending Thinking:** Does not satisfy the criteria for a D. **\         |
+|                          | \                                                                        |
+|                          | Collaborative Group Member:** Does not satisfy the criteria for a D. **\ |
+|                          | \                                                                        |
+|                          | Peer-Code Review:** Does not satisfy the criteria for a D.               |
+|                          | :::                                                                      |
++--------------------------+--------------------------------------------------------------------------+
+
+# Academic Integrity and Class Conduct
+
+**Our academic community is at its best when we treat each other with fairness, honesty, respect, and trust. Unfortunately, sometimes students slip up and do something that gives themselves (or someone else) an unfair advantage over other students.  Such actions will not be tolerated in this class.**
+
+It is most likely that a student will slip up if they are feeling overwhelmed or unsure of how to approach a problem that they are stuck on. So **let's be proactive to prevent those situations!!** If you are helpless in an assignment or in studying, post on discord, come to office hours, or email me or one of your classmates! I am working hard to provide all of the resources you need to succeed
+
+
+However, **the college doesn't really care if you break the rules on purpose or by accident.** If I suspect you have done something that violates academic integrity on any graded elements of the course (included those graded for completion), you will receive an email to tell you about my suspicion and how the situation will be handled. **Typically, students earn a 0 for the  assignment on which academic misconduct is found.** University policy dictates that we must report every instance of suspected academic dishonesty to the Office of Student Rights and Responsibilities, no matter how small. For more information on academic misconduct and what constitutes cheating and
+plagiarism, please see
+[academicprograms.calpoly.edu/content/academicpolicies/Cheating](https://academicprograms.calpoly.edu/content/academicpolicies/Cheating).
+
+It is important to note that paraphrasing or quoting another's work
+without proper citation is a form of academic misconduct. This includes
+the `R` code produced by someone else! Writing code is like writing a
+paper, it is obvious if you copied-and-pasted a sentence from someone
+else into your paper because the way each person writes is different.
+
+Even inadvertent or unintentional misuse or appropriation of another’s
+work (such as relying heavily on source material that is not expressly
+acknowledged) is considered plagiarism. This includes using **Chat GPT,
+which should only be used to help you problem solve just as a tutor or
+peer would, and not as a substitute for your own work.** If you are
+struggling with writing the `R` code for an assignment, please reach out
+to me. I would prefer that I get to help you rather than you spending
+hours Googling things and get nowhere!
+
+::: callout-tip
+## Always Cite Outside Resources!
+
+In this class the assumed knowledge is the course materials, including the course textbook, coursework pages, and course slides.  If you use outside resources on assignments I expect that you will *cite those resources.* This means that
+
+- If you use any **`R` functions or code that are not in the course materials**, you must cite where you found it. e.g., if you look up the help file for `mutate()` and you learn about a function not covered in the course materials, you are required to cite the documentation when using that function.
+- If you use **Google** you are expected to “inform” me of any resources you used by pasting the link to the resource in a code comment next to where you used that resource.
+- If you use **ChatGPT** you are expected to “inform” me by stating that you used it in a code comment next to where you used it including **the full prompt that you gave ChatGPT**.
+- If you **work with classmates** on an assignment, you are expected to "inform" me by including a note with their names. 
+:::
+
+::: {.callout-warning}
+The first incident of failing to cite your resources, will result in a warning. The second incident of failing to cite your resources will result in a 0 on the assignment, meaning you will not be able to include **any** code from that Lab or Challenge in your Final Portfolio. You will also be reported to the Office of Student Rights and Responsibilities.
+:::
+
+**If you have any questions about using and citing sources, you are
+expected to ask for clarification.**
+
+# Learning Environment and Support
+
+My priority is your success in this course. I understand that things happen unexpectedly and obtaining official accommodations can be slow. 
+
+If you feel that any circumstances or factors beyond your control may affect your presence and work in this class, **please reach out to me** and we will work to accommodate your needs. You do not need to share personal information with me when you reach out, unless you would like to.
+
+## What if I need to miss class?
+
+I encourage you to attend every class session, but policies are for narcs. I put a great deal of time into making each class session engaging and worth your time. Attendance in this course is not explicitly required, but it may be incredibly difficult to articulate how you've grown as a team member and leader and / or contributed to creating a respectful classroom learning community if you regularly do not attend class. 
+
+Here's what you should do if you do miss a class:
+
+-   Talk to a classmate to figure out what information you missed
+
+-   Check Canvas for any necessary handouts or changes to assignments
+
+-   Post on Discord with any questions you have after reviewing notes and handouts\
+
+If you miss a bunch of classes, please come talk to me. I'm working from the assumption that you care and are trying, but something is getting in your way (health issues? depression / anxiety? college stress?); let's figure out what that is and how I can help.
+
+## What if I need help?
+
+This quarter, I am instating a policy that I do not respond to emails with questions of general interest, such as deadline clarifications or conceptual questions. If you have one of these questions, please ask your question on our course Discord server.
+
+We will use Discord to manage questions and responses regarding course content. There are channels for the different components of each week (e.g., Week 1 Lab Assignment). Please do not send an email about homework questions or questions about the course material. It is incredibly helpful for others in the course to see the questions you have and the responses to those questions. I will try to answer any questions posted to Discord within 3-4 hours (unless it is posted at midnight). If you think you can answer another student's question, please respond!
+
+## What if I need to turn something in late?
+
+You'll start the semester with three (3) virtual "Tokens" that you can use for extra flexibility. One token can purchase a 24-hour extension for a Lab or Challenge Assignment (not a Preview Activity or Practice Activity). If you want to use a token for a deadline extension, you are required to complete the Deadline Extension Form. Akin to how the "real world" works, deadline extensions are requested to be done before the deadline. If you thought you were going to get an assignment in but you just missed the deadline for an assignment, please go complete a deadline extension request ASAP. I will not provide feedback on assignments which missed the deadline and no extension request was completed.
+
+Tokens cannot be "stacked"; you cannot use multiple tokens to purchase a 6-day extension. You can keep track of how many Tokens you have on Canvas.
+
+You'll also have opportunities to earn more tokens during the quarter! You can earn one (1) token by:
+
+-   Answering a content or coding question posed on Discord
+-   Completing an exemplary Challenge Assignment -- applauded by Dr. Theobold for going above and beyond
+-   Attending every class session (including portfolio parties)
+
+## What if I have accommodations or feel that accommodations would be beneficial to my learning?
+
+I enthusiastically support the mission of [Disability Resource Center](https://drc.calpoly.edu/) to make education accessible to all. I design all my courses with accessibility at the forefront of my thinking, but if you have any suggestions for ways I can make things more accessible, please let me know. Come talk to me if you need accommodation for your disabilities. I honor self-diagnosis: lets talk to each other about how we can make the course as accessible as possible. See also the [standard syllabus statements](https://ctlt.calpoly.edu/syllabus-statements), which include more information about formal processes.
+
+## How can I expect to be treated in this course?
+
+Following Ihab Hassan, I strive to teach statistics so that people will stop killing each other. In my classroom, diversity and individual differences are respected, appreciated, and recognized as a source of strength. Students in this class are encouraged and expected to speak up and participate during class meetings, and to carefully and respectfully listen to each other. During the first few weeks of class, we'll work together to create a set of norms that will govern our interactions with each other, to ensure that we're always respectful of everyone.
+
+So that everyone feels comfortable participating, every member of this class **must** show respect for every other member of this class. Any attitude or belief that espouses the superiority of one group of people over another is **not welcome** in my classroom. Such beliefs are directly destructive to the sense of community that we strive to create, and will sabotage our ability to learn from each other (and thus sabotage the entire structure of the course).
+
+In summary: Be good to each other.
+
+## I’m having difficulty paying for food and rent, what can I do?
+
+If you have difficulty affording groceries or accessing sufficient food to eat every day, or if you lack a safe and stable place to live, and you believe this may affect your performance in the course, I urge you to contact the Dean of Students for support. Furthermore, please notify me if you are comfortable in doing so. This will enable me to advocate for you and to connect you with other campus resources.
+
+## My mental health is impairing my ability to engage in my classes, what should I do?
+
+National surveys of college students have consistently found that stress, sleep problems, anxiety, depression, interpersonal concerns, death of a significant other and alcohol use are among the top ten health impediments to academic performance. If you are experiencing **any** mental health issues, I and Cal Poly are here to help you. Cal Poly's Counseling Services (805-756-2511) is a free and confidential resource for assistance, support and advocacy.
+
+## Someone is threatening me, what can I do?
+
+I will listen and believe you if someone is threatening you. I will help you get the help you need. I commit to changing campus culture that responds poorly to dating violence and stalking.
+
+# Class Schedule
+
+```{r}
+#| label: plot-of-class-calendar
+#| echo: false
+
+Cal |> 
+  ggplot(aes(wkdy, week)) +
+  theme_bw() +
+  theme(aspect.ratio = 1, 
+        panel.grid.major.x = element_blank(),
+        legend.position = "right",
+        legend.title = element_blank(),
+        axis.title.y = element_blank(), 
+        axis.title.x = element_blank(),
+        axis.ticks.y = element_blank(), 
+        axis.text.y = element_blank()) +
+  geom_tile(alpha = 0.8, 
+            aes(fill = category), 
+            color="black", 
+            linewidth = 0.45
+            ) +
+  facet_wrap(~ mon, scales = "free", ncol=3) +
+  geom_text(aes(label = day, color = semester & (!not_here))) +
+  # put your y-axis down, flip it, and reverse it
+  scale_y_reverse(breaks = NULL) +
+  # manually fill scale colors to something you like...
+  scale_color_manual(values = c("FALSE" = "grey80", "TRUE" = "black"), guide = "none") + 
+  scale_fill_manual(values=c("Class Day"="steelblue", 
+                             "Finals"="white",
+                             "Cal Poly Holiday" = "grey10",
+                             "NA" = "white", # I like these whited out...
+                             "Conferences"="orange3",
+                             "Portfolio"="#c994c7"),
+                    #... but also suppress a label for a non-class semester day
+                    breaks = c("Finals", "Cal Poly Holiday", "Class Day", "Portfolio", "Conferences"))
+
+```
+
+```{r}
+#| label: table-of-course-topics
+#| echo: false
+#| tbl-cap: "Tentative schedule of class topics and important due dates"
+
+conference_days <- Cal |> 
+  filter(category == "Conferences", 
+         mon == "December") |> 
+  mutate(topic = c("Final Conferences")
+         ) |> 
+  rowwise() |> 
+  mutate(sem_week = isoweek(date),
+         Date = paste(format(date, "%b %e"), sep = ",", collapse = ", "))
+
+class_days <- Cal |> 
+  filter(date %in% semester_dates,
+         category %in% c("Class Day", "Portfolio")
+         ) |>  
+  mutate(sem_week = isoweek(date)) |> 
+  group_by(sem_week) |> 
+  summarize(Date = paste(format(date, "%b %e"), sep = ",", collapse = ", ")) |> 
+  ungroup() |>
+  mutate(topic = c(
+    "Introduction to R", #1
+    "Basics of Graphics", #2
+    "Data Cleaning and Manipulation", #3
+    "Data Transformations + Factors", #4
+    "Special Data Types", #5
+    "Midterm Portfolio & Version Control", #6
+    "Portfolio Conferences", #7
+    "Functions",
+    "Functional Programming",
+    "Simulation",
+    "Final Portfolio")) |> 
+  bind_rows(conference_days) |> 
+  arrange(sem_week) |> 
+  select(Date, Topic = topic)
+
+
+class_days |> 
+  gt() |> 
+  tab_style(
+    style = cell_text(weight = "bold"),
+    locations = cells_column_labels()
+  )
+```
+
+
+# Learning Targets
+
+The following learning targets speak to the big content ideas I’m designing this course for you to learn. I think these are probably exhaustive, and you will find that many of these targets overlap with each other.
+
+::::::::::: columns
+::::: {.column width="45%"}
+::: {style="font-size: 1.5em; color: #34605f;"}
+Working with Data
+:::
+
+-   **WD-1**: I can import data from a variety of formats (e.g., csv, xlsx, txt)
+-   **WD-2**: I can select necessary columns from a dataset
+-   **WD-3**: I can filter rows from a dataset for a variety of data types (e.g., numeric, factor, date, character)
+-   **WD-4**: I can modify existing variables and create new variables in a dataset for a variety of data types (e.g., numeric, factor, date, character)
+-   **WD-5**: I can use mutating joins from the `tidyr` package to combine multiple datasets
+-   **WD-6**: I can use filtering joins from the `dplyr` package to filter rows from a dataset
+-   **WD-7**: I can pivot datasets from long to wide and visa versa
+
+::: {style="font-size: 1.5em; color: #34605f;"}
+Reproducibility
+:::
+
+-   **R-1**: I can create professional looking, reproducible analyses using RStudio projects, Quarto documents, and the `here` package <!-- we will want to add a target about file structure --> <!-- we will want to add a target about version control -->
+-   **R-2**: I can write well documented[^3] and tidy code[^4]
+-   **R-3**: I can write robust programs[^5] that are resistant to changes in inputs
+:::::
+
+::: {.column width="10%"}
+:::
+
+:::::: {.column width="45%"}
+::: {style="font-size: 1.5em; color: #34605f;"}
+Data Visualization & Summarization
+:::
+
+-   **DVS-1**: I can create visualizations for a variety of variable types (e.g., numeric, character, date)
+-   **DVS-2**: I use plot modifications to make my visualizations clearer to the reader
+-   **DVS-3**: I show creativity in my visualizations
+-   **DVS-4**: I can calculate numerical summaries of variables
+-   **DVS-5**: I can calculate numerical summaries of variables across multiple groups
+-   **DVS-6**: I can create tables which make my summaries clear to the reader
+-   **DVS-7**: I can show creativity in my tables
+
+::: {style="font-size: 1.5em; color: #34605f;"}
+Program Efficiency
+:::
+
+-   **PE-1**: I can write concise code which does not repeat itself.
+-   **PE-2**: I can write functions to reduce repetition in my code.
+-   **PE-3**: I can use iteration to reduce repetition in my code.
+-   **PE-4**: I can use modern tools[^6] when carrying out my analysis.
+
+::: {style="font-size: 1.5em; color: #34605f;"}
+Data Simulation & Statistical Models
+:::
+
+-   **DSSM-1**: I can simulate data from a variety of distributions
+-   **DSSM-2**: I can conduct common statistical analyses in R
+::::::
+:::::::::::
+
+[^3]: Note that I have chosen this deadline because I'm juggling two competing desires, (1) to step away from my email on the weekend, and (2) to make sure people's questions get answered before the assignment is due.
+
+[^4]: "well documented" code has elements of the following:
+
+    -   code comments (e.g., \# function to rescale columns between 0 and 1)
+
+    -   code chunk names (using the `#| label:` option)
+
+    -   sections in Quarto file which describe the process(es) being implemented
+
+[^5]: "tidy code" is code which adheres to the tidyverse style guidelines
+
+[^6]: The follow are some examples of code I would consider "robust":
+
+    -   using column names rather than column positions
+
+    -   including function stops when writing functions
+
+    -   using processes that don't depend on you remembering a particular sequence of steps (e.g., `arrange()` then `slice()` versus `slice_max()`)

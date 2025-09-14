@@ -8,6 +8,9 @@ project:
     - "!/group-activities/group-formation"
     - "!/portfolio/midterm-portfolio-checklist.docx"
 
+resources:
+  - student/lab-1-student.qmd
+
 website:
   page-navigation: true
   title: "Introduction to Statistical Computing in R"
@@ -19,120 +22,34 @@ website:
   page-footer:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
     left: "&copy; Copyright 2024, Allison Theobold & Judith Canner"
-    background: "#D9E3E4"
+    background: "#c896ff"
+    
+  favicon: "images/stat-331-hex.png"
 
-  sidebar:
-    background: "#5D737E"
-    logo: "images/r-flowers.png"
+  navbar:
     pinned: true
-    align: center
-    tools:
-      - icon: github
-        href: https://github.com/atheobold/groupworthy-data-science
-        text: "GitHub organization"
-      - icon: person-fill
-        href: https://canvas.calpoly.edu
-        text: "Cal Poly Canvas"
-
-    style: "docked"
-    search: true
-    collapse-level: 1
-    contents:
-      - section: "Course information"
-        contents:
-          - href: course-materials/course-overview.qmd
-            text: Overview
-          - href: course-materials/course-syllabus.qmd
-            text: Syllabus
-          - href: course-materials/course-support.qmd
-            text: Support
-          - href: course-materials/course-team.qmd
-            text: Teaching team
-          - href: index.qmd
-            text: Schedule
-          - href: course-materials/computing-access.qmd
-            text: Access
-          - href: course-materials/course_resources.qmd
-            text: R Resources
-      - section: "Weekly materials"
-        contents:
-          - href: weeks/week-0-discord.qmd
-            text: "Week 0 - Course Set-up"
-          - href: weeks/week-1-r-rstudio.qmd
-            text: "Week 1, Part 1 - R & RStudio"
-          - href: weeks/week-1-quarto.qmd
-            text: "Week 1, Part 2 - Quarto"
-          - href: weeks/week-1-version-control.qmd
-            text: "Week 1, Part 3 - Version Control"
-          - href: weeks/week-2-ggplot.qmd
-            text: "Week 2, Part 1 - ggplot"
-          - href: weeks/week-2-projects-data-import.qmd
-            text: "Week 2, Part 2 - Data Import"
-          - href: weeks/week-3-dplyr.qmd
-            text: "Week 3 - dplyr"
-          - href: weeks/week-4-reshaping-joining.qmd
-            text: "Week 4, Part 1 - Data Transformation"
-          - href: weeks/week-4-factors.qmd
-            text: "Week 4, Part 2 - Factors"
-          - href: weeks/week-5-strings-dates.qmd
-            text: "Week 5 - Strings & Dates"
-          - href: portfolio/midterm-portfolio-targets.qmd
-            text: "Week 6 - Midterm Portfolio Week"
-          - href: weeks/week-7-vector-functions.qmd
-            text: "Week 7, Part 1 -- Vector Functions"
-          - href: weeks/week-7-data-frame-functions.qmd
-            text: "Week 7, Part 1 -- Data Frame Functions"
-          - href: weeks/week-8-iteration.qmd
-            text: "Week 8 - Iteration"
-          - href: weeks/week-9-simulation.qmd
-            text: "Week 9 - Simulating Data"
-          # - href: weeks/week-10.qmd
-          #   text: "Week 10"
-      - section: "Labs"
-        contents:
-          - href: labs/instructions/lab-1-instructions.qmd
-            text: "Lab 1 & Challenge 1 Instructions"
-          - href: labs/instructions/lab-2-instructions.qmd
-            text: "Lab 2 Instructions"
-          - href: labs/instructions/challenge-2-instructions.qmd
-            text: "Challenge 2 Instructions"
-          - href: labs/instructions/lab-3-instructions.qmd
-            text: "Lab 3 Instructions"
-          - href: labs/instructions/challenge-3-instructions.qmd
-            text: "Challenge 3 Instructions"
-          - href: labs/instructions/lab-4-instructions.qmd
-            text: "Lab 4 & Challenge 4 Instructions"
-          - href: labs/instructions/lab-5-instructions.qmd
-            text: "Lab 5 Instructions"
-          - href: labs/instructions/lab-7-instructions.qmd
-            text: "Lab 7 Instructions"
-          - href: labs/instructions/challenge-7-instructions.qmd
-            text: "Challenge 7 Instructions"
-          - href: labs/instructions/lab-8-instructions.qmd
-            text: "Lab 8 Instructions"
-          # - href: labs/instructions/lab-9-instructions.qmd
-          #   text: "Lab 9 Instructions"
-      - section: "Gallary of Student Work"
-        contents:
-          - href: labs/exemplars/student-work.qmd
-            text: "Exemplary Student Work"
-      - section: "Portfolio"
-        contents:
-          - href: portfolio/portfolio-instructions.qmd
-            text: Portfolio Instructions
-          - href: portfolio/midterm-portfolio-targets.qmd
-            text: Midterm Portfolio Learning Targets   
+    background: "#c896ff"
+    right:
+      - href: course-materials/calendar.qmd
+        text: Schedule
+      - href: course-materials/syllabus.qmd
+        text: Syllabus
+      - href: portfolio/portfolio-instructions.qmd
+        text: Portfolio
+      - href: course-materials/course_resources.qmd
+        text: Resources
+      # - href: labs/exemplars/student-work.qmd
+      #   text: "Exemplary Student Work"
 
 format:
   html:
     theme:
-      light: [cosmo, style/stat331.scss]
-      dark: [cosmo, style/stat331.scss, style/dark.scss]
+      - united
+      - style/stat331.scss
     mainfont: "Atkinson Hyperlegible"
+    # highlight-style: monokai
     code-copy: true
     code-overflow: wrap
     toc: true
-    linkcolor: "#5D737E"
-#    highlight-style: a11y-dark
 
 editor: visual

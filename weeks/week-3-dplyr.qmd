@@ -42,19 +42,19 @@ When you are finished with the readings and videos, you should be able to...
 -   Use the pipe operator (`|>` or `|>`) to chain together data wrangling
 operations
 
-#### `r emo::ji("play button")` Watch Videos: 60 minutes
+#### 📽 Watch Videos: 60 minutes
 
-#### `r emo::ji("book")` Readings: 60 minutes
+#### 📖 Readings: 60 minutes
 
-#### `r emo::ji("computer")` Activities: 30-45 minutes
+#### 💻 Activities: 30-45 minutes
 
-#### `r emo::ji("check")` Check-ins: 1
+#### ✅  Check-ins: 1
 
 # Part One: Learning More about Packages, Data Types, and Objects
 
 ## Learning More About Packages in R
 
-`r emo::ji("play button")` [Required Video: Why do I get this message when I load the tidyverse? -- 8 minutes](http://somup.com/crf6q4b920)
+📽 [Required Video: Why do I get this message when I load the tidyverse? -- 8 minutes](http://somup.com/crf6q4b920)
 
 ::: callout-note
 ## Removing messages from your HTML file
@@ -72,19 +72,19 @@ Choose one of these two options:
 ::: columns
 ::: {.column width="45%"}
 
-`r emo::ji("play button")` [Watch a Video: Data Types in R](https://youtu.be/vGY5i_J2c-c?si=ERuoY8qZOZ1uVbuL)
+📽 [Watch a Video: Data Types in R](https://youtu.be/vGY5i_J2c-c?si=ERuoY8qZOZ1uVbuL)
 :::
 
 ::: {.column width="45%"}
-`r emo::ji("book")` [Read a Textbook: Data Types in R ](https://bookdown.org/rdpeng/rprogdatascience/r-nuts-and-bolts.html#r-objects)
+📖 [Read a Textbook: Data Types in R ](https://bookdown.org/rdpeng/rprogdatascience/r-nuts-and-bolts.html#r-objects)
 :::
 :::
 
 In addition, read the following section from the first edition of R for DS:
 
-`r emo::ji("book")` [Required Reading: Tibbles](https://r4ds.had.co.nz/tibbles.html)
+📖 [Required Reading: Tibbles](https://r4ds.had.co.nz/tibbles.html)
 
-## `r emo::ji("check")` Check-in 3.1: Data Structures
+## ✅  Check-in 3.1: Data Structures
 
 **Question 1**
 
@@ -114,25 +114,25 @@ d)  `tibble`s create row names
 
 ## Introduction to dplyr
 
-`r emo::ji("book")` [Required Reading: Data Transformation](https://r4ds.hadley.nz/data-transform.html)
+📖 [Required Reading: Data Transformation](https://r4ds.hadley.nz/data-transform.html)
 
 ## dplyr Verbs
 
 ::: columns
 ::: {.column width="40%"}
-`r emo::ji("play button")` [Required Video: `filter()` -- 11 minutes](https://youtu.be/pPI-prhLYqI)
+📽 [Required Video: `filter()` -- 11 minutes](https://youtu.be/pPI-prhLYqI)
 
-`r emo::ji("play button")` [Required Video: `select()` -- 6 minutes](https://youtu.be/OInnmiccHt8)
+📽 [Required Video: `select()` -- 6 minutes](https://youtu.be/OInnmiccHt8)
 
-`r emo::ji("play button")` [Required Video: `mutate()` -- 9 minutes](https://youtu.be/QWyUnQ2EzPs)
+📽 [Required Video: `mutate()` -- 9 minutes](https://youtu.be/QWyUnQ2EzPs)
 
 </br> </br>
 
-`r emo::ji("play button")` [Required Video: `arrange()` -- 7 minutes](https://youtu.be/4Qhdc81mpvo)
+📽 [Required Video: `arrange()` -- 7 minutes](https://youtu.be/4Qhdc81mpvo)
 
-`r emo::ji("play button")` [Required Video: `summarize()`-- 8 minutes](http://somup.com/crflYibWZw)
+📽 [Required Video: `summarize()`-- 8 minutes](http://somup.com/crflYibWZw)
 
-`r emo::ji("play button")` [Required Video: `group_by()` -- 6 minutes](http://somup.com/crflqbbWFy)
+📽 [Required Video: `group_by()` -- 6 minutes](http://somup.com/crflqbbWFy)
 :::
 
 ::: {.column width="5%"}
@@ -149,17 +149,17 @@ d)  `tibble`s create row names
 
 ## The Pipe Operator
 
-`r emo::ji("play button")` [Required Video: The pipe operator -- 8 minutes](http://somup.com/crflYfbWZD)
+📽 [Required Video: The pipe operator -- 8 minutes](http://somup.com/crflYfbWZD)
 
-`r emo::ji("play button")` [Required Video: Extending the pipe -- 3 minutes](http://somup.com/crflYmbWup)
+📽 [Required Video: Extending the pipe -- 3 minutes](http://somup.com/crflYmbWup)
 
 ## Practice
 
-`r emo::ji("computer")` [Required Tutorial: Practice with dplyr](https://r-primers.andrewheiss.com/transform-data/03-deriving/)
+💻 [Required Tutorial: Practice with dplyr](https://r-primers.andrewheiss.com/transform-data/03-deriving/)
 
 ------------------------------------------------------------------------
 
-## `r emo::ji("check")` Check-in 3.2: Data Wrangling
+## ✅  Check-in 3.2: Data Wrangling
 
 **Question 1:** Suppose we would like to study how the ratio of penguin body
 mass to flipper size differs across the species. Arrange the following steps

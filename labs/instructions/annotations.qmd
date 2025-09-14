@@ -1,0 +1,60 @@
+---
+title: "Annotations"
+---
+
+```{r}
+#| include: false
+#| label: set-up
+
+library(tidyverse)
+library(fontawesome)
+library(palmerpenguins)
+
+untitled_red <- c("#c8251d", "#a11b26", "#ef6552")
+
+```
+
+We can add annotation(s) to a `ggplot()` using the `geom_text()` function. Like `geom_point()`, the `geom_text()` function accepts arguments of variable mappings (i.e., where to put the annotations).
+
+Looking at the plot above, it seems like the best place to put the island labels would be on the lower end of each boxplot. To do this, I need to create a new data frame that includes the locations of where I want the annotations.
+
+```{r}
+#| echo: true
+#| label: annotation-prep
+
+penguins_annotations <- penguins |> 
+  group_by(island, species) |> 
+  summarize(
+    min_bill = min(bill_length_mm, na.rm = TRUE) - 3, 
+    .groups = "drop"
+    )
+
+```
+
+```{r}
+#| echo: true
+#| label: example-annotation
+#| warning: false
+
+ggplot(data = penguins, 
+       mapping = aes(x = bill_length_mm, y = species, color = island)
+       ) +
+  geom_boxplot() +
+  scale_color_manual(values = untitled_red) +
+  geom_text(data = penguins_annotations, 
+            mapping = aes(x = min_bill, 
+                          y = species, 
+                          color = island, 
+                          label = island), 
+            position = position_jitterdodge(), 
+            size = 3) + 
+  theme(legend.position = "none") + 
+  labs(x = "Bill Length (mm)", 
+       y = "", 
+       title = "Length of Different Penguin Species' Bills", 
+       subtitle = "Separated by Palmer Archipeligo Island") 
+```
+
+::: callout-warning
+Note that I am **not** using the `annotate()` function to add annotations to my plot. The reason for this is the `annotate()` function requires one line per annotation, so it does not scale efficiently. Rather, this would be a good function to use if you wanted to add a single annotation to your plot.
+:::

@@ -1,0 +1,42 @@
+---
+title: "Lab 2 Review"
+format: docx
+---
+
+## Practice Activity Review
+
+1.  Why do facets make it easier to see which penguins occupy each island?
+
+## More About Facets
+
+2.  What function do you use to facet by 1 variable?
+
+3.  What function do you use to facet by 2 variables?
+
+4.  Do facets always need to have the same axis scales? If not, how can you change the scales?
+
+## Lab 1 Review
+
+5.  When do you need to save an intermediate object?
+
+## Tidy Data
+
+6.  In a "tidy" data frame, every column is a \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_, and every row is a \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_.
+
+## Reading in Data
+
+7.  What is a delimiter? What does it do in a data file?
+
+8.  What package do you use to load in an Excel file?
+
+9.  What is one difference between `read.csv()` and `read_csv()`?
+
+## More Advanced Graphics
+
+10. Which is a stronger pre-attentive feature, color or shape?
+
+11. Why would you want to use double encoding in a plot?
+
+12. What are some guidelines for using colors in plots?
+
+13. What theme does Dr. T like? Why do they like it?

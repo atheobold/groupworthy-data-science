@@ -20,13 +20,13 @@ resources:
 -   Outline how an R Project affects the file paths used to read in data  
 -   Read in data from common formats into R
 
-#### `r emo::ji("play button")` Watch Videos: 14 minutes
+#### 📽 Watch Videos: 14 minutes
 
-#### `r emo::ji("book")` Readings: 15-20 minutes
+#### 📖 Readings: 15-20 minutes
 
-#### `r emo::ji("computer")` Activities: 30 minutes
+#### 💻 Activities: 30 minutes
 
-#### `r emo::ji("check")` Check-ins: 1
+#### ✅  Check-ins: 1
 
 
 # Directories, Paths, and Projects 
@@ -113,7 +113,7 @@ here.
 If you would like a list of step-by-step instructions for this process, feel 
 free to look at this file: [Creating a Project in an Existing Directory](https://scribehow.com/shared/Creating_a_Project_in_an_Existing_Directory__7NTs-4d2RtO1octP6rrBTQ)
 
-## `r emo::ji("check")` Check-in 2.2: RStudio Projects
+## ✅  Check-in 2.2: RStudio Projects
 
 Take a screenshot of your class directory, showing the **R Project** living 
 inside your STAT331 folder. 
@@ -124,13 +124,13 @@ inside your STAT331 folder.
 
 ## How do I load my data?
 
-`r emo::ji("book")` [Required Reading: Data Import](https://r4ds.hadley.nz/data-import.html)
+📖 [Required Reading: Data Import](https://r4ds.hadley.nz/data-import.html)
 
 ## Where does my data live?
 
-`r emo::ji("play button")` [Required Video: How do I get to my data? (8 minutes)](https://www.youtube.com/watch?v=jvWwrELLEw8)
+📽 [Required Video: How do I get to my data? (8 minutes)](https://www.youtube.com/watch?v=jvWwrELLEw8)
 
-## `r emo::ji("check")` Check-in 2.3: Loading Data
+## ✅  Check-in 2.3: Loading Data
 
 For this check-in you are asked to work through reading in different data sets. 
 You are expected to create your own Quarto document to complete this activity. 

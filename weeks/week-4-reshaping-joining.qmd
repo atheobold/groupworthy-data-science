@@ -33,13 +33,13 @@ from multiple tables into a single table.
 
 ------------------------------------------------------------------------
 
-#### `r emo::ji("play button")` Watch Videos: 25-minutes
+#### 📽 Watch Videos: 25-minutes
 
-#### `r emo::ji("book")` Readings: 75-minutes
+#### 📖 Readings: 75-minutes
 
-#### `r emo::ji("computer")` Activities: 3
+#### 💻 Activities: 3
 
-#### `r emo::ji("check")` Check-ins: 2
+#### ✅  Check-ins: 2
 
 ------------------------------------------------------------------------
 
@@ -226,19 +226,19 @@ operation steps from an original data set to the correct format (and output).
 
 # Part Two: Reshaping Data
 
-`r emo::ji("book")` [Required Reading: *R4DS* Chapter 5 (Data tidying)](https://r4ds.hadley.nz/data-tidy.html)
+📖 [Required Reading: *R4DS* Chapter 5 (Data tidying)](https://r4ds.hadley.nz/data-tidy.html)
 
 ::: column-margin
 ![](images/week-4/tidyr.png){width=50% fig-alt="Hexagonal sticker for the 'tidyr' package from RStudio. The design features a tidy broom sweeping across, symbolizing data cleaning and organization. The background is a soft gradient of blues, and the package name 'tidyr' is prominently displayed in white near the bottom."}
 :::
 
-`r emo::ji("play button")` [Required Video: Data Layouts -- 7 minutes](http://somup.com/crfFrmF6VQ)
+📽 [Required Video: Data Layouts -- 7 minutes](http://somup.com/crfFrmF6VQ)
 
-`r emo::ji("play button")` [Required Video: Pivoting Longer -- 9 minutes](http://somup.com/crfF3NF6hg)
+📽 [Required Video: Pivoting Longer -- 9 minutes](http://somup.com/crfF3NF6hg)
 
-`r emo::ji("play button")` [Required Video: Pivoting Wider -- 9 minutes](http://somup.com/crfqebF63k)
+📽 [Required Video: Pivoting Wider -- 9 minutes](http://somup.com/crfqebF63k)
 
-### `r emo::ji("check")` **Check-in 4.1: Practice with Pivoting**
+### ✅  **Check-in 4.1: Practice with Pivoting**
 
 Load in the cereal data set:
 
@@ -268,14 +268,14 @@ You are expected to use `pivot_longer()` to perform this operation!
 
 # Part Three: Joining data
 
-`r emo::ji("book")` [Required Reading: *R4DS* Chapter 21 (Joins)](https://r4ds.hadley.nz/joins.html)
+📖 [Required Reading: *R4DS* Chapter 21 (Joins)](https://r4ds.hadley.nz/joins.html)
 
 ::: callout-note
 Because these chapters do a **much** better job visualizing the concepts, I've
 chosen not to record additional videos.
 :::
 
-### `r emo::ji("check")` **Check-in 4.2: Practice with Joins**
+### ✅  **Check-in 4.2: Practice with Joins**
 
 The following code creates three datasets / tibbles:
 

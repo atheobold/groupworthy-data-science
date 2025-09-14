@@ -8,8 +8,7 @@ editor: source
 ```{r packages}
 #| include: false
 library(tidyverse)
-library(flair)
-library(emo)
+library(fontawesome)
 ```
 
 Welcome!
@@ -18,11 +17,13 @@ In this coursework, you'll get set up with the Class Discord, learn about what i
 
 ## Course TODOs
 
-`r emo::ji("book")` Readings: 15 minutes
+📖 Readings: 15 minutes
 
-`r emo::ji("computer")` Activities: 0 min
+📽 Videos: 0
 
-`r emo::ji("check")` Check-ins: 3
+💻 Activities: 0 min
+
+✅  Check-ins: 3
 
 ------------------------------------------------------------------------
 
@@ -42,11 +43,11 @@ Discord is a platform for text chatting, voice chatting, and screen sharing.
 
 In particular, course office hours are held **in-person**. The office hours for this class are:
 
-#### Tuesdays & Thursdays immediately following class (from 2:10 - 3:00pm)
+#### Mondays & Thursdays from 2:10 - 3:00pm
 
 ## Join the server
 
-Join the [Stat 331 Server (https://discord.gg/cvHfDEp7CG)](https://discord.gg/cvHfDEp7CG) to start experimenting with the interface.
+Join the [Stat 331 Server (https://discord.gg/jKwhUbes8J)](https://discord.gg/jKwhUbes8J) to start experimenting with the interface.
 
 When you join the server, you will be given some suggestions to get started.
 
@@ -132,7 +133,7 @@ Last but not least - for the teams you are a part of, you may want to use Discor
 
 ## See you at the Party!
 
-## `r emo::ji("check")` Check-in 1.5: Discord Server
+## `r fa("square-check")` Check-in 1.5: Discord Server
 
 Introduce yourself in the "Introductions" channel of the Discord Server.
 
@@ -140,17 +141,15 @@ Introduce yourself in the "Introductions" channel of the Discord Server.
 
 # Course Structure
 
-## What your typical week will look like
-
-### Coursework
+## Coursework
 
 Each week, you will be expected to work through a sequence of readings, videos, and preview activities. (Much like this one!)
 
 These are meant to replace the in-class lecture experience; thus, you should plan to devote about 1 - 3 hours a week to this coursework.
 
-### Preview Activities
+## Preview Activities
 
-*Due Tuesdays before the beginning of class (at 12pm)*
+*Due Tuesday mornings at 8am*
 
 Before class, you'll complete Preview Activities which will guide you through your first contact with new concepts.
 
@@ -168,7 +167,7 @@ The course meetings on Tuesdays will have at least 1-hour dedicated to working o
 
 ### Lab Assignments
 
-*Due Sundays at midnight*
+*Due Mondays at 5pm*
 
 After class, you can reinforce the material through Lab Assignments, which are an opportunity to demonstrate mastery of the skills that you've learned. If you got something wrong, don't worry! You'll have a chance to try again.
 
@@ -176,7 +175,7 @@ Labs will be submitted on Canvas. All revisions to Lab Assignments will be submi
 
 ### Challenges
 
-*Due Sundays at midnight*
+*Due Mondays at 5pm*
 
 Each Lab Assignment will have a Challenge Problem, which asks you to extend the skills you've learned in class in some way. Frequently, you have the choice of what you would like to learn. The only requirement is that you extend your thinking in some (measurable) way.
 
@@ -184,7 +183,7 @@ Although you may discuss ideas with your classmates and seek help from the usual
 
 Challenges will be submitted on Canvas. All revisions to Challenges will be submitted to the **same** Canvas portal as the original assignment.
 
-## `r emo::ji("check")` Check-in 1.1: Syllabus Quiz
+## `r fa("square-check")` Check-in 1.1: Syllabus Quiz
 
 **Question 1:** Where can you visit me for student hours?
 
@@ -205,7 +204,8 @@ best first step?
 - Go to student hours on Tuesday or Thursday
 - Google it
 
-**Question 4:** You are permitted to submit up to \_\_\_\_ assignments late. 
+**Question 4:** Every student starts the class with ___ "tokens" or 24-hour
+deadline extensions.  
 
 **Question 5:** If you need to submit an assignment late, you must do which of 
 the following?
@@ -216,7 +216,15 @@ the following?
 - request an extension before the deadline has passed
 - complete the assignment no later than 3-days after the original deadline
 
-**Question 6:** If you receive a "Growing" on a Lab Assignment problem, what 
+**Question 6:** Which of the following will earn you extra tokens 
+(deadline extensions)?
+
+- Attending every class
+- Answering a content-related question on Discord
+- Answering questions during class
+- Completing an exemplary challenge assignment
+
+**Question 7:** If you receive a "Growing" on a Lab Assignment problem, what 
 should you do?
 
 - read the comments and complete revisions on the problems receiving a "Growing"
@@ -224,7 +232,7 @@ should you do?
 - read the comments and complete revisions on the entire assignment
 - nothing
 
-**Question 7:** For revisions on Lab Assignments and Challenges to be eligible 
+**Question 8:** For revisions on Lab Assignments and Challenges to be eligible 
 for a regrade they need to be turned in with:
 
 - your new answers
@@ -232,23 +240,23 @@ for a regrade they need to be turned in with:
 - reflections on how your learning progressed from your initial attempt
 - nothing
 
-**Question 8:** You have finished the week's Practice Assignment, and you want
+**Question 9:** You have finished the week's Practice Assignment, and you want
 to know if you did it right. You ask your friend, and they say, "Oh, I got Luke
 Skywalker as my answer." This is a violation of Academic Honesty policy.
 
-**Question 9:** You have been working on Lab 3 for what feels like forever and
+**Question 10:** You have been working on Lab 3 for what feels like forever and
 it seems like you are making little to no progress. You type the prompt into
 Google and "Wham!" the first result is a Stack Overflow page with a solution.
 You copy-and-paste the solution from the Stack Overflow page into your Challenge
 submission and do not reference that you used an outside source. You have 
 violated the Academic Honesty policy.
 
-**Question 10:** You have been getting frustrated with finding an error in your
+**Question 11:** You have been getting frustrated with finding an error in your
 code for hours and finally decide to paste your own generated code into ChatGPT
 and ask it to help you debug. ChatGPT immediately finds a missing parenthesis.
 You have violated the Academic Honesty policy.
 
-**Question 11** You have been studying for another class, the deadline for Lab 2
+**Question 12** You have been studying for another class, the deadline for Lab 2
 is in an hour and you haven't even started. Instead of using a "grace day", you
 choose to copy the assignment into ChatGPT and ask it to write code to accomplish
 the tasks. ChatGPT spits out code with a style/format different from what we
@@ -256,11 +264,11 @@ learned in class; you copy it into your Quarto code chunks and it runs so you
 render your assignment and turn it in anyway. You have violated the Academic
 Honesty policy.
 
-**Question 12:** Name one of the course learning targets that makes you excited.
+**Question 13:** Name one of the course learning targets that makes you excited.
 
-**Question 13:** Name one of the course learning targets that makes you nervous.
+**Question 14:** Name one of the course learning targets that makes you nervous.
 
-**Question 14:** Why are you taking this class? What do you hope to learn?
+**Question 15:** Why are you taking this class? What do you hope to learn?
 
 ------------------------------------------------------------------------
 

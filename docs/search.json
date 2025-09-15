@@ -5191,7 +5191,7 @@
     "href": "weeks/week-1-r-rstudio.html#updating-your-version-of-r",
     "title": "Week 1, Part 1: R & RStudio",
     "section": "1.1 Updating Your Version of R",
-    "text": "1.1 Updating Your Version of R\nIf you already have R downloaded, you need to confirm that you have the most up to date version of R. Do not ignore these instructions. If you neglect to update your version of R, you may find that updating a package will make it so your code will not run.\n\nStep 1: Open RStudio\nStep 2: At the top of the the Console it will say what version of R you are using\n\n\nIf the version is not 4.4.3 (like the image above), you need to update your version of R! The simplest way to do this is to follow the instructions below to install R."
+    "text": "1.1 Updating Your Version of R\nIf you already have R downloaded, you need to confirm that you have the most up to date version of R. Do not ignore these instructions. If you neglect to update your version of R, you may find that updating a package will make it so your code will not run.\n\nStep 1: Open RStudio\nStep 2: At the top of the the Console it will say what version of R you are using\n\n\nIf the version is not 4.5.1 (like the image above), you need to update your version of R! The simplest way to do this is to follow the instructions below to install R."
   },
   {
     "objectID": "weeks/week-1-r-rstudio.html#installing-r",

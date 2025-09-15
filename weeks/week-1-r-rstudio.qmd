@@ -52,9 +52,9 @@ so your code will not run.
 -   Step 2: At the top of the the Console it will say what version of R you are
 using
 
-![](images/week-1/r-feb-2025.png){fig-alt="A screenshot of what version of R should appear when you open RStudio. The version reads 'R version 4.4.1 (2024-06-14) -- 'Race for Your Life'."}
+![](images/week-1/r-version.png){fig-alt="A screenshot of what version of R should appear when you open RStudio. The version reads 'R version 4.5.1 (2025-06-13) -- 'Great Square Root'."}
 
-If the version **is not** 4.4.3 (like the image above), you need to update your
+If the version **is not** 4.5.1 (like the image above), you need to update your
 version of R! The simplest way to do this is to follow the instructions below to
 install R.
 

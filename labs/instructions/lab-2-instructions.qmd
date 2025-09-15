@@ -15,52 +15,19 @@ execute:
   error: true
 ---
 
-# Part 1: GitHub Workflow
+# Part One: Set-up
 
-## Step 1: Making a Copy from GitHub Classroom
+## Accessing the Lab
 
-You can access the Lab 2 materials through the [Lab 2 assignment on GitHub Classroom](https://classroom.github.com/a/43CxhKej). We're going to follow the same steps as last week to make your own copy of this repository:
+Download the template Lab 2 Quarto file here: <a href="../student/lab-2-student.qmd" download>`lab-2-student.qmd`</a> 
 
-::: {.callout-tip collapse="true"}
-# Same process as last week!
 
-Use these steps to make a copy of the Lab 2 repository: [List of Steps to Copy the Lab Assignment from GitHub Classroom](https://scribehow.com/shared/RStudio_and_Google_Chrome_Workflow__ATprsf2MTYmuPP86Xna1Eg)
+::: {.callout-important}
+Be sure to save the file in the Lab 2 folder, inside your Week 2 folder, 
+inside your STAT 331 folder! 
 :::
 
-## Step 2: Making a Small Change
-
-Now, find the `lab-2-student.qmd` file in the "Files" tab in the lower right 
-hand corner. Click on this file to open it. 
-
-At the top of the document (in the YAML) there is an `author` line that says 
-`"Your name here!"`. Change this to be your name and save your file either by
-clicking on the blue floppy disk or with a shortcut (command / control + s). 
-
-## Step 3: Pushing Your Lab to GitHub
-
-Now for our last step, we need to [commit the files to our repo](https://happygitwithr.com/existing-github-first#stage-and-commit). 
-
--   Click the "Git" tab in upper right pane
--   Check the "Staged" box for the `lab-2-student.qmd` file 
--   Click "Commit"
--   In the box that opens, type a message in "Commit message", such as
-"Added my name".
--   Click "Commit".
--   Click the green "Push" button to send your local changes to GitHub.
-
-RStudio will display something like:
-
-```         
->>> /usr/bin/git push origin HEAD:refs/heads/main
-To https://github.com/atheobold/introduction-to-quarto-allison-theobold.git
-   3a2171f..6d58539  HEAD -> main
-```
-
-## Step 4: Verifying Your Changes
-
-Go back to your browser. I assume you're still viewing the GitHub repo you just cloned. Refresh the page. You should see all the project files you committed there. If you click on "commits", you should see one with the message you used, e.g. "Added my name".
-
-## Step 5: Let's get started making some plots!
+## Using External Resources
 
 Part of learning to program is learning from a variety of resources. Thus, I
 expect you will use resources that you find on the internet. There is, however,
@@ -144,11 +111,13 @@ represent:
 
 **2. What are the dimensions (# of rows and columns) of these data?**
 
-<!-- You can either write code here or in the code chunk for #1, but I **must** see the code you used to address this question!  -->
+<!-- This question requires you to write code! You will need to make a new code chunk! -->
+
 
 **3. What are the data types of the variables in this dataset?**
 
-<!-- You can either write code here or in the code chunk for #1, but I **must** see the code you used to address this question!  -->
+<!-- This question requires you to write code! You will need to make a new code chunk! -->
+
 
 # Exploratory Data Analysis with **`ggplot2`**
 
@@ -183,24 +152,24 @@ We can see there are **a lot** of points plotted on top of each other. Let's try
 
 **5. Let's add transparency (`alpha`) to the points, to make the points more transparent and (possibly) easier to see.**
 
-<!-- Add code to the scatterplot you created for question 4! -->
+<!-- Do not write code here! Add code to the scatterplot you created for question 4! -->
 
 Despite our best efforts there is still a substantial amount of overplotting occurring in our scatterplot. Let's try splitting the dataset into smaller
 subsets and see if that allows for us to see the trends a bit better.
 
 **6. Facet your scatterplot by `species`.**
 
-<!-- Add code to the scatterplot you created for question 4 (and modified for question 5)! -->
+<!-- Do not write code here! Continue to modify the scatterplot you created for question 4! -->
 
 **7. No plot is complete without axis labels and a title. Include reader friendly labels and a title to your plot.**
 
-<!-- Continue to modify the plot you originally created for question 4! -->
+<!-- Do not write code here! Continue to modify the scatterplot you created for question 4! -->
 
 It takes a larger cognitive load to read text that is rotated. It is common practice in many journals and media outlets to move the $y$-axis label to the top of the graph under the title.
 
 **8. Specify your $y$-axis label to be empty and move the $y$-axis label into the subtitle.** 
 
-<!-- Continue to modify the plot you originally created for question 4! -->
+<!-- Do not write code here! Continue to modify the scatterplot you created for question 4! -->
 
 ## Boxplots
 
@@ -210,30 +179,30 @@ It takes a larger cognitive load to read text that is rotated. It is common prac
 
 ```
 
-**10. Create side-by-side boxplots to visualize the distribution of weight within each species.**
+**10. Create side-by-side boxplots to visualize the distribution of `weight` (y-axis) within each `species` (x-axis).**
 
-A fundamental complaint of boxplots is that they do not plot the raw data. However, with **ggplot** we can add the raw points on top of the boxplots!
+A fundamental complaint of boxplots is that they do not plot the raw data. However, with **ggplot** we can add the raw data points on top of the boxplots!
 
 **11. Add another layer to your previous plot that plots each observation.**
 
-<!-- Modify the plot you made for question 10! -->
+<!-- Do not write code here! Add code to the boxplot you created for question 10! -->
 
 Alright, this should look less than optimal. Your points should appear rather stacked on top of each other. To make them less stacked, we need to jitter them
 a bit, using `geom_jitter()`.
 
 **12. Remove the previous layer and include a `geom_jitter()` layer instead.**
 
-<!-- Continue to modify the plot you made for question 10! -->
+<!-- Do not write code here! Continue to modify the plot you made for question 10! -->
 
 That should look a bit better! But its really hard to see the points when everything is black.
 
 **13. Set the `color` aesthetic in `geom_jitter()` to change the color of the points and add set the `alpha` aesthetic to add transparency.**
 
-<!-- Continue to modify the plot you made for question 10! -->
+<!-- Do not write code here! Continue to modify the plot you made for question 10! -->
 
 ::: callout-note
 You are welcome to use whatever color you wish! Some of my favorites are
-"orange3" and "steelblue".
+`"orange3"` and `"steelblue"`.
 :::
 
 Great! Now that you can see the points, you should notice something odd: there
@@ -252,7 +221,7 @@ are better labels for a plot's axes and legend.
 
 Some people (and journals) prefer for boxplots to be stacked with a specific orientation! Let's practice changing the orientation of our boxplots.
 
-**16. Now copy-paste your boxplot code you've been adding to above. Flip the orientation of your boxplots. If you created horizontally stacked boxplots, your boxplots should now be stacked vertically. If you had vertically stacked boxplots, you should now stack your boxplots horizontally!**
+**16. Now copy-paste your boxplot code you've been adding to above. Flip the orientation of your boxplots. The variable that was mapped to the x-axis should now be included on the y-axis and visa versa.**
 
 ```{r}
 #| label: rotated-boxplot
@@ -308,7 +277,9 @@ The population mean weight is the same between **all** fourteen rodent species.
 
 Look up the help documentation for `aov()`.
 
-**17. Using `aov()`, complete the code below to carry out the analysis.**
+**17. Using `aov()`, complete the code below to carry out the analysis.** You 
+might want to look up the help documentation for `aov()` to know what inputs this 
+function expects.
 
 ```{r}
 #| label: anova

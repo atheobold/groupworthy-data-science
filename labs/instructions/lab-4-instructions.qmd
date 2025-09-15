@@ -13,6 +13,17 @@ execute:
   warning: false
 ---
 
+<!-- Maybe consider changing to density ridges? -->
+
+<!-- In Lab 2, you used side-by-side **boxplots** to visualize the distribution of -->
+<!-- weight within each species of rodent. Boxplots have [substantial flaws](https://www.data-to-viz.com/caveat/boxplot.html), namely that they -->
+<!-- disguise distributions with multiple modes. -->
+
+<!-- A "superior" alternative is the density plot. However, `ggplot2` does not allow -->
+<!-- for side-by-side density plots using `geom_density()`. Instead, we will need to -->
+<!-- make use of the **ggridges** package to create side-by-side density (ridge) -->
+<!-- plots. -->
+
 # Part 1: GitHub Workflow
 
 ## Step 1: Making a Copy from GitHub Classroom

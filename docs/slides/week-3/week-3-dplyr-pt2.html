@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Extending Data Wrangling Verbs</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-1c35b41652cab16ef815a191b3564630.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c990e76e4e8f51fe5aa6f0d132950ebc.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -227,7 +227,7 @@
 <h2>Efficient Coding</h2>
 <p>For the final problem, many groups’ code looked like this:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(REGION <span class="sc">==</span> <span class="dv">7</span>) <span class="sc">|&gt;</span></span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(ADM_RATE <span class="sc">&gt;</span> <span class="fu">median</span>(ADM_RATE)) <span class="sc">|&gt;</span></span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TUITION_DIFF <span class="sc">!=</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
@@ -235,7 +235,7 @@
 <span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(STABBR <span class="sc">!=</span> <span class="st">"ID"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(UGDS <span class="sc">&lt;</span> <span class="dv">10000</span>) <span class="sc">|&gt;</span></span>
 <span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(STABBR <span class="sc">!=</span> <span class="st">"MT"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb1-9"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(<span class="at">order_by =</span> ADM_RATE) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-9"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(<span class="at">order_by =</span> ADM_RATE) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p><br></p>
@@ -250,13 +250,13 @@
 <li><strong>But</strong> you can specify what columns it should look at for missing values!</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(REGION, </span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a>          ADM_RATE, </span>
 <span id="cb2-4"><a aria-hidden="true" tabindex="-1"></a>          TUITION_DIFF, </span>
 <span id="cb2-5"><a aria-hidden="true" tabindex="-1"></a>          SAT_AVG, </span>
 <span id="cb2-6"><a aria-hidden="true" tabindex="-1"></a>          STABBR, </span>
-<span id="cb2-7"><a aria-hidden="true" tabindex="-1"></a>          UGDS)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-7"><a aria-hidden="true" tabindex="-1"></a>          UGDS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -357,10 +357,10 @@
 <section id="what-feedback-would-you-give" class="slide level2">
 <h2>What feedback would you give?</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>hindfoot_length,<span class="at">y=</span> weight)) <span class="sc">+</span>  </span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> surveys, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x=</span>hindfoot_length,<span class="at">y=</span> weight)) <span class="sc">+</span>  </span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">alpha=</span>.<span class="dv">2</span>,<span class="at">color=</span><span class="st">'tomato'</span>)<span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>species)<span class="sc">+</span><span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>)<span class="sc">+</span><span class="fu">labs</span>(</span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span><span class="st">'Weight to hindfoot comparison'</span></span>
-<span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">'length (mm)'</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">'Weight(g)'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">'length (mm)'</span>)<span class="sc">+</span><span class="fu">ylab</span>(<span class="st">'Weight(g)'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -399,10 +399,10 @@
 <h2>Example Data set – <a href="https://search.r-project.org/CRAN/refmans/liver/html/cereal.html">Cereal</a></h2>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(liver)</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(liver)</span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cereal)</span>
 <span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cereal)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cereal)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 77
 Columns: 16
@@ -431,14 +431,14 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <p>How many cereals does each <code>manuf</code> have in this dataset?</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manuf) <span class="sc">|&gt;</span> </span>
-<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; ">
-<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">manuf</th>
@@ -486,15 +486,15 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <p>For each <code>manuf</code>, find the cereal with the most <code>fiber</code>.</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manuf) <span class="sc">|&gt;</span> </span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> fiber)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> fiber)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; ">
-<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">name</th>
@@ -657,15 +657,15 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <li>If you are ordering by multiple variables, wrap them in a data.frame!</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> <span class="fu">data.frame</span>(fiber, potass),</span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">n =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:250px; ">
-<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">name</th>
@@ -758,16 +758,16 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">po_category =</span> <span class="fu">if_else</span>(potass <span class="sc">&lt;=</span> <span class="dv">100</span>, </span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>                               <span class="st">"low"</span>, </span>
 <span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>                               <span class="st">"high"</span>),</span>
-<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">.after =</span> potass)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">.after =</span> potass)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:200px; ">
-<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">name</th>
@@ -2269,7 +2269,7 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <div class="fragment">
 <p>A <strong>series</strong> of <code>if-else</code> statements.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">manuf =</span> <span class="fu">case_when</span>(manuf <span class="sc">==</span> <span class="st">"A"</span> <span class="sc">~</span> <span class="st">"American Home Food Products"</span>, </span>
 <span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>                           manuf <span class="sc">==</span> <span class="st">"G"</span> <span class="sc">~</span> <span class="st">"General Mills"</span>, </span>
 <span id="cb10-4"><a aria-hidden="true" tabindex="-1"></a>                           manuf <span class="sc">==</span> <span class="st">"K"</span> <span class="sc">~</span> <span class="st">"Kelloggs"</span>, </span>
@@ -2277,7 +2277,7 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <span id="cb10-6"><a aria-hidden="true" tabindex="-1"></a>                           manuf <span class="sc">==</span> <span class="st">"P"</span> <span class="sc">~</span> <span class="st">"Post"</span>, </span>
 <span id="cb10-7"><a aria-hidden="true" tabindex="-1"></a>                           manuf <span class="sc">==</span> <span class="st">"Q"</span> <span class="sc">~</span> <span class="st">"Quaker Oats"</span>, </span>
 <span id="cb10-8"><a aria-hidden="true" tabindex="-1"></a>                           manuf <span class="sc">==</span> <span class="st">"R"</span> <span class="sc">~</span> <span class="st">"Ralston Purina"</span>)</span>
-<span id="cb10-9"><a aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-9"><a aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -2289,7 +2289,7 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:750px; ">
-<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">name</th>
@@ -3708,7 +3708,7 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <p>For each <code>type</code> of cereal, calculate the <code>mean</code> nutrient levels.</p>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">|&gt;</span> </span>
 <span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">mean_cal =</span> <span class="fu">mean</span>(calories), </span>
 <span id="cb11-4"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_protein =</span> <span class="fu">mean</span>(protein), </span>
@@ -3718,7 +3718,7 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <span id="cb11-8"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_carbs =</span> <span class="fu">mean</span>(carbo), </span>
 <span id="cb11-9"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_sugars =</span> <span class="fu">mean</span>(sugars), </span>
 <span id="cb11-10"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_potassium =</span> <span class="fu">mean</span>(potass)</span>
-<span id="cb11-11"><a aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-11"><a aria-hidden="true" tabindex="-1"></a>            )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -3741,18 +3741,18 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <h2>Summarize multiple columns with <code>across()</code></h2>
 <p>For each <code>type</code> of cereal, calculate the <code>mean</code> nutrient levels.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">|&gt;</span> </span>
 <span id="cb12-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
 <span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="at">.cols =</span> calories<span class="sc">:</span>potass, </span>
 <span id="cb12-5"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x)</span>
 <span id="cb12-6"><a aria-hidden="true" tabindex="-1"></a>           )</span>
-<span id="cb12-7"><a aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-7"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:130px; ">
-<table class="table caption-top" style="font-size: 23px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 23px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">type</th>
@@ -3799,18 +3799,18 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <h2>Summarize multiple columns with <code>across()</code></h2>
 <p>If missing values were present, we would need to remove them when calculating the mean!</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">|&gt;</span> </span>
 <span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
 <span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="at">.cols =</span> calories<span class="sc">:</span>potass, </span>
 <span id="cb13-5"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb13-6"><a aria-hidden="true" tabindex="-1"></a>           )</span>
-<span id="cb13-7"><a aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-7"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:130px; ">
-<table class="table caption-top" style="font-size: 23px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 23px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">type</th>
@@ -3871,21 +3871,21 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <p><br></p>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(type) <span class="sc">|&gt;</span> </span>
 <span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
 <span id="cb15-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="at">.cols =</span> calories<span class="sc">:</span>potass, </span>
 <span id="cb15-5"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x), </span>
 <span id="cb15-6"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">.names =</span> <span class="st">"mean_{.col}"</span></span>
 <span id="cb15-7"><a aria-hidden="true" tabindex="-1"></a>           )</span>
-<span id="cb15-8"><a aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-8"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- I'm using mean instead of {.fn} because it expects that {.fn} is a list of functions, so when I use that in the .names argument my columns end up being 1_protein (since the mean is the first function).  -->
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:130px; ">
-<table class="table caption-top" style="font-size: 23px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 23px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">type</th>
@@ -3934,7 +3934,7 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <p>Plot the <code>mean</code> <code>protein</code> per <code>cup</code> for each <code>manuf</code>.</p>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" data-code-line-numbers="|1-12|13-26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="|1-12|13-26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb16-2"><a></a>  <span class="fu">mutate</span>(<span class="at">manuf =</span> <span class="fu">case_when</span>(manuf <span class="sc">==</span> <span class="st">"A"</span> <span class="sc">~</span> <span class="st">"American Home Food Products"</span>, </span>
 <span id="cb16-3"><a></a>                           manuf <span class="sc">==</span> <span class="st">"G"</span> <span class="sc">~</span> <span class="st">"General Mills"</span>, </span>
 <span id="cb16-4"><a></a>                           manuf <span class="sc">==</span> <span class="st">"K"</span> <span class="sc">~</span> <span class="st">"Kelloggs"</span>, </span>
@@ -3960,7 +3960,7 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <span id="cb16-24"><a></a>        <span class="at">plot.subtitle =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">18</span>),</span>
 <span id="cb16-25"><a></a>        <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">22</span>)</span>
 <span id="cb16-26"><a></a>        ) <span class="sc">+</span></span>
-<span id="cb16-27"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-27"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </div>
@@ -3968,7 +3968,7 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="week-3-dplyr-pt2_files/figure-revealjs/unnamed-chunk-22-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+<p><img data-src="week-3-dplyr-pt2_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
@@ -4005,13 +4005,13 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
 </div>
 <div id="tabset-1-2">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
 <span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(sugars, shelf) <span class="sc">|&gt;</span> </span>
 <span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sugars <span class="sc">!=</span> <span class="sc">-</span><span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb17-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(shelf) <span class="sc">|&gt;</span> </span>
 <span id="cb17-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">med_sugars =</span> <span class="fu">median</span>(sugars),</span>
 <span id="cb17-6"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">num_shelf =</span> <span class="fu">n</span>()</span>
-<span id="cb17-7"><a aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-7"><a aria-hidden="true" tabindex="-1"></a>            )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 3
   shelf med_sugars num_shelf
@@ -4238,7 +4238,7 @@ $ rating   &lt;dbl&gt; 68.40297, 33.98368, 59.42551, 93.70491, 34.38484, 29.5095
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

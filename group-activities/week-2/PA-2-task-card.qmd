@@ -1,7 +1,7 @@
 ---
 title: "PA2 Task Card - Using Data Visualization to Find the Penguins"
 editor: source
-format: typst
+format: pdf
 ---
 
 Today you will be exploring different types of visualizations to uncover which

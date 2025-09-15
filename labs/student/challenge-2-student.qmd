@@ -1,12 +1,10 @@
 ---
 title: "Challenge 2: Spicing things up with ggplot2"
-aauthor: "Your name here!"
+author: "Your name here!"
 format: html
 editor: source
 embed-resources: true
-execute: 
-  echo: true
-  eval: false
+code-tools: true
 ---
 
 For this week's Challenge, you will have two different options to explore.

@@ -44,19 +44,15 @@ t <- d |>
                    ifelse(is.na(x), fontawesome::fa('laptop', fill_opacity = 0.1), 
                           glue::glue('<a href="{x}"><i class="fa fa-laptop" style="color: purple;"></i></a>'))
                  }) %>%
-  
-  
   text_transform(cells_body(columns = c(activity)),
                  fn = function(x){
                    ifelse(is.na(x), fontawesome::fa('users', fill_opacity = 0.1),
                           glue::glue('<a href="{x}"><i class="fa fa-users" style="color: purple;"></i></a>'))
-                   
-                 }) %>%
+                  }) %>%
   text_transform(cells_body(columns = c(lab)),
                  fn = function(x){
                    ifelse(is.na(x), fontawesome::fa('pencil', fill_opacity = 0.1), 
                           glue::glue('<a href="{x}"><i class="fa fa-pencil" style="color: purple;"></i></a>'))
-                   
                  }) %>%
   text_transform(cells_body(columns = c(portfolio)),
                  fn = function(x){
@@ -68,6 +64,11 @@ t <- d |>
                    ifelse(is.na(x), fontawesome::fa('clipboard', fill_opacity = 0.1), 
                           glue::glue('<a href="{x}"><i class="fa fa-clipboard" style="color: purple;"></i></a>'))
                  }) |> 
+  text_transform(cells_body(columns = c(challenge)),
+                 fn = function(x){
+                   ifelse(is.na(x), fontawesome::fa('dumbbell', fill_opacity = 0.1),
+                          glue::glue('<a href="{x}"><i class="fa fa-dumbbell" style="color: purple;"></i></a>'))
+                   }) |> 
   fmt_date(date, date_style = 9) %>%
   sub_missing(columns = date, missing_text = "") |>
   as_raw_html() 

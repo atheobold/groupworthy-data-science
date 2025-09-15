@@ -21,7 +21,21 @@ library(ggtext)
 
 ```
 
-For this week's Challenge, you will have three different options to explore.
+# Part One: Set-up
+
+## Accessing the Challenge
+
+Download the template Challenge 2 Quarto file here: <a href="../student/challenge-2-student.qmd" download>`challenge-2-student.qmd`</a> 
+
+
+::: {.callout-important}
+Be sure to save the file in the Lab 2 folder, inside your Week 2 folder, 
+inside your STAT 331 folder! 
+:::
+
+## Directions
+
+For this week's Challenge, you will have two different options to explore.
 I've arranged these options in terms of their "spiciness," or the difficulty of 
 completing the task. **You are only required to complete one task, but if you are interested in exploring more than one, feel free!**
 
@@ -29,33 +43,11 @@ This is a great place to let your creativity show! Make sure to indicate what
 additional touches you added, and provide any online references you used.
 
 ::: callout-tip
-You will be working in the `challenge-2.qmd` file, found in the repository you
-cloned for Lab 2.  Within this document, make sure to specify that your plots
-are contained in your document (`self-contained: true`) and that your code is 
-visible to the reader (`echo: true`). If there are other formatting specifics
-you would like to include, feel free to toss those in the YAML, too!
-
-Then, create a setup code chunk to load the packages and read in the
-`surveys.csv` data file exactly how you did in Lab 2.
-
-Create another code chunk and paste in your code from Question 14 or Question 15
-in Lab 2 -- we will be modifying the box plot of weights by species!
+For this challenge you will be modifying the code you wrote for Lab 2 -- we will
+be modifying the box plot of weights by species!
 :::
 
-# `r fa("pepper-hot")` Medium: Ridge Plots
-
-In Lab 2, you used side-by-side **boxplots** to visualize the distribution of
-weight within each species of rodent. Boxplots have [substantial flaws](https://www.data-to-viz.com/caveat/boxplot.html), namely that they
-disguise distributions with multiple modes.
-
-A "superior" alternative is the density plot. However, `ggplot2` does not allow
-for side-by-side density plots using `geom_density()`. Instead, we will need to
-make use of the **ggridges** package to create side-by-side density (ridge)
-plots.
-
-> **For this challenge you are to change your boxplots to ridge plots. You will need to install the ggridges package and explore the `geom_density_ridges()` function.**
-
-# `r fa("pepper-hot")` `r fa("pepper-hot")` Spicy: Exploring Color Themes
+# `r fa("pepper-hot")` Medium: Exploring Colors
 
 The built-in `ggplot()` color scheme may not include the colors you were looking
 for. Don't worry -- there are many other color palettes available to use!
@@ -122,7 +114,27 @@ use (e.g. `scale_color_aaas()`).
 [This website](https://github.com/EmilHvitfeldt/r-color-palettes) provides an exhaustive list of color themes available through various packages.
 :::
 
-> **In this challenge you are expected to use this information to modify the boxplots you created Lab 2. First, you are to color the boxplots based on the variable `sex`. Next, you are to change the colors used for `sex` using either manual color specification or any of the packages listed here (or others!).**
+> **For this challenge you are expected to use this information to modify the boxplots you created Lab 2. First, you are to color the boxplots based on the variable `sex`. Next, you are to change the colors used for `sex` using either manual color specification or any of the packages listed here (or others!).**
+
+# `r fa("pepper-hot")` `r fa("pepper-hot")` Spicy: Exploring Themes
+
+Themes are another vital component to creating clear plots. During lecture, 
+Dr. Theobold mentioned that they like using `theme_bw()` for a built-in theme, 
+since it has a white background and easy to see grid lines. However, there are 
+SO many more ways you can control the appearance of a plot using the `theme()`
+function. 
+
+> **For this challenge you are expected to use the `theme()` function to modify at least two aspects of your plot, with the goal of making your plot clearer to the reader. You need to *explain why* you made the decisions you did.**
+
+Some ideas you might consider:
+
+- changing the size of the font to make your plot titles more readable
+- changing the font in your plot to be your favorite font 
+(remember it needs to **improve** the plot ;) )
+- removing the minor grid lines (since they can be a bit distracting)
+- adjust spacing between axis title and labels
+- remove axis ticks
+- add borders to the plot
 
 # `r fa("pepper-hot")` `r fa("pepper-hot")` `r fa("pepper-hot")` Hot: Embedding the Legend in the Plot Title
 
@@ -161,7 +173,8 @@ ggplot(data = penguins,
   theme(
     legend.position = "none", 
     plot.subtitle = element_markdown()
-    )
+    ) +
+  theme_bw()
 ```
 
 Notice that the subtitle is still specified as a string. Inside the string there
@@ -170,7 +183,7 @@ are HTML elements (`<span>`) that declare the colors of the text. For example,
 should be printed with the color `#c8251d`. The beginning of the span (`<span `)
 and the end of the span (`</span>`) declare when the coloring starts and ends. 
 
-> **In this challenge you are expected to use this information to modify the boxplots you created in Lab 2. First, you are to color the boxplots based on the variable `sex`. Next, you need to move the legend colors for each level of `sex` into 
+> **For this challenge you are expected to use this information to modify the boxplots you created in Lab 2. First, you are to color the boxplots based on the variable `sex`. Next, you need to move the legend colors for each level of `sex` into 
 the plot title or subtitle. Finally, you are expected to use the `theme()` function to remove the color legend from the plot, since it is no longer needed!**
 
 # Challenge 2 Submission

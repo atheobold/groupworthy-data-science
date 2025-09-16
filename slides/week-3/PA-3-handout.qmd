@@ -1,0 +1,68 @@
+---
+title: "Mathlink Activity"
+---
+
+# Piping
+
+You can choose whether to: 
+
+declare your data as the first argument of the function 
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: not-piped-data
+
+filter(.data = colleges, REGION == 5) |>
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
+```
+
+***or***
+
+pipe your data into the first argument of the function
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: pipe-data
+
+colleges |>
+  filter(REGION == 5) |>
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
+```
+
+# `filter`
+
+**take your data frame and then filter it** (only include rows where) 
+
+1. **the red column only includes observations with three sides** (triangles)
+
+[OR]{.underline} 
+
+2. **the green column only includes observations with more than four sides** (pentagons, hexagons)
+
+# `select`
+
+Step 1:
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+data |>
+  select(red, 
+         yellow, 
+         green)
+```
+
+Step 2: 
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+data |>
+  select(-green)
+```

@@ -201,46 +201,54 @@
 </div>
 
 </section>
-<section id="tuesday-october-8" class="slide level2">
-<h2>Tuesday, October 8</h2>
+<section id="tuesday-september-30" class="slide level2">
+<h2>Tuesday, September 30</h2>
 <p>Today we will…</p>
 <ul>
-<li>New Material
+<li>Warm-up for <code>dplyr</code> practice activity (30-minutes)</li>
+<li>Set-up for the practice activity (5-minutes)
 <ul>
-<li>Introduce the <code>dplyr</code> package.</li>
-<li>Use <code>dplyr</code> verbs to manipulate data.</li>
+<li>Review pair programming norms</li>
+<li>Find your partner!</li>
 </ul></li>
-<li><a href="../../group-activities/week-3/PA3-dplyr.qmd">PA 3: Identify the Mystery College</a></li>
+<li>Take a 10-minute break</li>
+<li>Complete the practice activity (60-minutes)</li>
 </ul>
 </section>
 <section>
 <section id="data-wrangling-with-dplyr" class="title-slide slide level1 center">
 <h1>Data Wrangling with <code>dplyr</code></h1>
+<div class="columns">
+<div class="column" style="width:35%;">
 
-<img data-src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-artwork/data_cowboy.png" alt="A cartoon illustration of a cowboy riding a dataset, symbolized by a saddle on top of a spreadsheet. The cowboy is wearing a hat and bandana, with the reins in one hand and a lasso in the other, as if wrangling data. The dataset underneath has rows and columns, representing organized data. The image humorously conveys the idea of managing and working with data." class="r-stretch quarto-figure-center"><p class="caption">Artwork by Allison Horst</p></section>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:60%;">
+<p><img data-src="images/mathlink-dataframe.png" alt="A picture of a set of Mathlink blocks on a desk. The blocks are connected together forming three rows and six columns. The columns are red, orange, yellow, green, blue, and purple. Each block within a row and colum has a shape in the center (e.g., triangle, square hexagon)."></p>
+</div></div>
+</section>
 <section id="dplyr" class="slide level2">
 <h2><code>dplyr</code></h2>
 <p><code>dplyr</code> is part of the <strong>tidyverse</strong> that provides us with the <em>Grammar of Data Wrangling</em>.</p>
 <ul>
 <li>This package gives us the tools to <strong>wrangle and tidy</strong> our data with ease.</li>
-<li>Check out the <code>dplyr</code> <a href="https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf">cheatsheet</a>.</li>
+<li>The <code>dplyr</code> <a href="https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf">cheatsheet</a> is included in your coursepack!</li>
 </ul>
 
 <img data-src="images/dplyr.png" class="quarto-figure quarto-figure-center r-stretch" alt="A hexagonal-shaped logo featuring three colorful pliers in red, blue, and orange shades, aligned diagonally. The word 'dplyr' is written at the top in gray, and the bottom right corner shows the URL 'dplyr.tidyverse.org'. The background consists of diagonal black and gray stripes with colorful hexagons scattered around, symbolizing data manipulation and transformation tools, representing the dplyr package from the tidyverse ecosystem in R." width="368"></section>
 <section id="dplyr-verbs" class="slide level2">
 <h2><code>dplyr</code> verbs</h2>
-<div class="small">
+<div class="midi">
 <ul>
 <li><code>filter()</code> – <strong>select rows</strong> based on their values</li>
 <li><code>select()</code> – <strong>select columns</strong></li>
 <li><code>mutate()</code> – <strong>add new columns</strong> or <strong>change existing columns</strong></li>
 <li><code>summarize()</code> – perform <strong>summary operations</strong> on columns</li>
 <li><code>group_by()</code> – facilitate <strong>group-wise operations</strong></li>
-<li><code>arrange()</code> – <strong>sort rows</strong> based on their values</li>
 </ul>
 </div>
 <div class="fragment">
-<div class="small">
+<div class="midi">
 <p>Use the <strong>pipe operator</strong> (<code>|&gt;</code> or <code>%&gt;%</code>) to chain together data wrangling operations.</p>
 </div>
 </div>

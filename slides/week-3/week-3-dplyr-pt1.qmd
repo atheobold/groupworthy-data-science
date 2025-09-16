@@ -13,25 +13,38 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-## Tuesday, October 8
+## Tuesday, September 30
 
 Today we will...
 
-+ New Material
-  + Introduce the `dplyr` package.
-  + Use `dplyr` verbs to manipulate data.
-+ [PA 3: Identify the Mystery College](../../group-activities/week-3/PA3-dplyr.qmd)
++ Warm-up for `dplyr` practice activity (30-minutes)
++ Set-up for the practice activity (5-minutes)
+  + Review pair programming norms
+  + Find your partner!
++ Take a 10-minute break
++ Complete the practice activity (60-minutes)
 
 # Data Wrangling with `dplyr`
 
-![Artwork by Allison Horst](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-artwork/data_cowboy.png){fig-alt="A cartoon illustration of a cowboy riding a dataset, symbolized by a saddle on top of a spreadsheet. The cowboy is wearing a hat and bandana, with the reins in one hand and a lasso in the other, as if wrangling data. The dataset underneath has rows and columns, representing organized data. The image humorously conveys the idea of managing and working with data."}
+::: columns
+::: {.column width="35%"}
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="60%"}
+![](images/mathlink-dataframe.png){fig-alt="A picture of a set of Mathlink blocks on a desk. The blocks are connected together forming three rows and six columns. The columns are red, orange, yellow, green, blue, and purple. Each block within a row and colum has a shape in the center (e.g., triangle, square hexagon)."}
+:::
+:::
 
 ## `dplyr`
 
 `dplyr` is part of the **tidyverse** that provides us with the *Grammar of Data Wrangling*.
 
 + This package gives us the tools to **wrangle and tidy** our data with ease.
-+ Check out the `dplyr` [cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf).
++ The `dplyr` [cheatsheet](https://github.com/rstudio/cheatsheets/blob/main/data-transformation.pdf) is included in your coursepack!
 
 ```{r}
 #| echo: false
@@ -41,20 +54,21 @@ knitr::include_graphics("images/dplyr.png")
 
 ```
 
-## `dplyr` verbs
+## Mathlink Activity
 
-::: {.small}
+We're going to explore some key `dplyr` verbs using manipulatives:
+
+::: {.midi}
 + `filter()` -- **select rows** based on their values
 + `select()` -- **select columns**
 + `mutate()` -- **add new columns** or **change existing columns**
 + `summarize()` -- perform **summary operations** on columns
 + `group_by()` -- facilitate **group-wise operations**
-+ `arrange()` -- **sort rows** based on their values
 :::
 
 . . .
 
-::: {.small}
+::: {.midi}
 Use the **pipe operator** (`|>` or `%>%`) to chain together data wrangling operations.
 :::
 

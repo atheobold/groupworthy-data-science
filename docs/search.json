@@ -3756,14 +3756,14 @@
     "href": "slides/week-3/week-3-dplyr-pt1.html#dplyr",
     "title": "Data Wrangling with dplyr",
     "section": "dplyr",
-    "text": "dplyr\ndplyr is part of the tidyverse that provides us with the Grammar of Data Wrangling.\n\nThis package gives us the tools to wrangle and tidy our data with ease.\nCheck out the dplyr cheatsheet."
+    "text": "dplyr\ndplyr is part of the tidyverse that provides us with the Grammar of Data Wrangling.\n\nThis package gives us the tools to wrangle and tidy our data with ease.\nThe dplyr cheatsheet is included in your coursepack!"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt1.html#dplyr-verbs",
     "href": "slides/week-3/week-3-dplyr-pt1.html#dplyr-verbs",
     "title": "Data Wrangling with dplyr",
     "section": "dplyr verbs",
-    "text": "dplyr verbs\n\n\nfilter() – select rows based on their values\nselect() – select columns\nmutate() – add new columns or change existing columns\nsummarize() – perform summary operations on columns\ngroup_by() – facilitate group-wise operations\narrange() – sort rows based on their values\n\n\n\n\nUse the pipe operator (|&gt; or %&gt;%) to chain together data wrangling operations."
+    "text": "dplyr verbs\n\n\nfilter() – select rows based on their values\nselect() – select columns\nmutate() – add new columns or change existing columns\nsummarize() – perform summary operations on columns\ngroup_by() – facilitate group-wise operations\n\n\n\n\nUse the pipe operator (|&gt; or %&gt;%) to chain together data wrangling operations."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-pt1.html#the-pipe-operator-1",
@@ -5353,5 +5353,670 @@
     "title": "Loops and Iteration",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI fully support more R packages being cat themed.↩︎"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#application-exercise",
+    "href": "slides/week-3/03-data-manipulation.html#application-exercise",
+    "title": "Data Wrangling with dplyr",
+    "section": " Application Exercise",
+    "text": "Application Exercise\n\nCreate a new project using my template here:\n\nhttps://github.com/sta-112-s24/appex-04-starwars.git\n\nRun the R chunk labeled \"load-packages\"\nTake a look at the starwars data\n\n\n\n\n−+\n04:00"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#dplyr-verbs-for-manipulating-data",
+    "href": "slides/week-3/03-data-manipulation.html#dplyr-verbs-for-manipulating-data",
+    "title": "Data Wrangling with dplyr",
+    "section": "dplyr: verbs for manipulating data",
+    "text": "dplyr: verbs for manipulating data\n\n\n\nExtract rows with filter()\n\n\n\n\n\n\n\nExtract columns with select()\n\n\n\n\n\n\n\nArrange/sort rows with arrange()\n\n\n\n\n\n\n\nMake new columns with mutate()\n\n\n\n\n\n\n\nMake group summaries withgroup_by() |&gt; summarize()"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#filter-1",
+    "href": "slides/week-3/03-data-manipulation.html#filter-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "filter()",
+    "text": "filter()\nExtract rows that meet some sort of test\n\n\n\n\nfilter(.data = DATA, ...)\n\n\n\n\nDATA = Data frame to transform\n... = One or more tests filter() returns each row for which the test is TRUE"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section",
+    "href": "slides/week-3/03-data-manipulation.html#section",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "filter(.data = starwars, species == \"Droid\")\n\n\n\n\n\n\n\n\n\nname\nspecies\nheight\n\n\n\n\nLuke Skywalker\nHuman\n172\n\n\nC-3PO\nDroid\n167\n\n\nR2-D2\nDroid\n96\n\n\nDarth Vader\nHuman\n202\n\n\nLeia Organa\nHuman\n150\n\n\n…\n…\n…"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-1",
+    "href": "slides/week-3/03-data-manipulation.html#section-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "filter(.data = starwars, species == \"Droid\")\n\n\n\n\n\n\n\n\n\nname\nspecies\nheight\n\n\n\n\nLuke Skywalker\nHuman\n172\n\n\nC-3PO\nDroid\n167\n\n\nR2-D2\nDroid\n96\n\n\nDarth Vader\nHuman\n202\n\n\nLeia Organa\nHuman\n150\n\n\n…\n…\n…\n\n\n\n\n\n\n\n\n\n\n\nname\nspecies\nheight\n\n\n\n\nC-3PO\nDroid\n167\n\n\nR2-D2\nDroid\n96\n\n\nR5-D4\nDroid\n97\n\n\nIG-88\nDroid\n200\n\n\nR4-P17\nDroid\n96\n\n\nBB8\nDroid\nNA"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#filter-2",
+    "href": "slides/week-3/03-data-manipulation.html#filter-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "filter()",
+    "text": "filter()\nfilter(starwars, \n       species == \"Droid\")\n\n\n\n\n\n\nOne = sets an argument\nTwo == checks for equality  returns TRUE or FALSE"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#logical-tests",
+    "href": "slides/week-3/03-data-manipulation.html#logical-tests",
+    "title": "Data Wrangling with dplyr",
+    "section": "Logical tests",
+    "text": "Logical tests\n\n\n\nTest\n\n\nMeaning\n\n\nTest\n\n\nMeaning\n\n\n\n\nx &lt; y\n\n\nLess than\n\n\nx %in% y\n\n\nIn (group membership)\n\n\n\n\nx &gt; y\n\n\nGreater than\n\n\nis.na(x)\n\n\nIs missing\n\n\n\n\n==\n\n\nEqual to\n\n\n!is.na(x)\n\n\nIs not missing\n\n\n\n\nx &lt;= y\n\n\nLess than or equal to\n\n\n\n\nx &gt;= y\n\n\nGreater than or equal to\n\n\n\n\nx != y\n\n\nNot equal to"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#application-exercise-1",
+    "href": "slides/week-3/03-data-manipulation.html#application-exercise-1",
+    "title": "Data Wrangling with dplyr",
+    "section": " Application Exercise",
+    "text": "Application Exercise\nIn the Console, use filter() and logical tests to show…\n\nThe data for Humans\nThe data for characters with a homeworld Alderaan\nRows where the mass is greater than 1000\n\n\n\n\n−+\n04:00"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-2",
+    "href": "slides/week-3/03-data-manipulation.html#section-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "filter(starwars, species == \"Human\")\n\n\n\n\n\n\nfilter(starwars, homeworld == \"Alderaan\")\n\n\n\n\n\n\n\nfilter(starwars, mass &gt; 1000)"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#common-mistakes",
+    "href": "slides/week-3/03-data-manipulation.html#common-mistakes",
+    "title": "Data Wrangling with dplyr",
+    "section": "Common mistakes",
+    "text": "Common mistakes\n\n\nUsing = instead of ==\n👎\n\nfilter(starwars, \n       homeworld = \"Alderaan\")\n\n👍\n\nfilter(starwars, \n       homeworld == \"Alderaan\")"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#common-mistakes-1",
+    "href": "slides/week-3/03-data-manipulation.html#common-mistakes-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "Common mistakes",
+    "text": "Common mistakes\n\n\nUsing = instead of ==\n👎\n\nfilter(starwars, \n       homeworld = \"Alderaan\")\n\n👍\n\nfilter(starwars, \n       homeworld == \"Alderaan\")\n\n\nQuotes\n👎\n\nfilter(starwars, \n       homeworld == Alderaan)\n\n👍\n\nfilter(starwars, \n       homeworld == \"Alderaan\")"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#filter-with-multiple-conditions",
+    "href": "slides/week-3/03-data-manipulation.html#filter-with-multiple-conditions",
+    "title": "Data Wrangling with dplyr",
+    "section": "filter() with multiple conditions",
+    "text": "filter() with multiple conditions\nExtract rows that meet every test\n\n\n\nfilter(starwars, \n       species == \"Droid\",\n       height &gt; 100)"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-3",
+    "href": "slides/week-3/03-data-manipulation.html#section-3",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "filter(.data = starwars, species == \"Droid\", height &gt; 100)\n\n\n\n\n\n\n\n\n\nname\nspecies\nheight\n\n\n\n\nLuke Skywalker\nHuman\n172\n\n\nC-3PO\nDroid\n167\n\n\nR2-D2\nDroid\n96\n\n\nDarth Vader\nHuman\n202\n\n\nLeia Organa\nHuman\n150\n\n\n…\n…\n…"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-4",
+    "href": "slides/week-3/03-data-manipulation.html#section-4",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "filter(.data = starwars, species == \"Droid\", height &gt; 100)\n\n\n\n\n\n\n\n\n\nname\nspecies\nheight\n\n\n\n\nLuke Skywalker\nHuman\n172\n\n\nC-3PO\nDroid\n167\n\n\nR2-D2\nDroid\n96\n\n\nDarth Vader\nHuman\n202\n\n\nLeia Organa\nHuman\n150\n\n\n…\n…\n…\n\n\n\n\n\n\n\n\n\n\n\nname\nspecies\nheight\n\n\n\n\nC-3PO\nDroid\n167\n\n\nIG-88\nDroid\n200"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#boolean-operators",
+    "href": "slides/week-3/03-data-manipulation.html#boolean-operators",
+    "title": "Data Wrangling with dplyr",
+    "section": "Boolean operators",
+    "text": "Boolean operators\n\n\n\nOperator\n\n\nMeaning\n\n\n\n\na & b\n\n\nand\n\n\n\n\na | b\n\n\nor\n\n\n\n\n!a\n\n\nnot"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#default-is-and",
+    "href": "slides/week-3/03-data-manipulation.html#default-is-and",
+    "title": "Data Wrangling with dplyr",
+    "section": "Default is “and”",
+    "text": "Default is “and”\nThese do the same thing:\n\n\nfilter(starwars, species == \"Droid\", height &gt; 100)\n\n\n\n\n\nfilter(starwars, species == \"Droid\" & height &gt; 100)"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#application-exercise-2",
+    "href": "slides/week-3/03-data-manipulation.html#application-exercise-2",
+    "title": "Data Wrangling with dplyr",
+    "section": " Application Exercise",
+    "text": "Application Exercise\nCreate a new R chunk in your .qmd file. Use filter() and Boolean logical tests to show…\n\nDroids more than 70 kg\nCharacters that are born before 56 and have blue eyes\nCharacters that are born before 56 and have blue eyes and are not Human\n\n\n\n\n−+\n04:00"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-5",
+    "href": "slides/week-3/03-data-manipulation.html#section-5",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "filter(starwars, species == \"Droid\", mass &gt; 70)\n\n\n\n\n\n\nfilter(starwars, birth_year &lt; 56, \n       eye_color == \"blue\")\n\n\n\n\n \n\n\nfilter(starwars, birth_year &lt; 56, \n       eye_color == \"blue\", !species == \"Human\")"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#common-mistakes-2",
+    "href": "slides/week-3/03-data-manipulation.html#common-mistakes-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "Common mistakes",
+    "text": "Common mistakes\n\n\nCollapsing multiple tests into one\n👎\n\nfilter(starwars, \n       50 &lt; mass &lt; 100)\n\n👍\n\nfilter(starwars, \n       mass &gt; 50,\n       mass &lt; 100)\n\n\nUsing multiple tests instead of %in%\n👎\n\nfilter(starwars, \n       homeworld == \"Alderaan\",\n       homeworld == \"Bespin\",\n       homeworld == \"Corellia\")\n\n👍\n\nfilter(starwars, \n       homeworld %in% c(\"Alderaan\", \"Bespin\", \"Corellia\"))"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#common-syntax",
+    "href": "slides/week-3/03-data-manipulation.html#common-syntax",
+    "title": "Data Wrangling with dplyr",
+    "section": "Common syntax",
+    "text": "Common syntax\n\n\n\nEvery dplyr verb function follows the same pattern\nFirst argument is a data frame; returns a data frame\n\n\n\n\n\n\n\n\nVERB(DATA, ...)\n\n\n\n\n\nVERB = dplyr function/verb\nDATA = Data frame to transform\n... = Stuff the verb does"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#mutate",
+    "href": "slides/week-3/03-data-manipulation.html#mutate",
+    "title": "Data Wrangling with dplyr",
+    "section": "mutate()",
+    "text": "mutate()\nCreate new columns\n\n\n\n\nmutate(.data, ...)\n\n\n\n\n\nDATA = Data frame to transform\n... = Columns to make"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-6",
+    "href": "slides/week-3/03-data-manipulation.html#section-6",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "mutate(.data = starwars, bmi = mass / (height / 100)^2)\n\n\n\n\n\n\n\n\n\nname\nmass\nheight\n\n\n\n\nLuke Skywalker\n77\n172\n\n\nC-3PO\n75\n167\n\n\nR2-D2\n32\n96\n\n\nDarth Vader\n136\n202\n\n\nLeia Organa\n49\n150\n\n\n…\n…\n…"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-7",
+    "href": "slides/week-3/03-data-manipulation.html#section-7",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "mutate(.data = starwars, bmi = mass / (height / 100)^2)\n\n\n\n\n\n\n\n\n\nname\nmass\nheight\n\n\n\n\nLuke Skywalker\n77\n172\n\n\nC-3PO\n75\n167\n\n\nR2-D2\n32\n96\n\n\nDarth Vader\n136\n202\n\n\nLeia Organa\n49\n150\n\n\n…\n…\n…\n\n\n\n\n\n\n\n\n\n\n\nname\n…\nbmi\n\n\n\n\nLuke Skywalker\n…\n26.03\n\n\nC-3PO\n…\n26.89\n\n\nR2-D2\n…\n34.72\n\n\nDarth Vader\n…\n33.33\n\n\nLeia Organa\n…\n21.78\n\n\n…\n…\n…"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-8",
+    "href": "slides/week-3/03-data-manipulation.html#section-8",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "mutate(.data = starwars, \n       height_m = height / 100,\n       bmi = mass / (height_m)^2)\n\n\n\n\n\n\n\n\n\nname\nmass\nheight\n\n\n\n\nLuke Skywalker\n77\n172\n\n\nC-3PO\n75\n167\n\n\nR2-D2\n32\n96\n\n\nDarth Vader\n136\n202\n\n\nLeia Organa\n49\n150\n\n\n…\n…\n…"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-9",
+    "href": "slides/week-3/03-data-manipulation.html#section-9",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "mutate(.data = starwars, \n       height_m = height / 100,\n       bmi = mass / (height_m)^2)\n\n\n\n\n\n\n\n\n\nname\nmass\nheight\n\n\n\n\nLuke Skywalker\n77\n172\n\n\nC-3PO\n75\n167\n\n\nR2-D2\n32\n96\n\n\nDarth Vader\n136\n202\n\n\nLeia Organa\n49\n150\n\n\n…\n…\n…\n\n\n\n\n\n\n\n\n\n\n\nname\n…\nheight_m\nbmi\n\n\n\n\nLuke Skywalker\n…\n1.72\n26.03\n\n\nC-3PO\n…\n1.67\n26.89\n\n\nR2-D2\n…\n0.96\n34.72\n\n\nDarth Vader\n…\n2.02\n33.33\n\n\nLeia Organa\n…\n1.5\n21.78\n\n\n…\n…\n…\n…"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#ifelse",
+    "href": "slides/week-3/03-data-manipulation.html#ifelse",
+    "title": "Data Wrangling with dplyr",
+    "section": "ifelse()",
+    "text": "ifelse()\nDo conditional tests within mutate()\n\n\n\nifelse(TEST,      \n       VALUE_IF_TRUE, \n       VALUE_IF_FALSE)\n\n\n\n\nTEST = A logical test\nVALUE_IF_TRUE = What happens if test is true\nVALUE_IF_FALSE = What happens if test is false"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#application-exercise-3",
+    "href": "slides/week-3/03-data-manipulation.html#application-exercise-3",
+    "title": "Data Wrangling with dplyr",
+    "section": " Application Exercise",
+    "text": "Application Exercise\nCreate a new R chunk in your .qmd file. Use mutate() to\n\nAdd a droid column that is TRUE if the species is a Droid\nAdd a column for the logged weight (hint: use log())\nAdd a human_droid column that says “Human or Droid” if the character is a human or a droid and “Not Human or Droid” if it’s not\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#what-if-you-have-multiple-verbs",
+    "href": "slides/week-3/03-data-manipulation.html#what-if-you-have-multiple-verbs",
+    "title": "Data Wrangling with dplyr",
+    "section": "What if you have multiple verbs?",
+    "text": "What if you have multiple verbs?\nMake a dataset of just Droids and calculate their BMI\n. . .\nPipes!\nThe |&gt; operator (pipe) takes an object on the left and passes it as the first argument of the function on the right\n. . .\n\n\nstarwars |&gt; filter(_, species == \"Droid\")"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#what-if-you-have-multiple-verbs-1",
+    "href": "slides/week-3/03-data-manipulation.html#what-if-you-have-multiple-verbs-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "What if you have multiple verbs?",
+    "text": "What if you have multiple verbs?\nThese do the same thing!\n\n\n\nfilter(starwars, species == \"Droid\")\n\n\n\n\nstarwars |&gt; filter(species == \"Droid\")"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#what-if-you-have-multiple-verbs-2",
+    "href": "slides/week-3/03-data-manipulation.html#what-if-you-have-multiple-verbs-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "What if you have multiple verbs?",
+    "text": "What if you have multiple verbs?\nMake a dataset of just Droids and calculate their BMI\n\nstarwars |&gt;\n  filter(species == \"Droid\") |&gt;\n  mutate(bmi = mass / (height / 100)^2)"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-10",
+    "href": "slides/week-3/03-data-manipulation.html#section-10",
+    "title": "Data Wrangling with dplyr",
+    "section": "|>",
+    "text": "|&gt;\n\nleave_house(get_dressed(get_out_of_bed(wake_up(me, time = \"8:00\"), side = \"correct\"), pants = TRUE, shirt = TRUE), car = TRUE, bike = FALSE)\n\n\n\n\nme |&gt; \n  wake_up(time = \"8:00\") |&gt; \n  get_out_of_bed(side = \"correct\") |&gt; \n  get_dressed(pants = TRUE, shirt = TRUE) |&gt; \n  leave_house(car = TRUE, bike = FALSE)"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#summarize",
+    "href": "slides/week-3/03-data-manipulation.html#summarize",
+    "title": "Data Wrangling with dplyr",
+    "section": "summarize()",
+    "text": "summarize()\nCompute a table of summaries\n\nstarwars |&gt;\n  summarize(mean_height = mean(height, na.rm = TRUE))\n\n\n\n\n\n\n\n\nname\nspecies\nheight\n\n\n\n\nLuke Skywalker\nHuman\n172\n\n\nC-3PO\nDroid\n167\n\n\nR2-D2\nDroid\n96\n\n\nDarth Vader\nHuman\n202\n\n\nLeia Organa\nHuman\n150\n\n\n…\n…\n…"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#summarize-1",
+    "href": "slides/week-3/03-data-manipulation.html#summarize-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "summarize()",
+    "text": "summarize()\nCompute a table of summaries\n\nstarwars |&gt;\n  summarize(mean_height = mean(height, na.rm = TRUE))\n\n\n\n\n\n\n\n\nname\nspecies\nheight\n\n\n\n\nLuke Skywalker\nHuman\n172\n\n\nC-3PO\nDroid\n167\n\n\nR2-D2\nDroid\n96\n\n\nDarth Vader\nHuman\n202\n\n\nLeia Organa\nHuman\n150\n\n\n…\n…\n…\n\n\n\n\n\n\n\n\n\n\n\nmean_height\n\n\n\n\n174.6049\n\n\n\n\n\n\n\n\n\n−+\n00:30"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#summarize-2",
+    "href": "slides/week-3/03-data-manipulation.html#summarize-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "summarize()",
+    "text": "summarize()\n\nstarwars |&gt;\n  summarize(mean_height = mean(height, na.rm = TRUE),\n            max_height = max(height, na.rm = TRUE))\n\n\n\n\n\n\n\n\n\nname\nspecies\nheight\n\n\n\n\nLuke Skywalker\nHuman\n172\n\n\nC-3PO\nDroid\n167\n\n\nR2-D2\nDroid\n96\n\n\nDarth Vader\nHuman\n202\n\n\nLeia Organa\nHuman\n150\n\n\n…\n…\n…\n\n\n\n\n\n\n\n\n\n\n\nmean_height\nmax_height\n\n\n\n\n174.6049\n264"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#application-exercise-4",
+    "href": "slides/week-3/03-data-manipulation.html#application-exercise-4",
+    "title": "Data Wrangling with dplyr",
+    "section": " Application Exercise",
+    "text": "Application Exercise\nCreate a new R chunk in your .qmd file. Use summarize() to calculate…\n\nThe first (minimum) birth year in the dataset\nThe last (maximum) birth year in the dataset\nThe number of distinct homeworlds in the dataset (use the cheatsheet)\n\n\n\n\n−+\n06:00"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-11",
+    "href": "slides/week-3/03-data-manipulation.html#section-11",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "starwars |&gt;\n  summarize(first = min(birth_year, na.rm = TRUE),\n            last = max(birth_year, na.rm = TRUE),\n            num_rows = n(),\n            num_unique = n_distinct(homeworld))"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#application-exercise-5",
+    "href": "slides/week-3/03-data-manipulation.html#application-exercise-5",
+    "title": "Data Wrangling with dplyr",
+    "section": " Application Exercise",
+    "text": "Application Exercise\nCreate a new R chunk in your .qmd file. Use filter() and summarize() to calculate\n\nThe number of unique homeworlds among humans\nThe median height for characters from Tatooine born before the year 100\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#group_by",
+    "href": "slides/week-3/03-data-manipulation.html#group_by",
+    "title": "Data Wrangling with dplyr",
+    "section": "group_by()",
+    "text": "group_by()\nPut rows into groups based on values in a column\n\nstarwars |&gt; group_by(species)\n\n. . .\nNothing happens by itself!\n. . .\nPowerful when combined with summarize()"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#section-12",
+    "href": "slides/week-3/03-data-manipulation.html#section-12",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "starwars |&gt;\n  group_by(gender) |&gt;\n  summarize(n_species = n_distinct(species))"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#application-exercise-6",
+    "href": "slides/week-3/03-data-manipulation.html#application-exercise-6",
+    "title": "Data Wrangling with dplyr",
+    "section": " Application Exercise",
+    "text": "Application Exercise\nCreate a new R chunk in your .qmd file.\n\nFind the minimum, maximum, and median mass for each species\nFind the minimum, maximum, and median mass for each species from Tatooine\n\n\n\n\n−+\n06:00"
+  },
+  {
+    "objectID": "slides/week-3/03-data-manipulation.html#evaluation",
+    "href": "slides/week-3/03-data-manipulation.html#evaluation",
+    "title": "Data Wrangling with dplyr",
+    "section": "Evaluation",
+    "text": "Evaluation\nhttps://docs.google.com/forms/d/e/1FAIpQLSeXqLgZEe2oTa9exX4LI7wtkZvnr9Qp4QZ5ooCDCcIKKH1hZg/viewform?usp=sf_link"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-pt1.html#tuesday-september-30",
+    "href": "slides/week-3/week-3-dplyr-pt1.html#tuesday-september-30",
+    "title": "Data Wrangling with dplyr",
+    "section": "Tuesday, September 30",
+    "text": "Tuesday, September 30\nToday we will…\n\nWarm-up for dplyr practice activity (30-minutes)\nSet-up for the practice activity (5-minutes)\n\nReview pair programming norms\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#tuesday-september-30",
+    "href": "slides/week-3/week-3-dplyr-short.html#tuesday-september-30",
+    "title": "Data Wrangling with dplyr",
+    "section": "Tuesday, September 30",
+    "text": "Tuesday, September 30\nToday we will…\n\nWarm-up for dplyr practice activity (40-minutes)\nSet-up for the practice activity (5-minutes)\n\nReview pair programming norms\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#dplyr",
+    "href": "slides/week-3/week-3-dplyr-short.html#dplyr",
+    "title": "Data Wrangling with dplyr",
+    "section": "dplyr",
+    "text": "dplyr\ndplyr is part of the tidyverse that provides us with the Grammar of Data Wrangling.\n\nThis package gives us the tools to wrangle and tidy our data with ease.\nThe dplyr cheatsheet is included in your coursepack!"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#mathlink-activity",
+    "href": "slides/week-3/week-3-dplyr-short.html#mathlink-activity",
+    "title": "Data Wrangling with dplyr",
+    "section": "Mathlink Activity",
+    "text": "Mathlink Activity\nWe’re going to explore some key dplyr verbs using manipulatives:\n\n\nfilter() – select rows based on their values\nselect() – select columns\nmutate() – add new columns or change existing columns\nsummarize() – perform summary operations on columns\ngroup_by() – facilitate group-wise operations\n\n\n\n\nUse the pipe operator (|&gt; or %&gt;%) to chain together data wrangling operations."
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator-1",
+    "href": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "The Pipe Operator",
+    "text": "The Pipe Operator\n\nThe “original” pipe: %&gt;%\n\nLoaded with tidyverse package (part of magrittr).\n\nThe “native” pipe: |&gt;\n\nCreated in R version 4.1.0.\nDirections for how to use"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator-2",
+    "href": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "The Pipe Operator",
+    "text": "The Pipe Operator\n\nThe pipe specifies a sequence of operations.\n\nThe output from one operation is passed into the first argument (the dataset) of the next operation.\n\n\n\n\nThe “original” pipe: %&gt;%\n\nLoaded with tidyverse package (part of magrittr).\n\nThe “native” pipe: |&gt;\n\nCreated in R version 4.1.0.\nDirections for how to use"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator-3",
+    "href": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator-3",
+    "title": "Data Wrangling with dplyr",
+    "section": "The Pipe Operator",
+    "text": "The Pipe Operator\n\ndr_theobold |&gt;\n  play_a_sport()\n\n\n\n\ndr_theobold |&gt;\n  put_on(\"cleats\") |&gt;\n  play_a_sport(type = \"track\")"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#data-comes-first",
+    "href": "slides/week-3/week-3-dplyr-short.html#data-comes-first",
+    "title": "Data Wrangling with dplyr",
+    "section": "Data Comes First!",
+    "text": "Data Comes First!\nYou can choose whether to:\ndeclare your data as the first argument of the function\n\nfilter(.data = colleges, REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n\n\nor\npipe your data into the first argument of the function\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#code-formatting",
+    "href": "slides/week-3/week-3-dplyr-short.html#code-formatting",
+    "title": "Data Wrangling with dplyr",
+    "section": "Code Formatting",
+    "text": "Code Formatting\nSimilar to the + formatting in ggplot, do not continue a line after writing a |&gt;!"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#finding-ephelias-college",
+    "href": "slides/week-3/week-3-dplyr-short.html#finding-ephelias-college",
+    "title": "Data Wrangling with dplyr",
+    "section": "Finding Ephelia’s College",
+    "text": "Finding Ephelia’s College\n\n\n\nThis activity will require knowledge of:\n\ndebugging code errors\nfunction syntax\nlogical comparisons\nidentifying what actions need to be taken\nlocating what dplyr verb(s) can accomplish this task\nchaining steps together with the pipe operator\n\n\n\n\n\n\n\n\nNone of us have all these abilities. Each of us has some of these abilities."
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#dplyr-resources",
+    "href": "slides/week-3/week-3-dplyr-short.html#dplyr-resources",
+    "title": "Data Wrangling with dplyr",
+    "section": "dplyr Resources",
+    "text": "dplyr Resources\nEvery of you should have a dplyr cheatsheet in your coursepack!\n\n\n\nOn the Front\n\n\nColumn 1: grouped summaries (group_by() + summarize())\nColumn 2: filter()ing values with logical comparisons\nColumn 3: select()ing and mutate()ing variables\n\n\n\n\n\n\n\nOn the Back\n\n\nColumn 2: summary functions you might like to use with summarize()"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#task-card",
+    "href": "slides/week-3/week-3-dplyr-short.html#task-card",
+    "title": "Data Wrangling with dplyr",
+    "section": "Task Card",
+    "text": "Task Card\n \nEvery group should have a task card! These cards remind you of the expectations for each role and the collaborative norms we agree to."
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#pair-programming-expectations",
+    "href": "slides/week-3/week-3-dplyr-short.html#pair-programming-expectations",
+    "title": "Data Wrangling with dplyr",
+    "section": "Pair Programming Expectations",
+    "text": "Pair Programming Expectations\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nDeveloper\n\n\nReads prompt and ensures Coder understands what is being asked.\nTypes the code specified by the Coder into the Quarto document.       \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output.\n\nWorks with Coder to write code comments.\n\n\n\n\n\n\nCoder\n\n\nReads out instructions or prompts\nDirects the Developer what to type.\nTalks with Developer about their ideas. \nManages resources (e.g., cheatsheets, textbook, slides). \nWorks with Developer to debug the code. \nWorks with Developer to write code comments."
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-does-this-look-in-posit-cloud",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-does-this-look-in-posit-cloud",
+    "title": "Data Wrangling with dplyr",
+    "section": "How does this look in Posit Cloud?",
+    "text": "How does this look in Posit Cloud?\n\nFirst, both of you will do the following:\n\nJoin your Practice Activity workspace in Posit Cloud\n\nIf you were sent a new email, you were added to a different group!\n\nLog-in to Posit Cloud\nOpen the PA 3: Identify the Mystery College project\nOpen the PA3-dplyr.qmd file\n\n\n\n\nThen, the partner whose birthday is closest to January 1st starts as the Developer (typing and listening to instructions from the Coder)!\n\nThe Coder does not type.\n\nThe collaborative editing feature should allow you to track what is being typed.\n\nThe Developer only types what they are told to type."
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#why-are-we-switching",
+    "href": "slides/week-3/week-3-dplyr-short.html#why-are-we-switching",
+    "title": "Data Wrangling with dplyr",
+    "section": "Why are we switching?",
+    "text": "Why are we switching?\nThroughout the activity you will swap roles—the Developer will become the Coder, and the Coder will become the Developer.\n\n\nWe are alternating roles so everyone:\n\nhas the chance to apply their coding skills\npractices talking through their code\nhas the opportunity to explain their thinking"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#external-resources",
+    "href": "slides/week-3/week-3-dplyr-short.html#external-resources",
+    "title": "Data Wrangling with dplyr",
+    "section": "External Resources",
+    "text": "External Resources\nDuring the Practice Activity, you are not permitted to use Google or ChatGPT for help.\n\nYou are permitted to use:\n\nthe dplyr cheatsheet,\nthe course textbook, and\nthe course slides."
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#submission",
+    "href": "slides/week-3/week-3-dplyr-short.html#submission",
+    "title": "Data Wrangling with dplyr",
+    "section": "Submission",
+    "text": "Submission\n\nSubmit the full name of the college Ephelia will attend to the Canvas Quiz.\n\n\nEach person will input the full name of the college in the PA3 Canvas quiz.\nThe person who last occupied the role of Developer will print the notebook as a PDF and submit the PDF for the group.\n\nOnly one submission per group!"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator",
+    "href": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator",
+    "title": "Data Wrangling with dplyr",
+    "section": "The Pipe Operator",
+    "text": "The Pipe Operator\nWith dplyr, your code should read like a sentence.\n\nThe data is the primary object in your sentence, so it should come first in your code.\n\n\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#data-frame",
+    "href": "slides/week-3/week-3-dplyr-short.html#data-frame",
+    "title": "Data Wrangling with dplyr",
+    "section": "Data Frame",
+    "text": "Data Frame"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#data-frame-1",
+    "href": "slides/week-3/week-3-dplyr-short.html#data-frame-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "Data Frame",
+    "text": "Data Frame\n\n\n\nHow many rows?"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#data-frame-2",
+    "href": "slides/week-3/week-3-dplyr-short.html#data-frame-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "Data Frame",
+    "text": "Data Frame\n\n\n\nHow many columns?"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#observations",
+    "href": "slides/week-3/week-3-dplyr-short.html#observations",
+    "title": "Data Wrangling with dplyr",
+    "section": "Observations",
+    "text": "Observations\nHere is one observation:\n\n\n\n\nLooking at the column green, how many sides does the observation have?"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#take-your-data-frame-and-then-filter-it-only-include-rows-where-the-red-column-only-includes-observations-with-three-sides-triangles-or-the-green-column-only-includes-observations-with-more-than-4-sides-pentagons-hexagons",
+    "href": "slides/week-3/week-3-dplyr-short.html#take-your-data-frame-and-then-filter-it-only-include-rows-where-the-red-column-only-includes-observations-with-three-sides-triangles-or-the-green-column-only-includes-observations-with-more-than-4-sides-pentagons-hexagons",
+    "title": "Data Wrangling with dplyr",
+    "section": "take your data frame and then filter it (only include rows where) the red column only includes observations with three sides (triangles) OR the green column only includes observations with more than 4 sides (pentagons, hexagons)",
+    "text": "take your data frame and then filter it (only include rows where) the red column only includes observations with three sides (triangles) OR the green column only includes observations with more than 4 sides (pentagons, hexagons)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#section",
+    "href": "slides/week-3/week-3-dplyr-short.html#section",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "take your data frame and then filter it (only include rows where)\n\nthe red column only includes observations with three sides (triangles)\n\nOR\n\nthe green column only includes observations with more than four sides (pentagons, hexagons)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code",
+    "title": "Data Wrangling with dplyr",
+    "section": "How would we write this as R code?",
+    "text": "How would we write this as R code?\nthe red column only includes observations with three sides (triangles) OR the green column only includes observations with more than four sides (pentagons, hexagons)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-1",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "How would we write this as R code?",
+    "text": "How would we write this as R code?\n \n\ndata |&gt;\n  filter(red == 3 | \n         green &gt; 4)\n\n\n\n“Take the data and then filter it to only include red observations with 3 sides or green observations with 4 or more sides.”"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-2",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "How would we write this as R code?",
+    "text": "How would we write this as R code?\n \n\ndata |&gt;\n  filter(red == 3 | \n         green &gt; 4)\n\n \ntake your data frame"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-3",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-3",
+    "title": "Data Wrangling with dplyr",
+    "section": "How would we write this as R code?",
+    "text": "How would we write this as R code?\n \n\ndata |&gt;\n  filter(red == 3 | \n         green &gt; 4)\n\n \nand then"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-4",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-4",
+    "title": "Data Wrangling with dplyr",
+    "section": "How would we write this as R code?",
+    "text": "How would we write this as R code?\n \n\ndata |&gt;\n  filter(red == 3 | \n         green &gt; 4)\n\n \nfilter it (only include rows where)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-5",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-5",
+    "title": "Data Wrangling with dplyr",
+    "section": "How would we write this as R code?",
+    "text": "How would we write this as R code?\n \n\ndata |&gt;\n  filter(red == 3 | \n         green &gt; 4)\n\n \nthe red column only includes observations with three sides"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-6",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-6",
+    "title": "Data Wrangling with dplyr",
+    "section": "How would we write this as R code?",
+    "text": "How would we write this as R code?\n \n\ndata |&gt;\n  filter(red == 3 | \n         green &gt; 4)\n\n \nOR"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-7",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-this-as-r-code-7",
+    "title": "Data Wrangling with dplyr",
+    "section": "How would we write this as R code?",
+    "text": "How would we write this as R code?\n \n\ndata |&gt;\n  filter(red == 3 | \n         green &gt; 4)\n\n \nthe green column only includes observations with more than four sides"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#changing-from-or-to-and",
+    "href": "slides/week-3/week-3-dplyr-short.html#changing-from-or-to-and",
+    "title": "Data Wrangling with dplyr",
+    "section": "Changing from OR to AND",
+    "text": "Changing from OR to AND\n \n\nWhat if we wanted observations where the red column had three sides AND the green column had four or more sides?\nHow would the code change?"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#default-is-and",
+    "href": "slides/week-3/week-3-dplyr-short.html#default-is-and",
+    "title": "Data Wrangling with dplyr",
+    "section": "Default is AND",
+    "text": "Default is AND\n \n\ndata |&gt;\n  filter(red == 3,\n         green &gt; 4)\n\n \n\nthe default in filter() is the AND condition"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-thisas-r-code",
+    "href": "slides/week-3/week-3-dplyr-short.html#how-would-we-write-thisas-r-code",
+    "title": "Data Wrangling with dplyr",
+    "section": "How would we write thisas R code?",
+    "text": "How would we write thisas R code?\n \n\ndata |&gt;\n  filter(red == 3 | \n         green &gt; 4)\n\n \nand then"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#section-1",
+    "href": "slides/week-3/week-3-dplyr-short.html#section-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "data |&gt;\n  select(red, \n         yellow, \n         green)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#section-2",
+    "href": "slides/week-3/week-3-dplyr-short.html#section-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "data |&gt;\n  select(-green)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\nfilter it (only include rows where)\n\nthe red column only includes observations with three sides (triangles)\n\nOR\n\nthe green column only includes observations with more than four sides (pentagons, hexagons)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-1",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  select(red, \n         yellow, \n         green)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-2",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-2",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  select(-green)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#code-formatting-1",
+    "href": "slides/week-3/week-3-dplyr-short.html#code-formatting-1",
+    "title": "Data Wrangling with dplyr",
+    "section": "Code Formatting",
+    "text": "Code Formatting\n\nBad PracticeGoodAmazing\n\n\n\ncereal |&gt; group_by(type) |&gt; summarise(mean_fiber = mean(fiber), num_cereals = n(), mean_sugar = mean(sugars))\n\n\n\n\ncereal |&gt; \n  group_by(type) |&gt; \n  summarise(mean_fiber = mean(fiber), num_cereals = n(), mean_sugar = mean(sugars))\n\n\n\n\ncereal |&gt; \n  group_by(type) |&gt; \n  summarise(mean_fiber = mean(fiber), \n            num_cereals = n(),\n            mean_sugar = mean(sugars)\n            )"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-3",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-3",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  mutate(\n    purple = c(4, 4, 5)\n        )"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#if_else",
+    "href": "slides/week-3/week-3-dplyr-short.html#if_else",
+    "title": "Data Wrangling with dplyr",
+    "section": "if_else()",
+    "text": "if_else()\nif_else(condition, true, false)\n\ncondition is a logical test (or combination of logical tests)\ntrue is the value output if the logical test is found to be TRUE\nfalse is the value output if the logical test is found to be FALSE"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-4",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-4",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  mutate(\n    orange = ifelse(blue == 6, 4, 3)\n         )"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-5",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-5",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  mutate(orange = \n    ifelse(blue == 6, 4, 3),\n                 green = orange + 1)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-6",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-6",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  summarize(\n    max(purple)\n    )"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-7",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-7",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  summarize(\n    max(red),\n    max(blue),\n    min(orange)\n    )"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-8",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-8",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  group_by(blue) |&gt;\n  summarize(\n    max(red)\n    )"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-9",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-9",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  group_by(blue) |&gt;\n  summarize(\n    min(red),\n    max(green)\n    )"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-10",
+    "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-10",
+    "title": "Data Wrangling with dplyr",
+    "section": "With Your Data Frame",
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  group_by(orange, purple) |&gt;\n  summarize(\n    min(blue)\n    )"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#why-not-use",
+    "href": "slides/week-3/week-3-dplyr-short.html#why-not-use",
+    "title": "Data Wrangling with dplyr",
+    "section": "Why not use &?",
+    "text": "Why not use &?\nIf a , is equivalent to an & why not just use a &?\nWell, with a lot of &s your code can get hard to read…\n\ndata |&gt;\n  filter(red == 3 & green &gt; 4 & orange &gt;= 3)\n\n\n\nSo instead we use commas.\n\ndata |&gt;\n  filter(red == 3, \n         green &gt; 4, \n         orange &gt;= 3)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#if_elsecondition-true-false",
+    "href": "slides/week-3/week-3-dplyr-short.html#if_elsecondition-true-false",
+    "title": "Data Wrangling with dplyr",
+    "section": "if_else(condition, true, false)",
+    "text": "if_else(condition, true, false)\n\ncondition is a logical test (or combination of logical tests)\ntrue is the value output if the logical test is found to be TRUE\nfalse is the value output if the logical test is found to be FALSE"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#opening-the-practice-activity-in-google-colab",
+    "href": "slides/week-3/week-3-dplyr-short.html#opening-the-practice-activity-in-google-colab",
+    "title": "Data Wrangling with dplyr",
+    "section": "Opening the Practice Activity in Google Colab",
+    "text": "Opening the Practice Activity in Google Colab\nThe partner whose birthday is closest to January 1st starts as the Developer! The Developer needs to:\n\n\n\n\nClick on the Practice Activity 3 link from Canvas\nLog-in to your Google account\nMake a copy of the Colab notebook"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#sharing-with-your-partner",
+    "href": "slides/week-3/week-3-dplyr-short.html#sharing-with-your-partner",
+    "title": "Data Wrangling with dplyr",
+    "section": "Sharing with Your Partner",
+    "text": "Sharing with Your Partner\nOnce you have your copy, you need to:\n\n\n\n\nShare your copy with your partner’s Google account\nMake sure the Coder can open the file\nThe Developer should plug their laptop into the monitor\nThe Coder should close their computer\nGet started!"
   }
 ]

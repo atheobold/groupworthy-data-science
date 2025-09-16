@@ -1,0 +1,720 @@
+---
+title: "Data Wrangling with dplyr"
+format: 
+  revealjs:
+        theme: [simple, ../style.scss]
+editor: source
+filters:
+ - flourish
+---
+
+```{r setup}
+#| include: false
+#| message: false
+library(tidyverse)
+library(palmerpenguins)
+```
+
+## Tuesday, September 30
+
+Today we will...
+
++ Warm-up for `dplyr` practice activity (40-minutes)
++ Set-up for the practice activity (5-minutes)
+  + Review pair programming norms
+  + Find your partner!
++ Take a 10-minute break
++ Complete the practice activity (60-minutes)
+
+# Data Wrangling with `dplyr`
+
+::: columns
+::: {.column width="35%"}
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="60%"}
+![](images/mathlink-dataframe.png){fig-alt="A picture of a set of Mathlink blocks on a desk. The blocks are connected together forming three rows and six columns. The columns are red, orange, yellow, green, blue, and purple. Each block within a row and colum has a shape in the center (e.g., triangle, square hexagon)."}
+:::
+:::
+
+## Mathlink Activity
+
+We're going to explore some key `dplyr` verbs using manipulatives:
+
+::: {.midi}
++ `filter()` -- **select rows** based on their values
++ `select()` -- **select columns**
++ `mutate()` -- **add new columns** or **change existing columns**
++ `summarize()` -- perform **summary operations** on columns
++ `group_by()` -- facilitate **group-wise operations**
+:::
+
+. . .
+
+::: {.midi}
+Use the **pipe operator** (`|>` or `%>%`) to chain together data wrangling operations.
+:::
+
+## The Pipe Operator
+
+With `dplyr`, your code should read **like a sentence**.
+
++ The **data** is the primary object in your sentence, so it should **come first in your code**.
+
+. . .
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+colleges |>
+  filter(REGION == 5) |>
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
+```
+
+
+## Data Comes First!
+
+You can choose whether to: 
+
+declare your data as the first argument of the function 
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: not-piped-data
+
+filter(.data = colleges, REGION == 5) |>
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
+```
+
+. . .
+
+***or***
+
+pipe your data into the first argument of the function
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: pipe-data
+
+colleges |>
+  filter(REGION == 5) |>
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
+```
+
+## Data Frame
+
+::: {.centered}
+![](images/mathlink-dataframe.png){fig-alt="A picture of a set of Mathlink blocks on a desk. The blocks are connected together forming three rows and six columns. The columns are red, orange, yellow, green, blue, and purple. Each block within a row and colum has a shape in the center (e.g., triangle, square hexagon)." height=400}
+:::
+
+## Data Frame
+
+::: {.centered}
+![](images/mathlink-dataframe.png){fig-alt="A picture of a set of Mathlink blocks on a desk. The blocks are connected together forming three rows and six columns. The columns are red, orange, yellow, green, blue, and purple. Each block within a row and colum has a shape in the center (e.g., triangle, square hexagon)." height=400}
+:::
+
+**How many rows?**
+
+## Data Frame
+
+::: {.centered}
+![](images/mathlink-dataframe.png){fig-alt="A picture of a set of Mathlink blocks on a desk. The blocks are connected together forming three rows and six columns. The columns are red, orange, yellow, green, blue, and purple. Each block within a row and colum has a shape in the center (e.g., triangle, square hexagon)." height=400}
+:::
+
+**How many columns?**
+
+## Observations
+
+Here is one observation:
+
+::: {.centered}
+![](images/mathlink-observation.png){fig-alt="A picture of one row of the previous set of Mathlink blocks. The set only has one of each color (column): red, orange, yellow, green, blue, and purple." height=400}
+:::
+
+. . .
+
+**Looking at the column `green`, how many sides does the observation have?**
+
+# `filter`
+
+# `filter`
+
+> include **rows** based on one or more logical statements 
+
+## With Your Data Frame
+
+**filter it** (only include rows where) 
+
+1. **the red column only includes observations with three sides** (triangles)
+
+[OR]{.underline} 
+
+2. **the green column only includes observations with more than four sides** (pentagons, hexagons)
+
+## How would we write this as R code?
+
+**the red column only includes observations with three sides** (triangles) [OR]{.underline} **the green column only includes observations with more than four sides** (pentagons, hexagons)
+
+::: columns
+::: {.column width="45%"}
+![](images/logical-operations.png){fig-alt="A table of example logical operations (comparisons) that can be made between two objects a and b. "}
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
+![](images/boolean-operations.png){fig-alt=""}
+:::
+:::
+
+## How would we write this as R code?
+
+</br>
+</br>
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+data |>
+  filter(red == 3 | 
+         green > 4)
+
+```
+
+</br>
+
+> "Take the `data` **and then** filter it to only include `red` observations
+> with 3 sides or `green` observations with 4 or more sides."
+
+## Changing from OR to AND
+
+</br>
+</br>
+
+::: {.large}
+What if we wanted observations where the red column had three sides AND the green column had four or more sides?
+
+How would the code change?
+:::
+
+## Default is AND
+
+</br>
+</br>
+
+```{r}
+#| eval: false
+#| code-line-numbers: false
+#| echo: true
+#| flourish:
+#| - target-rx:
+#|      - ","
+#|      - style:
+#|            - "background-color: #ffb6c1;"
+
+data |>
+  filter(red == 3,
+         green > 4)
+
+```
+
+</br>
+</br>
+
+::: {.large}
+the default in `filter()` is the AND condition
+:::
+
+## Why not use `&`?
+
+If a `,` is equivalent to an `&` why not just use a `&`? 
+
+Well, with a lot of `&`s your code can get hard to read...
+
+```{r}
+#| label: lots-of-ands
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+data |>
+  filter(red == 3 & green > 4 & orange >= 3)
+```
+
+. . .
+
+</br>
+
+
+So instead we use commas.
+
+```{r}
+#| label: lots-of-commas
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+data |>
+  filter(red == 3, 
+         green > 4, 
+         orange >= 3)
+```
+
+# `select`
+
+# `select`
+
+> include **columns** based on one or more logical statements
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+data |>
+  select(red, 
+         yellow, 
+         green)
+```
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+data |>
+  select(-green)
+```
+
+
+# `mutate`
+
+# `mutate`
+
+> create new columns or change existing columns
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  mutate(
+    purple = c(4, 4, 5)
+        )
+```
+
+## `if_else(condition, true, false)`
+
+- `condition` is a logical test (or combination of logical tests)
+- `true` is the value output if the logical test is found to be `TRUE`
+- `false` is the value output if the logical test is found to be `FALSE`
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  mutate(
+    orange = ifelse(blue == 6, 4, 3)
+         )
+
+```
+
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  mutate(orange = 
+    ifelse(blue == 6, 4, 3),
+    			 green = orange + 1)
+
+```
+
+
+# `summarize`
+
+# `summarize`
+
+> compute a table of summaries
+
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  summarize(
+    max(purple)
+    )
+```
+
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+
+data |>
+  summarize(
+    max(red),
+    max(blue),
+    min(orange)
+    )
+
+```
+
+
+# `group_by`
+
+# `group_by`
+
+> put rows into groups based on values in column(s)
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  group_by(blue) |>
+  summarize(
+    max(red)
+    )
+```
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  group_by(blue) |>
+  summarize(
+    min(red),
+    max(green)
+    )
+
+```
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  group_by(orange, purple) |>
+  summarize(
+    min(blue)
+    )
+
+```
+
+# Combine operations!
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  filter(blue > 3) |>
+  select(red, yellow, blue)|>
+  mutate(green = blue - 1)
+
+```
+
+# 10-minute break
+
+# PA 3: Identify the Mystery College
+
+Today you will use the `dplyr` package to clean some data and then use that cleaned data to figure out what college Ephelia has been accepted to.
+
+![](images/WSU-ivy-covered-building.jpg){fig-alt="A picture of a college building covered in green ivy. The building is reminescent of gothic architecture, with a brick exterior and many windows."}
+
+## Finding Ephelia's College
+
+::: columns
+::: {.column width="40%"}
+::: {.small}
+This activity will require knowledge of:
+
+- debugging code errors
+- function syntax
+- logical comparisons
+- identifying what actions need to be taken
+- locating what dplyr verb(s) can accomplish this task
+- chaining steps together with the pipe operator
+
+:::
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+
+![](images/debugging_horst.png){fig-alt="This image is a comic illustration titled 'debugging' featuring a series of 10 round green characters with various facial expressions and captions describing the stages of debugging code. The first character is smiling confidently with the caption 'I got this.' The second character has a neutral, confused expression with the caption 'Huh. Really thought that was it.' The third character looks puzzled and silent, captioned '(...).' The fourth character looks annoyed, with the caption 'Fine. Restarting.' The fifth character is angry and blushing, captioned 'OH WTF.' The sixth character is having a meltdown, looking wild-eyed and frazzled with the caption 'Zombie meltdown.' The seventh character looks exhausted and sleepy, drooling a bit, captioned with '...' The eighth character has a lightbulb above its head and a hopeful expression, captioned 'A NEW HOPE!' The ninth character looks determined, typing on a keyboard with a caption of '[insert awesome theme song].' Finally, the tenth character is joyful and celebrating with confetti, captioned 'I love CODING' The illustration humorously captures the emotional rollercoaster of debugging code."}
+
+:::
+:::
+
+. . .
+
+[**None of us have all these abilities. Each of us has some of these abilities.**]{.midi}
+
+## dplyr Resources
+
+Every of you should have a **dplyr** cheatsheet in your coursepack! 
+
+::: columns
+::: {.column width="37%"}
+::: {.fragment}
+**On the Front**
+
+::: {.incremental}
+::: {.small}
+- Column 1: grouped summaries (`group_by()` + `summarize()`)
+- Column 2: `filter()`ing values with logical comparisons
+- Column 3: `select()`ing and `mutate()`ing variables
+:::
+:::
+:::
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="37%"}
+::: {.fragment}
+**On the Back**
+
+::: {.incremental}
+::: {.small}
+- Column 2: summary functions you might like to use with `summarize()`
+:::
+:::
+:::
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="15%"}
+![](images/dplyr-cheatsheet-front.png){fig-alt="A picture of the dplyr cheatsheet, which contains helpful information on working with data in a variety of ways."}
+
+:::
+:::
+
+## Task Card
+
+</br>
+</br>
+
+Every group should have a **task card**! These cards remind you of the 
+expectations for each role and the collaborative norms we agree to. 
+
+## Pair Programming Expectations
+
+::: {.small}
+During your collaboration, you and your partner will alternate between two roles: 
+:::
+
+. . .
+
+::: columns
+::: {.column width="49%"}
+**Developer**
+
+::: {.small}
+-   Reads prompt and ensures Coder understands what is being asked. 
+-   Types the code specified by the Coder into the Quarto document.
+<!-- -   Listens carefully, asks the Coder to repeat statements if needed, or to slow -->
+<!-- down. -->
+<!-- -   Encourages the Coder to vocalize their thinking. -->
+<!-- -   Asks the Coder clarifying questions. -->
+<!-- -   Checks for accuracy by asking the solution to be restated for clarity. -->
+<!-- -   **Does not** give hints to the Coder for how to solve the problem.  -->
+<!-- -   **Does not** solve the problem themselves.  -->
+-   Runs the code provided by the Coder. 
+-   Works with Coder to debug the code. 
+<!-- -   **Does not** tell the Coder how to correct an error. -->
+-   Evaluates the output.  
+-   Works with Coder to write code comments. 
+:::
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="49%"}
+::: {.fragment}
+**Coder**
+
+::: {.small}
+-   Reads out instructions or prompts
+-   Directs the Developer what to type. 
+-   Talks with Developer about their ideas. 
+<!-- -   **Does not** ask the Developer how they would solve the problem.  -->
+-   Manages resources (e.g., cheatsheets, textbook, slides). 
+<!-- -   **Does not** ask the developer what functions / tools they should use.  -->
+-   Works with Developer to debug the code. 
+<!-- -   **Does not** ask the Developer to debug the code.  -->
+-   Works with Developer to write code comments. 
+:::
+:::
+:::
+:::
+
+## Opening the Practice Activity in Google Colab
+
+The partner whose birthday is closest to January 1st starts as the Developer!
+The Developer needs to:
+
+::: columns
+::: {.column width="40%"}
+::: {.midi}
+- Click on the Practice Activity 3 link from Canvas
+- Log-in to your Google account
+- Make a copy of the Colab notebook
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+![](../week-2/images/save-copy-colab.png){fig-alt="A screenshot of the options provided when you click on the File pane within Google Colab. The option to save a copy in Drive is highlighted, to demonstrate how each student needs to make a copy of the notebook before sharing it with their partner." width=50%}
+
+:::
+:::
+
+## Sharing with Your Partner
+
+Once you have your copy, you need to:
+
+::: columns
+::: {.column width="40%"}
+::: {.midi}
+- Share your copy with your partner's Google account
+- Make sure the Coder can open the file
+- The Developer should plug their laptop into the monitor
+- The Coder should close their computer
+- Get started! 
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+![](../week-2/images/share-colab.png){fig-alt="A screenshot of the options provided when you click on the Share pane (in the upper right corner) within Google Colab. The user has typed in a Gmail address to share it with Laura Smith, who will receive an email with a link to the document when the Notify option is checked." width=50%}
+:::
+:::
+
+## Why are we switching?
+
+Throughout the activity you will swap roles---the Developer will become the 
+Coder, and the Coder will become the Developer. 
+
+. . .
+
+</br> 
+
+We are alternating roles so everyone:
+
+- has the chance to apply their coding skills
+- practices talking through their code
+- has the opportunity to explain their thinking
+
+## External Resources
+
+During the Practice Activity, you **are not** permitted to use Google or ChatGPT
+for help. 
+
+</br> 
+
+You **are** permitted to use:
+
+- the `dplyr` cheatsheet,
+- the course textbook, and
+- the course slides. 
+
+## Submission
+
+> Submit the full name of the college Ephelia will attend to the Canvas Quiz.
+
+- Each person will input the full name of the college in the PA3 Canvas quiz.
+- The person who last occupied the role of Developer will print the notebook as 
+a PDF and submit the PDF for the group.
+  + Only one submission per group!
+  
+# Exit Ticket

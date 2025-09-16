@@ -13,6 +13,18 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
+
+<!-- ## The Pipe Operator -->
+
+<!-- + The "original" pipe: `%>%` -->
+
+<!--   + Loaded with `tidyverse` package (part of `magrittr`). -->
+
+<!-- + The "native" pipe: `|>` -->
+
+<!--   + Created in `R` version 4.1.0. -->
+<!--   + [Directions for how to use](https://scribehow.com/shared/Setting_Up_the_Native_Pipe_in_R__ZMEdb0tKRtil46l2S6SeIA) -->
+  
 ## Thursday, October 10
 
 Today we will...
@@ -198,6 +210,8 @@ revising thinking, extending thinking, collaborating with peers.
 <!-- 1. What is the most common type of work location - remote or in-person?  -->
 <!-- 2. Does work location type vary by company size? -->
 
+
+<!-- ![Artwork by Allison Horst](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-artwork/data_cowboy.png){fig-alt="A cartoon illustration of a cowboy riding a dataset, symbolized by a saddle on top of a spreadsheet. The cowboy is wearing a hat and bandana, with the reins in one hand and a lasso in the other, as if wrangling data. The dataset underneath has rows and columns, representing organized data. The image humorously conveys the idea of managing and working with data."} -->
 
 # Extending `dplyr` verbs
 
@@ -660,9 +674,62 @@ cereal |>
 :::
 
 
-# [Lab 3](../../labs/instructions/lab-3-instructions.qmd) & [Challenge 3](../../labs/instructions/challenge-3-instructions.qmd)
+# Lab 3 & Challenge 3 Exploring COVID-19 Teacher Evaluations
 
-Exploring teacher evaluations during COVID-19
+## Peer Code Review
+
+As you experienced with Lab 2, your code is expected to adhere to the `tidyverse`
+style guide. 
+
+-   Review the [code formatting guidelines](../../code-review/code-review-guidelines.qmd) *before* you submit
+your lab!
+
+-   Each week, you will be assigned one of your peer's labs to review their code formatting.
+
+## Code Formatting
+
+Similar to the `+` formatting in `ggplot`, **do not** continue a line after writing a `|>`!
+
+::: panel-tabset
+
+### Bad Practice
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: bad-formatting
+#| code-line-numbers: false
+
+cereal |> group_by(type) |> summarise(mean_fiber = mean(fiber), num_cereals = n(), mean_sugar = mean(sugars))
+```
+
+### Good
+```{r}
+#| echo: true
+#| eval: false
+#| label: nice-formatting
+#| code-line-numbers: false
+
+cereal |> 
+  group_by(type) |> 
+  summarise(mean_fiber = mean(fiber), num_cereals = n(), mean_sugar = mean(sugars))
+```
+
+### Amazing
+```{r}
+#| echo: true
+#| eval: false
+#| label: amazing-formatting
+#| code-line-numbers: false
+
+cereal |> 
+  group_by(type) |> 
+  summarise(mean_fiber = mean(fiber), 
+            num_cereals = n(),
+            mean_sugar = mean(sugars)
+            )
+```
+:::
 
 ## To do...
 

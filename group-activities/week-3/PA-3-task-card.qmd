@@ -43,54 +43,31 @@ Remember, your group is expected to adhere to the following norms:
 
 {{< pagebreak >}}
 
-## Dealing with Errors
+## Piping
 
-As you work through this PA, you will encounter some code that does not work as
-you want it to. Don't despair! 
-**Errors** (when R is unable to run your code) and **bugs** (when the code
-doesn't do what you hoped) are a natural part of coding. Even the best of the
-best deal with these problems regularly - learning to track down the issue is a
-skill that you can learn and practice.
+You can choose whether to: 
 
-**Errors can be sneaky - check results *often*!**
+declare your data as the first argument of the function 
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: not-piped-data
 
-If a chunk of code runs smoothly without giving you an error or warning this
-**does not** necessarily mean it accomplished the desired task.
+filter(.data = colleges, REGION == 5) |>
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
+```
 
-It is a good habit to check the results of your code **every time** you finish a
-task. In general, I would recommend completing the following tasks
-**every time** you write a code chunk.
+***or***
 
--   Include a comment at the beginning of the code chunk that briefly states the
-purpose of the chunk. Comments in the code chunks come after `#` signs. These
-comments will remind later readers---which might be your future self!---what the
-desired output of the code chunk is.
+pipe your data into the first argument of the function
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: pipe-data
 
--   If you created a new object, take a look at it! You can inspect the object
-by either clicking its name in your *Environment* tab or by typing its name into
-the console. Make sure it looks about how you expect. **Do not** type code to
-inspect the object in your Quarto file, as that **is not** code that needs to be
-saved!
-
--   If you created or updated a data frame, make sure your edits did what you
-hoped. Use the *Environment* or the `head()` function to investigate your
-changes.
-
-
-## Code Formatting
-
-Don't forget, writing "tidy" and "well documented" code are two of the learning
-targets for this course. As such, I would strongly encourage you to use every
-opportunity to practice these skills.
-
-As you are writing code for this assignment, make sure your code follows the
-[tidyverse style guide for dplyr code](https://style.tidyverse.org/pipes.html).
-Specifically, your code should:
-
--   use whitespace liberally
-    -   before & after every `=` sign
-    -   after every `,`
-    -   before every `|>`
--   use new lines liberally
-    -   after every `|>`
-    -   after `,` when needed (if code is more than 80 characters in length)
+colleges |>
+  filter(REGION == 5) |>
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
+```

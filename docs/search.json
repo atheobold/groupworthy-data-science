@@ -6018,5 +6018,138 @@
     "title": "Data Wrangling with dplyr",
     "section": "Sharing with Your Partner",
     "text": "Sharing with Your Partner\nOnce you have your copy, you need to:\n\n\n\n\nShare your copy with your partner’s Google account\nMake sure the Coder can open the file\nThe Developer should plug their laptop into the monitor\nThe Coder should close their computer\nGet started!"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#tuesday-september-23",
+    "href": "slides/week-2/week-2-ggplot-short.html#tuesday-september-23",
+    "title": "Basics of Graphics",
+    "section": "Tuesday, September 23",
+    "text": "Tuesday, September 23\nToday we will…\n\nWarm-up for ggplot2 practice activity (30-minutes)\nSet-up for the practice activity (15-minutes)\n\nReview pair programming norms\nLearn how to access practice activities\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)\n\nFill out the collaboration survey (2-minutes)"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#data-context-for-today",
+    "href": "slides/week-2/week-2-ggplot-short.html#data-context-for-today",
+    "title": "Basics of Graphics",
+    "section": "Data Context for Today",
+    "text": "Data Context for Today\n\n\n\n\nlibrary(palmerpenguins)\n\n?penguins\n\n\n\n\n\n\n\n\n\n\n\nWhat do you notice about these data?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#grammar-of-graphics",
+    "href": "slides/week-2/week-2-ggplot-short.html#grammar-of-graphics",
+    "title": "Basics of Graphics",
+    "section": "Grammar of Graphics",
+    "text": "Grammar of Graphics\nThe Grammar of Graphics (GoG) is a principled way of specifying exactly how to create a particular graph from a given data set. It helps us to systematically design new graphs.\n\n\nThink of a graph or a data visualization as a mapping…\n…FROM variables in the data set (or statistics computed from the data)…\n…TO visual attributes (or “aesthetics”) of marks (or “geometric elements”) on the page/screen."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#how-to-build-a-graphic",
+    "href": "slides/week-2/week-2-ggplot-short.html#how-to-build-a-graphic",
+    "title": "Basics of Graphics",
+    "section": "How to Build a Graphic",
+    "text": "How to Build a Graphic\nComplete this template to build a basic graphic:\n\nggplot(\n  data = &lt;DATA&gt;, \n  mapping = aes(&lt;MAPPINGS&gt;)\n  ) +\n  &lt;GEOM FUNCTION&gt;() + \n  any other arguments...\n\n\nNotice, every + adds another layer to our graphic.\n\n\n\n\n\n\n\n\nTip\n\n\nNotice that I’m using named arguments to make my code easier to read."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#section",
+    "href": "slides/week-2/week-2-ggplot-short.html#section",
+    "title": "Basics of Graphics",
+    "section": "",
+    "text": "Add dataAdd aestheticsAdd one geom per layer\n\n\n\nggplot(data = penguins)\n\nWhat do you expect to see after running this code?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, y = bill_length_mm)\n       )\n\nWhat do you expect to see after running this code?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, y = bill_length_mm)\n       ) +\n  geom_jitter() +\n  geom_boxplot()\n\n\nWhat do you expect to see after running this code?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#aesthetics",
+    "href": "slides/week-2/week-2-ggplot-short.html#aesthetics",
+    "title": "Basics of Graphics",
+    "section": "Aesthetics",
+    "text": "Aesthetics\nWe map variables (columns) from the data to aesthetics on the graphic using the aes() function.\nWhat aesthetics can we set?\n\nx, y\ncolor, fill\nlinetype\nshape\nsize\n\n\n\n\n\n\n\nTip\n\n\nSee ggplot2 cheat sheet for more!"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#geometric-objects",
+    "href": "slides/week-2/week-2-ggplot-short.html#geometric-objects",
+    "title": "Basics of Graphics",
+    "section": "Geometric Objects",
+    "text": "Geometric Objects\nWee use a geom_XXX() function to represent data points.\n\n\n\n\none variable\n\ngeom_density()\ngeom_bar()\ngeom_dotplot()\ngeom_histogram()\ngeom_boxplot()\n\n\n\n\ntwo variable\n\ngeom_point()\ngeom_line()\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nSee ggplot2 cheat sheet for more!"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#creating-a-graphic",
+    "href": "slides/week-2/week-2-ggplot-short.html#creating-a-graphic",
+    "title": "Basics of Graphics",
+    "section": "Creating a Graphic",
+    "text": "Creating a Graphic\n\nTo create a specific type of graphic, we will combine aesthetics and geometric objects. When sitting down to create a plot, it’s great to start with a game plan!\n\n\n\n\nWhat variables are you interested in?\nWhat types of variables are these?\nWhere do you want to put each of these variables? (i.e., what aesthetics)\nWhat type(s) of geometries do you need?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#how-many-penguins-were-captured-on-each-island",
+    "href": "slides/week-2/week-2-ggplot-short.html#how-many-penguins-were-captured-on-each-island",
+    "title": "Basics of Graphics",
+    "section": "How many penguins were captured on each island?",
+    "text": "How many penguins were captured on each island?\n\n\n\n\nWhat type of variable is island?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#what-are-the-most-common-bill-lengths-for-the-penguins-included-in-these-data",
+    "href": "slides/week-2/week-2-ggplot-short.html#what-are-the-most-common-bill-lengths-for-the-penguins-included-in-these-data",
+    "title": "Basics of Graphics",
+    "section": "What are the most common bill lengths for the penguins included in these data?",
+    "text": "What are the most common bill lengths for the penguins included in these data?\n\n\n\n\nWhat type of variable is bill_length?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#what-is-the-relationship-between-a-penguins-bill-length-and-body-mass",
+    "href": "slides/week-2/week-2-ggplot-short.html#what-is-the-relationship-between-a-penguins-bill-length-and-body-mass",
+    "title": "Basics of Graphics",
+    "section": "What is the relationship between a penguin’s bill length and body mass?",
+    "text": "What is the relationship between a penguin’s bill length and body mass?\n\n\n\n\nWhat type of variables are bill_length and body_mass?\n\n\n\n\n\nWhat type of plot would you make for these types of variables?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#how-would-you-recreate-this-plot",
+    "href": "slides/week-2/week-2-ggplot-short.html#how-would-you-recreate-this-plot",
+    "title": "Basics of Graphics",
+    "section": "How would you recreate this plot?",
+    "text": "How would you recreate this plot?\n\n\nWhat additional code would you add to make the plot more clear?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#using-data-visualization-to-find-the-penguins",
+    "href": "slides/week-2/week-2-ggplot-short.html#using-data-visualization-to-find-the-penguins",
+    "title": "Basics of Graphics",
+    "section": "Using Data Visualization to Find the Penguins",
+    "text": "Using Data Visualization to Find the Penguins\n\n\n\nThis puzzle activity will require knowledge of:\n\ntypes of variables\ntypes of visualizations\nwhat visualization(s) go with different variable types\nggplot2 functions to create visualizations\nchoosing between different aesthetic options\n\n\n\n\n\n\n\nNone of us have all these abilities. Each of us has some of these abilities."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#pair-programming-expectations",
+    "href": "slides/week-2/week-2-ggplot-short.html#pair-programming-expectations",
+    "title": "Basics of Graphics",
+    "section": "Pair Programming Expectations",
+    "text": "Pair Programming Expectations\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nComputer\n\n\nReads prompt and ensures the group understands what is being asked.\nTypes the code specified by the Coder into the Quarto document.  \nEncourages the Coder to vocalize their thinking.    \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output.\n\n\n\n\n\n\n\nCoder\n\n\nReads out instructions or prompts\nDirects the Developer what to type.\nTalks with Developer about their ideas. \nManages resources (e.g., cheatsheets, textbook). \nWorks with Developer to debug the code. \nWorks with Developer to write code comments."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#section-1",
+    "href": "slides/week-2/week-2-ggplot-short.html#section-1",
+    "title": "Basics of Graphics",
+    "section": "",
+    "text": "Group Norms\n\n\n\nThink and work together. Do not divide the work.\nYou are smarter together.\nBe open minded.\nNo cross-talk with other groups.\nCommunicate with each other!"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#ggplot2-resources",
+    "href": "slides/week-2/week-2-ggplot-short.html#ggplot2-resources",
+    "title": "Basics of Graphics",
+    "section": "ggplot2 Resources",
+    "text": "ggplot2 Resources\nEvery person should have a ggplot2 cheatsheet!\n\n\n\nOn the Front\n\n\nColumn 1: the “template” for making a ggplot\nColumn 3: creating plots for two continuous variables\nColumn 4: creating plots for one discrete or one continuous variable\n\n\n\n\n\n\n\nOn the Back\n\n\nColumn 4: adding facets and labels to your plot\nColumn 3: adding themes to your plot (if you have extra time)"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#opening-the-practice-activity-in-google-colab",
+    "href": "slides/week-2/week-2-ggplot-short.html#opening-the-practice-activity-in-google-colab",
+    "title": "Basics of Graphics",
+    "section": "Opening the Practice Activity in Google Colab",
+    "text": "Opening the Practice Activity in Google Colab\nThe partner whose family name starts first alphabetically starts as the Developer! The Developer needs to:\n\n\n\nClick on the Practice Activity 2 link from Canvas\nLog-in to your Google account\nMake a copy of the Colab notebook"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#sharing-with-your-partner",
+    "href": "slides/week-2/week-2-ggplot-short.html#sharing-with-your-partner",
+    "title": "Basics of Graphics",
+    "section": "Sharing with Your Partner",
+    "text": "Sharing with Your Partner\nOnce you have your copy, you need to:\n\n\n\nShare your copy with your partner’s Google account\nMake sure the Coder can open the file\nThe Developer should plug their laptop into the monitor\nThe Coder should close their computer\nGet started!"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#submission",
+    "href": "slides/week-2/week-2-ggplot-short.html#submission",
+    "title": "Basics of Graphics",
+    "section": "Submission",
+    "text": "Submission\n\nWhen you have completed the visualization tasks, you will work as a group to answer the five questions posed at the end of the document.\nEach person will input the answers to these questions in the PA2 Canvas quiz.\nThe person who last occupied the role of Developer will print the notebook as a PDF and submit the PDF for the group.\n\nOnly one submission per group!"
   }
 ]

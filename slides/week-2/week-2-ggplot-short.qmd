@@ -14,7 +14,7 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-## Tuesday, October 1
+## Tuesday, September 23
 
 Today we will...
 
@@ -23,7 +23,9 @@ Today we will...
   + Review pair programming norms
   + Learn how to access practice activities
   + Find your partner!
-+ Complete practice activity (60-minutes)
++ Take a 10-minute break
++ Complete the practice activity (60-minutes)
+  + Fill out the collaboration survey (2-minutes)
 
 ## Data Context for Today
 
@@ -401,14 +403,14 @@ During your collaboration, you and your partner will alternate between two roles
 
 ::: columns
 ::: {.column width="49%"}
-**Developer**
+**Computer**
 
 ::: {.small}
--   Reads prompt and ensures Coder understands what is being asked. 
+-   Reads prompt and ensures the group understands what is being asked. 
 -   Types the code specified by the Coder into the Quarto document.
 <!-- -   Listens carefully, asks the Coder to repeat statements if needed, or to slow -->
 <!-- down. -->
-<!-- -   Encourages the Coder to vocalize their thinking. -->
+-   Encourages the Coder to vocalize their thinking.
 <!-- -   Asks the Coder clarifying questions. -->
 <!-- -   Checks for accuracy by asking the solution to be restated for clarity. -->
 <!-- -   **Does not** give hints to the Coder for how to solve the problem.  -->
@@ -417,7 +419,7 @@ During your collaboration, you and your partner will alternate between two roles
 -   Works with Coder to debug the code. 
 <!-- -   **Does not** tell the Coder how to correct an error. -->
 -   Evaluates the output.  
--   Works with Coder to write code comments. 
+<!-- -   Works with Coder to write code comments.  -->
 :::
 :::
 

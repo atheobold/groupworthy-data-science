@@ -1,12 +1,14 @@
 ---
 title: "Mathlink Activity"
+format: docx
 ---
 
 # Piping
 
-You can choose whether to: 
+You can choose whether to:
 
-declare your data as the first argument of the function 
+declare your data as the first argument of the function
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -20,6 +22,7 @@ filter(.data = colleges, REGION == 5) |>
 ***or***
 
 pipe your data into the first argument of the function
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -33,13 +36,13 @@ colleges |>
 
 # `filter`
 
-**take your data frame and then filter it** (only include rows where) 
+**take your data frame and then filter it** (only include rows where)
 
-1. **the red column only includes observations with three sides** (triangles)
+1.  **the red column only includes observations with three sides** (triangles)
 
-[OR]{.underline} 
+[OR]{.underline}
 
-2. **the green column only includes observations with more than four sides** (pentagons, hexagons)
+2.  **the green column only includes observations with more than four sides** (pentagons, hexagons)
 
 # `select`
 
@@ -56,7 +59,7 @@ data |>
          green)
 ```
 
-Step 2: 
+Step 2:
 
 ```{r}
 #| eval: false

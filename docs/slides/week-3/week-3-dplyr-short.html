@@ -475,6 +475,51 @@
 <span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a>                 <span class="at">green =</span> orange <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
+<section>
+<section id="arrange" class="title-slide slide level1 center">
+<h1><code>arrange()</code></h1>
+<blockquote>
+<p>Organize the rows of the data in order of a particular variable.</p>
+</blockquote>
+</section>
+<section id="with-your-data-frame-6" class="slide level2">
+<h2>With Your Data Frame</h2>
+<p><br> <br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(green)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<p><strong>What order does <code>arrange()</code> use as default?</strong></p>
+</div>
+</section>
+<section id="arrange-descending-order" class="slide level2">
+<h2><code>arrange()</code>: Descending Order</h2>
+<p>Default is ascending order…</p>
+<p>…but can add <code>desc()</code> to get descending order!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(</span>
+<span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">desc</span>(green)</span>
+<span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="arrange-filter" class="slide level2">
+<h2><code>arrange()</code> + <code>filter()</code></h2>
+<p>These functions implicitly arrange the data before slicing it (selecting rows).</p>
+<ul>
+<li><code>slice_min()</code> – select rows with the lowest value(s) of a variable</li>
+<li><code>slice_max()</code> – select rows with the highest value(s) of a variable</li>
+</ul>
+</section>
+<section id="with-your-data-frame-7" class="slide level2">
+<h2>With Your Data Frame</h2>
+<p><br> <br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(green, <span class="at">n =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section></section>
 <section id="summarize" class="title-slide slide level1 center">
 <h1><code>summarize</code></h1>
 
@@ -487,26 +532,35 @@
 <p>compute a table of summaries</p>
 </blockquote>
 </section>
-<section id="with-your-data-frame-6" class="slide level2">
+<section id="with-your-data-frame-8" class="slide level2">
 <h2>With Your Data Frame</h2>
 <p><br> <br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(purple)</span>
-<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(purple)</span>
+<span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="with-your-data-frame-7" class="slide level2">
+<section id="a-related-filter-function" class="slide level2">
+<h2>A Related Filter Function</h2>
+<p><br> <br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(purple)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>How many columns will this data frame have?</strong></p>
+</section>
+<section id="with-your-data-frame-9" class="slide level2">
 <h2>With Your Data Frame</h2>
 <p><br> <br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(red),</span>
-<span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(blue),</span>
-<span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(orange)</span>
-<span id="cb14-6"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(red),</span>
+<span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(blue),</span>
+<span id="cb18-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(orange)</span>
+<span id="cb18-6"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section id="group_by" class="title-slide slide level1 center">
@@ -521,47 +575,47 @@
 <p>put rows into groups based on values in column(s)</p>
 </blockquote>
 </section>
-<section id="with-your-data-frame-8" class="slide level2">
-<h2>With Your Data Frame</h2>
-<p><br> <br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(blue) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb15-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(red)</span>
-<span id="cb15-5"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="with-your-data-frame-9" class="slide level2">
-<h2>With Your Data Frame</h2>
-<p><br> <br></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(blue) <span class="sc">|&gt;</span></span>
-<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(red),</span>
-<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(green)</span>
-<span id="cb16-6"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
 <section id="with-your-data-frame-10" class="slide level2">
 <h2>With Your Data Frame</h2>
 <p><br> <br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(orange, purple) <span class="sc">|&gt;</span></span>
-<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb17-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(blue)</span>
-<span id="cb17-5"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(blue) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb19-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(red)</span>
+<span id="cb19-5"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="with-your-data-frame-11" class="slide level2">
+<h2>With Your Data Frame</h2>
+<p><br> <br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(blue) <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(red),</span>
+<span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(green)</span>
+<span id="cb20-6"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="with-your-data-frame-12" class="slide level2">
+<h2>With Your Data Frame</h2>
+<p><br> <br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(orange, purple) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb21-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(blue)</span>
+<span id="cb21-5"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section id="combine-operations" class="title-slide slide level1 center">
 <h1>Combine operations!</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
-<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(blue <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
-<span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(red, yellow, blue)<span class="sc">|&gt;</span></span>
-<span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">green =</span> blue <span class="sc">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>data <span class="sc">|&gt;</span></span>
+<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(blue <span class="sc">&gt;</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(red, yellow, blue)<span class="sc">|&gt;</span></span>
+<span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">green =</span> blue <span class="sc">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 

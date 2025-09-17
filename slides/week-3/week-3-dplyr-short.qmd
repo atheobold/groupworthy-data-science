@@ -371,6 +371,67 @@ data |>
 
 ```
 
+# `arrange()`
+
+> Organize the rows of the data in order of a particular variable.
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: arrange-code
+#| code-line-numbers: false
+
+data |>
+  arrange(green)
+```
+
+. . .
+
+**What order does `arrange()` use as default?**
+
+## `arrange()`: Descending Order
+
+Default is ascending order...
+
+...but can add `desc()` to get descending order! 
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: arrange-desc-code
+
+data |>
+  arrange(
+    desc(green)
+    )
+```
+
+## `arrange()` + `filter()` 
+
+These functions implicitly arrange the data before slicing it (selecting rows).
+
++ `slice_min()` -- select rows with the lowest value(s) of a variable
++ `slice_max()` -- select rows with the highest value(s) of a variable
+
+## With Your Data Frame
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  slice_max(green, n = 2)
+```
 
 # `summarize`
 
@@ -395,6 +456,21 @@ data |>
     )
 ```
 
+## A Related Filter Function
+
+</br>
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+data |>
+  slice_max(purple)
+```
+
+**How many columns will this data frame have?**
 
 ## With Your Data Frame
 

@@ -1,0 +1,635 @@
+---
+title: "Extending Data Wrangling Verbs"
+format: 
+  revealjs:
+    theme: [simple, ../style.scss]
+editor: source
+---
+
+```{r}
+#| label: setup
+#| echo: false
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(ggridges)
+
+colleges <- read_csv("https://www.dropbox.com/s/bt5hvctdevhbq6j/colleges.csv?dl=1") 
+
+colleges_clean <- colleges |> 
+  select(INSTNM, 
+         CITY, 
+         STABBR, 
+         ZIP,
+         ADM_RATE, 
+         SAT_AVG, 
+         UGDS,
+         TUITIONFEE_IN, 
+         TUITIONFEE_OUT,
+         CONTROL,
+         REGION) |> 
+  filter(CONTROL == 1 | CONTROL == 2) |> 
+  mutate(
+    across(
+    .cols = c(TUITIONFEE_IN, TUITIONFEE_OUT, SAT_AVG, UGDS, ADM_RATE), 
+    .fns = ~as.numeric(.x)
+    )
+    ) |> 
+  mutate(CONTROL = as.factor(CONTROL),
+         REGION  = as.factor(REGION), 
+         TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN) |> 
+  drop_na()
+  
+```
+
+
+## Thursday, October 10
+
+Today we will...
+
+::: {.small}
++ Debrief PA 3
++ Debrief Lab 2 & Challenge 2 
+  + Discuss Lab 2 Peer Review
++ Outline Grade Expectations for Syllabus
++ 10-minute break
++ New Material
+    -   Extend `dplyr` verbs to have more functionality
++ Lab 3: Teacher Evaluations
+:::
+
+# PA 3: Identify the Mystery College
+
+## Efficient Coding
+
+For the final problem, many groups' code looked like this:
+
+```{r}
+#| label: example-code-from-PA3
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+colleges_clean |> 
+  filter(REGION == 7) |>
+  filter(ADM_RATE > median(ADM_RATE)) |>
+  filter(TUITION_DIFF != 0) |>
+  filter(SAT_AVG %% 2 == 1) |>
+  filter(STABBR != "ID") |>
+  filter(UGDS < 10000) |>
+  filter(STABBR != "MT") |> 
+  slice_min(order_by = ADM_RATE) 
+```
+
+</br> 
+
+**Is there a more "efficient" way do this?**
+
+## A few words about `drop_na()`
+
+-   Easy tool to remove missing values
+-   Unilaterally removes **any** row with a missing value for **any** variable
+-   **But** you can specify what columns it should look at for missing values!
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: drop-na-example-with-specified-columns
+
+colleges_clean |> 
+  drop_na(REGION, 
+          ADM_RATE, 
+          TUITION_DIFF, 
+          SAT_AVG, 
+          STABBR, 
+          UGDS)
+```
+
+
+# Lab 2 & Challenge 2 
+
+## Grading / Feedback & Revisions
+
+::: {.small}
++ Each question will earn a score of "Success" or "Growing".
+  * Questions marked "Growing" will receive feedback on how to improve your
+  solution.
+  * These questions can be resubmitted for additional feedback. 
+:::
+
+. . .
+
+::: {.small}
++ Earning a "Success" doesn't necessarily mean your solution is without error.
+  * You may still receive feedback on how to improve your solution.
+  * These questions cannot be resubmitted for additional feedback.
+:::
+
+. . .
+
+::: {.small}
++ **Revisions for Lab 2 & Challenge 2 are due next Friday (October 18th)**
+  * You must submit your revised HTML to the original Lab 2 / Challenge 2 
+  assignment portal. 
+  * You must include reflections on what you learned by completing the
+  revisions.
+:::
+
+## Lab 2 Growing Points
+
+::: {.small}
+- Q1: Loading in data with the `here()` function
+  + In this class, we use a [package oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) to read in the data.
+  + We **do not** specify relative paths to read in our data. 
+:::
+
+. . .
+
+::: {.small}
+- Q5: Adding transparency 
+  + Only **variables** being mapped to aesthetics are inserted into the `aes()`
+  function!
+  + Hard coded values (e.g., `alpha = 0.5`) belong outside the `aes()` function. 
+:::
+
+. . .
+
+::: {.small}
+- Report formatting: No messages or warnings should be output in the HTML
+document!
+  + Use code chunk options and `execute` options to suppress these messages and
+  warnings. 
+:::
+
+<!-- ## [Don't make people tilt their head](https://youtu.be/h5cTacaWE6I?si=4DLb2OQoLpLFJGGQ) -->
+
+<!-- ![](images/tilt-head.png){alt-text="The image shows a comparison between two bar charts with a horizontal arrow pointing from the left chart to the right chart, indicating a transformation. The left chart is a vertical bar chart with various car categories on the x-axis (2seater, compact, midsize, minivan, pickup, subcompact, SUV) and values on the y-axis ranging from 0 to 60. The x-axis labels are tilted, making them harder to read. The right chart is a horizontal bar chart with the same car categories listed along the y-axis and values on the x-axis. This arrangement makes the labels easier to read. The transformation suggests an improvement in readability by switching from a vertical to a horizontal bar chart."} -->
+
+# Peer Code Review
+
+# Peer Code Review
+
+> Each of you was assigned one student's lab to provide feedback on their code
+> formatting. 
+
+# Peer Code Review
+
+> Your feedback is to be provided in the comment box!
+
+## What feedback would you give?
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+ggplot(data = surveys, mapping = aes(x=hindfoot_length,y= weight)) +  
+  geom_jitter(alpha=.2,color='tomato')+ facet_wrap(~species)+geom_boxplot(outlier.shape = NA)+labs(
+    title ='Weight to hindfoot comparison'
+  )+ xlab('length (mm)')+ylab('Weight(g)')
+```
+
+# Grade Expectations
+
+## Defining Grades in 331
+
+-   A: **Superior** Attainment of Course Objectives
+
+-   B: **Good** Attainment of Course Objectives
+
+-   C: **Acceptable** Attainment of Course Objectives
+
+-   D: **Poor** Attainment of Course Objectives
+
+. . .
+
+We need to define criteria for each of these grades based on the four objectives
+of this course---learning targets, revising thinking, extending thinking, collaborating with peers. 
+
+# Extending `dplyr` verbs
+
+![Artwork by Allison Horst](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/rstats-artwork/data_cowboy.png){fig-alt="A cartoon illustration of a cowboy riding a dataset, symbolized by a saddle on top of a spreadsheet. The cowboy is wearing a hat and bandana, with the reins in one hand and a lasso in the other, as if wrangling data. The dataset underneath has rows and columns, representing organized data. The image humorously conveys the idea of managing and working with data."}
+
+# Which pipe should I use?
+
+::: {.panel-tabset}
+
+## `%>%`
+
+- Original pipe from the `magrittr` package
+- Requires a package installation (loaded with the `tidyverse`)
+
+## `|>`
+
+- Native pipe created in `R` version 4.1.0
+- Doesn't need a package
+
+## Shortcuts
+
+You can add a pipe using shortcut keys!
+
+- Mac: Command + Shift + M
+- Windows: Control + Shift + M
+
+## Adding `|>`
+
+Here are [directions for how to set-up the native pipe](https://scribehow.com/shared/Setting_Up_the_Native_Pipe_in_R__ZMEdb0tKRtil46l2S6SeIA) in your RStudio IDE.
+:::
+
+# `rename()`
+
+![](images/rename_horst.png){fig-alt="Header text: 'dplyr:: rename() - rename columns'. Below, an illustration of a mouse standing on a wedge of swiss cheese, changing column names from 'species' to 'nemesis,' and 'site' to 'lair.' On a cork board next to the mouse are images of 'Cheese thieves' suspects (narwhal, chicken and pika) and maps of their locations."}
+
+## `rename()`
+
+You can change the (bad) name of columns with the `rename()` function! 
+
+</br>
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: rename-code
+#| code-line-numbers: false
+
+colleges_clean |> 
+  rename(STATE = STABBR)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| label: rename-table
+
+colleges_clean |> 
+  rename(STATE = STABBR) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "300px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+```{r}
+#| echo: false
+colleges_clean <- colleges_clean |> 
+  rename(STATE = STABBR)
+```
+
+# `count()`
+
+## How many colleges are in each region?
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: count-region-code
+#| code-line-numbers: false
+
+colleges_clean |>
+  count(REGION)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| label: count-region-table
+
+colleges_clean |>
+  count(REGION) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "400px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+## How many colleges of each type are in each region?
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: count-region-type-code
+#| code-line-numbers: false
+
+colleges_clean |>
+  rename(TYPE = CONTROL) |> 
+  count(REGION, TYPE)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+#| label: count-region-type-table
+
+colleges_clean |>
+  rename(TYPE = CONTROL) |> 
+  count(REGION, TYPE) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "400px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+# `group_by()` + friends
+
+## `group_by()` + `slice_max()`
+
+. . .
+
+For each `REGION`, find the college with the largest number of undergraduate 
+students. 
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: group-by-slice-code
+
+colleges_clean |> 
+  group_by(REGION) |> 
+  slice_max(order_by = UGDS)
+```
+
+. . .
+
+</br>
+
+```{r}
+#| eval: true
+#| echo: false
+#| label: group-by-slice-table
+
+colleges_clean |> 
+  group_by(REGION) |> 
+  slice_max(order_by = UGDS) |> 
+  select(INSTNM, CITY, STATE, REGION) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "400px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+## `group_by()` + `summarize()`
+
+For each `REGION` and `TYPE`, find the mean SAT score. 
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| label: two-groups-code
+#| message: true
+#| eval: false
+
+colleges_clean |> 
+  rename(TYPE = CONTROL) |> 
+  group_by(REGION, TYPE) |> 
+  summarize(
+    mean_sat = mean(SAT_AVG, na.rm = TRUE)
+    ) 
+```
+
+. . .
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| label: two-groups-output
+#| message: true
+#| eval: false
+
+colleges_clean |> 
+  rename(TYPE = CONTROL) |> 
+  group_by(REGION, TYPE) |> 
+  summarize(
+    mean_sat = mean(SAT_AVG, na.rm = TRUE)
+    ) 
+```
+
+## What happened?
+
+::: {.incremental}
+- The default for `summarize()` is to drop the *last* variable **after** the
+subsequent operation is taken. 
+
+- Meaning, in `group_by(REGION, TYPE)` the `TYPE` group was dropped after the
+summary statistic was calculated. 
+
+- But, `REGION` **was not** dropped and the resulting data frame is still grouped. 
+:::
+
+## How do I ungroup?
+
+**Option 1** - Use the `.groups` argument of `summarize()`
+
+::: {.midi}
+```{r}
+#| eval: false
+#| echo: true
+#| label: drop-groups
+#| code-line-numbers: false
+
+colleges_clean |> 
+  group_by(REGION, CONTROL) |> 
+  summarize(
+    mean_sat = mean(SAT_AVG, na.rm = TRUE), 
+    .groups = "drop"
+    )
+```
+:::
+
+. . .
+
+**Option 2** - Use the `ungroup()` function after `summarize()`
+
+::: {.midi}
+```{r}
+#| eval: false
+#| echo: true
+#| label: ungroup-last
+#| code-line-numbers: false
+
+colleges_clean |> 
+  group_by(REGION, CONTROL) |> 
+  summarize(
+    mean_sat = mean(SAT_AVG, na.rm = TRUE)
+    ) |> 
+  ungroup()
+```
+:::
+
+# `case_when()`
+
+## Moving beyond the binary setting of `if_else()`
+
+For each type of college, change the `CONTROL` code to describe the type of 
+university. 
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: case-when-code
+#| code-line-numbers: false
+
+colleges_clean |> 
+  mutate(TYPE = case_when(CONTROL == 1 ~ "Public", 
+                          CONTROL == 2 ~ "Private, Non-Profit", 
+                          CONTROL == 3 ~ "Private, For Profit")
+         )
+```
+
+
+# Calculate a Summary Statistic for Many Columns
+
+## Mean Admission, SAT, Enrollment & Tuition
+
+For each `region` of colleges, calculate the `mean` admissions, SAT, tuition, 
+and enrollment.
+
+::: {.midi}
+```{r}
+#| echo: true
+#| label: repeated-calculations
+#| eval: false
+#| code-line-numbers: false
+
+colleges_clean |> 
+  group_by(REGION) |> 
+  summarize(mean_adm = mean(ADM_RATE), 
+            mean_sat = mean(SAT_AVG), 
+            mean_tuition_in = mean(TUITIONFEE_IN), 
+            mean_tuition_out = mean(TUITIONFEE_OUT), 
+            mean_undergrads = mean(UGDS)
+            )
+```
+:::
+
+. . .
+
+**Does this seem like the most efficient way we could do this?**
+
+# `across()`
+
+## Performing the same function `across()` multiple columns 
+
+</br>
+
+The `across()` function has two main arguments:
+
+-   `.cols` -- to specify the **columns** to apply functions to.
+-   `.fns` -- to specify the **function(s)** to apply.
+
+## Calculate the `mean()` `across()` multiple columns
+
+::: {.panel-tabset}
+
+## `across()`
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: summarize-across-code
+#| code-line-numbers: false
+
+colleges_clean |> 
+  group_by(REGION) |> 
+  summarize(
+    across(
+      .cols = c(ADM_RATE, SAT_AVG, TUITIONFEE_IN, TUITIONFEE_OUT, UGDS), 
+      .fns = ~ mean(.x)
+      )
+    )
+```
+
+## `.cols`
+
+::: {.midi}
+The column names need to be specified as a **vector**. Meaning they need to be contained in the `c()` function. 
+
+Also, the column names do not need to be quoted!
+:::
+
+## `.fns`
+
+::: {.midi}
+`.x` is a placeholder (alias) for the variables being passed into the function.
+
+The notation for specifying a function must have a `~` before the function name (e.g., `~ mean (.x)`!
+:::
+:::
+
+## Handling Missing Values
+
+If missing values were present, we would need to remove them when calculating 
+the mean!
+
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: summarize-across-additional-args-code
+#| code-line-numbers: "6"
+
+colleges_clean |> 
+  group_by(REGION) |> 
+  summarize(
+    across(
+      .cols = c(ADM_RATE, SAT_AVG, TUITIONFEE_IN, TUITIONFEE_OUT, UGDS), 
+      .fns = ~ mean(.x, na.rm = TRUE)
+            )
+    )
+```
+
+Notice that I've added an argument to the `mean()` function **not** to the `across()` function!
+
+# Connection to `ggplot()`
+
+Plot the out of state tuition for each type of university in each region. 
+
+. . .
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| fig-align: center
+#| output-location: slide
+#| eval: false
+#| code-fold: true
+
+colleges_clean |> 
+  rename(TYPE = CONTROL) |> 
+  filter(TYPE != 3) |> 
+  mutate(REGION = case_when(REGION == 0 ~ "Military", 
+                            REGION == 1 ~ "New England", 
+                            REGION == 2 ~ "Mid Atlantic",
+                            REGION == 3 ~ "Great Lakes", 
+                            REGION == 4 ~ "Plains", 
+                            REGION == 5 ~ "South", 
+                            REGION == 6 ~ "Southwest", 
+                            REGION == 7 ~ "West", 
+                            REGION == 8 ~ "Pacific"), 
+         TYPE = if_else(TYPE == 1, 
+                        "Public",
+                        "Private"
+                        )
+         ) |> 
+  drop_na(TYPE, REGION) |> 
+  ggplot(mapping = aes(y = REGION, 
+                       x = TUITIONFEE_OUT, 
+                       fill = TYPE)) +
+  geom_density_ridges(alpha = 0.5) +
+  labs(title = "Cost of Out of State Tuition Across Different Regions of the US", 
+       x = "Out of State Tuition", 
+       y = "", 
+       fill = "School Type") +
+  theme_bw() +
+  theme(legend.position = "top") +
+  scale_x_continuous(labels = scales::label_currency())
+```
+
+## To do...
+
+-   **Lab 3: Student Evaluations of Teaching**
+    -   Due Sunday, 10/13 at 11:59pm
+-   **Challenge 3: Extending Teaching Evaluation Investigations**
+    -   Due Sunday, 10/13 at 11:59pm
+-   **Read Chapter 4: Data Joins and Transformations**
+    -   **Check-in 4.1 + 4.2** due Tuesday 10/15 at 12pm

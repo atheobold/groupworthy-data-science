@@ -2,6 +2,8 @@
 title: "Lab 3 Warm-up"
 format: html
 embed-resources: true
+execute: 
+  eval: false
 ---
 
 ```{r}
@@ -28,27 +30,24 @@ head(cereal)
 
 For the following, write a game plan or describe in words steps you would take from `cereal` data to get the output.
 
-1. What is the ratio of fiber to sugars in each cereal?
+1.  What is the ratio of fiber to sugars in each cereal?
 
-2. Create a new dataset that only has Nabisco cereals and displays the protein, fat, and sodium in each.
+2.  Create a new dataset that only has Nabisco cereals and displays the protein, fat, and sodium in each.
 
-3. Create a table that shows, for each manufacturer the average and standard deviation of the grams of sugar in their cereals, along with how many cereals are in the data for each manufacturer. Order the table from most sugar (on average) to least.
-
+3.  Create a table that shows, for each manufacturer the average and standard deviation of the grams of sugar in their cereals, along with how many cereals are in the data for each manufacturer. Order the table from most sugar (on average) to least.
 
 ## `dplyr` verbs
 
-+ `filter()`  
-+ `arrange()` 
-+ `select()` 
-+ `mutate()` 
-+ `summarize()` 
-+ `group_by()` 
-
+-   `filter()`\
+-   `arrange()`
+-   `select()`
+-   `mutate()`
+-   `summarize()`
+-   `group_by()`
 
 ## pipe operator
 
-Change: `Tools` > `Global Options...` > `Code` > check `Use native pipe operator` box to use keyboard shortcut:
-      + `ctrl/cmd` + `shift` + `m`
+Change: `Tools` \> `Global Options...` \> `Code` \> check `Use native pipe operator` box to use keyboard shortcut: + `ctrl/cmd` + `shift` + `m`
 
 ```{r}
 head(cereal)
@@ -67,13 +66,11 @@ cereal |>
          type == "hot")
 ```
 
-
 ```{r}
 cereal |> 
   filter(name %in% c("Cheerios", "Cinnamon Toast Crunch", 
                      "Raisin Bran", "Cracklin' Oat Bran"))
 ```
-
 
 ```{r}
 cereal |> 
@@ -86,7 +83,6 @@ cereal |>
 cereal |> 
   arrange(sodium)
 ```
-
 
 ```{r}
 cereal |> 
@@ -106,7 +102,6 @@ cereal |>
             with_ties = FALSE)
 ```
 
-
 ## `select()`
 
 ```{r}
@@ -119,12 +114,10 @@ cereal |>
   select(name:calories)
 ```
 
-
 ```{r}
 cereal |> 
   select(-rating)
 ```
-
 
 ```{r}
 cereal |> 
@@ -132,20 +125,18 @@ cereal |>
          everything())
 ```
 
-
 ```{r}
 cereal |> 
   select(name, starts_with("c"))
 ```
-
 
 ```{r}
 cereal |> 
   select(name, where(is.numeric))
 ```
 
-
 If you just want to rename a variable, use `rename()`
+
 ```{r}
 cereal |> 
   rename(temp = type)
@@ -171,7 +162,6 @@ cereal |>
 cereal |> 
   mutate(shelf = as.factor(shelf))
 ```
-
 
 ## `summarize()`
 
@@ -200,13 +190,11 @@ cereal |>
   summarise(mean_sugar = mean(sugars))
 ```
 
-
 ```{r}
 cereal |> 
   group_by(manuf) |> 
   mutate(mean_sugar = mean(sugars))
 ```
-
 
 ### Quick Check
 
@@ -218,13 +206,11 @@ cereal |>
   mutate(fiber_carb_rat = mean(fiber / carbo))
 ```
 
-
 ```{r}
 cereal |> 
   group_by(manuf) |> 
   summarize(fiber_carb_rat = mean(fiber / carbo))
 ```
-
 
 `ungroup()`
 
@@ -234,7 +220,6 @@ cereal |>
   summarize(fiber_carb_rat = mean(fiber / carbo)) |> 
   ungroup()
 ```
-
 
 ## Glue it all together
 
@@ -262,20 +247,19 @@ cereal_summary <- cereal |>
 
 Implement the `dplyr` pipelines to address the three questions from the beginning of class
 
-
-1. What is the ratio of fiber to sugars in each cereal?
-
-```{r}
-
-```
-
-2. Create a new dataset that only has Nabisco cereals and displays the protein, fat, and sodium in each.
+1.  What is the ratio of fiber to sugars in each cereal?
 
 ```{r}
 
 ```
 
-3. Create a table that shows, for each manufacturer the average and standard deviation of the grams of sugar in their cereals, along with how many cereals are in the data for each manufacturer. Order the table from most sugar (on average) to least.
+2.  Create a new dataset that only has Nabisco cereals and displays the protein, fat, and sodium in each.
+
+```{r}
+
+```
+
+3.  Create a table that shows, for each manufacturer the average and standard deviation of the grams of sugar in their cereals, along with how many cereals are in the data for each manufacturer. Order the table from most sugar (on average) to least.
 
 ```{r}
 
@@ -301,7 +285,6 @@ penguins |>
   mean(na.rm = T)
 ```
 
-
 ## Frequency tables
 
 ```{r}
@@ -316,7 +299,6 @@ cereal |>
   count()
 ```
 
-
 ## `if_else()` & `case_when()`
 
 ```{r}
@@ -326,7 +308,6 @@ cereal |>
                                "high"),
          .after = potass)
 ```
-
 
 ```{r}
 cereal |> 
@@ -348,7 +329,6 @@ cereal |>
   slice_max(order_by = fiber)
 ```
 
-
 Find the 3 cereals with the highest fiber and potassium.
 
 ```{r}
@@ -356,7 +336,6 @@ cereal |>
   slice_max(order_by = data.frame(fiber, potass),
             n = 3)
 ```
-
 
 ## `across()`
 
@@ -373,7 +352,6 @@ cereal |>
   summarise(across(.cols = where(is.numeric),
                    .fns = ~ mean(.x, na.rm = T)))
 ```
-
 
 ## `if_any()` / `if_all()`
 
@@ -406,7 +384,6 @@ How would you make this plot from the diamonds dataset in ggplot2?
 ```{r}
 
 ```
-
 
 ## `kable()`
 

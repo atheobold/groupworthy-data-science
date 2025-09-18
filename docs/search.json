@@ -2048,14 +2048,14 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#thursday-september-18",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Thursday, September 18",
-    "text": "Thursday, September 18\nToday we will…\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
+    "text": "Thursday, September 18\nToday we will…\n\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#hi-im-dr.-theobold",
     "href": "slides/week-1/week-1-intro-r-quarto.html#hi-im-dr.-theobold",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Hi, I’m Dr. Theobold!",
-    "text": "Hi, I’m Dr. Theobold!\n\n\n\n\nI am originally from Colorado, but went to grad school in Montana.\nMy favorite things are being outside, drinking coffee, and watching women’s basketball.\n\n\n\n\n\n\n\n\n\n\n\n\nI love cats!\nI’ve been programming in R since 2014!\nI absolutely love teaching this course!"
+    "text": "Hi, I’m Dr. Theobold!\n\n\n\n\nI am originally from Colorado, but went to grad school in Montana.\nMy favorite things are being outside, drinking coffee, and watching women’s basketball.\n\n\n\n\n\n\n\n\n\n\n\n\nI love cats!\nI’ve been programming in R since 2014, and I learned Python last year.\nI absolutely love teaching this course!"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#on-a-personal-note",
@@ -2076,7 +2076,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#you",
     "title": "Welcome to STAT 331 / 531!",
     "section": "You!",
-    "text": "You!\nI am looking forward to reading your introductions on Discord!\n\nPlease read the intros of your classmates so you can discover who you will be learning with this quarter!"
+    "text": "You!\nI am looking forward to reading your introductions on Discord!\n\nIntroduce yourself to the people at your table (or the table next to you)!"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#beginning-of-the-week",
@@ -2090,7 +2090,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#end-of-the-week",
     "title": "Welcome to STAT 331 / 531!",
     "section": "End of the Week",
-    "text": "End of the Week\n\nDuring Class on ThursdayAfter Thursday’s Class\n\n\n\nDebrief Practice Activity\nDiscuss ways to extend that week’s skills\n\nStart Lab Assignment\n\n\n\n\nFinish remaining problems of the Lab Assignment\nComplete Challenge Assignment\n\n\n\n\n\n\n\nLabs & Challenges Due Monday by 5pm\n\n\nTo keep everyone on track with the coursework, your Lab and Challenges are due by 5pm every Monday. You are permitted to request up to four (3) deadline extensions by filling out the deadline extension form linked on Canvas."
+    "text": "End of the Week\n\nDuring Class on ThursdayAfter Thursday’s Class\n\n\n\nDebrief Practice Activity\nDiscuss ways to extend that week’s skills\n\nStart Lab Assignment\n\n\n\n\nFinish remaining problems of the Lab Assignment\nComplete Challenge Assignment\n\n\n\n\n\n\n\nLabs & Challenges Due Monday by 5pm\n\n\nTo keep everyone on track with the coursework, your Lab and Challenges are due by 5pm every Monday. You are permitted to request up to three (3) deadline extensions by filling out the deadline extension Google form linked on Canvas."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#what-does-ungrading-mean",
@@ -2139,14 +2139,14 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#why-pair-programming",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Why pair programming?",
-    "text": "Why pair programming?"
+    "text": "Why pair programming?\nPair programming helps you practice explaining your thinking to someone, a practice that is linked to increased learning.\n\nIn the age of AI, “soft skills have become just as essential as technical expertise—if not more so.”\n\n\n\n\nClear Communication\n\n\nProblem-solving\n\n\nEffective Collaboration\n\n\nLeadership\n\n\nInterpersonal Relationship"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#consent-to-participate",
     "href": "slides/week-1/week-1-intro-r-quarto.html#consent-to-participate",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Consent to Participate",
-    "text": "Consent to Participate\n\n\nIf you agree to participate…\n\nyou will be recorded once a week for 8-weeks while participating in pair programming to complete collaborative tasks.\nyou will complete a pre- and post-survey about your prior computing experiences and your attitudes toward data science.\n\n\n\n\n\n\nYour participation in this research will not affect your course grade.\n\n\n\n\n\n\n\nConsent Form\n\n\nPlease complete the consent form (https://forms.gle/oax73hoe7uRSVLYw8) by Monday, September 22nd."
+    "text": "Consent to Participate\n\n\nIf you agree to participate…\n\nyou will be recorded once a week for 8-weeks while participating in pair programming to complete collaborative tasks.\nyou will complete a pre- and post-survey about your prior computing experiences and your attitudes toward data science.\n\n\n\n\n\n\nYour participation in this research will not affect your course grade.\n\n\n\n\n\n\n\nConsent Form (Linked on Canvas)\n\n\nPlease complete the consent form (https://forms.gle/oax73hoe7uRSVLYw8) by Monday, September 22nd."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#section",
@@ -2216,7 +2216,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#global-code-chunk-options-1",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Global Code Chunk Options",
-    "text": "Global Code Chunk Options\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nIn general, I would encourage you to always set the following global options:\n\necho: true\nwarning: false"
+    "text": "Global Code Chunk Options\n\n\n\n\n\n\n\n\nTip\n\n\nIn general, I would encourage you to always set the following global options:\n\necho: true\nwarning: false"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#quarto-documents-utilize-markdown-syntax",
@@ -2244,7 +2244,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#exploring-quarto-documents",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Exploring Quarto Documents",
-    "text": "Exploring Quarto Documents\nFor this lab you will:\n\nspecify global and local execution options\ninterpret the output of code\nlook up function and data documentation\nlook up Quarto documentation for plot outputs\nconduct a t-test for two independent samples\n\n\n\n\n\n\n\n\nExternal Resources\n\n\nEverything you need to successfully complete this assignment can be found in the documentation inside R or online. You will likely have more success with these resources than Chat. However, if you do use Chat, please be sure you cite your work as instructed in the syllabus."
+    "text": "Exploring Quarto Documents\nFor this lab you will:\n\nspecify global and local execution options\ninterpret the output of code\nlook up function and data documentation\nlook up Quarto documentation\nconduct a t-test for two independent samples\n\n\n\n\n\n\n\n\n\nExternal Resources\n\n\nEverything you need to successfully complete this assignment can be found in the documentation inside R or online. You will likely have more success with these resources than Chat. However, if you do use Chat, please be sure you cite your work as instructed in the syllabus."
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#tuesday-september-24",
@@ -5227,5 +5227,47 @@
     "title": "Loops and Iteration",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI fully support more R packages being cat themed.↩︎"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#execution-options-in-quarto",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#execution-options-in-quarto",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Execution Options in Quarto",
+    "text": "Execution Options in Quarto\nR code chunk options are included at the top of each code chunk, prefaced with a #| (hashpipe).\nThese options control how the following code is run and reported in the final Quarto document."
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#execution-options-in-quarto-1",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#execution-options-in-quarto-1",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Execution Options in Quarto",
+    "text": "Execution Options in Quarto"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#execution-option-completion-in-quarto",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#execution-option-completion-in-quarto",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Execution Option Completion in Quarto",
+    "text": "Execution Option Completion in Quarto"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#global-execution-options",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#global-execution-options",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Global Execution Options",
+    "text": "Global Execution Options\nSome R code options can also be included in the front matter (YAML) which would be applied globally to the entire document.\ntitle: \"Lesson 1\"\nformat: html\nexecute: \n  echo: true\n  warning: false"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#global-execution-options-1",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#global-execution-options-1",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Global Execution Options",
+    "text": "Global Execution Options\n\n\n\n\n\n\n\n\nTip\n\n\nIn general, I would encourage you to always set the following global execution options:\n\necho: true\nwarning: false"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#our-classroom-assistants",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#our-classroom-assistants",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Our Classroom Assistants!",
+    "text": "Our Classroom Assistants!\n\n\n\nOn Tuesdays, we will be joined in class by Jasmine.\nJasmine is…\n\na Statistics master’s student,\noriginally from Irvine, CA,\nsomeone who loves sushi, hanging out with friends, watching Netflix, and working out.\n\n\n\n\n\n\n\nOn Canvas, Emi will be providing feedback on code formatting and efficiency.\nEmi is…\n\na third year Statistics major getting a Bioinformatics minor,\noriginally from Chicago,\nsomeone who likes dancing (hip-hop/open style) and collecting smiskis."
   }
 ]

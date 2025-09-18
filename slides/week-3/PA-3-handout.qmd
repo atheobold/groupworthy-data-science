@@ -1,6 +1,8 @@
 ---
 title: "Week 3 Day 1: Mathlink Activity"
 format: docx
+execute: 
+  eval: false
 ---
 
 # Piping
@@ -36,66 +38,44 @@ colleges |>
 
 # `filter`
 
-<<<<<<< HEAD
-> include **rows** based on one or more logical statements 
+> include **rows** based on one or more logical statements
 
-1. What symbol do you use to join two logical statements with an "or"?
+1.  What symbol do you use to join two logical statements with an "or"?
 
-2. What symbol do you use to join two logical statements with an "and"?
-
-=======
-**take your data frame and then filter it** (only include rows where)
-
-1.  **the red column only includes observations with three sides** (triangles)
-
-[OR]{.underline}
-
-2.  **the green column only includes observations with more than four sides** (pentagons, hexagons)
->>>>>>> d2388b888e984f32fb7695f67e37a226f1449a3a
+2.  What symbol do you use to join two logical statements with an "and"?
 
 # `select`
 
 > include **columns** based on one or more logical statements
 
-3. What symbol do you use to **remove** a column from the dataset?
+3.  What symbol do you use to **remove** a column from the dataset?
 
-
-<<<<<<< HEAD
 # `mutate()`
-=======
-Step 2:
->>>>>>> d2388b888e984f32fb7695f67e37a226f1449a3a
 
 > create new columns or change existing columns
 
-<<<<<<< HEAD
-4. What are the three arguments of the `if_else()` function?
+4.  What are the three arguments of the `if_else()` function?
 
 # `arrange()`
 
 > Organize the rows of the data in order of a particular variable.
 
-5. By default what order does the `arrange()` function put values in?
+5.  By default what order does the `arrange()` function put values in?
 
-6. What can you add **inside** the `arrange()` function to change the default order?
+6.  What can you add **inside** the `arrange()` function to change the default order?
 
 # `arrange()` friends
 
-7. What does the `n` argument of `slice_max()` and `slice_min()` do?
+7.  What does the `n` argument of `slice_max()` and `slice_min()` do?
 
 # `summarize`
 
 > compute a table of summaries
 
-8. What are common summary functions you might want to use?
+8.  What are common summary functions you might want to use?
 
 # `group_by`
 
 > put rows into groups based on values in column(s)
 
-9. What happens when you group by **two** variables?
-=======
-data |>
-  select(-green)
-```
->>>>>>> d2388b888e984f32fb7695f67e37a226f1449a3a
+9.  What happens when you group by **two** variables?

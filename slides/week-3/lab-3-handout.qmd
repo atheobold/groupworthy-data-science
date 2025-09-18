@@ -1,6 +1,8 @@
 ---
 title: "Week 3 Day 2: Lab 3 Warm-up"
 format: docx
+execute: 
+  eval: false
 ---
 
 ```{r}
@@ -22,26 +24,31 @@ Keyboard shortcut: `ctrl/cmd` + `shift` + `m`
 Do you want to filter a set of values of a variable?
 
 ```{r}
-cereal |> 
-  filter(name %in% c("Cheerios", "Cinnamon Toast Crunch", 
-                     "Raisin Bran", "Cracklin' Oat Bran"))
+colleges_clean |> 
+  filter(STABBR %in% c("CO", "MT", "ID", "UT", "WY"))
 ```
 
 ## `select()`
 
+Do you want to select a range of columns?
+
 ```{r}
-cereal |> 
-  select(name:calories)
+colleges |> 
+  select(ADM_RATE:UGDS)
 ```
+
+Do you want to select columns that share a common word or symbol?
 
 ```{r}
 cereal |> 
-  select(name, starts_with("c"))
+  select(name, starts_with("TUITION"))
 ```
 
+Do you want to select columns that share a common data type?
+
 ```{r}
-cereal |> 
-  select(name, where(is.numeric))
+colleges_clean |> 
+  select(INSTNM, where(is.numeric))
 ```
 
 ## `rename()`
@@ -123,31 +130,31 @@ colleges_clean |>
 
 9. What does the `.x` inside the function represent?
 
-## `across()` friends
+# `across()` friends
 
-`if_any()` / `if_all()`
+## `if_any()` & `if_all()`
 
-```{r}
-colleges <- read_csv("https://www.dropbox.com/s/bt5hvctdevhbq6j/colleges.csv?dl=1")
+Remember, you got warnings in PA3 when converting some columns to numeric? If
+you look at the original data, you can see this is because missing values were
+indicated with the string `"NULL"`.
 
-colleges_clean <- colleges |> 
-    select(INSTNM, CITY, STABBR, ZIP,
-         ADM_RATE, SAT_AVG, UGDS,
-         TUITIONFEE_IN, TUITIONFEE_OUT,
-         CONTROL, REGION) |> 
-  filter(CONTROL == 1 | CONTROL == 2)
-```
+We could drop these rows before converting the columns to numeric if desired, 
+using `if_any()`:
 
 ```{r}
-colleges_clean |> 
-  filter(if_any(.cols = ADM_RATE:TUITIONFEE_OUT, 
-                 .fns = ~ .x == "NULL")) 
+#| echo: true
+
+colleges_clean <- colleges_clean |> 
+  filter(
+    !if_any(.cols = ADM_RATE:TUITIONFEE_OUT, 
+            .fns = ~ .x == "NULL")
+    ) 
 ```
 
-```{r}
-colleges <- read_csv("https://www.dropbox.com/s/bt5hvctdevhbq6j/colleges.csv?dl=1",
-                     na = c("", "NA"))
-```
+10. How would you describe what `~ .x == "NULL"` is doing?
+
+11. What does the `!` in front of the `if_any()` do?
+
 
 ## Saving Objects
 
@@ -178,10 +185,11 @@ library(knitr)
 ```
 
 ```{r}
-cereal_clean <- cereal |> 
-  mutate(ratio = sugars / potass)
+colleges_clean <- colleges_clean |> 
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
   
 cereal_clean |> 
-  slice_head(n = 3) |> 
+  group_by(REGION) |> 
+  slice_max(order_by = TUITION_DIFF, n = 5) |> 
   kable()
 ```

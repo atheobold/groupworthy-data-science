@@ -88,10 +88,11 @@ I use they / them pronouns. If you are not sure what this means, I'd encourage y
 :::
 :::
 
-## Our Classroom Learning Assistant!
+## Our Classroom Assistants!
 
 ::: columns
 ::: {.column width="50%"}
+:::{.small}
 On Tuesdays, we will be joined in class by Jasmine. 
 
 Jasmine is...
@@ -101,11 +102,24 @@ Jasmine is...
 - someone who loves sushi, hanging out with friends, watching Netflix, and working out. 
 :::
 
+![](images/jasmine.jpeg){fig-alt="A picture of Jasmine standing in a graduation outfit wearing a Cal Poly green stahl. The picture has the ocean in the background and some rolling green hills in the forground." width=60%}
+:::
+
 ::: {.column width="5%"}
 :::
 
 ::: {.column width="45%"}
-![](images/jasmine.jpeg)
+:::{.small}
+On Canvas, Emi will be providing feedback on code formatting and efficiency.  
+
+Emi is...
+
+- a third year Statistics major getting a Bioinformatics minor, 
+- originally from Chicago,
+- someone who likes dancing (hip-hop/open style) and collecting smiskis. 
+:::
+
+![](images/smiski_emi.png){width=60% fig-alt="A simiski image of a human typing on a laptop computer."}
 :::
 :::
 
@@ -251,7 +265,6 @@ What would have happened if everyone only thought about themselves?
 > how pairs of students collaborate during pair programming activities. 
 
 ## Why pair programming?
-
 
 ## Consent to Participate
 

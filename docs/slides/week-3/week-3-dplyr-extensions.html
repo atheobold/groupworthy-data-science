@@ -19236,6 +19236,48 @@
 <p>Notice that I’ve added an argument to the <code>mean()</code> function <strong>not</strong> to the <code>across()</code> function!</p>
 </section></section>
 <section>
+<section id="across-friends" class="title-slide slide level1 center">
+<h1><code>across()</code> Friends</h1>
+
+</section>
+<section id="if_any-if_all" class="slide level2">
+<h2><code>if_any()</code> &amp; <code>if_all()</code></h2>
+<p>These functions are used with <code>filter()</code> to select rows based on a logical statement applied to multiple columns</p>
+<ul>
+<li><p><code>if_any()</code> – returns a logical vector (one element for each row) that is <code>TRUE</code> if the logical statement is true for any column in the supplied columns</p></li>
+<li><p><code>if_all()</code> – returns a logical vector (one element for each row) that is <code>TRUE</code> if the logical statement is true for all columns in the supplied columns</p></li>
+</ul>
+</section>
+<section id="if_any-example" class="slide level2">
+<h2><code>if_any()</code> Example</h2>
+<div class="midi">
+<p>Remember, you got warnings in PA3 when converting some columns to numeric? If you look at the original data, you can see this is because missing values were indicated with the string <code>"NULL"</code>.</p>
+<p>We could drop these rows before converting the columns to numeric if desired, using <code>if_any()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>colleges_clean <span class="ot">&lt;-</span> colleges_clean <span class="sc">|&gt;</span> </span>
+<span id="cb16-2"><a></a>  <span class="fu">filter</span>(</span>
+<span id="cb16-3"><a></a>    <span class="sc">!</span><span class="fu">if_any</span>(<span class="at">.cols =</span> ADM_RATE<span class="sc">:</span>TUITIONFEE_OUT, </span>
+<span id="cb16-4"><a></a>            <span class="at">.fns =</span> <span class="sc">~</span> .x <span class="sc">==</span> <span class="st">"NULL"</span>)</span>
+<span id="cb16-5"><a></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Tip</strong></p>
+</div>
+<div class="callout-content">
+<p>Note that there is no named function here (e.g., <code>mean()</code>). Instead, I’m making my own function that checks if a value is equal to (<code>==</code>) a null value (<code>"NULL"</code>).</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
 <section id="connection-to-ggplot" class="title-slide slide level1 center">
 <h1>Connection to <code>ggplot()</code></h1>
 <p>Plot the out of state tuition for each type of university in each region.</p>
@@ -19243,35 +19285,35 @@
 <div class="cell" data-layout-align="center">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">TYPE =</span> CONTROL) <span class="sc">|&gt;</span> </span>
-<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TYPE <span class="sc">!=</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">REGION =</span> <span class="fu">case_when</span>(REGION <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Military"</span>, </span>
-<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"New England"</span>, </span>
-<span id="cb16-6"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Mid Atlantic"</span>,</span>
-<span id="cb16-7"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Great Lakes"</span>, </span>
-<span id="cb16-8"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Plains"</span>, </span>
-<span id="cb16-9"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"South"</span>, </span>
-<span id="cb16-10"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Southwest"</span>, </span>
-<span id="cb16-11"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">"West"</span>, </span>
-<span id="cb16-12"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Pacific"</span>), </span>
-<span id="cb16-13"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">TYPE =</span> <span class="fu">if_else</span>(TYPE <span class="sc">==</span> <span class="dv">1</span>, </span>
-<span id="cb16-14"><a aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Public"</span>,</span>
-<span id="cb16-15"><a aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Private"</span></span>
-<span id="cb16-16"><a aria-hidden="true" tabindex="-1"></a>                        )</span>
-<span id="cb16-17"><a aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">|&gt;</span> </span>
-<span id="cb16-18"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(TYPE, REGION) <span class="sc">|&gt;</span> </span>
-<span id="cb16-19"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> REGION, </span>
-<span id="cb16-20"><a aria-hidden="true" tabindex="-1"></a>                       <span class="at">x =</span> TUITIONFEE_OUT, </span>
-<span id="cb16-21"><a aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> TYPE)) <span class="sc">+</span></span>
-<span id="cb16-22"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
-<span id="cb16-23"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cost of Out of State Tuition Across Different Regions of the US"</span>, </span>
-<span id="cb16-24"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Out of State Tuition"</span>, </span>
-<span id="cb16-25"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
-<span id="cb16-26"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"School Type"</span>) <span class="sc">+</span></span>
-<span id="cb16-27"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb16-28"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
-<span id="cb16-29"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_currency</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">TYPE =</span> CONTROL) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TYPE <span class="sc">!=</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb17-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">REGION =</span> <span class="fu">case_when</span>(REGION <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Military"</span>, </span>
+<span id="cb17-5"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"New England"</span>, </span>
+<span id="cb17-6"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Mid Atlantic"</span>,</span>
+<span id="cb17-7"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Great Lakes"</span>, </span>
+<span id="cb17-8"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">4</span> <span class="sc">~</span> <span class="st">"Plains"</span>, </span>
+<span id="cb17-9"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"South"</span>, </span>
+<span id="cb17-10"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">6</span> <span class="sc">~</span> <span class="st">"Southwest"</span>, </span>
+<span id="cb17-11"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">7</span> <span class="sc">~</span> <span class="st">"West"</span>, </span>
+<span id="cb17-12"><a aria-hidden="true" tabindex="-1"></a>                            REGION <span class="sc">==</span> <span class="dv">8</span> <span class="sc">~</span> <span class="st">"Pacific"</span>), </span>
+<span id="cb17-13"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">TYPE =</span> <span class="fu">if_else</span>(TYPE <span class="sc">==</span> <span class="dv">1</span>, </span>
+<span id="cb17-14"><a aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Public"</span>,</span>
+<span id="cb17-15"><a aria-hidden="true" tabindex="-1"></a>                        <span class="st">"Private"</span></span>
+<span id="cb17-16"><a aria-hidden="true" tabindex="-1"></a>                        )</span>
+<span id="cb17-17"><a aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">|&gt;</span> </span>
+<span id="cb17-18"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(TYPE, REGION) <span class="sc">|&gt;</span> </span>
+<span id="cb17-19"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> REGION, </span>
+<span id="cb17-20"><a aria-hidden="true" tabindex="-1"></a>                       <span class="at">x =</span> TUITIONFEE_OUT, </span>
+<span id="cb17-21"><a aria-hidden="true" tabindex="-1"></a>                       <span class="at">fill =</span> TYPE)) <span class="sc">+</span></span>
+<span id="cb17-22"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb17-23"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cost of Out of State Tuition Across Different Regions of the US"</span>, </span>
+<span id="cb17-24"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Out of State Tuition"</span>, </span>
+<span id="cb17-25"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb17-26"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"School Type"</span>) <span class="sc">+</span></span>
+<span id="cb17-27"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb17-28"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
+<span id="cb17-29"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_currency</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -19279,7 +19321,38 @@
 </section>
 <section id="connection-to-ggplot-output" class="title-slide slide level1 output-location-slide center"><h1>Connection to <code>ggplot()</code></h1><div class="cell output-location-slide" data-layout-align="center">
 
-</div></section><section id="to-do" class="slide level2">
+</div></section><section id="using-kable-for-formatting-in-labs" class="slide level2">
+<h2>Using <code>kable()</code> for formatting in labs</h2>
+<ul>
+<li>When printing rows of a data frame or tibble</li>
+<li>need to load the <code>knitr</code> package at the beginning of your file</li>
+<li><code>kable()</code> outputs a <strong>markdown version</strong> of your data</li>
+<li>should only be used to nicely format data you are <strong>printing</strong></li>
+</ul>
+<div class="columns">
+<div class="column">
+<p><strong>e.g.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>colleges_clean <span class="ot">&lt;-</span> colleges_clean <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a></a>  <span class="fu">mutate</span>(<span class="at">TUITION_DIFF =</span> TUITIONFEE_OUT <span class="sc">-</span> TUITIONFEE_IN)</span>
+<span id="cb18-3"><a></a>  </span>
+<span id="cb18-4"><a></a>cereal_clean <span class="sc">|&gt;</span> </span>
+<span id="cb18-5"><a></a>  <span class="fu">group_by</span>(REGION) <span class="sc">|&gt;</span> </span>
+<span id="cb18-6"><a></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> TUITION_DIFF, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb18-7"><a></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div><div class="column">
+<p><strong>NOT</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>cereal_clean <span class="ot">&lt;-</span> cereal_clean <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a></a>  <span class="fu">mutate</span>(<span class="at">TUITION_DIFF =</span> TUITIONFEE_OUT <span class="sc">-</span> TUITIONFEE_IN)</span>
+<span id="cb19-3"><a></a>  <span class="fu">group_by</span>(REGION) <span class="sc">|&gt;</span> </span>
+<span id="cb19-4"><a></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> TUITION_DIFF, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb19-5"><a></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div></div>
+</section>
+<section id="to-do" class="slide level2">
 <h2>To do…</h2>
 <ul>
 <li><strong>Lab 3: Student Evaluations of Teaching</strong>

@@ -5360,5 +5360,26 @@
     "title": "Loops and Iteration",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI fully support more R packages being cat themed.↩︎"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-extensions.html#if_any-if_all",
+    "href": "slides/week-3/week-3-dplyr-extensions.html#if_any-if_all",
+    "title": "Extending Data Wrangling Verbs",
+    "section": "if_any() & if_all()",
+    "text": "if_any() & if_all()\nThese functions are used with filter() to select rows based on a logical statement applied to multiple columns\n\nif_any() – returns a logical vector (one element for each row) that is TRUE if the logical statement is true for any column in the supplied columns\nif_all() – returns a logical vector (one element for each row) that is TRUE if the logical statement is true for all columns in the supplied columns"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-extensions.html#if_any-example",
+    "href": "slides/week-3/week-3-dplyr-extensions.html#if_any-example",
+    "title": "Extending Data Wrangling Verbs",
+    "section": "if_any() Example",
+    "text": "if_any() Example\n\nRemember, you got warnings in PA3 when converting some columns to numeric? If you look at the original data, you can see this is because missing values were indicated with the string \"NULL\".\nWe could drop these rows before converting the columns to numeric if desired, using if_any():\n\ncolleges_clean &lt;- colleges_clean |&gt; \n  filter(\n    !if_any(.cols = ADM_RATE:TUITIONFEE_OUT, \n            .fns = ~ .x == \"NULL\")\n    ) \n\n\n\n\n\n\n\n\n\nTip\n\n\nNote that there is no named function here (e.g., mean()). Instead, I’m making my own function that checks if a value is equal to (==) a null value (\"NULL\")."
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-extensions.html#using-kable-for-formatting-in-labs",
+    "href": "slides/week-3/week-3-dplyr-extensions.html#using-kable-for-formatting-in-labs",
+    "title": "Extending Data Wrangling Verbs",
+    "section": "Using kable() for formatting in labs",
+    "text": "Using kable() for formatting in labs\n\nWhen printing rows of a data frame or tibble\nneed to load the knitr package at the beginning of your file\nkable() outputs a markdown version of your data\nshould only be used to nicely format data you are printing\n\n\n\ne.g.\n\ncolleges_clean &lt;- colleges_clean |&gt; \n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n  \ncereal_clean |&gt; \n  group_by(REGION) |&gt; \n  slice_max(order_by = TUITION_DIFF, n = 5) |&gt; \n  kable()\n\n\nNOT\n\ncereal_clean &lt;- cereal_clean |&gt; \n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n  group_by(REGION) |&gt; \n  slice_max(order_by = TUITION_DIFF, n = 5) |&gt; \n  kable()"
   }
 ]

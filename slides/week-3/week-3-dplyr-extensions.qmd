@@ -580,6 +580,45 @@ colleges_clean |>
 
 Notice that I've added an argument to the `mean()` function **not** to the `across()` function!
 
+# `across()` Friends
+
+## `if_any()` & `if_all()`
+
+These functions are used with `filter()` to select rows based on a logical
+statement applied to multiple columns
+
+- `if_any()` – returns a logical vector (one element for each row) that is `TRUE`
+if the logical statement is true for any column in the supplied columns
+
+- `if_all()` – returns a logical vector (one element for each row) that is `TRUE`
+if the logical statement is true for all columns in the supplied columns
+
+## `if_any()` Example
+
+::: {.midi}
+Remember, you got warnings in PA3 when converting some columns to numeric? If you look at the original data, you can see this is because missing values were indicated with the string `"NULL"`.
+
+We could drop these rows before converting the columns to numeric if desired, using `if_any()`:
+
+```{r}
+#| echo: true
+
+colleges_clean <- colleges_clean |> 
+  filter(
+    !if_any(.cols = ADM_RATE:TUITIONFEE_OUT, 
+            .fns = ~ .x == "NULL")
+    ) 
+```
+:::
+
+. . .
+
+::: {.callout-tip}
+
+Note that there is no named function here (e.g., `mean()`). Instead, I'm making
+my own function that checks if a value is equal to (`==`) a null value (`"NULL"`).
+:::
+
 # Connection to `ggplot()`
 
 Plot the out of state tuition for each type of university in each region. 
@@ -624,6 +663,49 @@ colleges_clean |>
   theme(legend.position = "top") +
   scale_x_continuous(labels = scales::label_currency())
 ```
+
+## Using `kable()` for formatting in labs
+
+- When printing rows of a data frame or tibble
+- need to load the `knitr` package at the beginning of your file
+- `kable()` outputs a **markdown version** of your data
+- should only be used to nicely format data you are **printing**
+
+:::columns
+:::column
+**e.g.**
+```{r}
+#| echo: true
+#| eval: false
+
+
+colleges_clean <- colleges_clean |> 
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
+  
+cereal_clean |> 
+  group_by(REGION) |> 
+  slice_max(order_by = TUITION_DIFF, n = 5) |> 
+  kable()
+```
+
+:::
+:::column
+
+**NOT**
+
+```{r}
+#| echo: true
+#| eval: false
+
+cereal_clean <- cereal_clean |> 
+  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
+  group_by(REGION) |> 
+  slice_max(order_by = TUITION_DIFF, n = 5) |> 
+  kable()
+```
+
+:::
+:::
 
 ## To do...
 

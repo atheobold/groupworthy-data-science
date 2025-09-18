@@ -1410,29 +1410,29 @@
     "objectID": "slides/week-3/week-3-dplyr-short.html#tuesday-september-30",
     "href": "slides/week-3/week-3-dplyr-short.html#tuesday-september-30",
     "title": "Data Wrangling with dplyr",
-    "section": "Tuesday, September 30",
-    "text": "Tuesday, September 30\nToday we will…\n\nWarm-up for dplyr practice activity (40-minutes)\nSet-up for the practice activity (5-minutes)\n\nReview pair programming norms\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)"
+    "section": "",
+    "text": "Today we will…\n\nWarm-up for dplyr practice activity (40-minutes)\nSet-up for the practice activity (5-minutes)\n\nReview pair programming norms\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#mathlink-activity",
     "href": "slides/week-3/week-3-dplyr-short.html#mathlink-activity",
     "title": "Data Wrangling with dplyr",
     "section": "Mathlink Activity",
-    "text": "Mathlink Activity\nWe’re going to explore some key dplyr verbs using manipulatives:\n\n\nfilter() – select rows based on their values\nselect() – select columns\nmutate() – add new columns or change existing columns\nsummarize() – perform summary operations on columns\ngroup_by() – facilitate group-wise operations\n\n\n\n\nUse the pipe operator (|&gt; or %&gt;%) to chain together data wrangling operations."
+    "text": "Mathlink Activity\nWe’re going to explore some key dplyr verbs using manipulatives:\n\n\nfilter() – select rows based on their values\nselect() – select columns\nmutate() – add new columns or change existing columns\nsummarize() – perform summary operations on columns\ngroup_by() – facilitate group-wise operations\n\n\n. . .\n\nUse the pipe operator (|&gt; or %&gt;%) to chain together data wrangling operations."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator",
     "href": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator",
     "title": "Data Wrangling with dplyr",
     "section": "The Pipe Operator",
-    "text": "The Pipe Operator\nWith dplyr, your code should read like a sentence.\n\nThe data is the primary object in your sentence, so it should come first in your code.\n\n\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
+    "text": "The Pipe Operator\nWith dplyr, your code should read like a sentence.\n\nThe data is the primary object in your sentence, so it should come first in your code.\n\n. . .\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#data-comes-first",
     "href": "slides/week-3/week-3-dplyr-short.html#data-comes-first",
     "title": "Data Wrangling with dplyr",
     "section": "Data Comes First!",
-    "text": "Data Comes First!\nYou can choose whether to:\ndeclare your data as the first argument of the function\n\nfilter(.data = colleges, REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n\n\nor\npipe your data into the first argument of the function\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
+    "text": "Data Comes First!\nYou can choose whether to:\ndeclare your data as the first argument of the function\n\nfilter(.data = colleges, REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n\n. . .\nor\npipe your data into the first argument of the function\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#data-frame",
@@ -1460,7 +1460,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#observations",
     "title": "Data Wrangling with dplyr",
     "section": "Observations",
-    "text": "Observations\nHere is one observation:\n\n\n\n\nLooking at the column green, how many sides does the observation have?"
+    "text": "Observations\nHere is one observation:\n\n\n\n. . .\nLooking at the column green, how many sides does the observation have?"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame",
@@ -1502,7 +1502,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#why-not-use",
     "title": "Data Wrangling with dplyr",
     "section": "Why not use &?",
-    "text": "Why not use &?\nIf a , is equivalent to an & why not just use a &?\nWell, with a lot of &s your code can get hard to read…\n\ndata |&gt;\n  filter(red == 3 & green &gt; 4 & orange &gt;= 3)\n\n\n\nSo instead we use commas.\n\ndata |&gt;\n  filter(red == 3, \n         green &gt; 4, \n         orange &gt;= 3)"
+    "text": "Why not use &?\nIf a , is equivalent to an & why not just use a &?\nWell, with a lot of &s your code can get hard to read…\n\ndata |&gt;\n  filter(red == 3 & green &gt; 4 & orange &gt;= 3)\n\n. . .\n\nSo instead we use commas.\n\ndata |&gt;\n  filter(red == 3, \n         green &gt; 4, \n         orange &gt;= 3)"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-1",
@@ -1551,7 +1551,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-6",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  arrange(green)\n\n\nWhat order does arrange() use as default?"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  arrange(green)\n\n. . .\nWhat order does arrange() use as default?"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#arrange-descending-order",
@@ -1621,14 +1621,14 @@
     "href": "slides/week-3/week-3-dplyr-short.html#finding-ephelias-college",
     "title": "Data Wrangling with dplyr",
     "section": "Finding Ephelia’s College",
-    "text": "Finding Ephelia’s College\n\n\n\nThis activity will require knowledge of:\n\ndebugging code errors\nfunction syntax\nlogical comparisons\nidentifying what actions need to be taken\nlocating what dplyr verb(s) can accomplish this task\nchaining steps together with the pipe operator\n\n\n\n\n\n\n\n\nNone of us have all these abilities. Each of us has some of these abilities."
+    "text": "Finding Ephelia’s College\n\n\n\nThis activity will require knowledge of:\n\ndebugging code errors\nfunction syntax\nlogical comparisons\nidentifying what actions need to be taken\nlocating what dplyr verb(s) can accomplish this task\nchaining steps together with the pipe operator\n\n\n\n\n\n\n\n\n. . .\nNone of us have all these abilities. Each of us has some of these abilities."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#dplyr-resources",
     "href": "slides/week-3/week-3-dplyr-short.html#dplyr-resources",
     "title": "Data Wrangling with dplyr",
     "section": "dplyr Resources",
-    "text": "dplyr Resources\nEvery of you should have a dplyr cheatsheet in your coursepack!\n\n\n\nOn the Front\n\n\nColumn 1: grouped summaries (group_by() + summarize())\nColumn 2: filter()ing values with logical comparisons\nColumn 3: select()ing and mutate()ing variables\n\n\n\n\n\n\n\nOn the Back\n\n\nColumn 2: summary functions you might like to use with summarize()"
+    "text": "dplyr Resources\nEvery of you should have a dplyr cheatsheet in your coursepack!\n\n\n\nOn the Front\n\n\n\nColumn 1: grouped summaries (group_by() + summarize())\nColumn 2: filter()ing values with logical comparisons\nColumn 3: select()ing and mutate()ing variables\n\n\n\n\n\n\n\n\nOn the Back\n\n\n\nColumn 2: summary functions you might like to use with summarize()"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#task-card",
@@ -1642,7 +1642,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#pair-programming-expectations",
     "title": "Data Wrangling with dplyr",
     "section": "Pair Programming Expectations",
-    "text": "Pair Programming Expectations\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nDeveloper\n\n\nReads prompt and ensures Coder understands what is being asked.\nTypes the code specified by the Coder into the Quarto document.       \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output.\n\nWorks with Coder to write code comments.\n\n\n\n\n\n\nCoder\n\n\nReads out instructions or prompts\nDirects the Developer what to type.\nTalks with Developer about their ideas. \nManages resources (e.g., cheatsheets, textbook, slides). \nWorks with Developer to debug the code. \nWorks with Developer to write code comments."
+    "text": "Pair Programming Expectations\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n. . .\n\n\nDeveloper\n\n\nReads prompt and ensures Coder understands what is being asked.\nTypes the code specified by the Coder into the Quarto document.       \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output.\n\nWorks with Coder to write code comments.\n\n\n\n\n\n\nCoder\n\n\nReads out instructions or prompts\nDirects the Developer what to type.\nTalks with Developer about their ideas. \nManages resources (e.g., cheatsheets, textbook, slides). \nWorks with Developer to debug the code. \nWorks with Developer to write code comments."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#opening-the-practice-activity-in-google-colab",
@@ -1663,7 +1663,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#why-are-we-switching",
     "title": "Data Wrangling with dplyr",
     "section": "Why are we switching?",
-    "text": "Why are we switching?\nThroughout the activity you will swap roles—the Developer will become the Coder, and the Coder will become the Developer.\n\n\nWe are alternating roles so everyone:\n\nhas the chance to apply their coding skills\npractices talking through their code\nhas the opportunity to explain their thinking"
+    "text": "Why are we switching?\nThroughout the activity you will swap roles—the Developer will become the Coder, and the Coder will become the Developer.\n. . .\n\nWe are alternating roles so everyone:\n\nhas the chance to apply their coding skills\npractices talking through their code\nhas the opportunity to explain their thinking"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#external-resources",
@@ -2201,15 +2201,15 @@
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#thursday-september-18",
     "href": "slides/week-1/week-1-intro-r-quarto.html#thursday-september-18",
     "title": "Welcome to STAT 331 / 531!",
-    "section": "Thursday, September 18",
-    "text": "Thursday, September 18\nToday we will…\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
+    "section": "",
+    "text": "Today we will…\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#hi-im-dr.-theobold",
     "href": "slides/week-1/week-1-intro-r-quarto.html#hi-im-dr.-theobold",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Hi, I’m Dr. Theobold!",
-    "text": "Hi, I’m Dr. Theobold!\n\n\n\n\nI am originally from Colorado, but went to grad school in Montana.\nMy favorite things are being outside, drinking coffee, and watching women’s basketball.\n\n\n\n\n\n\n\n\n\n\n\n\nI love cats!\nI’ve been programming in R since 2014!\nI absolutely love teaching this course!"
+    "text": "Hi, I’m Dr. Theobold!\n\n\n\n\nI am originally from Colorado, but went to grad school in Montana.\nMy favorite things are being outside, drinking coffee, and watching women’s basketball.\n\n\n\n\n\n\n\n\n. . .\n\n\n\n\nI love cats!\nI’ve been programming in R since 2014!\nI absolutely love teaching this course!"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#on-a-personal-note",
@@ -2244,7 +2244,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#end-of-the-week",
     "title": "Welcome to STAT 331 / 531!",
     "section": "End of the Week",
-    "text": "End of the Week\n\nDuring Class on ThursdayAfter Thursday’s Class\n\n\n\nDebrief Practice Activity\nDiscuss ways to extend that week’s skills\n\nStart Lab Assignment\n\n\n\n\nFinish remaining problems of the Lab Assignment\nComplete Challenge Assignment\n\n\n\n\n\n\n\nLabs & Challenges Due Monday by 5pm\n\n\nTo keep everyone on track with the coursework, your Lab and Challenges are due by 5pm every Monday. You are permitted to request up to four (3) deadline extensions by filling out the deadline extension form linked on Canvas."
+    "text": "End of the Week\n\nDuring Class on ThursdayAfter Thursday’s Class\n\n\n\nDebrief Practice Activity\nDiscuss ways to extend that week’s skills\n\nStart Lab Assignment\n\n\n\n\nFinish remaining problems of the Lab Assignment\nComplete Challenge Assignment\n\n\n\n\n\n\n\nLabs & Challenges Due Monday by 5pm\n\n\n\nTo keep everyone on track with the coursework, your Lab and Challenges are due by 5pm every Monday. You are permitted to request up to four (3) deadline extensions by filling out the deadline extension form linked on Canvas."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#what-does-ungrading-mean",
@@ -2258,7 +2258,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#how-does-this-system-work",
     "title": "Welcome to STAT 331 / 531!",
     "section": "How does this system work?",
-    "text": "How does this system work?\n\nEach problem on an assignment is marked for proficiency (e.g., success, growing).\n\nThese marks are not attached to a grade outcome (e.g., A, B, C, D).\n\nGrades are defined from a set of criteria, co-developed between you and me.\n\nAt the end of the course, you propose the grade you believe you’ve earned based on a portfolio of your work and the criteria we established."
+    "text": "How does this system work?\n\n\nEach problem on an assignment is marked for proficiency (e.g., success, growing).\n\nThese marks are not attached to a grade outcome (e.g., A, B, C, D).\n\nGrades are defined from a set of criteria, co-developed between you and me.\n\nAt the end of the course, you propose the grade you believe you’ve earned based on a portfolio of your work and the criteria we established."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#broken-circles",
@@ -2279,35 +2279,35 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#how-did-that-feel",
     "title": "Welcome to STAT 331 / 531!",
     "section": "How did that feel?",
-    "text": "How did that feel?\n\nWhat did you notice about how your group worked together?\nWhat kinds of things helped your group finish?"
+    "text": "How did that feel?\n. . .\nWhat did you notice about how your group worked together?\nWhat kinds of things helped your group finish?"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#collaboration-skills",
     "href": "slides/week-1/week-1-intro-r-quarto.html#collaboration-skills",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Collaboration Skills",
-    "text": "Collaboration Skills\nSometimes, you had to give away a piece without knowing if you’d get what you needed in return. What was that like?\nWhat helped you trust your teammates in those moments?\n\n\nWas there a time when you gave up something you needed because you saw someone else needed it more? Why did you make that choice?\n\n\n\nWhat would have happened if everyone only thought about themselves?"
+    "text": "Collaboration Skills\nSometimes, you had to give away a piece without knowing if you’d get what you needed in return. What was that like?\nWhat helped you trust your teammates in those moments?\n. . .\n\nWas there a time when you gave up something you needed because you saw someone else needed it more? Why did you make that choice?\n. . .\n\nWhat would have happened if everyone only thought about themselves?"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#consent-to-participate",
     "href": "slides/week-1/week-1-intro-r-quarto.html#consent-to-participate",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Consent to Participate",
-    "text": "Consent to Participate\n\n\nIf you agree to participate…\n\nyou will be recorded once a week for 8-weeks while participating in pair programming to complete collaborative tasks.\nyou will complete a pre- and post-survey about your prior computing experiences and your attitudes toward data science.\n\n\n\n\n\n\nYour participation in this research will not affect your course grade.\n\n\n\n\n\n\n\nConsent Form\n\n\nPlease complete the consent form (https://forms.gle/oax73hoe7uRSVLYw8) by Monday, September 22nd."
+    "text": "Consent to Participate\n\n\nIf you agree to participate…\n\nyou will be recorded once a week for 8-weeks while participating in pair programming to complete collaborative tasks.\nyou will complete a pre- and post-survey about your prior computing experiences and your attitudes toward data science.\n\n\n\n. . .\n\n\nYour participation in this research will not affect your course grade.\n\n\n\n\n\n\n\nConsent Form\n\n\n\nPlease complete the consent form (https://forms.gle/oax73hoe7uRSVLYw8) by Monday, September 22nd."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#section",
     "href": "slides/week-1/week-1-intro-r-quarto.html#section",
     "title": "Welcome to STAT 331 / 531!",
     "section": "",
-    "text": "Scripts\n(File &gt; New File &gt; R Script) are files of code that are meant to be run on their own.\n\n\n\n\nNotebooks\nallow you to integrate code, output, text, images, etc. into a single document (e.g., Quarto documents, RMarkdown documents, Jupyter notebooks).\n\n\n\n\n\n\n\n\n\nImportant\n\n\nIn this class, we will not be using R scripts. There are specific cases where scripts are preferred, which is covered in STAT 541 (in the spring!)."
+    "text": "Scripts\n(File &gt; New File &gt; R Script) are files of code that are meant to be run on their own.\n\n\n\n\nNotebooks\nallow you to integrate code, output, text, images, etc. into a single document (e.g., Quarto documents, RMarkdown documents, Jupyter notebooks).\n\n\n\n. . .\n\n\n\n\n\n\nImportant\n\n\n\nIn this class, we will not be using R scripts. There are specific cases where scripts are preferred, which is covered in STAT 541 (in the spring!)."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#what-is-quarto",
     "href": "slides/week-1/week-1-intro-r-quarto.html#what-is-quarto",
     "title": "Welcome to STAT 331 / 531!",
     "section": "What is Quarto?",
-    "text": "What is Quarto?\nQuarto unifies and extends the RMarkdown ecosystem.\n\nQuarto files have the .qmd extension."
+    "text": "What is Quarto?\nQuarto unifies and extends the RMarkdown ecosystem.\n\n\n\n\n\n\n\n\n\nQuarto files have the .qmd extension."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#highlights-of-quarto",
@@ -2328,7 +2328,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#quarto-components",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Quarto Components",
-    "text": "Quarto Components\n\n\nHow does Quarto know that a section of text should be interpreted as R code?"
+    "text": "Quarto Components\n\n. . .\nHow does Quarto know that a section of text should be interpreted as R code?"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#r-code-options-in-quarto",
@@ -2363,14 +2363,14 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#global-code-chunk-options-1",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Global Code Chunk Options",
-    "text": "Global Code Chunk Options\n\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nIn general, I would encourage you to always set the following global options:\n\necho: true\nwarning: false"
+    "text": "Global Code Chunk Options\n\n\n\n. . .\n\n\n\n\n\n\n\nTip\n\n\n\nIn general, I would encourage you to always set the following global options:\n\necho: true\nwarning: false"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#quarto-documents-utilize-markdown-syntax",
     "href": "slides/week-1/week-1-intro-r-quarto.html#quarto-documents-utilize-markdown-syntax",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Quarto Documents Utilize Markdown Syntax",
-    "text": "Quarto Documents Utilize Markdown Syntax\nMarkdown is a markup language.\nIt uses special symbols and formatting to make pretty documents.\n\n\n*italics* – makes italics\n**bold** – makes bold text\n# – makes headers\n! – includes images or HTML links\n&lt; &gt; – embeds URLs"
+    "text": "Quarto Documents Utilize Markdown Syntax\nMarkdown is a markup language.\nIt uses special symbols and formatting to make pretty documents.\n. . .\n\n*italics* – makes italics\n**bold** – makes bold text\n# – makes headers\n! – includes images or HTML links\n&lt; &gt; – embeds URLs"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document",
@@ -2384,14 +2384,14 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document-1",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Rendering your Quarto Document",
-    "text": "Rendering your Quarto Document\nWhen you click Render:\n\n\nYour file is saved.\nThe R code written in your .qmd file gets run in order.\n\n\nIt starts from scratch, even if you previously ran some of the code in RStudio.\n\n\nA new file is created.\n\n\nIf your Quarto file is called “Lab1.qmd”, then a file called “Lab1.html” will be created.\nThis will be saved in the same folder as “Lab1.qmd”."
+    "text": "Rendering your Quarto Document\nWhen you click Render:\n\n\n\nYour file is saved.\nThe R code written in your .qmd file gets run in order.\n\n\nIt starts from scratch, even if you previously ran some of the code in RStudio.\n\n\nA new file is created.\n\n\nIf your Quarto file is called “Lab1.qmd”, then a file called “Lab1.html” will be created.\nThis will be saved in the same folder as “Lab1.qmd”."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#exploring-quarto-documents",
     "href": "slides/week-1/week-1-intro-r-quarto.html#exploring-quarto-documents",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Exploring Quarto Documents",
-    "text": "Exploring Quarto Documents\nFor this lab you will:\n\nspecify global and local execution options\ninterpret the output of code\nlook up function and data documentation\nlook up Quarto documentation for plot outputs\nconduct a t-test for two independent samples\n\n\n\n\n\n\n\n\nExternal Resources\n\n\nEverything you need to successfully complete this assignment can be found in the documentation inside R or online. You will likely have more success with these resources than Chat. However, if you do use Chat, please be sure you cite your work as instructed in the syllabus."
+    "text": "Exploring Quarto Documents\nFor this lab you will:\n\nspecify global and local execution options\ninterpret the output of code\nlook up function and data documentation\nlook up Quarto documentation for plot outputs\nconduct a t-test for two independent samples\n\n. . .\n\n\n\n\n\n\nExternal Resources\n\n\n\nEverything you need to successfully complete this assignment can be found in the documentation inside R or online. You will likely have more success with these resources than Chat. However, if you do use Chat, please be sure you cite your work as instructed in the syllabus."
   },
   {
     "objectID": "slides/week-1/week-1-intro-R.html#tuesday-september-24",
@@ -3021,7 +3021,7 @@
     "href": "course-materials/calendar.html",
     "title": " Schedule",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the quarter. Note that this schedule will be updated as the quarter progresses, with all changes documented here.\n\n\n\n\n\nweek\n\n\ndate\n\n\ntopic\n\n\nprepare\n\n\nslides\n\n\nnotes\n\n\nactivity\n\n\nlab\n\n\nchallenge\n\n\nportfolio\n\n\n\n\n\n\n0\n\n\n16 September\n\n\nCourse Set-up\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to R & RStudio\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to Quarto\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n22 September\n\n\nLab 1 & Challenge 1 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n23 September\n\n\nData Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n25 September\n\n\nData Import & R Projects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n29 September\n\n\nLab 2 & Challenge 2 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n30 September\n\n\nData Wrangling with dplyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n2 October\n\n\nExtending Data Wrangling Verbs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n6 October\n\n\nLab 3 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n7 October\n\n\nData Joins & Transformations with tidyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n9 October\n\n\nWorking with Categorical Variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n13 October\n\n\nLab 4 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n14 October\n\n\nWorking with Strings\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n16 October\n\n\nWorking with Dates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n20 October\n\n\nLab 5 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n21 October\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n27 October\n\n\nMidterm Portfolio Due\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n28 October\n\n\nPortfolio Conferences\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n30 October\n\n\nVector Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n4 November\n\n\nData Frame Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n6 November\n\n\nWhat is tidy eval?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n10 November\n\n\nLab 7 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n13 November\n\n\nIntroduction to Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n17 November\n\n\nLab 8 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n18 November\n\n\nSimulating Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n20 November\n\n\nSimulations & Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n24 November\n\n\nLab 9 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n2 December\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n5 December\n\n\nFinal Portfolio Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n6 December\n\n\nFinal Portfolio Conferences"
+    "text": "This page contains an outline of the topics, content, and assignments for the quarter. Note that this schedule will be updated as the quarter progresses, with all changes documented here.\n\n\n\n\n\nweek\n\n\ndate\n\n\ntopic\n\n\nprepare\n\n\nslides\n\n\nnotes\n\n\nactivity\n\n\nlab\n\n\nchallenge\n\n\nportfolio\n\n\n\n\n\n\n0\n\n\n16 September\n\n\nCourse Set-up\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to R & RStudio\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to Quarto\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n22 September\n\n\nLab 1 & Challenge 1 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n23 September\n\n\nData Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n25 September\n\n\nData Import & R Projects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n29 September\n\n\nLab 2 & Challenge 2 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n30 September\n\n\nData Wrangling with dplyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n2 October\n\n\nExtending Data Wrangling Verbs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n6 October\n\n\nLab 3 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n7 October\n\n\nData Joins & Transformations with tidyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n9 October\n\n\nWorking with Categorical Variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n13 October\n\n\nLab 4 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n14 October\n\n\nWorking with Strings\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n16 October\n\n\nWorking with Dates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n20 October\n\n\nLab 5 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n21 October\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n27 October\n\n\nMidterm Portfolio Due\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n28 October\n\n\nPortfolio Conferences\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n30 October\n\n\nVector Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n4 November\n\n\nData Frame Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n6 November\n\n\nWhat is tidy eval?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n10 November\n\n\nLab 7 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n13 November\n\n\nIntroduction to Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n17 November\n\n\nLab 8 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n18 November\n\n\nSimulating Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n20 November\n\n\nSimulations & Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n24 November\n\n\nLab 9 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n2 December\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n5 December\n\n\nFinal Portfolio Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n6 December\n\n\nFinal Portfolio Conferences"
   },
   {
     "objectID": "code-review/code-review-guidelines.html",
@@ -5381,5 +5381,26 @@
     "title": "Extending Data Wrangling Verbs",
     "section": "Using kable() for formatting in labs",
     "text": "Using kable() for formatting in labs\n\nWhen printing rows of a data frame or tibble\nneed to load the knitr package at the beginning of your file\nkable() outputs a markdown version of your data\nshould only be used to nicely format data you are printing\n\n\n\ne.g.\n\ncolleges_clean &lt;- colleges_clean |&gt; \n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n  \ncereal_clean |&gt; \n  group_by(REGION) |&gt; \n  slice_max(order_by = TUITION_DIFF, n = 5) |&gt; \n  kable()\n\n\nNOT\n\ncereal_clean &lt;- cereal_clean |&gt; \n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n  group_by(REGION) |&gt; \n  slice_max(order_by = TUITION_DIFF, n = 5) |&gt; \n  kable()"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html",
+    "href": "slides/week-3/week-3-dplyr-short.html",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "Today we will…\n\nWarm-up for dplyr practice activity (40-minutes)\nSet-up for the practice activity (5-minutes)\n\nReview pair programming norms\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html",
+    "href": "slides/week-1/week-1-intro-r-quarto.html",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "",
+    "text": "Today we will…\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#why-pair-programming",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#why-pair-programming",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Why pair programming?",
+    "text": "Why pair programming?"
   }
 ]

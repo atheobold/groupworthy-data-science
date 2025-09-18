@@ -250,6 +250,9 @@ What would have happened if everyone only thought about themselves?
 > The purpose of the study is to understand how an instructor's pedagogy impacts
 > how pairs of students collaborate during pair programming activities. 
 
+## Why pair programming?
+
+
 ## Consent to Participate
 
 ::: {.midi}

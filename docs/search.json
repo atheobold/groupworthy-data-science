@@ -3021,7 +3021,7 @@
     "href": "course-materials/calendar.html",
     "title": " Schedule",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the quarter. Note that this schedule will be updated as the quarter progresses, with all changes documented here.\n\n\n\n\n\nweek\n\n\ndate\n\n\ntopic\n\n\nprepare\n\n\nslides\n\n\nnotes\n\n\nactivity\n\n\nlab\n\n\nchallenge\n\n\nportfolio\n\n\n\n\n\n\n0\n\n\n16 September\n\n\nCourse Set-up\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to R & RStudio\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to Quarto\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n22 September\n\n\nLab 1 & Challenge 1 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n23 September\n\n\nData Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n25 September\n\n\nData Import & R Projects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n29 September\n\n\nLab 2 & Challenge 2 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n30 September\n\n\nData Wrangling with dplyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n2 October\n\n\nExtending Data Wrangling Verbs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n6 October\n\n\nLab 3 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n7 October\n\n\nData Joins & Transformations with tidyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n9 October\n\n\nWorking with Categorical Variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n13 October\n\n\nLab 4 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n14 October\n\n\nWorking with Strings\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n16 October\n\n\nWorking with Dates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n20 October\n\n\nLab 5 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n21 October\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n27 October\n\n\nMidterm Portfolio Due\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n28 October\n\n\nPortfolio Conferences\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n30 October\n\n\nVector Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n4 November\n\n\nData Frame Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n6 November\n\n\nWhat is tidy eval?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n10 November\n\n\nLab 7 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n13 November\n\n\nIntroduction to Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n17 November\n\n\nLab 8 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n18 November\n\n\nSimulating Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n20 November\n\n\nSimulations & Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n24 November\n\n\nLab 9 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n2 December\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n5 December\n\n\nFinal Portfolio Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n6 December\n\n\nFinal Portfolio Conferences"
+    "text": "This page contains an outline of the topics, content, and assignments for the quarter. Note that this schedule will be updated as the quarter progresses, with all changes documented here.\n\n\n\n\n\nweek\n\n\ndate\n\n\ntopic\n\n\nprepare\n\n\nslides\n\n\nnotes\n\n\nactivity\n\n\nlab\n\n\nchallenge\n\n\nportfolio\n\n\n\n\n\n\n0\n\n\n16 September\n\n\nCourse Set-up\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to R & RStudio\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to Quarto\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n22 September\n\n\nLab 1 & Challenge 1 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n23 September\n\n\nData Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n25 September\n\n\nData Import & R Projects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n29 September\n\n\nLab 2 & Challenge 2 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n30 September\n\n\nData Wrangling with dplyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n2 October\n\n\nExtending Data Wrangling Verbs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n6 October\n\n\nLab 3 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n7 October\n\n\nData Joins & Transformations with tidyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n9 October\n\n\nWorking with Categorical Variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n13 October\n\n\nLab 4 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n14 October\n\n\nWorking with Strings\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n16 October\n\n\nWorking with Dates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n20 October\n\n\nLab 5 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n21 October\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n27 October\n\n\nMidterm Portfolio Due\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n28 October\n\n\nPortfolio Conferences\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n30 October\n\n\nVector Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n4 November\n\n\nData Frame Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n6 November\n\n\nWhat is tidy eval?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n10 November\n\n\nLab 7 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n13 November\n\n\nIntroduction to Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n17 November\n\n\nLab 8 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n18 November\n\n\nSimulating Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n20 November\n\n\nSimulations & Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n24 November\n\n\nLab 9 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n2 December\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n5 December\n\n\nFinal Portfolio Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n6 December\n\n\nFinal Portfolio Conferences"
   },
   {
     "objectID": "code-review/code-review-guidelines.html",
@@ -5402,5 +5402,82 @@
     "title": "Welcome to STAT 331 / 531!",
     "section": "Why pair programming?",
     "text": "Why pair programming?"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html",
+    "href": "notes/03-day2-handout.html",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "",
+    "text": "In RStudio: Tools &gt; Global Options... &gt; Code &gt; check Use native pipe operator box\nKeyboard shortcut: ctrl/cmd + shift + m\n\n\nDo you want to filter a set of values of a variable?\n\ncolleges_clean |&gt; \n  filter(STABBR %in% c(\"CO\", \"MT\", \"ID\", \"UT\", \"WY\"))\n\n\n\n\nDo you want to select a range of columns?\n\ncolleges |&gt; \n  select(ADM_RATE:UGDS)\n\nDo you want to select columns that share a common word or symbol?\n\ncereal |&gt; \n  select(name, starts_with(\"TUITION\"))\n\nDo you want to select columns that share a common data type?\n\ncolleges_clean |&gt; \n  select(INSTNM, where(is.numeric))\n\n\n\n\n\nChange (bad) column names!\n\n\nIn the rename() function, what goes on the right hand side of the = sign? What goes on the left hand side?\n\nBonus: If you want to rename variables and then only select some variables, use select()!\n\ncereal |&gt; \n  select(name,\n         temp = type,\n         cons_rating = rating)"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#filter",
+    "href": "notes/03-day2-handout.html#filter",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "",
+    "text": "Do you want to filter a set of values of a variable?\n\ncolleges_clean |&gt; \n  filter(STABBR %in% c(\"CO\", \"MT\", \"ID\", \"UT\", \"WY\"))"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#select",
+    "href": "notes/03-day2-handout.html#select",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "",
+    "text": "Do you want to select a range of columns?\n\ncolleges |&gt; \n  select(ADM_RATE:UGDS)\n\nDo you want to select columns that share a common word or symbol?\n\ncereal |&gt; \n  select(name, starts_with(\"TUITION\"))\n\nDo you want to select columns that share a common data type?\n\ncolleges_clean |&gt; \n  select(INSTNM, where(is.numeric))"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#rename",
+    "href": "notes/03-day2-handout.html#rename",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "",
+    "text": "Change (bad) column names!\n\n\nIn the rename() function, what goes on the right hand side of the = sign? What goes on the left hand side?\n\nBonus: If you want to rename variables and then only select some variables, use select()!\n\ncereal |&gt; \n  select(name,\n         temp = type,\n         cons_rating = rating)"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#group_by-slice_max",
+    "href": "notes/03-day2-handout.html#group_by-slice_max",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "group_by() + slice_max()",
+    "text": "group_by() + slice_max()\n\nWhat happens when you use group_by() before slice_max()? What output will you get?"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#group_by-summarize",
+    "href": "notes/03-day2-handout.html#group_by-summarize",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "group_by() + summarize()",
+    "text": "group_by() + summarize()\n\nWhat groups are dropped after summarize() calculates the statistics?\nWhat groups are not dropped after summarize() calculates the statistics?\nHow can you make sure all the groups have been dropped after summarize() calculates the statistics?"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#if_else-case_when",
+    "href": "notes/03-day2-handout.html#if_else-case_when",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "if_else() & case_when()",
+    "text": "if_else() & case_when()\nif_else() is designed for binary options:\n\ncolleges_clean |&gt; \n  filter(CONTROL != 3) |&gt; \n  mutate(CONTROL = if_else(CONTROL == 1, \n                           \"Public\", \n                           \"Private, Non-Profit\")\n         )\n\ncase_when() is designed for three or more options:\n\ncolleges_clean |&gt; \n  mutate(TYPE = case_when(CONTROL == 1 ~ \"Public\", \n                          CONTROL == 2 ~ \"Private, Non-Profit\", \n                          CONTROL == 3 ~ \"Private, For Profit\")\n         )"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#across",
+    "href": "notes/03-day2-handout.html#across",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "across()",
+    "text": "across()\n\nPerforming the same function across() multiple columns\n\n\ncolleges_clean |&gt; \n  group_by(REGION) |&gt; \n  summarize(\n    across(\n      .cols = c(ADM_RATE, SAT_AVG, TUITIONFEE_IN, TUITIONFEE_OUT, UGDS), \n      .fns = ~ mean(.x)\n      )\n    )\n\n\nHow do columns need to be input into the across() function?\nHow do functions need to be input into the across() function?\nWhat does the .x inside the function represent?"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#if_any-if_all",
+    "href": "notes/03-day2-handout.html#if_any-if_all",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "if_any() & if_all()",
+    "text": "if_any() & if_all()\nRemember, you got warnings in PA3 when converting some columns to numeric? If you look at the original data, you can see this is because missing values were indicated with the string \"NULL\".\nWe could drop these rows before converting the columns to numeric if desired, using if_any():\n\ncolleges_clean &lt;- colleges_clean |&gt; \n  filter(\n    !if_any(.cols = ADM_RATE:TUITIONFEE_OUT, \n            .fns = ~ .x == \"NULL\")\n    ) \n\n\nHow would you describe what ~ .x == \"NULL\" is doing?\nWhat does the ! in front of the if_any() do?"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#saving-objects",
+    "href": "notes/03-day2-handout.html#saving-objects",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "Saving Objects",
+    "text": "Saving Objects\nSometimes you just want to show a table and there is no need to save an object:\n\ncereal |&gt; \n  filter(type == \"cold\") |&gt; \n  mutate(potass_per_cup = potass / cups) |&gt; \n  group_by(manuf) |&gt; \n  summarise(mean_potass_per_cup = mean(potass_per_cup))\n\nOther times, you will want to save your wrangled data for later:\n\ncereal_summary &lt;- cereal |&gt; \n  filter(type == \"cold\") |&gt; \n  mutate(potass_per_cup = potass / cups) |&gt; \n  group_by(manuf) |&gt; \n  summarise(mean_potass_per_cup = mean(potass_per_cup))"
+  },
+  {
+    "objectID": "notes/03-day2-handout.html#kable",
+    "href": "notes/03-day2-handout.html#kable",
+    "title": "Week 3 Day 2: Lab 3 Warm-up",
+    "section": "kable()",
+    "text": "kable()\n\nlibrary(knitr)\n\n\ncolleges_clean &lt;- colleges_clean |&gt; \n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n  \ncereal_clean |&gt; \n  group_by(REGION) |&gt; \n  slice_max(order_by = TUITION_DIFF, n = 5) |&gt; \n  kable()"
   }
 ]

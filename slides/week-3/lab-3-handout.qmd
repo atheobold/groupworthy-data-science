@@ -1,9 +1,5 @@
 ---
-title: "Lab 3 Warm-up"
-format: html
-embed-resources: true
-execute: 
-  eval: false
+title: "Week 3 Day 2: Lab 3 Warm-up"
 ---
 
 ```{r}
@@ -12,59 +8,17 @@ execute:
 #| echo: false
 
 library(tidyverse)
-library(liver)
 ```
 
-## Cereal Data
+# Using the Native Pipe (`|>`)
 
-This cereal dataset is part of the `liver` package.
+In RStudio: `Tools` \> `Global Options...` \> `Code` \> check `Use native pipe operator` box 
 
-```{r}
-data(cereal)
-head(cereal)
-```
-
-# Tuesday
-
-## Wrangle / Manipulate / Tidy Data
-
-For the following, write a game plan or describe in words steps you would take from `cereal` data to get the output.
-
-1.  What is the ratio of fiber to sugars in each cereal?
-
-2.  Create a new dataset that only has Nabisco cereals and displays the protein, fat, and sodium in each.
-
-3.  Create a table that shows, for each manufacturer the average and standard deviation of the grams of sugar in their cereals, along with how many cereals are in the data for each manufacturer. Order the table from most sugar (on average) to least.
-
-## `dplyr` verbs
-
--   `filter()`\
--   `arrange()`
--   `select()`
--   `mutate()`
--   `summarize()`
--   `group_by()`
-
-## pipe operator
-
-Change: `Tools` \> `Global Options...` \> `Code` \> check `Use native pipe operator` box to use keyboard shortcut: + `ctrl/cmd` + `shift` + `m`
-
-```{r}
-head(cereal)
-```
-
-```{r}
-cereal |> 
-  head()
-```
+Keyboard shortcut: `ctrl/cmd` + `shift` + `m`
 
 ## `filter()`
 
-```{r}
-cereal |> 
-  filter(sugars < 5,
-         type == "hot")
-```
+Do you want to filter a set of values of a variable?
 
 ```{r}
 cereal |> 
@@ -72,57 +26,11 @@ cereal |>
                      "Raisin Bran", "Cracklin' Oat Bran"))
 ```
 
-```{r}
-cereal |> 
-  slice_head(n = 5)
-```
-
-## `arrange()`
-
-```{r}
-cereal |> 
-  arrange(sodium)
-```
-
-```{r}
-cereal |> 
-  arrange(sodium, sugars)
-```
-
-## `slice_min()` / `slice_max()`
-
-```{r}
-cereal |> 
-  slice_max(order_by = sugars, n = 3)
-```
-
-```{r}
-cereal |> 
-  slice_max(order_by = sugars, n = 3, 
-            with_ties = FALSE)
-```
-
 ## `select()`
 
 ```{r}
 cereal |> 
-  select(name, manuf, calories, cups)
-```
-
-```{r}
-cereal |> 
   select(name:calories)
-```
-
-```{r}
-cereal |> 
-  select(-rating)
-```
-
-```{r}
-cereal |> 
-  select(name, rating, manuf, type, calories, cups, weight,
-         everything())
 ```
 
 ```{r}
@@ -135,14 +43,14 @@ cereal |>
   select(name, where(is.numeric))
 ```
 
-If you just want to rename a variable, use `rename()`
+## `rename()`
 
-```{r}
-cereal |> 
-  rename(temp = type)
-```
+> Change (bad) column names!
 
-If you want to rename variables and then only select some variables, use `select()`
+1. In the `rename()` function, what goes on the right hand side of the `=` sign? What goes on the left hand side?
+
+
+**Bonus:** If you want to rename variables **and then** only select some variables, use `select()`!
 
 ```{r}
 cereal |> 
@@ -151,209 +59,72 @@ cereal |>
          cons_rating = rating)
 ```
 
-## `mutate()`
+# `count()`
 
-```{r}
-cereal |> 
-  mutate(potass_per_cup = potass / cups)
-```
+> Obtain frequency tables of the number of observations in each level of a categorical variable
 
-```{r}
-cereal |> 
-  mutate(shelf = as.factor(shelf))
-```
+2. You could have obtained frequencies of observations by using `group_by()` +
+`summarize()`. Why is `count()` a better choice?
 
-## `summarize()`
+## `group_by()` + `slice_max()`
 
-```{r}
-cereal |> 
-  summarise(mean_fiber = mean(fiber))
-```
+3. What happens when you use `group_by()` before `slice_max()`? What output will you get?
 
-```{r}
-cereal |> 
-  summarise(mean_fiber = mean(fiber),
-          num_cereals = n(),
-          mean_sugar = mean(sugars))
-```
+## `group_by()` + `summarize()`
 
-## `group_by()`
+4. What groups are dropped after `summarize()` calculates the statistics? 
 
-```{r}
-cereal |> 
-  group_by(manuf)
-```
+5. What groups **are not** dropped after `summarize()` calculates the statistics? 
 
-```{r}
-cereal |> 
-  group_by(manuf) |> 
-  summarise(mean_sugar = mean(sugars))
-```
-
-```{r}
-cereal |> 
-  group_by(manuf) |> 
-  mutate(mean_sugar = mean(sugars))
-```
-
-### Quick Check
-
-How many rows and columns will each of these data frames have? (Try to figure this out before running the code)
-
-```{r}
-cereal |> 
-  group_by(manuf) |> 
-  mutate(fiber_carb_rat = mean(fiber / carbo))
-```
-
-```{r}
-cereal |> 
-  group_by(manuf) |> 
-  summarize(fiber_carb_rat = mean(fiber / carbo))
-```
-
-`ungroup()`
-
-```{r}
-cereal |> 
-  group_by(manuf) |> 
-  summarize(fiber_carb_rat = mean(fiber / carbo)) |> 
-  ungroup()
-```
-
-## Glue it all together
-
-Sometimes you just want to show a table
-
-```{r}
-cereal |> 
-  filter(type == "cold") |> 
-  mutate(potass_per_cup = potass / cups) |> 
-  group_by(manuf) |> 
-  summarise(mean_potass_per_cup = mean(potass_per_cup))
-```
-
-Other times, you will want to save your wrangled data for later.
-
-```{r}
-cereal_summary <- cereal |> 
-  filter(type == "cold") |> 
-  mutate(potass_per_cup = potass / cups) |> 
-  group_by(manuf) |> 
-  summarise(mean_potass_per_cup = mean(potass_per_cup))
-```
-
-### Now you!
-
-Implement the `dplyr` pipelines to address the three questions from the beginning of class
-
-1.  What is the ratio of fiber to sugars in each cereal?
-
-```{r}
-
-```
-
-2.  Create a new dataset that only has Nabisco cereals and displays the protein, fat, and sodium in each.
-
-```{r}
-
-```
-
-3.  Create a table that shows, for each manufacturer the average and standard deviation of the grams of sugar in their cereals, along with how many cereals are in the data for each manufacturer. Order the table from most sugar (on average) to least.
-
-```{r}
-
-```
-
-# Thursday
-
-## `pull()`
-
-```{r}
-cereal |> 
-  filter(type == "cold") |> 
-  pull(potass) |> 
-  mean(na.rm = T)
-```
-
-Using `pull()` would fix the issue with Check-In 3.1 Q8:
-
-```{r}
-penguins |> 
-  filter(species == "Adelie") |> 
-  pull(body_mass_g) |> 
-  mean(na.rm = T)
-```
-
-## Frequency tables
-
-```{r}
-cereal |> 
-  group_by(manuf) |> 
-  summarize(n = n())
-```
-
-```{r}
-cereal |> 
-  group_by(manuf) |> 
-  count()
-```
+6. How can you make sure all the groups have been dropped after `summarize()` calculates the statistics? 
 
 ## `if_else()` & `case_when()`
 
+`if_else()` is designed for **binary** options:
+
 ```{r}
-cereal |> 
-  mutate(po_category = if_else(potass <= 100, 
-                               "low", 
-                               "high"),
-         .after = potass)
+colleges_clean |> 
+  filter(CONTROL != 3) |> 
+  mutate(CONTROL = if_else(CONTROL == 1, 
+                           "Public", 
+                           "Private, Non-Profit")
+         )
 ```
 
-```{r}
-cereal |> 
-  mutate(sugar_level = case_when(sugars == -1 ~ NA_character_,
-                                 sugars < 2   ~ "low",
-                                 sugars < 5   ~ "medium",
-                                 sugars < 10  ~ "high",
-                                 TRUE         ~ "very high")) |> 
-  select(name, sugars, sugar_level)
-```
-
-## More `slice()`
-
-**For each manufacturer,** find the cereal with the most fiber:
+`case_when()` is designed for **three or more** options:
 
 ```{r}
-cereal |> 
-  group_by(manuf) |> 
-  slice_max(order_by = fiber)
-```
-
-Find the 3 cereals with the highest fiber and potassium.
-
-```{r}
-cereal |> 
-  slice_max(order_by = data.frame(fiber, potass),
-            n = 3)
+colleges_clean |> 
+  mutate(TYPE = case_when(CONTROL == 1 ~ "Public", 
+                          CONTROL == 2 ~ "Private, Non-Profit", 
+                          CONTROL == 3 ~ "Private, For Profit")
+         )
 ```
 
 ## `across()`
 
-```{r}
-cereal |> 
-  group_by(type) |> 
-  summarise(across(.cols = calories:potass, 
-                   .fns = ~ mean(.x, na.rm = T)))
-```
+> Performing the same function `across()` multiple columns 
 
 ```{r}
-cereal |> 
-  group_by(type) |> 
-  summarise(across(.cols = where(is.numeric),
-                   .fns = ~ mean(.x, na.rm = T)))
+colleges_clean |> 
+  group_by(REGION) |> 
+  summarize(
+    across(
+      .cols = c(ADM_RATE, SAT_AVG, TUITIONFEE_IN, TUITIONFEE_OUT, UGDS), 
+      .fns = ~ mean(.x)
+      )
+    )
 ```
 
-## `if_any()` / `if_all()`
+7. How do columns need to be input into the `across()` function?
+
+8. How do functions need to be input into the `across()` function?
+
+9. What does the `.x` inside the function represent?
+
+## `across()` friends
+
+`if_any()` / `if_all()`
 
 ```{r}
 colleges <- read_csv("https://www.dropbox.com/s/bt5hvctdevhbq6j/colleges.csv?dl=1")
@@ -377,12 +148,26 @@ colleges <- read_csv("https://www.dropbox.com/s/bt5hvctdevhbq6j/colleges.csv?dl=
                      na = c("", "NA"))
 ```
 
-## Practice!
+## Saving Objects
 
-How would you make this plot from the diamonds dataset in ggplot2?
+Sometimes you just want to show a table and there is no need to save an object:
 
 ```{r}
+cereal |> 
+  filter(type == "cold") |> 
+  mutate(potass_per_cup = potass / cups) |> 
+  group_by(manuf) |> 
+  summarise(mean_potass_per_cup = mean(potass_per_cup))
+```
 
+Other times, you will want to save your wrangled data for later:
+
+```{r}
+cereal_summary <- cereal |> 
+  filter(type == "cold") |> 
+  mutate(potass_per_cup = potass / cups) |> 
+  group_by(manuf) |> 
+  summarise(mean_potass_per_cup = mean(potass_per_cup))
 ```
 
 ## `kable()`

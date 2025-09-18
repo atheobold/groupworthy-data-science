@@ -1,12 +1,13 @@
 ---
-title: "Mathlink Activity"
+title: "Week 3 Day 1: Mathlink Activity"
 ---
 
 # Piping
 
-You can choose whether to: 
+You can choose whether to:
 
-declare your data as the first argument of the function 
+declare your data as the first argument of the function
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -20,6 +21,7 @@ filter(.data = colleges, REGION == 5) |>
 ***or***
 
 pipe your data into the first argument of the function
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -33,36 +35,46 @@ colleges |>
 
 # `filter`
 
-**take your data frame and then filter it** (only include rows where) 
+> include **rows** based on one or more logical statements 
 
-1. **the red column only includes observations with three sides** (triangles)
+1. What symbol do you use to join two logical statements with an "or"?
 
-[OR]{.underline} 
+2. What symbol do you use to join two logical statements with an "and"?
 
-2. **the green column only includes observations with more than four sides** (pentagons, hexagons)
 
 # `select`
 
-Step 1:
+> include **columns** based on one or more logical statements
 
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
+3. What symbol do you use to **remove** a column from the dataset?
 
-data |>
-  select(red, 
-         yellow, 
-         green)
-```
 
-Step 2: 
+# `mutate()`
 
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
+> create new columns or change existing columns
 
-data |>
-  select(-green)
-```
+4. What are the three arguments of the `if_else()` function?
+
+# `arrange()`
+
+> Organize the rows of the data in order of a particular variable.
+
+5. By default what order does the `arrange()` function put values in?
+
+6. What can you add **inside** the `arrange()` function to change the default order?
+
+# `arrange()` friends
+
+7. What does the `n` argument of `slice_max()` and `slice_min()` do?
+
+# `summarize`
+
+> compute a table of summaries
+
+8. What are common summary functions you might want to use?
+
+# `group_by`
+
+> put rows into groups based on values in column(s)
+
+9. What happens when you group by **two** variables?

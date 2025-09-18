@@ -1,5 +1,6 @@
 ---
 title: "Week 3 Day 2: Lab 3 Warm-up"
+format: docx
 ---
 
 ```{r}

@@ -1,5 +1,6 @@
 ---
 title: "Week 3 Day 1: Mathlink Activity"
+format: docx
 ---
 
 # Piping
@@ -35,12 +36,22 @@ colleges |>
 
 # `filter`
 
+<<<<<<< HEAD
 > include **rows** based on one or more logical statements 
 
 1. What symbol do you use to join two logical statements with an "or"?
 
 2. What symbol do you use to join two logical statements with an "and"?
 
+=======
+**take your data frame and then filter it** (only include rows where)
+
+1.  **the red column only includes observations with three sides** (triangles)
+
+[OR]{.underline}
+
+2.  **the green column only includes observations with more than four sides** (pentagons, hexagons)
+>>>>>>> d2388b888e984f32fb7695f67e37a226f1449a3a
 
 # `select`
 
@@ -49,10 +60,15 @@ colleges |>
 3. What symbol do you use to **remove** a column from the dataset?
 
 
+<<<<<<< HEAD
 # `mutate()`
+=======
+Step 2:
+>>>>>>> d2388b888e984f32fb7695f67e37a226f1449a3a
 
 > create new columns or change existing columns
 
+<<<<<<< HEAD
 4. What are the three arguments of the `if_else()` function?
 
 # `arrange()`
@@ -78,3 +94,8 @@ colleges |>
 > put rows into groups based on values in column(s)
 
 9. What happens when you group by **two** variables?
+=======
+data |>
+  select(-green)
+```
+>>>>>>> d2388b888e984f32fb7695f67e37a226f1449a3a

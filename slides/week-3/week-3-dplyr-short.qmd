@@ -456,22 +456,6 @@ data |>
     )
 ```
 
-## A Related Filter Function
-
-</br>
-</br>
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-data |>
-  slice_max(purple)
-```
-
-**How many columns will this data frame have?**
-
 ## With Your Data Frame
 
 </br>

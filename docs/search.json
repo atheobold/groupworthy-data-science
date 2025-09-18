@@ -2048,7 +2048,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#thursday-september-18",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Thursday, September 18",
-    "text": "Thursday, September 18\nToday we will…\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
+    "text": "Thursday, September 18\nToday we will…\n\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#hi-im-dr.-theobold",
@@ -5248,5 +5248,19 @@
     "title": "Welcome to STAT 331 / 531!",
     "section": "Execution Option Completion in Quarto",
     "text": "Execution Option Completion in Quarto"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#global-execution-options",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#global-execution-options",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Global Execution Options",
+    "text": "Global Execution Options\nSome R code options can also be included in the front matter (YAML) which would be applied globally to the entire document.\ntitle: \"Lesson 1\"\nformat: html\nexecute: \n  echo: true\n  warning: false"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html#global-execution-options-1",
+    "href": "slides/week-1/week-1-intro-r-quarto.html#global-execution-options-1",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "Global Execution Options",
+    "text": "Global Execution Options\n\n\n\n\n\n\n\n\nTip\n\n\nIn general, I would encourage you to always set the following global execution options:\n\necho: true\nwarning: false"
   }
 ]

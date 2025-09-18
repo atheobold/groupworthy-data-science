@@ -207,6 +207,7 @@
 <section id="thursday-september-18" class="slide level2">
 <h2>Thursday, September 18</h2>
 <p>Today we will…</p>
+<div class="midi">
 <ul>
 <li>Introduce STAT 331 (15-minutes)
 <ul>
@@ -222,6 +223,7 @@
 <li>Set-up Lab 1 (15-minutes)</li>
 <li>Lab 1 Work Session</li>
 </ul>
+</div>
 </section></section>
 <section>
 <section id="introductions" class="title-slide slide level1 center">
@@ -231,7 +233,7 @@
 <section id="hi-im-dr.-theobold" class="slide level2">
 <h2>Hi, I’m Dr.&nbsp;Theobold!</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:55%;">
 <div class="midi">
 <ul>
 <li><p>I am originally from Colorado, but went to grad school in Montana.</p></li>
@@ -240,12 +242,12 @@
 </div>
 </div><div class="column" style="width:5%;">
 
-</div><div class="column" style="width:45%;">
+</div><div class="column" style="width:40%;">
 <p><img data-src="images/yoesmite.jpeg" style="width:85.0%" alt="A picture of my wife and I backpacking in Yosemite. We are standing in front of a large blue lake (called Thousand Islands Lake), with some snow covered, scraggly peaks in the background."></p>
 </div></div>
 <div class="fragment">
 <div class="columns">
-<div class="column" style="width:50%;">
+<div class="column" style="width:55%;">
 <div class="midi">
 <ul>
 <li><p>I love cats!</p></li>
@@ -255,8 +257,8 @@
 </div>
 </div><div class="column" style="width:5%;">
 
-</div><div class="column" style="width:45%;">
-<p><img data-src="images/kitties.jpg" style="width:85.0%" alt="A picture of my two kitties, snuggling on the couch. Both kitties are facing each other, with their noses touching."></p>
+</div><div class="column" style="width:40%;">
+<p><img data-src="images/kitties.jpg" style="width:75.0%" alt="A picture of my two kitties, snuggling on the couch. Both kitties are facing each other, with their noses touching."></p>
 </div></div>
 </div>
 </section>
@@ -558,7 +560,7 @@
 <h2>What is Quarto?</h2>
 <p>Quarto <strong>unifies</strong> and <strong>extends</strong> the RMarkdown ecosystem.</p>
 
-<img data-src="images/rmd_ecosystem.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%" alt="The image displays a collection of hexagonal logos representing different R packages that are part of the R Markdown ecosystem. The logos from top to bottom, left to right, are: Xaringan, Distill, Blogdown, RMarkdown, Bookdown, Flexdashboard, Knitr, Rticles, RSConnect. These logos are arranged in a hexagonal shape, visually emphasizing the interconnected nature of these tools in the R Markdown ecosystem."><p>Quarto files have the <strong>.qmd</strong> extension.</p>
+<img data-src="images/rmd-ecosystem.png" class="quarto-figure quarto-figure-center r-stretch" style="width:50.0%" alt="The image displays a collection of hexagonal logos representing different R packages that are part of the R Markdown ecosystem. The logos from top to bottom, left to right, are: Xaringan, Distill, Blogdown, RMarkdown, Bookdown, Flexdashboard, Knitr, Rticles, RSConnect. These logos are arranged in a hexagonal shape, visually emphasizing the interconnected nature of these tools in the R Markdown ecosystem."><p>Quarto files have the <strong>.qmd</strong> extension.</p>
 </section>
 <section id="highlights-of-quarto" class="slide level2">
 <h2>Highlights of Quarto</h2>
@@ -601,7 +603,7 @@
 <section id="quarto-components" class="slide level2">
 <h2>Quarto Components</h2>
 
-<img data-src="images/quarto_sections.jpeg" style="width:80.0%" alt="The image shows a split-screen view of a Quarto document editor and the rendered output in a browser-like preview. On the left side, the code editor is displayed, and on the right side, the rendered HTML output of the document. On the left, the top section contains the front matter, which includes metadata about the document such as the title ('Hello, Quarto'), the format (HTML), and the editor (set to visual mode). Below this, there is an R code chunk where R packages are loaded (specifically, 'tidyverse' and 'palmerpenguins'). This section is marked with `{r`} at the beginning of the code chunk, and the chunk is labeled 'load-packages.' Some options, like 'include: false', are present to prevent this code from appearing in the final rendered output. Following the code is Markdown content, which includes text descriptions and headings such as 'Meet Quarto' and 'Meet the Penguins'. There are also inline code elements and hyperlinks, like a link to the Palmer Penguins dataset. On the right side of the image, the rendered output is displayed, showing formatted text and visuals. The title 'Hello, Quarto' is shown as a heading, followed by a description of Quarto and a section discussing penguins. A link to the Palmer Penguins dataset is included, along with a colorful illustration of three penguins representing different species (Chinstrap, Gentoo, and Adélie). Below this text, a plot is displayed, showing the relationship between flipper length and bill length for these penguin species. This image highlights how Quarto documents combine code, Markdown, and front matter to create a dynamic and executable report." class="r-stretch"><div class="fragment">
+<img data-src="images/quarto-sections.jpeg" style="width:80.0%" alt="The image shows a split-screen view of a Quarto document editor and the rendered output in a browser-like preview. On the left side, the code editor is displayed, and on the right side, the rendered HTML output of the document. On the left, the top section contains the front matter, which includes metadata about the document such as the title ('Hello, Quarto'), the format (HTML), and the editor (set to visual mode). Below this, there is an R code chunk where R packages are loaded (specifically, 'tidyverse' and 'palmerpenguins'). This section is marked with `{r`} at the beginning of the code chunk, and the chunk is labeled 'load-packages.' Some options, like 'include: false', are present to prevent this code from appearing in the final rendered output. Following the code is Markdown content, which includes text descriptions and headings such as 'Meet Quarto' and 'Meet the Penguins'. There are also inline code elements and hyperlinks, like a link to the Palmer Penguins dataset. On the right side of the image, the rendered output is displayed, showing formatted text and visuals. The title 'Hello, Quarto' is shown as a heading, followed by a description of Quarto and a section discussing penguins. A link to the Palmer Penguins dataset is included, along with a colorful illustration of three penguins representing different species (Chinstrap, Gentoo, and Adélie). Below this text, a plot is displayed, showing the relationship between flipper length and bill length for these penguin species. This image highlights how Quarto documents combine code, Markdown, and front matter to create a dynamic and executable report." class="r-stretch"><div class="fragment">
 <p><strong>How does Quarto know that a section of text should be interpreted as R code?</strong></p>
 </div>
 </section>
@@ -619,11 +621,11 @@
 <section id="execution-option-completion-in-quarto" class="slide level2">
 <h2>Execution Option Completion in Quarto</h2>
 <center>
-<img data-src="images/quarto_yaml_completion.png" alt="The image demonstrates three different aspects of YAML code completion and diagnostics in Quarto. At the top, under the heading 'YAML completion for fields,' there is a code editor where the user is typing the beginning of an R chunk ('{r'). As they begin typing '#| e', a code completion menu appears suggesting YAML fields such as 'eval', 'echo', 'external', and 'error', among others. The highlighted field is `eval`, and a description in a yellow box appears, explaining that this option evaluates the code chunk, or, if set to 'false', it only echoes the code into the output. In the middle, under the heading 'YAML completion for options,' the code editor shows the 'eval' field typed out as '#| eval:'. As the user begins entering a value, a dropdown suggests the options 'true' and 'false' for the field, representing valid boolean options. At the bottom, under the heading 'YAML diagnostics for errors,' there is an example of an incorrect entry. The user has written '#| eval: FALSE' (with uppercase 'FALSE'), which leads to a red error indicator in the editor. A tooltip appears, pointing out the mistake and suggesting that the value should be lowercase 'false' instead. The image showcases how Quarto assists users with code completion, option suggestions, and real-time error diagnostics in the YAML section of code chunks.">
+<img data-src="images/quarto-yaml-completion.png" alt="The image demonstrates three different aspects of YAML code completion and diagnostics in Quarto. At the top, under the heading 'YAML completion for fields,' there is a code editor where the user is typing the beginning of an R chunk ('{r'). As they begin typing '#| e', a code completion menu appears suggesting YAML fields such as 'eval', 'echo', 'external', and 'error', among others. The highlighted field is `eval`, and a description in a yellow box appears, explaining that this option evaluates the code chunk, or, if set to 'false', it only echoes the code into the output. In the middle, under the heading 'YAML completion for options,' the code editor shows the 'eval' field typed out as '#| eval:'. As the user begins entering a value, a dropdown suggests the options 'true' and 'false' for the field, representing valid boolean options. At the bottom, under the heading 'YAML diagnostics for errors,' there is an example of an incorrect entry. The user has written '#| eval: FALSE' (with uppercase 'FALSE'), which leads to a red error indicator in the editor. A tooltip appears, pointing out the mistake and suggesting that the value should be lowercase 'false' instead. The image showcases how Quarto assists users with code completion, option suggestions, and real-time error diagnostics in the YAML section of code chunks.">
 </center>
 </section>
-<section id="global-code-chunk-options" class="slide level2">
-<h2>Global Code Chunk Options</h2>
+<section id="global-execution-options" class="slide level2">
+<h2>Global Execution Options</h2>
 <p>Some R code options can also be included in the front matter (YAML) which would be applied globally to the entire document.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Lesson 1"</span></span>
 <span id="cb4-2"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
@@ -631,8 +633,8 @@
 <span id="cb4-4"><a></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
 <span id="cb4-5"><a></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="global-code-chunk-options-1" class="slide level2">
-<h2>Global Code Chunk Options</h2>
+<section id="global-execution-options-1" class="slide level2">
+<h2>Global Execution Options</h2>
 
 <img data-src="images/execution-options.png" alt="The image displays a table with two columns: 'Option' and 'Description.' It lists various options that can be used in code chunks within Quarto documents, along with their descriptions.The first option is 'eval,' which evaluates the code chunk. If 'false,' it only echoes the code into the output without executing it. The second option is 'echo,' which includes the source code in the output. Next is 'output,' which includes the results of executing the code in the output. The possible values for this option are 'true,' 'false,' or 'asis.' If set to 'asis,' the output will be in raw markdown and won't have any of Quarto's standard enclosing markdown. The 'warning' option includes warnings in the output. Lastly, the 'error' option includes errors in the output. It notes that enabling this option means errors while executing the code won't halt the document's processing." class="r-stretch"><div class="small">
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -644,7 +646,7 @@
 <p><strong>Tip</strong></p>
 </div>
 <div class="callout-content">
-<p>In general, I would encourage you to <strong>always</strong> set the following global options:</p>
+<p>In general, I would encourage you to <strong>always</strong> set the following global execution options:</p>
 <ul>
 <li><code>echo: true</code></li>
 <li><code>warning: false</code></li>
@@ -673,7 +675,7 @@
 <p>To take your <em>.qmd</em> file and make it look pretty, you have to <strong>render</strong> it.</p>
 <center>
 <p><img data-src="images/render.png" alt="The image shows the toolbar from an RStudio or Quarto editor interface. At the top, it displays the filename 'hello.qmd' (indicating a Quarto Markdown file). There are several options visible in the toolbar, and a specific button labeled 'Render' is highlighted with a pink outline. This 'Render' button is used to generate the final output (such as HTML, PDF, or other formats) based on the Quarto document. Additionally, there is an option for 'Render on Save,' which allows automatic rendering whenever the document is saved. The toolbar also includes options for adjusting the view between 'Source' and 'Visual' modes, formatting tools, inserting content, and running code chunks. The image emphasizes the 'Render' function, which is essential for compiling and viewing the Quarto document's output."></p>
-<p><img data-src="images/render_on_save.png" alt="The image shows a toolbar from an RStudio or Quarto editor interface, similar to the previous one. At the top, the filename 'hello.qmd' is displayed, indicating the file being worked on is a Quarto Markdown document. In this image, the 'Render on Save' option is highlighted with a pink outline, indicating that it is selected or being emphasized. This feature automatically triggers rendering of the document every time it is saved, which is useful for seeing updates to the output in real-time without manually pressing the 'Render' button. In addition to the 'Render on Save' option, the toolbar also includes the 'Render' button, formatting tools, and options for switching between 'Source' and 'Visual' editing modes. Other options for running code chunks, adjusting formatting, and inserting elements are also visible, but the main focus here is on the 'Render on Save' functionality."></p>
+<p><img data-src="images/render-on-save.png" alt="The image shows a toolbar from an RStudio or Quarto editor interface, similar to the previous one. At the top, the filename 'hello.qmd' is displayed, indicating the file being worked on is a Quarto Markdown document. In this image, the 'Render on Save' option is highlighted with a pink outline, indicating that it is selected or being emphasized. This feature automatically triggers rendering of the document every time it is saved, which is useful for seeing updates to the output in real-time without manually pressing the 'Render' button. In addition to the 'Render on Save' option, the toolbar also includes the 'Render' button, formatting tools, and options for switching between 'Source' and 'Visual' editing modes. Other options for running code chunks, adjusting formatting, and inserting elements are also visible, but the main focus here is on the 'Render on Save' functionality."></p>
 </center>
 <!-- ## Rendering your Quarto Document -->
 <!-- Quarto CLI (command line interface) orchestrates each step of rendering: -->

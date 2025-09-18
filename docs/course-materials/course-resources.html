@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.22">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 3 Day 2: Lab 3 Warm-up – Introduction to Statistical Computing in R</title>
+<title>R Resources – Introduction to Statistical Computing in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -67,14 +32,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/stat-331-hex.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9d3871c3a33628a85db1522934fdc5ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-be11573b6374e633292ee320d3d6b571.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,6 +79,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Introduction to Statistical Computing in R</span>
     </a>
@@ -136,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../course-materials/course_resources.qmd"> 
+    <a class="nav-link active" href="../course-materials/course-resources.html" aria-current="page"> 
 <span class="menu-text">Resources</span></a>
   </li>  
 </ul>
@@ -155,34 +123,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#using-the-native-pipe" id="toc-using-the-native-pipe" class="nav-link active" data-scroll-target="#using-the-native-pipe">Using the Native Pipe (<code>|&gt;</code>)</a>
-  <ul class="collapse">
-  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><code>filter()</code></a></li>
-  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><code>select()</code></a></li>
-  <li><a href="#rename" id="toc-rename" class="nav-link" data-scroll-target="#rename"><code>rename()</code></a></li>
-  </ul></li>
-  <li><a href="#count" id="toc-count" class="nav-link" data-scroll-target="#count"><code>count()</code></a>
-  <ul class="collapse">
-  <li><a href="#group_by-slice_max" id="toc-group_by-slice_max" class="nav-link" data-scroll-target="#group_by-slice_max"><code>group_by()</code> + <code>slice_max()</code></a></li>
-  <li><a href="#group_by-summarize" id="toc-group_by-summarize" class="nav-link" data-scroll-target="#group_by-summarize"><code>group_by()</code> + <code>summarize()</code></a></li>
-  <li><a href="#if_else-case_when" id="toc-if_else-case_when" class="nav-link" data-scroll-target="#if_else-case_when"><code>if_else()</code> &amp; <code>case_when()</code></a></li>
-  <li><a href="#across" id="toc-across" class="nav-link" data-scroll-target="#across"><code>across()</code></a></li>
-  </ul></li>
-  <li><a href="#across-friends" id="toc-across-friends" class="nav-link" data-scroll-target="#across-friends"><code>across()</code> friends</a>
-  <ul class="collapse">
-  <li><a href="#if_any-if_all" id="toc-if_any-if_all" class="nav-link" data-scroll-target="#if_any-if_all"><code>if_any()</code> &amp; <code>if_all()</code></a></li>
-  <li><a href="#saving-objects" id="toc-saving-objects" class="nav-link" data-scroll-target="#saving-objects">Saving Objects</a></li>
-  <li><a href="#kable" id="toc-kable" class="nav-link" data-scroll-target="#kable"><code>kable()</code></a></li>
-  </ul></li>
+  <li><a href="#weekly-r-cheatsheets" id="toc-weekly-r-cheatsheets" class="nav-link active" data-scroll-target="#weekly-r-cheatsheets">Weekly R Cheatsheets</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="03-day2-handout.docx"><i class="bi bi-file-word"></i>MS Word</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 3 Day 2: Lab 3 Warm-up</h1>
+<h1 class="title">R Resources</h1>
 </div>
 
 
@@ -199,171 +149,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="using-the-native-pipe" class="level1">
-<h1>Using the Native Pipe (<code>|&gt;</code>)</h1>
-<p>In RStudio: <code>Tools</code> &gt; <code>Global Options...</code> &gt; <code>Code</code> &gt; check <code>Use native pipe operator</code> box</p>
-<p>Keyboard shortcut: <code>ctrl/cmd</code> + <code>shift</code> + <code>m</code></p>
-<section id="filter" class="level2">
-<h2 class="anchored" data-anchor-id="filter"><code>filter()</code></h2>
-<p>Do you want to filter a set of values of a variable?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(STABBR <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"CO"</span>, <span class="st">"MT"</span>, <span class="st">"ID"</span>, <span class="st">"UT"</span>, <span class="st">"WY"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-</section>
-<section id="select" class="level2">
-<h2 class="anchored" data-anchor-id="select"><code>select()</code></h2>
-<p>Do you want to select a range of columns?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(ADM_RATE<span class="sc">:</span>UGDS)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
-<p>Do you want to select columns that share a common word or symbol?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, <span class="fu">starts_with</span>(<span class="st">"TUITION"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Do you want to select columns that share a common data type?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(INSTNM, <span class="fu">where</span>(is.numeric))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-body-container callout-body">
+<p>Click on the link to access the R Cheatsheet related to a specific topic / package!</p>
 </div>
-</section>
-<section id="rename" class="level2">
-<h2 class="anchored" data-anchor-id="rename"><code>rename()</code></h2>
-<blockquote class="blockquote">
-<p>Change (bad) column names!</p>
-</blockquote>
-<ol type="1">
-<li>In the <code>rename()</code> function, what goes on the right hand side of the <code>=</code> sign? What goes on the left hand side?</li>
-</ol>
-<p><strong>Bonus:</strong> If you want to rename variables <strong>and then</strong> only select some variables, use <code>select()</code>!</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name,</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">temp =</span> type,</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">cons_rating =</span> rating)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-</section>
-<section id="count" class="level1">
-<h1><code>count()</code></h1>
-<blockquote class="blockquote">
-<p>Obtain frequency tables of the number of observations in each level of a categorical variable</p>
-</blockquote>
-<ol start="2" type="1">
-<li>You could have obtained frequencies of observations by using <code>group_by()</code> + <code>summarize()</code>. Why is <code>count()</code> a better choice?</li>
-</ol>
-<section id="group_by-slice_max" class="level2">
-<h2 class="anchored" data-anchor-id="group_by-slice_max"><code>group_by()</code> + <code>slice_max()</code></h2>
-<ol start="3" type="1">
-<li>What happens when you use <code>group_by()</code> before <code>slice_max()</code>? What output will you get?</li>
-</ol>
-</section>
-<section id="group_by-summarize" class="level2">
-<h2 class="anchored" data-anchor-id="group_by-summarize"><code>group_by()</code> + <code>summarize()</code></h2>
-<ol start="4" type="1">
-<li><p>What groups are dropped after <code>summarize()</code> calculates the statistics?</p></li>
-<li><p>What groups <strong>are not</strong> dropped after <code>summarize()</code> calculates the statistics?</p></li>
-<li><p>How can you make sure all the groups have been dropped after <code>summarize()</code> calculates the statistics?</p></li>
-</ol>
-</section>
-<section id="if_else-case_when" class="level2">
-<h2 class="anchored" data-anchor-id="if_else-case_when"><code>if_else()</code> &amp; <code>case_when()</code></h2>
-<p><code>if_else()</code> is designed for <strong>binary</strong> options:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(CONTROL <span class="sc">!=</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">CONTROL =</span> <span class="fu">if_else</span>(CONTROL <span class="sc">==</span> <span class="dv">1</span>, </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Public"</span>, </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"Private, Non-Profit"</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>case_when()</code> is designed for <strong>three or more</strong> options:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TYPE =</span> <span class="fu">case_when</span>(CONTROL <span class="sc">==</span> <span class="dv">1</span> <span class="sc">~</span> <span class="st">"Public"</span>, </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>                          CONTROL <span class="sc">==</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"Private, Non-Profit"</span>, </span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>                          CONTROL <span class="sc">==</span> <span class="dv">3</span> <span class="sc">~</span> <span class="st">"Private, For Profit"</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="across" class="level2">
-<h2 class="anchored" data-anchor-id="across"><code>across()</code></h2>
-<blockquote class="blockquote">
-<p>Performing the same function <code>across()</code> multiple columns</p>
-</blockquote>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(REGION) <span class="sc">|&gt;</span> </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">.cols =</span> <span class="fu">c</span>(ADM_RATE, SAT_AVG, TUITIONFEE_IN, TUITIONFEE_OUT, UGDS), </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="7" type="1">
-<li><p>How do columns need to be input into the <code>across()</code> function?</p></li>
-<li><p>How do functions need to be input into the <code>across()</code> function?</p></li>
-<li><p>What does the <code>.x</code> inside the function represent?</p></li>
-</ol>
-</section>
-</section>
-<section id="across-friends" class="level1">
-<h1><code>across()</code> friends</h1>
-<section id="if_any-if_all" class="level2">
-<h2 class="anchored" data-anchor-id="if_any-if_all"><code>if_any()</code> &amp; <code>if_all()</code></h2>
-<p>Remember, you got warnings in PA3 when converting some columns to numeric? If you look at the original data, you can see this is because missing values were indicated with the string <code>"NULL"</code>.</p>
-<p>We could drop these rows before converting the columns to numeric if desired, using <code>if_any()</code>:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="ot">&lt;-</span> colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="sc">!</span><span class="fu">if_any</span>(<span class="at">.cols =</span> ADM_RATE<span class="sc">:</span>TUITIONFEE_OUT, </span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">.fns =</span> <span class="sc">~</span> .x <span class="sc">==</span> <span class="st">"NULL"</span>)</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="10" type="1">
-<li><p>How would you describe what <code>~ .x == "NULL"</code> is doing?</p></li>
-<li><p>What does the <code>!</code> in front of the <code>if_any()</code> do?</p></li>
-</ol>
-</section>
-<section id="saving-objects" class="level2">
-<h2 class="anchored" data-anchor-id="saving-objects">Saving Objects</h2>
-<p>Sometimes you just want to show a table and there is no need to save an object:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>cereal <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">"cold"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">potass_per_cup =</span> potass <span class="sc">/</span> cups) <span class="sc">|&gt;</span> </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manuf) <span class="sc">|&gt;</span> </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_potass_per_cup =</span> <span class="fu">mean</span>(potass_per_cup))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Other times, you will want to save your wrangled data for later:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>cereal_summary <span class="ot">&lt;-</span> cereal <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(type <span class="sc">==</span> <span class="st">"cold"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">potass_per_cup =</span> potass <span class="sc">/</span> cups) <span class="sc">|&gt;</span> </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(manuf) <span class="sc">|&gt;</span> </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_potass_per_cup =</span> <span class="fu">mean</span>(potass_per_cup))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="kable" class="level2">
-<h2 class="anchored" data-anchor-id="kable"><code>kable()</code></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="ot">&lt;-</span> colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">TUITION_DIFF =</span> TUITIONFEE_OUT <span class="sc">-</span> TUITIONFEE_IN)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>cereal_clean <span class="sc">|&gt;</span> </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(REGION) <span class="sc">|&gt;</span> </span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> TUITION_DIFF, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="weekly-r-cheatsheets" class="level1">
+<h1>Weekly R Cheatsheets</h1>
+<p><strong>Week 1</strong></p>
+<ul>
+<li><p><a href="https://rstudio.github.io/cheatsheets/rstudio-ide.pdf">RStudio IDE</a></p></li>
+<li><p><a href="https://rstudio.github.io/cheatsheets/quarto.pdf">Quarto</a></p></li>
+</ul>
+<p><strong>Week 2</strong></p>
+<ul>
+<li><p><a href="https://rstudio.github.io/cheatsheets/data-visualization.pdf">Data Visualization with ggplot2</a></p></li>
+<li><p><a href="https://rstudio.github.io/cheatsheets/data-import.pdf">Data Import with readr</a></p></li>
+</ul>
+<p><strong>Week 3</strong></p>
+<ul>
+<li><a href="https://rstudio.github.io/cheatsheets/data-transformation.pdf">Data Wrangling with dplyr</a></li>
+</ul>
+<p><strong>Week 4</strong></p>
+<ul>
+<li><p><a href="https://rstudio.github.io/cheatsheets/tidyr.pdf">Data Tidying with tidyr</a></p></li>
+<li><p><a href="https://rstudio.github.io/cheatsheets/factors.pdf">Factors with forcats</a></p></li>
+</ul>
+<p><strong>Week 5</strong></p>
+<ul>
+<li><p><a href="https://rstudio.github.io/cheatsheets/lubridate.pdf">Dates with lubridate</a></p></li>
+<li><p><a href="https://rstudio.github.io/cheatsheets/strings.pdf">Strings with stringr</a></p></li>
+<li><p><a href="https://rstudio.github.io/cheatsheets/regex.pdf">Regular Expressions</a></p></li>
+</ul>
+<p><strong>Week 6</strong></p>
+<ul>
+<li><a href="https://rstudio.github.io/cheatsheets/git-github.pdf">Git &amp; GitHub</a></li>
+</ul>
+<p><strong>Week 7</strong></p>
+<ul>
+<li><a href="https://rstudio.github.io/cheatsheets/base-r.pdf">Base R</a></li>
+<li><a href="https://rstudio.github.io/cheatsheets/tidyeval.pdf">Tidy Evaluation</a></li>
+</ul>
+<p><strong>Week 8</strong></p>
+<ul>
+<li><a href="https://rstudio.github.io/cheatsheets/purrr.pdf">Iteration with purrr</a></li>
+<li><a href="https://rstudio.github.io/cheatsheets/gt.pdf">Great Tables with gt</a></li>
+</ul>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->

@@ -139,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span class="menu-text">Portfolio</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../course-materials/course_resources.qmd"> 
+    <a class="nav-link" href="../course-materials/course-resources.html"> 
 <span class="menu-text">Resources</span></a>
   </li>  
 </ul>
@@ -243,20 +243,20 @@ Tip
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.486109</code></pre>
+<pre><code>[1] 0.8915612</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.018394</code></pre>
+<pre><code>[1] -1.554318</code></pre>
 </div>
 </div>
 <p>Fortunately, pseudo-randomness depends on a <strong>seed</strong>, which is an arbitrary number where the randomizing process starts. Normally, R will choose the seed for you, from a pre-generated vector:</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(.Random.seed)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]       10403           4 -1365198329 -1090524690  1687700680  1972653003</code></pre>
+<pre><code>[1]       10403           4 -1756269558   348834796  -939351953  1651425189</code></pre>
 </div>
 </div>
 <p>However, you can also choose your own seed using the <code>set.seed()</code> function. This guarantees your results will be consistent across runs (and hopefully computers):</p>

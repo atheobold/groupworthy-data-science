@@ -36,7 +36,7 @@ website:
         text: Syllabus
       - href: portfolio/portfolio-instructions.qmd
         text: Portfolio
-      - href: course-materials/course_resources.qmd
+      - href: course-materials/course-resources.qmd
         text: Resources
       # - href: labs/exemplars/student-work.qmd
       #   text: "Exemplary Student Work"

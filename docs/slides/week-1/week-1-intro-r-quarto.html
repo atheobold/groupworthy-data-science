@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Welcome to STAT 331 / 531!</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eec0788ef0355d468dea179c927c9482.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-42f76a1956414a0049aa0613aff3d6a7.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -232,7 +232,7 @@
 <h2>Hi, I’m Dr.&nbsp;Theobold!</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="small">
+<div class="midi">
 <ul>
 <li><p>I am originally from Colorado, but went to grad school in Montana.</p></li>
 <li><p>My favorite things are being outside, drinking coffee, and watching women’s basketball.</p></li>
@@ -246,10 +246,10 @@
 <div class="fragment">
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="small">
+<div class="midi">
 <ul>
 <li><p>I love cats!</p></li>
-<li><p>I’ve been programming in R since 2014!</p></li>
+<li><p>I’ve been programming in R since 2014, and I learned Python last year.</p></li>
 <li><p>I absolutely love teaching this course!</p></li>
 </ul>
 </div>
@@ -297,7 +297,7 @@
 <h2>You!</h2>
 <p>I am looking forward to reading your introductions on Discord!</p>
 <p><br></p>
-<p>Please read the intros of your classmates so you can discover who you will be learning with this quarter!</p>
+<p>Introduce yourself to the people at your table (or the table next to you)!</p>
 </section></section>
 <section>
 <section id="course-layout" class="title-slide slide level1 center">
@@ -360,7 +360,7 @@
 <p><strong>Labs &amp; Challenges Due Monday by 5pm</strong></p>
 </div>
 <div class="callout-content">
-<p>To keep everyone on track with the coursework, your Lab and Challenges are due by 5pm every Monday. You are permitted to request <strong>up to four (3)</strong> deadline extensions by filling out the deadline extension form linked on Canvas.</p>
+<p>To keep everyone on track with the coursework, your Lab and Challenges are due by 5pm every Monday. You are permitted to request <strong>up to three (3)</strong> deadline extensions by filling out the deadline extension Google form linked on Canvas.</p>
 </div>
 </div>
 </div>
@@ -450,6 +450,38 @@
 </section>
 <section id="why-pair-programming" class="slide level2">
 <h2>Why pair programming?</h2>
+<p>Pair programming helps you practice explaining your thinking to someone, a practice that is linked to increased learning.</p>
+<div class="fragment">
+<p>In the age of AI, “soft skills have become just as essential as technical expertise—if not more so.”</p>
+<div class="midi">
+<table class="caption-top">
+<tbody>
+<tr class="odd">
+<td>Clear Communication</td>
+</tr>
+<tr class="even">
+<td>Problem-solving</td>
+</tr>
+<tr class="odd">
+<td>Effective Collaboration</td>
+</tr>
+<tr class="even">
+<td>Leadership</td>
+</tr>
+<tr class="odd">
+<td>Interpersonal Relationship</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- |  |  | -->
+<!-- |----|----| -->
+<!-- | Clear Communication | "One person doesn't stay focused on just one thing, isolated from the rest of the team, not knowing what's going on." | -->
+<!-- | Problem-solving | "Fantastic problem-solving and analytical skills." | -->
+<!-- | Effective Collaboration | "Work with diverse teams to translate requirements into technical solutions." | -->
+<!-- | Leadership | "Taking full ownership of technical outcomes to ensure project success." | -->
+<!-- | Interpersonal Relationship | "Ability to build effective working relationships with others." | -->
+</div>
 </section>
 <section id="consent-to-participate" class="slide level2">
 <h2>Consent to Participate</h2>
@@ -473,7 +505,7 @@
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Consent Form</strong></p>
+<p><strong>Consent Form (Linked on Canvas)</strong></p>
 </div>
 <div class="callout-content">
 <p>Please complete the consent form (<a href="https://forms.gle/oax73hoe7uRSVLYw8" class="uri">https://forms.gle/oax73hoe7uRSVLYw8</a>) by Monday, September 22nd.</p>
@@ -550,20 +582,20 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <p><strong>Document</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Lesson 1"</span></span>
-<span id="cb1-2"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb1-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Lesson 1"</span></span>
+<span id="cb1-2"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>Presentation</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Lesson 1"</span></span>
-<span id="cb2-2"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb2-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Lesson 1"</span></span>
+<span id="cb2-2"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> revealjs</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <p><strong>Website</strong></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a></a><span class="fu">project</span><span class="kw">:</span></span>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a></a><span class="fu">project</span><span class="kw">:</span></span>
 <span id="cb3-2"><a></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
 <span id="cb3-3"><a></a></span>
 <span id="cb3-4"><a></a><span class="fu">website</span><span class="kw">:</span><span class="at"> </span></span>
 <span id="cb3-5"><a></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span><span class="at"> </span></span>
 <span id="cb3-6"><a></a><span class="at">    </span><span class="fu">left</span><span class="kw">:</span></span>
-<span id="cb3-7"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> lesson-1.qmd</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-7"><a></a><span class="at">      </span><span class="kw">-</span><span class="at"> lesson-1.qmd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section>
 <section id="quarto-components" class="slide level2">
@@ -573,19 +605,19 @@
 <p><strong>How does Quarto know that a section of text should be interpreted as R code?</strong></p>
 </div>
 </section>
-<section id="r-code-options-in-quarto" class="slide level2">
-<h2>R Code Options in Quarto</h2>
+<section id="execution-options-in-quarto" class="slide level2">
+<h2>Execution Options in Quarto</h2>
 <p><strong>R code chunk</strong> options are included at the top of each code chunk, prefaced with a <code>#|</code> (hashpipe).</p>
 <p>These options control how the following code is run and reported in the final Quarto document.</p>
 </section>
-<section id="r-code-options-in-quarto-1" class="slide level2">
-<h2>R Code Options in Quarto</h2>
-<center>
-<img data-src="images/code_options.png" alt="The image displays a table with two columns: 'Option' and 'Description.' It lists various options that can be used in code chunks within Quarto documents, along with their descriptions.The first option is 'eval,' which evaluates the code chunk. If 'false,' it only echoes the code into the output without executing it. The second option is 'echo,' which includes the source code in the output. Next is 'output,' which includes the results of executing the code in the output. The possible values for this option are 'true,' 'false,' or 'asis.' If set to 'asis,' the output will be in raw markdown and won't have any of Quarto's standard enclosing markdown. The 'warning' option includes warnings in the output. Lastly, the 'error' option includes errors in the output. It notes that enabling this option means errors while executing the code won't halt the document's processing.">
-</center>
+<section id="execution-options-in-quarto-1" class="slide level2">
+<h2>Execution Options in Quarto</h2>
+<div class="centered">
+<p><img data-src="images/execution-options.png" alt="The image displays a table with two columns: 'Option' and 'Description.' It lists various options that can be used in code chunks within Quarto documents, along with their descriptions.The first option is 'eval,' which evaluates the code chunk. If 'false,' it only echoes the code into the output without executing it. The second option is 'echo,' which includes the source code in the output. Next is 'output,' which includes the results of executing the code in the output. The possible values for this option are 'true,' 'false,' or 'asis.' If set to 'asis,' the output will be in raw markdown and won't have any of Quarto's standard enclosing markdown. The 'warning' option includes warnings in the output. Lastly, the 'error' option includes errors in the output. It notes that enabling this option means errors while executing the code won't halt the document's processing."></p>
+</div>
 </section>
-<section id="chunk-option-completion-in-quarto" class="slide level2">
-<h2>Chunk Option Completion in Quarto</h2>
+<section id="execution-option-completion-in-quarto" class="slide level2">
+<h2>Execution Option Completion in Quarto</h2>
 <center>
 <img data-src="images/quarto_yaml_completion.png" alt="The image demonstrates three different aspects of YAML code completion and diagnostics in Quarto. At the top, under the heading 'YAML completion for fields,' there is a code editor where the user is typing the beginning of an R chunk ('{r'). As they begin typing '#| e', a code completion menu appears suggesting YAML fields such as 'eval', 'echo', 'external', and 'error', among others. The highlighted field is `eval`, and a description in a yellow box appears, explaining that this option evaluates the code chunk, or, if set to 'false', it only echoes the code into the output. In the middle, under the heading 'YAML completion for options,' the code editor shows the 'eval' field typed out as '#| eval:'. As the user begins entering a value, a dropdown suggests the options 'true' and 'false' for the field, representing valid boolean options. At the bottom, under the heading 'YAML diagnostics for errors,' there is an example of an incorrect entry. The user has written '#| eval: FALSE' (with uppercase 'FALSE'), which leads to a red error indicator in the editor. A tooltip appears, pointing out the mistake and suggesting that the value should be lowercase 'false' instead. The image showcases how Quarto assists users with code completion, option suggestions, and real-time error diagnostics in the YAML section of code chunks.">
 </center>
@@ -593,19 +625,16 @@
 <section id="global-code-chunk-options" class="slide level2">
 <h2>Global Code Chunk Options</h2>
 <p>Some R code options can also be included in the front matter (YAML) which would be applied globally to the entire document.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Lesson 1"</span></span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Lesson 1"</span></span>
 <span id="cb4-2"><a></a><span class="fu">format</span><span class="kw">:</span><span class="at"> html</span></span>
 <span id="cb4-3"><a></a><span class="fu">execute</span><span class="kw">:</span><span class="at"> </span></span>
 <span id="cb4-4"><a></a><span class="at">  </span><span class="fu">echo</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb4-5"><a></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-5"><a></a><span class="at">  </span><span class="fu">warning</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="global-code-chunk-options-1" class="slide level2">
 <h2>Global Code Chunk Options</h2>
-<center>
-<img data-src="images/execution-options.png" alt="The image displays a table with two columns: 'Option' and 'Description.' It lists various options that can be used in code chunks within Quarto documents, along with their descriptions.The first option is 'eval,' which evaluates the code chunk. If 'false,' it only echoes the code into the output without executing it. The second option is 'echo,' which includes the source code in the output. Next is 'output,' which includes the results of executing the code in the output. The possible values for this option are 'true,' 'false,' or 'asis.' If set to 'asis,' the output will be in raw markdown and won't have any of Quarto's standard enclosing markdown. The 'warning' option includes warnings in the output. Lastly, the 'error' option includes errors in the output. It notes that enabling this option means errors while executing the code won't halt the document's processing.">
-</center>
-<div class="fragment">
-<div class="midi">
+
+<img data-src="images/execution-options.png" alt="The image displays a table with two columns: 'Option' and 'Description.' It lists various options that can be used in code chunks within Quarto documents, along with their descriptions.The first option is 'eval,' which evaluates the code chunk. If 'false,' it only echoes the code into the output without executing it. The second option is 'echo,' which includes the source code in the output. Next is 'output,' which includes the results of executing the code in the output. The possible values for this option are 'true,' 'false,' or 'asis.' If set to 'asis,' the output will be in raw markdown and won't have any of Quarto's standard enclosing markdown. The 'warning' option includes warnings in the output. Lastly, the 'error' option includes errors in the output. It notes that enabling this option means errors while executing the code won't halt the document's processing." class="r-stretch"><div class="small">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -620,7 +649,6 @@
 <li><code>echo: true</code></li>
 <li><code>warning: false</code></li>
 </ul>
-</div>
 </div>
 </div>
 </div>
@@ -685,10 +713,11 @@
 <li>specify global and local execution options</li>
 <li>interpret the output of code</li>
 <li>look up function and data documentation</li>
-<li>look up Quarto documentation for plot outputs</li>
+<li>look up Quarto documentation</li>
 <li>conduct a t-test for two independent samples</li>
 </ul>
 <div class="fragment">
+<div class="midi">
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -699,6 +728,7 @@
 </div>
 <div class="callout-content">
 <p>Everything you need to successfully complete this assignment can be found in the documentation inside R or online. You will likely have more success with these resources than Chat. However, if you do use Chat, please be sure you cite your work as instructed in the syllabus.</p>
+</div>
 </div>
 </div>
 </div>
@@ -895,7 +925,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

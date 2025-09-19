@@ -263,7 +263,7 @@
     "href": "weeks/week-1-quarto.html#directories-and-projects",
     "title": "Week 1, Part 2: Reproducible Analyses with Quarto",
     "section": "1.2 Directories, Paths, and Projects",
-    "text": "1.2 Directories, Paths, and Projects\nIn R, there are two ways to set up your file path and file system organization:\n\nSet your working directory in R (do not recommend)\nUse RProjects (preferred!)\n\n\nWorking Directories in R\nTo find where your working directory is in R, you can either look at the top of your console or type getwd() into your console.\n\n\n\n\n\n\n\n\n\n\ngetwd()\n\n[1] \"/Users/allisontheobold/Documents/Research/IUSE/groupworthy-data-science/weeks\"\n\n\nAlthough it is not recommended, you can set your working directory in R with setwd().\n\nsetwd(\"/path/to/my/assignment/folder\")\n\n\n\nR Projects\n\n📖 Required Reading: Workflow and Projects\nSince there are often many files necessary for a project (e.g. data sources, images, etc.), R has a nice built in system for setting up your project organization with R Projects. You can either create a new folder on your computer containing an R Project (e.g., you have not yet created a folder for this class) or you can add an R Project to an existing folder on your computer (e.g., you have already created a folder for this class).\n\nCreate with a new folderAdd to an existing folder\n\n\nTo create a R Project, first open RStudio on your computer and click File &gt; New Project, then:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGive your folder a name (it doesn’t have to be my-stat331). However, it is good practice for this file folder name to not contain spaces.\nThen, browse on your computer for a location to save this folder to. For example, mine is saved in my Documents. Make sure you know how to find this; it should NOT be saved in your Downloads!\n\n\n\n\n\n\n\n\n\nThis new folder, my-stat331 should now live in your Documents folder (or wherever you save it to) and contain a my-stat331.Rproj file. This is your new “home” base for this class - whenever you refer to a file with a relative path it will begin to look for it here.\n\n\nTo add a R Project to an existing folder on your computer (e.g., you already created a folder for this class), first open RStudio on your computer and click File &gt; New Project, then:\n\n\n\n\n\n\n\n\n\nThen, browse on your computer to select the existing folder you wish to add your R Project to. For example, mine is saved in my Documents and called my-stat331.\n\n\n\n\n\n\n\n\n\nYour existing folder, my-stat331 should now contain a my-stat331.Rproj file. This is your new “home” base for this class - whenever you refer to a file with a relative path it will begin to look for it here.\n\n\n\n\n\n\n\n\n\nCautionYour folder cannot synch with anything online!\n\n\n\nYour STAT 331 folder cannot be in a folder stored on OneDrive or iCloud! Storing your folder in this location will cause your code to periodically not run and I cannot help you fix it."
+    "text": "1.2 Directories, Paths, and Projects\nIn R, there are two ways to set up your file path and file system organization:\n\nSet your working directory in R (do not recommend)\nUse RProjects (preferred!)\n\n\nWorking Directories in R\nTo find where your working directory is in R, you can either look at the top of your console or type getwd() into your console.\n\n\n\n\n\n\n\n\n\n\ngetwd()\n\n[1] \"/Users/atheobol/Documents/Research/groupworthy-data-science/weeks\"\n\n\nAlthough it is not recommended, you can set your working directory in R with setwd().\n\nsetwd(\"/path/to/my/assignment/folder\")\n\n\n\nR Projects\n\n📖 Required Reading: Workflow and Projects\nSince there are often many files necessary for a project (e.g. data sources, images, etc.), R has a nice built in system for setting up your project organization with R Projects. You can either create a new folder on your computer containing an R Project (e.g., you have not yet created a folder for this class) or you can add an R Project to an existing folder on your computer (e.g., you have already created a folder for this class).\n\nCreate with a new folderAdd to an existing folder\n\n\nTo create a R Project, first open RStudio on your computer and click File &gt; New Project, then:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGive your folder a name (it doesn’t have to be my-stat331). However, it is good practice for this file folder name to not contain spaces.\nThen, browse on your computer for a location to save this folder to. For example, mine is saved in my Documents. Make sure you know how to find this; it should NOT be saved in your Downloads!\n\n\n\n\n\n\n\n\n\nThis new folder, my-stat331 should now live in your Documents folder (or wherever you save it to) and contain a my-stat331.Rproj file. This is your new “home” base for this class - whenever you refer to a file with a relative path it will begin to look for it here.\n\n\nTo add a R Project to an existing folder on your computer (e.g., you already created a folder for this class), first open RStudio on your computer and click File &gt; New Project, then:\n\n\n\n\n\n\n\n\n\nThen, browse on your computer to select the existing folder you wish to add your R Project to. For example, mine is saved in my Documents and called my-stat331.\n\n\n\n\n\n\n\n\n\nYour existing folder, my-stat331 should now contain a my-stat331.Rproj file. This is your new “home” base for this class - whenever you refer to a file with a relative path it will begin to look for it here.\n\n\n\n\n\n\n\n\n\nYour folder cannot synch with anything online!\n\n\n\nYour STAT 331 folder cannot be in a folder stored on OneDrive or iCloud! Storing your folder in this location will cause your code to periodically not run and I cannot help you fix it."
   },
   {
     "objectID": "weeks/week-1-quarto.html#check-in-1.3-stat-331-folder-r-project",
@@ -2047,15 +2047,15 @@
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#thursday-september-18",
     "href": "slides/week-1/week-1-intro-r-quarto.html#thursday-september-18",
     "title": "Welcome to STAT 331 / 531!",
-    "section": "Thursday, September 18",
-    "text": "Thursday, September 18\nToday we will…\n\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
+    "section": "",
+    "text": "Today we will…\n\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#hi-im-dr.-theobold",
     "href": "slides/week-1/week-1-intro-r-quarto.html#hi-im-dr.-theobold",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Hi, I’m Dr. Theobold!",
-    "text": "Hi, I’m Dr. Theobold!\n\n\n\n\nI am originally from Colorado, but went to grad school in Montana.\nMy favorite things are being outside, drinking coffee, and watching women’s basketball.\n\n\n\n\n\n\n\n\n\n\n\n\nI love cats!\nI’ve been programming in R since 2014, and I learned Python last year.\nI absolutely love teaching this course!"
+    "text": "Hi, I’m Dr. Theobold!\n\n\n\n\nI am originally from Colorado, but went to grad school in Montana.\nMy favorite things are being outside, drinking coffee, and watching women’s basketball.\n\n\n\n\n\n\n\n\n. . .\n\n\n\n\nI love cats!\nI’ve been programming in R since 2014, and I learned Python last year.\nI absolutely love teaching this course!"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#on-a-personal-note",
@@ -2090,7 +2090,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#end-of-the-week",
     "title": "Welcome to STAT 331 / 531!",
     "section": "End of the Week",
-    "text": "End of the Week\n\nDuring Class on ThursdayAfter Thursday’s Class\n\n\n\nDebrief Practice Activity\nDiscuss ways to extend that week’s skills\n\nStart Lab Assignment\n\n\n\n\nFinish remaining problems of the Lab Assignment\nComplete Challenge Assignment\n\n\n\n\n\n\n\nLabs & Challenges Due Monday by 5pm\n\n\nTo keep everyone on track with the coursework, your Lab and Challenges are due by 5pm every Monday. You are permitted to request up to three (3) deadline extensions by filling out the deadline extension Google form linked on Canvas."
+    "text": "End of the Week\n\nDuring Class on ThursdayAfter Thursday’s Class\n\n\n\nDebrief Practice Activity\nDiscuss ways to extend that week’s skills\n\nStart Lab Assignment\n\n\n\n\nFinish remaining problems of the Lab Assignment\nComplete Challenge Assignment\n\n\n\n\n\n\n\nLabs & Challenges Due Monday by 5pm\n\n\n\nTo keep everyone on track with the coursework, your Lab and Challenges are due by 5pm every Monday. You are permitted to request up to three (3) deadline extensions by filling out the deadline extension Google form linked on Canvas."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#what-does-ungrading-mean",
@@ -2104,7 +2104,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#how-does-this-system-work",
     "title": "Welcome to STAT 331 / 531!",
     "section": "How does this system work?",
-    "text": "How does this system work?\n\nEach problem on an assignment is marked for proficiency (e.g., success, growing).\n\nThese marks are not attached to a grade outcome (e.g., A, B, C, D).\n\nGrades are defined from a set of criteria, co-developed between you and me.\n\nAt the end of the course, you propose the grade you believe you’ve earned based on a portfolio of your work and the criteria we established."
+    "text": "How does this system work?\n\n\nEach problem on an assignment is marked for proficiency (e.g., success, growing).\n\nThese marks are not attached to a grade outcome (e.g., A, B, C, D).\n\nGrades are defined from a set of criteria, co-developed between you and me.\n\nAt the end of the course, you propose the grade you believe you’ve earned based on a portfolio of your work and the criteria we established."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#broken-circles",
@@ -2125,42 +2125,42 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#how-did-that-feel",
     "title": "Welcome to STAT 331 / 531!",
     "section": "How did that feel?",
-    "text": "How did that feel?\n\nWhat did you notice about how your group worked together?\nWhat kinds of things helped your group finish?"
+    "text": "How did that feel?\n. . .\nWhat did you notice about how your group worked together?\nWhat kinds of things helped your group finish?"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#collaboration-skills",
     "href": "slides/week-1/week-1-intro-r-quarto.html#collaboration-skills",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Collaboration Skills",
-    "text": "Collaboration Skills\nSometimes, you had to give away a piece without knowing if you’d get what you needed in return. What was that like?\nWhat helped you trust your teammates in those moments?\n\n\nWas there a time when you gave up something you needed because you saw someone else needed it more? Why did you make that choice?\n\n\n\nWhat would have happened if everyone only thought about themselves?"
+    "text": "Collaboration Skills\nSometimes, you had to give away a piece without knowing if you’d get what you needed in return. What was that like?\nWhat helped you trust your teammates in those moments?\n. . .\n\nWas there a time when you gave up something you needed because you saw someone else needed it more? Why did you make that choice?\n. . .\n\nWhat would have happened if everyone only thought about themselves?"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#why-pair-programming",
     "href": "slides/week-1/week-1-intro-r-quarto.html#why-pair-programming",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Why pair programming?",
-    "text": "Why pair programming?\nPair programming helps you practice explaining your thinking to someone, a practice that is linked to increased learning.\n\nIn the age of AI, “soft skills have become just as essential as technical expertise—if not more so.”\n\n\n\n\nClear Communication\n\n\nProblem-solving\n\n\nEffective Collaboration\n\n\nLeadership\n\n\nInterpersonal Relationship"
+    "text": "Why pair programming?\nPair programming helps you practice explaining your thinking to someone, a practice that is linked to increased learning.\n. . .\nIn the age of AI, “soft skills have become just as essential as technical expertise—if not more so.”\n\n\n\n\nClear Communication\n\n\nProblem-solving\n\n\nEffective Collaboration\n\n\nLeadership\n\n\nInterpersonal Relationship"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#consent-to-participate",
     "href": "slides/week-1/week-1-intro-r-quarto.html#consent-to-participate",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Consent to Participate",
-    "text": "Consent to Participate\n\n\nIf you agree to participate…\n\nyou will be recorded once a week for 8-weeks while participating in pair programming to complete collaborative tasks.\nyou will complete a pre- and post-survey about your prior computing experiences and your attitudes toward data science.\n\n\n\n\n\n\nYour participation in this research will not affect your course grade.\n\n\n\n\n\n\n\nConsent Form (Linked on Canvas)\n\n\nPlease complete the consent form (https://forms.gle/oax73hoe7uRSVLYw8) by Monday, September 22nd."
+    "text": "Consent to Participate\n\n\nIf you agree to participate…\n\nyou will be recorded once a week for 8-weeks while participating in pair programming to complete collaborative tasks.\nyou will complete a pre- and post-survey about your prior computing experiences and your attitudes toward data science.\n\n\n\n. . .\n\n\nYour participation in this research will not affect your course grade.\n\n\n\n\n\n\n\nConsent Form (Linked on Canvas)\n\n\n\nPlease complete the consent form (https://forms.gle/oax73hoe7uRSVLYw8) by Monday, September 22nd."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#section",
     "href": "slides/week-1/week-1-intro-r-quarto.html#section",
     "title": "Welcome to STAT 331 / 531!",
     "section": "",
-    "text": "Scripts\n(File &gt; New File &gt; R Script) are files of code that are meant to be run on their own.\n\n\n\n\nNotebooks\nallow you to integrate code, output, text, images, etc. into a single document (e.g., Quarto documents, RMarkdown documents, Jupyter notebooks).\n\n\n\n\n\n\n\n\n\nImportant\n\n\nIn this class, we will not be using R scripts. There are specific cases where scripts are preferred, which is covered in STAT 541 (in the spring!)."
+    "text": "Scripts\n(File &gt; New File &gt; R Script) are files of code that are meant to be run on their own.\n\n\n\n\nNotebooks\nallow you to integrate code, output, text, images, etc. into a single document (e.g., Quarto documents, RMarkdown documents, Jupyter notebooks).\n\n\n\n. . .\n\n\n\n\n\n\nImportant\n\n\n\nIn this class, we will not be using R scripts. There are specific cases where scripts are preferred, which is covered in STAT 541 (in the spring!)."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#what-is-quarto",
     "href": "slides/week-1/week-1-intro-r-quarto.html#what-is-quarto",
     "title": "Welcome to STAT 331 / 531!",
     "section": "What is Quarto?",
-    "text": "What is Quarto?\nQuarto unifies and extends the RMarkdown ecosystem.\n\nQuarto files have the .qmd extension."
+    "text": "What is Quarto?\nQuarto unifies and extends the RMarkdown ecosystem.\n\n\n\n\n\n\n\n\n\nQuarto files have the .qmd extension."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#highlights-of-quarto",
@@ -2181,7 +2181,7 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#quarto-components",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Quarto Components",
-    "text": "Quarto Components\n\n\nHow does Quarto know that a section of text should be interpreted as R code?"
+    "text": "Quarto Components\n\n. . .\nHow does Quarto know that a section of text should be interpreted as R code?"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#execution-options-in-quarto",
@@ -2216,14 +2216,14 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#global-execution-options-1",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Global Execution Options",
-    "text": "Global Execution Options\n\n\n\n\n\n\n\n\nTip\n\n\nIn general, I would encourage you to always set the following global execution options:\n\necho: true\nwarning: false"
+    "text": "Global Execution Options\n\n\n\n\n\n\n\n\nTip\n\n\n\nIn general, I would encourage you to always set the following global execution options:\n\necho: true\nwarning: false"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#quarto-documents-utilize-markdown-syntax",
     "href": "slides/week-1/week-1-intro-r-quarto.html#quarto-documents-utilize-markdown-syntax",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Quarto Documents Utilize Markdown Syntax",
-    "text": "Quarto Documents Utilize Markdown Syntax\nMarkdown is a markup language.\nIt uses special symbols and formatting to make pretty documents.\n\n\n*italics* – makes italics\n**bold** – makes bold text\n# – makes headers\n! – includes images or HTML links\n&lt; &gt; – embeds URLs"
+    "text": "Quarto Documents Utilize Markdown Syntax\nMarkdown is a markup language.\nIt uses special symbols and formatting to make pretty documents.\n. . .\n\n*italics* – makes italics\n**bold** – makes bold text\n# – makes headers\n! – includes images or HTML links\n&lt; &gt; – embeds URLs"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document",
@@ -2237,14 +2237,14 @@
     "href": "slides/week-1/week-1-intro-r-quarto.html#rendering-your-quarto-document-1",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Rendering your Quarto Document",
-    "text": "Rendering your Quarto Document\nWhen you click Render:\n\n\nYour file is saved.\nThe R code written in your .qmd file gets run in order.\n\n\nIt starts from scratch, even if you previously ran some of the code in RStudio.\n\n\nA new file is created.\n\n\nIf your Quarto file is called “Lab1.qmd”, then a file called “Lab1.html” will be created.\nThis will be saved in the same folder as “Lab1.qmd”."
+    "text": "Rendering your Quarto Document\nWhen you click Render:\n\n\n\nYour file is saved.\nThe R code written in your .qmd file gets run in order.\n\n\nIt starts from scratch, even if you previously ran some of the code in RStudio.\n\n\nA new file is created.\n\n\nIf your Quarto file is called “Lab1.qmd”, then a file called “Lab1.html” will be created.\nThis will be saved in the same folder as “Lab1.qmd”."
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#exploring-quarto-documents",
     "href": "slides/week-1/week-1-intro-r-quarto.html#exploring-quarto-documents",
     "title": "Welcome to STAT 331 / 531!",
     "section": "Exploring Quarto Documents",
-    "text": "Exploring Quarto Documents\nFor this lab you will:\n\nspecify global and local execution options\ninterpret the output of code\nlook up function and data documentation\nlook up Quarto documentation\nconduct a t-test for two independent samples\n\n\n\n\n\n\n\n\n\nExternal Resources\n\n\nEverything you need to successfully complete this assignment can be found in the documentation inside R or online. You will likely have more success with these resources than Chat. However, if you do use Chat, please be sure you cite your work as instructed in the syllabus."
+    "text": "Exploring Quarto Documents\nFor this lab you will:\n\nspecify global and local execution options\ninterpret the output of code\nlook up function and data documentation\nlook up Quarto documentation\nconduct a t-test for two independent samples\n\n. . .\n\n\n\n\n\n\n\nExternal Resources\n\n\n\nEverything you need to successfully complete this assignment can be found in the documentation inside R or online. You will likely have more success with these resources than Chat. However, if you do use Chat, please be sure you cite your work as instructed in the syllabus."
   },
   {
     "objectID": "portfolio/portfolio-instructions.html",
@@ -4988,14 +4988,14 @@
     "href": "weeks/week-2-projects-data-import.html",
     "title": "R Projects & Importing Data",
     "section": "",
-    "text": "Describe what an R Project is\nOutline how an R Project affects the file paths used to read in data\n\nRead in data from common formats into R"
+    "text": "Read in data from common formats into R\nRecognize ways to skip lines when reading in data\nRecognize ways to declare variable types when reading in data"
   },
   {
     "objectID": "weeks/week-2-projects-data-import.html#learning-objectives",
     "href": "weeks/week-2-projects-data-import.html#learning-objectives",
     "title": "R Projects & Importing Data",
     "section": "",
-    "text": "Describe what an R Project is\nOutline how an R Project affects the file paths used to read in data\n\nRead in data from common formats into R"
+    "text": "Read in data from common formats into R\nRecognize ways to skip lines when reading in data\nRecognize ways to declare variable types when reading in data"
   },
   {
     "objectID": "weeks/week-2-projects-data-import.html#working-directories-in-r",
@@ -5022,22 +5022,22 @@
     "objectID": "weeks/week-2-projects-data-import.html#how-do-i-load-my-data",
     "href": "weeks/week-2-projects-data-import.html#how-do-i-load-my-data",
     "title": "R Projects & Importing Data",
-    "section": "2.1 How do I load my data?",
-    "text": "2.1 How do I load my data?\n📖 Required Reading: Data Import"
+    "section": "1.1 How do I load my data?",
+    "text": "1.1 How do I load my data?\n📖 Required Reading: Data Import"
   },
   {
     "objectID": "weeks/week-2-projects-data-import.html#where-does-my-data-live",
     "href": "weeks/week-2-projects-data-import.html#where-does-my-data-live",
     "title": "R Projects & Importing Data",
-    "section": "2.2 Where does my data live?",
-    "text": "2.2 Where does my data live?\n📽 Required Video: How do I get to my data? (8 minutes)"
+    "section": "1.2 Where does my data live?",
+    "text": "1.2 Where does my data live?\n📽 Required Video: How do I get to my data? (8 minutes)"
   },
   {
     "objectID": "weeks/week-2-projects-data-import.html#check-in-2.3-loading-data",
     "href": "weeks/week-2-projects-data-import.html#check-in-2.3-loading-data",
     "title": "R Projects & Importing Data",
-    "section": "2.3 ✅ Check-in 2.3: Loading Data",
-    "text": "2.3 ✅ Check-in 2.3: Loading Data\nFor this check-in you are asked to work through reading in different data sets. You are expected to create your own Quarto document to complete this activity.\nThe folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. Download Ages_Data.zip here, make sure to unzip the folder, save these in a reasonable place (e.g., STAT331 &gt; Week 2 &gt; Checkins or STAT331 &gt; Checkins &gt; Week 2).\n\n\n\n\n\n\nTipExtracting zip folders\n\n\n\nYou will need to extract the contents of the ages.zip file, that means you will need to uncompress the files from the folder for RStudio to know where to get the data from.\n\n\nOnce you have the data saved (and extracted) in your STAT 331 folder, preferably in the Week 2 subfolder, use the readr and readxl packages to complete the following exercises.\n\nLoad the appropriate packages for reading in data.\nRead in the data set ages.csv\nRead in the data set ages_tab.txt\nRead in the data set ages_mystery.txt\nRead in the data set ages.xlsx\nFind a way to use read_csv() to read ages.csv with the variable “Name” as a factor data type and “Age” as a character data type.\n\nOnce you’ve finished coding these exercises, head over to Canvas and fill in the “gap” code I’ve provided. For reference, I would recommend you store the Ages_Data similar to how I have:"
+    "section": "1.3 ✅ Check-in 2.3: Loading Data",
+    "text": "1.3 ✅ Check-in 2.3: Loading Data\nFor this check-in you are asked to work through reading in different data sets. You are expected to create your own Quarto document to complete this activity.\nThe folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. Download Ages_Data.zip here, make sure to unzip the folder, save these in a reasonable place (e.g., STAT331 &gt; Week 2 &gt; Checkins or STAT331 &gt; Checkins &gt; Week 2).\n\n\n\n\n\n\nExtracting zip folders\n\n\n\nYou will need to extract the contents of the ages.zip file, that means you will need to uncompress the files from the folder for RStudio to know where to get the data from.\n\n\nOnce you have the data saved (and extracted) in your STAT 331 folder, preferably in the Week 2 subfolder, use the readr and readxl packages to complete the following exercises.\n\nLoad the appropriate packages for reading in data.\nRead in the data set ages.csv\nRead in the data set ages_tab.txt\nRead in the data set ages_mystery.txt\nRead in the data set ages.xlsx\nFind a way to use read_csv() to read ages.csv with the variable “Name” as a factor data type and “Age” as a character data type.\n\nOnce you’ve finished coding these exercises, head over to Canvas and fill in the “gap” code I’ve provided. For reference, I would recommend you store the Ages_Data similar to how I have:"
   },
   {
     "objectID": "weeks/week-4-factors.html",
@@ -5115,5 +5115,12 @@
     "title": "Loops and Iteration",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI fully support more R packages being cat themed.↩︎"
+  },
+  {
+    "objectID": "slides/week-1/week-1-intro-r-quarto.html",
+    "href": "slides/week-1/week-1-intro-r-quarto.html",
+    "title": "Welcome to STAT 331 / 531!",
+    "section": "",
+    "text": "Today we will…\n\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
   }
 ]

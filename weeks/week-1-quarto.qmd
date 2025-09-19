@@ -17,6 +17,95 @@ of this week's coursework you will learn how to identify **folders** and
 
 #### ✅ Check-ins: 2
 
+<!-- # Directories, Paths, and Projects  -->
+
+<!-- Last week, we learned how to organize our personal files and locate them using -->
+<!-- absolute and relative file paths. The idea of a "base folder" or starting place -->
+<!-- was introduced as a **working directory**. In `R`, there are two ways to set up -->
+<!-- your file path and file system organization: -->
+
+<!-- ::: column-margin -->
+<!-- {{< video https://www.youtube.com/watch?v=86Bz3lE4HGs >}} -->
+<!-- ::: -->
+
+<!-- 1.  Set your working directory in `R` (do not recommend) -->
+<!-- 2.  Use R Projects (preferred!) -->
+
+<!-- ## Working Directories in `R` -->
+
+<!-- To find where your working directory is in `R`, you can either look at the top -->
+<!-- of your console or type `getwd()` into your console. -->
+
+<!-- ```{r} -->
+<!-- #| label: get-wd -->
+<!-- getwd() -->
+<!-- ``` -->
+
+<!-- Although it is not recommended, you can set your working directory in `R` with -->
+<!-- `setwd()`: -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- #| label: setting-full-path -->
+<!-- #| echo: true -->
+
+<!-- setwd("/path/to/my/assignment/folder") -->
+<!-- ``` -->
+
+<!-- ::: column-margin -->
+<!-- ![](images/week-2/setwd-rproj-horst.png){fig-alt="A cartoon of a cracked glass cube looking frustrated with casts on its arm and leg, with bandaids on it, containing 'setwd', looks on at a metal riveted cube labeled 'R Proj' holding a skateboard looking sympathetic, and a smaller cube with a helmet on labeled 'here' doing a trick on a skateboard."} -->
+<!-- ::: -->
+
+<!-- ::: {.callout-caution} -->
+<!-- ### File Paths in `R` -->
+
+<!-- A quick warning on file paths is that Mac / Linux and Windows differ in the -->
+<!-- direction of their backslash to separate folder locations. Mac/Linux use `/`  -->
+<!-- (e.g. `STAT331/Week1`) while Window's uses `\` (e.g. `STAT331\Week1`). -->
+<!-- ::: -->
+
+<!-- ## R Projects -->
+
+<!-- 📖 [Required Reading: Workflow (R Projects)](https://r4ds.hadley.nz/workflow-scripts.html#projects) -->
+
+<!-- ::: {.callout-note} -->
+<!-- # Only read Section 6.2! -->
+<!-- ::: -->
+
+<!-- If you open up your folder from Lab 1, you will notice that you have a blue  -->
+<!-- cube (an R Project) living in this folder! The R Project lives in this folder for -->
+<!-- two reasons, (1) when you copied the Lab 1 GitHub repository you told RStudio  -->
+<!-- you wanted to make a new R Project, and (2) in order for RStudio to talk with -->
+<!-- GitHub you need to use an R Project.  -->
+
+<!-- However, if you look at your STAT331 folder (the one that lives in your  -->
+<!-- Documents folder), you **should not** see a blue cube since we never created an -->
+<!-- R Project in this folder. Let's do that now! -->
+
+<!-- To add a R Project to an existing folder on your computer (e.g., you already -->
+<!-- created a folder for this class), first open RStudio on your computer and click -->
+<!-- `File > New Project`, then: -->
+
+<!-- ![Navigation prompt for creating a new R Project in an existing directory](images/week-2/create-existing-rproj-step-1.png){width=50% fig-align="center" fig-alt="Screenshot of navigation box that appears when you select 'File' and 'New Project'. The 'Existing Directory' option is highlighted in blue."} -->
+
+<!-- Then, browse on your computer to where you saved your STAT331 folder last week.  -->
+<!-- This should be in your Documents folder, similar to where mine is saved! -->
+
+<!-- ![Navigation prompt for selecting which existing folder in which the R Project should be created.](images/week-2/create-existing-rproj-step-2.png){width=50% fig-align="center" fig-alt="Screenshot of navigation box that appears when you select 'Existing Directory' from the previous navigation menue. By clicking on the 'Browse' button you can navigate to the existing folder where you would like to insert the R Project. In the image, I've navigated to my STAT331 folder which lives in my Documents."} -->
+
+<!-- Once you click "Create Project", your existing folder, `STAT331` should now -->
+<!-- contain a `STAT331.Rproj` file. This is your new "home" base for this class - -->
+<!-- whenever you refer to a file with a relative path it will begin to look for it -->
+<!-- here. -->
+
+<!-- If you would like a list of step-by-step instructions for this process, feel  -->
+<!-- free to look at this file: [Creating a Project in an Existing Directory](https://scribehow.com/shared/Creating_a_Project_in_an_Existing_Directory__7NTs-4d2RtO1octP6rrBTQ) -->
+
+<!-- ## ✅  Check-in 2.2: RStudio Projects -->
+
+<!-- Take a screenshot of your class directory, showing the **R Project** living  -->
+<!-- inside your STAT331 folder.  -->
+
 # Principles of Reproducibility
 
 ::: column-margin

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.22">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -67,15 +32,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/stat-331-hex.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-be11573b6374e633292ee320d3d6b571.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9d3871c3a33628a85db1522934fdc5ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -114,8 +78,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Introduction to Statistical Computing in R</span>
     </a>
@@ -159,23 +121,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link active" data-scroll-target="#learning-objectives"><span class="header-section-number">0.1</span> Learning Objectives</a></li>
-  <li><a href="#directories-paths-and-projects" id="toc-directories-paths-and-projects" class="nav-link" data-scroll-target="#directories-paths-and-projects"><span class="header-section-number">1</span> Directories, Paths, and Projects</a>
+  <li><a href="#loading-data-into-r" id="toc-loading-data-into-r" class="nav-link" data-scroll-target="#loading-data-into-r"><span class="header-section-number">1</span> Loading Data Into R</a>
   <ul class="collapse">
-  <li><a href="#working-directories-in-r" id="toc-working-directories-in-r" class="nav-link" data-scroll-target="#working-directories-in-r"><span class="header-section-number">1.1</span> Working Directories in <code>R</code></a></li>
-  <li><a href="#r-projects" id="toc-r-projects" class="nav-link" data-scroll-target="#r-projects"><span class="header-section-number">1.2</span> R Projects</a></li>
-  <li><a href="#check-in-2.2-rstudio-projects" id="toc-check-in-2.2-rstudio-projects" class="nav-link" data-scroll-target="#check-in-2.2-rstudio-projects"><span class="header-section-number">1.3</span> ✅ Check-in 2.2: RStudio Projects</a></li>
-  </ul></li>
-  <li><a href="#loading-data-into-r" id="toc-loading-data-into-r" class="nav-link" data-scroll-target="#loading-data-into-r"><span class="header-section-number">2</span> Loading Data Into R</a>
-  <ul class="collapse">
-  <li><a href="#how-do-i-load-my-data" id="toc-how-do-i-load-my-data" class="nav-link" data-scroll-target="#how-do-i-load-my-data"><span class="header-section-number">2.1</span> How do I load my data?</a></li>
-  <li><a href="#where-does-my-data-live" id="toc-where-does-my-data-live" class="nav-link" data-scroll-target="#where-does-my-data-live"><span class="header-section-number">2.2</span> Where does my data live?</a></li>
-  <li><a href="#check-in-2.3-loading-data" id="toc-check-in-2.3-loading-data" class="nav-link" data-scroll-target="#check-in-2.3-loading-data"><span class="header-section-number">2.3</span> ✅ Check-in 2.3: Loading Data</a></li>
+  <li><a href="#how-do-i-load-my-data" id="toc-how-do-i-load-my-data" class="nav-link" data-scroll-target="#how-do-i-load-my-data"><span class="header-section-number">1.1</span> How do I load my data?</a></li>
+  <li><a href="#where-does-my-data-live" id="toc-where-does-my-data-live" class="nav-link" data-scroll-target="#where-does-my-data-live"><span class="header-section-number">1.2</span> Where does my data live?</a></li>
+  <li><a href="#check-in-2.3-loading-data" id="toc-check-in-2.3-loading-data" class="nav-link" data-scroll-target="#check-in-2.3-loading-data"><span class="header-section-number">1.3</span> ✅ Check-in 2.3: Loading Data</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -199,13 +155,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="learning-objectives" class="level2" data-number="0.1">
 <h2 data-number="0.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">0.1</span> Learning Objectives</h2>
 <ul>
-<li>Describe what an R Project is</li>
-<li>Outline how an R Project affects the file paths used to read in data<br>
-</li>
 <li>Read in data from common formats into R</li>
+<li>Recognize ways to skip lines when reading in data</li>
+<li>Recognize ways to declare variable types when reading in data</li>
 </ul>
-<section id="watch-videos-14-minutes" class="level4">
-<h4 class="anchored" data-anchor-id="watch-videos-14-minutes">📽 Watch Videos: 14 minutes</h4>
+<section id="watch-videos-8-minutes" class="level4">
+<h4 class="anchored" data-anchor-id="watch-videos-8-minutes">📽 Watch Videos: 8 minutes</h4>
 </section>
 <section id="readings-15-20-minutes" class="level4">
 <h4 class="anchored" data-anchor-id="readings-15-20-minutes">📖 Readings: 15-20 minutes</h4>
@@ -217,105 +172,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h4 class="anchored" data-anchor-id="check-ins-1">✅ Check-ins: 1</h4>
 </section>
 </section>
-<section id="directories-paths-and-projects" class="level1 page-columns page-full" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Directories, Paths, and Projects</h1>
-<p>Last week, we learned how to organize our personal files and locate them using absolute and relative file paths. The idea of a “base folder” or starting place was introduced as a <strong>working directory</strong>. In <code>R</code>, there are two ways to set up your file path and file system organization:</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/86Bz3lE4HGs" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
-</div></div><ol type="1">
-<li>Set your working directory in <code>R</code> (do not recommend)</li>
-<li>Use R Projects (preferred!)</li>
-</ol>
-<section id="working-directories-in-r" class="level2 page-columns page-full" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="working-directories-in-r"><span class="header-section-number">1.1</span> Working Directories in <code>R</code></h2>
-<p>To find where your working directory is in <code>R</code>, you can either look at the top of your console or type <code>getwd()</code> into your console.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Although it is not recommended, you can set your working directory in <code>R</code> with <code>setwd()</code>:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"/path/to/my/assignment/folder"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p><img src="images/week-2/setwd-rproj-horst.png" class="img-fluid" alt="A cartoon of a cracked glass cube looking frustrated with casts on its arm and leg, with bandaids on it, containing 'setwd', looks on at a metal riveted cube labeled 'R Proj' holding a skateboard looking sympathetic, and a smaller cube with a helmet on labeled 'here' doing a trick on a skateboard."></p>
-</div></div><div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>File Paths in <code>R</code>
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A quick warning on file paths is that Mac / Linux and Windows differ in the direction of their backslash to separate folder locations. Mac/Linux use <code>/</code> (e.g.&nbsp;<code>STAT331/Week1</code>) while Window’s uses <code>\</code> (e.g.&nbsp;<code>STAT331\Week1</code>).</p>
-</div>
-</div>
-</section>
-<section id="r-projects" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="r-projects"><span class="header-section-number">1.2</span> R Projects</h2>
-<p>📖 <a href="https://r4ds.hadley.nz/workflow-scripts.html#projects">Required Reading: Workflow (R Projects)</a></p>
-<div class="callout callout-style-default callout-note callout-empty-content callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Only read Section 6.2!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-<p>If you open up your folder from Lab 1, you will notice that you have a blue cube (an R Project) living in this folder! The R Project lives in this folder for two reasons, (1) when you copied the Lab 1 GitHub repository you told RStudio you wanted to make a new R Project, and (2) in order for RStudio to talk with GitHub you need to use an R Project.</p>
-<p>However, if you look at your STAT331 folder (the one that lives in your Documents folder), you <strong>should not</strong> see a blue cube since we never created an R Project in this folder. Let’s do that now!</p>
-<p>To add a R Project to an existing folder on your computer (e.g., you already created a folder for this class), first open RStudio on your computer and click <code>File &gt; New Project</code>, then:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/week-2/create-existing-rproj-step-1.png" class="img-fluid figure-img" style="width:50.0%" alt="Screenshot of navigation box that appears when you select 'File' and 'New Project'. The 'Existing Directory' option is highlighted in blue."></p>
-<figcaption>Navigation prompt for creating a new R Project in an existing directory</figcaption>
-</figure>
-</div>
-<p>Then, browse on your computer to where you saved your STAT331 folder last week. This should be in your Documents folder, similar to where mine is saved!</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/week-2/create-existing-rproj-step-2.png" class="img-fluid figure-img" style="width:50.0%" alt="Screenshot of navigation box that appears when you select 'Existing Directory' from the previous navigation menue. By clicking on the 'Browse' button you can navigate to the existing folder where you would like to insert the R Project. In the image, I've navigated to my STAT331 folder which lives in my Documents."></p>
-<figcaption>Navigation prompt for selecting which existing folder in which the R Project should be created.</figcaption>
-</figure>
-</div>
-<p>Once you click “Create Project”, your existing folder, <code>STAT331</code> should now contain a <code>STAT331.Rproj</code> file. This is your new “home” base for this class - whenever you refer to a file with a relative path it will begin to look for it here.</p>
-<p>If you would like a list of step-by-step instructions for this process, feel free to look at this file: <a href="https://scribehow.com/shared/Creating_a_Project_in_an_Existing_Directory__7NTs-4d2RtO1octP6rrBTQ">Creating a Project in an Existing Directory</a></p>
-</section>
-<section id="check-in-2.2-rstudio-projects" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="check-in-2.2-rstudio-projects"><span class="header-section-number">1.3</span> ✅ Check-in 2.2: RStudio Projects</h2>
-<p>Take a screenshot of your class directory, showing the <strong>R Project</strong> living inside your STAT331 folder.</p>
-<hr>
-</section>
-</section>
-<section id="loading-data-into-r" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Loading Data Into R</h1>
-<section id="how-do-i-load-my-data" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="how-do-i-load-my-data"><span class="header-section-number">2.1</span> How do I load my data?</h2>
+<section id="loading-data-into-r" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Loading Data Into R</h1>
+<section id="how-do-i-load-my-data" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="how-do-i-load-my-data"><span class="header-section-number">1.1</span> How do I load my data?</h2>
 <p>📖 <a href="https://r4ds.hadley.nz/data-import.html">Required Reading: Data Import</a></p>
 </section>
-<section id="where-does-my-data-live" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="where-does-my-data-live"><span class="header-section-number">2.2</span> Where does my data live?</h2>
+<section id="where-does-my-data-live" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="where-does-my-data-live"><span class="header-section-number">1.2</span> Where does my data live?</h2>
 <p>📽 <a href="https://www.youtube.com/watch?v=jvWwrELLEw8">Required Video: How do I get to my data? (8 minutes)</a></p>
 </section>
-<section id="check-in-2.3-loading-data" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="check-in-2.3-loading-data"><span class="header-section-number">2.3</span> ✅ Check-in 2.3: Loading Data</h2>
+<section id="check-in-2.3-loading-data" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="check-in-2.3-loading-data"><span class="header-section-number">1.3</span> ✅ Check-in 2.3: Loading Data</h2>
 <p>For this check-in you are asked to work through reading in different data sets. You are expected to create your own Quarto document to complete this activity.</p>
-<p>The folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. <a href="Ages_Data.zip">Download Ages_Data.zip here</a>, make sure to unzip the folder, save these in a reasonable place (e.g., <code>STAT331 &gt; Week 2 &gt; Checkins</code> or <code>STAT331 &gt; Checkins &gt; Week 2</code>).</p>
+<p>The folder <code>Age_Data</code> contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. <a href="Ages_Data.zip">Download Ages_Data.zip here</a>, make sure to unzip the folder, save these in a reasonable place (e.g., <code>STAT331 &gt; Week 2 &gt; Checkins</code> or <code>STAT331 &gt; Checkins &gt; Week 2</code>).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Extracting zip folders
+Extracting zip folders
 </div>
 </div>
 <div class="callout-body-container callout-body">

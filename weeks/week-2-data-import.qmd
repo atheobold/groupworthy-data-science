@@ -1,5 +1,5 @@
 ---
-title: "R Projects & Importing Data"
+title: "Importing Data"
 format: html
 number-sections: true
 number-depth: 2
@@ -31,13 +31,15 @@ resources:
 
 # Loading Data Into R
 
-## How do I load my data?
-
-📖 [Required Reading: Data Import](https://r4ds.hadley.nz/data-import.html)
-
 ## Where does my data live?
 
 📽 [Required Video: How do I get to my data? (8 minutes)](https://www.youtube.com/watch?v=jvWwrELLEw8)
+
+📖 [Recommended Reading: Relative and Absolute Paths](https://r4ds.hadley.nz/workflow-scripts.html#relative-and-absolute-paths)
+
+## How do I load my data?
+
+📖 [Required Reading: Data Import](https://r4ds.hadley.nz/data-import.html)
 
 ## ✅  Check-in 2.3: Loading Data
 

@@ -5122,5 +5122,40 @@
     "title": "Welcome to STAT 331 / 531!",
     "section": "",
     "text": "Today we will…\n\n\nIntroduce STAT 331 (15-minutes)\n\nIntroductions (Me + You)\nCourse Layout\n\nGroup collaboration activity (20-minutes)\n\nConnection to Dr. T’s research\n\nBreak (10-minutes)\nReview of Quarto (20-minutes)\nSet-up Lab 1 (15-minutes)\nLab 1 Work Session"
+  },
+  {
+    "objectID": "weeks/week-2-data-import.html",
+    "href": "weeks/week-2-data-import.html",
+    "title": "Importing Data",
+    "section": "",
+    "text": "Read in data from common formats into R\nRecognize ways to skip lines when reading in data\nRecognize ways to declare variable types when reading in data"
+  },
+  {
+    "objectID": "weeks/week-2-data-import.html#learning-objectives",
+    "href": "weeks/week-2-data-import.html#learning-objectives",
+    "title": "Importing Data",
+    "section": "",
+    "text": "Read in data from common formats into R\nRecognize ways to skip lines when reading in data\nRecognize ways to declare variable types when reading in data"
+  },
+  {
+    "objectID": "weeks/week-2-data-import.html#where-does-my-data-live",
+    "href": "weeks/week-2-data-import.html#where-does-my-data-live",
+    "title": "Importing Data",
+    "section": "1.1 Where does my data live?",
+    "text": "1.1 Where does my data live?\n📽 Required Video: How do I get to my data? (8 minutes)\n📖 Recommended Reading: Relative and Absolute Paths"
+  },
+  {
+    "objectID": "weeks/week-2-data-import.html#how-do-i-load-my-data",
+    "href": "weeks/week-2-data-import.html#how-do-i-load-my-data",
+    "title": "Importing Data",
+    "section": "1.2 How do I load my data?",
+    "text": "1.2 How do I load my data?\n📖 Required Reading: Data Import"
+  },
+  {
+    "objectID": "weeks/week-2-data-import.html#check-in-2.3-loading-data",
+    "href": "weeks/week-2-data-import.html#check-in-2.3-loading-data",
+    "title": "Importing Data",
+    "section": "1.3 ✅ Check-in 2.3: Loading Data",
+    "text": "1.3 ✅ Check-in 2.3: Loading Data\nFor this check-in you are asked to work through reading in different data sets. You are expected to create your own Quarto document to complete this activity.\nThe folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. Download Ages_Data.zip here, make sure to unzip the folder, save these in a reasonable place (e.g., STAT331 &gt; Week 2 &gt; Checkins or STAT331 &gt; Checkins &gt; Week 2).\n\n\n\n\n\n\nExtracting zip folders\n\n\n\nYou will need to extract the contents of the ages.zip file, that means you will need to uncompress the files from the folder for RStudio to know where to get the data from.\n\n\nOnce you have the data saved (and extracted) in your STAT 331 folder, preferably in the Week 2 subfolder, use the readr and readxl packages to complete the following exercises.\n\nLoad the appropriate packages for reading in data.\nRead in the data set ages.csv\nRead in the data set ages_tab.txt\nRead in the data set ages_mystery.txt\nRead in the data set ages.xlsx\nFind a way to use read_csv() to read ages.csv with the variable “Name” as a factor data type and “Age” as a character data type.\n\nOnce you’ve finished coding these exercises, head over to Canvas and fill in the “gap” code I’ve provided. For reference, I would recommend you store the Ages_Data similar to how I have:"
   }
 ]

@@ -33,9 +33,123 @@ resources:
 
 ## Where does my data live?
 
-📽 [Required Video: How do I get to my data? (8 minutes)](https://www.youtube.com/watch?v=jvWwrELLEw8)
+Recall our discussion about [Directories, Paths, and Projects](week-1-quarto.qmd). Often you will specify a *relative* file path to your data set rather than an *absolute* file path. This works if the file is in the same directory as the code or within a sub-folder of the same directory as the code.
 
-📖 [Recommended Reading: Relative and Absolute Paths](https://r4ds.hadley.nz/workflow-scripts.html#relative-and-absolute-paths)
+::: {.callout-note}
+#### Relative file paths
+
+```{r}
+#| eval: false
+# this will work if the file is in the same directory as the code
+# (i.e., the Quarto document and the data are in the same folder)
+surveys <- read_csv(file = "surveys.csv")
+
+# this will work if a sub-folder called "data" is in the same directory as the code
+# (i.e., you first have to enter the data sub folder and then you can access the surveys.csv data set)
+surveys <- read_csv(file = "data/surveys.csv")
+```
+:::
+
+::: column-margin
+::: {.callout-tip}
+# My opinion 
+
+I often organize my workflow with sub-folders so that I would have a sub-folder
+called data to reference from my base directory location.
+
+You can either choose to create an overall data sub-folder right within your
+STAT 331 folder (e.g., `STAT 331 > data`) and store all of your data for your
+class there... or you may choose to store the data associated with each 
+individual assignment within that folder (e.g., `STAT 331 > labs > lab2 > data`).
+:::
+:::
+
+But wait! I thought we created our R Projects (`STAT 331.Rproj`) to indicate our 
+"home base" directory? When working with a Quarto document, this changes your
+base directory (for any code running within the `.qmd` file) to the same folder
+the `.qmd` file lives in.
+
+Open your class directory `STAT 331.Rproj` and type `getwd()` into the Console. 
+This should lead you to the folder directory your R Project was created in.
+
+Now open your `lab1.qmd` assignment and type `getwd()` into a code chunk. This
+should lead you to the folder directory your `lab1.qmd` file is saved in.
+
+Ugh, that's confusing. 
+
+## Using the **here** Package
+
+A great solution to consistency in file paths is the **here** package:
+
+```{r}
+#| eval: false
+install.packages("here")
+```
+
+::: column-margin
+```{r}
+#| echo: false
+#| fig-cap: "Workflows that shred..., by Allison Horst"
+#| fig-alt: "A cartoon of a cracked glass cube looking frustrated with casts on its arm and leg, with bandaids on it, containing “setwd”, looks on at a metal riveted cube labeled “R Proj” holding a skateboard looking sympathetic, and a smaller cube with a helmet on labeled “here” doing a trick on a skateboard."
+knitr::include_graphics("images/setwd-rproj-horst.png")
+```
+:::
+
+This package sets the "home base" for **every** working directory to be the 
+folder that your R Project (`STAT 331.Rproj`) lives in (e.g., your `STAT 331`
+folder). This makes your directory paths consistent regardless of what folder
+you are working in. 
+
+```{r}
+#| eval: false
+
+# shows you the file path the function here() will start at.
+here::dr_here()
+```
+
+::: {.callout-important}
+## Accessing Files with the *here* package
+
+If my `STAT 331` file structure looks like this:
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-alt: "A screenshot of a file directory for a STAT 331 folder. The main STAT 331 folder has an Rproj file symbolizing an R Project, and two subfolders: Week 1 and Week 2. Within The Week 1 folder there is a Lab 1 subfolder. Within the Week 2 folder there is a Lab 2 subfolder and a Practice Activity subfolder."
+knitr::include_graphics("images/week-2/stat-331-filepath-here.png")
+```
+
+then the `here()` function will set my `STAT 331` folder as the "home base" for
+my working directory. Suppose I'm working on `lab2.qmd`, which is stored in the
+`Lab 2` subfolder of `Week 2`. For my assignment I need to read in the
+`surveys.csv` data file, which is also stored in the `Lab 2` folder. 
+
+This is how my path would look: 
+
+```{r}
+#| eval: false
+surveys <- read_csv(here::here("Week 2", "Lab 2", "surveys.csv"))
+```
+
+Note the folder and file names are in quotations because they are *names* of files and not *objects* in R.
+
+:::
+
+::: column-margin
+::: {.callout-note}
+# Accessing Functions without Loading a Package
+
+Using `::` before the function (e.g., `here::here`) is a way of
+telling R which package the function lives in without having to load that entire
+package (e.g., `library(here)`). 
+
+The choice of loading an entire packageversus accessing a function from a
+package comes down to **efficiency**. If you  are only using **one** function 
+from a package, then it seems inefficient to  load the entire package which
+would take up much more memory. This is the case for the **here** package, where
+we will be using **one** function (the `here()` function) from this package. 
+:::
+:::
 
 ## How do I load my data?
 
@@ -72,7 +186,11 @@ following exercises.
 6. Find a way to use `read_csv()` to read *ages.csv* with the variable "Name" as a factor data type and "Age" as a character data type.
 
 Once you've finished coding these exercises, head over to Canvas and fill in the
-"gap" code I've provided. For reference, I would recommend you store the 
-`Ages_Data` similar to how I have:
+"gap" code I've provided. 
+
+::: {.callout-tip}
+
+For reference, I would recommend you store the `Ages_Data` similar to how I have:
 
 ![](images/week-2/ages_folder_structure.png){fig-alt="A screenshot of the folder structure of my STAT 331 folder. The STAT 331 folder lives in my documents and has two main folders--Week 1 and Week 2. The Week 2 folder is expanded to show that I have a subfolder named 'Check-ins' that lives inside the Week 2 folder. The expanded folders also show that inside the Check-ins folder (inside the Week 2 folder) there is an 'Agest_Data' folder, which contains four different datasets--ages_mystery.txt, ages_space.txt, ages.csv, and ages.xlsx."}
+:::

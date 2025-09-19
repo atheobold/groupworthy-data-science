@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -124,14 +159,15 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#loading-data-into-r" id="toc-loading-data-into-r" class="nav-link" data-scroll-target="#loading-data-into-r"><span class="header-section-number">1</span> Loading Data Into R</a>
   <ul class="collapse">
   <li><a href="#where-does-my-data-live" id="toc-where-does-my-data-live" class="nav-link" data-scroll-target="#where-does-my-data-live"><span class="header-section-number">1.1</span> Where does my data live?</a></li>
-  <li><a href="#how-do-i-load-my-data" id="toc-how-do-i-load-my-data" class="nav-link" data-scroll-target="#how-do-i-load-my-data"><span class="header-section-number">1.2</span> How do I load my data?</a></li>
-  <li><a href="#check-in-2.3-loading-data" id="toc-check-in-2.3-loading-data" class="nav-link" data-scroll-target="#check-in-2.3-loading-data"><span class="header-section-number">1.3</span> ✅ Check-in 2.3: Loading Data</a></li>
+  <li><a href="#using-the-here-package" id="toc-using-the-here-package" class="nav-link" data-scroll-target="#using-the-here-package"><span class="header-section-number">1.2</span> Using the <strong>here</strong> Package</a></li>
+  <li><a href="#how-do-i-load-my-data" id="toc-how-do-i-load-my-data" class="nav-link" data-scroll-target="#how-do-i-load-my-data"><span class="header-section-number">1.3</span> How do I load my data?</a></li>
+  <li><a href="#check-in-2.3-loading-data" id="toc-check-in-2.3-loading-data" class="nav-link" data-scroll-target="#check-in-2.3-loading-data"><span class="header-section-number">1.4</span> ✅ Check-in 2.3: Loading Data</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -172,19 +208,118 @@ ul.task-list li input[type="checkbox"] {
 <h4 class="anchored" data-anchor-id="check-ins-1">✅ Check-ins: 1</h4>
 </section>
 </section>
-<section id="loading-data-into-r" class="level1" data-number="1">
+<section id="loading-data-into-r" class="level1 page-columns page-full" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Loading Data Into R</h1>
-<section id="where-does-my-data-live" class="level2" data-number="1.1">
+<section id="where-does-my-data-live" class="level2 page-columns page-full" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="where-does-my-data-live"><span class="header-section-number">1.1</span> Where does my data live?</h2>
-<p>📽 <a href="https://www.youtube.com/watch?v=jvWwrELLEw8">Required Video: How do I get to my data? (8 minutes)</a></p>
-<p>📖 <a href="https://r4ds.hadley.nz/workflow-scripts.html#relative-and-absolute-paths">Recommended Reading: Relative and Absolute Paths</a></p>
+<p>Recall our discussion about <a href="../weeks/week-1-quarto.html">Directories, Paths, and Projects</a>. Often you will specify a <em>relative</em> file path to your data set rather than an <em>absolute</em> file path. This works if the file is in the same directory as the code or within a sub-folder of the same directory as the code.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Relative file paths
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># this will work if the file is in the same directory as the code</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (i.e., the Quarto document and the data are in the same folder)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"surveys.csv"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># this will work if a sub-folder called "data" is in the same directory as the code</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># (i.e., you first have to enter the data sub folder and then you can access the surveys.csv data set)</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="at">file =</span> <span class="st">"data/surveys.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+My opinion
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I often organize my workflow with sub-folders so that I would have a sub-folder called data to reference from my base directory location.</p>
+<p>You can either choose to create an overall data sub-folder right within your STAT 331 folder (e.g., <code>STAT 331 &gt; data</code>) and store all of your data for your class there… or you may choose to store the data associated with each individual assignment within that folder (e.g., <code>STAT 331 &gt; labs &gt; lab2 &gt; data</code>).</p>
+</div>
+</div>
+</div></div><p>But wait! I thought we created our R Projects (<code>STAT 331.Rproj</code>) to indicate our “home base” directory? When working with a Quarto document, this changes your base directory (for any code running within the <code>.qmd</code> file) to the same folder the <code>.qmd</code> file lives in.</p>
+<p>Open your class directory <code>STAT 331.Rproj</code> and type <code>getwd()</code> into the Console. This should lead you to the folder directory your R Project was created in.</p>
+<p>Now open your <code>lab1.qmd</code> assignment and type <code>getwd()</code> into a code chunk. This should lead you to the folder directory your <code>lab1.qmd</code> file is saved in.</p>
+<p>Ugh, that’s confusing.</p>
 </section>
-<section id="how-do-i-load-my-data" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="how-do-i-load-my-data"><span class="header-section-number">1.2</span> How do I load my data?</h2>
+<section id="using-the-here-package" class="level2 page-columns page-full" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="using-the-here-package"><span class="header-section-number">1.2</span> Using the <strong>here</strong> Package</h2>
+<p>A great solution to consistency in file paths is the <strong>here</strong> package:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"here"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+
+</div></div><p>This package sets the “home base” for <strong>every</strong> working directory to be the folder that your R Project (<code>STAT 331.Rproj</code>) lives in (e.g., your <code>STAT 331</code> folder). This makes your directory paths consistent regardless of what folder you are working in.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># shows you the file path the function here() will start at.</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>here<span class="sc">::</span><span class="fu">dr_here</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Accessing Files with the <em>here</em> package
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If my <code>STAT 331</code> file structure looks like this:</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="images/week-2/stat-331-filepath-here.png" class="img-fluid figure-img" alt="A screenshot of a file directory for a STAT 331 folder. The main STAT 331 folder has an Rproj file symbolizing an R Project, and two subfolders: Week 1 and Week 2. Within The Week 1 folder there is a Lab 1 subfolder. Within the Week 2 folder there is a Lab 2 subfolder and a Practice Activity subfolder." width="324"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>then the <code>here()</code> function will set my <code>STAT 331</code> folder as the “home base” for my working directory. Suppose I’m working on <code>lab2.qmd</code>, which is stored in the <code>Lab 2</code> subfolder of <code>Week 2</code>. For my assignment I need to read in the <code>surveys.csv</code> data file, which is also stored in the <code>Lab 2</code> folder.</p>
+<p>This is how my path would look:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Week 2"</span>, <span class="st">"Lab 2"</span>, <span class="st">"surveys.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Note the folder and file names are in quotations because they are <em>names</em> of files and not <em>objects</em> in R.</p>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Accessing Functions without Loading a Package
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Using <code>::</code> before the function (e.g., <code>here::here</code>) is a way of telling R which package the function lives in without having to load that entire package (e.g., <code>library(here)</code>).</p>
+<p>The choice of loading an entire packageversus accessing a function from a package comes down to <strong>efficiency</strong>. If you are only using <strong>one</strong> function from a package, then it seems inefficient to load the entire package which would take up much more memory. This is the case for the <strong>here</strong> package, where we will be using <strong>one</strong> function (the <code>here()</code> function) from this package.</p>
+</div>
+</div>
+</div></div></section>
+<section id="how-do-i-load-my-data" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="how-do-i-load-my-data"><span class="header-section-number">1.3</span> How do I load my data?</h2>
 <p>📖 <a href="https://r4ds.hadley.nz/data-import.html">Required Reading: Data Import</a></p>
 </section>
-<section id="check-in-2.3-loading-data" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="check-in-2.3-loading-data"><span class="header-section-number">1.3</span> ✅ Check-in 2.3: Loading Data</h2>
+<section id="check-in-2.3-loading-data" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="check-in-2.3-loading-data"><span class="header-section-number">1.4</span> ✅ Check-in 2.3: Loading Data</h2>
 <p>For this check-in you are asked to work through reading in different data sets. You are expected to create your own Quarto document to complete this activity.</p>
 <p>The folder <code>Age_Data</code> contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. <a href="Ages_Data.zip">Download Ages_Data.zip here</a>, make sure to unzip the folder, save these in a reasonable place (e.g., <code>STAT331 &gt; Week 2 &gt; Checkins</code> or <code>STAT331 &gt; Checkins &gt; Week 2</code>).</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -209,8 +344,21 @@ Extracting zip folders
 <li>Read in the data set <em>ages.xlsx</em></li>
 <li>Find a way to use <code>read_csv()</code> to read <em>ages.csv</em> with the variable “Name” as a factor data type and “Age” as a character data type.</li>
 </ol>
-<p>Once you’ve finished coding these exercises, head over to Canvas and fill in the “gap” code I’ve provided. For reference, I would recommend you store the <code>Ages_Data</code> similar to how I have:</p>
+<p>Once you’ve finished coding these exercises, head over to Canvas and fill in the “gap” code I’ve provided.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For reference, I would recommend you store the <code>Ages_Data</code> similar to how I have:</p>
 <p><img src="images/week-2/ages_folder_structure.png" class="img-fluid" alt="A screenshot of the folder structure of my STAT 331 folder. The STAT 331 folder lives in my documents and has two main folders--Week 1 and Week 2. The Week 2 folder is expanded to show that I have a subfolder named 'Check-ins' that lives inside the Week 2 folder. The expanded folders also show that inside the Check-ins folder (inside the Week 2 folder) there is an 'Agest_Data' folder, which contains four different datasets--ages_mystery.txt, ages_space.txt, ages.csv, and ages.xlsx."></p>
+</div>
+</div>
 
 
 </section>

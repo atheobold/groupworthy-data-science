@@ -3091,7 +3091,7 @@
     "href": "labs/instructions/challenge-3-instructions.html",
     "title": "Challenge 3: Extending Teaching Evaluation Investigations",
     "section": "",
-    "text": "Chi-Square Test of Independence\n\n\n\n\n\n\nTipRefresher on Chi-square test of independence\n\n\n\nWhile a second course in statistics is a pre-requisite for this class, here is a refresher on Chi-square tests of independence.\n\n\nLet’s compare the level of SET ratings for Question 3 (The professor used activities to make the class more engaging.) between senior instructors and junior instructors.\n1. Using the original teacher_evals dataset (not teacher_evals_clean), create a new dataset that accomplishes the following with onedplyr pipeline:\n\nincludes responses for Question 3 only\ncreates a new variable called SET_level that is “excellent” if the SET_score_avg is 4 or higher (inclusive) and “standard” otherwise\ncreates a new variable called sen_level that is “junior” if seniority is 4 or less (inclusive) and “senior” otherwise\ncontains only the variables we are interested in –- course_id, SET_level, and sen_level\nsaves the mutated data into a new object named teacher_evals_compare.\n\n\n\n\n\n\n\nTip\n\n\n\nHelpful functions: filter(), mutate(), if_else(), select()\n\n\n2. Using the new dataset and your ggplot2 skills, recreate the filled bar plot shown below.\n\n\n\n\n\n\n\nTip\n\n\n\nHelpful geometric object and arguments: geom_bar(stat = ..., position = ...)\nYou should not have to do any more data manipulation to create this plot.\nNote that getting the general structure and reader friendly labels is the first step. The next step is to figure out the labels of the bars and the theme of the plot.\n\n\n3. Look up the documentation for chisq.test() to carry out a chi-square test of independence between the SET level and instructor seniority level in your new dataset.\n\n\n\n\n\n\nTip\n\n\n\nNote that the chisq.test() function does not take a formula / data specification as we have seen before. You will need to extract the variables you wish to include in the analysis using a $ (e.g., evals$level$).\n\n\n4. Draw a conclusion about the independence of evaluation level and seniority level based on your chi-square test.\n\n\nStudy Critique\nPart of the impetus behind this study was to investigate characteristics of a course or an instructor that might affect student evaluations of teaching that are not explicitly related to teaching effectiveness. For instance, it has been shown that gender identity and gender express affect student evaluations of teaching (an example).\n5. If you were to conduct this study at Cal Poly, what are two other variables you would like to collect that you think might be related to student evaluations? These should be course or instructor characteristics that were not collected in this study.\n6. Explain what effects / relationships you would expect to see for each of the two variables you outlined."
+    "text": "This challenge builds on the work you already did with the data on teacher evaluations. Specifically, you are tasked with recreating a plot, carrying out a Chi-Squared test of independence, and providing a critique of the design and collection of these data."
   },
   {
     "objectID": "labs/instructions/challenge-8-instructions.html",
@@ -3182,7 +3182,7 @@
     "href": "labs/instructions/lab-3-instructions.html",
     "title": "Lab 3: Student Evaluations of Teaching",
     "section": "",
-    "text": "In this lab, we will be using the dplyr package to explore student evaluations of teaching data. You are expected to use functions from dplyr to do your data manipulation!\n\n\nDownload the template Lab 3 Quarto file here: lab-3-student.qmd\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save the file in the Lab 3 folder, inside your Week 3 folder, inside your STAT 331 folder!"
+    "text": "In this lab, we will be using the dplyr package to explore student evaluations of teaching data. You are expected to use functions from dplyr to do your data manipulation!\n\n\nDownload the template Lab 3 Quarto file here: lab-3-student.qmd\nDownload the teacher_evals data here: teacher_evals.csv\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save both files in the Lab 3 folder, inside your Week 3 folder, inside your STAT 331 folder!"
   },
   {
     "objectID": "labs/instructions/lab-3-instructions.html#step-1-making-a-copy-from-github-classroom",
@@ -5240,7 +5240,7 @@
     "href": "labs/instructions/lab-3-instructions.html#accessing-the-lab",
     "title": "Lab 3: Student Evaluations of Teaching",
     "section": "",
-    "text": "Download the template Lab 3 Quarto file here: lab-3-student.qmd\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save the file in the Lab 3 folder, inside your Week 3 folder, inside your STAT 331 folder!"
+    "text": "Download the template Lab 3 Quarto file here: lab-3-student.qmd\nDownload the teacher_evals data here: teacher_evals.csv\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save both files in the Lab 3 folder, inside your Week 3 folder, inside your STAT 331 folder!"
   },
   {
     "objectID": "notes/02-day1-handout.html",
@@ -5283,5 +5283,12 @@
     "title": "Practice Activity 2 Warm-up",
     "section": "Create a plot showing the relationship between a penguin’s bill length and body mass",
     "text": "Create a plot showing the relationship between a penguin’s bill length and body mass\n\n\n\nWhat type of variables are bill_length_mm and body_mass_g?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "labs/instructions/challenge-3-instructions.html#accessing-the-challenge",
+    "href": "labs/instructions/challenge-3-instructions.html#accessing-the-challenge",
+    "title": "Challenge 3: Extending Teaching Evaluation Investigations",
+    "section": "Accessing the Challenge",
+    "text": "Accessing the Challenge\nDownload the template Challenge 3 Quarto file here: challenge-3-student.qmd\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save the file in the Lab 3 folder, inside your Week 3 folder, inside your STAT 331 folder!"
   }
 ]

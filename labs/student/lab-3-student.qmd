@@ -147,17 +147,17 @@ included in the `teacher_evals_codebook.pdf` inside the "resources" folder.
 
 ```{r}
 #| label: teacher-course-asked-every-question
-# code chunk for Q8
+
 
 ```
 
 ## Rate my Professor
 
-**10. Which instructors had the highest and lowest average rating for Question 1 (I learnt a lot during the course.) across all their courses?**
+**10. Which instructors who had _at least five_ courses reviewed in the data had the highest and lowest average rating for Question 1 (I learnt a lot during the course.) across all their courses?**
 
 ```{r}
 #| label: question-1-high-low
-# code chunk for Q9
+
 
 ```
 
@@ -165,14 +165,14 @@ included in the `teacher_evals_codebook.pdf` inside the "resources" folder.
 
 ```{r}
 #| label: one-year-experience-failing-students
-# code chunk for Q10
+
 
 ```
 
-**12. Which female instructors with either a doctorate or professor degree had the highest and lowest average percent of students responding to the evaluation across all their courses?**
+**12. Which instructor(s) with either a doctorate or professor degree had the highest and lowest average percent of students responding to the evaluation across all their courses? Include how many years the instructor had worked (seniority) and their sex in your output.**
 
 ```{r}
 #| label: female-instructor-student-response
-# code chunk for Q11
+
 
 ```

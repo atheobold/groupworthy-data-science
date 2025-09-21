@@ -11,6 +11,8 @@ execute:
   echo: fenced
   warning: false
   message: false
+resources: 
+  - data/teacher_evals_codebook.pdf
 ---
 
 # Part One: Set-up
@@ -103,7 +105,7 @@ These data are from the end of the winter semester of the 2020-2021 academic yea
 
 This rich dataset allows us to **investigate many of the biases in student evaluations of teaching** that have been reported in the literature and to formulate new hypotheses.
 
-Before tackling the problems below, study the description of each variable included in the `teacher_evals_codebook.pdf` inside the "resources" folder.
+Before tackling the problems below, study the description of each variable in the data dictionary [here](data/teacher_evals_codebook.pdf). You will want to have this open and refer back to it!
 
 **1. Load the appropriate R packages for your analysis.**
 *Hint: The ggplot2 package and the readr package can both be loaded with the tidyverse package.*
@@ -179,7 +181,7 @@ It would be most efficient to use `across()` in combination with `mutate()` if y
 
 ```
 
-**5. How many unique instructors and unique courses are present in the cleaned dataset?**
+**6. How many unique instructors and unique courses are present in the cleaned dataset?**
 
 ::: callout-tip
 Helpful functions: `summarize()`, `n_distinct()`
@@ -190,7 +192,7 @@ Helpful functions: `summarize()`, `n_distinct()`
 
 ```
 
-**6. What are the demographics of the instructors in this study? Investigate the variables `academic_degree`, `seniority`, and `sex` and summarize your findings in \~3 complete sentences.**
+**7. What are the demographics of the instructors in this study? Investigate the variables `academic_degree`, `seniority`, and `sex` and summarize your findings in \~3 complete sentences.**
 
 ::: callout-tip
 You’ll need to first wrangle your data to have each instructor represented only once.
@@ -203,7 +205,7 @@ Helpful functions: `select()`, `distinct(___, .keep_all = TRUE)`, `count()`, `su
 
 ```
 
-**7. One teacher-course combination has some missing values, coded as `NA`. Which instructor has these missing values? Which course? What variable are the missing values in?**
+**8. One teacher-course combination has some missing values, coded as `NA`. Which instructor has these missing values? Which course? What variable are the missing values in?**
 
 ::: callout-tip
 Helpful functions: `filter()`, `if_any()`, `is.na()`
@@ -211,15 +213,13 @@ Helpful functions: `filter()`, `if_any()`, `is.na()`
 
 ```{r}
 #| label: uncovering-missing-values
-# code chunk for Q6
 
 ```
 
-**8. Each course seems to have used a different subset of the nine evaluation questions. How many teacher-course combinations asked all nine questions?**
+**9. Each course seems to have used a different subset of the nine evaluation questions. How many teacher-course combinations asked all nine questions?**
 
 ```{r}
 #| label: teacher-course-asked-every-question
-# code chunk for Q8
 
 ```
 
@@ -231,27 +231,19 @@ Helpful functions: `filter()`, `group_by()`, `summarize()`, `slice()`
 Useful variables: `question_no`, `teacher_id`, `SET_score_avg`, `percent_failed_cur`, `resp_share`, `academic_degree`, `seniority`, `sex`
 :::
 
-**9. Which instructors had the highest and lowest average rating for Question 1 (I learnt a lot during the course.) across all their courses?**
+**10. Which instructors who had _at least five_ courses reviewed in the data had the highest and lowest average rating for Question 1 (I learnt a lot during the course.) across all their courses?**
 
 ```{r}
 #| label: question-1-high-low
-# code chunk for Q9
 
 ```
 
-**10. Which instructors with one year of experience had the highest and lowest average percentage of students failing in the current semester across all their courses?**
+
+**12. Which instructor(s) with either a doctorate or professor degree had the highest and lowest average percent of students responding to the evaluation across all their courses? Include how many years the instructor had worked (seniority) and their sex in your output.**
+
 
 ```{r}
-#| label: one-year-experience-failing-students
-# code chunk for Q10
-
-```
-
-**11. Which female instructors with either a doctorate or professor degree had the highest and lowest average percent of students responding to the evaluation across all their courses?**
-
-```{r}
-#| label: female-instructor-student-response
-# code chunk for Q11
+#| label: doctorate-professor-instructor-student-response
 
 ```
 

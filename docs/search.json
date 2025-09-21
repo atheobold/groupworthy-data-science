@@ -1915,7 +1915,7 @@
     "href": "slides/week-2/week-2-ggplot-short.html#tuesday-september-23",
     "title": "Basics of Graphics",
     "section": "Tuesday, September 23",
-    "text": "Tuesday, September 23\nToday we will…\n\nWarm-up for ggplot2 practice activity (30-minutes)\nSet-up for the practice activity (15-minutes)\n\nReview pair programming norms\nLearn how to access practice activities\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)\n\nFill out the collaboration survey (2-minutes)"
+    "text": "Tuesday, September 23\nToday we will…\n\nWarm-up for ggplot2 practice activity (30-minutes)\nSet-up for the practice activity (15-minutes)\n\nReview pair programming norms\nLearn how to access practice activities\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)\n\nFind your partner!\n\nFill out the collaboration survey (2-minutes)"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#data-context-for-today",
@@ -1950,14 +1950,14 @@
     "href": "slides/week-2/week-2-ggplot-short.html#aesthetics",
     "title": "Basics of Graphics",
     "section": "Aesthetics",
-    "text": "Aesthetics\nWe map variables (columns) from the data to aesthetics on the graphic using the aes() function.\nWhat aesthetics can we set?\n\nx, y\ncolor, fill\nlinetype\nshape\nsize\n\n\n\n\n\n\n\nTip\n\n\nSee ggplot2 cheat sheet for more!"
+    "text": "Aesthetics\n\nWe map variables (columns) from the data to aesthetics on the graphic using the aes() function.\nWhat aesthetics can we set?\n\nx, y\ncolor, fill\nlinetype\nshape\nsize\n\n\n\n\n\n\n\n\nTip\n\n\nSee ggplot2 cheat sheet for more!"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#geometric-objects",
     "href": "slides/week-2/week-2-ggplot-short.html#geometric-objects",
     "title": "Basics of Graphics",
     "section": "Geometric Objects",
-    "text": "Geometric Objects\nWee use a geom_XXX() function to represent data points.\n\n\n\n\none variable\n\ngeom_density()\ngeom_bar()\ngeom_dotplot()\ngeom_histogram()\ngeom_boxplot()\n\n\n\n\ntwo variable\n\ngeom_point()\ngeom_line()\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nSee ggplot2 cheat sheet for more!"
+    "text": "Geometric Objects\nWee use a geom_XXX() function to represent data points.\n\n\n\n\none variable\n\ngeom_bar()\ngeom_density()\ngeom_dotplot()\ngeom_histogram()\ngeom_boxplot()\n\n\n\n\ntwo variable\n\ngeom_boxplot()\ngeom_point()\ngeom_line()\n\n\n\n\n\n\n\n\n\n\nTip\n\n\nSee ggplot2 cheat sheet for more!"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#creating-a-graphic",
@@ -2020,21 +2020,21 @@
     "href": "slides/week-2/week-2-ggplot-short.html#ggplot2-resources",
     "title": "Basics of Graphics",
     "section": "ggplot2 Resources",
-    "text": "ggplot2 Resources\nEvery person should have a ggplot2 cheatsheet!\n\n\n\nOn the Front\n\n\nColumn 1: the “template” for making a ggplot\nColumn 3: creating plots for two continuous variables\nColumn 4: creating plots for one discrete or one continuous variable\n\n\n\n\n\n\n\nOn the Back\n\n\nColumn 4: adding facets and labels to your plot\nColumn 3: adding themes to your plot (if you have extra time)"
+    "text": "ggplot2 Resources\nEvery person should have a ggplot2 cheatsheet!\n\n\n\nOn the Front\n\n\nColumn 1: the “template” for making a ggplot\nColumn 2: creating plots for one continuous or one discrete variable\nColumn 3: creating plots for two continuous variables\n\n\n\n\n\n\n\nOn the Back\n\n\nColumn 4: adding facets and labels to your plot"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#opening-the-practice-activity-in-google-colab",
     "href": "slides/week-2/week-2-ggplot-short.html#opening-the-practice-activity-in-google-colab",
     "title": "Basics of Graphics",
     "section": "Opening the Practice Activity in Google Colab",
-    "text": "Opening the Practice Activity in Google Colab\nThe partner whose family name starts first alphabetically starts as the Developer! The Developer needs to:\n\n\n\nClick on the Practice Activity 2 link from Canvas\nLog-in to your Google account\nMake a copy of the Colab notebook"
+    "text": "Opening the Practice Activity in Google Colab\nThe partner whose family name starts first alphabetically starts as the Interpreter! The Interpreter needs to:\n\n\n\nClick on the Practice Activity 2 link from Canvas\nLog-in to your Google account\nMake a copy of the Colab notebook"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#sharing-with-your-partner",
     "href": "slides/week-2/week-2-ggplot-short.html#sharing-with-your-partner",
     "title": "Basics of Graphics",
     "section": "Sharing with Your Partner",
-    "text": "Sharing with Your Partner\nOnce you have your copy, you need to:\n\n\n\nShare your copy with your partner’s Google account\nMake sure the Coder can open the file\nThe Developer should plug their laptop into the monitor\nThe Coder should close their computer\nGet started!"
+    "text": "Sharing with Your Partner\nOnce you have your copy, you need to:\n\n\n\n\nShare your copy with your partner’s Google account\nMake sure the Coder can open the file\nThe Interpreter should plug their laptop into the monitor\nThe Coder must close their computer"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#submission",
@@ -5164,5 +5164,68 @@
     "title": "Importing Data",
     "section": "1.2 Using the here Package",
     "text": "1.2 Using the here Package\nA great solution to consistency in file paths is the here package:\n\ninstall.packages(\"here\")\n\n\n\n\nThis package sets the “home base” for every working directory to be the folder that your R Project (STAT 331.Rproj) lives in (e.g., your STAT 331 folder). This makes your directory paths consistent regardless of what folder you are working in.\n\n# shows you the file path the function here() will start at.\nhere::dr_here()\n\n\n\n\n\n\n\nAccessing Files with the here package\n\n\n\nIf my STAT 331 file structure looks like this:\n\n\n\n\n\n\n\n\n\nthen the here() function will set my STAT 331 folder as the “home base” for my working directory. Suppose I’m working on lab2.qmd, which is stored in the Lab 2 subfolder of Week 2. For my assignment I need to read in the surveys.csv data file, which is also stored in the Lab 2 folder.\nThis is how my path would look:\n\nsurveys &lt;- read_csv(here::here(\"Week 2\", \"Lab 2\", \"surveys.csv\"))\n\nNote the folder and file names are in quotations because they are names of files and not objects in R.\n\n\n\n\n\n\n\n\n\n\nAccessing Functions without Loading a Package\n\n\n\nUsing :: before the function (e.g., here::here) is a way of telling R which package the function lives in without having to load that entire package (e.g., library(here)).\nThe choice of loading an entire packageversus accessing a function from a package comes down to efficiency. If you are only using one function from a package, then it seems inefficient to load the entire package which would take up much more memory. This is the case for the here package, where we will be using one function (the here() function) from this package."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#group-norms",
+    "href": "slides/week-2/week-2-ggplot-short.html#group-norms",
+    "title": "Basics of Graphics",
+    "section": "Group Norms",
+    "text": "Group Norms\n\n\nBe curious. Don’t correct.\nBe open minded.\nAsk questions rather than contribute.\nRespect each other.\nNo cross talk with other groups."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol",
+    "href": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol",
+    "title": "Basics of Graphics",
+    "section": "Collaborative Protocol",
+    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nInterpreter\n\n\nReads out the prompt and ensures the group understands what is being asked.\nEncourages the Coder to vocalize their thinking.\nAsks the Coder to explain their thinking. \nTypes the code specified by the Coder into the Quarto document.    \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output against the question prompt.\n\n\n\n\n\n\n\nCoder\n\n\nConfirms they understand what the prompt is asking.\nTalks with Interpreter about their ideas.\nExplains their thinking.\nDirects the Interpreter what to type. \nManages resources (e.g., cheatsheets, textbook). \nWorks with Interpreter to debug the code."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#task-1",
+    "href": "slides/week-2/week-2-ggplot-short.html#task-1",
+    "title": "Basics of Graphics",
+    "section": "Task 1",
+    "text": "Task 1\nCreate a plot showing the number of penguins captured on each island.\n\n\n\n\nWhat type of variable is island?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#task-2",
+    "href": "slides/week-2/week-2-ggplot-short.html#task-2",
+    "title": "Basics of Graphics",
+    "section": "Task 2",
+    "text": "Task 2\nCreate plot displaying the most common bill lengths for the penguins in these data.\n\n\n\n\nWhat type of variable is bill_length_mm?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#task-3",
+    "href": "slides/week-2/week-2-ggplot-short.html#task-3",
+    "title": "Basics of Graphics",
+    "section": "Task 3",
+    "text": "Task 3\nCreate a plot showing the relationship between a penguin’s bill length and body mass.\n\n\n\n\nWhat type of variables are bill_length_mm and body_mass_g?\n\n\n\n\n\nWhat type of plot would you make for these types of variables?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol-1",
+    "href": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol-1",
+    "title": "Basics of Graphics",
+    "section": "Collaborative Protocol",
+    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nInterpreter\n\n\nDoes not give hints to the Coder for how to solve the problem.\nDoes not solve the problem themselves.\nDoes not tell the Coder how to correct an error.\n\n\n\n\n\n\nCoder\n\n\nDoes not ask the Interpreter how they would solve the problem.\nDoes not ask the Interpreter what functions / tools they should use.\nDoes not ask the Interpreter to debug the code."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#task-card",
+    "href": "slides/week-2/week-2-ggplot-short.html#task-card",
+    "title": "Basics of Graphics",
+    "section": "Task Card",
+    "text": "Task Card"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#accessing-the-practice-activity-in-google-colab",
+    "href": "slides/week-2/week-2-ggplot-short.html#accessing-the-practice-activity-in-google-colab",
+    "title": "Basics of Graphics",
+    "section": "Accessing the Practice Activity in Google Colab",
+    "text": "Accessing the Practice Activity in Google Colab\nThe partner whose family name starts first alphabetically starts as the Interpreter! The Interpreter needs to:\n\n\n\n\nClick on the Practice Activity 2 link from Canvas\nLog-in to your Google account\nSave a copy of the Colab notebook in your Google Drive"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#things-to-know-about-colab",
+    "href": "slides/week-2/week-2-ggplot-short.html#things-to-know-about-colab",
+    "title": "Basics of Graphics",
+    "section": "Things to Know About Colab",
+    "text": "Things to Know About Colab\n\n\nOnly one person can type at a time\n\nIf two people type at the same time, only one document will be able to save.\nThis requires your group to adhere to the collaborative protocol!\n\n\n\n\n\nCode that was run on one person’s computer will not appear on another person’s computer\n\nWhen you switch roles, the new Interpreter will need to run all the code that was typed by the previous Interpreter.\n\n\n\nThe “Run all” button at the top of the document can help you do this!"
   }
 ]

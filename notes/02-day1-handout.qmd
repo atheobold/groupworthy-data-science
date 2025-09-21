@@ -92,8 +92,8 @@ ggplot(data = penguins,
 ::: {.column width="55%"}
 **Common `geom`etries**
 
--   `geom_density()`
 -   `geom_bar()`
+-   `geom_density()`
 -   `geom_histogram()`
 -   `geom_boxplot()`
 -   `geom_point()`
@@ -101,7 +101,10 @@ ggplot(data = penguins,
 :::
 ::::::
 
-## How many penguins were captured on each island?
+# PA 2 Warm-up
+
+## Create a plot showing the number of penguins captured on each island
+
 
 :::::::: columns
 ::: {.column width="30%"}
@@ -123,7 +126,7 @@ ggplot(data = penguins,
 :::
 ::::::::
 
-## What are the most common bill lengths for the penguins included in these data?
+## Create plot displaying the most common bill lengths for the penguins in these data
 
 :::::::: columns
 ::: {.column width="30%"}
@@ -145,7 +148,7 @@ ggplot(data = penguins,
 :::
 ::::::::
 
-## What is the relationship between a penguin's bill length and body mass?
+## Create a plot showing the relationship between a penguin's bill length and body mass
 
 :::::::: columns
 ::: {.column width="30%"}
@@ -167,40 +170,40 @@ ggplot(data = penguins,
 :::
 ::::::::
 
-## How would you recreate this plot?
+<!-- ## How would you recreate this plot? -->
 
-```{r}
-#| echo: false
-#| label: example-plot-with-colors-facets
-#| warning: false
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| label: example-plot-with-colors-facets -->
+<!-- #| warning: false -->
 
-ggplot(data = penguins, 
-       mapping = aes(x = bill_length_mm, 
-                     y = bill_depth_mm, 
-                     color = sex)
-       ) + 
-  geom_point() +
-  facet_wrap(~ island)
-```
+<!-- ggplot(data = penguins,  -->
+<!--        mapping = aes(x = bill_length_mm,  -->
+<!--                      y = bill_depth_mm,  -->
+<!--                      color = sex) -->
+<!--        ) +  -->
+<!--   geom_point() + -->
+<!--   facet_wrap(~ island) -->
+<!-- ``` -->
 
-::::::: columns
-::: {.column width="25%"}
-1.  What variables are included?
-:::
+<!-- ::::::: columns -->
+<!-- ::: {.column width="25%"} -->
+<!-- 1.  What variables are included? -->
+<!-- ::: -->
 
-::: {.column width="25%"}
-2.  What aesthetics are being used?
-:::
+<!-- ::: {.column width="25%"} -->
+<!-- 2.  What aesthetics are being used? -->
+<!-- ::: -->
 
-::: {.column width="25%"}
-3.  What geometries are being used?
-:::
+<!-- ::: {.column width="25%"} -->
+<!-- 3.  What geometries are being used? -->
+<!-- ::: -->
 
-::: {.column width="25%"}
-4.  What functions would you need?
-:::
-:::::::
+<!-- ::: {.column width="25%"} -->
+<!-- 4.  What functions would you need? -->
+<!-- ::: -->
+<!-- ::::::: -->
 
-</br>
+<!-- </br> -->
 
-Are there any additions that would make the plot more clear?
+<!-- Are there any additions that would make the plot more clear? -->

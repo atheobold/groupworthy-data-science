@@ -22,9 +22,9 @@ Today we will...
 + Set-up for the practice activity (15-minutes)
   + Review pair programming norms
   + Learn how to access practice activities
-  + Find your partner!
 + Take a 10-minute break
 + Complete the practice activity (60-minutes)
+  + Find your partner!    
   + Fill out the collaboration survey (2-minutes)
 
 ## Data Context for Today
@@ -199,6 +199,7 @@ ggplot(data = penguins,
 
 ## Aesthetics
 
+::: {.midi}
 We map **variables** (columns) from the data to **aesthetics** on the graphic using the `aes()` function.
 
 What aesthetics can we set?
@@ -208,6 +209,7 @@ What aesthetics can we set?
 + linetype
 + shape
 + size
+:::
 
 ::: {.callout-tip}
 See `ggplot2` cheat sheet for more!
@@ -222,11 +224,11 @@ Wee use a `geom_XXX()` function to represent data points.
 :::: {.columns}
 
 ::: {.column width="50%"}
-::: {.small}
+::: {.midi}
 **one variable**
 
-+ `geom_density()`
 + `geom_bar()`
++ `geom_density()`
 + `geom_dotplot()`
 + `geom_histogram()`
 + `geom_boxplot()`
@@ -234,9 +236,10 @@ Wee use a `geom_XXX()` function to represent data points.
 :::
 
 ::: {.column width="50%"}
-::: {.small}
+::: {.midi}
 **two variable**
 
++ `geom_boxplot()`
 + `geom_point()`
 + `geom_line()`
 :::
@@ -249,116 +252,44 @@ Wee use a `geom_XXX()` function to represent data points.
 See `ggplot2` cheat sheet for more!
 :::
 
-## Creating a Graphic
+## ggplot2 Resources
 
-::: {.midi}
-To create a specific type of graphic, we will **combine** aesthetics and
-geometric objects. When sitting down to create a plot, it's great to start with
-a **game plan**!
-:::
-
-. . .
-
-::: {.midi}
-1. What variables are you interested in?
-2. What types of variables are these?
-3. Where do you want to put each of these variables? (i.e., what `aes`thetics)
-4. What type(s) of `geom`etries do you need?
-:::
-
-## How many penguins were captured on each island?
-
-. . .
+Every person should have a **ggplot2** cheatsheet! 
 
 ::: columns
-::: {.column width="30%"}
-1. What type of variable is `island`? 
+::: {.column width="37%"}
+::: {.fragment}
+**On the Front**
+
+::: {.small}
+- Column 1: the "template" for making a ggplot
+- Column 2: creating plots for one continuous or one discrete variable
+- Column 3: creating plots for two continuous variables
+:::
+:::
 :::
 
 ::: {.column width="3%"}
 :::
 
-::: {.column width="30%"}
-2. What type of plot would you make for this type of variable?
+::: {.column width="37%"}
+::: {.fragment}
+**On the Back**
+
+::: {.small}
+- Column 4: adding facets and labels to your plot
+:::
+:::
 :::
 
 ::: {.column width="3%"}
 :::
 
-::: {.column width="30%"}
-3. What `geom` would you use to get this plot?
+::: {.column width="15%"}
+![](images/ggplot-cheatsheet.png){fig-alt="A picture of the ggplot2 cheatsheet, which contains helpful information on assembling a variety of visualizations all using the ggplot2 package."}
+
 :::
 :::
-
-## What are the most common bill lengths for the penguins included in these data?
-
-. . .
-
-::: columns
-::: {.column width="30%"}
-1. What type of variable is `bill_length`? 
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column width="30%"}
-2. What type of plot would you make for this type of variable?
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column width="30%"}
-3. What `geom` would you use to get this plot?
-:::
-:::
-
-## What is the relationship between a penguin's bill length and body mass?
-
-. . .
-
-::: columns
-::: {.column width="30%"}
-1. What type of variables are `bill_length` and `body_mass`? 
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column width="30%"}
-2. What type of plot would you make for these types of variables?
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column width="30%"}
-3. What `geom` would you use to get this plot?
-:::
-:::
-
-## How would you recreate this plot?
-
-```{r}
-#| echo: false
-#| label: example-plot-with-colors-facets
-#| warning: false
-#| fig-align: center
-#| fig-alt: "Multiple scatterplots showing the relationship between penguins' bill length (on the x-axis) and their body mass (on the y-axis). There are separate plots for each species of penguin (Biscoe, Torgensen, Chinstrap) and different colors for male and female penguins within each plot."
-
-ggplot(data = penguins, 
-       mapping = aes(x = bill_length_mm, 
-                     y = bill_depth_mm, 
-                     color = sex)
-       ) + 
-  geom_point() +
-  facet_wrap(~ island)
-```
-
-. . .
-
-What additional code would you add to make the plot more clear?
 
 
 # PA 2: Using Data Visualization to Find the Penguins
@@ -393,7 +324,11 @@ This puzzle activity will require knowledge of:
 :::
 :::
 
-## Pair Programming Expectations
+<!-- ## Pair Programming Process -->
+
+<!-- Add diagram of collaborative process  -->
+
+## Collaborative Protocol
 
 ::: {.small}
 During your collaboration, you and your partner will alternate between two roles: 
@@ -403,23 +338,22 @@ During your collaboration, you and your partner will alternate between two roles
 
 ::: columns
 ::: {.column width="49%"}
-**Computer**
+**Interpreter**
 
 ::: {.small}
--   Reads prompt and ensures the group understands what is being asked. 
+-   Reads out the prompt and ensures the group understands what is being asked. 
+-   Encourages the Coder to vocalize their thinking.
+-   Asks the Coder to explain their thinking.
+<!-- -   Asks the Coder clarifying questions. -->
 -   Types the code specified by the Coder into the Quarto document.
 <!-- -   Listens carefully, asks the Coder to repeat statements if needed, or to slow -->
 <!-- down. -->
--   Encourages the Coder to vocalize their thinking.
-<!-- -   Asks the Coder clarifying questions. -->
-<!-- -   Checks for accuracy by asking the solution to be restated for clarity. -->
 <!-- -   **Does not** give hints to the Coder for how to solve the problem.  -->
 <!-- -   **Does not** solve the problem themselves.  -->
 -   Runs the code provided by the Coder. 
 -   Works with Coder to debug the code. 
 <!-- -   **Does not** tell the Coder how to correct an error. -->
--   Evaluates the output.  
-<!-- -   Works with Coder to write code comments.  -->
+-   Evaluates the output against the question prompt.  
 :::
 :::
 
@@ -431,93 +365,185 @@ During your collaboration, you and your partner will alternate between two roles
 **Coder**
 
 ::: {.small}
--   Reads out instructions or prompts
--   Directs the Developer what to type. 
--   Talks with Developer about their ideas. 
+-   Confirms they understand what the prompt is asking.
+-   Talks with Interpreter about their ideas. 
+-   Explains their thinking.
+-   Directs the Interpreter what to type. 
 <!-- -   **Does not** ask the Developer how they would solve the problem.  -->
 -   Manages resources (e.g., cheatsheets, textbook). 
 <!-- -   **Does not** ask the developer what functions / tools they should use.  -->
--   Works with Developer to debug the code. 
+-   Works with Interpreter to debug the code. 
 <!-- -   **Does not** ask the Developer to debug the code.  -->
--   Works with Developer to write code comments. 
+<!-- -   Works with Developer to write code comments.  -->
 :::
 :::
 :::
 :::
 
-## 
+## Collaborative Protocol
 
-::: {.callout-tip}
-## Group Norms
-
-1.  Think and work together. Do not divide the work.
-2.  You are smarter together.
-3.  Be open minded. 
-4.  No cross-talk with other groups.
-5.  Communicate with each other! 
+::: {.small}
+During your collaboration, you and your partner will alternate between two roles: 
 :::
 
-<!-- Add other norms that are relevant -->
-
-<!-- Add in discussion of benefits of speaking your code out loud -->
-<!-- - deeper understanding -->
-<!-- - practice communicating ideas -->
-<!-- - explaining your thinking -->
-
-## ggplot2 Resources
-
-Every person should have a **ggplot2** cheatsheet! 
+. . .
 
 ::: columns
-::: {.column width="37%"}
-::: {.fragment}
-**On the Front**
+::: {.column width="49%"}
+**Interpreter**
 
-::: {.incremental}
 ::: {.small}
-- Column 1: the "template" for making a ggplot
-- Column 3: creating plots for two continuous variables
-- Column 4: creating plots for one discrete or one continuous variable
+-   **Does not** give hints to the Coder for how to solve the problem.
+-   **Does not** solve the problem themselves.
+-   **Does not** tell the Coder how to correct an error.
+:::
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="49%"}
+::: {.fragment}
+**Coder**
+
+::: {.small}
+-   **Does not** ask the Interpreter how they would solve the problem.
+-   **Does not** ask the Interpreter what functions / tools they should use.
+-   **Does not** ask the Interpreter to debug the code.
 :::
 :::
 :::
+:::
+
+# PA 2 Warm-up
+
+## Creating a Graphic
+
+::: {.midi}
+To create a specific type of graphic, we will **combine** aesthetics and
+geometric objects. When sitting down to create a plot, it's great to start with
+a **game plan**!
+:::
+
+. . .
+
+::: {.midi}
+1. What variables are you interested in?
+2. What types of variables are these?
+3. Where do you want to put each of these variables? (i.e., what `aes`thetics)
+4. What type(s) of `geom`etries do you need?
+:::
+
+## Task 1
+
+**Create a plot showing the number of penguins captured on each island.**
+
+. . .
+
+::: columns
+::: {.column width="30%"}
+1. What type of variable is `island`? 
 :::
 
 ::: {.column width="3%"}
 :::
 
-::: {.column width="37%"}
-::: {.fragment}
-**On the Back**
-
-::: {.incremental}
-::: {.small}
-- Column 4: adding facets and labels to your plot
-- Column 3: adding themes to your plot (if you have extra time)
-:::
-:::
-:::
+::: {.column width="30%"}
+2. What type of plot would you make for this type of variable?
 :::
 
 ::: {.column width="3%"}
 :::
 
-::: {.column width="15%"}
-![](images/ggplot-cheatsheet.png){fig-alt="A picture of the ggplot2 cheatsheet, which contains helpful information on assembling a variety of visualizations all using the ggplot2 package."}
-
+::: {.column width="30%"}
+3. What `geom` would you use to get this plot?
 :::
 :::
 
-## Opening the Practice Activity in Google Colab
+<!-- Interrupt them while they are speaking. -->
+
+## Task 2
+
+**Create plot displaying the most common bill lengths for the penguins in these data.**
+
+. . .
+
+::: columns
+::: {.column width="30%"}
+1. What type of variable is `bill_length_mm`? 
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+2. What type of plot would you make for this type of variable?
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+3. What `geom` would you use to get this plot?
+:::
+:::
+
+<!-- Correct them when they say it should be a histogram. -->
+
+## Task 3
+
+**Create a plot showing the relationship between a penguin's bill length and body mass.**
+
+. . .
+
+::: columns
+::: {.column width="30%"}
+1. What type of variables are `bill_length_mm` and `body_mass_g`? 
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+2. What type of plot would you make for these types of variables?
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="30%"}
+3. What `geom` would you use to get this plot?
+:::
+:::
+
+<!-- Ask them why they think it's a scatterplot. Ask them if the variables need to be in quotes. After they talk about the labels, ask them to pause and say you are lost. Ask them to repeat what they said. -->
+
+## Group Norms
+
+<!-- THESE NEED TO BE UPDATED TO REFLECT CLASS CONVERSATION -->
+1. Be curious. Don't correct. 
+2. Be open minded.
+3. Ask questions rather than contribute. 
+4. Respect each other. 
+5. No cross talk with other groups. 
+
+## Task Card
+
+<!-- Add blurb about task card roles, processes, and example phrases -->
+
+
+## Accessing the Practice Activity in Google Colab
 
 The partner whose family name starts first alphabetically starts as the
-Developer! The Developer needs to:
+Interpreter! The Interpreter needs to:
 
 ::: columns
 ::: {.column width="40%"}
+::: {.midi}
 - Click on the Practice Activity 2 link from Canvas
 - Log-in to your Google account
-- Make a copy of the Colab notebook
+- Save a copy of the Colab notebook in your Google Drive
+:::
 :::
 
 ::: {.column width="5%"}
@@ -535,11 +561,12 @@ Once you have your copy, you need to:
 
 ::: columns
 ::: {.column width="40%"}
+::: {.midi}
 - Share your copy with your partner's Google account
 - Make sure the Coder can open the file
-- The Developer should plug their laptop into the monitor
-- The Coder should close their computer
-- Get started! 
+- The Interpreter should plug their laptop into the monitor
+- The Coder must close their computer
+:::
 :::
 
 ::: {.column width="5%"}
@@ -547,6 +574,38 @@ Once you have your copy, you need to:
 
 ::: {.column width="55%"}
 ![](images/share-colab.png){fig-alt="A screenshot of the options provided when you click on the Share pane (in the upper right corner) within Google Colab. The user has typed in a Gmail address to share it with Laura Smith, who will receive an email with a link to the document when the Notify option is checked." width=50%}
+:::
+:::
+
+## Things to Know About Colab
+
+::: columns
+::: {.column width="48%"}
+**Only one person can type at a time**
+
+::: {.midi}
+If two people type at the same time, only one document will be able to save.
+
+This requires your group to adhere to the collaborative protocol!
+:::
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+**Code that was run on one person's computer [will not]{.underline} appear on another 
+person's computer**
+
+::: {.midi}
+When you switch roles, the new Interpreter will need to [run all]{.underline} the code
+that was typed by the previous Interpreter. 
+
+![The "Run all" button at the top of the document can help you do this!](images/run-all-colab.png){fig-alt="A screenshot of the 'Run all' button from Google Colab, which is located at the top of the notebook, to the right of the 'Code' and 'Text' buttons for adding content to the notebook. Clicking on this button will run every code chunk in the entire notebook."}
+:::
+
+:::
 :::
 :::
 
@@ -559,3 +618,10 @@ answer the five questions posed at the end of the document.
 - The person who last occupied the role of Developer will print the notebook as 
 a PDF and submit the PDF for the group.
   + Only one submission per group!
+
+# 10-minute Break
+
+<!-- ## Team Assignments  -->
+
+<!-- Add seating chart with team assignments -->
+

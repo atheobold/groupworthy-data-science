@@ -7,79 +7,9 @@ embed-resources: true
 ---
 
 In this lab, we will be using the `dplyr` package to explore student evaluations
-of teaching data. 
+of teaching data. **You are expected to use functions from `dplyr` to do your data manipulation!**
 
-**You are expected to use functions from `dplyr` to do your data manipulation!**
-
-# Part 1: GitHub Workflow
-
-Now that you have the Lab 2 repository cloned, you need to make sure you can 
-successfully push to GitHub. To do this you need to:
-
--   Open the `lab-3-student.qmd` file (in the lower right hand corner). 
--   Change the `author` line at the top of the document (in the YAML) to your
-name. 
--   Save your file either by clicking on the blue floppy disk or with a shortcut
-(command / control + s). 
--   Click the "Git" tab in upper right pane
--   Check the "Staged" box for the `lab-3-student.qmd` file (the file you
-changed)
--   Click "Commit"
--   In the box that opens, type a message in "Commit message", such as
-"Added my name".
--   Click "Commit".
--   Click the green "Push" button to send your local changes to GitHub.
-
-RStudio will display something like:
-
-```         
->>> /usr/bin/git push origin HEAD:refs/heads/main
-To https://github.com/atheobold/introduction-to-quarto-allison-theobold.git
-   3a2171f..6d58539  HEAD -> main
-```
-
-Now you are ready to go! Remember, as you are going through the lab I would 
-strongly recommend rendering your HTML and committing your after **every** 
-question! 
-
-# Part 2: Some Words of Advice
-
-Part of learning to program is learning from a variety of resources. Thus, I
-expect you will use resources that you find on the internet. There is, however,
-an important balance between copying someone else's code and *using their code to learn*.
-Therefore, if you use external resources, I want to know about it.
-
--   If you used Google, you are expected to "inform" me of any resources you
-used by **pasting the link to the resource in a code comment next to where you used that resource**.
-
--   If you used ChatGPT, you are expected to "inform" me of the assistance you
-received by (1) indicating somewhere in the problem that you used ChatGPT 
-(e.g., below the question prompt or as a code comment), and (2) downloading and
-attaching the `.txt` file containing your **entire** conversation with ChatGPT.
-
-Additionally, you are permitted and encouraged to work with your peers as you
-complete lab assignments, but **you are expected to do your own work**. Copying
-from each other is cheating, and letting people copy from you is also cheating.
-Please don't do either of those things.
-
-## Setting Up Your Code Chunks
-
--   The first chunk of this Quarto document should be used to *declare your libraries* (probably only `tidyverse` for now).
--   The second chunk of your Quarto document should be to *load in your data*.
-
-## Save Regularly, Render Often
-
--   Be sure to **save** your work regularly.
--   Be sure to **render** your file every so often, to check for errors and make
-sure it looks nice.
-    -   Make sure your Quarto document does not contain `View(dataset)` or `install.packages("package")`, both of these will prevent rendering.
-    -   Check your Quarto document for occasions when you looked at the data by
-    typing the name of the data frame. Leaving these in means the whole dataset
-    will print out and this looks unprofessional. **Remove these!**
-    -   If all else fails, you can set your execution options to `error: true`,
-    which will allow the file to render even if errors are present.
-
-# Part 3: Let's Start Working with the Data!
+<!-- See instructions for words of advice on completing the assignment! -->
 
 ## The Data
 
@@ -132,7 +62,7 @@ the past 6 semesters).
 type, course breadth, class duration, class size).
 3.  **percentage of students providing SET feedback.**
 4.  **course grades** (mean, standard deviation, percentage failed for the
-current course and previous 6 semesters).
+current course and previous six semesters).
 
 This rich dataset allows us to **investigate many of the biases in student evaluations of teaching** that have been reported in the literature and to formulate new
 hypotheses.
@@ -141,10 +71,10 @@ Before tackling the problems below, study the description of each variable
 included in the `teacher_evals_codebook.pdf` inside the "resources" folder.
 
 **1. Load the appropriate R packages for your analysis.**
+*Hint: The ggplot2 package and the readr package can both be loaded with the tidyverse package.*
 
 ```{r}
-#| label: setup
-# code chunk for loading packages
+#| label: packages
 
 ```
 
@@ -153,7 +83,6 @@ included in the `teacher_evals_codebook.pdf` inside the "resources" folder.
 
 ```{r}
 #| label: load-data
-# code chunk for importing the data
 
 ```
 
@@ -186,7 +115,7 @@ included in the `teacher_evals_codebook.pdf` inside the "resources" folder.
 
 ```{r}
 #| label: data-cleaning
-# code chunk for Q4
+
 
 ```
 
@@ -194,23 +123,23 @@ included in the `teacher_evals_codebook.pdf` inside the "resources" folder.
 
 ```{r}
 #| label: unique-courses
-# code chunk for Q5
+
 
 ```
 
-**7. One teacher-course combination has some missing values, coded as `NA`. Which instructor has these missing values? Which course? What variable are the missing values in?**
-
-```{r}
-#| label: uncovering-missing-values
-# code chunk for Q6
-
-```
-
-**8. What are the demographics of the instructors in this study? Investigate the variables `academic_degree`, `seniority`, and `sex` and summarize your findings in ~3 complete sentences.**
+**7. What are the demographics of the instructors in this study? Investigate the variables `academic_degree`, `seniority`, and `sex` and summarize your findings in ~3 complete sentences.**
 
 ```{r}
 #| label: exploring-demographics-of-instructors
-# code chunk for Q7
+
+
+```
+
+**8. One teacher-course combination has some missing values, coded as `NA`. Which instructor has these missing values? Which course? What variable are the missing values in?**
+
+```{r}
+#| label: uncovering-missing-values
+
 
 ```
 

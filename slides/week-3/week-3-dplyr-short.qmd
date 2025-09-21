@@ -557,7 +557,7 @@ data |>
 
 Today you will use the `dplyr` package to clean some data and then use that cleaned data to figure out what college Ephelia has been accepted to.
 
-![](images/WSU-ivy-covered-building.jpg){fig-alt="A picture of a college building covered in green ivy. The building is reminescent of gothic architecture, with a brick exterior and many windows."}
+![](images/ivy-covered-building.jpg){fig-alt="A picture of a college building covered in green ivy. The building is reminescent of gothic architecture, with a brick exterior and many windows."}
 
 ## Finding Ephelia's College
 

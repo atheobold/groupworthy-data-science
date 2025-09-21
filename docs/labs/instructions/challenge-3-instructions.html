@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.22">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -32,15 +32,14 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../images/stat-331-hex.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-be11573b6374e633292ee320d3d6b571.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-9d3871c3a33628a85db1522934fdc5ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,8 +78,6 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Introduction to Statistical Computing in R</span>
     </a>
@@ -123,7 +120,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#chi-square-test-of-independence" id="toc-chi-square-test-of-independence" class="nav-link active" data-scroll-target="#chi-square-test-of-independence">Chi-Square Test of Independence</a></li>
+  <li><a href="#accessing-the-challenge" id="toc-accessing-the-challenge" class="nav-link active" data-scroll-target="#accessing-the-challenge">Accessing the Challenge</a></li>
+  <li><a href="#chi-square-test-of-independence" id="toc-chi-square-test-of-independence" class="nav-link" data-scroll-target="#chi-square-test-of-independence">Chi-Square Test of Independence</a></li>
   <li><a href="#study-critique" id="toc-study-critique" class="nav-link" data-scroll-target="#study-critique">Study Critique</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -150,6 +148,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>This challenge builds on the work you already did with the data on teacher evaluations. Specifically, you are tasked with recreating a plot, carrying out a Chi-Squared test of independence, and providing a critique of the design and collection of these data.</p>
+<section id="accessing-the-challenge" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-the-challenge">Accessing the Challenge</h2>
+<p>Download the template Challenge 3 Quarto file here: <a href="../student/challenge-3-student.qmd" download=""><code>challenge-3-student.qmd</code></a></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Be sure to save the file in the Lab 3 folder, inside your Week 3 folder, inside your STAT 331 folder!</p>
+</div>
+</div>
+</section>
 <section id="chi-square-test-of-independence" class="level1">
 <h1>Chi-Square Test of Independence</h1>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -158,21 +174,21 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Refresher on Chi-square test of independence
+Refresher on Chi-square test of Independence
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>While a second course in statistics is a pre-requisite for this class, <a href="https://openintro-ims.netlify.app/inference-tables#inference-tables">here</a> is a refresher on Chi-square tests of independence.</p>
+<p>In case it has been a second or two since you did a Chi-Squared test, <a href="https://openintro-ims.netlify.app/inference-tables#inference-tables">this chapter</a> provides a friendly refresher.</p>
 </div>
 </div>
 <p>Let’s compare the level of SET ratings for Question 3 (The professor used activities to make the class more engaging.) between senior instructors and junior instructors.</p>
-<p><strong>1. Using the original <code>teacher_evals</code> dataset (not <code>teacher_evals_clean</code>), create a new dataset that accomplishes the following with <em>one</em><code>dplyr</code> pipeline:</strong></p>
+<p><strong>1. Using the original <code>teacher_evals</code> dataset (not <code>teacher_evals_clean</code>), create a new dataset that accomplishes the following with <em>one</em> <code>dplyr</code> pipeline:</strong></p>
 <ul>
 <li><strong>includes responses for Question 3 only</strong></li>
-<li><strong>creates a new variable called <code>SET_level</code> that is “excellent” if the <code>SET_score_avg</code> is 4 or higher (inclusive) and “standard” otherwise</strong></li>
-<li><strong>creates a new variable called <code>sen_level</code> that is “junior” if <code>seniority</code> is 4 or less (inclusive) and “senior” otherwise</strong></li>
+<li><strong>creates a new variable called set_level that is “excellent” if the SET_score_avg is 4 or higher (inclusive) and “standard” otherwise</strong></li>
+<li><strong>creates a new variable called sen_level that is “junior’”’ if the instructor has been teaching for 4 years or less (inclusive), “senior” if between 5-8 years (inclusive), and “very senior” if more than 8 years</strong></li>
 <li><strong>contains only the variables we are interested in –- <code>course_id</code>, <code>SET_level</code>, and <code>sen_level</code></strong></li>
-<li><strong>saves the mutated data into a new object named <code>teacher_evals_compare</code>.</strong></li>
+<li><strong>saves the mutated data into a new data frame named <code>teacher_evals_compare</code></strong></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -187,7 +203,7 @@ Tip
 <p>Helpful functions: <code>filter()</code>, <code>mutate()</code>, <code>if_else()</code>, <code>select()</code></p>
 </div>
 </div>
-<p><strong>2. Using the new dataset and your <code>ggplot2</code> skills, recreate the filled bar plot shown below.</strong></p>
+<p><strong>2. Using the new dataset and your <code>ggplot2</code> skills, recreate the bar plot shown below.</strong></p>
 <p><img src="images/challenge-3-plot-to-recreate.png" class="img-fluid"></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -199,9 +215,9 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>You <u>should not</u> have to do any more data manipulation to create this plot.</p>
 <p>Helpful geometric object and arguments: <code>geom_bar(stat = ..., position = ...)</code></p>
-<p>You <strong>should not</strong> have to do any more data manipulation to create this plot.</p>
-<p>Note that getting the general structure and reader friendly labels is the first step. The next step is to figure out the labels of the bars and the theme of the plot.</p>
+<p>Note that getting the general structure and reader friendly labels is the first step. Next, you need to move the legend from the right hand side of the plot to the top. Next, you get to match the colors and theme of the plot. The final step is to get the percentage labels on the y-axis.</p>
 </div>
 </div>
 <p><strong>3. Look up the documentation for <code>chisq.test()</code> to carry out a chi-square test of independence between the SET level and instructor seniority level in your new dataset.</strong></p>
@@ -215,7 +231,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note that the <code>chisq.test()</code> function does not take a formula / data specification as we have seen before. You will need to extract the variables you wish to include in the analysis using a <code>$</code> (e.g., <code>evals$level$</code>).</p>
+<p>Note that the <code>chisq.test()</code> function does not take a formula / data specification like we saw in Lab 2 with <code>t.test()</code>. This function requires you to extract the variables you wish to include in the analysis using a <code>$</code> (e.g., <code>evals$level</code>).</p>
 </div>
 </div>
 <p><strong>4. Draw a conclusion about the independence of evaluation level and seniority level based on your chi-square test.</strong></p>
@@ -223,7 +239,7 @@ Tip
 <section id="study-critique" class="level1">
 <h1>Study Critique</h1>
 <p>Part of the impetus behind this study was to investigate characteristics of a course or an instructor that might affect student evaluations of teaching that are <strong>not</strong> explicitly related to teaching effectiveness. For instance, it has been shown that gender identity and gender express affect student evaluations of teaching (<a href="https://link.springer.com/article/10.1007/s10755-014-9313-4?nr_email_referer=1">an example</a>).</p>
-<p><strong>5. If you were to conduct this study at Cal Poly, what are two other variables you would like to collect that you think might be related to student evaluations? These should be course or instructor characteristics that were not collected in this study.</strong></p>
+<p><strong>5. If you were to conduct this study at Cal Poly, what are two other variables you would like to collect that you think might be related to student evaluations? These should be course or instructor characteristics that <u>were not</u> collected in this study.</strong></p>
 <p><strong>6. Explain what effects / relationships you would expect to see for each of the two variables you outlined.</strong></p>
 
 

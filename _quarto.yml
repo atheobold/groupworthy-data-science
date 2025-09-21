@@ -1,12 +1,13 @@
 project:
   type: website
   output-dir: docs
-  render: 
+  render:
     - "*.qmd"
     - "!/labs/student/"
     - "!/videos/"
     - "!/group-activities/group-formation"
     - "!/portfolio/midterm-portfolio-checklist.docx"
+    - "!/labs/instructions/images/challenge-3-plot.r"
 
 resources:
   - student/lab-1-student.qmd
@@ -23,7 +24,7 @@ website:
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
     left: "&copy; Copyright 2024, Allison Theobold & Judith Canner"
     background: "#c896ff"
-    
+
   favicon: "images/stat-331-hex.png"
 
   navbar:

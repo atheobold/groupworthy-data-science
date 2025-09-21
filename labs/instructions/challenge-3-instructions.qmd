@@ -2,23 +2,36 @@
 title: "Challenge 3: Extending Teaching Evaluation Investigations"
 ---
 
+This challenge builds on the work you already did with the data on
+teacher evaluations. Specifically, you are tasked with recreating
+a plot, carrying out a Chi-Squared test of independence, and 
+providing a critique of the design and collection of these data. 
+
+## Accessing the Challenge
+
+Download the template Challenge 3 Quarto file here: <a href="../student/challenge-3-student.qmd" download>`challenge-3-student.qmd`</a> 
+
+::: {.callout-important}
+Be sure to save the file in the Lab 3 folder, inside your Week 3 folder, inside your STAT 331 folder! 
+:::
+
 # Chi-Square Test of Independence
 
 ::: callout-tip
-## Refresher on Chi-square test of independence
+## Refresher on Chi-square test of Independence
 
-While a second course in statistics is a pre-requisite for this class, [here](https://openintro-ims.netlify.app/inference-tables#inference-tables) is a refresher on Chi-square tests of independence.
+In case it has been a second or two since you did a Chi-Squared test, [this chapter](https://openintro-ims.netlify.app/inference-tables#inference-tables) provides a friendly refresher. 
 :::
 
 Let’s compare the level of SET ratings for Question 3 (The professor used activities to make the class more engaging.) between senior instructors and junior instructors.
 
-**1. Using the original `teacher_evals` dataset (not `teacher_evals_clean`), create a new dataset that accomplishes the following with *one*`dplyr` pipeline:**
+**1. Using the original `teacher_evals` dataset (not `teacher_evals_clean`), create a new dataset that accomplishes the following with *one* `dplyr` pipeline:**
 
 -   **includes responses for Question 3 only**
--   **creates a new variable called `SET_level` that is “excellent” if the `SET_score_avg` is 4 or higher (inclusive) and “standard” otherwise**
--   **creates a new variable called `sen_level` that is “junior” if `seniority` is 4 or less (inclusive) and “senior” otherwise**
+- **creates a new variable called set_level that is "excellent" if the SET_score_avg is 4 or higher (inclusive) and "standard" otherwise**
+- **creates a new variable called sen_level that is "junior'”' if the instructor has been teaching for 4 years or less (inclusive), "senior" if between 5-8 years (inclusive), and "very senior" if more than 8 years**
 -   **contains only the variables we are interested in –- `course_id`, `SET_level`, and `sen_level`**
--   **saves the mutated data into a new object named `teacher_evals_compare`.**
+-   **saves the mutated data into a new data frame named `teacher_evals_compare`**
 
 ::: callout-tip
 Helpful functions: `filter()`, `mutate()`, `if_else()`, `select()`
@@ -29,16 +42,16 @@ Helpful functions: `filter()`, `mutate()`, `if_else()`, `select()`
 
 ```
 
-**2. Using the new dataset and your `ggplot2` skills, recreate the filled bar plot shown below.**
+**2. Using the new dataset and your `ggplot2` skills, recreate the bar plot shown below.**
 
 ![](images/challenge-3-plot-to-recreate.png)
 
 ::: callout-tip
+You [should not]{.underline} have to do any more data manipulation to create this plot.
+
 Helpful geometric object and arguments: `geom_bar(stat = ..., position = ...)`
 
-You **should not** have to do any more data manipulation to create this plot.
-
-Note that getting the general structure and reader friendly labels is the first step. The next step is to figure out the labels of the bars and the theme of the plot.
+Note that getting the general structure and reader friendly labels is the first step. Next, you need to move the legend from the right hand side of the plot to the top. Next, you get to match the colors and theme of the plot. The final step is to get the percentage labels on the y-axis.
 :::
 
 ```{r}
@@ -49,7 +62,7 @@ Note that getting the general structure and reader friendly labels is the first 
 **3. Look up the documentation for `chisq.test()` to carry out a chi-square test of independence between the SET level and instructor seniority level in your new dataset.**
 
 ::: callout-tip
-Note that the `chisq.test()` function does not take a formula / data specification as we have seen before. You will need to extract the variables you wish to include in the analysis using a `$` (e.g., `evals$level$`).
+Note that the `chisq.test()` function does not take a formula / data specification like we saw in Lab 2 with `t.test()`. This function requires you to extract the variables you wish to include in the analysis using a `$` (e.g., `evals$level`).
 :::
 
 ```{r}
@@ -63,6 +76,6 @@ Note that the `chisq.test()` function does not take a formula / data specificati
 
 Part of the impetus behind this study was to investigate characteristics of a course or an instructor that might affect student evaluations of teaching that are **not** explicitly related to teaching effectiveness. For instance, it has been shown that gender identity and gender express affect student evaluations of teaching ([an example](https://link.springer.com/article/10.1007/s10755-014-9313-4?nr_email_referer=1)).
 
-**5. If you were to conduct this study at Cal Poly, what are two other variables you would like to collect that you think might be related to student evaluations? These should be course or instructor characteristics that were not collected in this study.**
+**5. If you were to conduct this study at Cal Poly, what are two other variables you would like to collect that you think might be related to student evaluations? These should be course or instructor characteristics that [were not]{.underline} collected in this study.**
 
 **6. Explain what effects / relationships you would expect to see for each of the two variables you outlined.**

@@ -5227,5 +5227,12 @@
     "title": "Basics of Graphics",
     "section": "Things to Know About Colab",
     "text": "Things to Know About Colab\n\n\nOnly one person can type at a time\n\nIf two people type at the same time, only one document will be able to save.\nThis requires your group to adhere to the collaborative protocol!\n\n\n\n\n\nCode that was run on one person’s computer will not appear on another person’s computer\n\nWhen you switch roles, the new Interpreter will need to run all the code that was typed by the previous Interpreter.\n\n\n\nThe “Run all” button at the top of the document can help you do this!"
+  },
+  {
+    "objectID": "slides/week-2/week-2-import.html#additional-challenge-opportunity",
+    "href": "slides/week-2/week-2-import.html#additional-challenge-opportunity",
+    "title": "Tidy Data, Importing Data & More Advanced Graphics",
+    "section": "Additional Challenge Opportunity",
+    "text": "Additional Challenge Opportunity\n\nA research team from The University of Illinois is studying students’ ability to decipher what data visualizations in the media do and do not reveal. They have developed an assessment to measure students’ visual data literacy, and our class will be among the first to test it out and offer feedback.\nThe assessment form is linked in the “ADDITIONAL CHALLENGE OPPORTUNITIES” module on Canvas.\nCompleting the survey can count as an additional demonstration of you “extending” your thinking.\nAs with all research, it is up to you whether you give consent for your data to be used for research purposes! You will be asked about this at the end of the survey. That choice completely up to you!"
   }
 ]

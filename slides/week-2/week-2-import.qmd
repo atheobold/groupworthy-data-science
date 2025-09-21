@@ -918,6 +918,25 @@ outside of these materials require direct references.
     -   Ask GPT to explain code to you!
 :::
 
+## Additional Challenge Opportunity
+
+::: {.small}
+A research team from The University of Illinois is studying students' ability to
+decipher what data visualizations in the media do and do not reveal. They have
+developed an assessment to measure students' visual data literacy, and our
+class will be among the first to test it out and offer feedback.
+
+The assessment form is linked in the "ADDITIONAL CHALLENGE OPPORTUNITIES" module
+on Canvas. 
+
+***Completing the survey can count as an additional demonstration of you 
+"extending" your thinking.***
+
+As with all research, it is up to you whether you give consent for your data to
+be used for research purposes! You will be asked about this at the end of the
+survey. That choice completely up to you! 
+:::
+
 ## To do...
 
 -   **Lab 2: Exploring rodents with ggplot2**

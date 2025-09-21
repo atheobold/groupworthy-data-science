@@ -13,7 +13,7 @@ library(palmerpenguins)
 
 # Data Context
 
-![](images/penguins-docs.png){fig-alt="A screenshot of the R documentation page for the penguins dataset. The documentation page describes the context of the data (body measurements of penguins from the Palmer Archipeligo of Antarctica), the variables included in the data (species, island, bill_length_mm, etc.), and the units for each variable."} **What variables are included in these data? What units are the variables measured in? What do you think each row in the data represents?**
+![](images/02-penguins-docs.png){fig-alt="A screenshot of the R documentation page for the penguins dataset. The documentation page describes the context of the data (body measurements of penguins from the Palmer Archipeligo of Antarctica), the variables included in the data (species, island, bill_length_mm, etc.), and the units for each variable."} **What variables are included in these data? What units are the variables measured in? What do you think each row in the data represents?**
 
 \pagebreak
 
@@ -105,7 +105,6 @@ ggplot(data = penguins,
 
 ## Create a plot showing the number of penguins captured on each island
 
-
 :::::::: columns
 ::: {.column width="30%"}
 1.  What type of variable is `island`?
@@ -130,7 +129,7 @@ ggplot(data = penguins,
 
 :::::::: columns
 ::: {.column width="30%"}
-1.  What type of variable is `island`?
+1.  What type of variable is `bill_length_mm`?
 :::
 
 ::: {.column width="3%"}
@@ -152,7 +151,7 @@ ggplot(data = penguins,
 
 :::::::: columns
 ::: {.column width="30%"}
-1.  What type of variable is `island`?
+1.  What type of variables are `bill_length_mm` and `body_mass_g`?
 :::
 
 ::: {.column width="3%"}
@@ -173,35 +172,55 @@ ggplot(data = penguins,
 <!-- ## How would you recreate this plot? -->
 
 <!-- ```{r} -->
+
 <!-- #| echo: false -->
+
 <!-- #| label: example-plot-with-colors-facets -->
+
 <!-- #| warning: false -->
 
 <!-- ggplot(data = penguins,  -->
+
 <!--        mapping = aes(x = bill_length_mm,  -->
+
 <!--                      y = bill_depth_mm,  -->
+
 <!--                      color = sex) -->
+
 <!--        ) +  -->
+
 <!--   geom_point() + -->
+
 <!--   facet_wrap(~ island) -->
+
 <!-- ``` -->
 
 <!-- ::::::: columns -->
+
 <!-- ::: {.column width="25%"} -->
+
 <!-- 1.  What variables are included? -->
+
 <!-- ::: -->
 
 <!-- ::: {.column width="25%"} -->
+
 <!-- 2.  What aesthetics are being used? -->
+
 <!-- ::: -->
 
 <!-- ::: {.column width="25%"} -->
+
 <!-- 3.  What geometries are being used? -->
+
 <!-- ::: -->
 
 <!-- ::: {.column width="25%"} -->
+
 <!-- 4.  What functions would you need? -->
+
 <!-- ::: -->
+
 <!-- ::::::: -->
 
 <!-- </br> -->

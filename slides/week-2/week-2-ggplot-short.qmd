@@ -119,8 +119,8 @@ What do you expect to see after running this code?
 #| echo: false
 #| code-line-numbers: false
 #| fig-align: center
-#| fig-height: 4.5
-#| fig-width: 4.5
+#| fig-height: 4
+#| fig-width: 4
 #| label: blank-plot
 #| fig-alt: "An image of a blank gray square representing a blank plotting canvas."
 
@@ -148,8 +148,8 @@ What do you expect to see after running this code?
 #| echo: false
 #| code-line-numbers: "2"
 #| fig-align: center
-#| fig-height: 4.5
-#| fig-width: 4.5
+#| fig-height: 4
+#| fig-width: 4
 #| label: add-variables-to-aesthetics
 #| fig-alt: "An image of a gray square with white gridlines representing a plotting canvas where the variables have been assigned to the x and y aesthetics. On the x-axis there is a variable named 'class' with seven different values mapped to a particular white gridline---2seater, compact, midsize, minivan, pickup, subcompact, suv. On the y-axis there is a variable named 'hwy' with three printed values mapped to different white gridlines---20, 30, and 40. The spaces between these gridlines represent values between the printed values (e.g., 25)."
 
@@ -176,14 +176,20 @@ ggplot(data = penguins,
 ```
 :::
 
-
+::: columns
+::: {.column width="25%"}
 **What do you expect to see after running this code?**
+:::
 
+::: {.column width="5%"}
+:::
+
+::: {.column width="70%"}
 ::: {.fragment}
 ```{r}
 #| echo: false
 #| fig-height: 4
-#| fig-width: 4.5
+#| fig-width: 4
 #| fig-align: center
 #| label: adding-jittered-points-and-boxplots
 #| fig-alt: "The same visualization is presented, except there are not boxplots superimposed on top of the points (dots) for each vehicle type. The boxplots display the median (center line), quantiles (edges), and min / max (whiskers) of each vehicle's mileage."
@@ -194,6 +200,8 @@ ggplot(data = penguins,
   geom_jitter() +
   geom_boxplot()
 ```
+:::
+:::
 :::
 :::
 
@@ -245,8 +253,6 @@ Wee use a `geom_XXX()` function to represent data points.
 :::
 :::
 ::::
-
-</br>
 
 ::: {.callout-tip}
 See `ggplot2` cheat sheet for more!

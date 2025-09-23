@@ -386,7 +386,7 @@ During your collaboration, you and your partner will alternate between two roles
 
 ::: columns
 ::: {.column width="49%"}
-**Interpreter**
+**Computer**
 
 ::: {.small}
 -   Reads out the prompt and ensures the group understands what is being asked. 
@@ -414,15 +414,15 @@ During your collaboration, you and your partner will alternate between two roles
 
 ::: {.small}
 -   Confirms they understand what the prompt is asking.
--   Talks with Interpreter about their ideas. 
+-   Talks with Computer about their ideas. 
 -   Explains their thinking.
--   Directs the Interpreter what to type. 
-<!-- -   **Does not** ask the Developer how they would solve the problem.  -->
+-   Directs the Computer what to type. 
+<!-- -   **Does not** ask the Computer how they would solve the problem.  -->
 -   Manages resources (e.g., cheatsheets, textbook). 
-<!-- -   **Does not** ask the developer what functions / tools they should use.  -->
--   Works with Interpreter to debug the code. 
-<!-- -   **Does not** ask the Developer to debug the code.  -->
-<!-- -   Works with Developer to write code comments.  -->
+<!-- -   **Does not** ask the Computer what functions / tools they should use.  -->
+-   Works with Computer to debug the code. 
+<!-- -   **Does not** ask the Computer to debug the code.  -->
+<!-- -   Works with Computer to write code comments.  -->
 :::
 :::
 :::
@@ -438,7 +438,7 @@ During your collaboration, you and your partner will alternate between two roles
 
 ::: columns
 ::: {.column width="49%"}
-**Interpreter**
+**Computer**
 
 ::: {.small}
 -   **Does not** give hints to the Coder for how to solve the problem.
@@ -455,9 +455,9 @@ During your collaboration, you and your partner will alternate between two roles
 **Coder**
 
 ::: {.small}
--   **Does not** ask the Interpreter how they would solve the problem.
--   **Does not** ask the Interpreter what functions / tools they should use.
--   **Does not** ask the Interpreter to debug the code.
+-   **Does not** ask the Computer how they would solve the problem.
+-   **Does not** ask the Computer what functions / tools they should use.
+-   **Does not** ask the Computer to debug the code.
 :::
 :::
 :::
@@ -587,7 +587,7 @@ a **game plan**!
 ## Accessing the Practice Activity in Google Colab
 
 The partner whose family name starts first alphabetically starts as the
-Interpreter! The Interpreter needs to:
+Computer! The Computer needs to:
 
 ::: columns
 ::: {.column width="40%"}
@@ -616,7 +616,7 @@ Once you have your copy, you need to:
 ::: {.midi}
 - Share your copy with your partner's Google account
 - Make sure the Coder can open the file
-- The Interpreter should plug their laptop into the monitor
+- The Computer should plug their laptop into the monitor
 - The Coder must close their computer
 :::
 :::
@@ -651,8 +651,8 @@ This requires your group to adhere to the collaborative protocol!
 person's computer**
 
 ::: {.midi}
-When you switch roles, the new Interpreter will need to [run all]{.underline} the code
-that was typed by the previous Interpreter. 
+When you switch roles, the new Computer will need to [run all]{.underline} the code
+that was typed by the previous Computer. 
 
 ![The "Run all" button at the top of the document can help you do this!](images/run-all-colab.png){fig-alt="A screenshot of the 'Run all' button from Google Colab, which is located at the top of the notebook, to the right of the 'Code' and 'Text' buttons for adding content to the notebook. Clicking on this button will run every code chunk in the entire notebook."}
 :::
@@ -667,13 +667,20 @@ that was typed by the previous Interpreter.
 answer the five questions posed at the end of the document. 
 
 - Each person will input the answers to these questions in the PA2 Canvas quiz.
-- The person who last occupied the role of Developer will print the notebook as 
+- The person who last occupied the role of Computer will print the notebook as 
 a PDF and submit the PDF for the group.
   + Only one submission per group!
 
 # 10-minute Break
 
-<!-- ## Team Assignments  -->
+# Team Assignments
+
+## Section 70 (9:00 am)
+
+
+## Section 71 (12:00 pm)
+
+![](images/section-71-seats.png)
 
 <!-- Add seating chart with team assignments -->
 

@@ -1943,14 +1943,14 @@
     "href": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol",
     "title": "Basics of Graphics",
     "section": "Collaborative Protocol",
-    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nInterpreter\n\n\nReads out the prompt and ensures the group understands what is being asked.\nEncourages the Coder to vocalize their thinking.\nAsks the Coder to explain their thinking. \nTypes the code specified by the Coder into the Quarto document.    \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output against the question prompt.\n\n\n\n\n\n\n\nCoder\n\n\nConfirms they understand what the prompt is asking.\nTalks with Interpreter about their ideas.\nExplains their thinking.\nDirects the Interpreter what to type. \nManages resources (e.g., cheatsheets, textbook). \nWorks with Interpreter to debug the code."
+    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nComputer\n\n\nReads out the prompt and ensures the group understands what is being asked.\nEncourages the Coder to vocalize their thinking.\nAsks the Coder to explain their thinking. \nTypes the code specified by the Coder into the Quarto document.    \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output against the question prompt.\n\n\n\n\n\n\n\nCoder\n\n\nConfirms they understand what the prompt is asking.\nTalks with Computer about their ideas.\nExplains their thinking.\nDirects the Computer what to type. \nManages resources (e.g., cheatsheets, textbook). \nWorks with Computer to debug the code."
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol-1",
     "href": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol-1",
     "title": "Basics of Graphics",
     "section": "Collaborative Protocol",
-    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nInterpreter\n\n\nDoes not give hints to the Coder for how to solve the problem.\nDoes not solve the problem themselves.\nDoes not tell the Coder how to correct an error.\n\n\n\n\n\n\nCoder\n\n\nDoes not ask the Interpreter how they would solve the problem.\nDoes not ask the Interpreter what functions / tools they should use.\nDoes not ask the Interpreter to debug the code."
+    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nComputer\n\n\nDoes not give hints to the Coder for how to solve the problem.\nDoes not solve the problem themselves.\nDoes not tell the Coder how to correct an error.\n\n\n\n\n\n\nCoder\n\n\nDoes not ask the Computer how they would solve the problem.\nDoes not ask the Computer what functions / tools they should use.\nDoes not ask the Computer to debug the code."
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#creating-a-graphic",
@@ -1999,28 +1999,28 @@
     "href": "slides/week-2/week-2-ggplot-short.html#accessing-the-practice-activity-in-google-colab",
     "title": "Basics of Graphics",
     "section": "Accessing the Practice Activity in Google Colab",
-    "text": "Accessing the Practice Activity in Google Colab\nThe partner whose family name starts first alphabetically starts as the Interpreter! The Interpreter needs to:\n\n\n\n\nClick on the Practice Activity 2 link from Canvas\nLog-in to your Google account\nSave a copy of the Colab notebook in your Google Drive"
+    "text": "Accessing the Practice Activity in Google Colab\nThe partner whose family name starts first alphabetically starts as the Computer! The Computer needs to:\n\n\n\n\nClick on the Practice Activity 2 link from Canvas\nLog-in to your Google account\nSave a copy of the Colab notebook in your Google Drive"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#sharing-with-your-partner",
     "href": "slides/week-2/week-2-ggplot-short.html#sharing-with-your-partner",
     "title": "Basics of Graphics",
     "section": "Sharing with Your Partner",
-    "text": "Sharing with Your Partner\nOnce you have your copy, you need to:\n\n\n\n\nShare your copy with your partner’s Google account\nMake sure the Coder can open the file\nThe Interpreter should plug their laptop into the monitor\nThe Coder must close their computer"
+    "text": "Sharing with Your Partner\nOnce you have your copy, you need to:\n\n\n\n\nShare your copy with your partner’s Google account\nMake sure the Coder can open the file\nThe Computer should plug their laptop into the monitor\nThe Coder must close their computer"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#things-to-know-about-colab",
     "href": "slides/week-2/week-2-ggplot-short.html#things-to-know-about-colab",
     "title": "Basics of Graphics",
     "section": "Things to Know About Colab",
-    "text": "Things to Know About Colab\n\n\nOnly one person can type at a time\n\nIf two people type at the same time, only one document will be able to save.\nThis requires your group to adhere to the collaborative protocol!\n\n\n\n\n\nCode that was run on one person’s computer will not appear on another person’s computer\n\nWhen you switch roles, the new Interpreter will need to run all the code that was typed by the previous Interpreter.\n\n\n\nThe “Run all” button at the top of the document can help you do this!"
+    "text": "Things to Know About Colab\n\n\nOnly one person can type at a time\n\nIf two people type at the same time, only one document will be able to save.\nThis requires your group to adhere to the collaborative protocol!\n\n\n\n\n\nCode that was run on one person’s computer will not appear on another person’s computer\n\nWhen you switch roles, the new Computer will need to run all the code that was typed by the previous Computer.\n\n\n\nThe “Run all” button at the top of the document can help you do this!"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#submission",
     "href": "slides/week-2/week-2-ggplot-short.html#submission",
     "title": "Basics of Graphics",
     "section": "Submission",
-    "text": "Submission\n\nWhen you have completed the visualization tasks, you will work as a group to answer the five questions posed at the end of the document.\nEach person will input the answers to these questions in the PA2 Canvas quiz.\nThe person who last occupied the role of Developer will print the notebook as a PDF and submit the PDF for the group.\n\nOnly one submission per group!"
+    "text": "Submission\n\nWhen you have completed the visualization tasks, you will work as a group to answer the five questions posed at the end of the document.\nEach person will input the answers to these questions in the PA2 Canvas quiz.\nThe person who last occupied the role of Computer will print the notebook as a PDF and submit the PDF for the group.\n\nOnly one submission per group!"
   },
   {
     "objectID": "slides/week-1/week-1-intro-r-quarto.html#thursday-september-18",
@@ -5136,5 +5136,19 @@
     "title": "Basics of Graphics",
     "section": "Essential Abilities",
     "text": "Essential Abilities\nThis collaboration will require:\n\n\n\n🌐 Coordination & Collaboration\n\nClear communication\nTeamwork\nInterpersonal skills\n\n🔧 Engineering Mindset\n\nProblem-solving\nDecision-making\n\n\n\n\n\n\n📊 Management\n\nLeadership\nTime management\n\n💡 Innovation\n\nCritical thinking\n\n🤝 Social Responsibility\n\nEmpathy"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#section-70-900-am",
+    "href": "slides/week-2/week-2-ggplot-short.html#section-70-900-am",
+    "title": "Basics of Graphics",
+    "section": "Section 70 (9:00 am)",
+    "text": "Section 70 (9:00 am)"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#section-71-1200-pm",
+    "href": "slides/week-2/week-2-ggplot-short.html#section-71-1200-pm",
+    "title": "Basics of Graphics",
+    "section": "Section 71 (12:00 pm)",
+    "text": "Section 71 (12:00 pm)"
   }
 ]

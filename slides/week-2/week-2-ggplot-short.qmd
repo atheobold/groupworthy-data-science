@@ -582,7 +582,16 @@ a **game plan**!
 
 ![](images/collab-process.png){fig-alt="A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize."}
 
+# 10-minute Break
 
+# Team Assignments
+
+## Section 70 (9:00 am)
+
+
+## Section 71 (12:00 pm)
+
+![](images/section-71-seats.png)
 
 ## Accessing the Practice Activity in Google Colab
 
@@ -670,17 +679,3 @@ answer the five questions posed at the end of the document.
 - The person who last occupied the role of Computer will print the notebook as 
 a PDF and submit the PDF for the group.
   + Only one submission per group!
-
-# 10-minute Break
-
-# Team Assignments
-
-## Section 70 (9:00 am)
-
-
-## Section 71 (12:00 pm)
-
-![](images/section-71-seats.png)
-
-<!-- Add seating chart with team assignments -->
-

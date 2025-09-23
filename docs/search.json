@@ -1985,7 +1985,7 @@
     "href": "slides/week-2/week-2-ggplot-short.html#group-norms",
     "title": "Basics of Graphics",
     "section": "Group Norms",
-    "text": "Group Norms\n\n\nBe curious. Don’t correct.\nBe open minded.\nAsk questions rather than contribute.\nRespect each other.\nNo cross talk with other groups."
+    "text": "Group Norms\n\nBe curious. Don’t correct.\nBe open minded.\nAsk questions rather than contribute.\nRespect each other.\nAllow each teammate to contribute to the activity through their role. Do not divide the work.\nAsk Dr. T or Jasmine group questions. No cross talk with other groups.\nCommunicate with each other!"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#task-card",
@@ -5108,5 +5108,33 @@
     "title": "Loops and Iteration",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI fully support more R packages being cat themed.↩︎"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#task-cards",
+    "href": "slides/week-2/week-2-ggplot-short.html#task-cards",
+    "title": "Basics of Graphics",
+    "section": "Task Cards",
+    "text": "Task Cards"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol-2",
+    "href": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol-2",
+    "title": "Basics of Graphics",
+    "section": "Collaborative Protocol",
+    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nInterpreter\n\n\nDoes not give hints to the Coder for how to solve the problem.\nDoes not solve the problem themselves.\nDoes not tell the Coder how to correct an error.\n\n\n\n\n\n\nCoder\n\n\nDoes not ask the Interpreter how they would solve the problem.\nDoes not ask the Interpreter what functions / tools they should use.\nDoes not ask the Interpreter to debug the code."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#essential-abilities",
+    "href": "slides/week-2/week-2-ggplot-short.html#essential-abilities",
+    "title": "Basics of Graphics",
+    "section": "Essential Abilities",
+    "text": "Essential Abilities\n\n\n\nThis puzzle will require knowledge of:\n\ntypes of variables\ntypes of visualizations\nwhat visualization(s) go with different variable types\nggplot2 functions to create visualizations\nchoosing between different aesthetic options\n\n\n\n\n\n\n\nNone of us have all these abilities. Each of us has some of these abilities."
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html#essential-abilities-1",
+    "href": "slides/week-2/week-2-ggplot-short.html#essential-abilities-1",
+    "title": "Basics of Graphics",
+    "section": "Essential Abilities",
+    "text": "Essential Abilities\nThis collaboration will require:\n\n\n\n🌐 Coordination & Collaboration\n\nClear communication\nTeamwork\nInterpersonal skills\n\n🔧 Engineering Mindset\n\nProblem-solving\nDecision-making\n\n\n\n\n\n\n📊 Management\n\nLeadership\nTime management\n\n💡 Innovation\n\nCritical thinking\n\n🤝 Social Responsibility\n\nEmpathy"
   }
 ]

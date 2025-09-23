@@ -302,12 +302,12 @@ Every person should have a **ggplot2** cheatsheet!
 
 ![Artwork by Allison Horst](https://allisonhorst.github.io/palmerpenguins/reference/figures/lter_penguins.png)
 
-## Using Data Visualization to Find the Penguins
+## Essential Abilities
 
 ::: columns
 ::: {.column width="60%"}
-::: {.small}
-This puzzle activity will require knowledge of:
+::: {.midi}
+This puzzle will require knowledge of:
 
 - types of variables
 - types of visualizations
@@ -323,9 +323,51 @@ This puzzle activity will require knowledge of:
 
 ::: {.column width="35%"}
 ::: {.fragment}
-::: {.midi}
+::: {.large}
 **None of us have all these abilities. Each of us has some of these abilities.**
 :::
+:::
+:::
+:::
+
+## Essential Abilities
+
+This collaboration will require:
+
+::: columns
+::: {.column width="48%"}
+:::{.midi}
+🌐 Coordination & Collaboration
+
+- Clear communication
+- Teamwork
+- Interpersonal skills
+
+🔧 Engineering Mindset
+
+- Problem-solving
+- Decision-making
+:::
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="50%"}
+:::{.midi}
+📊 Management
+
+- Leadership
+- Time management
+
+💡 Innovation
+
+- Critical thinking
+
+🤝 Social Responsibility
+
+- Empathy
+
 :::
 :::
 :::
@@ -524,18 +566,22 @@ a **game plan**!
 
 <!-- Ask them why they think it's a scatterplot. Ask them if the variables need to be in quotes. After they talk about the labels, ask them to pause and say you are lost. Ask them to repeat what they said. -->
 
+# Working with Your Partner
+
 ## Group Norms
 
-<!-- THESE NEED TO BE UPDATED TO REFLECT CLASS CONVERSATION -->
 1. Be curious. Don't correct. 
 2. Be open minded.
 3. Ask questions rather than contribute. 
-4. Respect each other. 
-5. No cross talk with other groups. 
+4. Respect each other.
+5. Allow each teammate to contribute to the activity through their role. Do not divide the work.
+6. Ask Dr. T or Jasmine *group* questions. No cross talk with other groups. 
+7. Communicate with each other!
 
-## Task Card
+## Task Cards
 
-<!-- Add blurb about task card roles, processes, and example phrases -->
+![](images/collab-process.png){fig-alt="A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize."}
+
 
 
 ## Accessing the Practice Activity in Google Colab

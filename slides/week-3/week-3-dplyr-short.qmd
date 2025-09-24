@@ -143,9 +143,9 @@ Here is one observation:
 
 **Looking at the column `green`, how many sides does the observation have?**
 
-# `filter`
+# `filter()`
 
-# `filter`
+# `filter()`
 
 > include **rows** based on one or more logical statements 
 
@@ -271,9 +271,13 @@ data |>
          orange >= 3)
 ```
 
-# `select`
+# 
 
-# `select`
+[Reset your Data Frame!]{.larger}
+
+# `select()`
+
+# `select()`
 
 > include **columns** based on one or more logical statements
 
@@ -307,10 +311,13 @@ data |>
   select(-green)
 ```
 
+# 
 
-# `mutate`
+[Reset your Data Frame!]{.larger}
 
-# `mutate`
+# `mutate()`
+
+# `mutate()`
 
 > create new columns or change existing columns
 
@@ -365,9 +372,10 @@ data |>
 #| code-line-numbers: false
 
 data |>
-  mutate(orange = 
-    ifelse(blue == 6, 4, 3),
-    			 green = orange + 1)
+  mutate(
+    orange = ifelse(blue == 6, 4, 3),
+    green = orange + 1
+    )
 
 ```
 
@@ -387,7 +395,7 @@ data |>
 #| code-line-numbers: false
 
 data |>
-  arrange(green)
+  arrange(yellow)
 ```
 
 . . .
@@ -408,7 +416,7 @@ Default is ascending order...
 
 data |>
   arrange(
-    desc(green)
+    desc(yellow)
     )
 ```
 
@@ -430,12 +438,16 @@ These functions implicitly arrange the data before slicing it (selecting rows).
 #| code-line-numbers: false
 
 data |>
-  slice_max(green, n = 2)
+  slice_max(red, n = 2)
 ```
 
-# `summarize`
+# 
 
-# `summarize`
+[Reset your Data Frame!]{.larger}
+
+# `summarize()`
+
+# `summarize()`
 
 > compute a table of summaries
 
@@ -452,7 +464,7 @@ data |>
 
 data |>
   summarize(
-    max(purple)
+    max_purple = max(purple)
     )
 ```
 
@@ -469,17 +481,20 @@ data |>
 
 data |>
   summarize(
-    max(red),
-    max(blue),
-    min(orange)
+    max_purple = max(purple),
+    max_blue = max(blue),
+    min_red = min(red)
     )
 
 ```
 
+# 
 
-# `group_by`
+[Reset your Data Frame!]{.larger}
 
-# `group_by`
+# `group_by()`
+
+# `group_by()`
 
 > put rows into groups based on values in column(s)
 
@@ -496,7 +511,7 @@ data |>
 data |>
   group_by(blue) |>
   summarize(
-    max(red)
+    max_red = max(red)
     )
 ```
 
@@ -513,11 +528,15 @@ data |>
 data |>
   group_by(blue) |>
   summarize(
-    min(red),
-    max(green)
+    max_red = max(red),
+    min_yellow = min(yellow)
     )
 
 ```
+
+# 
+
+[Reset your Data Frame!]{.larger}
 
 ## With Your Data Frame
 
@@ -532,7 +551,7 @@ data |>
 data |>
   group_by(orange, purple) |>
   summarize(
-    min(blue)
+    min_blue = min(blue)
     )
 
 ```
@@ -550,8 +569,6 @@ data |>
   mutate(green = blue - 1)
 
 ```
-
-# 10-minute break
 
 # PA 3: Identify the Mystery College
 
@@ -600,12 +617,10 @@ Every of you should have a **dplyr** cheatsheet in your coursepack!
 ::: {.fragment}
 **On the Front**
 
-::: {.incremental}
 ::: {.small}
 - Column 1: grouped summaries (`group_by()` + `summarize()`)
 - Column 2: `filter()`ing values with logical comparisons
 - Column 3: `select()`ing and `mutate()`ing variables
-:::
 :::
 :::
 :::
@@ -617,10 +632,8 @@ Every of you should have a **dplyr** cheatsheet in your coursepack!
 ::: {.fragment}
 **On the Back**
 
-::: {.incremental}
 ::: {.small}
 - Column 2: summary functions you might like to use with `summarize()`
-:::
 :::
 :::
 :::
@@ -652,11 +665,11 @@ During your collaboration, you and your partner will alternate between two roles
 
 ::: columns
 ::: {.column width="49%"}
-**Developer**
+**Computer**
 
 ::: {.small}
 -   Reads prompt and ensures Coder understands what is being asked. 
--   Types the code specified by the Coder into the Quarto document.
+-   Types the code specified by the Coder into the notebook.
 <!-- -   Listens carefully, asks the Coder to repeat statements if needed, or to slow -->
 <!-- down. -->
 <!-- -   Encourages the Coder to vocalize their thinking. -->
@@ -681,23 +694,29 @@ During your collaboration, you and your partner will alternate between two roles
 
 ::: {.small}
 -   Reads out instructions or prompts
--   Directs the Developer what to type. 
--   Talks with Developer about their ideas. 
-<!-- -   **Does not** ask the Developer how they would solve the problem.  -->
+-   Directs the Computer what to type. 
+-   Talks with Computer about their ideas. 
+<!-- -   **Does not** ask the Computer how they would solve the problem.  -->
 -   Manages resources (e.g., cheatsheets, textbook, slides). 
-<!-- -   **Does not** ask the developer what functions / tools they should use.  -->
--   Works with Developer to debug the code. 
-<!-- -   **Does not** ask the Developer to debug the code.  -->
--   Works with Developer to write code comments. 
+<!-- -   **Does not** ask the Computer what functions / tools they should use.  -->
+-   Works with Computer to debug the code. 
+<!-- -   **Does not** ask the Computer to debug the code.  -->
+-   Works with Computer to write code comments. 
 :::
 :::
 :::
 :::
+
+# 10-minute break
+
+## Team Assignments - 9am
+
+## Team Assignments - 12pm
 
 ## Opening the Practice Activity in Google Colab
 
-The partner whose birthday is closest to January 1st starts as the Developer!
-The Developer needs to:
+The partner whose birthday is closest to January 1st starts as the Computer!
+The Computer needs to:
 
 ::: columns
 ::: {.column width="40%"}
@@ -726,7 +745,7 @@ Once you have your copy, you need to:
 ::: {.midi}
 - Share your copy with your partner's Google account
 - Make sure the Coder can open the file
-- The Developer should plug their laptop into the monitor
+- The Computer should plug their laptop into the monitor
 - The Coder should close their computer
 - Get started! 
 :::
@@ -742,8 +761,8 @@ Once you have your copy, you need to:
 
 ## Why are we switching?
 
-Throughout the activity you will swap roles---the Developer will become the 
-Coder, and the Coder will become the Developer. 
+Throughout the activity you will swap roles---the Computer will become the 
+Coder, and the Coder will become the Computer. 
 
 . . .
 
@@ -765,7 +784,8 @@ for help.
 You **are** permitted to use:
 
 - the `dplyr` cheatsheet,
-- the course textbook, and
+- the course textbook, 
+- any notes you've taken, and
 - the course slides. 
 
 ## Submission
@@ -773,8 +793,8 @@ You **are** permitted to use:
 > Submit the full name of the college Ephelia will attend to the Canvas Quiz.
 
 - Each person will input the full name of the college in the PA3 Canvas quiz.
-- The person who last occupied the role of Developer will print the notebook as 
+- The person who last occupied the role of Computer will print the notebook as 
 a PDF and submit the PDF for the group.
   + Only one submission per group!
   
-# Exit Ticket
+# Don't forget to complete the survey once you are done!

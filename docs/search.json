@@ -1502,21 +1502,21 @@
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-5",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  mutate(orange = \n    ifelse(blue == 6, 4, 3),\n                 green = orange + 1)"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  mutate(\n    orange = ifelse(blue == 6, 4, 3),\n    green = orange + 1\n    )"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-6",
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-6",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  arrange(green)\n\n\nWhat order does arrange() use as default?"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  arrange(yellow)\n\n\nWhat order does arrange() use as default?"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#arrange-descending-order",
     "href": "slides/week-3/week-3-dplyr-short.html#arrange-descending-order",
     "title": "Data Wrangling with dplyr",
     "section": "arrange(): Descending Order",
-    "text": "arrange(): Descending Order\nDefault is ascending order…\n…but can add desc() to get descending order!\n\ndata |&gt;\n  arrange(\n    desc(green)\n    )"
+    "text": "arrange(): Descending Order\nDefault is ascending order…\n…but can add desc() to get descending order!\n\ndata |&gt;\n  arrange(\n    desc(yellow)\n    )"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#arrange-filter",
@@ -1530,42 +1530,42 @@
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-7",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  slice_max(green, n = 2)"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  slice_max(red, n = 2)"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-8",
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-8",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  summarize(\n    max(purple)\n    )"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  summarize(\n    max_purple = max(purple)\n    )"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-9",
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-9",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  summarize(\n    max(red),\n    max(blue),\n    min(orange)\n    )"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  summarize(\n    max_purple = max(purple),\n    max_blue = max(blue),\n    min_red = min(red)\n    )"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-10",
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-10",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  group_by(blue) |&gt;\n  summarize(\n    max(red)\n    )"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  group_by(blue) |&gt;\n  summarize(\n    max_red = max(red)\n    )"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-11",
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-11",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  group_by(blue) |&gt;\n  summarize(\n    min(red),\n    max(green)\n    )"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  group_by(blue) |&gt;\n  summarize(\n    max_red = max(red),\n    min_yellow = min(yellow)\n    )"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-12",
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-12",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  group_by(orange, purple) |&gt;\n  summarize(\n    min(blue)\n    )"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  group_by(orange, purple) |&gt;\n  summarize(\n    min_blue = min(blue)\n    )"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#finding-ephelias-college",
@@ -1593,42 +1593,42 @@
     "href": "slides/week-3/week-3-dplyr-short.html#pair-programming-expectations",
     "title": "Data Wrangling with dplyr",
     "section": "Pair Programming Expectations",
-    "text": "Pair Programming Expectations\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nDeveloper\n\n\nReads prompt and ensures Coder understands what is being asked.\nTypes the code specified by the Coder into the Quarto document.       \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output.\n\nWorks with Coder to write code comments.\n\n\n\n\n\n\nCoder\n\n\nReads out instructions or prompts\nDirects the Developer what to type.\nTalks with Developer about their ideas. \nManages resources (e.g., cheatsheets, textbook, slides). \nWorks with Developer to debug the code. \nWorks with Developer to write code comments."
+    "text": "Pair Programming Expectations\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nComputer\n\n\nReads prompt and ensures Coder understands what is being asked.\nTypes the code specified by the Coder into the notebook.       \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output.\n\nWorks with Coder to write code comments.\n\n\n\n\n\n\nCoder\n\n\nReads out instructions or prompts\nDirects the Computer what to type.\nTalks with Computer about their ideas. \nManages resources (e.g., cheatsheets, textbook, slides). \nWorks with Computer to debug the code. \nWorks with Computer to write code comments."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#opening-the-practice-activity-in-google-colab",
     "href": "slides/week-3/week-3-dplyr-short.html#opening-the-practice-activity-in-google-colab",
     "title": "Data Wrangling with dplyr",
     "section": "Opening the Practice Activity in Google Colab",
-    "text": "Opening the Practice Activity in Google Colab\nThe partner whose birthday is closest to January 1st starts as the Developer! The Developer needs to:\n\n\n\n\nClick on the Practice Activity 3 link from Canvas\nLog-in to your Google account\nMake a copy of the Colab notebook"
+    "text": "Opening the Practice Activity in Google Colab\nThe partner whose birthday is closest to January 1st starts as the Computer! The Computer needs to:\n\n\n\n\nClick on the Practice Activity 3 link from Canvas\nLog-in to your Google account\nMake a copy of the Colab notebook"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#sharing-with-your-partner",
     "href": "slides/week-3/week-3-dplyr-short.html#sharing-with-your-partner",
     "title": "Data Wrangling with dplyr",
     "section": "Sharing with Your Partner",
-    "text": "Sharing with Your Partner\nOnce you have your copy, you need to:\n\n\n\n\nShare your copy with your partner’s Google account\nMake sure the Coder can open the file\nThe Developer should plug their laptop into the monitor\nThe Coder should close their computer\nGet started!"
+    "text": "Sharing with Your Partner\nOnce you have your copy, you need to:\n\n\n\n\nShare your copy with your partner’s Google account\nMake sure the Coder can open the file\nThe Computer should plug their laptop into the monitor\nThe Coder should close their computer\nGet started!"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#why-are-we-switching",
     "href": "slides/week-3/week-3-dplyr-short.html#why-are-we-switching",
     "title": "Data Wrangling with dplyr",
     "section": "Why are we switching?",
-    "text": "Why are we switching?\nThroughout the activity you will swap roles—the Developer will become the Coder, and the Coder will become the Developer.\n\n\nWe are alternating roles so everyone:\n\nhas the chance to apply their coding skills\npractices talking through their code\nhas the opportunity to explain their thinking"
+    "text": "Why are we switching?\nThroughout the activity you will swap roles—the Computer will become the Coder, and the Coder will become the Computer.\n\n\nWe are alternating roles so everyone:\n\nhas the chance to apply their coding skills\npractices talking through their code\nhas the opportunity to explain their thinking"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#external-resources",
     "href": "slides/week-3/week-3-dplyr-short.html#external-resources",
     "title": "Data Wrangling with dplyr",
     "section": "External Resources",
-    "text": "External Resources\nDuring the Practice Activity, you are not permitted to use Google or ChatGPT for help.\n\nYou are permitted to use:\n\nthe dplyr cheatsheet,\nthe course textbook, and\nthe course slides."
+    "text": "External Resources\nDuring the Practice Activity, you are not permitted to use Google or ChatGPT for help.\n\nYou are permitted to use:\n\nthe dplyr cheatsheet,\nthe course textbook,\nany notes you’ve taken, and\nthe course slides."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#submission",
     "href": "slides/week-3/week-3-dplyr-short.html#submission",
     "title": "Data Wrangling with dplyr",
     "section": "Submission",
-    "text": "Submission\n\nSubmit the full name of the college Ephelia will attend to the Canvas Quiz.\n\n\nEach person will input the full name of the college in the PA3 Canvas quiz.\nThe person who last occupied the role of Developer will print the notebook as a PDF and submit the PDF for the group.\n\nOnly one submission per group!"
+    "text": "Submission\n\nSubmit the full name of the college Ephelia will attend to the Canvas Quiz.\n\n\nEach person will input the full name of the college in the PA3 Canvas quiz.\nThe person who last occupied the role of Computer will print the notebook as a PDF and submit the PDF for the group.\n\nOnly one submission per group!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#thursday-october-1",
@@ -5150,5 +5150,19 @@
     "title": "Basics of Graphics",
     "section": "Section 71 (12:00 pm)",
     "text": "Section 71 (12:00 pm)"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#team-assignments---9am",
+    "href": "slides/week-3/week-3-dplyr-short.html#team-assignments---9am",
+    "title": "Data Wrangling with dplyr",
+    "section": "Team Assignments - 9am",
+    "text": "Team Assignments - 9am"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html#team-assignments---12pm",
+    "href": "slides/week-3/week-3-dplyr-short.html#team-assignments---12pm",
+    "title": "Data Wrangling with dplyr",
+    "section": "Team Assignments - 12pm",
+    "text": "Team Assignments - 12pm"
   }
 ]

@@ -25,8 +25,7 @@ library(ggtext)
 
 ## Accessing the Challenge
 
-Download the template Challenge 2 Quarto file here: <a href="../student/challenge-2-student.qmd" download>`challenge-2-student.qmd`</a> 
-
+Download the template Challenge 2 Quarto file here: <a href="../student/challenge-2-student.qmd" download>`challenge-2-student.qmd`</a>
 
 ::: {.callout-important}
 Be sure to save the file in the Lab 2 folder, inside your Week 2 folder, 

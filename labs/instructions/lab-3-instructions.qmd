@@ -23,7 +23,7 @@ In this lab, we will be using the `dplyr` package to explore student evaluations
 
 Download the template Lab 3 Quarto file here: <a href="../student/lab-3-student.qmd" download>`lab-3-student.qmd`</a> 
 
-Download the `teacher_evals` data here: <a href="/data/teacher_evals.csv" download>`teacher_evals.csv`</a> 
+Download the `teacher_evals` data here: <a href="https://atheobold.github.io/groupworthy-data-science/labs/instructions/data/teacher_evals.csv" download>`teacher_evals.csv`</a> 
 
 ::: {.callout-important}
 Be sure to save both files in the Lab 3 folder, inside your Week 3 folder, 

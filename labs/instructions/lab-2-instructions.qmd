@@ -13,8 +13,6 @@ execute:
   message: false
   warning: false
   error: true
-resources:
-  - data/surveys.csv
 ---
 
 # Part One: Set-up

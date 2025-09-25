@@ -21,8 +21,7 @@ execute:
 
 Download the template Lab 2 Quarto file here: <a href="../student/lab-2-student.qmd" download>`lab-2-student.qmd`</a> 
 
-Download the surveys: <a href="https://atheobold.github.io/groupworthy-data-science/labs/instructions/data/surveys.csv" download>`surveys.csv`</a> 
-
+Download the data for the lab here: [`surveys.csv`](https://atheobold.github.io/groupworthy-data-science/labs/instructions/data/surveys.csv)
 
 ::: {.callout-important}
 Be sure to save the file in the Lab 2 folder, inside your Week 2 folder, 

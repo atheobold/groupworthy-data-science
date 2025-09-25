@@ -243,7 +243,7 @@ ggplot(data = penguins,
 
 ::: incremental
 -   Q5: Section headers need to have a space between the `#` and the header (e.g., `# Guinea Pig Teeth`).
--   Q9: Captions should include more information than what is already present in the plot!
+-   Q9: Captions should include more information than what is already present in the plot! This also goes for plot titles!
 -   Q11: There's no need to save intermediate objects if they are never used later!
 :::
 

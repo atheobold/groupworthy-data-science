@@ -1670,7 +1670,7 @@
     "href": "slides/week-2/week-2-import.html#growing-points",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Growing Points",
-    "text": "Growing Points\n\nQ5: Section headers need to have a space between the # and the header (e.g., # Guinea Pig Teeth).\nQ9: Captions should include more information than what is already present in the plot!\nQ11: There’s no need to save intermediate objects if they are never used later!"
+    "text": "Growing Points\n\nQ5: Section headers need to have a space between the # and the header (e.g., # Guinea Pig Teeth).\nQ9: Captions should include more information than what is already present in the plot! This also goes for plot titles!\nQ11: There’s no need to save intermediate objects if they are never used later!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#how-this-translates-into-lab-2",

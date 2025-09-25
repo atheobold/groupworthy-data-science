@@ -242,8 +242,7 @@ ggplot(data = penguins,
 ## Growing Points
 
 ::: incremental
--   **All** your code should be visible (`echo: true`)!
--   Code chunk options need to have a space before the option (`#| label:` not `#|label:`).
+-   Q5: Section headers need to have a space between the `#` and the header (e.g., `# Guinea Pig Teeth`).
 -   Q9: Captions should include more information than what is already present in the plot!
 -   Q11: There's no need to save intermediate objects if they are never used later!
 :::
@@ -251,7 +250,7 @@ ggplot(data = penguins,
 ## How this translates into Lab 2...
 
 ::: incremental
--   Every lab and challenge is expected to use code-folding.
+-   Every lab and challenge is expected to use code-folding and code-tools
 -   There should never be any messages or warnings output in your final rendered
 HTML.
 -   You should reduce the amount of "intermediate object junk" in your workspace.
@@ -837,29 +836,6 @@ ggplot(data = mpg,
   geom_point() + 
   theme_bw() + 
   labs(x = "City (mpg)", y = "Highway (mpg)")
-```
-:::
-
-### Amazing
-
-::: {.small}
-```{r}
-#| echo: true
-#| eval: false
-#| label: nicely-formatted-code
-#| code-line-numbers: false
-
-ggplot(data = mpg, 
-       mapping = aes(
-         x = cty, 
-         y = hwy, 
-         color = class
-         )
-       ) + 
-  geom_point() + 
-  theme_bw() + 
-  labs(x = "City (mpg)", 
-       y = "Highway (mpg)")
 ```
 :::
 :::

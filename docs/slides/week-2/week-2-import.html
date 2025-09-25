@@ -463,8 +463,7 @@
 <section id="growing-points" class="slide level2">
 <h2>Growing Points</h2>
 <ul>
-<li class="fragment"><strong>All</strong> your code should be visible (<code>echo: true</code>)!</li>
-<li class="fragment">Code chunk options need to have a space before the option (<code>#| label:</code> not <code>#|label:</code>).</li>
+<li class="fragment">Q5: Section headers need to have a space between the <code>#</code> and the header (e.g., <code># Guinea Pig Teeth</code>).</li>
 <li class="fragment">Q9: Captions should include more information than what is already present in the plot!</li>
 <li class="fragment">Q11: There’s no need to save intermediate objects if they are never used later!</li>
 </ul>
@@ -472,7 +471,7 @@
 <section id="how-this-translates-into-lab-2" class="slide level2">
 <h2>How this translates into Lab 2…</h2>
 <ul>
-<li class="fragment">Every lab and challenge is expected to use code-folding.</li>
+<li class="fragment">Every lab and challenge is expected to use code-folding and code-tools</li>
 <li class="fragment">There should never be any messages or warnings output in your final rendered HTML.</li>
 <li class="fragment">You should reduce the amount of “intermediate object junk” in your workspace.
 <ul>
@@ -1030,7 +1029,7 @@ Joe, 40</code></pre>
 </ul>
 </div>
 <div class="panel-tabset">
-<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Bad</a></li><li><a href="#tabset-6-2">Good</a></li><li><a href="#tabset-6-3">Amazing</a></li></ul>
+<ul id="tabset-6" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-6-1">Bad</a></li><li><a href="#tabset-6-2">Good</a></li></ul>
 <div class="tab-content">
 <div id="tabset-6-1">
 <div class="small">
@@ -1047,23 +1046,6 @@ Joe, 40</code></pre>
 <span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
 <span id="cb15-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
 <span id="cb15-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City (mpg)"</span>, <span class="at">y =</span> <span class="st">"Highway (mpg)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-<div id="tabset-6-3">
-<div class="small">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> mpg, </span>
-<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(</span>
-<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">x =</span> cty, </span>
-<span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> hwy, </span>
-<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">color =</span> class</span>
-<span id="cb16-6"><a aria-hidden="true" tabindex="-1"></a>         )</span>
-<span id="cb16-7"><a aria-hidden="true" tabindex="-1"></a>       ) <span class="sc">+</span> </span>
-<span id="cb16-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb16-9"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span> </span>
-<span id="cb16-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"City (mpg)"</span>, </span>
-<span id="cb16-11"><a aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Highway (mpg)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>

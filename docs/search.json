@@ -1670,14 +1670,14 @@
     "href": "slides/week-2/week-2-import.html#growing-points",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Growing Points",
-    "text": "Growing Points\n\nAll your code should be visible (echo: true)!\nCode chunk options need to have a space before the option (#| label: not #|label:).\nQ9: Captions should include more information than what is already present in the plot!\nQ11: There’s no need to save intermediate objects if they are never used later!"
+    "text": "Growing Points\n\nQ5: Section headers need to have a space between the # and the header (e.g., # Guinea Pig Teeth).\nQ9: Captions should include more information than what is already present in the plot!\nQ11: There’s no need to save intermediate objects if they are never used later!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#how-this-translates-into-lab-2",
     "href": "slides/week-2/week-2-import.html#how-this-translates-into-lab-2",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "How this translates into Lab 2…",
-    "text": "How this translates into Lab 2…\n\nEvery lab and challenge is expected to use code-folding.\nThere should never be any messages or warnings output in your final rendered HTML.\nYou should reduce the amount of “intermediate object junk” in your workspace.\n\nAsk yourself, do I need to use this later?\nIf the answer is no, then you should not save that object.\nJust output the plot!"
+    "text": "How this translates into Lab 2…\n\nEvery lab and challenge is expected to use code-folding and code-tools\nThere should never be any messages or warnings output in your final rendered HTML.\nYou should reduce the amount of “intermediate object junk” in your workspace.\n\nAsk yourself, do I need to use this later?\nIf the answer is no, then you should not save that object.\nJust output the plot!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#why-is-there-an-embed-resources-true-line-in-the-yaml",
@@ -1845,7 +1845,7 @@
     "href": "slides/week-2/week-2-import.html#ggplot-code",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "ggplot Code",
-    "text": "ggplot Code\n\nIt is good practice to put each geom and aes on a new line.\n\nThis makes code easier to read!\nGenerally: no line of code should be over 80 characters long.\n\n\n\nBadGoodAmazing\n\n\n\n\nggplot(data = mpg, mapping = aes(x = cty, y = hwy, color = class)) + geom_point() + theme_bw() + labs(x = \"City (mpg)\", y = \"Highway (mpg)\")\n\n\n\n\n\n\nggplot(data = mpg, \n       mapping = aes(x = cty, y = hwy, color = class)) + \n  geom_point() + \n  theme_bw() + \n  labs(x = \"City (mpg)\", y = \"Highway (mpg)\")\n\n\n\n\n\n\nggplot(data = mpg, \n       mapping = aes(\n         x = cty, \n         y = hwy, \n         color = class\n         )\n       ) + \n  geom_point() + \n  theme_bw() + \n  labs(x = \"City (mpg)\", \n       y = \"Highway (mpg)\")"
+    "text": "ggplot Code\n\nIt is good practice to put each geom and aes on a new line.\n\nThis makes code easier to read!\nGenerally: no line of code should be over 80 characters long.\n\n\n\nBadGood\n\n\n\n\nggplot(data = mpg, mapping = aes(x = cty, y = hwy, color = class)) + geom_point() + theme_bw() + labs(x = \"City (mpg)\", y = \"Highway (mpg)\")\n\n\n\n\n\n\nggplot(data = mpg, \n       mapping = aes(x = cty, y = hwy, color = class)) + \n  geom_point() + \n  theme_bw() + \n  labs(x = \"City (mpg)\", y = \"Highway (mpg)\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#on-the-use-of-external-resources",

@@ -1,0 +1,37 @@
+---
+title: "Challenge 4: Open-Ended Analysis"
+---
+
+For this challenge you are taked with investigating the full-time median price
+for childcare in a center-based setting versus the full-time median price for
+childcare in a family (in-home) setting in California. This investigation will
+be written as a short report, and should be no more than 250 words.  
+
+You will need to posit a research question which will guide your analysis. You
+can include any additional variables in the dataset for your analysis. You are 
+expected to present one table of summary statistics and one plot that helps to
+address your research question.
+
+This write-up must include:
+
+  - A description of the data you are using
+  - Your research question
+  - One **well-designed** table of summary statistics
+      - Note, this **should not** be a statistical test! 
+      - This should be a summary table of the data itself (similar to Question 5). 
+  - One **well-designed** plot
+  - Descriptions of the table and plot that both:
+      - Explain what the table/plot is literally showing (e.g. the median cost by year)
+      - Analyze what you learn from the table/plot about your research question
+      
+The table and plot should not show redundant information, they should be used to 
+gain more insight on your question.
+
+::: {.callout-tip}
+# Creativity
+
+Up to this point, you've largely been recreating *my* plots and generating 
+tables I've asked you to make. Now is the chance to show off your own
+creativity! I'd encourage you to also consider ways you can make your plot and 
+your table clear to your reader. 
+:::

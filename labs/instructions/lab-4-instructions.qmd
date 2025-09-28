@@ -43,30 +43,37 @@ inside your STAT 331 folder!
 The data for the lab are coming from [TidyTuesday](https://github.com/rfordatascience/tidytuesday),
 so we will load them using a URL (no need to download them). 
 
-# Part 2: Some Words of Advice
+::: {.callout-tip collapse="true"}
+I advise you to focus particularly on:
 
--   Set chunk options carefully.
+-   Setting chunk options carefully.
 
--   Make sure you don't print out more output than you need.
+-   Making sure you don't print out more output than you need.
 
--   Make sure you don't assign more objects than necessary---avoid "object junk"
-in your environment.
+-   Making sure you don't assign more objects than necessary. Avoid "object junk" in your environment.
 
--   Make your code readable and nicely formatted.
+-   Making your code readable and nicely formatted.
 
--   Think through your desired result **before** writing any code.
+-   Thinking through your desired result **before** writing any code.
+:::
 
-# Part 3: Exploring Childcare Costs
+# Part Two: Exploring Childcare Costs
 
-In this lab we're going look at the median weekly cost of childcare in
-California. A detailed description of the data can be found [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-09/readme.md).
+## The Data
 
-The data come to us from [TidyTuesday](https://github.com/rfordatascience/tidytuesday).
+In this lab we're going look at the median weekly cost of childcare in California. The data come to us from [TidyTuesday](https://github.com/rfordatascience/tidytuesday). A detailed description of the data can be found [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-09/readme.md). **You will need to use this data dictionary to complete the lab!**
+
+We also have information from the California State Controller on tax revenue for california counties from 2005 - 2018. I compiled the data from [this website](https://counties.bythenumbers.sco.ca.gov/#!/year/default) for you. Note that there is no data for San Franscisco County. The variables included in the `ca_tax_revenue.csv` data file (loaded below) include:
+
+- `entity_name`: County name
+- `year`: fiscal year
+- `total_property_taxes`: total revenue in $ from property taxes
+- `sales_and_use_taxes`: total revenue in $ from sales and use taxes
 
 **0. Load the appropriate libraries and the data.**
 
 ```{r}
-#| label: setup
+#| label: packages
 
 ```
 
@@ -76,49 +83,101 @@ The data come to us from [TidyTuesday](https://github.com/rfordatascience/tidytu
 childcare_costs <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/childcare_costs.csv')
 
 counties <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/counties.csv')
+
+tax_rev <- read_csv('https://atheobold.github.io/groupworthy-data-science/labs/instructions/data/ca_tax_revenue.csv')
 ```
 
-**1. Briefly describe the dataset (~ 4 sentences). What information does it contain?**
+**1. Briefly describe the `childcare_costs` dataset (~ 4 sentences). What information does it contain?**
 
 ## California Childcare Costs
 
-Let's start by focusing only on California. 
-
-**2. Create a `ca_childcare` dataset of childcare costs in California, containing (1) county information and (2) all information from the `childcare_costs` dataset.** 
-*Hint: There are 58 counties in CA and 11 years in the dataset. Therefore, your new dataset should have 53 x 11 = 638 observations.*
+**2. Let's start by focusing only on California. Create a `ca_childcare` dataset of childcare costs in California, containing (1) county information and (2) all information from the `childcare_costs` dataset. You should do all of this within one pipeline.** 
 
 ```{r}
 #| label: ca-childcare-costs
 
 ```
 
-**3. Using a function from the `forcats` package, complete the code below to create a new variable where each county is categorized into one of the [ten (10) Census regions](https://census.ca.gov/regions/) in California. Use the Region description (from the plot), not the Region number.**   
-*Hint: This is probably a good place to use ChatGPT to reduce on tedious work. But you do need to know how to prompt ChatGPT to make it useful!*
+::: {.callout-tip}
+# Checkpoint 
 
-::: callout-tip
-
-I have provided you with code that eliminates the word "County" from each of the
-county names in your `ca_childcare` dataset. You should keep this line of code
-and pipe into the rest of your data manipulations.
-
-You will learn about the `str_remove()` function from the `stringr` package next
-week!
+There are 58 counties in CA and 11 years in the dataset. Therefore, your new
+dataset should have 53 x 11 = 638 observations.
 :::
+
+**3. Now, lets add the tax revenue information to the `ca_childcare` dataset. Add the data from `tax_rev` for the counties and years that are already in the `ca_childcare` data. Overwrite the old `ca_childcare` data with this dataset.**
+
+```{r}
+#| label: add-tax-information
+
+```
+
+::: {.callout-tip}
+# Checkpoint 
+
+You are only adding columns here, so your new dataset should still have 638
+observations!
+:::
+
+**4. Using a function from the `forcats` package, complete the code below to create a new variable where each county is categorized into one of the [ten (10) Census regions](https://census.ca.gov/regions/) in California. Use the Region description (from the plot), not the Region number.** The code below will help you get started.
+
+```{r}
+#| code-fold: true
+
+# defining 10 census regions
+
+superior_counties <- c("Butte","Colusa","El Dorado",
+                       "Glenn","Lassen","Modoc",
+                       "Nevada","Placer","Plumas",
+                       "Sacramento","Shasta","Sierra","Siskiyou",
+                       "Sutter","Tehama","Yolo","Yuba")
+
+north_coast_counties <- c("Del Norte","Humboldt","Lake",
+                          "Mendocino","Napa","Sonoma","Trinity")
+
+san_fran_counties <- c("Alameda","Contra Costa","Marin",
+                       "San Francisco","San Mateo","Santa Clara",
+                       "Solano")
+
+n_san_joaquin_counties <- c("Alpine","Amador","Calaveras","Madera",
+                            "Mariposa","Merced","Mono","San Joaquin",
+                            "Stanislaus","Tuolumne")
+
+central_coast_counties <- c("Monterey","San Benito","San Luis Obispo",
+                            "Santa Barbara","Santa Cruz","Ventura")
+
+s_san_joaquin_counties <- c("Fresno","Inyo","Kern","Kings","Tulare")
+
+inland_counties <- c("Riverside","San Bernardino")
+
+la_county <- "Los Angeles"
+
+orange_county  <- "Orange"
+
+san_diego_imperial_counties <- c("Imperial","San Diego")
+```
 
 ```{r}
 #| label: recoding-county-to-census-regions
+# Finish this code using the census regions defined above
 
 ca_childcare <- ca_childcare |> 
   mutate(county_name = str_remove(county_name, " County")) |>
   ...
 ```
 
-**4. Let's consider the median household income of each region, and how that income has changed over time. Create a table with ten rows, one for each region, and two columns, one for 2008 and one for 2018. The cells should contain the `median` of the median household income (expressed in 2018 dollars) of the `region` and the `study_year`. Arrange the rows by 2018 values.**
-
 ::: callout-tip
 
-This will require transforming your data! Sketch out what you want the data to look like before you begin to code. You should be starting with your California dataset that contains the regions!
+I have provided you with code that eliminates the word "County" from each of the county names in your `ca_childcare` dataset. You should keep this line of code and pipe into the rest of your data manipulations.
 
+You will learn about the `str_remove()` function from the `stringr` package next week!
+
+:::
+
+**5. Let's consider the median household income of each region, and how that income has changed over time. Create a table with ten rows, one for each region, and two columns, one for 2008 and one for 2018 (plus a column for region). The cells should contain the `median()` of the median household income (expressed in 2018 dollars) of the `region` and the `study_year`. Order the rows by 2018 values from highest income to lowest income.**
+
+::: callout-tip
+This will require transforming your data! Sketch out what you want the data to look like before you begin to code. You should be starting with your California dataset that contains the regions!
 :::
 
 ```{r}
@@ -127,12 +186,10 @@ This will require transforming your data! Sketch out what you want the data to l
 ```
 
 
-**5. Which California `region` had the lowest `median` full-time median weekly price for center-based childcare for infants in 2018? Does this `region` correspond to the `region` with the lowest `median` income in 2018 that you found in Q4?**
+**6. Which California `region` had the lowest `median` full-time median weekly price for center-based childcare for infants in 2018? Does this `region` correspond to the `region` with the lowest `median` income in 2018 that you found in Q4?**
 
 ::: callout-warning
-
 The code should give me the EXACT answer. This means having the code output the exact row(s) and variable(s) necessary for providing the solution.
-
 :::
 
 ```{r}
@@ -140,19 +197,38 @@ The code should give me the EXACT answer. This means having the code output the 
 
 ```
 
-**6. The following plot shows, for all ten regions, the change over time of the full-time median price for center-based childcare for infants, toddlers, and preschoolers. Recreate the plot. You do not have to replicate the exact colors or theme, but your plot should have the same content, including the order of the facets and legend, reader-friendly labels, axes breaks, and a loess smoother.**
+**7. The following plot shows, for all ten regions, the change over time of the full-time median price for center-based childcare for infants, toddlers, and preschoolers. Recreate the plot. You do not have to replicate the exact colors or theme, but your plot should have the same content, including the order of the facets and legend, reader-friendly labels, axes breaks, and a loess smoother.**
 
-::: callout-tip
+:::callout-tip
+# Hints
 
 This will require transforming your data! Sketch out what you want the data to look like before you begin to code. You should be starting with your California dataset that contains the regions.
 
-You will also be required to use functions from `forcats` to change the labels and the ordering of your factor levels.
+A point on the plot represents one county and year.
+
+You should use a `forcats` function to reorder the legend automatically
+(not by hand).
+
+Try setting `aspect.ratio = 1` in `theme()` if your plot is squished.
+
+If you need more colors than what a color palette has by default, you can use
+the `colorRampPalette()` function to get more colors. 
+
+Again, your plot does not need to look exactly like this one!!!
 
 Remember to avoid "object junk" in your environment!
-
 :::
 
 ![Plot to recreate](images/lab-4-recreate-plot.png)
+
+<!-- - Can you match my colors?  -->
+<!-- - Can you get the legend in the same order? -->
+<!-- - Can you get the facet names to match and be in the same order? -->
+
+<!-- Could you even make the plot better? Could you add dollar signs to the y-axis  -->
+<!-- labels? I might suggest you look into the  -->
+<!-- [scales package](https://scales.r-lib.org/reference/label_currency.html). -->
+
 
 ```{r}
 #| label: recreate-plot
@@ -165,17 +241,18 @@ Remember to avoid "object junk" in your environment!
 ::: callout-tip
 ## Refresher on Linear Regression
 
-While a second course in statistics is a pre-requisite for this class, [here](https://moderndive.com/10-inference-for-regression.html) is a refresher on simple linear regression with a single predictor.
+In case it has been a second or two since you did a linear regression, [this chapter](https://moderndive.com/10-inference-for-regression.html) is a nice 
+refresher on simple linear regression with a single predictor.
 :::
 
-**7. Create a scatterplot showing the relationship between median household income (expressed in 2018 dollars) and the full-time median weekly price charged for center-based childcare for an infant in California. Overlay a linear regression line (lm) to show the trend.**
+**8. Create a scatterplot showing the relationship between median household income (expressed in 2018 dollars) and the full-time median weekly price charged for center-based childcare for an infant in California. Overlay a linear regression line (lm) to show the trend.**
 
 ```{r}
 #| label: scatterplot-median-income-vs-childcare-cost
 
 ```
 
-**8. Look up the documentation for `lm()` and fit a linear regression model to the relationship shown in your plot above.**
+**9. Look up the documentation for `lm()` and fit a linear regression model to the relationship shown in your plot above.**
 
 ```{r}
 # complete the code provided
@@ -183,32 +260,7 @@ reg_mod1 <- lm()
 summary(reg_mod1)
 ```
 
-**9. Using the output from `summary()`, write out the estimated regression line (recall: $y = mx + b$).**
+**10. Using the output from `summary()`, write out the estimated regression line (recall: $y = mx + b$).**
 
-**10. Do you have evidence to conclude there is a relationship between the median household income and the median weekly cost of center-based childcare for infants in California? Cite values from your `summary()` output to support your claim!**
 
-## There is no Challenge this week! 
-
-Please take this time to try your best to recreate the plot I provided in
-Question 6! 
-
-- Can you match my colors? 
-- Can you get the legend in the same order?
-- Can you get the facet names to match and be in the same order?
-
-Could you even make the plot better? Could you add dollar signs to the y-axis 
-labels? I might suggest you look into the 
-[scales package](https://scales.r-lib.org/reference/label_currency.html).
-
-## Challenge 4: Open-Ended Analysis
-
-**Investigate the full-time median price for childcare in a center-based setting versus the full-time median price for childcare in a family (in-home) setting in California. Pay close attention to the different developmental stages. Support your answer with one table of summary statistics and one visualization.**
-
-::: callout-tip
-+ Aim for about 150-300 words.
-  + You should (1) introduce the data and the topic you are investigating,
-  (2) discuss your table and plot, and (3) conclude.
-+ This should read like a mini-report!
-+ Don't just have a summary table or plot show up "out of the blue" -- make sure to build up to them with text, describe what they show, and provide captions.
-:::
-
+**11. Do you have evidence to conclude there is a relationship between the median household income and the median weekly cost of center-based childcare for infants in California? Cite values from your `summary()` output to support your claim!**

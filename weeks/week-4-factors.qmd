@@ -27,17 +27,26 @@ data visualizations.
 
 ------------------------------------------------------------------------
 
+::: columns
+::: {.column width="60%"}
 #### 📽 Watch Videos: 9-minutes
 
 #### 📖 Readings: 15-minutes
+:::
 
+::: {.column width="5%"}
+:::
+
+::: {.column width="35%"}
 #### 💻 Activities: 0
 
 #### ✅  Check-ins: 1
+:::
+:::
 
 ------------------------------------------------------------------------
 
-# Factors with `forcats`
+# Factors with **forcats**
 
 We have been floating around the idea of *factor* data types. In this section, 
 we will formally define factors and why they are needed for data visualization
@@ -61,7 +70,7 @@ knitr::include_graphics("images/week-4/forcats.png")
 In short, factors are categorical variables with a fixed number of values (think
 a set number of groups). One of the main features that set factors apart from
 groups is that you can reorder the groups to be non-alphabetical. In this
-section we will be using the `forcats` package (part of the `tidyverse`!) to
+section we will be using the **forcats** package (part of the `tidyverse`!) to
 create and manipulate factor variables.
 
 📖 [Required Reading: *R4DS* Chapter 16 (Factors) ](https://r4ds.hadley.nz/factors.html)
@@ -78,7 +87,7 @@ that apply!
 + remove levels of a factor you don’t want
 + collapse levels of a factor into a new level
 
-**2. Which of the following tasks can `fct_relevel()` accomplish?**
+**2. Which of the following tasks can `fct_relevel()` accomplish?** 
 
 + reorders the levels of a factor
 + changes the values of the factor levels
@@ -93,7 +102,7 @@ that apply!
 
 **4. What ordering do you get with `fct_reorder()`?**
 
-+ largest to smallest based on another variable
++ largest to smallest based on the values of another variable
 + order of appearance
 + largest to smallest based on counts
 + alphabetical order

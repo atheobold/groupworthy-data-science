@@ -88,7 +88,7 @@
     "href": "weeks/week-4-reshaping-joining.html#examples-messy-data",
     "title": "Data Joins and Transformations",
     "section": "1.1 Examples: Messy Data",
-    "text": "1.1 Examples: Messy Data\nThese datasets all display the same data: TB (Tuberculosis) cases documented by the WHO (World Health Organization) in Afghanistan, Brazil, and China, between 1999 and 2000. There are four variables: country, year, cases, and population, but each table has a different layout.\n\nFor each of the data set, determine whether each table is tidy.\n\nIf it is not, identify which rule(s) it violates.\n\nWhat would you have to do to the data to be able to compute a standardized TB infection rate per 100,000 people?\n\n\n\n\n\n\n\nTip\n\n\n\nAll of these data sets are “built-in” to the tidyr package!\n\n\n\nTable 1Table 2Table 3Table 4Table 5\n\n\n\n\n\nTable 1\n\n\ncountry\nyear\ncases\npopulation\n\n\n\n\nAfghanistan\n1999\n745\n19987071\n\n\nAfghanistan\n2000\n2666\n20595360\n\n\nBrazil\n1999\n37737\n172006362\n\n\nBrazil\n2000\n80488\n174504898\n\n\nChina\n1999\n212258\n1272915272\n\n\nChina\n2000\n213766\n1280428583\n\n\n\n\n\nHere, each observation is a single row, each variable is a column, and everything is nicely arranged for e.g. regression or statistical analysis. We can easily compute another measure, such as cases per 100,000 population, by taking cases / population * 100000 (this would define a new column).\n\n\n\n\n\nTable 2\n\n\ncountry\nyear\ntype\ncount\n\n\n\n\nAfghanistan\n1999\ncases\n745\n\n\nAfghanistan\n1999\npopulation\n19987071\n\n\nAfghanistan\n2000\ncases\n2666\n\n\nAfghanistan\n2000\npopulation\n20595360\n\n\nBrazil\n1999\ncases\n37737\n\n\nBrazil\n1999\npopulation\n172006362\n\n\nBrazil\n2000\ncases\n80488\n\n\nBrazil\n2000\npopulation\n174504898\n\n\nChina\n1999\ncases\n212258\n\n\nChina\n1999\npopulation\n1272915272\n\n\nChina\n2000\ncases\n213766\n\n\nChina\n2000\npopulation\n1280428583\n\n\n\n\n\nHere, we have 4 columns again, but we now have 12 rows (instead of 6): one of the columns is an indicator of which of two numerical observations is recorded in that row; a second column stores the value (e.g., cases, population). This form of the data is more easily plotted in ggplot2, if we want to show trend lines for both cases and population, but computing per capita cases would be much more difficult in this form than in the arrangement in Table 1!\n\n\n\n\n\nTable 3\n\n\ncountry\nyear\nrate\n\n\n\n\nAfghanistan\n1999\n745/19987071\n\n\nAfghanistan\n2000\n2666/20595360\n\n\nBrazil\n1999\n37737/172006362\n\n\nBrazil\n2000\n80488/174504898\n\n\nChina\n1999\n212258/1272915272\n\n\nChina\n2000\n213766/1280428583\n\n\n\n\n\nThis form has only 3 columns, because the rate variable (which is a character) stores both the case count and the population. We can’t do anything with this format as it stands, because we can’t do math on data stored as characters. However, this form might be easier to read and record for a human being.\n\n\n\n\n\nTable 4a\n\n\ncountry\n1999\n2000\n\n\n\n\nAfghanistan\n745\n2666\n\n\nBrazil\n37737\n80488\n\n\nChina\n212258\n213766\n\n\n\n\n\n\nTable 4b\n\n\ncountry\n1999\n2000\n\n\n\n\nAfghanistan\n19987071\n20595360\n\n\nBrazil\n172006362\n174504898\n\n\nChina\n1272915272\n1280428583\n\n\n\n\n\nIn this form, we have two tables - one for population, and one for cases. Each year’s observations are in a separate column. This format is often found in separate sheets of an Excel workbook. To work with this data, we’ll need to transform each table so that there is a column indicating which year an observation is from, and then merge the two tables together by country and year.\n\n\n\n\n\nTable 5\n\n\ncountry\ncentury\nyear\nrate\n\n\n\n\nAfghanistan\n19\n99\n745/19987071\n\n\nAfghanistan\n20\n00\n2666/20595360\n\n\nBrazil\n19\n99\n37737/172006362\n\n\nBrazil\n20\n00\n80488/174504898\n\n\nChina\n19\n99\n212258/1272915272\n\n\nChina\n20\n00\n213766/1280428583\n\n\n\n\n\nTable 5 is very similar to Table 3, but the year has been separated into two columns - century, and year. This is more common with year, month, and day in separate columns (or date and time in separate columns), often to deal with the fact that spreadsheets don’t always handle dates the way you’d hope they would.\n\n\n\nIn a perfect world, all data would come in the right format for our needs, but this is often not the case. We will spend the next few weeks learning about how to use R to reformat our data to follow the tidy data framework and see why this is so important. By the end of this chapter, you will have the skills needed to wrangle and transform the most common “messy” data sets into “tidy” form.\n\n\n\n\n\n\nDo we always want our data in the same layout?\n\n\n\nThe concept of tidy data is useful for mapping variables from the data set to elements in a graph, specifications of a model, or aggregating to create summaries. However, what is considered to be “tidy data” format for one task, might not be in the correct “tidy data” format for a different task. It is important for you to consider the end goal when restructuring your data.\nPart of this course is building the skills for you to be able to map your data operation steps from an original data set to the correct format (and output)."
+    "text": "1.1 Examples: Messy Data\nThese datasets all display the same data: TB (Tuberculosis) cases documented by the WHO (World Health Organization) in Afghanistan, Brazil, and China, between 1999 and 2000. There are four variables: country, year, cases, and population, but each table has a different layout.\n\nFor each of the data set, determine whether each table is tidy.\n\nIf it is not, identify which rule(s) it violates.\n\nWhat would you have to do to the data to be able to compute a standardized TB infection rate per 100,000 people?\n\n\n\n\n\n\n\nTip\n\n\n\nAll of these data sets are “built-in” to the tidyr package!\n\n\n\nTable 1Table 2Table 3Table 4Table 5\n\n\n\n\n\nTable 1\n\n\ncountry\nyear\ncases\npopulation\n\n\n\n\nAfghanistan\n1999\n745\n19987071\n\n\nAfghanistan\n2000\n2666\n20595360\n\n\nBrazil\n1999\n37737\n172006362\n\n\nBrazil\n2000\n80488\n174504898\n\n\nChina\n1999\n212258\n1272915272\n\n\nChina\n2000\n213766\n1280428583\n\n\n\n\n\nHere, each observation is a single row, each variable is a column, and everything is nicely arranged for e.g. regression or statistical analysis. We can easily compute another measure, such as cases per 100,000 population, by taking cases / population * 100000 (this would define a new column).\n\n\n\n\n\nTable 2\n\n\ncountry\nyear\ntype\ncount\n\n\n\n\nAfghanistan\n1999\ncases\n745\n\n\nAfghanistan\n1999\npopulation\n19987071\n\n\nAfghanistan\n2000\ncases\n2666\n\n\nAfghanistan\n2000\npopulation\n20595360\n\n\nBrazil\n1999\ncases\n37737\n\n\nBrazil\n1999\npopulation\n172006362\n\n\nBrazil\n2000\ncases\n80488\n\n\nBrazil\n2000\npopulation\n174504898\n\n\nChina\n1999\ncases\n212258\n\n\nChina\n1999\npopulation\n1272915272\n\n\nChina\n2000\ncases\n213766\n\n\nChina\n2000\npopulation\n1280428583\n\n\n\n\n\nHere, we have 4 columns again, but we now have 12 rows (instead of 6): one of the columns is an indicator of which of two numerical observations is recorded in that row; a second column stores the value (e.g., cases, population). This form of the data is more easily plotted in ggplot2, if we want to show trend lines for both cases and population, but computing per capita cases would be much more difficult in this form than in the arrangement in Table 1!\n\n\n\n\n\nTable 3\n\n\ncountry\nyear\nrate\n\n\n\n\nAfghanistan\n1999\n745/19987071\n\n\nAfghanistan\n2000\n2666/20595360\n\n\nBrazil\n1999\n37737/172006362\n\n\nBrazil\n2000\n80488/174504898\n\n\nChina\n1999\n212258/1272915272\n\n\nChina\n2000\n213766/1280428583\n\n\n\n\n\nThis form has only 3 columns, because the rate variable (which is a character) stores both the case count and the population. We can’t do anything with this format as it stands, because we can’t do math on data stored as characters. However, this form might be easier to read and record for a human being.\n\n\n\n\n\nTable 4a\n\n\ncountry\n1999\n2000\n\n\n\n\nAfghanistan\n745\n2666\n\n\nBrazil\n37737\n80488\n\n\nChina\n212258\n213766\n\n\n\n\n\n\nTable 4b\n\n\ncountry\n1999\n2000\n\n\n\n\nAfghanistan\n19987071\n20595360\n\n\nBrazil\n172006362\n174504898\n\n\nChina\n1272915272\n1280428583\n\n\n\n\n\nIn this form, we have two tables - one for population, and one for cases. Each year’s observations are in a separate column. This format is often found in separate sheets of an Excel workbook. To work with this data, we’ll need to transform each table so that there is a column indicating which year an observation is from, and then merge the two tables together by country and year.\n\n\n\n\n\nTable 5\n\n\ncountry\ncentury\nyear\nrate\n\n\n\n\nAfghanistan\n19\n99\n745/19987071\n\n\nAfghanistan\n20\n00\n2666/20595360\n\n\nBrazil\n19\n99\n37737/172006362\n\n\nBrazil\n20\n00\n80488/174504898\n\n\nChina\n19\n99\n212258/1272915272\n\n\nChina\n20\n00\n213766/1280428583\n\n\n\n\n\nTable 5 is very similar to Table 3, but the year has been separated into two columns - century, and year. This is more common with year, month, and day in separate columns (or date and time in separate columns), often to deal with the fact that spreadsheets don’t always handle dates the way you’d hope they would.\n\n\n\n\n✅ Check-in 4.1: Messy Data\nFor each of the Tables (datasets) above, answer the following question.\nWhich of the principles of tidy data does the table violate?\n\nVariables are spread across multiple columns\nThe same observation occupies multiple rows\nThere are multiple values in each cell\n\nIn a perfect world, all data would come in the right format for our needs, but this is often not the case. We will spend the next few weeks learning about how to use R to reformat our data to follow the tidy data framework and see why this is so important. By the end of this chapter, you will have the skills needed to wrangle and transform the most common “messy” data sets into “tidy” form.\n\n\n\n\n\n\nNoteDo we always want our data in the same layout?\n\n\n\nThe concept of tidy data is useful for mapping variables from the data set to elements in a graph, specifications of a model, or aggregating to create summaries. However, what is considered to be “tidy data” format for one task, might not be in the correct “tidy data” format for a different task. It is important for you to consider the end goal when restructuring your data.\nPart of this course is building the skills for you to be able to map your data operation steps from an original data set to the correct format (and output)."
   },
   {
     "objectID": "weeks/week-3-dplyr.html",
@@ -179,14 +179,14 @@
     "href": "weeks/week-2-data-import.html#where-does-my-data-live",
     "title": "Importing Data",
     "section": "1.1 Where does my data live?",
-    "text": "1.1 Where does my data live?\nRecall our discussion about Directories, Paths, and Projects. Often you will specify a relative file path to your data set rather than an absolute file path. This works if the file is in the same directory as the code or within a sub-folder of the same directory as the code.\n\n\n\n\n\n\nRelative file paths\n\n\n\n\n# this will work if the file is in the same directory as the code\n# (i.e., the Quarto document and the data are in the same folder)\nsurveys &lt;- read_csv(file = \"surveys.csv\")\n\n# this will work if a sub-folder called \"data\" is in the same directory as the code\n# (i.e., you first have to enter the data sub folder and then you can access the surveys.csv data set)\nsurveys &lt;- read_csv(file = \"data/surveys.csv\")\n\n\n\n\n\n\n\n\n\n\n\nMy opinion\n\n\n\nI often organize my workflow with sub-folders so that I would have a sub-folder called data to reference from my base directory location.\nYou can either choose to create an overall data sub-folder right within your STAT 331 folder (e.g., STAT 331 &gt; data) and store all of your data for your class there… or you may choose to store the data associated with each individual assignment within that folder (e.g., STAT 331 &gt; labs &gt; lab2 &gt; data).\n\n\nBut wait! I thought we created our R Projects (STAT 331.Rproj) to indicate our “home base” directory? When working with a Quarto document, this changes your base directory (for any code running within the .qmd file) to the same folder the .qmd file lives in.\nOpen your class directory STAT 331.Rproj and type getwd() into the Console. This should lead you to the folder directory your R Project was created in.\nNow open your lab1.qmd assignment and type getwd() into a code chunk. This should lead you to the folder directory your lab1.qmd file is saved in.\nUgh, that’s confusing."
+    "text": "1.1 Where does my data live?\nRecall our discussion about Directories, Paths, and Projects. Often you will specify a relative file path to your data set rather than an absolute file path. This works if the file is in the same directory as the code or within a sub-folder of the same directory as the code.\n\n\n\n\n\n\nNoteRelative file paths\n\n\n\n\n# this will work if the file is in the same directory as the code\n# (i.e., the Quarto document and the data are in the same folder)\nsurveys &lt;- read_csv(file = \"surveys.csv\")\n\n# this will work if a sub-folder called \"data\" is in the same directory as the code\n# (i.e., you first have to enter the data sub folder and then you can access the surveys.csv data set)\nsurveys &lt;- read_csv(file = \"data/surveys.csv\")\n\n\n\n\n\n\n\n\n\n\n\nTipMy opinion\n\n\n\nI often organize my workflow with sub-folders so that I would have a sub-folder called data to reference from my base directory location.\nYou can either choose to create an overall data sub-folder right within your STAT 331 folder (e.g., STAT 331 &gt; data) and store all of your data for your class there… or you may choose to store the data associated with each individual assignment within that folder (e.g., STAT 331 &gt; labs &gt; lab2 &gt; data).\n\n\nBut wait! I thought we created our R Projects (STAT 331.Rproj) to indicate our “home base” directory? When working with a Quarto document, this changes your base directory (for any code running within the .qmd file) to the same folder the .qmd file lives in.\nOpen your class directory STAT 331.Rproj and type getwd() into the Console. This should lead you to the folder directory your R Project was created in.\nNow open your lab1.qmd assignment and type getwd() into a code chunk. This should lead you to the folder directory your lab1.qmd file is saved in.\nUgh, that’s confusing."
   },
   {
     "objectID": "weeks/week-2-data-import.html#using-the-here-package",
     "href": "weeks/week-2-data-import.html#using-the-here-package",
     "title": "Importing Data",
     "section": "1.2 Using the here Package",
-    "text": "1.2 Using the here Package\nA great solution to consistency in file paths is the here package:\n\ninstall.packages(\"here\")\n\n\n\n\nThis package sets the “home base” for every working directory to be the folder that your R Project (STAT 331.Rproj) lives in (e.g., your STAT 331 folder). This makes your directory paths consistent regardless of what folder you are working in.\n\n# shows you the file path the function here() will start at.\nhere::dr_here()\n\n\n\n\n\n\n\nAccessing Files with the here package\n\n\n\nIf my STAT 331 file structure looks like this:\n\n\n\n\n\n\n\n\n\nthen the here() function will set my STAT 331 folder as the “home base” for my working directory. Suppose I’m working on lab2.qmd, which is stored in the Lab 2 subfolder of Week 2. For my assignment I need to read in the surveys.csv data file, which is also stored in the Lab 2 folder.\nThis is how my path would look:\n\nsurveys &lt;- read_csv(here::here(\"Week 2\", \"Lab 2\", \"surveys.csv\"))\n\nNote the folder and file names are in quotations because they are names of files and not objects in R.\n\n\n\n\n\n\n\n\n\n\nAccessing Functions without Loading a Package\n\n\n\nUsing :: before the function (e.g., here::here) is a way of telling R which package the function lives in without having to load that entire package (e.g., library(here)).\nThe choice of loading an entire packageversus accessing a function from a package comes down to efficiency. If you are only using one function from a package, then it seems inefficient to load the entire package which would take up much more memory. This is the case for the here package, where we will be using one function (the here() function) from this package."
+    "text": "1.2 Using the here Package\nA great solution to consistency in file paths is the here package:\n\ninstall.packages(\"here\")\n\n\n\n\nThis package sets the “home base” for every working directory to be the folder that your R Project (STAT 331.Rproj) lives in (e.g., your STAT 331 folder). This makes your directory paths consistent regardless of what folder you are working in.\n\n# shows you the file path the function here() will start at.\nhere::dr_here()\n\n\n\n\n\n\n\nImportantAccessing Files with the here package\n\n\n\nIf my STAT 331 file structure looks like this:\n\n\n\n\n\n\n\n\n\nthen the here() function will set my STAT 331 folder as the “home base” for my working directory. Suppose I’m working on lab2.qmd, which is stored in the Lab 2 subfolder of Week 2. For my assignment I need to read in the surveys.csv data file, which is also stored in the Lab 2 folder.\nThis is how my path would look:\n\nsurveys &lt;- read_csv(here::here(\"Week 2\", \"Lab 2\", \"surveys.csv\"))\n\nNote the folder and file names are in quotations because they are names of files and not objects in R.\n\n\n\n\n\n\n\n\n\n\nNoteAccessing Functions without Loading a Package\n\n\n\nUsing :: before the function (e.g., here::here) is a way of telling R which package the function lives in without having to load that entire package (e.g., library(here)).\nThe choice of loading an entire packageversus accessing a function from a package comes down to efficiency. If you are only using one function from a package, then it seems inefficient to load the entire package which would take up much more memory. This is the case for the here package, where we will be using one function (the here() function) from this package."
   },
   {
     "objectID": "weeks/week-2-data-import.html#how-do-i-load-my-data",
@@ -200,7 +200,7 @@
     "href": "weeks/week-2-data-import.html#check-in-2.3-loading-data",
     "title": "Importing Data",
     "section": "1.4 ✅ Check-in 2.3: Loading Data",
-    "text": "1.4 ✅ Check-in 2.3: Loading Data\nFor this check-in you are asked to work through reading in different data sets. You are expected to create your own Quarto document to complete this activity.\nThe folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. Download Ages_Data.zip here, make sure to unzip the folder, save these in a reasonable place (e.g., STAT331 &gt; Week 2 &gt; Checkins or STAT331 &gt; Checkins &gt; Week 2).\n\n\n\n\n\n\nExtracting zip folders\n\n\n\nYou will need to extract the contents of the ages.zip file, that means you will need to uncompress the files from the folder for RStudio to know where to get the data from.\n\n\nOnce you have the data saved (and extracted) in your STAT 331 folder, preferably in the Week 2 subfolder, use the readr and readxl packages to complete the following exercises.\n\nLoad the appropriate packages for reading in data.\nRead in the data set ages.csv\nRead in the data set ages_tab.txt\nRead in the data set ages_mystery.txt\nRead in the data set ages.xlsx\nFind a way to use read_csv() to read ages.csv with the variable “Name” as a factor data type and “Age” as a character data type.\n\nOnce you’ve finished coding these exercises, head over to Canvas and fill in the “gap” code I’ve provided.\n\n\n\n\n\n\nTip\n\n\n\nFor reference, I would recommend you store the Ages_Data similar to how I have:"
+    "text": "1.4 ✅ Check-in 2.3: Loading Data\nFor this check-in you are asked to work through reading in different data sets. You are expected to create your own Quarto document to complete this activity.\nThe folder Age_Data contains several data sets with the names and ages of five individuals. The data sets are stored as different file types. Download Ages_Data.zip here, make sure to unzip the folder, save these in a reasonable place (e.g., STAT331 &gt; Week 2 &gt; Checkins or STAT331 &gt; Checkins &gt; Week 2).\n\n\n\n\n\n\nTipExtracting zip folders\n\n\n\nYou will need to extract the contents of the ages.zip file, that means you will need to uncompress the files from the folder for RStudio to know where to get the data from.\n\n\nOnce you have the data saved (and extracted) in your STAT 331 folder, preferably in the Week 2 subfolder, use the readr and readxl packages to complete the following exercises.\n\nLoad the appropriate packages for reading in data.\nRead in the data set ages.csv\nRead in the data set ages_tab.txt\nRead in the data set ages_mystery.txt\nRead in the data set ages.xlsx\nFind a way to use read_csv() to read ages.csv with the variable “Name” as a factor data type and “Age” as a character data type.\n\nOnce you’ve finished coding these exercises, head over to Canvas and fill in the “gap” code I’ve provided.\n\n\n\n\n\n\nTip\n\n\n\nFor reference, I would recommend you store the Ages_Data similar to how I have:"
   },
   {
     "objectID": "weeks/week-1-quarto.html",
@@ -221,7 +221,7 @@
     "href": "weeks/week-1-quarto.html#directories-and-projects",
     "title": "Week 1, Part 2: Reproducible Analyses with Quarto",
     "section": "1.2 Directories, Paths, and Projects",
-    "text": "1.2 Directories, Paths, and Projects\nIn R, there are two ways to set up your file path and file system organization:\n\nSet your working directory in R (do not recommend)\nUse RProjects (preferred!)\n\n\nWorking Directories in R\nTo find where your working directory is in R, you can either look at the top of your console or type getwd() into your console.\n\n\n\n\n\n\n\n\n\n\ngetwd()\n\n[1] \"/Users/atheobol/Documents/Research/groupworthy-data-science/weeks\"\n\n\nAlthough it is not recommended, you can set your working directory in R with setwd().\n\nsetwd(\"/path/to/my/assignment/folder\")\n\n\n\nR Projects\n\n📖 Required Reading: Workflow and Projects\nSince there are often many files necessary for a project (e.g. data sources, images, etc.), R has a nice built in system for setting up your project organization with R Projects. You can either create a new folder on your computer containing an R Project (e.g., you have not yet created a folder for this class) or you can add an R Project to an existing folder on your computer (e.g., you have already created a folder for this class).\n\nCreate with a new folderAdd to an existing folder\n\n\nTo create a R Project, first open RStudio on your computer and click File &gt; New Project, then:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGive your folder a name (it doesn’t have to be my-stat331). However, it is good practice for this file folder name to not contain spaces.\nThen, browse on your computer for a location to save this folder to. For example, mine is saved in my Documents. Make sure you know how to find this; it should NOT be saved in your Downloads!\n\n\n\n\n\n\n\n\n\nThis new folder, my-stat331 should now live in your Documents folder (or wherever you save it to) and contain a my-stat331.Rproj file. This is your new “home” base for this class - whenever you refer to a file with a relative path it will begin to look for it here.\n\n\nTo add a R Project to an existing folder on your computer (e.g., you already created a folder for this class), first open RStudio on your computer and click File &gt; New Project, then:\n\n\n\n\n\n\n\n\n\nThen, browse on your computer to select the existing folder you wish to add your R Project to. For example, mine is saved in my Documents and called my-stat331.\n\n\n\n\n\n\n\n\n\nYour existing folder, my-stat331 should now contain a my-stat331.Rproj file. This is your new “home” base for this class - whenever you refer to a file with a relative path it will begin to look for it here.\n\n\n\n\n\n\n\n\n\nYour folder cannot synch with anything online!\n\n\n\nYour STAT 331 folder cannot be in a folder stored on OneDrive or iCloud! Storing your folder in this location will cause your code to periodically not run and I cannot help you fix it."
+    "text": "1.2 Directories, Paths, and Projects\nIn R, there are two ways to set up your file path and file system organization:\n\nSet your working directory in R (do not recommend)\nUse RProjects (preferred!)\n\n\nWorking Directories in R\nTo find where your working directory is in R, you can either look at the top of your console or type getwd() into your console.\n\n\n\n\n\n\n\n\n\n\ngetwd()\n\n[1] \"/Users/allisontheobold/Documents/Research/IUSE/groupworthy-data-science/weeks\"\n\n\nAlthough it is not recommended, you can set your working directory in R with setwd().\n\nsetwd(\"/path/to/my/assignment/folder\")\n\n\n\nR Projects\n\n📖 Required Reading: Workflow and Projects\nSince there are often many files necessary for a project (e.g. data sources, images, etc.), R has a nice built in system for setting up your project organization with R Projects. You can either create a new folder on your computer containing an R Project (e.g., you have not yet created a folder for this class) or you can add an R Project to an existing folder on your computer (e.g., you have already created a folder for this class).\n\nCreate with a new folderAdd to an existing folder\n\n\nTo create a R Project, first open RStudio on your computer and click File &gt; New Project, then:\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nGive your folder a name (it doesn’t have to be my-stat331). However, it is good practice for this file folder name to not contain spaces.\nThen, browse on your computer for a location to save this folder to. For example, mine is saved in my Documents. Make sure you know how to find this; it should NOT be saved in your Downloads!\n\n\n\n\n\n\n\n\n\nThis new folder, my-stat331 should now live in your Documents folder (or wherever you save it to) and contain a my-stat331.Rproj file. This is your new “home” base for this class - whenever you refer to a file with a relative path it will begin to look for it here.\n\n\nTo add a R Project to an existing folder on your computer (e.g., you already created a folder for this class), first open RStudio on your computer and click File &gt; New Project, then:\n\n\n\n\n\n\n\n\n\nThen, browse on your computer to select the existing folder you wish to add your R Project to. For example, mine is saved in my Documents and called my-stat331.\n\n\n\n\n\n\n\n\n\nYour existing folder, my-stat331 should now contain a my-stat331.Rproj file. This is your new “home” base for this class - whenever you refer to a file with a relative path it will begin to look for it here.\n\n\n\n\n\n\n\n\n\nCautionYour folder cannot synch with anything online!\n\n\n\nYour STAT 331 folder cannot be in a folder stored on OneDrive or iCloud! Storing your folder in this location will cause your code to periodically not run and I cannot help you fix it."
   },
   {
     "objectID": "weeks/week-1-quarto.html#check-in-1.3-stat-331-folder-r-project",
@@ -1368,29 +1368,29 @@
     "objectID": "slides/week-3/week-3-dplyr-short.html#tuesday-september-30",
     "href": "slides/week-3/week-3-dplyr-short.html#tuesday-september-30",
     "title": "Data Wrangling with dplyr",
-    "section": "Tuesday, September 30",
-    "text": "Tuesday, September 30\nToday we will…\n\nWarm-up for dplyr practice activity (40-minutes)\nSet-up for the practice activity (5-minutes)\n\nReview pair programming norms\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)"
+    "section": "",
+    "text": "Today we will…\n\nWarm-up for dplyr practice activity (40-minutes)\nSet-up for the practice activity (5-minutes)\n\nReview pair programming norms\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#mathlink-activity",
     "href": "slides/week-3/week-3-dplyr-short.html#mathlink-activity",
     "title": "Data Wrangling with dplyr",
     "section": "Mathlink Activity",
-    "text": "Mathlink Activity\nWe’re going to explore some key dplyr verbs using manipulatives:\n\n\nfilter() – select rows based on their values\nselect() – select columns\nmutate() – add new columns or change existing columns\nsummarize() – perform summary operations on columns\ngroup_by() – facilitate group-wise operations\n\n\n\n\nUse the pipe operator (|&gt; or %&gt;%) to chain together data wrangling operations."
+    "text": "Mathlink Activity\nWe’re going to explore some key dplyr verbs using manipulatives:\n\n\nfilter() – select rows based on their values\nselect() – select columns\nmutate() – add new columns or change existing columns\nsummarize() – perform summary operations on columns\ngroup_by() – facilitate group-wise operations\n\n\n. . .\n\nUse the pipe operator (|&gt; or %&gt;%) to chain together data wrangling operations."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator",
     "href": "slides/week-3/week-3-dplyr-short.html#the-pipe-operator",
     "title": "Data Wrangling with dplyr",
     "section": "The Pipe Operator",
-    "text": "The Pipe Operator\nWith dplyr, your code should read like a sentence.\n\nThe data is the primary object in your sentence, so it should come first in your code.\n\n\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
+    "text": "The Pipe Operator\nWith dplyr, your code should read like a sentence.\n\nThe data is the primary object in your sentence, so it should come first in your code.\n\n. . .\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#data-comes-first",
     "href": "slides/week-3/week-3-dplyr-short.html#data-comes-first",
     "title": "Data Wrangling with dplyr",
     "section": "Data Comes First!",
-    "text": "Data Comes First!\nYou can choose whether to:\ndeclare your data as the first argument of the function\n\nfilter(.data = colleges, REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n\n\nor\npipe your data into the first argument of the function\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
+    "text": "Data Comes First!\nYou can choose whether to:\ndeclare your data as the first argument of the function\n\nfilter(.data = colleges, REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)\n\n. . .\nor\npipe your data into the first argument of the function\n\ncolleges |&gt;\n  filter(REGION == 5) |&gt;\n  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#data-frame",
@@ -1418,7 +1418,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#observations",
     "title": "Data Wrangling with dplyr",
     "section": "Observations",
-    "text": "Observations\nHere is one observation:\n\n\n\n\nLooking at the column green, how many sides does the observation have?"
+    "text": "Observations\nHere is one observation:\n\n\n\n. . .\nLooking at the column green, how many sides does the observation have?"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame",
@@ -1460,7 +1460,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#why-not-use",
     "title": "Data Wrangling with dplyr",
     "section": "Why not use &?",
-    "text": "Why not use &?\nIf a , is equivalent to an & why not just use a &?\nWell, with a lot of &s your code can get hard to read…\n\ndata |&gt;\n  filter(red == 3 & green &gt; 4 & orange &gt;= 3)\n\n\n\nSo instead we use commas.\n\ndata |&gt;\n  filter(red == 3, \n         green &gt; 4, \n         orange &gt;= 3)"
+    "text": "Why not use &?\nIf a , is equivalent to an & why not just use a &?\nWell, with a lot of &s your code can get hard to read…\n\ndata |&gt;\n  filter(red == 3 & green &gt; 4 & orange &gt;= 3)\n\n. . .\n\nSo instead we use commas.\n\ndata |&gt;\n  filter(red == 3, \n         green &gt; 4, \n         orange &gt;= 3)"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-1",
@@ -1509,7 +1509,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#with-your-data-frame-6",
     "title": "Data Wrangling with dplyr",
     "section": "With Your Data Frame",
-    "text": "With Your Data Frame\n \n\ndata |&gt;\n  arrange(yellow)\n\n\nWhat order does arrange() use as default?"
+    "text": "With Your Data Frame\n \n\ndata |&gt;\n  arrange(yellow)\n\n. . .\nWhat order does arrange() use as default?"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#arrange-descending-order",
@@ -1572,7 +1572,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#finding-ephelias-college",
     "title": "Data Wrangling with dplyr",
     "section": "Finding Ephelia’s College",
-    "text": "Finding Ephelia’s College\n\n\n\nThis activity will require knowledge of:\n\ndebugging code errors\nfunction syntax\nlogical comparisons\nidentifying what actions need to be taken\nlocating what dplyr verb(s) can accomplish this task\nchaining steps together with the pipe operator\n\n\n\n\n\n\n\n\nNone of us have all these abilities. Each of us has some of these abilities."
+    "text": "Finding Ephelia’s College\n\n\n\nThis activity will require knowledge of:\n\ndebugging code errors\nfunction syntax\nlogical comparisons\nidentifying what actions need to be taken\nlocating what dplyr verb(s) can accomplish this task\nchaining steps together with the pipe operator\n\n\n\n\n\n\n\n\n. . .\nNone of us have all these abilities. Each of us has some of these abilities."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#dplyr-resources",
@@ -1593,7 +1593,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#pair-programming-expectations",
     "title": "Data Wrangling with dplyr",
     "section": "Pair Programming Expectations",
-    "text": "Pair Programming Expectations\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nComputer\n\n\nReads prompt and ensures Coder understands what is being asked.\nTypes the code specified by the Coder into the notebook.       \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output.\n\nWorks with Coder to write code comments.\n\n\n\n\n\n\nCoder\n\n\nReads out instructions or prompts\nDirects the Computer what to type.\nTalks with Computer about their ideas. \nManages resources (e.g., cheatsheets, textbook, slides). \nWorks with Computer to debug the code. \nWorks with Computer to write code comments."
+    "text": "Pair Programming Expectations\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n. . .\n\n\nComputer\n\n\nReads prompt and ensures Coder understands what is being asked.\nTypes the code specified by the Coder into the notebook.       \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output.\n\nWorks with Coder to write code comments.\n\n\n\n\n\n\nCoder\n\n\nReads out instructions or prompts\nDirects the Computer what to type.\nTalks with Computer about their ideas. \nManages resources (e.g., cheatsheets, textbook, slides). \nWorks with Computer to debug the code. \nWorks with Computer to write code comments."
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#opening-the-practice-activity-in-google-colab",
@@ -1614,7 +1614,7 @@
     "href": "slides/week-3/week-3-dplyr-short.html#why-are-we-switching",
     "title": "Data Wrangling with dplyr",
     "section": "Why are we switching?",
-    "text": "Why are we switching?\nThroughout the activity you will swap roles—the Computer will become the Coder, and the Coder will become the Computer.\n\n\nWe are alternating roles so everyone:\n\nhas the chance to apply their coding skills\npractices talking through their code\nhas the opportunity to explain their thinking"
+    "text": "Why are we switching?\nThroughout the activity you will swap roles—the Computer will become the Coder, and the Coder will become the Computer.\n. . .\n\nWe are alternating roles so everyone:\n\nhas the chance to apply their coding skills\npractices talking through their code\nhas the opportunity to explain their thinking"
   },
   {
     "objectID": "slides/week-3/week-3-dplyr-short.html#external-resources",
@@ -1634,57 +1634,57 @@
     "objectID": "slides/week-2/week-2-import.html#thursday-october-1",
     "href": "slides/week-2/week-2-import.html#thursday-october-1",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
-    "section": "Thursday, October 1",
-    "text": "Thursday, October 1\nToday we will…\n\n\nDebrief PA 1 (10-minutes)\nDebrief Lab 1 (10-minutes)\n\nContent Related to Lab 2\n\nTidy Data & Loading External Data (5-minutes)\nMore Advanced Visualization Customizations (25-minutes)\n10-minute Break\nIntroduction to Lab 2 (10-minutes)\n\nUsing External Resources"
+    "section": "",
+    "text": "Today we will…\n\n\nDebrief PA 1 (10-minutes)\nDebrief Lab 1 (10-minutes)\n\nContent Related to Lab 2\n\nTidy Data & Loading External Data (5-minutes)\nMore Advanced Visualization Customizations (25-minutes)\n10-minute Break\nIntroduction to Lab 2 (10-minutes)\n\nUsing External Resources"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#multiple-categorical-variables",
     "href": "slides/week-2/week-2-import.html#multiple-categorical-variables",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Multiple Categorical Variables",
-    "text": "Multiple Categorical Variables\n\nColors & ShapesColors & Facets\n\n\n\n\n\nCode\nggplot(data = penguins) +\n    geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species, shape = island )) + \n    labs(title = \"Relationship Between Bill Length and Bill Depth\", x = \"Bill Length (mm)\" , y = \"Bill Depth (mm)\",)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")"
+    "text": "Multiple Categorical Variables\n\nColors & ShapesColors & Facets\n\n\n\n\n\nCode\nggplot(data = penguins) +\n    geom_point(mapping = aes(x = bill_length_mm, y = bill_depth_mm, color = species, shape = island )) + \n    labs(title = \"Relationship Between Bill Length and Bill Depth\", x = \"Bill Length (mm)\" , y = \"Bill Depth (mm)\",)\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#faceting",
     "href": "slides/week-2/week-2-import.html#faceting",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Faceting",
-    "text": "Faceting\n\nExtracts subsets of data and places them in side-by-side plots.\n\n\nOne VariableTwo Variables\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_grid(sex ~ island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")"
+    "text": "Faceting\n\nExtracts subsets of data and places them in side-by-side plots.\n\n\nOne VariableTwo Variables\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_grid(sex ~ island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#changing-the-facet-scales",
     "href": "slides/week-2/week-2-import.html#changing-the-facet-scales",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Changing the Facet Scales",
-    "text": "Changing the Facet Scales\n\nYou can set scales to let axis limits vary across facets using the scales argument.\n\n\nfree_xfree_yfree everyone!\n\n\n\nThe x-axis limits adjust to individual facets.\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, scales = \"free_x\") +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\"free_y\" – only y-axis limits adjust to individual facets.\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, scales = \"free_y\") +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nBoth x- and y-axis limits adjust to individual facets.\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, scales = \"free\") +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")"
+    "text": "Changing the Facet Scales\n\nYou can set scales to let axis limits vary across facets using the scales argument.\n\n\nfree_xfree_yfree everyone!\n\n\n\nThe x-axis limits adjust to individual facets.\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, scales = \"free_x\") +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\"free_y\" – only y-axis limits adjust to individual facets.\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, scales = \"free_y\") +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\nBoth x- and y-axis limits adjust to individual facets.\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, scales = \"free\") +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       title = \"Changes in Bill Depth versus Length\")\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#grading-feedback",
     "href": "slides/week-2/week-2-import.html#grading-feedback",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Grading / Feedback",
-    "text": "Grading / Feedback\n\n\nEach question will earn a score of “Success” or “Growing”.\n\nQuestions marked “Growing” will receive feedback on how to improve your solution.\nThese questions can be resubmitted for additional feedback.\n\n\n\n\n\n\nEarning a “Success” doesn’t necessarily mean your solution is without error.\n\nYou may still receive feedback on how to improve your solution.\nThese questions cannot be resubmitted for additional feedback."
+    "text": "Grading / Feedback\n\n\nEach question will earn a score of “Success” or “Growing”.\n\nQuestions marked “Growing” will receive feedback on how to improve your solution.\nThese questions can be resubmitted for additional feedback.\n\n\n\n. . .\n\n\nEarning a “Success” doesn’t necessarily mean your solution is without error.\n\nYou may still receive feedback on how to improve your solution.\nThese questions cannot be resubmitted for additional feedback."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#growing-points",
     "href": "slides/week-2/week-2-import.html#growing-points",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Growing Points",
-    "text": "Growing Points\n\nQ5: Section headers need to have a space between the # and the header (e.g., # Guinea Pig Teeth).\nQ9: Captions should include more information than what is already present in the plot! This also goes for plot titles!\nQ11: There’s no need to save intermediate objects if they are never used later!"
+    "text": "Growing Points\n\n\nQ5: Section headers need to have a space between the # and the header (e.g., # Guinea Pig Teeth).\nQ9: Captions should include more information than what is already present in the plot! This also goes for plot titles!\nQ11: There’s no need to save intermediate objects if they are never used later!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#how-this-translates-into-lab-2",
     "href": "slides/week-2/week-2-import.html#how-this-translates-into-lab-2",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "How this translates into Lab 2…",
-    "text": "How this translates into Lab 2…\n\nEvery lab and challenge is expected to use code-folding and code-tools\nThere should never be any messages or warnings output in your final rendered HTML.\nYou should reduce the amount of “intermediate object junk” in your workspace.\n\nAsk yourself, do I need to use this later?\nIf the answer is no, then you should not save that object.\nJust output the plot!"
+    "text": "How this translates into Lab 2…\n\n\nEvery lab and challenge is expected to use code-folding and code-tools\nThere should never be any messages or warnings output in your final rendered HTML.\nYou should reduce the amount of “intermediate object junk” in your workspace.\n\nAsk yourself, do I need to use this later?\nIf the answer is no, then you should not save that object.\nJust output the plot!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#why-is-there-an-embed-resources-true-line-in-the-yaml",
     "href": "slides/week-2/week-2-import.html#why-is-there-an-embed-resources-true-line-in-the-yaml",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Why is there an embed-resources: true line in the YAML?",
-    "text": "Why is there an embed-resources: true line in the YAML?\n\n\nBy default, Quarto does not embed plots in the HTML document. Instead, it creates a “Lab-1-files” folder which stores all your plots.\n\n\n\nThis means that by default your plots are not included in your HTML file!\n\n\n\n\n\n\n\n---\ntitle: \"Lab 1\"\nauthor: \"Dr. T!\"\nformat: html\neditor: source\nembed-resources: true\n---\n\n\n\n\n\nThe embed-resources: true line in the YAML forces the visualizations to be embedded in your HTML!"
+    "text": "Why is there an embed-resources: true line in the YAML?\n\n\nBy default, Quarto does not embed plots in the HTML document. Instead, it creates a “Lab-1-files” folder which stores all your plots.\n\n. . .\n\nThis means that by default your plots are not included in your HTML file!\n\n. . .\n\n\n\n\n---\ntitle: \"Lab 1\"\nauthor: \"Dr. T!\"\nformat: html\neditor: source\nembed-resources: true\n---\n\n\n\n\n\nThe embed-resources: true line in the YAML forces the visualizations to be embedded in your HTML!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#tidy-data-1",
@@ -1698,7 +1698,7 @@
     "href": "slides/week-2/week-2-import.html#common-types-of-data-files",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Common Types of Data Files",
-    "text": "Common Types of Data Files\nLook at the file extension for the type of data file.\n\n\n\n.csv : “comma-separated values”\n\nName, Age\nBob, 49\nJoe, 40\n\n\n\n.xls, .xlsx: Microsoft Excel spreadsheet\n\nCommon approach: save as .csv\nNicer approach: use the readxl package\n\n\n\n.txt: plain text\n\nCould have any sort of delimiter…\nNeed to let R know what to look for!"
+    "text": "Common Types of Data Files\nLook at the file extension for the type of data file.\n. . .\n\n\n.csv : “comma-separated values”\n\nName, Age\nBob, 49\nJoe, 40\n\n\n. . .\n.xls, .xlsx: Microsoft Excel spreadsheet\n\nCommon approach: save as .csv\nNicer approach: use the readxl package\n\n. . .\n.txt: plain text\n\nCould have any sort of delimiter…\nNeed to let R know what to look for!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#common-types-of-data-files-1",
@@ -1740,84 +1740,84 @@
     "href": "slides/week-2/week-2-import.html#pre-attentive-features-2",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Pre-attentive Features",
-    "text": "Pre-attentive Features"
+    "text": "Pre-attentive Features\n\nknitr::include_graphics(\"images/pre-atten1.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#pre-attentive-features-3",
     "href": "slides/week-2/week-2-import.html#pre-attentive-features-3",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Pre-attentive Features",
-    "text": "Pre-attentive Features"
+    "text": "Pre-attentive Features\n\nknitr::include_graphics(\"images/pre-atten2.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#pre-attentive-features-4",
     "href": "slides/week-2/week-2-import.html#pre-attentive-features-4",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Pre-attentive Features",
-    "text": "Pre-attentive Features\n\nfeatures that we see and perceive before we even think about it\n\n\nThey will jump out at us in less than 250 ms.\nE.g., color, form, movement, spatial location.\n\n\nThere is a hierarchy of features (e.g., color is stronger than shape)."
+    "text": "Pre-attentive Features\n\nfeatures that we see and perceive before we even think about it\n\n\nThey will jump out at us in less than 250 ms.\nE.g., color, form, movement, spatial location.\n\n. . .\nThere is a hierarchy of features (e.g., color is stronger than shape)."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#gestalt-principles",
     "href": "slides/week-2/week-2-import.html#gestalt-principles",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Gestalt Principles",
-    "text": "Gestalt Principles\n\n\n\nGestalt Hierarchy\nGraphical Feature\n\n\n\n\n1. Enclosure\nFacets\n\n\n2. Connection\nLines\n\n\n3. Proximity\nWhite Space\n\n\n4. Similarity\nColor/Shape\n\n\n\n\n\n\nImplications for practice:\n\nKnow that we perceive some groups before others.\nDesign to facilitate and emphasize the most important comparisons."
+    "text": "Gestalt Principles\n\n\n\nGestalt Hierarchy\nGraphical Feature\n\n\n\n\n1. Enclosure\nFacets\n\n\n2. Connection\nLines\n\n\n3. Proximity\nWhite Space\n\n\n4. Similarity\nColor/Shape\n\n\n\n. . .\n\n\nImplications for practice:\n\nKnow that we perceive some groups before others.\nDesign to facilitate and emphasize the most important comparisons."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#double-encoding",
     "href": "slides/week-2/week-2-import.html#double-encoding",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Double Encoding",
-    "text": "Double Encoding"
+    "text": "Double Encoding\n\nknitr::include_graphics(\"images/double.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#no-double-encoding",
     "href": "slides/week-2/week-2-import.html#no-double-encoding",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "No Double Encoding",
-    "text": "No Double Encoding"
+    "text": "No Double Encoding\n\nknitr::include_graphics(\"images/no_double.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-1",
     "href": "slides/week-2/week-2-import.html#color-1",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color",
-    "text": "Color\n\nColor, hue, and intensity are pre-attentive features, and bigger contrasts lead to faster detection.\n\nHue: main color family (red, orange, yellow…)\nIntensity: amount of color"
+    "text": "Color\n\nColor, hue, and intensity are pre-attentive features, and bigger contrasts lead to faster detection.\n\nHue: main color family (red, orange, yellow…)\nIntensity: amount of color\n\n\n\n\n\nknitr::include_graphics(\"images/hue.png\")\n\n\n\n\n\n\n\n\n\n\nknitr::include_graphics(\"images/intensity.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-guidelines",
     "href": "slides/week-2/week-2-import.html#color-guidelines",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color Guidelines",
-    "text": "Color Guidelines\n\nDo not use rainbow color gradients!\nBe conscious of what certain colors “mean”.\n\nGood idea to use red for “good” and green for “bad”?"
+    "text": "Color Guidelines\n\nDo not use rainbow color gradients!\nBe conscious of what certain colors “mean”.\n\nGood idea to use red for “good” and green for “bad”?\n\n\n\n\n\nknitr::include_graphics(\"images/rainbow.png\")\n\n\n\n\n\n\n\n\n\n\n\n\nknitr::include_graphics(\"images/red_green.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-guidelines-1",
     "href": "slides/week-2/week-2-import.html#color-guidelines-1",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color Guidelines",
-    "text": "Color Guidelines\nFor categorical data, try not to use more than 7 colors:\n\n\n\n\n\n\n\n\n\n\nIf you need to, you can use colorRampPalette() from the RColorBrewer package to produce larger palettes:"
+    "text": "Color Guidelines\nFor categorical data, try not to use more than 7 colors:\n\nknitr::include_graphics(\"images/small_gradient.png\")\n\n\n\n\n\n\n\n\n. . .\nIf you need to, you can use colorRampPalette() from the RColorBrewer package to produce larger palettes:\n\nknitr::include_graphics(\"images/big_gradient.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-guidelines-2",
     "href": "slides/week-2/week-2-import.html#color-guidelines-2",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color Guidelines",
-    "text": "Color Guidelines\nTo make your graphic friendly for people with different color vision deficiencies…\n\nuse double encoding - when you use color, also use another aesthetic (line type, shape, facet, etc.)."
+    "text": "Color Guidelines\nTo make your graphic friendly for people with different color vision deficiencies…\n\nuse double encoding - when you use color, also use another aesthetic (line type, shape, facet, etc.).\n\n\nknitr::include_graphics(\"images/double.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-guidelines-3",
     "href": "slides/week-2/week-2-import.html#color-guidelines-3",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color Guidelines",
-    "text": "Color Guidelines\nTo make your graphic friendly for people with different color vision deficiencies…\n\nwith a unidirectional scale (e.g., all + values), use a monochromatic color gradient.\n\n\n\n\n\n\n\n\n\n\n\nwith a bidirectional scale (e.g., + and - values), use a purple-white-orange color gradient. Transition through white!"
+    "text": "Color Guidelines\nTo make your graphic friendly for people with different color vision deficiencies…\n\nwith a unidirectional scale (e.g., all + values), use a monochromatic color gradient.\n\n\nknitr::include_graphics(\"images/blues.png\")\n\n\n\n\n\n\n\n\n\nwith a bidirectional scale (e.g., + and - values), use a purple-white-orange color gradient. Transition through white!\n\n\nknitr::include_graphics(\"images/PuOr.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-guidelines-4",
     "href": "slides/week-2/week-2-import.html#color-guidelines-4",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Color Guidelines",
-    "text": "Color Guidelines\nTo make your graphic friendly for people with different color vision deficiencies…\n\nprint your chart out in black and white – if you can still read it, it will be safe for all users."
+    "text": "Color Guidelines\nTo make your graphic friendly for people with different color vision deficiencies…\n\nprint your chart out in black and white – if you can still read it, it will be safe for all users.\n\n\n\n\nknitr::include_graphics(\"images/nyt_color.png\")\n\n\n\n\n\n\n\n\n\n\n\n\nknitr::include_graphics(\"images/nyt_bw.png\")"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#color-in-ggplot2",
@@ -1831,7 +1831,7 @@
     "href": "slides/week-2/week-2-import.html#further-customizations",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Further Customizations",
-    "text": "Further Customizations\n\nPlot LabelsFacet LabelsThemesAxes Ticks\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\ncustom_labels &lt;- c(\n  Dream = \"Dream Island\",\n  Torgersen = \"Torgersen Island\",\n  Biscoe = \"Biscoe Island\"\n)\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, labeller = as_labeller(custom_labels)) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\") +\n  theme_bw() +\n  theme(legend.position = \"top\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\") +\n  scale_y_continuous(limits = c(10, 30),\n                     breaks = seq(from = 10, to = 30, by = 5)\n                     )"
+    "text": "Further Customizations\n\nPlot LabelsFacet LabelsThemesAxes Ticks\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\")\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\ncustom_labels &lt;- c(\n  Dream = \"Dream Island\",\n  Torgersen = \"Torgersen Island\",\n  Biscoe = \"Biscoe Island\"\n)\n\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island, labeller = as_labeller(custom_labels)) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\")\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\") +\n  theme_bw() +\n  theme(legend.position = \"top\")\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCode\nggplot(data = penguins,\n       mapping = aes(x = bill_length_mm, \n                     y = bill_depth_mm, \n                     color = species)) +\n  geom_point() + \n  facet_wrap(~island) +\n  labs(x = \"Bill Length\",\n       y = \"\", \n       color = \"Species of Penguin\",\n       title = \"Do penguins with shorter bills have deeper bills?\") +\n  scale_y_continuous(limits = c(10, 30),\n                     breaks = seq(from = 10, to = 30, by = 5)\n                     )\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
     "objectID": "slides/week-2/week-2-import.html#peer-code-review",
@@ -1852,14 +1852,14 @@
     "href": "slides/week-2/week-2-import.html#on-the-use-of-external-resources",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "On the Use of External Resources…",
-    "text": "On the Use of External Resources…\n\nPart of learning to program is learning from a variety of resources. Thus, I expect you will use resources that you find on the internet.\nIn this class the assumed knowledge is the course materials, including the course textbook, coursework pages, and course slides. Any functions / code used outside of these materials require direct references.\n\n\n\n\nIf you used Google:\n\npaste the link to the resource in a code comment next to where you used that resource\n\nIf you used ChatGPT:\n\nindicate somewhere in the problem that you used ChatGPT\npaste the link to your chat (using the Share button from ChatGPT)"
+    "text": "On the Use of External Resources…\n\nPart of learning to program is learning from a variety of resources. Thus, I expect you will use resources that you find on the internet.\nIn this class the assumed knowledge is the course materials, including the course textbook, coursework pages, and course slides. Any functions / code used outside of these materials require direct references.\n\n. . .\n\n\nIf you used Google:\n\npaste the link to the resource in a code comment next to where you used that resource\n\nIf you used ChatGPT:\n\nindicate somewhere in the problem that you used ChatGPT\npaste the link to your chat (using the Share button from ChatGPT)"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#things-you-should-know-about-chatgpt",
     "href": "slides/week-2/week-2-import.html#things-you-should-know-about-chatgpt",
     "title": "Tidy Data, Importing Data & More Advanced Graphics",
     "section": "Things You Should Know About ChatGPT…",
-    "text": "Things You Should Know About ChatGPT…\n\n\n\nGPT uses machine learning to predict what words to give you\n\nThis method is entirely probabilistic, meaning, the same question may produce different answers for different people.\n\n\n\n\n\n\n\nThe answers GPT gives rely a lot on the context you provide (or don’t provide)\n\nIt is good to give lots of background information (e.g., what R package you are using)\n\n\n\n\n\n\n\nChatGPT is a pretty decent tutor.\n\nDid you use GPT to help you with some code?\nDo you not understand what the code is doing?\nAsk GPT to explain code to you!"
+    "text": "Things You Should Know About ChatGPT…\n. . .\n\n\nGPT uses machine learning to predict what words to give you\n\nThis method is entirely probabilistic, meaning, the same question may produce different answers for different people.\n\n\n\n. . .\n\n\nThe answers GPT gives rely a lot on the context you provide (or don’t provide)\n\nIt is good to give lots of background information (e.g., what R package you are using)\n\n\n\n. . .\n\n\nChatGPT is a pretty decent tutor.\n\nDid you use GPT to help you with some code?\nDo you not understand what the code is doing?\nAsk GPT to explain code to you!"
   },
   {
     "objectID": "slides/week-2/week-2-import.html#additional-challenge-opportunity",
@@ -1879,50 +1879,50 @@
     "objectID": "slides/week-2/week-2-ggplot-short.html#tuesday-september-23",
     "href": "slides/week-2/week-2-ggplot-short.html#tuesday-september-23",
     "title": "Basics of Graphics",
-    "section": "Tuesday, September 23",
-    "text": "Tuesday, September 23\nToday we will…\n\nWarm-up for ggplot2 practice activity (30-minutes)\nSet-up for the practice activity (15-minutes)\n\nReview pair programming norms\nLearn how to access practice activities\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)\n\nFind your partner!\n\nFill out the collaboration survey (2-minutes)"
+    "section": "",
+    "text": "Today we will…\n\nWarm-up for ggplot2 practice activity (30-minutes)\nSet-up for the practice activity (15-minutes)\n\nReview pair programming norms\nLearn how to access practice activities\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)\n\nFind your partner!\n\nFill out the collaboration survey (2-minutes)"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#data-context-for-today",
     "href": "slides/week-2/week-2-ggplot-short.html#data-context-for-today",
     "title": "Basics of Graphics",
     "section": "Data Context for Today",
-    "text": "Data Context for Today\n\n\n\n\nlibrary(palmerpenguins)\n\n?penguins\n\n\n\n\n\n\n\n\n\n\n\nWhat do you notice about these data?"
+    "text": "Data Context for Today\n\n\n\n\nlibrary(palmerpenguins)\n\n?penguins\n\n\n\n\n\n\n\n\n\n\n\n\nImportantWhat do you notice about these data?"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#grammar-of-graphics",
     "href": "slides/week-2/week-2-ggplot-short.html#grammar-of-graphics",
     "title": "Basics of Graphics",
     "section": "Grammar of Graphics",
-    "text": "Grammar of Graphics\nThe Grammar of Graphics (GoG) is a principled way of specifying exactly how to create a particular graph from a given data set. It helps us to systematically design new graphs.\n\n\nThink of a graph or a data visualization as a mapping…\n…FROM variables in the data set (or statistics computed from the data)…\n…TO visual attributes (or “aesthetics”) of marks (or “geometric elements”) on the page/screen."
+    "text": "Grammar of Graphics\nThe Grammar of Graphics (GoG) is a principled way of specifying exactly how to create a particular graph from a given data set. It helps us to systematically design new graphs.\n. . .\n\nThink of a graph or a data visualization as a mapping…\n…FROM variables in the data set (or statistics computed from the data)…\n…TO visual attributes (or “aesthetics”) of marks (or “geometric elements”) on the page/screen."
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#how-to-build-a-graphic",
     "href": "slides/week-2/week-2-ggplot-short.html#how-to-build-a-graphic",
     "title": "Basics of Graphics",
     "section": "How to Build a Graphic",
-    "text": "How to Build a Graphic\nComplete this template to build a basic graphic:\n\nggplot(\n  data = &lt;DATA&gt;, \n  mapping = aes(&lt;MAPPINGS&gt;)\n  ) +\n  &lt;GEOM FUNCTION&gt;() + \n  any other arguments...\n\n\nNotice, every + adds another layer to our graphic.\n\n\n\n\n\n\n\n\nTip\n\n\nNotice that I’m using named arguments to make my code easier to read."
+    "text": "How to Build a Graphic\nComplete this template to build a basic graphic:\n\nggplot(\n  data = &lt;DATA&gt;, \n  mapping = aes(&lt;MAPPINGS&gt;)\n  ) +\n  &lt;GEOM FUNCTION&gt;() + \n  any other arguments...\n\n. . .\nNotice, every + adds another layer to our graphic.\n. . .\n\n\n\n\n\n\nTip\n\n\n\nNotice that I’m using named arguments to make my code easier to read."
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#section",
     "href": "slides/week-2/week-2-ggplot-short.html#section",
     "title": "Basics of Graphics",
     "section": "",
-    "text": "Add dataAdd aestheticsAdd one geom per layer\n\n\n\nggplot(data = penguins)\n\nWhat do you expect to see after running this code?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, y = bill_length_mm)\n       )\n\nWhat do you expect to see after running this code?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, y = bill_length_mm)\n       ) +\n  geom_jitter() +\n  geom_boxplot()\n\n\n\n\nWhat do you expect to see after running this code?"
+    "text": "Add dataAdd aestheticsAdd one geom per layer\n\n\n\nggplot(data = penguins)\n\nWhat do you expect to see after running this code?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, y = bill_length_mm)\n       )\n\nWhat do you expect to see after running this code?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, y = bill_length_mm)\n       ) +\n  geom_jitter() +\n  geom_boxplot()\n\n\n\n\nWhat do you expect to see after running this code?\n\n\n\n\n\n\nWarning: Removed 2 rows containing non-finite outside the scale range\n(`stat_boxplot()`).\n\n\nWarning: Removed 2 rows containing missing values or values outside the scale range\n(`geom_point()`)."
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#aesthetics",
     "href": "slides/week-2/week-2-ggplot-short.html#aesthetics",
     "title": "Basics of Graphics",
     "section": "Aesthetics",
-    "text": "Aesthetics\n\nWe map variables (columns) from the data to aesthetics on the graphic using the aes() function.\nWhat aesthetics can we set?\n\nx, y\ncolor, fill\nlinetype\nshape\nsize\n\n\n\n\n\n\n\n\nTip\n\n\nSee ggplot2 cheat sheet for more!"
+    "text": "Aesthetics\n\nWe map variables (columns) from the data to aesthetics on the graphic using the aes() function.\nWhat aesthetics can we set?\n\nx, y\ncolor, fill\nlinetype\nshape\nsize\n\n\n\n\n\n\n\n\nTip\n\n\n\nSee ggplot2 cheat sheet for more!"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#geometric-objects",
     "href": "slides/week-2/week-2-ggplot-short.html#geometric-objects",
     "title": "Basics of Graphics",
     "section": "Geometric Objects",
-    "text": "Geometric Objects\nWee use a geom_XXX() function to represent data points.\n\n\n\n\none variable\n\ngeom_bar()\ngeom_density()\ngeom_dotplot()\ngeom_histogram()\ngeom_boxplot()\n\n\n\n\ntwo variable\n\ngeom_boxplot()\ngeom_point()\ngeom_line()\n\n\n\n\n\n\n\n\n\nTip\n\n\nSee ggplot2 cheat sheet for more!"
+    "text": "Geometric Objects\nWee use a geom_XXX() function to represent data points.\n. . .\n\n\n\none variable\n\ngeom_bar()\ngeom_density()\ngeom_dotplot()\ngeom_histogram()\ngeom_boxplot()\n\n\n\n\ntwo variable\n\ngeom_boxplot()\ngeom_point()\ngeom_line()\n\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nSee ggplot2 cheat sheet for more!"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#ggplot2-resources",
@@ -1943,42 +1943,42 @@
     "href": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol",
     "title": "Basics of Graphics",
     "section": "Collaborative Protocol",
-    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nComputer\n\n\nReads out the prompt and ensures the group understands what is being asked.\nEncourages the Coder to vocalize their thinking.\nAsks the Coder to explain their thinking. \nTypes the code specified by the Coder into the Quarto document.    \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output against the question prompt.\n\n\n\n\n\n\n\nCoder\n\n\nConfirms they understand what the prompt is asking.\nTalks with Computer about their ideas.\nExplains their thinking.\nDirects the Computer what to type. \nManages resources (e.g., cheatsheets, textbook). \nWorks with Computer to debug the code."
+    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n. . .\n\n\nComputer\n\n\nReads out the prompt and ensures the group understands what is being asked.\nEncourages the Coder to vocalize their thinking.\nAsks the Coder to explain their thinking. \nTypes the code specified by the Coder into the Quarto document.    \nRuns the code provided by the Coder.\nWorks with Coder to debug the code. \nEvaluates the output against the question prompt.\n\n\n\n\n\n\n\nCoder\n\n\nConfirms they understand what the prompt is asking.\nTalks with Computer about their ideas.\nExplains their thinking.\nDirects the Computer what to type. \nManages resources (e.g., cheatsheets, textbook). \nWorks with Computer to debug the code."
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol-1",
     "href": "slides/week-2/week-2-ggplot-short.html#collaborative-protocol-1",
     "title": "Basics of Graphics",
     "section": "Collaborative Protocol",
-    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n\n\n\nComputer\n\n\nDoes not give hints to the Coder for how to solve the problem.\nDoes not solve the problem themselves.\nDoes not tell the Coder how to correct an error.\n\n\n\n\n\n\nCoder\n\n\nDoes not ask the Computer how they would solve the problem.\nDoes not ask the Computer what functions / tools they should use.\nDoes not ask the Computer to debug the code."
+    "text": "Collaborative Protocol\n\nDuring your collaboration, you and your partner will alternate between two roles:\n\n. . .\n\n\nComputer\n\n\nDoes not give hints to the Coder for how to solve the problem.\nDoes not solve the problem themselves.\nDoes not tell the Coder how to correct an error.\n\n\n\n\n\n\nCoder\n\n\nDoes not ask the Computer how they would solve the problem.\nDoes not ask the Computer what functions / tools they should use.\nDoes not ask the Computer to debug the code."
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#creating-a-graphic",
     "href": "slides/week-2/week-2-ggplot-short.html#creating-a-graphic",
     "title": "Basics of Graphics",
     "section": "Creating a Graphic",
-    "text": "Creating a Graphic\n\nTo create a specific type of graphic, we will combine aesthetics and geometric objects. When sitting down to create a plot, it’s great to start with a game plan!\n\n\n\n\nWhat variables are you interested in?\nWhat types of variables are these?\nWhere do you want to put each of these variables? (i.e., what aesthetics)\nWhat type(s) of geometries do you need?"
+    "text": "Creating a Graphic\n\nTo create a specific type of graphic, we will combine aesthetics and geometric objects. When sitting down to create a plot, it’s great to start with a game plan!\n\n. . .\n\n\nWhat variables are you interested in?\nWhat types of variables are these?\nWhere do you want to put each of these variables? (i.e., what aesthetics)\nWhat type(s) of geometries do you need?"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#task-1",
     "href": "slides/week-2/week-2-ggplot-short.html#task-1",
     "title": "Basics of Graphics",
     "section": "Task 1",
-    "text": "Task 1\nCreate a plot showing the number of penguins captured on each island.\n\n\n\n\nWhat type of variable is island?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+    "text": "Task 1\nCreate a plot showing the number of penguins captured on each island.\n. . .\n\n\n\nWhat type of variable is island?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#task-2",
     "href": "slides/week-2/week-2-ggplot-short.html#task-2",
     "title": "Basics of Graphics",
     "section": "Task 2",
-    "text": "Task 2\nCreate plot displaying the most common bill lengths for the penguins in these data.\n\n\n\n\nWhat type of variable is bill_length_mm?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+    "text": "Task 2\nCreate plot displaying the most common bill lengths for the penguins in these data.\n. . .\n\n\n\nWhat type of variable is bill_length_mm?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#task-3",
     "href": "slides/week-2/week-2-ggplot-short.html#task-3",
     "title": "Basics of Graphics",
     "section": "Task 3",
-    "text": "Task 3\nCreate a plot showing the relationship between a penguin’s bill length and body mass.\n\n\n\n\nWhat type of variables are bill_length_mm and body_mass_g?\n\n\n\n\n\nWhat type of plot would you make for these types of variables?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+    "text": "Task 3\nCreate a plot showing the relationship between a penguin’s bill length and body mass.\n. . .\n\n\n\nWhat type of variables are bill_length_mm and body_mass_g?\n\n\n\n\n\nWhat type of plot would you make for these types of variables?\n\n\n\n\n\nWhat geom would you use to get this plot?"
   },
   {
     "objectID": "slides/week-2/week-2-ggplot-short.html#group-norms",
@@ -3203,7 +3203,7 @@
     "href": "labs/instructions/lab-3-instructions.html#rate-my-professor",
     "title": "Lab 3: Student Evaluations of Teaching",
     "section": "Rate my Professor",
-    "text": "Rate my Professor\n\n\n\n\n\n\nTip\n\n\n\nHelpful functions: filter(), group_by(), summarize(), slice()\nUseful variables: question_no, teacher_id, SET_score_avg, percent_failed_cur, resp_share, academic_degree, seniority, sex\n\n\n10. Which instructors who had at least five courses reviewed in the data had the highest and lowest average rating for Question 1 (I learnt a lot during the course.) across all their courses?\n12. Which instructor(s) with either a doctorate or professor degree had the highest and lowest average percent of students responding to the evaluation across all their courses? Include how many years the instructor had worked (seniority) and their sex in your output.\n\n\n\n\n\n\nEfficiency\n\n\n\nThis week, we are thinking about efficiency in terms of the number of times a function is called. If you are using the same function multiple times, I would strongly recommend considering if you can collapse these into one function call."
+    "text": "Rate my Professor\n\n\n\n\n\n\nTip\n\n\n\nHelpful functions: filter(), group_by(), summarize(), slice()\nUseful variables: question_no, teacher_id, SET_score_avg, percent_failed_cur, resp_share, academic_degree, seniority, sex\n\n\n10. Which instructors who had at least five courses reviewed in the data had the highest and lowest average rating for Question 1 (I learnt a lot during the course.) across all their courses?\n12. Which instructor(s) with either a doctorate or professor degree had the highest and lowest average percent of students responding to the evaluation across all their courses? Include how many years the instructor had worked (seniority) and their sex in your output.\n\n\n\n\n\n\nImportantEfficiency\n\n\n\nThis week, we are thinking about efficiency in terms of the number of times a function is called. If you are using the same function multiple times, I would strongly recommend considering if you can collapse these into one function call."
   },
   {
     "objectID": "labs/instructions/lab-3-instructions.html#footnotes",
@@ -5171,5 +5171,103 @@
     "title": "Lab 2: Exploring Rodents with ggplot2",
     "section": "",
     "text": "Download the template Lab 2 Quarto file here: lab-2-student.qmd\nDownload the data for the lab here: surveys.csv\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save the file in the Lab 2 folder, inside your Week 2 folder, inside your STAT 331 folder!"
+  },
+  {
+    "objectID": "slides/week-3/week-3-dplyr-short.html",
+    "href": "slides/week-3/week-3-dplyr-short.html",
+    "title": "Data Wrangling with dplyr",
+    "section": "",
+    "text": "Today we will…\n\nWarm-up for dplyr practice activity (40-minutes)\nSet-up for the practice activity (5-minutes)\n\nReview pair programming norms\nFind your partner!\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)"
+  },
+  {
+    "objectID": "slides/week-2/week-2-ggplot-short.html",
+    "href": "slides/week-2/week-2-ggplot-short.html",
+    "title": "Basics of Graphics",
+    "section": "",
+    "text": "Today we will…\n\nWarm-up for ggplot2 practice activity (30-minutes)\nSet-up for the practice activity (15-minutes)\n\nReview pair programming norms\nLearn how to access practice activities\n\nTake a 10-minute break\nComplete the practice activity (60-minutes)\n\nFind your partner!\n\nFill out the collaboration survey (2-minutes)"
+  },
+  {
+    "objectID": "notes/02-day1-handout.html",
+    "href": "notes/02-day1-handout.html",
+    "title": "Practice Activity 2 Warm-up",
+    "section": "",
+    "text": "What variables are included in these data? What units are the variables measured in? What do you think each row in the data represents?"
+  },
+  {
+    "objectID": "notes/02-day1-handout.html#how-to-build-a-graphic-with-ggplot2",
+    "href": "notes/02-day1-handout.html#how-to-build-a-graphic-with-ggplot2",
+    "title": "Practice Activity 2 Warm-up",
+    "section": "How to Build a Graphic with ggplot2",
+    "text": "How to Build a Graphic with ggplot2\n\nggplot(data = penguins)\n\nWhat do you expect to see after running this code?\n\nggplot(data = penguins, \n       mapping = aes(x = species, y = bill_length_mm)\n       )\n\nWhat do you expect to see after running this code?\n\n\nggplot(data = penguins, \n       mapping = aes(x = species, y = bill_length_mm)\n       ) +\n  geom_jitter() +\n  geom_boxplot()\n\n\nWhat do you expect to see after running this code?"
+  },
+  {
+    "objectID": "notes/02-day1-handout.html#aesthetics-geometries",
+    "href": "notes/02-day1-handout.html#aesthetics-geometries",
+    "title": "Practice Activity 2 Warm-up",
+    "section": "aesthetics & geometries",
+    "text": "aesthetics & geometries\n\n\nCommon aesthetics\n\nx, y\ncolor, fill\nlinetype\nshape\nsize\n\n\n\n\nCommon geometries\n\ngeom_bar()\ngeom_density()\ngeom_histogram()\ngeom_boxplot()\ngeom_point()\ngeom_line()"
+  },
+  {
+    "objectID": "notes/02-day1-handout.html#create-a-plot-showing-the-number-of-penguins-captured-on-each-island",
+    "href": "notes/02-day1-handout.html#create-a-plot-showing-the-number-of-penguins-captured-on-each-island",
+    "title": "Practice Activity 2 Warm-up",
+    "section": "Create a plot showing the number of penguins captured on each island",
+    "text": "Create a plot showing the number of penguins captured on each island\n\n\n\nWhat type of variable is island?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "notes/02-day1-handout.html#create-plot-displaying-the-most-common-bill-lengths-for-the-penguins-in-these-data",
+    "href": "notes/02-day1-handout.html#create-plot-displaying-the-most-common-bill-lengths-for-the-penguins-in-these-data",
+    "title": "Practice Activity 2 Warm-up",
+    "section": "Create plot displaying the most common bill lengths for the penguins in these data",
+    "text": "Create plot displaying the most common bill lengths for the penguins in these data\n\n\n\nWhat type of variable is bill_length_mm?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "notes/02-day1-handout.html#create-a-plot-showing-the-relationship-between-a-penguins-bill-length-and-body-mass",
+    "href": "notes/02-day1-handout.html#create-a-plot-showing-the-relationship-between-a-penguins-bill-length-and-body-mass",
+    "title": "Practice Activity 2 Warm-up",
+    "section": "Create a plot showing the relationship between a penguin’s bill length and body mass",
+    "text": "Create a plot showing the relationship between a penguin’s bill length and body mass\n\n\n\nWhat type of variables are bill_length_mm and body_mass_g?\n\n\n\n\n\nWhat type of plot would you make for this type of variable?\n\n\n\n\n\nWhat geom would you use to get this plot?"
+  },
+  {
+    "objectID": "slides/week-2/week-2-import.html",
+    "href": "slides/week-2/week-2-import.html",
+    "title": "Tidy Data, Importing Data & More Advanced Graphics",
+    "section": "",
+    "text": "Today we will…\n\n\nDebrief PA 1 (10-minutes)\nDebrief Lab 1 (10-minutes)\n\nContent Related to Lab 2\n\nTidy Data & Loading External Data (5-minutes)\nMore Advanced Visualization Customizations (25-minutes)\n10-minute Break\nIntroduction to Lab 2 (10-minutes)\n\nUsing External Resources"
+  },
+  {
+    "objectID": "weeks/week-4-reshaping-joining.html#pivot-operations",
+    "href": "weeks/week-4-reshaping-joining.html#pivot-operations",
+    "title": "Data Joins and Transformations",
+    "section": "2.1 Pivot Operations",
+    "text": "2.1 Pivot Operations\nIt’s fairly common for data to come in forms which are convenient for either human viewing or data entry. Unfortunately, these forms aren’t necessarily the most friendly for analysis. There are two main “layouts” a dataset can have:\n\n“wide” format\n“long” format\n\nThe image below shows the same dataset presented in each layout.\n\nSometimes we will be given data that is in one layout and we will need to transform it into a different layout. This animation illustrates the process of going from a wide data layout to a long data layout, and how to go from a long data layout back to a wide data layout. Here, we are using the pivot_wider() and pivot_longer() functions from the tidyr package in R.\n\n\n\n© Kelsey Gonzales\n\n\nLet’s explore each of these formats in more depth\n\n2.1.1 Longer\n📖 Required Reading: R4DS Section 5.3 (Lengthening data)\n\n\n\nIn many cases, the data come in what we might call “wide” form - some of the column names are not names of variables (e.g., year), but instead, are themselves values of another variable (e.g., 1991, 1992).\n\n\n\n\n\n\nTip\n\n\n\nNotice that I’m surrounding 1999 in back ticks (` `). I need to do this because a number is not a syntactically correct variable name, so using cols = 1999:2000 would not work!\n\n\nPicture the Operationpivot_longer()\n\n\nTables 4a and 4b (from above) are good examples of data which is in “wide” form and should be transformed into a long(er) form. The values of year are spread across multiple columns.\n\ntable4a\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\n\nThe solution to this is to rearrange the data into “long form”: to take the columns which contain values and “stack” them, adding a variable to indicate which column each value came from. To do this, we have to duplicate the values in any column which isn’t being stacked (e.g. country, in both the example above and the image below).\n\n\n\nA visual representation of what the pivot_longer operation looks like in practice.\n\n\nOnce our data are in long form, we can (if necessary) separate values that once served as column labels into actual variables, and we’ll have tidy(er) data.\n\n\n\n\ntable4a |&gt; \n  pivot_longer(cols = `1999`:`2000`, \n               names_to = \"year\", \n               values_to = \"cases\"\n               )\n\n# A tibble: 6 × 3\n  country     year   cases\n  &lt;chr&gt;       &lt;chr&gt;  &lt;dbl&gt;\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766\n\ntable4b |&gt; \n  pivot_longer(cols = -country, \n               names_to = \"year\", \n               values_to = \"population\"\n               )\n\n# A tibble: 6 × 3\n  country     year  population\n  &lt;chr&gt;       &lt;chr&gt;      &lt;dbl&gt;\n1 Afghanistan 1999    19987071\n2 Afghanistan 2000    20595360\n3 Brazil      1999   172006362\n4 Brazil      2000   174504898\n5 China       1999  1272915272\n6 China       2000  1280428583\n\n\nThe columns are moved to a variable with the name passed to the argument names_to (hopefully, that is easy to remember), and the values are moved to a variable with the name passed to the argument values_to (again, hopefully easy to remember).\nWe identify ID variables (variables which we don’t want to pivot) by not including them in the pivot statement. We can do this in one of two ways:\n\nselect only variables (columns) we want to pivot (e.g., cols = `1999`:`2000`)\nselect variables (columns) we don’t want to pivot, using - to remove them (e.g., cols = -country).\n\nWhich option is easier depends how many things you’re pivoting (and how the columns are structured).\n\n\n\n\n\n2.1.2 Wider\n📖 Required Reading: R4DS Section 5.3 (Widening data)\n\n\n\nWhile it’s very common to need to transform data into a longer format, it’s not that uncommon to need to do the reverse operation. When an observation is scattered across multiple rows, your data is too long and needs to be made wider again.\n\n\n\n\n\n\nTip\n\n\n\nNotice that I’m not using a cols argument for pivot_wider()! This is because pivot_wider() only modifies the columns specified in the names_from and values_from arguments.\n\n\nPicture the Operationpivot_wider()\n\n\nTable 2 (from above) is an example of a table that is in long format but needs to be converted to a wider layout to be “tidy” - there are separate rows for cases and population, which means that a single observation (one year, one country) has two rows.\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;           &lt;dbl&gt;\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\n\n\n\n\nA visual representation of what the pivot_wider operation looks like in practice.\n\n\n\n\n\n\ntable2 |&gt;\n  pivot_wider(names_from  = type, \n              values_from = count\n              )\n\n# A tibble: 6 × 4\n  country      year  cases population\n  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;      &lt;dbl&gt;\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583"
+  },
+  {
+    "objectID": "weeks/week-4-reshaping-joining.html#separating-and-uniting-variables",
+    "href": "weeks/week-4-reshaping-joining.html#separating-and-uniting-variables",
+    "title": "Data Joins and Transformations",
+    "section": "2.2 Separating and Uniting Variables",
+    "text": "2.2 Separating and Uniting Variables\nWe will talk about strings and regular expressions later in the course, but there’s a task that is fairly commonly encountered with functions that belong to the tidyr package: separating variables into two different columns separate() and it’s complement, unite(), which is useful for combining two variables into one column.\n\nseparate_wider_delim() and separate_wider_position()unite()\n\n\nTable 3 from before is a great example of when you would want to separate the values of a column into different columns. In this dataset, the variable rate is recorded as 745/19987071, where the first number is the amount of cases and the second number is the population.\n\n\n\n\n\nA visual representation of what separating variables means for data set operations.\n\n\n\n\n\ntable3 |&gt;\n  separate_wider_delim(cols        = rate,\n                       names       = c(\"cases\", \"population\"),\n                       delim       = \"/\",\n                       cols_remove = FALSE\n           )\n\n# A tibble: 6 × 5\n  country      year cases  population rate             \n  &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;      &lt;chr&gt;            \n1 Afghanistan  1999 745    19987071   745/19987071     \n2 Afghanistan  2000 2666   20595360   2666/20595360    \n3 Brazil       1999 37737  172006362  37737/172006362  \n4 Brazil       2000 80488  174504898  80488/174504898  \n5 China        1999 212258 1272915272 212258/1272915272\n6 China        2000 213766 1280428583 213766/1280428583\n\n\nI’ve left the rate column in the original data frame (cols_remove = FALSE) just to make it easy to compare and verify that yes, it worked.\n\n\nAnd, of course, there is a complementary operation, which is when it’s necessary to join two columns to get a useable data value.\n\n\n\n\n\nA visual representation of what uniting variables means for data set operations.\n\n\n\n\n\ntable5 |&gt;\n  unite(col = \"year\",\n        c(century, year),\n        sep = ''\n        )\n\n# A tibble: 6 × 3\n  country     year  rate             \n  &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt;            \n1 Afghanistan 1999  745/19987071     \n2 Afghanistan 2000  2666/20595360    \n3 Brazil      1999  37737/172006362  \n4 Brazil      2000  80488/174504898  \n5 China       1999  212258/1272915272\n6 China       2000  213766/1280428583\n\n\n\n\n\n\n\n\n\n\n\n\nNoteLearn More in R4DS\n\n\n\nThe separate_xxx() is actually a family of experimental functions stemming from the superseeded separate() function. You can read more about separate_xxx() and unite() in r4ds and r4ds.\n\n\n\n2.2.1 ✅ Check-in 4.2: Practice with Pivoting\nInstall the liver package and then load in the cereal data set:\n\nlibrary(liver)\n\ndata(cereal)\n\nhead(cereal)\n\n                       name manuf type calories protein fat sodium fiber carbo\n1                 100% Bran     N cold       70       4   1    130  10.0   5.0\n2         100% Natural Bran     Q cold      120       3   5     15   2.0   8.0\n3                  All-Bran     K cold       70       4   1    260   9.0   7.0\n4 All-Bran with Extra Fiber     K cold       50       4   0    140  14.0   8.0\n5            Almond Delight     R cold      110       2   2    200   1.0  14.0\n6   Apple Cinnamon Cheerios     G cold      110       2   2    180   1.5  10.5\n  sugars potass vitamins shelf weight cups   rating\n1      6    280       25     3      1 0.33 68.40297\n2      8    135        0     3      1 1.00 33.98368\n3      5    320       25     3      1 0.33 59.42551\n4      0    330       25     3      1 0.50 93.70491\n5      8     -1       25     3      1 0.75 34.38484\n6     10     70       25     1      1 0.75 29.50954\n\n\nQuestion 1: Create a new dataset called cereals_long, that has three columns:\n\nThe name of the cereal\nA column called Nutrient with values \"protein\", \"fat\", or \"fiber\".\nA column called Amount with the corresponding amount of the nutrient.\n\n\n\n\n\n\n\nCaution\n\n\n\nYou are expected to use pivot_longer() to perform this operation!"
+  },
+  {
+    "objectID": "weeks/week-4-reshaping-joining.html#animating-joins",
+    "href": "weeks/week-4-reshaping-joining.html#animating-joins",
+    "title": "Data Joins and Transformations",
+    "section": "3.1 Animating Joins",
+    "text": "3.1 Animating Joins\nSuppose we start with two tables, x and y:\n\n\n\n© Garrick Aden-Buie"
+  },
+  {
+    "objectID": "weeks/week-4-reshaping-joining.html#mutating-joins",
+    "href": "weeks/week-4-reshaping-joining.html#mutating-joins",
+    "title": "Data Joins and Transformations",
+    "section": "3.2 Mutating Joins",
+    "text": "3.2 Mutating Joins\nWe’re primarily going to focus on mutating joins, as filtering joins can be accomplished by … filtering … rather than by table joins.\n\nInner JoinLeft JoinRight JoinFull Join\n\n\nAn inner_join() only keeps any rows that are included in both tables, but keeps every column.\n\n\n\n© Garrick Aden-Buie\n\n\n\n\nBut what if we want to keep all of the rows in x? We would do a left_join() (since x is on the left).\n\n\n\n© Garrick Aden-Buie\n\n\nIf there are multiple matches in the y table, though, we might have to duplicate rows in x. This is still a left join, just a more complicated one.\n\n\n\n© Garrick Aden-Buie\n\n\n\n\nIf we wanted to keep all of the rows in y, we would do a right_join() (since y is on the right):\n\n\n\n© Garrick Aden-Buie\n\n\n(or, we could do a left join with y and x, but… either way is fine).\n\n\nAnd finally, if we want to keep all of the rows of both x and y, we’d do a full_join():\n\n\n\n© Garrick Aden-Buie\n\n\n\n\n\nEvery join has a “left side” and a “right side” - so in XXXX_join(A, B), A is the left side, and B is the right side.\nJoins are differentiated based on how they treat the rows and columns of each side. In mutating joins, the columns from both sides are always kept. The table below summarizes which rows are kept from each side of the join, for different mutating joins.\n\n\n\n\n\n\n\n\n\n\n\n\nRows Selected\n\n\n\nJoin Type\nLeft Side\nRight Side\n\n\n\n\ninner\nmatching\nmatching\n\n\nleft\nall\nmatching\n\n\nright\nmatching\nall\n\n\nouter\nall\nall"
+  },
+  {
+    "objectID": "weeks/week-4-reshaping-joining.html#filtering-joins",
+    "href": "weeks/week-4-reshaping-joining.html#filtering-joins",
+    "title": "Data Joins and Transformations",
+    "section": "3.3 Filtering Joins",
+    "text": "3.3 Filtering Joins\nThese joins do not merge two datasets together! Insead, they filter the values of one dataset based on the values of another dataset.\n\n\n\n\n\n\nTip\n\n\n\nYou can think of this as a relative of using the inclusion operator (%in%) inside of a filter() statement (e.g., filter(day %in% c(\"Mon\", \"Tues\", \"Wed\"))).\n\n\n\n\n\n\n\nTip\n\n\n\nYou can think of this as a relative of using a ! in front of the inclusion operator (%in%) inside of a filter() statement (e.g., filter(! day %in% c(\"Mon\", \"Tues\", \"Wed\"))). The ! negates the %in% so only Thurs, Fri, Sat, and Sun would be included.\n\n\nSemi JoinAnti Join\n\n\nA semi_join() keeps rows in x that have a match in y. Notice that the resulting dataset is a modification of the original x dataset—nothing from y has been added to x!\n\n\n\n\n© Garrick Aden-Buie\n\n\n\n\nA anti_join() keeps rows in x that do not have a match in y. Notice that the resulting dataset is a modification of the original x dataset—nothing from y has been added to x!\n\n\n\n\n© Garrick Aden-Buie\n\n\n\n\n\n\n3.3.1 ✅ Check-in 4.3: Practice with Joins\nThe following code creates three datasets / tibbles:\n\nprof_info &lt;- tibble(\n  professor = c(\"Bodwin\", \n                \"Theobold\", \n                \"Robinson\",\n                \"Mann\", \n                \"Ruiz\"),\n  undergrad_school = c(\"Harvard\", \n                       \"Colorado Mesa University\",\n                       \"Winona State University\",\n                       \"Carlton College\", \n                       \"Reed College\"),\n  grad_school = c(\"UNC\", \n                  \"Montana State University\", \n                  \"University of Nebraska-Lincoln\",\n                  \"University of Michigan\", \n                  \"Oregon State University\")\n)\n\nprof_course &lt;- tidyr::tibble(\n  professor = c(\"Bodwin\", \n                \"Robinson\", \n                \"Theobold\", \n                \"Mann\", \n                \"Carlton\"),\n  Stat_331 = c(TRUE, \n               TRUE, \n               TRUE, \n               TRUE, \n               TRUE),\n  Stat_330 = c(FALSE, \n               TRUE, \n               FALSE, \n               FALSE, \n               FALSE),\n  Stat_431 = c(TRUE, \n               TRUE, \n               TRUE, \n               TRUE, \n               FALSE)\n)\n\ncourse_info &lt;- tibble(\n  course = c(\"Stat_331\", \n             \"Stat_330\", \n             \"Stat_431\"),\n  num_sections = c(8, \n                   3, \n                   1)\n)\n\nHere is what they look like once created:\n\nprof_info\n\n# A tibble: 5 × 3\n  professor undergrad_school         grad_school                   \n  &lt;chr&gt;     &lt;chr&gt;                    &lt;chr&gt;                         \n1 Bodwin    Harvard                  UNC                           \n2 Theobold  Colorado Mesa University Montana State University      \n3 Robinson  Winona State University  University of Nebraska-Lincoln\n4 Mann      Carlton College          University of Michigan        \n5 Ruiz      Reed College             Oregon State University       \n\nprof_course \n\n# A tibble: 5 × 4\n  professor Stat_331 Stat_330 Stat_431\n  &lt;chr&gt;     &lt;lgl&gt;    &lt;lgl&gt;    &lt;lgl&gt;   \n1 Bodwin    TRUE     FALSE    TRUE    \n2 Robinson  TRUE     TRUE     TRUE    \n3 Theobold  TRUE     FALSE    TRUE    \n4 Mann      TRUE     FALSE    TRUE    \n5 Carlton   TRUE     FALSE    FALSE   \n\ncourse_info\n\n# A tibble: 3 × 2\n  course   num_sections\n  &lt;chr&gt;           &lt;dbl&gt;\n1 Stat_331            8\n2 Stat_330            3\n3 Stat_431            1\n\n\nThese datasets contain information about five Cal Poly professors, their educational history, the classes they are able to teach, and the number of sections of each class that need to be assigned.\na) Combine datasets 1 and 2 to make this dataset:\nprofessor undergrad_school         grad_school          Stat_331 Stat_330 Stat_431\nBodwin    Harvard                  UNC                  TRUE     FALSE    TRUE    \nTheobold  Colorado Mesa University Montana State Unive… TRUE     FALSE    TRUE    \nRobinson  Winona State University  University of Nebra… TRUE     TRUE     TRUE    \nMann      Carlton College          University of Michi… TRUE     FALSE    TRUE\nb) Combine datasets 1 and 2 to make this dataset:\nprofessor undergrad_school         grad_school          Stat_331 Stat_330 Stat_431\nBodwin    Harvard                  UNC                  TRUE     FALSE    TRUE    \nTheobold  Colorado Mesa University Montana State Unive… TRUE     FALSE    TRUE    \nRobinson  Winona State University  University of Nebra… TRUE     TRUE     TRUE  \nMann      Carlton College          University of Michi… TRUE     FALSE    TRUE    \nRuiz      Reed College             Oregon State Univer… NA       NA       NA\nc) Combine datasets 2 and 3 to make this dataset:\nprofessor course   can_teach num_sections\nBodwin    Stat_331 TRUE                 8\nBodwin    Stat_330 FALSE                3\nBodwin    Stat_431 TRUE                 1\nRobinson  Stat_331 TRUE                 8\nRobinson  Stat_330 TRUE                 3\nRobinson  Stat_431 TRUE                 1\nTheobold  Stat_331 TRUE                 8\nTheobold  Stat_330 FALSE                3\nTheobold  Stat_431 TRUE                 1\nMann      Stat_331 TRUE                 8\nMann      Stat_330 FALSE                3\nMann      Stat_431 TRUE                 1\nCarlton   Stat_331 TRUE                 8\nCarlton   Stat_330 FALSE                3\nCarlton   Stat_431 FALSE                1"
   }
 ]

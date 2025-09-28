@@ -188,12 +188,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1-github-workflow" id="toc-part-1-github-workflow" class="nav-link active" data-scroll-target="#part-1-github-workflow">Part 1: GitHub Workflow</a>
+  <li><a href="#part-one-set-up" id="toc-part-one-set-up" class="nav-link active" data-scroll-target="#part-one-set-up">Part One: Set-up</a>
   <ul class="collapse">
-  <li><a href="#step-1-making-a-copy-from-github-classroom" id="toc-step-1-making-a-copy-from-github-classroom" class="nav-link" data-scroll-target="#step-1-making-a-copy-from-github-classroom">Step 1: Making a Copy from GitHub Classroom</a></li>
-  <li><a href="#step-2-making-a-small-change" id="toc-step-2-making-a-small-change" class="nav-link" data-scroll-target="#step-2-making-a-small-change">Step 2: Making a Small Change</a></li>
-  <li><a href="#step-3-pushing-your-lab-to-github" id="toc-step-3-pushing-your-lab-to-github" class="nav-link" data-scroll-target="#step-3-pushing-your-lab-to-github">Step 3: Pushing Your Lab to GitHub</a></li>
-  <li><a href="#step-4-lets-get-started-tidying-some-data" id="toc-step-4-lets-get-started-tidying-some-data" class="nav-link" data-scroll-target="#step-4-lets-get-started-tidying-some-data">Step 4: Let’s get started tidying some data!</a></li>
+  <li><a href="#accessing-the-lab" id="toc-accessing-the-lab" class="nav-link" data-scroll-target="#accessing-the-lab">Accessing the Lab</a></li>
   </ul></li>
   <li><a href="#part-2-some-words-of-advice" id="toc-part-2-some-words-of-advice" class="nav-link" data-scroll-target="#part-2-some-words-of-advice">Part 2: Some Words of Advice</a></li>
   <li><a href="#part-3-exploring-childcare-costs" id="toc-part-3-exploring-childcare-costs" class="nav-link" data-scroll-target="#part-3-exploring-childcare-costs">Part 3: Exploring Childcare Costs</a>
@@ -242,52 +239,26 @@ window.Quarto = {
 <!-- for side-by-side density plots using `geom_density()`. Instead, we will need to -->
 <!-- make use of the **ggridges** package to create side-by-side density (ridge) -->
 <!-- plots. -->
-<section id="part-1-github-workflow" class="level1">
-<h1>Part 1: GitHub Workflow</h1>
-<section id="step-1-making-a-copy-from-github-classroom" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-making-a-copy-from-github-classroom">Step 1: Making a Copy from GitHub Classroom</h2>
-<p>You can access the Lab 4 materials through the <a href="https://classroom.github.com/a/o-PfOckY">Lab 4 assignment on GitHub Classroom</a>. We’re going to follow the same steps as last week to make your own copy of this repository:</p>
-<!-- Update link to GH Classroom assignment -->
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<section id="part-one-set-up" class="level1">
+<h1>Part One: Set-up</h1>
+<p>In this lab, we will be using the <strong>tidyr</strong> and <strong>forcats</strong> packages to explore the cost of childcare across the US. <strong>You are expected to use functions from tidyr and forcats to do your data manipulation!</strong></p>
+<section id="accessing-the-lab" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-the-lab">Accessing the Lab</h2>
+<p>Download the template Lab 4 Quarto file here: <a href="../student/lab-4-student.qmd" download=""><code>lab-4-student.qmd</code></a></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Same process as last week!
+Important
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Use these steps to make a copy of the Lab repository: <a href="https://scribehow.com/shared/Copying_Labs_from_GitHub_into_RStudio__ATprsf2MTYmuPP86Xna1Eg">List of Steps to Copy the Lab Assignment from GitHub Classroom</a></p>
+<p>Be sure to save this in the Lab 4 folder, inside your Week 4 folder, inside your STAT 331 folder!</p>
 </div>
 </div>
-</div>
-</section>
-<section id="step-2-making-a-small-change" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-making-a-small-change">Step 2: Making a Small Change</h2>
-<p>Now, find the <code>lab-4-student.qmd</code> file in the “Files” tab in the lower right hand corner. Click on this file to open it.</p>
-<p>At the top of the document (in the YAML) there is an <code>author</code> line that says <code>"Your name here!"</code>. Change this to be your name and save your file either by clicking on the blue floppy disk or with a shortcut (command / control + s).</p>
-</section>
-<section id="step-3-pushing-your-lab-to-github" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-pushing-your-lab-to-github">Step 3: Pushing Your Lab to GitHub</h2>
-<p>Now for our last step, we need to <a href="https://happygitwithr.com/existing-github-first#stage-and-commit">commit the files to our repo</a>.</p>
-<ul>
-<li>Click the “Git” tab in upper right pane</li>
-<li>Check the “Staged” box for the <code>lab-4-student.qmd</code> file</li>
-<li>Click “Commit”</li>
-<li>In the box that opens, type a message in “Commit message”, such as “Added my name”.</li>
-<li>Click “Commit”.</li>
-<li>Click the green “Push” button to send your local changes to GitHub.</li>
-</ul>
-<p>RStudio will display something like:</p>
-<pre><code>&gt;&gt;&gt; /usr/bin/git push origin HEAD:refs/heads/main
-To https://github.com/atheobold/introduction-to-quarto-allison-theobold.git
-   3a2171f..6d58539  HEAD -&gt; main</code></pre>
-</section>
-<section id="step-4-lets-get-started-tidying-some-data" class="level2">
-<h2 class="anchored" data-anchor-id="step-4-lets-get-started-tidying-some-data">Step 4: Let’s get started tidying some data!</h2>
+<p>The data for the lab are coming from <a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday</a>, so we will load them using a URL (no need to download them).</p>
 </section>
 </section>
 <section id="part-2-some-words-of-advice" class="level1">
@@ -306,9 +277,9 @@ To https://github.com/atheobold/introduction-to-quarto-allison-theobold.git
 <p>The data come to us from <a href="https://github.com/rfordatascience/tidytuesday">TidyTuesday</a>.</p>
 <p><strong>0. Load the appropriate libraries and the data.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>childcare_costs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/childcare_costs.csv'</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>counties <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/counties.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>childcare_costs <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/childcare_costs.csv'</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>counties <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/counties.csv'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>1. Briefly describe the dataset (~ 4 sentences). What information does it contain?</strong></p>
 <section id="california-childcare-costs" class="level2">
@@ -332,9 +303,9 @@ Tip
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ca_childcare <span class="ot">&lt;-</span> ca_childcare <span class="sc">|&gt;</span> </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county_name =</span> <span class="fu">str_remove</span>(county_name, <span class="st">" County"</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ca_childcare <span class="ot">&lt;-</span> ca_childcare <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">county_name =</span> <span class="fu">str_remove</span>(county_name, <span class="st">" County"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  ...</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>4. Let’s consider the median household income of each region, and how that income has changed over time. Create a table with ten rows, one for each region, and two columns, one for 2008 and one for 2018. The cells should contain the <code>median</code> of the median household income (expressed in 2018 dollars) of the <code>region</code> and the <code>study_year</code>. Arrange the rows by 2018 values.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -405,9 +376,9 @@ Tip
 <p><strong>7. Create a scatterplot showing the relationship between median household income (expressed in 2018 dollars) and the full-time median weekly price charged for center-based childcare for an infant in California. Overlay a linear regression line (lm) to show the trend.</strong></p>
 <p><strong>8. Look up the documentation for <code>lm()</code> and fit a linear regression model to the relationship shown in your plot above.</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># complete the code provided</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>reg_mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg_mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># complete the code provided</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>reg_mod1 <span class="ot">&lt;-</span> <span class="fu">lm</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(reg_mod1)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>9. Using the output from <code>summary()</code>, write out the estimated regression line (recall: <span class="math inline">\(y = mx + b\)</span>).</strong></p>
 <p><strong>10. Do you have evidence to conclude there is a relationship between the median household income and the median weekly cost of center-based childcare for infants in California? Cite values from your <code>summary()</code> output to support your claim!</strong></p>

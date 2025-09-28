@@ -2447,7 +2447,7 @@
     "href": "labs/instructions/lab-4-instructions.html",
     "title": "Lab 4: Childcare Costs in California",
     "section": "",
-    "text": "You can access the Lab 4 materials through the Lab 4 assignment on GitHub Classroom. We’re going to follow the same steps as last week to make your own copy of this repository:\n\n\n\n\n\n\n\nTipSame process as last week!\n\n\n\n\n\nUse these steps to make a copy of the Lab repository: List of Steps to Copy the Lab Assignment from GitHub Classroom\n\n\n\n\n\n\nNow, find the lab-4-student.qmd file in the “Files” tab in the lower right hand corner. Click on this file to open it.\nAt the top of the document (in the YAML) there is an author line that says \"Your name here!\". Change this to be your name and save your file either by clicking on the blue floppy disk or with a shortcut (command / control + s).\n\n\n\nNow for our last step, we need to commit the files to our repo.\n\nClick the “Git” tab in upper right pane\nCheck the “Staged” box for the lab-4-student.qmd file\nClick “Commit”\nIn the box that opens, type a message in “Commit message”, such as “Added my name”.\nClick “Commit”.\nClick the green “Push” button to send your local changes to GitHub.\n\nRStudio will display something like:\n&gt;&gt;&gt; /usr/bin/git push origin HEAD:refs/heads/main\nTo https://github.com/atheobold/introduction-to-quarto-allison-theobold.git\n   3a2171f..6d58539  HEAD -&gt; main"
+    "text": "In this lab, we will be using the tidyr and forcats packages to explore the cost of childcare across the US. You are expected to use functions from tidyr and forcats to do your data manipulation!\n\n\nDownload the template Lab 4 Quarto file here: lab-4-student.qmd\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save this in the Lab 4 folder, inside your Week 4 folder, inside your STAT 331 folder!\n\n\nThe data for the lab are coming from TidyTuesday, so we will load them using a URL (no need to download them)."
   },
   {
     "objectID": "labs/instructions/lab-4-instructions.html#step-1-making-a-copy-from-github-classroom",
@@ -5185,5 +5185,12 @@
     "title": "Lab 4: Childcare Costs in California",
     "section": "Challenge 4: Open-Ended Analysis",
     "text": "Challenge 4: Open-Ended Analysis\nInvestigate the full-time median price for childcare in a center-based setting versus the full-time median price for childcare in a family (in-home) setting in California. Pay close attention to the different developmental stages. Support your answer with one table of summary statistics and one visualization.\n\n\n\n\n\n\nTip\n\n\n\n\nAim for about 150-300 words.\n\nYou should (1) introduce the data and the topic you are investigating,\n\n\ndiscuss your table and plot, and (3) conclude.\n\nThis should read like a mini-report!\nDon’t just have a summary table or plot show up “out of the blue” – make sure to build up to them with text, describe what they show, and provide captions."
+  },
+  {
+    "objectID": "labs/instructions/lab-4-instructions.html#accessing-the-lab",
+    "href": "labs/instructions/lab-4-instructions.html#accessing-the-lab",
+    "title": "Lab 4: Childcare Costs in California",
+    "section": "",
+    "text": "Download the template Lab 4 Quarto file here: lab-4-student.qmd\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save this in the Lab 4 folder, inside your Week 4 folder, inside your STAT 331 folder!\n\n\nThe data for the lab are coming from TidyTuesday, so we will load them using a URL (no need to download them)."
   }
 ]

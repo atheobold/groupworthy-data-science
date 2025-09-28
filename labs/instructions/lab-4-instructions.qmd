@@ -11,6 +11,8 @@ execute:
   eval: false
   message: false
   warning: false
+resources: 
+  - ../student/lab-4-student.qmd
 ---
 
 <!-- Maybe consider changing to density ridges? -->
@@ -24,50 +26,22 @@ execute:
 <!-- make use of the **ggridges** package to create side-by-side density (ridge) -->
 <!-- plots. -->
 
-# Part 1: GitHub Workflow
+# Part One: Set-up
 
-## Step 1: Making a Copy from GitHub Classroom
+In this lab, we will be using the **tidyr** and **forcats** packages to explore
+the cost of childcare across the US. **You are expected to use functions from tidyr and forcats to do your data manipulation!**
 
-You can access the Lab 4 materials through the [Lab 4 assignment on GitHub Classroom](https://classroom.github.com/a/o-PfOckY). We're going to follow the same steps as last week to make your own copy of this repository:
+## Accessing the Lab
 
-<!-- Update link to GH Classroom assignment -->
+Download the template Lab 4 Quarto file here: <a href="../student/lab-4-student.qmd" download>`lab-4-student.qmd`</a> 
 
-::: {.callout-tip collapse="true"}
-# Same process as last week!
-
-Use these steps to make a copy of the Lab repository: [List of Steps to Copy the Lab Assignment from GitHub Classroom](https://scribehow.com/shared/Copying_Labs_from_GitHub_into_RStudio__ATprsf2MTYmuPP86Xna1Eg)
+::: {.callout-important}
+Be sure to save this in the Lab 4 folder, inside your Week 4 folder, 
+inside your STAT 331 folder! 
 :::
 
-## Step 2: Making a Small Change
-
-Now, find the `lab-4-student.qmd` file in the "Files" tab in the lower right 
-hand corner. Click on this file to open it. 
-
-At the top of the document (in the YAML) there is an `author` line that says 
-`"Your name here!"`. Change this to be your name and save your file either by
-clicking on the blue floppy disk or with a shortcut (command / control + s). 
-
-## Step 3: Pushing Your Lab to GitHub
-
-Now for our last step, we need to [commit the files to our repo](https://happygitwithr.com/existing-github-first#stage-and-commit). 
-
--   Click the "Git" tab in upper right pane
--   Check the "Staged" box for the `lab-4-student.qmd` file 
--   Click "Commit"
--   In the box that opens, type a message in "Commit message", such as
-"Added my name".
--   Click "Commit".
--   Click the green "Push" button to send your local changes to GitHub.
-
-RStudio will display something like:
-
-```         
->>> /usr/bin/git push origin HEAD:refs/heads/main
-To https://github.com/atheobold/introduction-to-quarto-allison-theobold.git
-   3a2171f..6d58539  HEAD -> main
-```
-
-## Step 4: Let's get started tidying some data!
+The data for the lab are coming from [TidyTuesday](https://github.com/rfordatascience/tidytuesday),
+so we will load them using a URL (no need to download them). 
 
 # Part 2: Some Words of Advice
 

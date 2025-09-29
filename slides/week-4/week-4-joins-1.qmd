@@ -1,5 +1,5 @@
 ---
-title: "Data Joins + Pivots"
+title: "Data Pivots + Joins"
 format: 
   revealjs:
         theme: [simple, ../style.scss]
@@ -27,14 +27,7 @@ Today we will discuss...
 -   New Material
     -   Pivoting data with `tidyr`
     -   Joining data with `dplyr`
--   [PA 4: Military Spending](../../group-activities/week-4/PA4-tidyr.qmd)
-
-# Discord & Deadline Extension Tokens
-
-# Discord & Deadline Extension Tokens
-
-> If you answer / respond to another student's question on Discord, you will 
-> earn one additional "token" (3-day deadline extension request). 
+-   PA 4: Military Spending
 
 # Grade Expectations
 
@@ -51,11 +44,6 @@ Today we will discuss...
 You have until Sunday [to vote]() 
 on whether you agree with the proposed criteria, and to suggest ways these
 criteria could be revised.
-
-
-<!-- THE WARM-UP SHOULD MOVE TO INCLUDE THE READ EXCEL EXPLORATION -->
-
-<!-- THE FOLLOW-UP SHOULD TALK ABOUT SEMI JOINS & PIVOTING -->
 
 # Data Layouts
 
@@ -74,8 +62,12 @@ Tidy data...
 We may need to **transform** our data to turn it into the **version of tidy** that is best for a task at hand.
 
 ![Image by Allison Horst](https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg){fig-alt="An illustration of two round, fluffy characters, one green and one purple, holding a large table between them labeled 'TIDY.' The table is held by clamps on either side labeled 'WRANGLE' in orange and pink. The green character on the left is smiling with one arm raised, while the purple character on the right is cheering with both arms up. The table represents tidy data, and the clamps labeled 'WRANGLE' suggest data manipulation or preparation."}
+
+# Military Expenditures
+
 ## Military Expenditures
 
+::: {.midi}
 We will be using data from the Stockholm International Peace Research Institute
 (SIPRI). The SIPRI Military Expenditure Database is an open source data set
 containing time series on the military spending of countries from 1949--2019. 
@@ -87,19 +79,35 @@ Military expenditure is presented in many ways:
 + in local currency and in US $ (both from 2018 and current);
 + in terms of financial years and calendar years;
 + as a share of GDP and per capita.
+:::
 
-## A Messy Excel File
+## [A Messy Excel File](https://cpslo-my.sharepoint.com/:x:/g/personal/atheobol_calpoly_edu/ESF5LJhLI0FLihBUZINkS7MB-qdforgA9uA7p1-ZbmwvXQ?e=B4g3iI)
 
+::: {.midi}
 First, you should notice that there are ten different sheets included in the
-dataset. We are interested in the sheet labeled *"Share of Govt. spending"*, 
+dataset. 
+
+We are interested in the sheet labeled *"Share of Govt. spending"*, 
 which contains information about the share of all government spending that is
 allocated to the military.
+:::
 
+</br>
+
+. . .
+
+::: {.midi}
 Next, you'll notice that there are notes about the data in the first six rows.
-Ugh! Also notice that the last six rows are footnotes about the data. **Ugh**!
+Ugh!
+:::
 
-Rather than copying this one sheet into a new Excel file and deleting the first
-and last few rows, let's learn something new about the `read_xlsx()` function!
+. . .
+
+::: {.midi}
+Finally, you should also note that the last six rows are footnotes about the
+data. **Ugh**!
+:::
+
 
 ## Exploring `read_xlsx()` Arguments
 
@@ -113,88 +121,142 @@ data.
 
 ## Declaring the Sheet
 
+::: {.midi}
 ```{r}
-#| label: read-in-military-data
+#| label: sheet-argument
+#| eval: false
+#| echo: true
 
-military <- read_xlsx(here::here("data", 
-                                 "gov_spending_per_capita.xlsx"), 
+military <- read_xlsx("gov_spending_per_capita.xlsx", 
                       sheet = )
 ```
+:::
+
+::: {.callout-important}
+# Argument Input
+
+What should we input as the `sheet`?
+:::
 
 ## Skipping the Notes at the Top
 
+::: {.midi}
 ```{r}
-#| label: read-in-military-data
+#| label: skip-top
+#| eval: false
+#| echo: true
 
-military <- read_xlsx(here::here("data", 
-                                 "gov_spending_per_capita.xlsx"), 
-                      sheet = , 
-                      skip  = )
+military <- read_xlsx("gov_spending_per_capita.xlsx", 
+                      sheet = "Share of Govt. spending", 
+                      skip  = 7)
 ```
+:::
+
+::: {.callout-important}
+# Argument Input
+
+How many rows should we `skip` at the top of the Excel file?
+:::
 
 ## Skipping the Footnotes at the Bottom
 
+::: {.midi}
 ```{r}
-#| label: read-in-military-data
+#| label: skip-bottom
+#| eval: false
+#| echo: true
 
-military <- read_xlsx(here::here("data", 
-                                 "gov_spending_per_capita.xlsx"), 
-                      sheet = , 
-                      skip  = , 
+military <- read_xlsx("gov_spending_per_capita.xlsx", 
+                      sheet = "Share of Govt. spending", 
+                      skip  = 7, 
                       n_max = )
 ```
+:::
+
+::: {.callout-important}
+# Argument Input
+
+What is the maximum number of rows we should let `read_xlsx()` read in? 
+:::
+
+```{r}
+#| label: reading-in-data
+#| echo: false
+
+military <- read_xlsx(here::here("group-activities",
+                                 "week-4", 
+                                 "data", 
+                                 "gov_spending_per_capita.xlsx"), 
+                      sheet = "Share of Govt. spending", 
+                      skip  = 7, 
+                      n_max = 190)
+
+```
+
+# 
+
+![](images/high-five.webp)
 
 ## Missing Data
 
+::: {.midi}
 The availability of data varies considerably by country, but we note that data
 is available from at least the late 1950s for a majority of countries that were
-independent at the time. Estimates for regional military expenditure have been
-extended backwards depending on availability of data, but no estimates for total
-world military expenditure are available before 1988 due to the lack of data
-from the Soviet Union.
+independent at the time. 
+
+Estimates for regional military expenditure have been extended backwards
+depending on availability of data, but no estimates for total world military
+expenditure are available before 1988 due to the lack of data from the Soviet
+Union.
+:::
 
 ## Finding the `NA` Values
 
+Open the Excel file and see if you can find the three ways missing values were
+coded!
+
 ## Declaring `NA` Values
+
+::: {.midi}
+```{r}
+#| label: read-in-data-code-missing-values-preview
+#| eval: false
+#| echo: true
+
+military <- read_xlsx("gov_spending_per_capita.xlsx", 
+                      sheet = "Share of Govt. spending", 
+                      skip  = 7, 
+                      n_max = 190, 
+                      na = c(". .", "xxx", "..")
+                      )
+```
+:::
+
+::: {.callout-tip}
+# Multiple Versions of `NA`s
+
+Note that if there was only **one** other version of an `NA` (e.g., `99999`), 
+then we wouldn't need the `c()` function. We could just use `na = "99999"`. 
+:::
 
 ```{r}
 #| label: read-in-data-code-missing-values
+#| echo: false
 
-military <- read_xlsx(here::here("data", 
+military <- read_xlsx(here::here("group-activities",
+                                 "week-4", 
+                                 "data", 
                                  "gov_spending_per_capita.xlsx"), 
-                      sheet = , 
-                      skip  = , 
-                      n_max = , 
-                      na = c()
+                      sheet = "Share of Govt. spending", 
+                      skip  = 7, 
+                      n_max = 190, 
+                      na = c(". .", "xxx", "..")
                       )
 ```
 
-## Cereal Data 
+# 
 
-```{r}
-#| echo: true
-#| eval: false
-#| label: cereal-preview-code
-#| code-line-numbers: false
-
-library(liver)
-data(cereal)
-head(cereal)
-```
-
-```{r}
-#| eval: true
-#| echo: false
-#| label: cereal-preview-table
-
-library(liver)
-data(cereal)
-
-head(cereal) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
+![](images/heck-yeah.webp)
 
 ## Creating Tidy Data
 
@@ -222,89 +284,81 @@ year.
 
 ## Manual Method
 
-Consider daily rainfall observed in SLO in January 2023.
+::: {.large}
 
-+ The data is in a human-friendly form (like a calendar).
-+ Each week has a row, and each day has a column.
-
-![[Data source](cesanluisobispo.ucanr.edu)](images/slo-rainfall.jpg){fig-alt="A spreadsheet displaying a table with days of the week as column headers (Sunday to Saturday) and weeks numbered 1 to 5 in the first column. The table contains numerical values corresponding to each day of the week for each week. Some cells contain 'NA,' indicating missing values, while other cells contain numerical values like 0.12, 0.27, 4.26, and so on. Several cells contain zeros, and a few cells are left empty."}
-
-How would you **manually** convert this to **long format**?
-
+Given the current layout of the data, how would you **manually** convert this
+dataset into a **long format**?
+:::
 
 ## Manual Method: Steps
 
+::: columns
+::: {.column width="40%"}
 ::: incremental
 ::: {.small}
-0.  Keep the column `Week`.
-1.  Create a new column `Day_of_Week`.
-2.  Create a new column `Rainfall` (hold daily rainfall values).
-3.  Now we have three columns -- move Sunday values over.
+0.  Keep the column `Country`.
+1.  Create a new column `Year`.
+2.  Create a new column `Expenditures` (hold yearly military expenditure values).
+3.  Now we have three columns -- move Algeria's values over.
 :::
 :::
-. . .
+:::
 
-<center> 
+::: {.column width="5%"}
+:::
 
-![](images/pivot_rain1.png){width=25% fig-alt="A spreadsheet displaying a table with days of the week as column headers (Sunday to Saturday) and weeks numbered 1 to 5 in the first column. The table contains numerical values corresponding to each day of the week for each week. Some cells contain 'NA,' indicating missing values, while other cells contain numerical values like 0.12, 0.27, 4.26, and so on. Several cells contain zeros, and a few cells are left empty."}
+::: {.column width="55%"}
+::: {.fragment}
+::: {.centered}
+![](images/pivot_algeria.png){width=45% fig-alt=""}
+:::
+:::
+:::
+:::
 
-</center> 
+## Manual Method: Steps
+
+::: columns
+::: {.column width="40%"}
+::: {.small}
+0.  Keep the column `Country`.
+1.  Create a new column `Year`.
+2.  Create a new column `Expenditures` (hold yearly military expenditure values).
+3.  Now we have three columns -- move Algeria's values over.
+4.  Move Libya's values over.
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+![](images/pivot_algeria_libya.png){width=25% fig-alt=""}
+:::
+:::
 
 
 ## Manual Method: Steps
 
 ::: {.small}
-0.  Keep the column `Week`.
-1.  Create a new column `Day_of_Week`.
-2.  Create a new column `Rainfall` (hold daily rainfall values).
-3.  Now we have three columns -- move Sunday values over.
-4.  Duplicate `Week` 1-5 and copy Monday values over.
+0.  Keep the column `Country`.
+1.  Create a new column `Year`.
+2.  Create a new column `Expenditures` (hold yearly military expenditure values).
+3.  Now we have three columns -- move `Algeria`'s values over.
+4.  Move Libya's values over.
+5.  Move Morocco's values over.
+6.  Continue for the rest of the countries.
 :::
-
-<center> 
-
-![](images/pivot_rain2.png){width=25% fig-alt="A table with three columns: 'Week,' 'Day_of_Week,' and 'Rainfall.' The 'Week' column contains numbers 1 to 5, while the 'Day_of_Week' column alternates between 'Sunday' and 'Monday.' The 'Rainfall' column lists numerical values for each week and day. For Sunday, the rainfall values are 0, 0.27, 0.34, 0, and 'NA' for weeks 1 through 5, respectively. For Monday, the rainfall values are 0.12, 4.26, 0.33, 0, and 'NA' for weeks 1 through 5, respectively."}
-</center> 
-
-
-## Manual Method: Steps
-
-::: {.small}
-0.  Keep the column `Week`.
-1.  Create a new column `Day_of_Week`.
-2.  Create a new column `Rainfall` (hold daily rainfall values).
-3.  Now we have three columns -- move Sunday values over.
-4.  Duplicate `Week` 1-5 and copy Monday values over.
-5.  Duplicate `Week` 1-5 and copy Tuesday values over.
-:::
-
-## Manual Method: Steps
-
-::: {.small}
-0.  Keep the column `Week`.
-1.  Create a new column `Day_of_Week`.
-2.  Create a new column `Rainfall` (hold daily rainfall values).
-3.  Now we have three columns -- move Sunday values over.
-4.  Duplicate `Week` 1-5 and copy Monday values over.
-5.  Duplicate `Week` 1-5 and copy Tuesday values over.
-6.  Continue for the rest of the days of the week.
-:::
-
-## Computational Approach
-
-![](images/slo-rainfall-sketch.png){fig-alt="A table showing rainfall data for each day of the week across five weeks, with annotations explaining how to reshape the data from wide to long format. The table has columns for 'Week,' followed by the days of the week (Sunday to Saturday), and contains numerical values representing rainfall. There are three color-coded annotations: the 'Week' column is highlighted in green, labeled 'key' with the note 'keep this column, but repeat it many times.' The day names (Sunday through Saturday) are highlighted in red with the note 'turn into new column: Day_of_Week (repeat day of week many times).' The data cells are highlighted in blue with the note 'turn into new column: Rainfall (values for each week # and day of week).'"}
-
-We can use `pivot_longer()` to turn a **wide** dataset into a **long(er)** dataset.
-
 
 ## `pivot_longer()`
 
-Take a **wide** dataset and turn it into a **long** dataset.
+We can use `pivot_longer()` to turn a **wide** dataset into a **long(er)**
+dataset.
 
 + `cols` -- specify the columns that should be pivoted.
   + Do **not** include the names of ID columns (columns to not be pivoted).
 + `names_to` -- the name of the new column containing the old column names.
-+ `values_to` -- the name of the new column containing the old  column values.
++ `values_to` -- the name of the new column containing the old column values.
 
 
 ## `pivot_longer()`
@@ -313,31 +367,90 @@ Take a **wide** dataset and turn it into a **long** dataset.
 #| echo: true
 #| eval: false
 #| code-line-numbers: false
-#| label: slo-rain-pivot-longer-code
+#| label: military-longer-code-cols
 
-slo_rainfall |> 
-  pivot_longer(cols = Sunday:Saturday,
-               names_to  = "Day_of_Week",
-               values_to = "Daily_Rainfall")
+military |> 
+  pivot_longer(cols = ,
+               names_to  = ,
+               values_to = )
 ```
+
+::: {.callout-important}
+# Argument Input
+
+What columns do we want to pivot longer? 
+:::
+
+## `pivot_longer()`
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: military-longer-code-names
+
+military |> 
+  pivot_longer(cols = `1988`:`2019`,
+               names_to  = ,
+               values_to = )
+```
+
+::: {.callout-important}
+# Argument Input
+
+What name should we give the new column column containing the old column names?
+:::
+
+## `pivot_longer()`
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: military-longer-code-values
+
+military |> 
+  pivot_longer(cols = `1988`:`2019`,
+               names_to  = "Year",
+               values_to = )
+```
+
+::: {.callout-important}
+# Argument Input
+
+What name should we give the new column containing the old column values?
+:::
+
+## `pivot_longer()`
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: military-longer-code-full
+
+military |> 
+  pivot_longer(cols = `1988`:`2019`,
+               names_to  = "Year",
+               values_to = "Expenditures")
+```
+
 
 ```{r}
 #| eval: true
 #| echo: false
 #| code-line-numbers: false
-#| label: slo-rain-pivot-longer-table
+#| label: military-longer-table
 
 
-slo_rainfall <- read_xlsx("data/2023-rainfall-slo.xlsx")
-
-slo_rainfall |> 
-  mutate(across(Sunday:Saturday, as.numeric)) |> 
-  pivot_longer(cols      = Sunday:Saturday,
-               names_to  = "Day_of_Week",
-               values_to = "Daily_Rainfall")|> 
+military |> 
+  pivot_longer(cols = `1988`:`2019`,
+               names_to  = "Year",
+               values_to = "Expenditures") |> 
+  select(Country, Year, Expenditures, everything()) |> 
   knitr::kable() |> 
   kableExtra::scroll_box(height = "500px") |> 
-  kableExtra::kable_styling(font_size = 30)
+  kableExtra::kable_styling(font_size = 25)
 ```
 
 
@@ -533,8 +646,9 @@ directors_genres |>
 ```
 
 ```{r}
-#| eval: true
 #| echo: false
+#| eval: false
+
 semi_join(directors_genres_subset, movies_directors_subset) |> 
   knitr::kable() |> 
   kableExtra::scroll_box(height = "320px") |> 
@@ -554,8 +668,8 @@ directors_genres |>
 ```
 
 ```{r}
-#| eval: true
 #| echo: false
+#| eval: false
 directors_genres_subset |>
   filter(director_id %in% movies_directors_subset$director_id) |> 
   knitr::kable() |> 
@@ -612,8 +726,9 @@ directors_genres |>
 ```
 
 ```{r}
-#| eval: true
 #| echo: false
+#| eval: false
+
 anti_join(directors_genres_subset, movies_directors_subset) |> 
   knitr::kable() |> 
   kableExtra::scroll_box(height = "200px") |> 
@@ -634,8 +749,9 @@ directors_genres |>
 ```
 
 ```{r}
-#| eval: true
 #| echo: false
+#| eval: false
+
 directors_genres_subset |>
   filter(!director_id %in% movies_directors_subset$director_id) |> 
   knitr::kable() |> 
@@ -646,9 +762,10 @@ directors_genres_subset |>
 :::
 
 
-## [PA 4: Military Spending](../../group-activities/week-4/PA-4-tidyr.qmd)
+# PA 4: Military Spending
 
-Today you will be tidying messy data to explore the relationship between countries of the world and military spending.
+Today you will be tidying messy data to explore the relationship between
+countries of the world and military spending.
 
 ## This activity will require knowledge of:
 

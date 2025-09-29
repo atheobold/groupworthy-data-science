@@ -48,9 +48,14 @@ Today we will discuss...
 > The [course syllabus](../../course-materials/course-syllabus.qmd#sec-grades)
 > has been updated to reflect the grade criteria you all proposed. 
 
-You have until Sunday [to vote](https://canvas.calpoly.edu/courses/138158/quizzes/247752) 
+You have until Sunday [to vote]() 
 on whether you agree with the proposed criteria, and to suggest ways these
 criteria could be revised.
+
+
+<!-- THE WARM-UP SHOULD MOVE TO INCLUDE THE READ EXCEL EXPLORATION -->
+
+<!-- THE FOLLOW-UP SHOULD TALK ABOUT SEMI JOINS & PIVOTING -->
 
 # Data Layouts
 
@@ -69,110 +74,100 @@ Tidy data...
 We may need to **transform** our data to turn it into the **version of tidy** that is best for a task at hand.
 
 ![Image by Allison Horst](https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg){fig-alt="An illustration of two round, fluffy characters, one green and one purple, holding a large table between them labeled 'TIDY.' The table is held by clamps on either side labeled 'WRANGLE' in orange and pink. The green character on the left is smiling with one arm raised, while the purple character on the right is cheering with both arms up. The table represents tidy data, and the clamps labeled 'WRANGLE' suggest data manipulation or preparation."}
-<!-- OLD SLIDES FROM WEEK 2 -->
-<!-- ## Same Data, Different Formats -->
+## Military Expenditures
 
-<!-- Different formats of the data are **tidy** in different ways. -->
+We will be using data from the Stockholm International Peace Research Institute
+(SIPRI). The SIPRI Military Expenditure Database is an open source data set
+containing time series on the military spending of countries from 1949--2019. 
+The database is updated annually, which may include updates to data from
+previous years.
 
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| label: creating-small-data-set-wide-format -->
+Military expenditure is presented in many ways:
 
-<!-- bb_wide <- tibble(Team     = c("A", "B", "C", "D"), -->
-<!--                        Points   = c(88, 91, 99, 94), -->
-<!--                        Assists  = c(12, 17, 24, 28), -->
-<!--                        Rebounds = c(22, 28, 30, 31) -->
-<!--                        ) -->
-<!-- ``` -->
++ in local currency and in US $ (both from 2018 and current);
++ in terms of financial years and calendar years;
++ as a share of GDP and per capita.
 
-<!-- ::: panel-tabset -->
-<!-- ### Option 1 -->
+## A Messy Excel File
 
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| label: displaying-wide-data -->
+First, you should notice that there are ten different sheets included in the
+dataset. We are interested in the sheet labeled *"Share of Govt. spending"*, 
+which contains information about the share of all government spending that is
+allocated to the military.
 
-<!-- bb_wide |>  -->
-<!--   knitr::kable() -->
-<!-- ``` -->
+Next, you'll notice that there are notes about the data in the first six rows.
+Ugh! Also notice that the last six rows are footnotes about the data. **Ugh**!
 
-<!-- ### Option 2 -->
+Rather than copying this one sheet into a new Excel file and deleting the first
+and last few rows, let's learn something new about the `read_xlsx()` function!
 
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| label: transforming-to-long -->
+## Exploring `read_xlsx()` Arguments
 
-<!-- bb_long <- bb_wide |>  -->
-<!--   pivot_longer(cols      = c(Points, Assists, Rebounds), -->
-<!--                names_to  = "Statistic", -->
-<!--                values_to = "Value" -->
-<!--                ) -->
+The `read_xlsx()` function has several useful arguments:
 
-<!-- bb_long |>  -->
-<!--   knitr::kable() -->
-<!-- ``` -->
-<!-- ::: -->
++ `sheet`: specify the name of the sheet that you want to use. The name must be
+passed in as a string (in quotations)!
++ `skip`: specify the number of rows you want to skip *before* reading in the
+data.
++ `n_max`: specify the maximum number of rows of data to read in.
 
-<!-- ## Connection to ggplot -->
+## Declaring the Sheet
 
-<!-- Let's make a plot of each team's statistics! -->
+```{r}
+#| label: read-in-military-data
 
-<!-- ::::: panel-tabset -->
-<!-- ### Option 1 - Wide Data -->
+military <- read_xlsx(here::here("data", 
+                                 "gov_spending_per_capita.xlsx"), 
+                      sheet = )
+```
 
-<!-- ::: small -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| label: plot-with-wide-data -->
-<!-- #| code-fold: true -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-align: center -->
+## Skipping the Notes at the Top
 
-<!-- ggplot(data = bb_wide,  -->
-<!--        mapping = aes(x = Team) -->
-<!--        ) + -->
-<!--   geom_point(mapping = aes(y = Points,  -->
-<!--                            color = "Points"),  -->
-<!--              size = 4) + -->
-<!--   geom_point(mapping = aes(y = Assists,  -->
-<!--                            color = "Assists"),  -->
-<!--              size = 4) + -->
-<!--   geom_point(mapping = aes(y = Rebounds,  -->
-<!--                            color = "Rebounds"),  -->
-<!--              size = 4) +  -->
-<!--   scale_colour_manual( -->
-<!--     values = c("darkred", "steelblue", "forestgreen") -->
-<!--   ) + -->
-<!--   labs(color = "Statistic") -->
-<!-- ``` -->
-<!-- ::: -->
+```{r}
+#| label: read-in-military-data
 
-<!-- ### Option 2 - Long Data -->
+military <- read_xlsx(here::here("data", 
+                                 "gov_spending_per_capita.xlsx"), 
+                      sheet = , 
+                      skip  = )
+```
 
-<!-- ::: small -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| label: plot-with-long-data -->
-<!-- #| code-fold: true -->
-<!-- #| fig-width: 6 -->
-<!-- #| fig-height: 4 -->
-<!-- #| fig-align: center -->
+## Skipping the Footnotes at the Bottom
 
-<!-- ggplot(data = bb_long,  -->
-<!--        mapping = aes(x = Team,  -->
-<!--                      y = Value,  -->
-<!--                      color = Statistic) -->
-<!--        ) + -->
-<!--   geom_point(size = 4) +  -->
-<!--   scale_colour_manual( -->
-<!--     values = c("darkred", "steelblue", "forestgreen") -->
-<!--   ) + -->
-<!--   labs(color = "Statistic") -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::::: -->
+```{r}
+#| label: read-in-military-data
 
+military <- read_xlsx(here::here("data", 
+                                 "gov_spending_per_capita.xlsx"), 
+                      sheet = , 
+                      skip  = , 
+                      n_max = )
+```
+
+## Missing Data
+
+The availability of data varies considerably by country, but we note that data
+is available from at least the late 1950s for a majority of countries that were
+independent at the time. Estimates for regional military expenditure have been
+extended backwards depending on availability of data, but no estimates for total
+world military expenditure are available before 1988 due to the lack of data
+from the Soviet Union.
+
+## Finding the `NA` Values
+
+## Declaring `NA` Values
+
+```{r}
+#| label: read-in-data-code-missing-values
+
+military <- read_xlsx(here::here("data", 
+                                 "gov_spending_per_capita.xlsx"), 
+                      sheet = , 
+                      skip  = , 
+                      n_max = , 
+                      na = c()
+                      )
+```
 
 ## Cereal Data 
 
@@ -203,129 +198,14 @@ head(cereal) |>
 
 ## Creating Tidy Data
 
-Let's say we want to look at `mean` **cereal nutrients** based on `shelf`.
+Let's say we want to plot how military expenditures have changed over time. 
 
 . . .
 
 Currently, the data are in a **wide** format -- a separate column for each
-nutrient. 
+year. 
 
 **Transforming** the data will make plotting easier.
-
-## Tidying the Cereals Data
-
-::: panel-tabset
-
-## Wide
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: "3-7"
-#| code-fold: true
-#| label: cereal-wide-code
-
-cereal_wide <- cereal |> 
-  group_by(shelf) |> 
-  summarise(
-    across(.cols = calories:vitamins, 
-           .fns = ~ mean(.x)
-           )
-    )
-```
-:::
-
-```{r}
-#| eval: true
-#| echo: false
-#| label: cereal-wide-table
-
-cereal_wide |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "400px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-## Wide Plot
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: "5-8"
-#| fig-height: 4
-#| fig-width: 6
-#| fig-align: center
-#| code-fold: true
-#| label: cereal-wide-plot
-#| fig-alt: "A line chart displaying the relationship between the mean amount of two nutrients ('calories_col' and 'sugars_col') and their corresponding shelf number (1, 2, 3). The y-axis represents the mean amount, ranging from 0 to 100, and the x-axis represents the shelf numbers (1, 2, 3). The blue line represents 'calories_col,' with a relatively flat trend around 90 across the shelves. The orange line represents 'sugars_col,' which remains close to zero across the same shelves. The legend on the right identifies the nutrient lines."
-
-my_colors <- c("calories_col" = "steelblue", "sugars_col" = "orange3")
-
-cereal_wide |> 
-  ggplot() +
-  geom_point(mapping = aes(x = shelf, y = calories, color = "calories_col")) +
-  geom_line(mapping = aes(x = shelf, y = calories, color = "calories_col")) + 
-  geom_point(mapping = aes(x = shelf, y = sugars, color = "sugars_col")) +
-  geom_line(mapping = aes(x = shelf, y = sugars, color = "sugars_col")) +
-  scale_color_manual(values = my_colors, labels = names(my_colors)) +
-  labs(x = "Shelf", y = "", subtitle = "Mean Amount", color = "Nutrient")
-```
-:::
-
-## Long
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: "5-6"
-#| code-fold: true
-#| label: cereal-long-code
-cereal_long <- cereal |> 
-  pivot_longer(cols = calories:vitamins,
-               names_to = "Nutrient",
-               values_to = "Amount") |> 
-  group_by(shelf, Nutrient) |> 
-  summarise(mean_amount = mean(Amount))
-```
-:::
-
-```{r}
-#| eval: true
-#| echo: false
-#| label: cereal-long-table
-
-cereal_long |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "400px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-## Long Plot
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: "2-7"
-#| fig-height: 4
-#| fig-width: 6
-#| fig-align: center
-#| code-fold: true
-#| label: cereal-long-plot
-
-cereal_long |> 
-  ggplot(mapping = aes(x = shelf, 
-                       y = mean_amount, 
-                       color = Nutrient)
-         ) +
-  geom_point() +
-  geom_line() +
-  labs(x = "Shelf", 
-       y = "", 
-       subtitle = "Mean Amount")
-```
-:::
-:::
-
 
 # Pivoting Data
 
@@ -461,195 +341,116 @@ slo_rainfall |>
 ```
 
 
-## `pivot_wider()`
+<!-- ## `pivot_wider()` -->
 
-Take a **long** dataset and turn it into a **wide** dataset.
+<!-- Take a **long** dataset and turn it into a **wide** dataset. -->
 
-+ `id_cols` -- specify the column(s) that contain the ID for unique rows in the wide dataset.
-+ `names_from` -- the name of the column containing the new column names.
-+ `values_from` -- the name of the column containing the new  column values.
-
-
-## `pivot_wider()`
-
-Let's say we calculate the `mean` amount of `protein` for cereals on each `shelf` and for each `manuf`.
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-#| label: long-cereal-summary-code
-
-mean_protein <- cereal |> 
-  group_by(manuf, shelf) |> 
-  summarize(mean_protein = mean(protein))
-```
-
-```{r}
-#| eval: true
-#| echo: false
-#| label: long-cereal-summary-table
-
-mean_protein <- cereal |> 
-  group_by(manuf, shelf) |> 
-  summarize(mean_protein = mean(protein))
-
-mean_protein |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "400px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
+<!-- + `id_cols` -- specify the column(s) that contain the ID for unique rows in the wide dataset. -->
+<!-- + `names_from` -- the name of the column containing the new column names. -->
+<!-- + `values_from` -- the name of the column containing the new  column values. -->
 
 
-## `pivot_wider()`
+<!-- ## `pivot_wider()` -->
 
-We can make this dataset more easily readable...
+<!-- Let's say we calculate the `mean` amount of `protein` for cereals on each `shelf` and for each `manuf`. -->
 
-. . .
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: false -->
+<!-- #| code-line-numbers: false -->
+<!-- #| label: long-cereal-summary-code -->
 
-```{r}
-#| eval: false
-#| echo: true
-#| label: pivot-summary-wider-code
-#| code-line-numbers: false
+<!-- mean_protein <- cereal |>  -->
+<!--   group_by(manuf, shelf) |>  -->
+<!--   summarize(mean_protein = mean(protein)) -->
+<!-- ``` -->
 
-mean_protein |> 
-  arrange(shelf) |> 
-  pivot_wider(id_cols = manuf,
-              names_from = shelf,
-              values_from = mean_protein)
-```
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| label: long-cereal-summary-table -->
 
-```{r}
-#| eval: true
-#| echo: false
-#| label: pivot-summary-wider-table
-#| code-line-numbers: false
+<!-- mean_protein <- cereal |>  -->
+<!--   group_by(manuf, shelf) |>  -->
+<!--   summarize(mean_protein = mean(protein)) -->
 
-mean_protein |> 
-  arrange(shelf) |> 
-  pivot_wider(id_cols = manuf,
-              names_from = shelf,
-              values_from = mean_protein) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "420px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
+<!-- mean_protein |>  -->
+<!--   knitr::kable() |>  -->
+<!--   kableExtra::scroll_box(height = "400px") |>  -->
+<!--   kableExtra::kable_styling(font_size = 30) -->
+<!-- ``` -->
 
 
-## Better names in `pivot_wider()`
+<!-- ## `pivot_wider()` -->
 
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: "6"
-#| label: add-fancy-name-code
+<!-- We can make this dataset more easily readable... -->
 
-mean_protein |> 
-  arrange(shelf) |> 
-  pivot_wider(id_cols = manuf,
-              names_from = shelf,
-              values_from = mean_protein,
-              names_prefix = "Shelf_")
-```
+<!-- . . . -->
 
-```{r}
-#| eval: true
-#| echo: false
-#| label: add-fancy-name-table
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- #| echo: true -->
+<!-- #| label: pivot-summary-wider-code -->
+<!-- #| code-line-numbers: false -->
 
-mean_protein |> 
-  arrange(shelf) |> 
-  pivot_wider(id_cols = manuf,
-              names_from = shelf,
-              values_from = mean_protein,
-              names_prefix = "Shelf_") |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "420px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
+<!-- mean_protein |>  -->
+<!--   arrange(shelf) |>  -->
+<!--   pivot_wider(id_cols = manuf, -->
+<!--               names_from = shelf, -->
+<!--               values_from = mean_protein) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| label: pivot-summary-wider-table -->
+<!-- #| code-line-numbers: false -->
+
+<!-- mean_protein |>  -->
+<!--   arrange(shelf) |>  -->
+<!--   pivot_wider(id_cols = manuf, -->
+<!--               names_from = shelf, -->
+<!--               values_from = mean_protein) |>  -->
+<!--   knitr::kable() |>  -->
+<!--   kableExtra::scroll_box(height = "420px") |>  -->
+<!--   kableExtra::kable_styling(font_size = 30) -->
+<!-- ``` -->
+
+
+<!-- ## Better names in `pivot_wider()` -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: "6" -->
+<!-- #| label: add-fancy-name-code -->
+
+<!-- mean_protein |>  -->
+<!--   arrange(shelf) |>  -->
+<!--   pivot_wider(id_cols = manuf, -->
+<!--               names_from = shelf, -->
+<!--               values_from = mean_protein, -->
+<!--               names_prefix = "Shelf_") -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| label: add-fancy-name-table -->
+
+<!-- mean_protein |>  -->
+<!--   arrange(shelf) |>  -->
+<!--   pivot_wider(id_cols = manuf, -->
+<!--               names_from = shelf, -->
+<!--               values_from = mean_protein, -->
+<!--               names_prefix = "Shelf_") |>  -->
+<!--   knitr::kable() |>  -->
+<!--   kableExtra::scroll_box(height = "420px") |>  -->
+<!--   kableExtra::kable_styling(font_size = 30) -->
+<!-- ``` -->
 
 
 # Data Joins
-
-## Relational Data
-
-Multiple, interconnected tables of data are called **relational**.
-
-+ It is the *relation* between datasets, not just the individual datasets themselves, that are important.
-
-![IMDb movie relational data](images/imdb_relational.png){fig-alt="A diagram depicting the relationships between various tables in a movie database. The tables and their columns are as follows. directors_genres: Contains 'director_id' (int), 'genre' (varchar), and 'prob' (float). Linked to the 'directors' table by 'director_id.' movies_directors: Contains 'director_id' (int) and 'movie_id' (int). Linked to both the 'directors' and 'movies' tables by 'director_id' and 'movie_id.' movies_genres: Contains 'movie_id' (int) and 'genre' (varchar). Linked to the 'movies' table by 'movie_id.' roles: Contains 'actor_id' (int), 'movie_id' (int), and 'role' (varchar). Linked to both the 'actors' and 'movies' tables by 'actor_id' and 'movie_id.' The following entity tables are represented at the bottom: directors: Contains 'id' (int), 'first_name' (varchar), and 'last_name' (varchar). movies: Contains 'id' (int), 'name' (varchar), 'year' (int), and 'rank' (float). actors: Contains 'id' (int), 'first_name' (varchar), 'last_name' (varchar), and 'gender' (char). Arrows represent relationships between the various tables, with foreign keys connecting them."}
-
-```{r}
-#| eval: false
-#| include: false
-#| message: false
-#| warning: false
-#| label: imdb-data-import
-
-library(RMariaDB)
-library(dm)
-
-# IMDb
-con <- dbConnect(
-  drv = RMariaDB::MariaDB(), 
-  username = "guest",
-  password = "relational", 
-  host = "relational.fit.cvut.cz", 
-  port = 3306,
-  dbname = "imdb_small")
-dbListTables(con)
-
-my_dm <- dm_from_src(con)
-
-actors <- my_dm$actors |> 
-  as.data.frame()
-write_csv(actors, "data/actors.csv", na = "")
-
-directors <- my_dm$directors |> 
-  as.data.frame()
-write_csv(directors, "data/directors.csv", na = "")
-
-directors_genres <- my_dm$directors_genres |> 
-  as.data.frame()
-write_csv(directors_genres, "data/directors_genres.csv", na = "")
-
-movies <- my_dm$movies |> 
-  as.data.frame()
-write_csv(movies, "data/movies.csv", na = "")
-
-movies_directors <- my_dm$movies_directors |> 
-  as.data.frame()
-write_csv(movies_directors, "data/movies_directors.csv", na = "")
-
-movies_genres <- my_dm$movies_genres |> 
-  as.data.frame()
-write_csv(movies_genres, "data/movies_genres.csv", na = "")
-
-roles <- my_dm$roles |> 
-  as.data.frame()
-write_csv(roles, "data/roles.csv", na = "")
-
-dbDisconnect(con)
-rm(con, my_dm)
-```
-
-```{r}
-#| eval: true
-#| include: false
-#| message: false
-#| warning: false
-#| label: import-data-retrieved-from-imdb
-
-actors <- read_csv("data/actors.csv")
-directors <- read_csv("data/directors.csv")
-directors_genres <- read_csv("data/directors_genres.csv")
-movies <- read_csv("data/movies.csv")
-movies_directors <- read_csv("data/movies_directors.csv")
-movies_genres <- read_csv("data/movies_genres.csv")
-roles <- read_csv("data/roles.csv")
-```
-
 
 ## Data Joins
 
@@ -661,7 +462,7 @@ We can **combine** (join) data tables based on their relations.
 
 Add *variables* from a new dataframe to observations in an existing dataframe.
 
-`full_join()`, `left_join()`, `right_join()`, `inner_join()`, `outer_join()`
+`full_join()`, `left_join()`, `right_join()`, `inner_join()`
 :::
 
 ::: {.column width="5%"}
@@ -687,298 +488,33 @@ A key uniquely identifies an observation in a data set.
 ![](images/imdb-keys.png){fig-alt="A similar entity-relationship diagram (ERD) to the previous one, with the same tables and relationships between movie-related data. However, in this version, key columns in the tables are color-coded to highlight relationships. Orange highlights the 'director_id' in the 'directors_genres,' 'movies_directors,' and 'directors' tables, showing the connection between directors and their genres and movies. Blue highlights the 'movie_id' in the 'movies_directors,' 'movies_genres,' 'roles,' and 'movies' tables, showing the relationship between movies, genres, and roles. Green highlights the 'actor_id' in the 'roles' and 'actors' tables, showing the connection between actors and their roles in movies. Arrows continue to represent relationships between tables, following foreign key connections, now emphasized with the color coding."}
 
 
-## `inner_join()`
-
-Keeps observations when their keys are present in **both** datasets.
-
-:::: {.columns}
-::: {.column width="50%"}
-![](images/join_xy.png){fig-alt="This image shows two tables on the left, labeled 'x' and 'y.' The 'x' table contains two columns: a key column with values 1, 2, and 3, and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table also has two columns: a key column with values 1, 2, and 4, and a value column with 'y1,' 'y2,' and 'y3.'"}
-:::
-::: {.column width="50%"}
-![](images/inner_join.png){fig-alt="This table combines data from both 'x' and 'y.' based on the 'key' column. It contains three columns: 'key,' 'val_x,' and 'val_y.' For key values 1 and 2, the corresponding values from both 'x' and 'y' are shown ('x1' with 'y1' and 'x2' with 'y2'), while the third rows from both original tables are excluded due to the mismatch in key values."}
-
-:::
-::::
-
-
-## `inner_join()`: IMDb Example
-
-```{r}
-directors_genres_subset <- directors_genres |>
-  filter(director_id %in% c(429, 2931, 11652, 14927, 15092)) |> 
-  group_by(director_id) |> 
-  slice_max(order_by = prob, n = 2, with_ties = F)
-
-movies_directors_subset <- movies_directors |> 
-  filter(director_id %in% c(429, 9247, 11652, 14927, 15092))
-
-directors_subset <- directors |> 
-  filter(id %in% c(429, 9247, 11652, 14927, 15092))
-```
-
-:::: {.columns}
-::: {.column width="50%"}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-directors_genres
-```
-
-```{r}
-#| eval: true
-#| echo: false
-directors_genres_subset |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "160px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-::: {.column width="50%"}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-movies_directors
-```
-
-```{r}
-#| eval: true
-#| echo: false
-movies_directors_subset |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "160px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-::::
-
-<font size = 6>
-
-ID: 429, **2931**, 11652, 14927, 15092  &emsp; &emsp; &ensp;  ID: 429, **9247**, 11652, 14927, 15092
-
-</font>
-
-. . .
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-inner_join(directors_genres, movies_directors)
-```
-
-```{r}
-#| eval: true
-#| echo: false
-inner_join(directors_genres_subset, movies_directors_subset) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "160px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-<font size = 6>
-
-ID: 429, ~~**2931**~~, ~~**9247**~~, 11652, 14927, 15092
-
-</font>
-
-
-## `inner_join()`: IMDb Example
-
-What if our **key** does not have the same name?
-
-:::: {.columns}
-::: {.column width="50%"}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-directors_genres
-```
-
-```{r}
-#| eval: true
-#| echo: false
-directors_genres_subset |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "170px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-::: {.column width="50%"}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-directors
-```
-
-```{r}
-#| eval: true
-#| echo: false
-directors_subset |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "170px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-::::
-
-. . .
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: "3"
-inner_join(directors_genres, 
-           directors, 
-           by = join_by(director_id == id))
-```
-
-```{r}
-#| eval: true
-#| echo: false
-inner_join(directors_subset,
-           directors_genres_subset,
-           by = join_by(id == director_id)) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "170px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-## Piping Joins
-
-Remember: the dataset you pipe in becomes the **first argument** of the function you are piping into!
-
-+ So if you are using a pipe, you will only be specifying the **right** dataset inside the `join` function.
-
-. . .
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-inner_join(directors_genres, movies_directors)
-```
-
-...is equivalent to...
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-directors_genres |> 
-  inner_join(movies_directors)
-```
-
-
-
-## More Mutating Joins
-
-::: {.small}
--   `left_join()` -- keep only (and all) observations present in the left data set
-
--   `right_join()` -- keep only (and all) observations present in the right data set 
-
--   `full_join()` -- keep only (and all) observations present in **both** data sets
-:::
-
-![](images/joins.png){width=50% fig-alt="Four Venn diagrams illustrating different types of joins between two datasets, labeled 'x' and 'y.' inner_join(x, y): Shows two overlapping circles with only the intersection shaded, representing records that are common to both 'x' and 'y.' left_join(x, y): Shows two overlapping circles with the left circle ('x') fully shaded and the intersection shaded, representing all records from 'x' and the matching records from 'y.' right_join(x, y): Shows two overlapping circles with the right circle ('y') fully shaded and the intersection shaded, representing all records from 'y' and the matching records from 'x.' full_join(x, y): Shows two overlapping circles with both circles fully shaded, representing all records from both 'x' and 'y,' including those without matches."}
-
-</center>
-
-
-## More Mutating Joins
-
-Which directors would **remain** for each of the following?
-
-::: {.small}
--   `left_join(directors_genres, movies_directors)`
--   `right_join(directors_genres, movies_directors)`
--   `full_join(directors_genres, movies_directors)`
-:::
-
-::: columns
-::: column
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-
-directors_genres |> 
-  distinct(director_id)
-```
-
-```{r}
-#| eval: true
-#| echo: false
-
-directors_genres_subset |> 
-  distinct(director_id) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "320px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-
-::: column
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-
-movies_directors |> 
-  distinct(director_id)
-```
-
-```{r}
-#| eval: true
-#| echo: false
-movies_directors_subset |> 
-  distinct(director_id) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "320px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-:::
-:::
-
-
 ## Filtering Joins: `semi_join()`
 
-Keeps observations when their keys are present in **both** datasets, **but only keeps variables from the first dataset**.
+Keeps observations when their keys are present in **both** datasets,
+**but only keeps variables from the first dataset**.
 
-:::: {.columns}
-::: {.column width="60%"}
+![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/semi-join.gif){fig-alt="A looping animation shows two tables side by side and the result of a semi join. The left table (x) has keys 1 (red), 2 (blue), 3 (green) paired with x1, x2, x3. The right table (y) has keys 1 (red), 2 (blue), 4 (purple) paired with y1, y2, y4. Matching key rows (1 and 2) are connected. The resulting output table includes only the rows from the left table that have matches in the right table: key 1 with x1 and key 2 with x2. The left row with key 3 is dropped, and no new columns from y are shown."}
 
-![](images/semi1.png){fig-alt="An illustration of a semi join between two tables, each with two columns. The table labeled 'x,' has a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The table labeled 'y,' has a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"}
-:::
-::: {.column width="15%"}
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="60%"} -->
 
-<br>
+<!-- ![](images/semi1.png){fig-alt="An illustration of a semi join between two tables, each with two columns. The table labeled 'x,' has a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The table labeled 'y,' has a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"} -->
+<!-- ::: -->
+<!-- ::: {.column width="15%"} -->
 
-::: {.r-fit-text}
-&rarr; &emsp;
-:::
+<!-- <br> -->
 
-:::
-::: {.column width="25%"}
+<!-- ::: {.r-fit-text} -->
+<!-- &rarr; &emsp; -->
+<!-- ::: -->
 
-![](images/semi2.png){fig-alt="An arrow points from the first two tables (x and y) toward the right where a single table is displayed. This table is the result of a semi join, where only the values of x that had a match in y are kept. The resulting table includes rows with matching key values from both 'x' and 'y' (keys 1 and 2), displaying only the 'x' values ('x1' and 'x2'). Rows with non-matching keys (3 and 4) are excluded."}
+<!-- ::: -->
+<!-- ::: {.column width="25%"} -->
 
-:::
-::::
+<!-- ![](images/semi2.png){fig-alt="An arrow points from the first two tables (x and y) toward the right where a single table is displayed. This table is the result of a semi join, where only the values of x that had a match in y are kept. The resulting table includes rows with matching key values from both 'x' and 'y' (keys 1 and 2), displaying only the 'x' values ('x1' and 'x2'). Rows with non-matching keys (3 and 4) are excluded."} -->
+
+<!-- ::: -->
+<!-- :::: -->
 
 
 ## Filtering Joins: `semi_join()`
@@ -1034,28 +570,30 @@ directors_genres_subset |>
 
 **Removes** observations when their keys are present in **both** datasets, and **only keeps variables from the first dataset**.
 
-:::: {.columns}
-::: {.column width="60%"}
+![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/anti-join.gif){fig-alt="A looping animation shows two tables being compared under an ‘anti join’ operation. The left table has keys 1 (red), 2 (blue), 3 (green) paired with values x1, x2, x3. The right table has keys 1 (red), 2 (blue), and 4 (purple) paired with values y1, y2, y4. Lines indicate matching keys (1 and 2). The resulting table on the right contains only the rows from the left table that do not have a match in the right: key 3 with x3 (green). Keys 1 and 2 are excluded because they have matches in the right table."}
 
-![](images/semi1.png){fig-alt="Two tables on the left labeled 'x' and 'y,' each with two columns, show key-value pairs. The 'x' table contains a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table contains a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"}
-:::
-::: {.column width="15%"}
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="60%"} -->
 
-<br>
+<!-- ![](images/semi1.png){fig-alt="Two tables on the left labeled 'x' and 'y,' each with two columns, show key-value pairs. The 'x' table contains a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table contains a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"} -->
+<!-- ::: -->
+<!-- ::: {.column width="15%"} -->
 
-::: {.r-fit-text}
-&rarr; &emsp;
-:::
+<!-- <br> -->
 
-:::
-::: {.column width="25%"}
+<!-- ::: {.r-fit-text} -->
+<!-- &rarr; &emsp; -->
+<!-- ::: -->
 
-<br>
+<!-- ::: -->
+<!-- ::: {.column width="25%"} -->
 
-![](images/anti2.png){fi-alt="An arrow points to the right, showing the result of an anti join. The resulting table includes the row from 'x' where the key (3) does not have a corresponding match in 'y.' It contains only the key-value pair (3, x3), demonstrating that the anti join keeps only the unmatched rows from the left table ('x')."}
+<!-- <br> -->
 
-:::
-::::
+<!-- ![](images/anti2.png){fi-alt="An arrow points to the right, showing the result of an anti join. The resulting table includes the row from 'x' where the key (3) does not have a corresponding match in 'y.' It contains only the key-value pair (3, x3), demonstrating that the anti join keeps only the unmatched rows from the left table ('x')."} -->
+
+<!-- ::: -->
+<!-- :::: -->
 
 
 ## Filtering Joins: `anti_join()`

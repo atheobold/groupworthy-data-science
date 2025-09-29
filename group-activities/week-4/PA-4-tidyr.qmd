@@ -26,9 +26,6 @@ countries of the world and military spending. You can find the
 
 ***This task is complex. It requires many different types of abilities. Everyone will be good at some of these abilities but nobody will be good at all of them. In order to produce the best product possible, you will need to use the skills of each member of your group.***
 
-<!-- The person whose woke up first today starts as the Developer (typing and
-listening to instructions from the Coder)!  -->
-
 ## Data Description
 
 We will be using data from the Stockholm International Peace Research Institute
@@ -111,7 +108,8 @@ military <- read_xlsx(here::here("data",
 
 <!-- Swap roles -- Developer becomes Coder, Coder becomes Developer! -->
 
-If you give the `Country` column a look, you'll see there are names of **continents and regions** included. These names are only included to make it
+If you give the `Country` column a look, you'll see there are names of
+**continents and regions** included. These names are only included to make it
 simpler to find countries, as they contain no data.
 
 Luckily for us, these region names were also stored in the *"Regional totals"*

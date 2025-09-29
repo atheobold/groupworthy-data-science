@@ -320,6 +320,86 @@ accomplish a given task.
 
 # Extensions to Relational Data
 
+<!-- ## Relational Data -->
+
+<!-- Multiple, interconnected tables of data are called **relational**. -->
+
+<!-- + It is the *relation* between datasets, not just the individual datasets themselves, that are important. -->
+
+<!-- ![IMDb movie relational data](images/imdb_relational.png){fig-alt="A diagram depicting the relationships between various tables in a movie database. The tables and their columns are as follows. directors_genres: Contains 'director_id' (int), 'genre' (varchar), and 'prob' (float). Linked to the 'directors' table by 'director_id.' movies_directors: Contains 'director_id' (int) and 'movie_id' (int). Linked to both the 'directors' and 'movies' tables by 'director_id' and 'movie_id.' movies_genres: Contains 'movie_id' (int) and 'genre' (varchar). Linked to the 'movies' table by 'movie_id.' roles: Contains 'actor_id' (int), 'movie_id' (int), and 'role' (varchar). Linked to both the 'actors' and 'movies' tables by 'actor_id' and 'movie_id.' The following entity tables are represented at the bottom: directors: Contains 'id' (int), 'first_name' (varchar), and 'last_name' (varchar). movies: Contains 'id' (int), 'name' (varchar), 'year' (int), and 'rank' (float). actors: Contains 'id' (int), 'first_name' (varchar), 'last_name' (varchar), and 'gender' (char). Arrows represent relationships between the various tables, with foreign keys connecting them."} -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- #| include: false -->
+<!-- #| message: false -->
+<!-- #| warning: false -->
+<!-- #| label: imdb-data-import -->
+
+<!-- library(RMariaDB) -->
+<!-- library(dm) -->
+
+<!-- # IMDb -->
+<!-- con <- dbConnect( -->
+<!--   drv = RMariaDB::MariaDB(),  -->
+<!--   username = "guest", -->
+<!--   password = "relational",  -->
+<!--   host = "relational.fit.cvut.cz",  -->
+<!--   port = 3306, -->
+<!--   dbname = "imdb_small") -->
+<!-- dbListTables(con) -->
+
+<!-- my_dm <- dm_from_src(con) -->
+
+<!-- actors <- my_dm$actors |>  -->
+<!--   as.data.frame() -->
+<!-- write_csv(actors, "data/actors.csv", na = "") -->
+
+<!-- directors <- my_dm$directors |>  -->
+<!--   as.data.frame() -->
+<!-- write_csv(directors, "data/directors.csv", na = "") -->
+
+<!-- directors_genres <- my_dm$directors_genres |>  -->
+<!--   as.data.frame() -->
+<!-- write_csv(directors_genres, "data/directors_genres.csv", na = "") -->
+
+<!-- movies <- my_dm$movies |>  -->
+<!--   as.data.frame() -->
+<!-- write_csv(movies, "data/movies.csv", na = "") -->
+
+<!-- movies_directors <- my_dm$movies_directors |>  -->
+<!--   as.data.frame() -->
+<!-- write_csv(movies_directors, "data/movies_directors.csv", na = "") -->
+
+<!-- movies_genres <- my_dm$movies_genres |>  -->
+<!--   as.data.frame() -->
+<!-- write_csv(movies_genres, "data/movies_genres.csv", na = "") -->
+
+<!-- roles <- my_dm$roles |>  -->
+<!--   as.data.frame() -->
+<!-- write_csv(roles, "data/roles.csv", na = "") -->
+
+<!-- dbDisconnect(con) -->
+<!-- rm(con, my_dm) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| include: false -->
+<!-- #| message: false -->
+<!-- #| warning: false -->
+<!-- #| label: import-data-retrieved-from-imdb -->
+
+<!-- actors <- read_csv("data/actors.csv") -->
+<!-- directors <- read_csv("data/directors.csv") -->
+<!-- directors_genres <- read_csv("data/directors_genres.csv") -->
+<!-- movies <- read_csv("data/movies.csv") -->
+<!-- movies_directors <- read_csv("data/movies_directors.csv") -->
+<!-- movies_genres <- read_csv("data/movies_genres.csv") -->
+<!-- roles <- read_csv("data/roles.csv") -->
+<!-- ``` -->
+
+
+
 ## Relational Data
 
 When we work with multiple tables of data, we say we are working with
@@ -339,7 +419,274 @@ When we work with relational data, we rely on **keys**.
 
 ![](images/imdb-keys.png){fig-alt="A diagram depicting the relationships between various tables in a movie database. The tables and their columns are as follows. directors_genres: Contains 'director_id' (int), 'genre' (varchar), and 'prob' (float). Linked to the 'directors' table by 'director_id.' movies_directors: Contains 'director_id' (int) and 'movie_id' (int). Linked to both the 'directors' and 'movies' tables by 'director_id' and 'movie_id.' movies_genres: Contains 'movie_id' (int) and 'genre' (varchar). Linked to the 'movies' table by 'movie_id.' roles: Contains 'actor_id' (int), 'movie_id' (int), and 'role' (varchar). Linked to both the 'actors' and 'movies' tables by 'actor_id' and 'movie_id.' The following entity tables are represented at the bottom: directors: Contains 'id' (int), 'first_name' (varchar), and 'last_name' (varchar). movies: Contains 'id' (int), 'name' (varchar), 'year' (int), and 'rank' (float). actors: Contains 'id' (int), 'first_name' (varchar), 'last_name' (varchar), and 'gender' (char). Arrows represent relationships between the various tables, with foreign keys connecting them."}
 
-**How can we find each director's active years?**
+<!-- **How can we find each director's active years?** -->
+
+## `inner_join()`
+
+Keeps observations when their keys are present in **both** datasets.
+
+:::: {.columns}
+::: {.column width="50%"}
+![](images/join_xy.png){fig-alt="This image shows two tables on the left, labeled 'x' and 'y.' The 'x' table contains two columns: a key column with values 1, 2, and 3, and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table also has two columns: a key column with values 1, 2, and 4, and a value column with 'y1,' 'y2,' and 'y3.'"}
+:::
+::: {.column width="50%"}
+![](images/inner_join.png){fig-alt="This table combines data from both 'x' and 'y.' based on the 'key' column. It contains three columns: 'key,' 'val_x,' and 'val_y.' For key values 1 and 2, the corresponding values from both 'x' and 'y' are shown ('x1' with 'y1' and 'x2' with 'y2'), while the third rows from both original tables are excluded due to the mismatch in key values."}
+
+:::
+::::
+
+
+## `inner_join()`: IMDb Example
+
+```{r}
+directors_genres_subset <- directors_genres |>
+  filter(director_id %in% c(429, 2931, 11652, 14927, 15092)) |> 
+  group_by(director_id) |> 
+  slice_max(order_by = prob, n = 2, with_ties = F)
+
+movies_directors_subset <- movies_directors |> 
+  filter(director_id %in% c(429, 9247, 11652, 14927, 15092))
+
+directors_subset <- directors |> 
+  filter(id %in% c(429, 9247, 11652, 14927, 15092))
+```
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+directors_genres
+```
+
+```{r}
+#| eval: true
+#| echo: false
+directors_genres_subset |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "160px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+movies_directors
+```
+
+```{r}
+#| eval: true
+#| echo: false
+movies_directors_subset |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "160px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+:::
+::::
+
+<font size = 6>
+
+ID: 429, **2931**, 11652, 14927, 15092  &emsp; &emsp; &ensp;  ID: 429, **9247**, 11652, 14927, 15092
+
+</font>
+
+. . .
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+inner_join(directors_genres, movies_directors)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+inner_join(directors_genres_subset, movies_directors_subset) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "160px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+<font size = 6>
+
+ID: 429, ~~**2931**~~, ~~**9247**~~, 11652, 14927, 15092
+
+</font>
+
+
+## `inner_join()`: IMDb Example
+
+What if our **key** does not have the same name?
+
+:::: {.columns}
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+directors_genres
+```
+
+```{r}
+#| eval: true
+#| echo: false
+directors_genres_subset |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "170px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+directors
+```
+
+```{r}
+#| eval: true
+#| echo: false
+directors_subset |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "170px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+:::
+::::
+
+. . .
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: "3"
+inner_join(directors_genres, 
+           directors, 
+           by = join_by(director_id == id))
+```
+
+```{r}
+#| eval: true
+#| echo: false
+inner_join(directors_subset,
+           directors_genres_subset,
+           by = join_by(id == director_id)) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "170px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+## Piping Joins
+
+Remember: the dataset you pipe in becomes the **first argument** of the function you are piping into!
+
++ So if you are using a pipe, you will only be specifying the **right** dataset inside the `join` function.
+
+. . .
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+inner_join(directors_genres, movies_directors)
+```
+
+...is equivalent to...
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+directors_genres |> 
+  inner_join(movies_directors)
+```
+
+
+
+## More Mutating Joins
+
+::: {.small}
+-   `left_join()` -- keep only (and all) observations present in the left data set
+
+-   `right_join()` -- keep only (and all) observations present in the right data set 
+
+-   `full_join()` -- keep only (and all) observations present in **both** data sets
+:::
+
+![](images/joins.png){width=50% fig-alt="Four Venn diagrams illustrating different types of joins between two datasets, labeled 'x' and 'y.' inner_join(x, y): Shows two overlapping circles with only the intersection shaded, representing records that are common to both 'x' and 'y.' left_join(x, y): Shows two overlapping circles with the left circle ('x') fully shaded and the intersection shaded, representing all records from 'x' and the matching records from 'y.' right_join(x, y): Shows two overlapping circles with the right circle ('y') fully shaded and the intersection shaded, representing all records from 'y' and the matching records from 'x.' full_join(x, y): Shows two overlapping circles with both circles fully shaded, representing all records from both 'x' and 'y,' including those without matches."}
+
+</center>
+
+
+## More Mutating Joins
+
+Which directors would **remain** for each of the following?
+
+::: {.small}
+-   `left_join(directors_genres, movies_directors)`
+-   `right_join(directors_genres, movies_directors)`
+-   `full_join(directors_genres, movies_directors)`
+:::
+
+::: columns
+::: column
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+directors_genres |> 
+  distinct(director_id)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+
+directors_genres_subset |> 
+  distinct(director_id) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "320px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+:::
+
+::: column
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+movies_directors |> 
+  distinct(director_id)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+movies_directors_subset |> 
+  distinct(director_id) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "320px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+:::
+:::
 
 ## Joining Multiple Data Sets
 

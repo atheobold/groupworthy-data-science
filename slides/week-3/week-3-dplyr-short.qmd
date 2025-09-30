@@ -22,8 +22,8 @@ Today we will...
 + Warm-up for `dplyr` practice activity (40-minutes)
 + Set-up for the practice activity (5-minutes)
   + Review pair programming norms
-  + Find your partner!
-+ Take a 10-minute break
++ Take a 5-minute break
++ Find your partner!
 + Complete the practice activity (60-minutes)
 
 # Data Wrangling with `dplyr`
@@ -59,28 +59,10 @@ We're going to explore some key `dplyr` verbs using manipulatives:
 Use the **pipe operator** (`|>` or `%>%`) to chain together data wrangling operations.
 :::
 
-## The Pipe Operator
-
-With `dplyr`, your code should read **like a sentence**.
-
-+ The **data** is the primary object in your sentence, so it should **come first in your code**.
-
-. . .
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-
-colleges |>
-  filter(REGION == 5) |>
-  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
-```
-
-
 ## Data Comes First!
 
-You can choose whether to: 
+Every function in **dplyr** has the `data` as the first argument. You can
+choose whether to: 
 
 declare your data as the first argument of the function 
 ```{r}
@@ -165,14 +147,18 @@ Here is one observation:
 
 ::: columns
 ::: {.column width="45%"}
-![](images/logical-operations.png){fig-alt="A table of example logical operations (comparisons) that can be made between two objects a and b. "}
+::: {.centered}
+![](images/logical-operations.png){fig-alt="A table of example logical operations (comparisons) that can be made between two objects a and b." width=60%}
+:::
 :::
 
 ::: {.column width="5%"}
 :::
 
 ::: {.column width="45%"}
-![](images/boolean-operations.png){fig-alt=""}
+::: {.centered}
+![](images/boolean-operations.png){fig-alt="A table of boolean operations and (&), or (|) and not (!)" width=50%}
+:::
 :::
 :::
 
@@ -488,10 +474,6 @@ data |>
 
 ```
 
-# 
-
-[Reset your Data Frame!]{.larger}
-
 # `group_by()`
 
 # `group_by()`
@@ -610,7 +592,7 @@ This activity will require knowledge of:
 
 ## dplyr Resources
 
-Every of you should have a **dplyr** cheatsheet in your coursepack! 
+Every of you should have a **dplyr** cheatsheet! 
 
 ::: columns
 ::: {.column width="37%"}
@@ -707,15 +689,8 @@ During your collaboration, you and your partner will alternate between two roles
 :::
 :::
 
-# 10-minute break
-
-## Team Assignments - 9am
-
-## Team Assignments - 12pm
-
 ## Opening the Practice Activity in Google Colab
 
-The partner whose birthday is closest to January 1st starts as the Computer!
 The Computer needs to:
 
 ::: columns
@@ -755,7 +730,7 @@ Once you have your copy, you need to:
 :::
 
 ::: {.column width="55%"}
-![](../week-2/images/share-colab.png){fig-alt="A screenshot of the options provided when you click on the Share pane (in the upper right corner) within Google Colab. The user has typed in a Gmail address to share it with Laura Smith, who will receive an email with a link to the document when the Notify option is checked." width=50%}
+![](../week-2/images/share-colab.png){fig-alt="A screenshot of the options provided when you click on the Share pane (in the upper right corner) within Google Colab. The user has typed in a Gmail address to share it with Laura Smith, who will receive an email with a link to the document when the Notify option is checked." width=80%}
 :::
 :::
 
@@ -796,5 +771,30 @@ You **are** permitted to use:
 - The person who last occupied the role of Computer will print the notebook as 
 a PDF and submit the PDF for the group.
   + Only one submission per group!
+- Complete the collaboration survey
   
-# Don't forget to complete the survey once you are done!
+# 5-minute break
+
+## Team Assignments - 9am
+
+::: {.centered}
+![](images/section-70-seats.png){width=75%}
+:::
+
+::: {.small}
+The partner whose birthday is closest to January 1st starts as the Computer, 
+making a copy of the PA Colab notebook!
+:::
+
+## Team Assignments - 12pm
+
+::: {.centered}
+![](images/section-71-seats.png){width=75%}
+:::
+
+::: {.small}
+The partner whose birthday is closest to January 1st starts as the Computer, 
+making a copy of the PA Colab notebook!
+:::
+
+

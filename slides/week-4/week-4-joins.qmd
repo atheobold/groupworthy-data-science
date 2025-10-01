@@ -55,168 +55,16 @@ Today we will...
 ::: {.column width="40%"}
 ::: {.small}
 -   New Material
-    -   Extensions to Relational Data
+    -   Relational Data
     -   Factors with `forcats`
 -   [Lab 4: Childcare Costs in California](../../labs/instructions/lab-4-instructions.qmd)
 :::
 :::
 :::
 
-<!-- ## `pivot_wider()` -->
-
-<!-- Take a **long** dataset and turn it into a **wide** dataset. -->
-
-<!-- + `id_cols` -- specify the column(s) that contain the ID for unique rows in the wide dataset. -->
-<!-- + `names_from` -- the name of the column containing the new column names. -->
-<!-- + `values_from` -- the name of the column containing the new  column values. -->
-
-
-<!-- ## `pivot_wider()` -->
-
-<!-- Let's say we calculate the `mean` amount of `protein` for cereals on each `shelf` and for each `manuf`. -->
-
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| eval: false -->
-<!-- #| code-line-numbers: false -->
-<!-- #| label: long-cereal-summary-code -->
-
-<!-- mean_protein <- cereal |>  -->
-<!--   group_by(manuf, shelf) |>  -->
-<!--   summarize(mean_protein = mean(protein)) -->
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: false -->
-<!-- #| label: long-cereal-summary-table -->
-
-<!-- mean_protein <- cereal |>  -->
-<!--   group_by(manuf, shelf) |>  -->
-<!--   summarize(mean_protein = mean(protein)) -->
-
-<!-- mean_protein |>  -->
-<!--   knitr::kable() |>  -->
-<!--   kableExtra::scroll_box(height = "400px") |>  -->
-<!--   kableExtra::kable_styling(font_size = 30) -->
-<!-- ``` -->
-
-
-<!-- ## `pivot_wider()` -->
-
-<!-- We can make this dataset more easily readable... -->
-
-<!-- . . . -->
-
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| label: pivot-summary-wider-code -->
-<!-- #| code-line-numbers: false -->
-
-<!-- mean_protein |>  -->
-<!--   arrange(shelf) |>  -->
-<!--   pivot_wider(id_cols = manuf, -->
-<!--               names_from = shelf, -->
-<!--               values_from = mean_protein) -->
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: false -->
-<!-- #| label: pivot-summary-wider-table -->
-<!-- #| code-line-numbers: false -->
-
-<!-- mean_protein |>  -->
-<!--   arrange(shelf) |>  -->
-<!--   pivot_wider(id_cols = manuf, -->
-<!--               names_from = shelf, -->
-<!--               values_from = mean_protein) |>  -->
-<!--   knitr::kable() |>  -->
-<!--   kableExtra::scroll_box(height = "420px") |>  -->
-<!--   kableExtra::kable_styling(font_size = 30) -->
-<!-- ``` -->
-
-
-<!-- ## Better names in `pivot_wider()` -->
-
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "6" -->
-<!-- #| label: add-fancy-name-code -->
-
-<!-- mean_protein |>  -->
-<!--   arrange(shelf) |>  -->
-<!--   pivot_wider(id_cols = manuf, -->
-<!--               names_from = shelf, -->
-<!--               values_from = mean_protein, -->
-<!--               names_prefix = "Shelf_") -->
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: false -->
-<!-- #| label: add-fancy-name-table -->
-
-<!-- mean_protein |>  -->
-<!--   arrange(shelf) |>  -->
-<!--   pivot_wider(id_cols = manuf, -->
-<!--               names_from = shelf, -->
-<!--               values_from = mean_protein, -->
-<!--               names_prefix = "Shelf_") |>  -->
-<!--   knitr::kable() |>  -->
-<!--   kableExtra::scroll_box(height = "420px") |>  -->
-<!--   kableExtra::kable_styling(font_size = 30) -->
-<!-- ``` -->
-
-
-
-
 # Practice Activity 4
 
 ![](images/frustrated-about-r.png){fig-alt="A frustrated little monster sits on the ground with his hat next to him, saying 'I just need a minute.' Looking on empathetically is the R logo, with the word 'Error' in many different styles behind it."}
-
-## Take 3-minutes to...
-
-```{r}
-#| include: false
-library(readxl)
-library(tidyverse)
-military <- read_xlsx(here::here("group-activities", 
-                                 "week-4", 
-                                 "data",
-                                 "gov_spending_per_capita.xlsx"),
-                sheet = "Share of Govt. spending", 
-                skip  = 7, 
-                n_max  = 191)
-
-military_clean <- military |> 
-  mutate(across(`1988`:`2019`,
-                ~ na_if(.x, y = ". .")),
-         across(`1988`:`2019`,
-                ~ na_if(.x, y = "xxx")))
-```
-
-Write down *in plain language* what each line of this code is doing. 
-
-</br> 
-
-```{r}
-#| eval: false
-#| echo: true
-#| label: if-all-code-from-PA
-#| code-line-numbers: false
-
-military_clean %>% 
-  filter(
-    if_all(.cols = -Country, 
-           .fns = ~ is.na(.x)
-           ), 
-    !is.na(Country)
-    ) %>% 
-  pull(Country)
-```
 
 # `janitor` Package
 
@@ -427,13 +275,191 @@ accomplish a given task.
 
 > Insert your review into the comment box! 
 
-# Extensions to Relational Data
-
-<!-- ## Relational Data -->
+# Relational Data
 
 <!-- Multiple, interconnected tables of data are called **relational**. -->
 
 <!-- + It is the *relation* between datasets, not just the individual datasets themselves, that are important. -->
+
+
+## Data Joins
+
+We can **combine** (join) data tables based on their relations.
+
+::: columns
+::: {.column width="50%"}
+**Mutating joins**
+
+Add *variables* from a new dataframe to observations in an existing dataframe.
+
+`left_join()`,   
+`right_join()`,   
+`inner_join()`,  
+`full_join()`
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
+**Filtering Joins**
+
+Filter *observations* based on values in new dataframe.
+
+`semi_join()`, `anti_join()`
+:::
+:::
+
+## Keys
+
+::: {.midi}
+A key uniquely identifies an observation in a data set.
+
++ To combine (join) two datasets, the **key** needs to be present in both.
+:::
+
+. . .
+
+![](images/military-relational-diagram.jpg){fig-alt="An image of two datasets, one named military_expenditures and one named region_totals. The military_expenditures datast has five (visible) columns titled: Country, Year, Expenditures, Notes, Reporting year. The region_totals dataset has 13 (visible) columns: Region, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 9157, 1958, 1959, 1960, and 1961. The Country column of military_expenditures is highlighted in red and the Region column of the region_totals column is also highlighted in red. The image is highlighting these columns as they are 'keys' linking the two datasets with one another." width=85%}
+
+
+## Filtering Joins: `semi_join()`
+
+Keeps observations when their keys are present in **both** datasets,
+**but only keeps variables from the first dataset**.
+
+![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/semi-join.gif){fig-alt="A looping animation shows two tables side by side and the result of a semi join. The left table (x) has keys 1 (red), 2 (blue), 3 (green) paired with x1, x2, x3. The right table (y) has keys 1 (red), 2 (blue), 4 (purple) paired with y1, y2, y4. Matching key rows (1 and 2) are connected. The resulting output table includes only the rows from the left table that have matches in the right table: key 1 with x1 and key 2 with x2. The left row with key 3 is dropped, and no new columns from y are shown."}
+
+## Filtering Joins: `semi_join()`
+
+::: panel-tabset
+
+### `semi_join()`
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+directors_genres |> 
+  semi_join(movies_directors)
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+semi_join(directors_genres_subset, movies_directors_subset) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "320px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+<!-- Movie Directors: 429, ~~**2931**~~, 11652, 14927, 15092 -->
+
+### Connection to `filter()`
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+directors_genres |>
+  filter(director_id %in% movies_directors$director_id)
+```
+
+```{r}
+#| echo: false
+#| eval: false
+directors_genres_subset |>
+  filter(director_id %in% movies_directors_subset$director_id) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "320px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+:::
+
+
+## Filtering Joins: `anti_join()`
+
+**Removes** observations when their keys are present in **both** datasets, and **only keeps variables from the first dataset**.
+
+![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/anti-join.gif){fig-alt="A looping animation shows two tables being compared under an ‘anti join’ operation. The left table has keys 1 (red), 2 (blue), 3 (green) paired with values x1, x2, x3. The right table has keys 1 (red), 2 (blue), and 4 (purple) paired with values y1, y2, y4. Lines indicate matching keys (1 and 2). The resulting table on the right contains only the rows from the left table that do not have a match in the right: key 3 with x3 (green). Keys 1 and 2 are excluded because they have matches in the right table."}
+
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="60%"} -->
+
+<!-- ![](images/semi1.png){fig-alt="Two tables on the left labeled 'x' and 'y,' each with two columns, show key-value pairs. The 'x' table contains a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table contains a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"} -->
+<!-- ::: -->
+<!-- ::: {.column width="15%"} -->
+
+<!-- <br> -->
+
+<!-- ::: {.r-fit-text} -->
+<!-- &rarr; &emsp; -->
+<!-- ::: -->
+
+<!-- ::: -->
+<!-- ::: {.column width="25%"} -->
+
+<!-- <br> -->
+
+<!-- ![](images/anti2.png){fi-alt="An arrow points to the right, showing the result of an anti join. The resulting table includes the row from 'x' where the key (3) does not have a corresponding match in 'y.' It contains only the key-value pair (3, x3), demonstrating that the anti join keeps only the unmatched rows from the left table ('x')."} -->
+
+<!-- ::: -->
+<!-- :::: -->
+
+
+## Filtering Joins: `anti_join()`
+
+::: panel-tabset
+
+### `anti_join()`
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+directors_genres |> 
+  anti_join(movies_directors)
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+anti_join(directors_genres_subset, movies_directors_subset) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "200px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+Movie Directors: ~~429~~, **2931**, ~~11652~~, ~~14927~~, ~~15092~~
+
+### Connection to `filter()`
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+directors_genres |>
+  filter(!director_id %in% movies_directors$director_id)
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+directors_genres_subset |>
+  filter(!director_id %in% movies_directors_subset$director_id) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "200px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+:::
 
 <!-- ![IMDb movie relational data](images/imdb_relational.png){fig-alt="A diagram depicting the relationships between various tables in a movie database. The tables and their columns are as follows. directors_genres: Contains 'director_id' (int), 'genre' (varchar), and 'prob' (float). Linked to the 'directors' table by 'director_id.' movies_directors: Contains 'director_id' (int) and 'movie_id' (int). Linked to both the 'directors' and 'movies' tables by 'director_id' and 'movie_id.' movies_genres: Contains 'movie_id' (int) and 'genre' (varchar). Linked to the 'movies' table by 'movie_id.' roles: Contains 'actor_id' (int), 'movie_id' (int), and 'role' (varchar). Linked to both the 'actors' and 'movies' tables by 'actor_id' and 'movie_id.' The following entity tables are represented at the bottom: directors: Contains 'id' (int), 'first_name' (varchar), and 'last_name' (varchar). movies: Contains 'id' (int), 'name' (varchar), 'year' (int), and 'rank' (float). actors: Contains 'id' (int), 'first_name' (varchar), 'last_name' (varchar), and 'gender' (char). Arrows represent relationships between the various tables, with foreign keys connecting them."} -->
 
@@ -1742,6 +1768,26 @@ full_eras |>
 ![](images/ca-counties.png){fig-alt="The image displays a map of California divided into regions based on the 2020 Census, along with a table listing the counties in each region. The map on the left uses different colors to highlight each of the 10 regions, with areas such as the San Francisco Bay Area and South Coast labeled. A legend at the bottom of the map assigns numbers and colors to each region: Superior California, North Coast, San Francisco Bay Area, Northern San Joaquin Valley, Central Coast, Southern San Joaquin Valley, Inland Empire, Los Angeles County, Orange County, and San Diego/Imperial. On the right side, a table lists the regions by number and their respective counties. For example, Region 1 includes counties like Butte, Colusa, and El Dorado, while Region 8 consists solely of Los Angeles County. Other regions contain a mix of multiple counties, such as Region 3, which includes Alameda, Contra Costa, and San Francisco."}
 :::
 :::
+
+## dplyr Resources
+
+::: columns
+::: {.column width="60%"}
+Every group should have a **dplyr** cheatsheet!
+
+**On the Back**: The Combine Tables section gives advice on joining two datasets
+
+- The "Filtering Join" section will be helpful when performing an `anti_join()`!
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="35%"}
+![](images/dplyr-cheatsheet-back.png){fig-alt="A picture of the dplyr cheatsheet, which contains helpful information on working with data in a variety of ways."}
+:::
+:::
+
 
 ## To do...
 

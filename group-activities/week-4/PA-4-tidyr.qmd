@@ -199,19 +199,3 @@ eastern_europe <- c("Armenia",
 
 **9. Looking at the plot you created above, which Eastern European country had the largest variability in military expenditures over time?**
 
-
-<!-- ### If you have extra time! -->
-
-<!-- A clever way to filter out observations you **don't want** is with an  -->
-<!-- `anti_join()`. This function will return all of the rows of one dataset -->
-<!-- **without** a match in another dataset. -->
-
-<!-- **4. Use the `anti_join()` function to filter out the `Country` values we don't want in the `military_clean` data. The `by` argument needs to be filled with the name(s) of the variables that the two datasets should be joined with.**   -->
-<!-- Hint: To join by different variables in `data1` and `data2` you need to use  -->
-<!-- `by = join_by(a == b)`, which will match `data1$a` to `data2$b`. -->
-
-<!-- ```{r} -->
-<!-- #| label: filtering-out-country-values -->
-
-<!-- ``` -->
-

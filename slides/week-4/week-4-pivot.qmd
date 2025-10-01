@@ -456,188 +456,62 @@ military |>
   kableExtra::kable_styling(font_size = 25)
 ```
 
+## Remember: `if_any()` & `if_all()`
 
-# Data Joins
+These functions are used with `filter()` to select rows based on a logical
+statement applied to multiple columns
 
-## Data Joins
+- `if_any()` – returns a logical vector (one element for each row) that is `TRUE`
+if the logical statement is true for **any** column in the supplied columns
 
-We can **combine** (join) data tables based on their relations.
+- `if_all()` – returns a logical vector (one element for each row) that is `TRUE`
+if the logical statement is true for **all** columns in the supplied columns
 
-::: columns
-::: {.column width="50%"}
-**Mutating joins**
-
-Add *variables* from a new dataframe to observations in an existing dataframe.
-
-`left_join()`,   
-`right_join()`,   
-`inner_join()`,  
-`full_join()`
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="45%"}
-**Filtering Joins**
-
-Filter *observations* based on values in new dataframe.
-
-`semi_join()`, `anti_join()`
-:::
-:::
-
-## Keys
+## `if_any()` Example
 
 ::: {.midi}
-A key uniquely identifies an observation in a data set.
+Suppose we want to know what countries have missing values for **at least one**
+of the years. 
 
-+ To combine (join) two datasets, the **key** needs to be present in both.
+We can `filter()` our data to only include observations where **any** of the 
+columns have a missing value. 
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| label: if-any-missing-code
+
+military |> 
+  filter(
+    if_any(
+      .cols = `1988`:`2019`, 
+      .fns = ~ is.na(.x)
+      )
+    ) 
+```
 :::
 
-. . .
-
-![](images/military-relational-diagram.jpg){fig-alt="An image of two datasets, one named military_expenditures and one named region_totals. The military_expenditures datast has five (visible) columns titled: Country, Year, Expenditures, Notes, Reporting year. The region_totals dataset has 13 (visible) columns: Region, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 9157, 1958, 1959, 1960, and 1961. The Country column of military_expenditures is highlighted in red and the Region column of the region_totals column is also highlighted in red. The image is highlighting these columns as they are 'keys' linking the two datasets with one another." width=85%}
-
-
-## Filtering Joins: `semi_join()`
-
-Keeps observations when their keys are present in **both** datasets,
-**but only keeps variables from the first dataset**.
-
-![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/semi-join.gif){fig-alt="A looping animation shows two tables side by side and the result of a semi join. The left table (x) has keys 1 (red), 2 (blue), 3 (green) paired with x1, x2, x3. The right table (y) has keys 1 (red), 2 (blue), 4 (purple) paired with y1, y2, y4. Matching key rows (1 and 2) are connected. The resulting output table includes only the rows from the left table that have matches in the right table: key 1 with x1 and key 2 with x2. The left row with key 3 is dropped, and no new columns from y are shown."}
-
-## Filtering Joins: `semi_join()`
-
-::: panel-tabset
-
-### `semi_join()`
+## `if_any()` Example
 
 ```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-directors_genres |> 
-  semi_join(movies_directors)
-```
-
-```{r}
+#| eval: true
 #| echo: false
-#| eval: false
-
-semi_join(directors_genres_subset, movies_directors_subset) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "320px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-<!-- Movie Directors: 429, ~~**2931**~~, 11652, 14927, 15092 -->
-
-### Connection to `filter()`
-
-```{r}
-#| echo: true
-#| eval: false
 #| code-line-numbers: false
-directors_genres |>
-  filter(director_id %in% movies_directors$director_id)
-```
+#| label: if-any-missing-table
 
-```{r}
-#| echo: false
-#| eval: false
-directors_genres_subset |>
-  filter(director_id %in% movies_directors_subset$director_id) |> 
+
+military |> 
+  filter(
+    if_any(
+      .cols = `1988`:`2019`, 
+      .fns = ~ is.na(.x)
+      )
+    ) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "320px") |> 
-  kableExtra::kable_styling(font_size = 30)
+  kableExtra::scroll_box(height = "500px") |> 
+  kableExtra::kable_styling(font_size = 25)
 ```
-
-:::
-
-
-## Filtering Joins: `anti_join()`
-
-**Removes** observations when their keys are present in **both** datasets, and **only keeps variables from the first dataset**.
-
-![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/anti-join.gif){fig-alt="A looping animation shows two tables being compared under an ‘anti join’ operation. The left table has keys 1 (red), 2 (blue), 3 (green) paired with values x1, x2, x3. The right table has keys 1 (red), 2 (blue), and 4 (purple) paired with values y1, y2, y4. Lines indicate matching keys (1 and 2). The resulting table on the right contains only the rows from the left table that do not have a match in the right: key 3 with x3 (green). Keys 1 and 2 are excluded because they have matches in the right table."}
-
-<!-- :::: {.columns} -->
-<!-- ::: {.column width="60%"} -->
-
-<!-- ![](images/semi1.png){fig-alt="Two tables on the left labeled 'x' and 'y,' each with two columns, show key-value pairs. The 'x' table contains a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table contains a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"} -->
-<!-- ::: -->
-<!-- ::: {.column width="15%"} -->
-
-<!-- <br> -->
-
-<!-- ::: {.r-fit-text} -->
-<!-- &rarr; &emsp; -->
-<!-- ::: -->
-
-<!-- ::: -->
-<!-- ::: {.column width="25%"} -->
-
-<!-- <br> -->
-
-<!-- ![](images/anti2.png){fi-alt="An arrow points to the right, showing the result of an anti join. The resulting table includes the row from 'x' where the key (3) does not have a corresponding match in 'y.' It contains only the key-value pair (3, x3), demonstrating that the anti join keeps only the unmatched rows from the left table ('x')."} -->
-
-<!-- ::: -->
-<!-- :::: -->
-
-
-## Filtering Joins: `anti_join()`
-
-::: panel-tabset
-
-### `anti_join()`
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-directors_genres |> 
-  anti_join(movies_directors)
-```
-
-```{r}
-#| echo: false
-#| eval: false
-
-anti_join(directors_genres_subset, movies_directors_subset) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "200px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-Movie Directors: ~~429~~, **2931**, ~~11652~~, ~~14927~~, ~~15092~~
-
-### Connection to `filter()`
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-directors_genres |>
-  filter(!director_id %in% movies_directors$director_id)
-```
-
-```{r}
-#| echo: false
-#| eval: false
-
-directors_genres_subset |>
-  filter(!director_id %in% movies_directors_subset$director_id) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "200px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-
 
 # PA 4: Military Spending
 
@@ -649,11 +523,7 @@ countries of the world and military spending.
 ::: columns
 ::: {.column width="60%"}
 ::: {.small}
-- function documentation
-- function arguments
-- locating missing values
 - character vectors
-- keys joining two datasets
 - searching / iterating over multiple columns
 - pivoting data from wide to long
 - creating side-by-side boxplots
@@ -668,25 +538,6 @@ countries of the world and military spending.
 ::: {.column width="35%"}
 [**None of us have all these abilities. Each of us has some of these abilities.**]{.midi}
 
-:::
-:::
-
-## dplyr Resources
-
-::: columns
-::: {.column width="60%"}
-Every group should have a **dplyr** cheatsheet!
-
-**On the Back**: The Combine Tables section gives advice on joining two datasets
-
-- The "Filtering Join" section will be helpful when performing an `anti_join()`!
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="35%"}
-![](images/dplyr-cheatsheet-back.png){fig-alt="A picture of the dplyr cheatsheet, which contains helpful information on working with data in a variety of ways."}
 :::
 :::
 
@@ -709,115 +560,50 @@ from wide to long
 :::
 :::
 
-## Task Card
-
-Every group should have a **task card**! 
-
-. . .
-
-::: columns
-::: {.column width="40%"}
-**On the Front**
-
-- the expectations of each role
-- the norms of collaborating
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="55%"}
-::: {.fragment}
-**On the Back**
-
-- code and pictures for performing an `anti_join()`
-- code and pictures for pivoting a dataset from wide to long
-- guidelines for formatting `dplyr` and `tidyr` code
-:::
-:::
-:::
-
 ## Pair Programming Expectations
 
-::: columns
-::: {.column width="49%"}
-**Developer**
-
-::: {.small}
--   Reads prompt and ensures Coder understands what is being asked. 
--   Types the code specified by the Coder into the Quarto document.
--   Runs the code provided by the Coder. 
--   Works with Coder to debug the code. 
--   Evaluates the output.  
--   Works with Coder to write code comments. 
-:::
-:::
-
-::: {.column width="2%"}
-:::
-
-::: {.column width="49%"}
-::: {.fragment}
-**Coder**
-
-::: {.small}
--   Reads out instructions or prompts
--   Directs the Developer what to type. 
--   Talks with Developer about their ideas. 
--   Manages resources (e.g., cheatsheets, textbook, slides). 
--   Works with Developer to debug the code. 
--   Works with Developer to write code comments. 
-:::
-:::
-:::
-:::
-
-## Getting Started
-
-::: {.small}
-First, both of you will do the following:
-
-- Join your Practice Activity workspace in Posit Cloud
-  * You are in a new group, so you should have a new workspace!
-- Log-in to Posit Cloud
-- Open the PA 4: Military Spending project
-- Open the `PA4-dplyr.qmd` file
-:::
-
-. . .
-
-::: {.small}
-Then, the partner who woke up the earliest today starts as the Developer (typing
-and listening to instructions from the Coder)!
-
-- The Coder **does not type**. 
-  * The collaborative editing feature should allow you to track what is being 
-  typed. 
-- The Developer **only types what they are told to type**. 
-:::
+![](images/collab-process.png){fig-alt="A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize."}
 
 ## External Resources
 
 During the Practice Activity, you **are not** permitted to use Google or ChatGPT
 for help. 
 
-. . .
-
 </br> 
 
 You **are** permitted to use:
 
-- the `dplyr` cheatsheet,
-- the `tidyr` cheatsheet, 
-- the course textbook, and
+- the `tidyr` cheatsheet,
+- the course textbook, 
+- any notes you've taken, and
 - the course slides. 
 
 ## Submission
 
 - Each person will input your responses to Canvas Questions 1, 2, and 3 into 
 the PA4 Canvas quiz.
-- The person who last occupied the role of Developer will download and submit
-the `PA-4.html` file for the group.
+- The person who last occupied the role of Computer will print and submit
+the `PA-4.pdf` file for the group.
   + Only one submission per group!
 
-# Exit Ticket
+# 5-minute break
+
+## Team Assignments - 9am
+
+::: {.centered}
+<!-- ![](images/section-70-seats.png){width=75%} -->
+:::
+
+::: {.small}
+The partner who woke up the earliest starts as the Coder!
+:::
+
+## Team Assignments - 12pm
+
+::: {.centered}
+<!-- ![](images/section-71-seats.png){width=75%} -->
+:::
+
+::: {.small}
+The partner who woke up the earliest starts as the Coder!
+:::

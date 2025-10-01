@@ -1145,7 +1145,7 @@
     "href": "slides/week-4/week-4-pivot.html#tuesday-october-15",
     "title": "Data Pivots + Joins",
     "section": "Tuesday, October 15",
-    "text": "Tuesday, October 15\nToday we will discuss…\n\nDiscord & Tokens\nGrade Expectations\n\nSurvey on Canvas\n\nNew Material\n\nPivoting data with tidyr\nJoining data with dplyr\n\nPA 4: Military Spending"
+    "text": "Tuesday, October 15\nToday we will discuss…\n\nGrade Expectations\n\nSurvey on Canvas\n\nNew Material\n\nReading in Excel spreadsheets with readxl\nFiltering out\nPivoting data with tidyr\n\nPA 4: Military Spending"
   },
   {
     "objectID": "slides/week-4/week-4-pivot.html#tidy-data",
@@ -1229,7 +1229,7 @@
     "href": "slides/week-4/week-4-pivot.html#creating-tidy-data-1",
     "title": "Data Pivots + Joins",
     "section": "Creating Tidy Data",
-    "text": "Creating Tidy Data\nLet’s say we want to plot how military expenditures have changed over time.\n\nCurrently, the data are in a wide format – a separate column for each year.\nTransforming the data will make plotting easier."
+    "text": "Creating Tidy Data\n\nLet’s say we want to plot how military expenditures have changed over time.\n\n\n\n\nTo do this, we need to pivot the year from wide to long format!"
   },
   {
     "objectID": "slides/week-4/week-4-pivot.html#manual-method",
@@ -2314,7 +2314,7 @@
     "href": "notes/04-day1-handout.html",
     "title": "Week 4 Day 1: PA Warm-up",
     "section": "",
-    "text": "Warning\n\n\n\nFor this lab, you need to download data from the Week 4 Notes page on the course website and add them to a data/ directory."
+    "text": "What’s wrong with the top of the gov_spending_per_capita.xlsx spreadsheet?\nFill in the code you would need to read in the cleanest version of these data.\n\n\nmilitary &lt;- read_xlsx(\"gov_spending_per_capita.xlsx\", \n                      sheet =  \n                      skip  =  \n                      n_max = \n                      )\n\n\nWhat are the three ways NA values were coded in these data?\nWhat would you input into the na = argument of read_xlsx() to recode these values as NAs?"
   },
   {
     "objectID": "notes/04-day1-handout.html#data-joins",
@@ -5304,5 +5304,33 @@
     "title": "Loops and Iteration",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI fully support more R packages being cat themed.↩︎"
+  },
+  {
+    "objectID": "notes/04-day1-handout.html#read_xlsx",
+    "href": "notes/04-day1-handout.html#read_xlsx",
+    "title": "Week 4 Day 1: PA Warm-up",
+    "section": "",
+    "text": "What’s wrong with the top of the gov_spending_per_capita.xlsx spreadsheet?\nFill in the code you would need to read in the cleanest version of these data.\n\n\nmilitary &lt;- read_xlsx(\"gov_spending_per_capita.xlsx\", \n                      sheet =  \n                      skip  =  \n                      n_max = \n                      )\n\n\nWhat are the three ways NA values were coded in these data?\nWhat would you input into the na = argument of read_xlsx() to recode these values as NAs?"
+  },
+  {
+    "objectID": "notes/04-day1-handout.html#pivot_longer",
+    "href": "notes/04-day1-handout.html#pivot_longer",
+    "title": "Week 4 Day 1: PA Warm-up",
+    "section": "pivot_longer()",
+    "text": "pivot_longer()\n\n\nWhy don’t we want to pivot our data manually?\nFill in the code below to pivot the military data from wide to long:\n\n\nmilitary |&gt; \n  pivot_longer(cols = \n               names_to  = \n               values_to = \n               )\n\n\nWhat do you notice is weird about some of the values of Country?"
+  },
+  {
+    "objectID": "notes/04-day1-handout.html#if_any-if_all",
+    "href": "notes/04-day1-handout.html#if_any-if_all",
+    "title": "Week 4 Day 1: PA Warm-up",
+    "section": "if_any() & if_all()",
+    "text": "if_any() & if_all()\nThese functions are used with filter() to select rows based on a logical statement applied to multiple columns\n\nif_any() – returns a logical vector (one element for each row) that is TRUE if the logical statement is true for any column in the supplied columns\nif_all() – returns a logical vector (one element for each row) that is TRUE if the logical statement is true for all columns in the supplied columns\n\n\nFill in the code to filter() the military data to only include observations that have at least one missing value for the military spending:\n\n\nmilitary |&gt; \n  filter(\n    if_any(\n      .cols = \n      .fns = \n      )\n    )"
+  },
+  {
+    "objectID": "notes/04-day1-handout.html#code-formatting",
+    "href": "notes/04-day1-handout.html#code-formatting",
+    "title": "Week 4 Day 1: PA Warm-up",
+    "section": "Code Formatting",
+    "text": "Code Formatting\nDon’t forget, writing “tidy” and “well documented” code are two of the learning targets for this course. As such, I would strongly encourage you to use every opportunity to practice these skills.\nAs you are writing code for this assignment, make sure your code follows the tidyverse style guide for dplyr code. Specifically, your code should:\n\nuse whitespace liberally\n\nbefore & after every = sign\nafter every ,\nbefore every |&gt;\n\nuse new lines liberally\n\nafter every |&gt;\nafter , when needed (if code is more than 80 characters in length)"
   }
 ]

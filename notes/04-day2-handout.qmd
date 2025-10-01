@@ -401,3 +401,21 @@ cereal_long |>
        color = "Nutrient")
 ```
 
+## Code Formatting
+
+Don't forget, writing "tidy" and "well documented" code are two of the learning
+targets for this course. As such, I would strongly encourage you to use every
+opportunity to practice these skills.
+
+As you are writing code for this assignment, make sure your code follows the
+[tidyverse style guide for dplyr code](https://style.tidyverse.org/pipes.html).
+Specifically, your code should:
+
+-   use whitespace liberally
+    -   before & after every `=` sign
+    -   after every `,`
+    -   before every `|>`
+-   use new lines liberally
+    -   after every `|>`
+    -   after `,` when needed (if code is more than 80 characters in length)
+

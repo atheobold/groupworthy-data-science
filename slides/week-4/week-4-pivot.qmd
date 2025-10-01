@@ -21,12 +21,12 @@ library(readxl)
 
 Today we will discuss...
 
--   Discord & Tokens
 -   Grade Expectations 
     + Survey on Canvas
 -   New Material
+    -   Reading in Excel spreadsheets with `readxl`
+    -   Filtering out 
     -   Pivoting data with `tidyr`
-    -   Joining data with `dplyr`
 -   PA 4: Military Spending
 
 # Grade Expectations
@@ -260,14 +260,40 @@ military <- read_xlsx(here::here("group-activities",
 
 ## Creating Tidy Data
 
+::: {.midi}
 Let's say we want to plot how military expenditures have changed over time. 
+:::
+
+```{r}
+eastern_europe <- c("Armenia", 
+                    "Azerbaijan",
+                    "Belarus", 
+                    "Georgia", 
+                    "Moldova", 
+                    "Russia", 
+                    "Ukraine")
+
+military |> 
+  pivot_longer(cols = `1988`:`2019`,
+               names_to  = "Year",
+               values_to = "Expenditures") |> 
+  filter(Country %in% eastern_europe, 
+         Year > 1994) |> 
+  ggplot(mapping = aes(x = Year, y = Expenditures)) +
+  geom_point() +
+  scale_y_continuous(labels = scales::label_percent()) +
+  theme_bw() +
+  labs( x = "", 
+        y = "", 
+        title = "Percentage of GDP Allocated to Military Spending", 
+        subtitle = "in Former Soviet Republics")
+``` 
 
 . . .
 
-Currently, the data are in a **wide** format -- a separate column for each
-year. 
-
-**Transforming** the data will make plotting easier.
+::: {.midi}
+To do this, we need to pivot the year from wide to long format! 
+:::
 
 # Pivoting Data
 
@@ -444,7 +470,6 @@ military |>
 #| echo: false
 #| code-line-numbers: false
 #| label: military-longer-table
-
 
 military |> 
   pivot_longer(cols = `1988`:`2019`,

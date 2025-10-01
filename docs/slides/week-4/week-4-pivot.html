@@ -205,15 +205,15 @@
 <h2>Tuesday, October 15</h2>
 <p>Today we will discuss…</p>
 <ul>
-<li>Discord &amp; Tokens</li>
 <li>Grade Expectations
 <ul>
 <li>Survey on Canvas</li>
 </ul></li>
 <li>New Material
 <ul>
+<li>Reading in Excel spreadsheets with <code>readxl</code></li>
+<li>Filtering out</li>
 <li>Pivoting data with <code>tidyr</code></li>
-<li>Joining data with <code>dplyr</code></li>
 </ul></li>
 <li>PA 4: Military Spending</li>
 </ul>
@@ -420,10 +420,14 @@
 <img data-src="images/heck-yeah.webp" class="r-stretch"></section>
 <section id="creating-tidy-data-1" class="slide level2">
 <h2>Creating Tidy Data</h2>
+<div class="midi">
 <p>Let’s say we want to plot how military expenditures have changed over time.</p>
-<div class="fragment">
-<p>Currently, the data are in a <strong>wide</strong> format – a separate column for each year.</p>
-<p><strong>Transforming</strong> the data will make plotting easier.</p>
+</div>
+
+<img data-src="week-4-pivot_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"><div class="fragment">
+<div class="midi">
+<p>To do this, we need to pivot the year from wide to long format!</p>
+</div>
 </div>
 </section></section>
 <section>

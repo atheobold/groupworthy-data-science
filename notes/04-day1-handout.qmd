@@ -1,18 +1,14 @@
 ---
 title: "Week 4 Day 1: PA Warm-up"
-format: html
-editor: source
+format: docx
 execute: 
-  echo: true
   eval: false
-  message: false
-  warning: false
 ---
-
 
 ```{r setup}
 #| include: false
 #| message: false
+
 library(tidyverse)
 library(liver)
 library(readxl)
@@ -21,428 +17,66 @@ library(ggridges)
 
 ## `read_xlsx()`
 
+1.  What's wrong with the top of the `gov_spending_per_capita.xlsx` spreadsheet?
 
+2.  Fill in the code you would need to read in the cleanest version of these data.
 
-## Lengthening Data
+```{r}
+#| echo: true
+#| eval: false
 
-::: columns
-::: {.column width="40%"}
+military <- read_xlsx("gov_spending_per_capita.xlsx", 
+                      sheet =  
+                      skip  =  
+                      n_max = 
+                      )
+```
+
+3.  What are the three ways `NA` values were coded in these data?
+
+4.  What would you input into the `na =` argument of `read_xlsx()` to recode these values as `NA`s?
+
+## `pivot_longer()`
+
+![](https://github.com/gadenbuie/tidyexplain/raw/main/images/static/png/original-dfs-tidy.png){fig-alt="Two tables side by side, illustrating the difference between 'wide' and 'long' data formats. The left table labeled 'wide' has columns: 'id,' 'x,' 'y,' and 'z.' The 'id' column contains the values 1 and 2, and the 'x,' 'y,' and 'z' columns contain the values a, b, c, d, e, and f spread across the rows. The right table labeled 'long' has columns: 'id,' 'key,' and 'val.' The 'id' column has repeated values (1 and 2), the 'key' column contains 'x,' 'y,' and 'z,' and the 'val' column contains 'a' through 'f,' corresponding to the wide table but reorganized in a 'long' format."}
+
+5.  Why don't we want to pivot our data manually?
+
+6.  Fill in the code below to pivot the `military` data from wide to long:
+
 ```{r}
 #| eval: false
 #| echo: true
-#| label: pivot-from-r4ds
 
-df |> 
-  pivot_longer(
-    cols = bp1:bp2,
-    names_to = "measurement",
-    values_to = "value"
-  )
+military |> 
+  pivot_longer(cols = 
+               names_to  = 
+               values_to = 
+               )
+
 ```
-:::
 
-::: {.column width="5%"}
-:::
+7.  What do you notice is weird about some of the values of `Country`?
 
-::: {.column width="55%"}
-![](images/pivot-longer.png)
-:::
-:::
+## `if_any()` & `if_all()`
 
+These functions are used with `filter()` to select rows based on a logical statement applied to multiple columns
 
----
+-   `if_any()` – returns a logical vector (one element for each row) that is `TRUE` if the logical statement is true for **any** column in the supplied columns
 
-# Data
+-   `if_all()` – returns a logical vector (one element for each row) that is `TRUE` if the logical statement is true for **all** columns in the supplied columns
 
-We will use 7 datasets that describe movies from [IMDb](https://www.imdb.com/). 
+8.  Fill in the code to `filter()` the `military` data to only include observations that have **at least one** missing value for the military spending:
 
 ```{r}
-#| echo: false
-#| eval: true
-#| fig-cap: "Relationship between data sets in IMDb movie data."
-#| out-width: 90%
-knitr::include_graphics("https://github.com/manncz/stat-331-s25/blob/main/slides/week-4/images/imdb_relational.png?raw=true")
-```
-
-
-```{r}
-load(file = "data/imdb_data.Rdata")
-```
-
-
-On Thursday will also look at joining datasets created from the Lab 2 Rodent data. **Note that you will need to change the file path to be appropriate for your directory strucure!**
-
-```{r, rodent-data}
-rodent <- read_csv("../../labs/lab2/surveys.csv")
-
-species <- rodent |> 
-  select(genus:taxa, species_id) |> 
-  distinct()
-
-measurements <- rodent |> 
-  select(genus, species, sex:weight) |> 
-  rename(genus_name = genus)
-```
-
-... and daily rainfall observed in SLO in January 2023. 
-[Data source](cesanluisobispo.ucanr.edu)
-
-
-```{r}
-slo_rainfall <- read_excel("data/2023-rainfall-slo.xlsx")
-
-slo_rainfall <- slo_rainfall |> 
-  mutate(across(Sunday:Saturday, as.numeric))
-```
-
-
-... and to practice working with factor variables, we will use data on songs that Taylor Swift included in the Era's Tour.
-
-```{r}
-full_eras <- read_excel("data/TS_data.xlsx", sheet = "full")
-
-# randomly sample 25 songs
-set.seed(2)
-eras_data <- full_eras |> 
-  slice_sample(n = 25) |> 
-  select(Song, Album)
-```
-
-# Tuesday
-
-## Data Joins
-
-```{r}
-inner_join(directors_genres, 
-           movies_directors, 
-           by = "director_id")
-```
-```{r}
-inner_join(directors_genres, 
-           directors, 
-           by = join_by(director_id == id))
-```
-
-```{r}
-directors_genres |> 
-  inner_join(movies_directors, 
-             by = "director_id")
-```
-
-
-## Which Join?
-
-How many movies are there in the data for each director (by name), including if any directors don’t have any movies in the data?
-
-```{r}
+#| echo: true
 #| eval: false
 
-directors |> 
-  ??_join(movies_directors, 
-          by = join_by(id == director_id))
+military |> 
+  filter(
+    if_any(
+      .cols = 
+      .fns = 
+      )
+    ) 
 ```
-
-What is the complete set of movies and actors included in the data?
-
-```{r}
-#| eval: false
-
-roles |> 
-  ??_join(actors, 
-          by = join_by(actor_id == id))
-```
-
-
-## Filtering Joins
-
-```{r}
-directors_genres |> 
-  semi_join(movies_directors)
-```
-
-```{r}
-directors_genres |>
-  filter(director_id %in% movies_directors$director_id)
-```
-```{r}
-directors_genres |> 
-  anti_join(movies_directors)
-```
-
-```{r}
-directors_genres |>
-  filter(!director_id %in% movies_directors$director_id)
-```
-
-## Data Pivots
-
-Example data includes the `cereal` dataset from the `liver` package (which we saw last week)...
-
-```{r}
-data(cereal)
-```
-
-
-How would we plot the mean cereal nutrients by shelf (as shown below) with the wide data?
-
-
-
-
-
-
-
-
-
-
-
-```{r}
-my_colors <- c("calories_col" = "steelblue", "sugars_col" = "orange3")
-
-cereal |> 
-  group_by(shelf) |> 
-  summarise(across(calories:vitamins, mean)) |> 
-  ggplot() +
-  geom_point(aes(x = shelf, y = calories, color = "calories_col")) +
-  geom_line(aes(x = shelf, y = calories, color = "calories_col")) + 
-  geom_point(aes(x = shelf, y = sugars, color = "sugars_col")) +
-  geom_line(aes(x = shelf, y = sugars, color = "sugars_col")) +
-  scale_color_manual(values = my_colors, labels = names(my_colors)) +
-  labs(x = "Shelf", y = "", subtitle = "Mean Amount", color = "Nutrient")
-```
-
-
-```{r}
-cereal_long <- cereal |> 
-  pivot_longer(cols = calories:vitamins,
-               names_to = "Nutrient",
-               values_to = "Amount") |> 
-  group_by(shelf, Nutrient) |> 
-  summarise(mean_amount = mean(Amount))
-```
-
-```{r}
-cereal_long |> 
-  ggplot(aes(x = shelf, 
-             y = mean_amount, 
-             color = Nutrient)) +
-  geom_point() +
-  geom_line() +
-  labs(x = "Shelf", y = "", subtitle = "Mean Amount")
-```
-
-
-
-```{r}
-slo_rainfall |> 
-  pivot_longer(cols      = Sunday:Saturday,
-               names_to  = "Day_of_Week",
-               values_to = "Daily_Rainfall")
-```
-
-
-
-```{r}
-mean_protein <- cereal |> 
-  group_by(manuf, shelf) |> 
-  summarize(mean_protein = mean(protein))
-```
-
-
-```{r}
-mean_protein |> 
-  pivot_wider(id_cols = manuf,
-              names_from = shelf,
-              values_from = mean_protein)
-```
-
-
-# Thursday
-
-## Extending Joins
-
-
-```{r}
-movies_directors |> 
-  inner_join(directors, 
-             join_by(director_id == id)) |> 
-  inner_join(movies,
-             join_by(movie_id == id)) |> 
-  group_by(first_name, last_name) |>
-  summarize(start_year = min(year),
-            end_year = max(year)) |> 
-  mutate(n_years_active = end_year - start_year) |> 
-  arrange(desc(n_years_active))
-```
-
-```{r}
-directors |> 
-  inner_join(movies_directors, 
-             join_by(id == director_id))
-```
-
-
-```{r}
-head(species)
-head(measurements)
-```
-
-```{r}
-#| warning: true
-
-measurements |> 
-  inner_join(species, 
-             by = join_by(genus_name == genus))
-```
-
-```{r}
-species |> 
-  full_join(measurements,
-            join_by(species == species, 
-                    genus == genus_name))
-```
-
-
-## Factors with `forcats`
-
-
-
-```{r}
-eras_data |> 
-  mutate(Album = fct(Album)) |> 
-  pull(Album)
-```
-
-
-```{r}
-eras_data |> 
-  mutate(Album = fct(Album,
-                     levels = c("Fearless","Speak Now","Red",
-                                "1989", "Reputation","Lover",
-                                "Folklore", "Evermore","Midnights"))) |> 
-  pull(Album) 
-```
-
-```{r}
-eras_data |> 
-  mutate(Album = fct(Album, 
-                     levels = c("Taylor Swift",
-                                "Fearless","Speak Now","Red",
-                                "1989", "Reputation","Lover",
-                                "Folklore", "Evermore","Midnights",
-                                "The Tortured Poets Department"))) |> 
-  pull(Album) 
-```
-
-```{r}
-eras_data |>
-  mutate(Album = fct_recode(.f = Album,
-                            "folklore" = "Folklore",
-                            "evermore" = "Evermore",
-                            "reputation" = "Reputation")) |>
-  pull(Album) 
-```
-
-```{r}
-eras_data |> 
-  mutate(Genre = fct_collapse(.f= Album,
-                       "country pop" = c("Taylor Swift", "Fearless"),
-                       "pop rock" = c("Speak Now","Red"),
-                       "electropop" = c("1989","reputation","Lover"),
-                       "folk pop" = c("folklore","evermore"),
-                       "alt-pop" = "Midnights")) |> 
-  slice_sample(n = 6)
-```
-
-
-```{r}
-eras_data |> 
-  mutate(Album = fct_relevel(.f = Album, 
-                             c("Fearless","1989","Taylor Swift",
-                               "Speak Now","Red","Midnights","reputation",
-                               "folklore","Lover","evermore"))) |>
-  pull(Album) |>
-  levels()
-```
-
-## Re-order Factors for Plots
-
-```{r}
-full_eras |> 
-  mutate(Album = fct(Album,
-                     levels = c("Fearless","Speak Now","Red",
-                                "1989","Reputation","Lover",
-                                "Folklore","Evermore",
-                                "Midnights"))) |> 
-  ggplot() +
-  geom_bar(aes(y = Album), fill = "#A5C9A5") +
-  theme_minimal() +
-  labs(x = "Number of Songs",
-       y = "",
-       subtitle = "Album",
-       title = "Songs Played on the Eras Tour")
-```
-
-
-
-```{r}
-full_eras |> 
-  ggplot() +
-  geom_bar(aes(y = fct_infreq(Album)), 
-           fill = "#A5C9A5") +
-  theme_minimal() +
-  labs(x = "Number of Songs",
-       y = "",
-       subtitle = "Album",
-       title = "Songs Played on the Eras Tour")
-```
-
-
-```{r}
-full_eras |> 
-  ggplot(aes(x = Length, 
-             y = fct_reorder(.f = Album,
-                             .x = Length,
-                             .fun = mean), 
-             fill = Album)) +
-  geom_density_ridges() +
-  theme_minimal() +
-  theme(legend.position = "none")+
-  labs(x = "Song Length (mins)",
-       y = "",
-       subtitle = "Album",
-       title = "Songs Played on the Eras Tour")
-```
-
-```{r}
-cereal_long |> 
-  ggplot(aes(x = shelf, 
-             y = mean_amount, 
-             color = fct_reorder2(.x = shelf,
-                                  .y = mean_amount,
-                                  .f = Nutrient))) +
-  geom_point() +
-  geom_line() +
-  labs(x = "Shelf", y = "", 
-       subtitle = "Mean Amount",
-       color = "Nutrient")
-```
-
-
-## Code Formatting
-
-Don't forget, writing "tidy" and "well documented" code are two of the learning
-targets for this course. As such, I would strongly encourage you to use every
-opportunity to practice these skills.
-
-As you are writing code for this assignment, make sure your code follows the
-[tidyverse style guide for dplyr code](https://style.tidyverse.org/pipes.html).
-Specifically, your code should:
-
--   use whitespace liberally
-    -   before & after every `=` sign
-    -   after every `,`
-    -   before every `|>`
--   use new lines liberally
-    -   after every `|>`
-    -   after `,` when needed (if code is more than 80 characters in length)
-

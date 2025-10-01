@@ -650,16 +650,18 @@ class_days |>
 
 The following learning targets speak to the big content ideas I’m designing this course for you to learn. I think these are probably exhaustive, and you will find that many of these targets overlap with each other.
 
+The learning targets printed in red are the **foundational** targets, meaning you are required to demonstrate proficiency with these targets to earn a passing grade in the course. 
+
 ::::::::::: columns
 ::::: {.column width="45%"}
 ::: {style="font-size: 1.5em; color: #34605f;"}
 Working with Data
 :::
 
--   **WD-1**: I can import data from a variety of formats (e.g., csv, xlsx, txt)
--   **WD-2**: I can select necessary columns from a dataset
--   **WD-3**: I can filter rows from a dataset for a variety of data types (e.g., numeric, factor, date, character)
--   **WD-4**: I can modify existing variables and create new variables in a dataset for a variety of data types (e.g., numeric, factor, date, character)
+-   [**WD-1**: I can import data from a variety of formats (e.g., csv, xlsx, txt)]{style="color: red"}
+-   [**WD-2**: I can select necessary columns from a dataset]{style="color: red"}
+-   [**WD-3**: I can filter rows from a dataset for a variety of data types (e.g., numeric, factor, date, character)]{style="color: red"}
+-   [**WD-4**: I can modify existing variables and create new variables in a dataset for a variety of data types (e.g., numeric, factor, date, character)]{style="color: red"}
 -   **WD-5**: I can use mutating joins from the `tidyr` package to combine multiple datasets
 -   **WD-6**: I can use filtering joins from the `dplyr` package to filter rows from a dataset
 -   **WD-7**: I can pivot datasets from long to wide and visa versa
@@ -668,8 +670,8 @@ Working with Data
 Reproducibility
 :::
 
--   **R-1**: I can create professional looking, reproducible analyses using RStudio projects, Quarto documents, and the `here` package <!-- we will want to add a target about file structure --> <!-- we will want to add a target about version control -->
--   **R-2**: I can write well documented[^3] and tidy code[^4]
+-   [**R-1**: I can create professional looking, reproducible analyses using RStudio projects, Quarto documents, and the `here` package]{style="color: red"}
+-   [**R-2**: I can write well documented[^3] and tidy code[^4]]{style="color: red"}
 -   **R-3**: I can write robust programs[^5] that are resistant to changes in inputs
 :::::
 
@@ -681,11 +683,11 @@ Reproducibility
 Data Visualization & Summarization
 :::
 
--   **DVS-1**: I can create visualizations for a variety of variable types (e.g., numeric, character, date)
+-   [**DVS-1**: I can create visualizations for a variety of variable types (e.g., numeric, character, date)]{style="color: red"}
 -   **DVS-2**: I use plot modifications to make my visualizations clearer to the reader
 -   **DVS-3**: I show creativity in my visualizations
--   **DVS-4**: I can calculate numerical summaries of variables
--   **DVS-5**: I can calculate numerical summaries of variables across multiple groups
+-   [**DVS-4**: I can calculate numerical summaries of variables]{style="color: red"}
+-   [**DVS-5**: I can calculate numerical summaries of variables across multiple groups]{style="color: red"}
 -   **DVS-6**: I can create tables which make my summaries clear to the reader
 -   **DVS-7**: I can show creativity in my tables
 

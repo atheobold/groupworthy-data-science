@@ -174,7 +174,7 @@ colleges_clean |>
 > Each of you was assigned one student's lab to provide feedback on their code
 > formatting. 
 
-# Peer Code Review
+# Peer Code Review - Due Monday at 5pm
 
 > Your feedback is to be provided in the comment box!
 

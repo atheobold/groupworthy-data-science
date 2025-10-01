@@ -19,12 +19,38 @@ library(readxl)
 library(ggridges)
 ```
 
+## `read_xlsx()`
 
-::: callout-warning
-For this lab, you need to download data from the Week 4 Notes page on the course website and add them to a `data/` directory.
+
+
+## Lengthening Data
+
+::: columns
+::: {.column width="40%"}
+```{r}
+#| eval: false
+#| echo: true
+#| label: pivot-from-r4ds
+
+df |> 
+  pivot_longer(
+    cols = bp1:bp2,
+    names_to = "measurement",
+    values_to = "value"
+  )
+```
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+![](images/pivot-longer.png)
+:::
 :::
 
 
+---
 
 # Data
 
@@ -400,4 +426,23 @@ cereal_long |>
        subtitle = "Mean Amount",
        color = "Nutrient")
 ```
+
+
+## Code Formatting
+
+Don't forget, writing "tidy" and "well documented" code are two of the learning
+targets for this course. As such, I would strongly encourage you to use every
+opportunity to practice these skills.
+
+As you are writing code for this assignment, make sure your code follows the
+[tidyverse style guide for dplyr code](https://style.tidyverse.org/pipes.html).
+Specifically, your code should:
+
+-   use whitespace liberally
+    -   before & after every `=` sign
+    -   after every `,`
+    -   before every `|>`
+-   use new lines liberally
+    -   after every `|>`
+    -   after `,` when needed (if code is more than 80 characters in length)
 

@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Cool Plots &amp; Searching for Efficiency</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-1c35b41652cab16ef815a191b3564630.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c990e76e4e8f51fe5aa6f0d132950ebc.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -231,7 +231,7 @@
 <h2>Vectorized Function Checks</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>rescale_01 <span class="ot">&lt;-</span> <span class="cf">function</span>(vec) {</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>rescale_01 <span class="ot">&lt;-</span> <span class="cf">function</span>(vec) {</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(vec)) {</span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"Input vector is not numeric"</span>)</span>
@@ -244,7 +244,7 @@
 <span id="cb1-11"><a aria-hidden="true" tabindex="-1"></a>  range <span class="ot">&lt;-</span> <span class="fu">range</span>(vec, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-12"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-13"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>((vec <span class="sc">-</span> range[<span class="dv">1</span>]) <span class="sc">/</span> (range[<span class="dv">2</span>] <span class="sc">-</span> range[<span class="dv">1</span>]))</span>
-<span id="cb1-14"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-14"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -255,7 +255,7 @@
 <h2>Function Checks for Data Frames</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>rescale_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var) {</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>rescale_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var) {</span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a>  df <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
 <span id="cb2-4"><a aria-hidden="true" tabindex="-1"></a>    dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> {{ var }}, <span class="at">.fns =</span> <span class="sc">~</span><span class="fu">rescale_01</span>(..x)</span>
@@ -263,7 +263,7 @@
 <span id="cb2-6"><a aria-hidden="true" tabindex="-1"></a>                  )</span>
 <span id="cb2-7"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb2-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
-<span id="cb2-9"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-9"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -274,7 +274,7 @@
 <h2>Function Checks for Data Frames – Columns</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>rescale_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, cols){</span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>rescale_column <span class="ot">&lt;-</span> <span class="cf">function</span>(df, cols){</span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.data.frame</span>(df))</span>
 <span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a>  </span>
@@ -284,7 +284,7 @@
 <span id="cb3-8"><a aria-hidden="true" tabindex="-1"></a>                  )</span>
 <span id="cb3-9"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb3-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(df)</span>
-<span id="cb3-11"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-11"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -345,7 +345,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4" data-code-line-numbers="18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>fish <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb4" data-code-line-numbers="18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>fish <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a></a>  <span class="fu">group_by</span>(year, section, trip) <span class="sc">|&gt;</span></span>
 <span id="cb4-3"><a></a>  <span class="fu">summarize</span>(<span class="at">missing_count =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(weight)), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb4-4"><a></a>  <span class="fu">mutate</span>(<span class="at">trip =</span> <span class="fu">case_when</span>(</span>
@@ -362,12 +362,12 @@
 <span id="cb4-15"><a></a>    <span class="at">color =</span> <span class="st">"Section"</span>) <span class="sc">+</span></span>
 <span id="cb4-16"><a></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> trip) <span class="sc">+</span></span>
 <span id="cb4-17"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb4-18"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-18"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="iteration-part-2_files/figure-revealjs/unnamed-chunk-11-1.png" width="960"></p>
+<p><img data-src="iteration-part-2_files/figure-revealjs/unnamed-chunk-7-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -380,7 +380,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="20-30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>plot <span class="ot">&lt;-</span> fish <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="20-30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>plot <span class="ot">&lt;-</span> fish <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a></a>  <span class="fu">group_by</span>(year, section, trip) <span class="sc">|&gt;</span></span>
 <span id="cb5-3"><a></a>  <span class="fu">summarize</span>(<span class="at">missing_count =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(weight)), <span class="at">.groups =</span> <span class="st">"drop"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb5-4"><a></a>  <span class="fu">mutate</span>(<span class="at">trip =</span> <span class="fu">case_when</span>(</span>
@@ -414,12 +414,12 @@
 <span id="cb5-32"><a></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>), </span>
 <span id="cb5-33"><a></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
 <span id="cb5-34"><a></a>        <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>)</span>
-<span id="cb5-35"><a></a>        )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-35"><a></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="iteration-part-2_files/figure-revealjs/unnamed-chunk-12-1.png" width="960"></p>
+<p><img data-src="iteration-part-2_files/figure-revealjs/unnamed-chunk-8-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -432,7 +432,7 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-code-line-numbers="13-16,22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(ggtext)</span>
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="13-16,22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">library</span>(ggtext)</span>
 <span id="cb6-2"><a></a></span>
 <span id="cb6-3"><a></a>fish <span class="sc">|&gt;</span></span>
 <span id="cb6-4"><a></a>  <span class="fu">group_by</span>(year, section, trip) <span class="sc">|&gt;</span></span>
@@ -459,12 +459,12 @@
 <span id="cb6-25"><a></a>        <span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>), </span>
 <span id="cb6-26"><a></a>        <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>),</span>
 <span id="cb6-27"><a></a>        <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">12</span>)</span>
-<span id="cb6-28"><a></a>        )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-28"><a></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="iteration-part-2_files/figure-revealjs/unnamed-chunk-13-1.png" width="960"></p>
+<p><img data-src="iteration-part-2_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -503,7 +503,7 @@
 <section id="good" class="slide level2">
 <h2>Good</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>rescale_01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>rescale_01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"Input must be a numeric vector"</span>)</span>
 <span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>  }</span>
@@ -514,13 +514,13 @@
 <span id="cb7-9"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb7-10"><a aria-hidden="true" tabindex="-1"></a>  get_range <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb7-11"><a aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> get_range[<span class="dv">1</span>]) <span class="sc">/</span> (get_range[<span class="dv">2</span>] <span class="sc">-</span> get_range[<span class="dv">1</span>])</span>
-<span id="cb7-12"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-12"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="not-so-good" class="slide level2">
 <h2>Not so good</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>rescale_01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) </span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>rescale_01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) </span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>{</span>
 <span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.numeric</span>(x)) {</span>
 <span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"Input must be a numeric vector"</span>)</span>
@@ -531,13 +531,13 @@
 <span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb8-11"><a aria-hidden="true" tabindex="-1"></a>  get_range <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
-<span id="cb8-12"><a aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span>get_range[<span class="dv">1</span>]) <span class="sc">/</span> (get_range[<span class="dv">2</span>]<span class="sc">-</span>get_range[<span class="dv">1</span>])}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-12"><a aria-hidden="true" tabindex="-1"></a>  (x<span class="sc">-</span>get_range[<span class="dv">1</span>]) <span class="sc">/</span> (get_range[<span class="dv">2</span>]<span class="sc">-</span>get_range[<span class="dv">1</span>])}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="if-on-a-single-line" class="slide level2">
 <h2><code>if()</code> on a single line?</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>rescale_01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>rescale_01 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)) <span class="fu">stop</span>(<span class="st">"Input vector must be numeric."</span>)</span>
 <span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">length</span>(x) <span class="sc">&lt;=</span> <span class="dv">1</span>) <span class="fu">stop</span>(<span class="st">"Input vector requires more than one element."</span>)</span>
@@ -545,7 +545,7 @@
 <span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>  range_1 <span class="ot">&lt;-</span> <span class="fu">range</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb9-8"><a aria-hidden="true" tabindex="-1"></a>  (x <span class="sc">-</span> range_1[<span class="dv">1</span>]) <span class="sc">/</span> (range_1[<span class="dv">2</span>] <span class="sc">-</span> range_1[<span class="dv">1</span>])</span>
-<span id="cb9-9"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-9"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This technically works because the <code>stop()</code> is on the <strong>same line</strong> as <code>if()</code>.</p>
 <div class="fragment">
@@ -555,7 +555,7 @@
 <section id="if-on-multiple-lines" class="slide level2">
 <h2><code>if()</code> on multiple lines</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>pluralize_gift <span class="ot">&lt;-</span> <span class="cf">function</span>(gift){</span>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>pluralize_gift <span class="ot">&lt;-</span> <span class="cf">function</span>(gift){</span>
 <span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if the word ends in a y</span></span>
 <span id="cb10-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">str_detect</span>(gift, <span class="st">"y$"</span>)){</span>
@@ -580,7 +580,7 @@
 <span id="cb10-23"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-24"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(gift)</span>
 <span id="cb10-25"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-26"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-26"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section id="lab-8-searching-for-efficiency" class="title-slide slide level1 center">
@@ -788,7 +788,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

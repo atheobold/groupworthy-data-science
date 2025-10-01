@@ -341,7 +341,7 @@ data |>
 
 data |>
   mutate(
-    orange = ifelse(blue == 6, 4, 3)
+    orange = if_else(blue == 6, 4, 3)
          )
 
 ```
@@ -359,7 +359,7 @@ data |>
 
 data |>
   mutate(
-    orange = ifelse(blue == 6, 4, 3),
+    orange = if_else(blue == 6, 4, 3),
     green = orange + 1
     )
 

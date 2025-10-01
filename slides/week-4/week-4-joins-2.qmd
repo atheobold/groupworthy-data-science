@@ -62,6 +62,115 @@ Today we will...
 :::
 :::
 
+<!-- ## `pivot_wider()` -->
+
+<!-- Take a **long** dataset and turn it into a **wide** dataset. -->
+
+<!-- + `id_cols` -- specify the column(s) that contain the ID for unique rows in the wide dataset. -->
+<!-- + `names_from` -- the name of the column containing the new column names. -->
+<!-- + `values_from` -- the name of the column containing the new  column values. -->
+
+
+<!-- ## `pivot_wider()` -->
+
+<!-- Let's say we calculate the `mean` amount of `protein` for cereals on each `shelf` and for each `manuf`. -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: false -->
+<!-- #| code-line-numbers: false -->
+<!-- #| label: long-cereal-summary-code -->
+
+<!-- mean_protein <- cereal |>  -->
+<!--   group_by(manuf, shelf) |>  -->
+<!--   summarize(mean_protein = mean(protein)) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| label: long-cereal-summary-table -->
+
+<!-- mean_protein <- cereal |>  -->
+<!--   group_by(manuf, shelf) |>  -->
+<!--   summarize(mean_protein = mean(protein)) -->
+
+<!-- mean_protein |>  -->
+<!--   knitr::kable() |>  -->
+<!--   kableExtra::scroll_box(height = "400px") |>  -->
+<!--   kableExtra::kable_styling(font_size = 30) -->
+<!-- ``` -->
+
+
+<!-- ## `pivot_wider()` -->
+
+<!-- We can make this dataset more easily readable... -->
+
+<!-- . . . -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- #| echo: true -->
+<!-- #| label: pivot-summary-wider-code -->
+<!-- #| code-line-numbers: false -->
+
+<!-- mean_protein |>  -->
+<!--   arrange(shelf) |>  -->
+<!--   pivot_wider(id_cols = manuf, -->
+<!--               names_from = shelf, -->
+<!--               values_from = mean_protein) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| label: pivot-summary-wider-table -->
+<!-- #| code-line-numbers: false -->
+
+<!-- mean_protein |>  -->
+<!--   arrange(shelf) |>  -->
+<!--   pivot_wider(id_cols = manuf, -->
+<!--               names_from = shelf, -->
+<!--               values_from = mean_protein) |>  -->
+<!--   knitr::kable() |>  -->
+<!--   kableExtra::scroll_box(height = "420px") |>  -->
+<!--   kableExtra::kable_styling(font_size = 30) -->
+<!-- ``` -->
+
+
+<!-- ## Better names in `pivot_wider()` -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: "6" -->
+<!-- #| label: add-fancy-name-code -->
+
+<!-- mean_protein |>  -->
+<!--   arrange(shelf) |>  -->
+<!--   pivot_wider(id_cols = manuf, -->
+<!--               names_from = shelf, -->
+<!--               values_from = mean_protein, -->
+<!--               names_prefix = "Shelf_") -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: false -->
+<!-- #| label: add-fancy-name-table -->
+
+<!-- mean_protein |>  -->
+<!--   arrange(shelf) |>  -->
+<!--   pivot_wider(id_cols = manuf, -->
+<!--               names_from = shelf, -->
+<!--               values_from = mean_protein, -->
+<!--               names_prefix = "Shelf_") |>  -->
+<!--   knitr::kable() |>  -->
+<!--   kableExtra::scroll_box(height = "420px") |>  -->
+<!--   kableExtra::kable_styling(font_size = 30) -->
+<!-- ``` -->
+
+
 
 
 # Practice Activity 4

@@ -226,7 +226,7 @@
 <section id="grade-expectations-1" class="title-slide slide level1 center">
 <h1>Grade Expectations</h1>
 <blockquote>
-<p>The <a href="../../course-materials/course-syllabus.qmd#sec-grades">course syllabus</a> has been updated to reflect the grade criteria you all proposed.</p>
+<p>The <a href="../../course-materials/syllabus.html#sec-grades">course syllabus</a> has been updated to reflect the grade criteria you all proposed.</p>
 </blockquote>
 </section>
 
@@ -330,7 +330,7 @@
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
 <span id="cb2-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
-<span id="cb2-3"><a></a>                      <span class="at">skip  =</span> <span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a></a>                      <span class="at">skip  =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
@@ -480,7 +480,9 @@
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:55%;">
-<p><img data-src="images/pivot_algeria_libya.png" style="width:25.0%" alt=""></p>
+<div class="centered">
+<p><img data-src="images/pivot_algeria_libya.png" style="width:45.0%" alt=""></p>
+</div>
 </div></div>
 </section>
 <section id="manual-method-steps-2" class="slide level2">
@@ -583,6 +585,7 @@
 <span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
 <span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Expenditures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
@@ -43162,89 +43165,7 @@
 </div>
 </div>
 </div>
-<!-- ## `pivot_wider()` -->
-<!-- Take a **long** dataset and turn it into a **wide** dataset. -->
-<!-- + `id_cols` -- specify the column(s) that contain the ID for unique rows in the wide dataset. -->
-<!-- + `names_from` -- the name of the column containing the new column names. -->
-<!-- + `values_from` -- the name of the column containing the new  column values. -->
-<!-- ## `pivot_wider()` -->
-<!-- Let's say we calculate the `mean` amount of `protein` for cereals on each `shelf` and for each `manuf`. -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| eval: false -->
-<!-- #| code-line-numbers: false -->
-<!-- #| label: long-cereal-summary-code -->
-<!-- mean_protein <- cereal |>  -->
-<!--   group_by(manuf, shelf) |>  -->
-<!--   summarize(mean_protein = mean(protein)) -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: false -->
-<!-- #| label: long-cereal-summary-table -->
-<!-- mean_protein <- cereal |>  -->
-<!--   group_by(manuf, shelf) |>  -->
-<!--   summarize(mean_protein = mean(protein)) -->
-<!-- mean_protein |>  -->
-<!--   knitr::kable() |>  -->
-<!--   kableExtra::scroll_box(height = "400px") |>  -->
-<!--   kableExtra::kable_styling(font_size = 30) -->
-<!-- ``` -->
-<!-- ## `pivot_wider()` -->
-<!-- We can make this dataset more easily readable... -->
-<!-- . . . -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| label: pivot-summary-wider-code -->
-<!-- #| code-line-numbers: false -->
-<!-- mean_protein |>  -->
-<!--   arrange(shelf) |>  -->
-<!--   pivot_wider(id_cols = manuf, -->
-<!--               names_from = shelf, -->
-<!--               values_from = mean_protein) -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: false -->
-<!-- #| label: pivot-summary-wider-table -->
-<!-- #| code-line-numbers: false -->
-<!-- mean_protein |>  -->
-<!--   arrange(shelf) |>  -->
-<!--   pivot_wider(id_cols = manuf, -->
-<!--               names_from = shelf, -->
-<!--               values_from = mean_protein) |>  -->
-<!--   knitr::kable() |>  -->
-<!--   kableExtra::scroll_box(height = "420px") |>  -->
-<!--   kableExtra::kable_styling(font_size = 30) -->
-<!-- ``` -->
-<!-- ## Better names in `pivot_wider()` -->
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "6" -->
-<!-- #| label: add-fancy-name-code -->
-<!-- mean_protein |>  -->
-<!--   arrange(shelf) |>  -->
-<!--   pivot_wider(id_cols = manuf, -->
-<!--               names_from = shelf, -->
-<!--               values_from = mean_protein, -->
-<!--               names_prefix = "Shelf_") -->
-<!-- ``` -->
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: false -->
-<!-- #| label: add-fancy-name-table -->
-<!-- mean_protein |>  -->
-<!--   arrange(shelf) |>  -->
-<!--   pivot_wider(id_cols = manuf, -->
-<!--               names_from = shelf, -->
-<!--               values_from = mean_protein, -->
-<!--               names_prefix = "Shelf_") |>  -->
-<!--   knitr::kable() |>  -->
-<!--   kableExtra::scroll_box(height = "420px") |>  -->
-<!--   kableExtra::kable_styling(font_size = 30) -->
-<!-- ``` -->
+</div>
 </section></section>
 <section>
 <section id="data-joins" class="title-slide slide level1 center">
@@ -43258,7 +43179,10 @@
 <div class="column" style="width:50%;">
 <p><strong>Mutating joins</strong></p>
 <p>Add <em>variables</em> from a new dataframe to observations in an existing dataframe.</p>
-<p><code>full_join()</code>, <code>left_join()</code>, <code>right_join()</code>, <code>inner_join()</code></p>
+<p><code>left_join()</code>,<br>
+<code>right_join()</code>,<br>
+<code>inner_join()</code>,<br>
+<code>full_join()</code></p>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:45%;">
@@ -43269,12 +43193,14 @@
 </section>
 <section id="keys" class="slide level2">
 <h2>Keys</h2>
+<div class="midi">
 <p>A key uniquely identifies an observation in a data set.</p>
 <ul>
 <li>To combine (join) two datasets, the <strong>key</strong> needs to be present in both.</li>
 </ul>
+</div>
 <div class="fragment">
-<p><img data-src="images/imdb-keys.png" alt="A similar entity-relationship diagram (ERD) to the previous one, with the same tables and relationships between movie-related data. However, in this version, key columns in the tables are color-coded to highlight relationships. Orange highlights the 'director_id' in the 'directors_genres,' 'movies_directors,' and 'directors' tables, showing the connection between directors and their genres and movies. Blue highlights the 'movie_id' in the 'movies_directors,' 'movies_genres,' 'roles,' and 'movies' tables, showing the relationship between movies, genres, and roles. Green highlights the 'actor_id' in the 'roles' and 'actors' tables, showing the connection between actors and their roles in movies. Arrows continue to represent relationships between tables, following foreign key connections, now emphasized with the color coding."></p>
+<p><img data-src="images/military-relational-diagram.jpg" style="width:85.0%" alt="An image of two datasets, one named military_expenditures and one named region_totals. The military_expenditures datast has five (visible) columns titled: Country, Year, Expenditures, Notes, Reporting year. The region_totals dataset has 13 (visible) columns: Region, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 9157, 1958, 1959, 1960, and 1961. The Country column of military_expenditures is highlighted in red and the Region column of the region_totals column is also highlighted in red. The image is highlighting these columns as they are 'keys' linking the two datasets with one another."></p>
 </div>
 </section>
 <section id="filtering-joins-semi_join" class="slide level2">

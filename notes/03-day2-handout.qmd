@@ -13,11 +13,7 @@ execute:
 library(tidyverse)
 ```
 
-# Using the Native Pipe (`|>`)
-
-In RStudio: `Tools` \> `Global Options...` \> `Code` \> check `Use native pipe operator` box 
-
-Keyboard shortcut: `ctrl/cmd` + `shift` + `m`
+# Practice Activity Review
 
 ## `filter()`
 
@@ -27,6 +23,8 @@ Do you want to filter a set of values of a variable?
 colleges_clean |> 
   filter(STABBR %in% c("CO", "MT", "ID", "UT", "WY"))
 ```
+
+1.  How would you negate the above filter? Meaning how would you **remove** colleges in CO, MT, ID, UT, and WY from the dataset?
 
 ## `select()`
 
@@ -51,14 +49,45 @@ colleges_clean |>
   select(INSTNM, where(is.numeric))
 ```
 
+2.  What types of columns will this select?
+
+# Peer Code Feedback
+
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+ggplot(data = surveys, mapping = aes(x=hindfoot_length,y= weight)) +  
+  geom_jitter(alpha=.2,color='tomato')+ facet_wrap(~species)+geom_boxplot(outlier.shape = NA)+labs(
+    title ='Weight to hindfoot comparison'
+  )+ xlab('length (mm)')+ylab('Weight(g)')
+```
+
+1.  What feedback would you give for this code?
+
+# Grade Expectations
+
+| Learning Objective | A (Superior Attainment) | B (Good Attainment) | C (Acceptable Attainment) |
+|----|----|----|----|
+| Learning Targets |  |  |  |
+| Revising Thinking |  |  |  |
+| Extending Thinking |  |  |  |
+| Collaboration |  |  |  |
+
+# Using the Native Pipe (`|>`)
+
+In RStudio: `Tools` \> `Global Options...` \> `Code` \> check `Use native pipe operator` box
+
+Keyboard shortcut: `ctrl/cmd` + `shift` + `m`
+
+# New Functions!
+
 ## `rename()`
 
 > Change (bad) column names!
 
-1. In the `rename()` function, what goes on the right hand side of the `=` sign? What goes on the left hand side?
-
-
-**Bonus:** If you want to rename variables **and then** only select some variables, use `select()`!
+3.  In the `rename()` function, what goes on the right hand side of the `=` sign? What goes on the left hand side?
 
 ```{r}
 cereal |> 
@@ -67,24 +96,25 @@ cereal |>
          cons_rating = rating)
 ```
 
+**Bonus:** If you want to rename variables **and then** only select some variables, use `select()`!
+
 # `count()`
 
 > Obtain frequency tables of the number of observations in each level of a categorical variable
 
-2. You could have obtained frequencies of observations by using `group_by()` +
-`summarize()`. Why is `count()` a better choice?
+4.  You could have obtained frequencies of observations by using `group_by()` + `summarize()`. Why is `count()` a better choice?
 
 ## `group_by()` + `slice_max()`
 
-3. What happens when you use `group_by()` before `slice_max()`? What output will you get?
+5.  What happens when you use `group_by()` before `slice_max()`? What output will you get?
 
 ## `group_by()` + `summarize()`
 
-4. What groups are dropped after `summarize()` calculates the statistics? 
+6.  What groups are dropped after `summarize()` calculates the statistics?
 
-5. What groups **are not** dropped after `summarize()` calculates the statistics? 
+7.  What groups **are not** dropped after `summarize()` calculates the statistics?
 
-6. How can you make sure all the groups have been dropped after `summarize()` calculates the statistics? 
+8.  How can you make sure all the groups have been dropped after `summarize()` calculates the statistics?
 
 ## `if_else()` & `case_when()`
 
@@ -111,7 +141,7 @@ colleges_clean |>
 
 ## `across()`
 
-> Performing the same function `across()` multiple columns 
+> Performing the same function `across()` multiple columns
 
 ```{r}
 colleges_clean |> 
@@ -124,22 +154,19 @@ colleges_clean |>
     )
 ```
 
-7. How do columns need to be input into the `across()` function?
+9.  How do columns need to be input into the `across()` function?
 
-8. How do functions need to be input into the `across()` function?
+10. How do functions need to be input into the `across()` function?
 
-9. What does the `.x` inside the function represent?
+11. What does the `.x` inside the function represent?
 
 # `across()` friends
 
 ## `if_any()` & `if_all()`
 
-Remember, you got warnings in PA3 when converting some columns to numeric? If
-you look at the original data, you can see this is because missing values were
-indicated with the string `"NULL"`.
+Remember, you got warnings in PA3 when converting some columns to numeric? If you look at the original data, you can see this is because missing values were indicated with the string `"NULL"`.
 
-We could drop these rows before converting the columns to numeric if desired, 
-using `if_any()`:
+We could drop these rows before converting the columns to numeric if desired, using `if_any()`:
 
 ```{r}
 #| echo: true
@@ -151,31 +178,41 @@ colleges_clean <- colleges_clean |>
     ) 
 ```
 
-10. How would you describe what `~ .x == "NULL"` is doing?
+12. How would you describe what `~ .x == "NULL"` is doing?
 
-11. What does the `!` in front of the `if_any()` do?
-
+13. What does the `!` in front of the `if_any()` do?
 
 ## Saving Objects
 
 Sometimes you just want to show a table and there is no need to save an object:
 
 ```{r}
-cereal |> 
-  filter(type == "cold") |> 
-  mutate(potass_per_cup = potass / cups) |> 
-  group_by(manuf) |> 
-  summarise(mean_potass_per_cup = mean(potass_per_cup))
+colleges_clean |> 
+  group_by(REGION) |> 
+  slice_max(order_by = UGDS)
 ```
 
 Other times, you will want to save your wrangled data for later:
 
 ```{r}
-cereal_summary <- cereal |> 
-  filter(type == "cold") |> 
-  mutate(potass_per_cup = potass / cups) |> 
-  group_by(manuf) |> 
-  summarise(mean_potass_per_cup = mean(potass_per_cup))
+colleges_clean <- colleges |> 
+  rename(TYPE = CONTROL) |> 
+  filter(TYPE != 3) |> 
+  mutate(REGION = case_when(REGION == 0 ~ "Military", 
+                            REGION == 1 ~ "New England", 
+                            REGION == 2 ~ "Mid Atlantic",
+                            REGION == 3 ~ "Great Lakes", 
+                            REGION == 4 ~ "Plains", 
+                            REGION == 5 ~ "South", 
+                            REGION == 6 ~ "Southwest", 
+                            REGION == 7 ~ "West", 
+                            REGION == 8 ~ "Pacific"), 
+         TYPE = if_else(TYPE == 1, 
+                        "Public",
+                        "Private"
+                        )
+         ) |> 
+  drop_na(TYPE, REGION)
 ```
 
 ## `kable()`
@@ -185,10 +222,7 @@ library(knitr)
 ```
 
 ```{r}
-colleges_clean <- colleges_clean |> 
-  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
-  
-cereal_clean |> 
+colleges_clean |> 
   group_by(REGION) |> 
   slice_max(order_by = TUITION_DIFF, n = 5) |> 
   kable()

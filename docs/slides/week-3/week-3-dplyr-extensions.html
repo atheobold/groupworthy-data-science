@@ -288,50 +288,38 @@
 </div>
 </div>
 <div class="fragment">
+<p><strong>Feedback will be released for Lab 2 and Challenge 2 by Friday at 5pm.</strong></p>
+</div>
+<div class="fragment">
 <div class="small">
 <ul>
-<li><strong>Revisions for Lab 2 &amp; Challenge 2 are due next Friday (October 18th)</strong>
+<li><strong>Revisions for Lab 2 &amp; Challenge 2 are due next Friday (October 10th)</strong>
 <ul>
 <li>You must submit your revised HTML to the original Lab 2 / Challenge 2 assignment portal.</li>
 <li>You must include reflections on what you learned by completing the revisions.</li>
 </ul></li>
 </ul>
 </div>
-</div>
-</section>
-<section id="lab-2-growing-points" class="slide level2">
-<h2>Lab 2 Growing Points</h2>
-<div class="small">
-<ul>
-<li>Q1: Loading in data with the <code>here()</code> function
-<ul>
-<li>In this class, we use a <a href="https://www.tidyverse.org/blog/2017/12/workflow-vs-script/">package oriented workflow</a> to read in the data.</li>
-<li>We <strong>do not</strong> specify relative paths to read in our data.</li>
-</ul></li>
-</ul>
-</div>
-<div class="fragment">
-<div class="small">
-<ul>
-<li>Q5: Adding transparency
-<ul>
-<li>Only <strong>variables</strong> being mapped to aesthetics are inserted into the <code>aes()</code> function!</li>
-<li>Hard coded values (e.g., <code>alpha = 0.5</code>) belong outside the <code>aes()</code> function.</li>
-</ul></li>
-</ul>
-</div>
-</div>
-<div class="fragment">
-<div class="small">
-<ul>
-<li>Report formatting: No messages or warnings should be output in the HTML document!
-<ul>
-<li>Use code chunk options and <code>execute</code> options to suppress these messages and warnings.</li>
-</ul></li>
-</ul>
-</div>
-<!-- ## [Don't make people tilt their head](https://youtu.be/h5cTacaWE6I?si=4DLb2OQoLpLFJGGQ) -->
-<!-- ![](images/tilt-head.png){alt-text="The image shows a comparison between two bar charts with a horizontal arrow pointing from the left chart to the right chart, indicating a transformation. The left chart is a vertical bar chart with various car categories on the x-axis (2seater, compact, midsize, minivan, pickup, subcompact, SUV) and values on the y-axis ranging from 0 to 60. The x-axis labels are tilted, making them harder to read. The right chart is a horizontal bar chart with the same car categories listed along the y-axis and values on the x-axis. This arrangement makes the labels easier to read. The transformation suggests an improvement in readability by switching from a vertical to a horizontal bar chart."} -->
+<!-- ## Lab 2 Growing Points -->
+<!-- ::: {.small} -->
+<!-- - Q1: Loading in data with the `here()` function -->
+<!--   + In this class, we use a [package oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) to read in the data. -->
+<!--   + We **do not** specify relative paths to read in our data.  -->
+<!-- ::: -->
+<!-- . . . -->
+<!-- ::: {.small} -->
+<!-- - Q5: Adding transparency  -->
+<!--   + Only **variables** being mapped to aesthetics are inserted into the `aes()` -->
+<!--   function! -->
+<!--   + Hard coded values (e.g., `alpha = 0.5`) belong outside the `aes()` function.  -->
+<!-- ::: -->
+<!-- . . . -->
+<!-- ::: {.small} -->
+<!-- - Report formatting: No messages or warnings should be output in the HTML -->
+<!-- document! -->
+<!--   + Use code chunk options and `execute` options to suppress these messages and -->
+<!--   warnings.  -->
+<!-- ::: -->
 </div>
 </section></section>
 <section id="peer-code-review" class="title-slide slide level1 center">
@@ -18985,7 +18973,7 @@
 </section>
 <section id="group_by-slice_max" class="slide level2">
 <h2><code>group_by()</code> + <code>slice_max()</code></h2>
-<div class="fragment">
+<div class="midi">
 <p>For each <code>REGION</code>, find the college with the largest number of undergraduate students.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
@@ -19078,6 +19066,7 @@
 <section id="group_by-summarize" class="slide level2">
 <h2><code>group_by()</code> + <code>summarize()</code></h2>
 <p>For each <code>REGION</code> and <code>TYPE</code>, find the mean SAT score.</p>
+<div class="midi">
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">TYPE =</span> CONTROL) <span class="sc">|&gt;</span> </span>
@@ -19086,14 +19075,118 @@
 <span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_sat =</span> <span class="fu">mean</span>(SAT_AVG, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a>    ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">TYPE =</span> CONTROL) <span class="sc">|&gt;</span> </span>
-<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(REGION, TYPE) <span class="sc">|&gt;</span> </span>
-<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_sat =</span> <span class="fu">mean</span>(SAT_AVG, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>    ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'REGION'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output-display">
+<div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; ">
+<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">REGION</th>
+<th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">TYPE</th>
+<th data-quarto-table-cell-role="th" style="text-align: right; position: sticky; top: 0; background-color: #FFFFFF;">mean_sat</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1281.250</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1102.871</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1224.483</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1099.895</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1170.658</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1122.706</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1139.871</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1147.318</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1129.892</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1110.979</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1092.758</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1086.804</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1123.383</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1142.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1182.333</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">1136.638</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: right;">1189.045</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: right;">981.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </section>
@@ -19213,8 +19306,8 @@
 </div>
 <div id="tabset-2-3">
 <div class="midi">
-<p><code>.x</code> is a placeholder (alias) for the variables being passed into the function.</p>
 <p>The notation for specifying a function must have a <code>~</code> before the function name (e.g., <code>~ mean (.x)</code>!</p>
+<p><code>.x</code> is a placeholder (alias) for the variables being passed into the function.</p>
 </div>
 </div>
 </div>
@@ -19276,15 +19369,26 @@
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="connection-to-ggplot" class="title-slide slide level1 center">
-<h1>Connection to <code>ggplot()</code></h1>
+</section>
+<section id="connection-to-ggplot" class="slide level2">
+<h2>Connection to <code>ggplot()</code></h2>
 <p>Plot the out of state tuition for each type of university in each region.</p>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Code</summary>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="week-3-dplyr-extensions_files/figure-revealjs/unnamed-chunk-23-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="code-for-plot" class="slide level2">
+<h2>Code for Plot</h2>
+<div class="midi">
+<div class="cell" data-layout-align="center">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a>colleges_clean <span class="sc">|&gt;</span> </span>
 <span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">TYPE =</span> CONTROL) <span class="sc">|&gt;</span> </span>
 <span id="cb17-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(TYPE <span class="sc">!=</span> <span class="dv">3</span>) <span class="sc">|&gt;</span> </span>
@@ -19314,14 +19418,10 @@
 <span id="cb17-27"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
 <span id="cb17-28"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"top"</span>) <span class="sc">+</span></span>
 <span id="cb17-29"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_currency</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
 </div>
-
 </div>
 </section>
-<section id="connection-to-ggplot-output" class="title-slide slide level1 output-location-slide center"><h1>Connection to <code>ggplot()</code></h1><div class="cell output-location-slide" data-layout-align="center">
-
-</div></section><section id="using-kable-for-formatting-in-labs" class="slide level2">
+<section id="using-kable-for-formatting-in-labs" class="slide level2">
 <h2>Using <code>kable()</code> for formatting in labs</h2>
 <ul>
 <li>When printing rows of a data frame or tibble</li>
@@ -19329,43 +19429,42 @@
 <li><code>kable()</code> outputs a <strong>markdown version</strong> of your data</li>
 <li>should only be used to nicely format data you are <strong>printing</strong></li>
 </ul>
-<div class="columns">
-<div class="column">
-<p><strong>e.g.</strong></p>
+</section>
+<section id="using-kable-for-formatting-in-labs-1" class="slide level2">
+<h2>Using <code>kable()</code> for formatting in labs</h2>
+<p><strong>Correct</strong></p>
+<div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>colleges_clean <span class="ot">&lt;-</span> colleges_clean <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a></a>  <span class="fu">mutate</span>(<span class="at">TUITION_DIFF =</span> TUITIONFEE_OUT <span class="sc">-</span> TUITIONFEE_IN)</span>
-<span id="cb18-3"><a></a>  </span>
-<span id="cb18-4"><a></a>cereal_clean <span class="sc">|&gt;</span> </span>
-<span id="cb18-5"><a></a>  <span class="fu">group_by</span>(REGION) <span class="sc">|&gt;</span> </span>
-<span id="cb18-6"><a></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> TUITION_DIFF, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb18-7"><a></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a></a>colleges_clean <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a></a>  <span class="fu">group_by</span>(REGION) <span class="sc">|&gt;</span> </span>
+<span id="cb18-3"><a></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> TUITION_DIFF, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb18-4"><a></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div><div class="column">
-<p><strong>NOT</strong></p>
+</div>
+<p><strong>Not Correct</strong></p>
+<div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>cereal_clean <span class="ot">&lt;-</span> cereal_clean <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a></a>  <span class="fu">mutate</span>(<span class="at">TUITION_DIFF =</span> TUITIONFEE_OUT <span class="sc">-</span> TUITIONFEE_IN)</span>
-<span id="cb19-3"><a></a>  <span class="fu">group_by</span>(REGION) <span class="sc">|&gt;</span> </span>
-<span id="cb19-4"><a></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> TUITION_DIFF, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb19-5"><a></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a></a>colleges_clean <span class="ot">&lt;-</span> colleges_clean <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a></a>  <span class="fu">group_by</span>(REGION) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a></a>  <span class="fu">slice_max</span>(<span class="at">order_by =</span> TUITION_DIFF, <span class="at">n =</span> <span class="dv">5</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb19-4"><a></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-</div></div>
+</div>
 </section>
 <section id="to-do" class="slide level2">
 <h2>To do…</h2>
 <ul>
 <li><strong>Lab 3: Student Evaluations of Teaching</strong>
 <ul>
-<li>Due Sunday, 10/13 at 11:59pm</li>
+<li>Due Monday, 10/6 at 5pm</li>
 </ul></li>
 <li><strong>Challenge 3: Extending Teaching Evaluation Investigations</strong>
 <ul>
-<li>Due Sunday, 10/13 at 11:59pm</li>
+<li>Due Monday, 10/6 at 5pm</li>
 </ul></li>
-<li><strong>Read Chapter 4: Data Joins and Transformations</strong>
+<li><strong>Week 4: Data Joins and Transformations</strong>
 <ul>
-<li><strong>Check-in 4.1 + 4.2</strong> due Tuesday 10/15 at 12pm</li>
+<li><strong>Check-in 4.1 + 4.2 + 4.3</strong> due Tuesday 10/7 at 8am</li>
 </ul></li>
 </ul>
 

@@ -129,43 +129,43 @@ colleges_clean |>
 
 . . .
 
+**Feedback will be released for Lab 2 and Challenge 2 by Friday at 5pm.**
+
+. . .
+
 ::: {.small}
-+ **Revisions for Lab 2 & Challenge 2 are due next Friday (October 18th)**
++ **Revisions for Lab 2 & Challenge 2 are due next Friday (October 10th)**
   * You must submit your revised HTML to the original Lab 2 / Challenge 2 
   assignment portal. 
   * You must include reflections on what you learned by completing the
   revisions.
 :::
 
-## Lab 2 Growing Points
+<!-- ## Lab 2 Growing Points -->
 
-::: {.small}
-- Q1: Loading in data with the `here()` function
-  + In this class, we use a [package oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) to read in the data.
-  + We **do not** specify relative paths to read in our data. 
-:::
+<!-- ::: {.small} -->
+<!-- - Q1: Loading in data with the `here()` function -->
+<!--   + In this class, we use a [package oriented workflow](https://www.tidyverse.org/blog/2017/12/workflow-vs-script/) to read in the data. -->
+<!--   + We **do not** specify relative paths to read in our data.  -->
+<!-- ::: -->
 
-. . .
+<!-- . . . -->
 
-::: {.small}
-- Q5: Adding transparency 
-  + Only **variables** being mapped to aesthetics are inserted into the `aes()`
-  function!
-  + Hard coded values (e.g., `alpha = 0.5`) belong outside the `aes()` function. 
-:::
+<!-- ::: {.small} -->
+<!-- - Q5: Adding transparency  -->
+<!--   + Only **variables** being mapped to aesthetics are inserted into the `aes()` -->
+<!--   function! -->
+<!--   + Hard coded values (e.g., `alpha = 0.5`) belong outside the `aes()` function.  -->
+<!-- ::: -->
 
-. . .
+<!-- . . . -->
 
-::: {.small}
-- Report formatting: No messages or warnings should be output in the HTML
-document!
-  + Use code chunk options and `execute` options to suppress these messages and
-  warnings. 
-:::
-
-<!-- ## [Don't make people tilt their head](https://youtu.be/h5cTacaWE6I?si=4DLb2OQoLpLFJGGQ) -->
-
-<!-- ![](images/tilt-head.png){alt-text="The image shows a comparison between two bar charts with a horizontal arrow pointing from the left chart to the right chart, indicating a transformation. The left chart is a vertical bar chart with various car categories on the x-axis (2seater, compact, midsize, minivan, pickup, subcompact, SUV) and values on the y-axis ranging from 0 to 60. The x-axis labels are tilted, making them harder to read. The right chart is a horizontal bar chart with the same car categories listed along the y-axis and values on the x-axis. This arrangement makes the labels easier to read. The transformation suggests an improvement in readability by switching from a vertical to a horizontal bar chart."} -->
+<!-- ::: {.small} -->
+<!-- - Report formatting: No messages or warnings should be output in the HTML -->
+<!-- document! -->
+<!--   + Use code chunk options and `execute` options to suppress these messages and -->
+<!--   warnings.  -->
+<!-- ::: -->
 
 # Peer Code Review
 
@@ -332,8 +332,7 @@ colleges_clean |>
 
 ## `group_by()` + `slice_max()`
 
-. . .
-
+::: {.midi}
 For each `REGION`, find the college with the largest number of undergraduate 
 students. 
 
@@ -347,6 +346,7 @@ colleges_clean |>
   group_by(REGION) |> 
   slice_max(order_by = UGDS)
 ```
+:::
 
 . . .
 
@@ -370,6 +370,7 @@ colleges_clean |>
 
 For each `REGION` and `TYPE`, find the mean SAT score. 
 
+::: {.midi}
 ```{r}
 #| echo: true
 #| code-line-numbers: false
@@ -384,22 +385,25 @@ colleges_clean |>
     mean_sat = mean(SAT_AVG, na.rm = TRUE)
     ) 
 ```
+:::
 
 . . .
 
 ```{r}
-#| echo: true
 #| code-line-numbers: false
 #| label: two-groups-output
 #| message: true
-#| eval: false
+#| echo: false
 
 colleges_clean |> 
   rename(TYPE = CONTROL) |> 
   group_by(REGION, TYPE) |> 
   summarize(
     mean_sat = mean(SAT_AVG, na.rm = TRUE)
-    ) 
+    ) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "400px") |> 
+  kableExtra::kable_styling(font_size = 25)
 ```
 
 ## What happened?
@@ -550,9 +554,9 @@ Also, the column names do not need to be quoted!
 ## `.fns`
 
 ::: {.midi}
-`.x` is a placeholder (alias) for the variables being passed into the function.
-
 The notation for specifying a function must have a `~` before the function name (e.g., `~ mean (.x)`!
+
+`.x` is a placeholder (alias) for the variables being passed into the function.
 :::
 :::
 
@@ -619,19 +623,16 @@ Note that there is no named function here (e.g., `mean()`). Instead, I'm making
 my own function that checks if a value is equal to (`==`) a null value (`"NULL"`).
 :::
 
-# Connection to `ggplot()`
+## Connection to `ggplot()`
 
 Plot the out of state tuition for each type of university in each region. 
 
 . . .
 
 ```{r}
-#| echo: true
 #| code-line-numbers: false
 #| fig-align: center
-#| output-location: slide
-#| eval: false
-#| code-fold: true
+#| echo: false
 
 colleges_clean |> 
   rename(TYPE = CONTROL) |> 
@@ -664,6 +665,47 @@ colleges_clean |>
   scale_x_continuous(labels = scales::label_currency())
 ```
 
+## Code for Plot
+
+::: {.midi}
+```{r}
+#| eval: false
+#| code-line-numbers: false
+#| fig-align: center
+#| echo: true
+
+colleges_clean |> 
+  rename(TYPE = CONTROL) |> 
+  filter(TYPE != 3) |> 
+  mutate(REGION = case_when(REGION == 0 ~ "Military", 
+                            REGION == 1 ~ "New England", 
+                            REGION == 2 ~ "Mid Atlantic",
+                            REGION == 3 ~ "Great Lakes", 
+                            REGION == 4 ~ "Plains", 
+                            REGION == 5 ~ "South", 
+                            REGION == 6 ~ "Southwest", 
+                            REGION == 7 ~ "West", 
+                            REGION == 8 ~ "Pacific"), 
+         TYPE = if_else(TYPE == 1, 
+                        "Public",
+                        "Private"
+                        )
+         ) |> 
+  drop_na(TYPE, REGION) |> 
+  ggplot(mapping = aes(y = REGION, 
+                       x = TUITIONFEE_OUT, 
+                       fill = TYPE)) +
+  geom_density_ridges(alpha = 0.5) +
+  labs(title = "Cost of Out of State Tuition Across Different Regions of the US", 
+       x = "Out of State Tuition", 
+       y = "", 
+       fill = "School Type") +
+  theme_bw() +
+  theme(legend.position = "top") +
+  scale_x_continuous(labels = scales::label_currency())
+```
+:::
+
 ## Using `kable()` for formatting in labs
 
 - When printing rows of a data frame or tibble
@@ -671,47 +713,41 @@ colleges_clean |>
 - `kable()` outputs a **markdown version** of your data
 - should only be used to nicely format data you are **printing**
 
-:::columns
-:::column
-**e.g.**
+## Using `kable()` for formatting in labs
+
+**Correct**
+
+::: {.midi}
 ```{r}
 #| echo: true
 #| eval: false
 
+colleges_clean |> 
+  group_by(REGION) |> 
+  slice_max(order_by = TUITION_DIFF, n = 5) |> 
+  kable()
+```
+:::
+
+**Not Correct**
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: false
 
 colleges_clean <- colleges_clean |> 
-  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
-  
-cereal_clean |> 
   group_by(REGION) |> 
   slice_max(order_by = TUITION_DIFF, n = 5) |> 
   kable()
 ```
-
-:::
-:::column
-
-**NOT**
-
-```{r}
-#| echo: true
-#| eval: false
-
-cereal_clean <- cereal_clean |> 
-  mutate(TUITION_DIFF = TUITIONFEE_OUT - TUITIONFEE_IN)
-  group_by(REGION) |> 
-  slice_max(order_by = TUITION_DIFF, n = 5) |> 
-  kable()
-```
-
-:::
 :::
 
 ## To do...
 
 -   **Lab 3: Student Evaluations of Teaching**
-    -   Due Sunday, 10/13 at 11:59pm
+    -   Due Monday, 10/6 at 5pm
 -   **Challenge 3: Extending Teaching Evaluation Investigations**
-    -   Due Sunday, 10/13 at 11:59pm
--   **Read Chapter 4: Data Joins and Transformations**
-    -   **Check-in 4.1 + 4.2** due Tuesday 10/15 at 12pm
+    -   Due Monday, 10/6 at 5pm
+-   **Week 4: Data Joins and Transformations**
+    -   **Check-in 4.1 + 4.2 + 4.3** due Tuesday 10/7 at 8am

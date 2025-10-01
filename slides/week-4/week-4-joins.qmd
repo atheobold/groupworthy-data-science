@@ -66,55 +66,55 @@ Today we will...
 
 ![](images/frustrated-about-r.png){fig-alt="A frustrated little monster sits on the ground with his hat next to him, saying 'I just need a minute.' Looking on empathetically is the R logo, with the word 'Error' in many different styles behind it."}
 
-# `janitor` Package
+<!-- # `janitor` Package -->
 
-![Image by Allison Horst](images/janitor_clean_names.png){fig-alt="janitor::clean_names(): convert all column names to *_case! Below, a cartoon beaver putting shapes with long, messy column names (pulled from a bin labeled 'MESS' and 'not so awesome column names') into a contraption that converts them to lower snake case. The output has stylized text reading 'Way more deal-withable column names.' Learn more about clean_names and other *awesome* data cleaning tools in janitor."}
+<!-- ![Image by Allison Horst](images/janitor_clean_names.png){fig-alt="janitor::clean_names(): convert all column names to *_case! Below, a cartoon beaver putting shapes with long, messy column names (pulled from a bin labeled 'MESS' and 'not so awesome column names') into a contraption that converts them to lower snake case. The output has stylized text reading 'Way more deal-withable column names.' Learn more about clean_names and other *awesome* data cleaning tools in janitor."} -->
 
-## Clean Variable Names with [`janitor`](https://sfirke.github.io/janitor/)
+<!-- ## Clean Variable Names with [`janitor`](https://sfirke.github.io/janitor/) -->
 
-::: {.small}
-Data from external sources likely has variable names not ideally formatted for R.
+<!-- ::: {.small} -->
+<!-- Data from external sources likely has variable names not ideally formatted for R. -->
 
-Names may...
+<!-- Names may... -->
 
-+ contain spaces.
-+ start with numbers.
-+ start with a mix of capital and lower case letters.
-:::
+<!-- + contain spaces. -->
+<!-- + start with numbers. -->
+<!-- + start with a mix of capital and lower case letters. -->
+<!-- ::: -->
 
-. . .
+<!-- . . . -->
 
-```{r}
-#| eval: true
-#| echo: true
-#| code-line-numbers: false
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: false -->
 
-names(military_clean)[1:12]
-```
+<!-- names(military_clean)[1:12] -->
+<!-- ``` -->
 
-## Clean Variable Names with [`janitor`](https://sfirke.github.io/janitor/)
+<!-- ## Clean Variable Names with [`janitor`](https://sfirke.github.io/janitor/) -->
 
-::: {.small}
-The `janitor` package converts all variable names in a dataset to *snake_case*.
+<!-- ::: {.small} -->
+<!-- The `janitor` package converts all variable names in a dataset to *snake_case*. -->
 
-Names will...
+<!-- Names will... -->
 
-+ start with a lower case letter.
-+ have spaces filled in with `_`.
+<!-- + start with a lower case letter. -->
+<!-- + have spaces filled in with `_`. -->
 
-```{r}
-#| eval: true
-#| echo: true
-#| code-line-numbers: "3-5"
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: "3-5" -->
 
-library(janitor)
+<!-- library(janitor) -->
 
-military_clean_names <- military |> 
-  clean_names()
+<!-- military_clean_names <- military |>  -->
+<!--   clean_names() -->
 
-names(military_clean_names)[1:12]
-```
-:::
+<!-- names(military_clean_names)[1:12] -->
+<!-- ``` -->
+<!-- ::: -->
 
 
 ## Lab 3 Common Themes
@@ -199,6 +199,7 @@ A **deprecated** functionality has a better alternative available and is schedul
 #| message: true
 #| echo: true
 #| code-line-numbers: "2"
+#| eval: false
 
 military_clean |> 
   filter(across(.cols = Notes:`2019`, 
@@ -218,6 +219,8 @@ Instead, we use...
 ```{r}
 #| echo: true
 #| code-line-numbers: "2"
+#| eval: false
+
 military_clean |>
   filter(if_all(.cols = Notes:`2019`, 
                 .fns = ~ is.na(.x)

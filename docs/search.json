@@ -5689,5 +5689,327 @@
     "title": "Data Pivots + Joins",
     "section": "Team Assignments - 12pm",
     "text": "Team Assignments - 12pm\n\n\n\n\nThe partner who woke up the earliest starts as the Coder!"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#thursday-october-17",
+    "href": "slides/week-4/week-4-joins.html#thursday-october-17",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Thursday, October 17",
+    "text": "Thursday, October 17\nToday we will…\n\n\n\n\nDebrief PA 4\n\nDescribe the Code\nClean Column Names\n\n\nDebrief Lab 3 & Challenge 3\n\nCommon Themes\nPackage Lifecycle Stages\nExpectations for Tools Used\nReminder about Lab 3 Peer Review\n\n\n\n\n\n\n\n\nNew Material\n\nRelational Data\nFactors with forcats\n\nLab 4: Childcare Costs in California"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#lab-3-common-themes",
+    "href": "slides/week-4/week-4-joins.html#lab-3-common-themes",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Lab 3 Common Themes",
+    "text": "Lab 3 Common Themes\n\n\nQ1: The tidyverse package automatically loads ggplot2, dplyr, readr, etc. – do not load these twice!\nQ3: Where did these data come from? How were they collected? What is the context of these data?\n\nChallenge 3: When reaching a conclusion with the hypothesis test, what does Question 3 refer to?\n\nSaving an f*$# load of objects\n\nNot outputting the results"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#lab-3-common-themes-1",
+    "href": "slides/week-4/week-4-joins.html#lab-3-common-themes-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Lab 3 Common Themes",
+    "text": "Lab 3 Common Themes\n\n\nQ5 & Q7: Not using the “correct” function syntax\n\n\nif_any(.cols = everything(), .fns = ~ is.na(.x))\n\n\n\n\nNot using .x to specify where the .cols input should go will go awry when there are multiple function inputs.\nUsing named arguments (e.g., .cols =, .fns =) makes your code more readable and is part of the code formatting guidelines for this class.\n\n\n\nThink about “efficient” ways to do things\n\nQ5: Are you using the same function across() multiple columns?\nQ6: Can you calculate multiple summary statistics in one pipeline?\nQ10-12: Is there a way you can get both the max and min in one pipeline?"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#lifceycle-stages",
+    "href": "slides/week-4/week-4-joins.html#lifceycle-stages",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Lifceycle Stages",
+    "text": "Lifceycle Stages\nAs packages get updated, the functions and function arguments included in those packages will change.\n\nThe accepted syntax for a function may change.\nA function/functionality may disappear.\n\n\nLearn more about lifecycle stages of packages, functions, function arguments in R."
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#lifceycle-stages-1",
+    "href": "slides/week-4/week-4-joins.html#lifceycle-stages-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Lifceycle Stages",
+    "text": "Lifceycle Stages"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#deprecated-functions",
+    "href": "slides/week-4/week-4-joins.html#deprecated-functions",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Deprecated Functions",
+    "text": "Deprecated Functions\n\nA deprecated functionality has a better alternative available and is scheduled for removal.\n\nYou get a warning telling you what to use instead.\n\n\n\n\n\nmilitary_clean |&gt; \n  filter(across(.cols = Notes:`2019`, \n                .fns = ~ is.na(.x)\n                )\n         )"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#deprecated-functions-1",
+    "href": "slides/week-4/week-4-joins.html#deprecated-functions-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Deprecated Functions",
+    "text": "Deprecated Functions\n\nYou should not use deprecated functions!\nInstead, we use…\n\nmilitary_clean |&gt;\n  filter(if_all(.cols = Notes:`2019`, \n                .fns = ~ is.na(.x)\n                )\n         )"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#superceded-functions",
+    "href": "slides/week-4/week-4-joins.html#superceded-functions",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Superceded Functions",
+    "text": "Superceded Functions\nA superseded functionality has a better alternative, but is not going away.\n\nThis is a softer alternative to deprecation.\nA superseded function will not give a warning (since there’s no risk if you keep using it), but the documentation will give you a recommendation for what to use instead."
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#what-is-my-job",
+    "href": "slides/week-4/week-4-joins.html#what-is-my-job",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "What is my job?",
+    "text": "What is my job?\n\n\n\n\nTeaching you stuff\n\n(Thoughtfully) choosing what to teach and how to teach it.\n\n\n\n\n\nAssessing what you’ve learned\n\nWhat do you understand about the tools I’ve taught you?\n\nThis is not the same as assessing if you figured out a way to accomplish a given task."
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#data-joins",
+    "href": "slides/week-4/week-4-joins.html#data-joins",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Data Joins",
+    "text": "Data Joins\nWe can combine (join) data tables based on their relations.\n\n\nMutating joins\nAdd variables from a new dataframe to observations in an existing dataframe.\nleft_join(),\nright_join(),\ninner_join(),\nfull_join()\n\n\n\nFiltering Joins\nFilter observations based on values in new dataframe.\nsemi_join(), anti_join()"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#keys",
+    "href": "slides/week-4/week-4-joins.html#keys",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Keys",
+    "text": "Keys\n\nA key uniquely identifies an observation in a data set.\n\nTo combine (join) two datasets, the key needs to be present in both."
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#filtering-joins-semi_join",
+    "href": "slides/week-4/week-4-joins.html#filtering-joins-semi_join",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Filtering Joins: semi_join()",
+    "text": "Filtering Joins: semi_join()\nKeeps observations when their keys are present in both datasets, but only keeps variables from the first dataset.\n\n© Garrick Aden-Buie"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#filtering-joins-semi_join-1",
+    "href": "slides/week-4/week-4-joins.html#filtering-joins-semi_join-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Filtering Joins: semi_join()",
+    "text": "Filtering Joins: semi_join()\n\nsemi_join()Connection to filter()\n\n\n\ndirectors_genres |&gt; \n  semi_join(movies_directors)\n\n\n\n\n\ndirectors_genres |&gt;\n  filter(director_id %in% movies_directors$director_id)"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#filtering-joins-anti_join",
+    "href": "slides/week-4/week-4-joins.html#filtering-joins-anti_join",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Filtering Joins: anti_join()",
+    "text": "Filtering Joins: anti_join()\nRemoves observations when their keys are present in both datasets, and only keeps variables from the first dataset.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n© Garrick Aden-Buie"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#filtering-joins-anti_join-1",
+    "href": "slides/week-4/week-4-joins.html#filtering-joins-anti_join-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Filtering Joins: anti_join()",
+    "text": "Filtering Joins: anti_join()\n\nanti_join()Connection to filter()\n\n\n\ndirectors_genres |&gt; \n  anti_join(movies_directors)\n\nMovie Directors: 429, 2931, 11652, 14927, 15092\n\n\n\ndirectors_genres |&gt;\n  filter(!director_id %in% movies_directors$director_id)"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#relational-data-1",
+    "href": "slides/week-4/week-4-joins.html#relational-data-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Relational Data",
+    "text": "Relational Data\nWhen we work with multiple tables of data, we say we are working with relational data.\n\nIt is the relations, not just the individual datasets, that are important.\n\n\nWhen we work with relational data, we rely on keys.\n\nA key uniquely identifies an observation in a dataset.\nA key allows us to relate datasets to each other"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#imdb-movies-data",
+    "href": "slides/week-4/week-4-joins.html#imdb-movies-data",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "IMDb Movies Data",
+    "text": "IMDb Movies Data"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#inner_join",
+    "href": "slides/week-4/week-4-joins.html#inner_join",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "inner_join()",
+    "text": "inner_join()\nKeeps observations when their keys are present in both datasets."
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#inner_join-imdb-example",
+    "href": "slides/week-4/week-4-joins.html#inner_join-imdb-example",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "inner_join(): IMDb Example",
+    "text": "inner_join(): IMDb Example\n\n\n\ndirectors_genres\n\n\n\n\n\n\n\ndirector_id\ngenre\nprob\n\n\n\n\n429\nAdventure\n0.750000\n\n\n429\nFantasy\n0.750000\n\n\n2931\nDrama\n0.714286\n\n\n2931\nAction\n0.428571\n\n\n11652\nSci-Fi\n0.500000\n\n\n11652\nAction\n0.500000\n\n\n14927\nAnimation\n1.000000\n\n\n14927\nFamily\n1.000000\n\n\n15092\nComedy\n0.545455\n\n\n15092\nCrime\n0.545455\n\n\n\n\n\n\n\n\nmovies_directors\n\n\n\n\n\n\n\ndirector_id\nmovie_id\n\n\n\n\n429\n300229\n\n\n9247\n124110\n\n\n11652\n10920\n\n\n11652\n333856\n\n\n14927\n192017\n\n\n15092\n109093\n\n\n15092\n237431\n\n\n\n\n\n\n\n\nID: 429, 2931, 11652, 14927, 15092       ID: 429, 9247, 11652, 14927, 15092\n\n\n\ninner_join(directors_genres, movies_directors)\n\n\n\n\n\n\n\ndirector_id\ngenre\nprob\nmovie_id\n\n\n\n\n429\nAdventure\n0.750000\n300229\n\n\n429\nFantasy\n0.750000\n300229\n\n\n11652\nSci-Fi\n0.500000\n10920\n\n\n11652\nSci-Fi\n0.500000\n333856\n\n\n11652\nAction\n0.500000\n10920\n\n\n11652\nAction\n0.500000\n333856\n\n\n14927\nAnimation\n1.000000\n192017\n\n\n14927\nFamily\n1.000000\n192017\n\n\n15092\nComedy\n0.545455\n109093\n\n\n15092\nComedy\n0.545455\n237431\n\n\n15092\nCrime\n0.545455\n109093\n\n\n15092\nCrime\n0.545455\n237431\n\n\n\n\n\n\n\nID: 429, 2931, 9247, 11652, 14927, 15092"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#inner_join-imdb-example-1",
+    "href": "slides/week-4/week-4-joins.html#inner_join-imdb-example-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "inner_join(): IMDb Example",
+    "text": "inner_join(): IMDb Example\nWhat if our key does not have the same name?\n\n\n\ndirectors_genres\n\n\n\n\n\n\n\ndirector_id\ngenre\nprob\n\n\n\n\n429\nAdventure\n0.750000\n\n\n429\nFantasy\n0.750000\n\n\n2931\nDrama\n0.714286\n\n\n2931\nAction\n0.428571\n\n\n11652\nSci-Fi\n0.500000\n\n\n11652\nAction\n0.500000\n\n\n14927\nAnimation\n1.000000\n\n\n14927\nFamily\n1.000000\n\n\n15092\nComedy\n0.545455\n\n\n15092\nCrime\n0.545455\n\n\n\n\n\n\n\n\ndirectors\n\n\n\n\n\n\n\nid\nfirst_name\nlast_name\n\n\n\n\n429\nAndrew\nAdamson\n\n\n9247\nZach\nBraff\n\n\n11652\nJames (I)\nCameron\n\n\n14927\nRon\nClements\n\n\n15092\nEthan\nCoen\n\n\n\n\n\n\n\n\n\ninner_join(directors_genres, \n           directors, \n           by = join_by(director_id == id))\n\n\n\n\n\n\n\nid\nfirst_name\nlast_name\ngenre\nprob\n\n\n\n\n429\nAndrew\nAdamson\nAdventure\n0.750000\n\n\n429\nAndrew\nAdamson\nFantasy\n0.750000\n\n\n11652\nJames (I)\nCameron\nSci-Fi\n0.500000\n\n\n11652\nJames (I)\nCameron\nAction\n0.500000\n\n\n14927\nRon\nClements\nAnimation\n1.000000\n\n\n14927\nRon\nClements\nFamily\n1.000000\n\n\n15092\nEthan\nCoen\nComedy\n0.545455\n\n\n15092\nEthan\nCoen\nCrime\n0.545455"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#piping-joins",
+    "href": "slides/week-4/week-4-joins.html#piping-joins",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Piping Joins",
+    "text": "Piping Joins\nRemember: the dataset you pipe in becomes the first argument of the function you are piping into!\n\nSo if you are using a pipe, you will only be specifying the right dataset inside the join function.\n\n\n\ninner_join(directors_genres, movies_directors)\n\n…is equivalent to…\n\ndirectors_genres |&gt; \n  inner_join(movies_directors)"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#more-mutating-joins",
+    "href": "slides/week-4/week-4-joins.html#more-mutating-joins",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "More Mutating Joins",
+    "text": "More Mutating Joins\n\n\nleft_join() – keep only (and all) observations present in the left data set\nright_join() – keep only (and all) observations present in the right data set\nfull_join() – keep only (and all) observations present in both data sets"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#more-mutating-joins-1",
+    "href": "slides/week-4/week-4-joins.html#more-mutating-joins-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "More Mutating Joins",
+    "text": "More Mutating Joins\nWhich directors would remain for each of the following?\n\n\nleft_join(directors_genres, movies_directors)\nright_join(directors_genres, movies_directors)\nfull_join(directors_genres, movies_directors)\n\n\n\n\n\ndirectors_genres |&gt; \n  distinct(director_id)\n\n\n\n\n\n\n\ndirector_id\n\n\n\n\n429\n\n\n2931\n\n\n11652\n\n\n14927\n\n\n15092\n\n\n\n\n\n\n\n\nmovies_directors |&gt; \n  distinct(director_id)\n\n\n\n\n\n\n\ndirector_id\n\n\n\n\n429\n\n\n9247\n\n\n11652\n\n\n14927\n\n\n15092"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#joining-multiple-data-sets",
+    "href": "slides/week-4/week-4-joins.html#joining-multiple-data-sets",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Joining Multiple Data Sets",
+    "text": "Joining Multiple Data Sets\n\nDataSketch1st + 2nd+ 3rd\n\n\n\n\n\n\ndirectors[1:4,]\n\n# A tibble: 4 × 3\n     id first_name last_name\n  &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    \n1   429 Andrew     Adamson  \n2  2931 Darren     Aronofsky\n3  9247 Zach       Braff    \n4 11652 James (I)  Cameron  \n\n\n\n\n\n\nmovies_directors[1:4,]\n\n# A tibble: 4 × 2\n  director_id movie_id\n        &lt;dbl&gt;    &lt;dbl&gt;\n1         429   300229\n2        2931   254943\n3        9247   124110\n4       11652    10920\n\n\n\n\n\n\n\n\n\n\nmovies[1:4,]\n\n# A tibble: 4 × 4\n     id name           year  rank\n  &lt;dbl&gt; &lt;chr&gt;         &lt;dbl&gt; &lt;dbl&gt;\n1 10920 Aliens         1986  8.20\n2 17173 Animal House   1978  7.5 \n3 18979 Apollo 13      1995  7.5 \n4 30959 Batman Begins  2005 NA   \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nmovies_directors |&gt; \n  inner_join(directors, \n             by = join_by(director_id == id)\n             )\n\n\n\n\n\n\n\n\ndirector_id\nmovie_id\nfirst_name\nlast_name\n\n\n\n\n429\n300229\nAndrew\nAdamson\n\n\n2931\n254943\nDarren\nAronofsky\n\n\n9247\n124110\nZach\nBraff\n\n\n11652\n10920\nJames (I)\nCameron\n\n\n11652\n333856\nJames (I)\nCameron\n\n\n14927\n192017\nRon\nClements\n\n\n15092\n109093\nEthan\nCoen\n\n\n15092\n237431\nEthan\nCoen\n\n\n15093\n109093\nJoel\nCoen\n\n\n15093\n237431\nJoel\nCoen\n\n\n15901\n130128\nFrancis Ford\nCoppola\n\n\n15906\n194874\nSofia\nCoppola\n\n\n16816\n350424\nCameron\nCrowe\n\n\n17810\n297838\nFrank\nDarabont\n\n\n22104\n224842\nClint\nEastwood\n\n\n24758\n112290\nDavid\nFincher\n\n\n28395\n46169\nMel (I)\nGibson\n\n\n35573\n18979\nRon\nHoward\n\n\n35838\n257264\nJohn (I)\nHughes\n\n\n37872\n300229\nVicky\nJenson\n\n\n38746\n238695\nMike (I)\nJudge\n\n\n41975\n314965\nDavid\nKoepp\n\n\n44291\n17173\nJohn (I)\nLandis\n\n\n46315\n344203\nJay\nLevey\n\n\n48115\n313459\nGeorge\nLucas\n\n\n56332\n192017\nJohn\nMusker\n\n\n58201\n30959\nChristopher\nNolan\n\n\n58201\n210511\nChristopher\nNolan\n\n\n65940\n111813\nRob\nReiner\n\n\n66849\n306032\nGuy\nRitchie\n\n\n68161\n116907\nHerbert (I)\nRoss\n\n\n74758\n238072\nSteven\nSoderbergh\n\n\n76524\n167324\nOliver (I)\nStone\n\n\n78273\n176711\nQuentin\nTarantino\n\n\n78273\n176712\nQuentin\nTarantino\n\n\n78273\n267038\nQuentin\nTarantino\n\n\n78273\n276217\nQuentin\nTarantino\n\n\n82525\n147603\nPaul (I)\nVerhoeven\n\n\n83616\n207992\nAndy\nWachowski\n\n\n83617\n207992\nLarry\nWachowski\n\n\n88802\n256630\nUnknown\nDirector\n\n\n\n\n\n\n\n\n\n\nmovies_directors |&gt; \n  inner_join(directors, \n             by = join_by(director_id == id)\n             ) |&gt; \n  inner_join(movies,\n             by = join_by(movie_id == id)\n             ) |&gt; \n  rename(movie_name = name)\n\n\n\n\n\n\n\n\ndirector_id\nmovie_id\nfirst_name\nlast_name\nmovie_name\nyear\nrank\n\n\n\n\n429\n300229\nAndrew\nAdamson\nShrek\n2001\n8.1\n\n\n2931\n254943\nDarren\nAronofsky\nPi\n1998\n7.5\n\n\n9247\n124110\nZach\nBraff\nGarden State\n2004\n8.3\n\n\n11652\n10920\nJames (I)\nCameron\nAliens\n1986\n8.2\n\n\n11652\n333856\nJames (I)\nCameron\nTitanic\n1997\n6.9\n\n\n14927\n192017\nRon\nClements\nLittle Mermaid, The\n1989\n7.3\n\n\n15092\n109093\nEthan\nCoen\nFargo\n1996\n8.2\n\n\n15092\n237431\nEthan\nCoen\nO Brother, Where Art Thou?\n2000\n7.8\n\n\n15093\n109093\nJoel\nCoen\nFargo\n1996\n8.2\n\n\n15093\n237431\nJoel\nCoen\nO Brother, Where Art Thou?\n2000\n7.8\n\n\n15901\n130128\nFrancis Ford\nCoppola\nGodfather, The\n1972\n9.0\n\n\n15906\n194874\nSofia\nCoppola\nLost in Translation\n2003\n8.0\n\n\n16816\n350424\nCameron\nCrowe\nVanilla Sky\n2001\n6.9\n\n\n17810\n297838\nFrank\nDarabont\nShawshank Redemption, The\n1994\n9.0\n\n\n22104\n224842\nClint\nEastwood\nMystic River\n2003\n8.1\n\n\n24758\n112290\nDavid\nFincher\nFight Club\n1999\n8.5\n\n\n28395\n46169\nMel (I)\nGibson\nBraveheart\n1995\n8.3\n\n\n35573\n18979\nRon\nHoward\nApollo 13\n1995\n7.5\n\n\n35838\n257264\nJohn (I)\nHughes\nPlanes, Trains & Automobiles\n1987\n7.2\n\n\n37872\n300229\nVicky\nJenson\nShrek\n2001\n8.1\n\n\n38746\n238695\nMike (I)\nJudge\nOffice Space\n1999\n7.6\n\n\n41975\n314965\nDavid\nKoepp\nStir of Echoes\n1999\n7.0\n\n\n44291\n17173\nJohn (I)\nLandis\nAnimal House\n1978\n7.5\n\n\n46315\n344203\nJay\nLevey\nUHF\n1989\n6.6\n\n\n48115\n313459\nGeorge\nLucas\nStar Wars\n1977\n8.8\n\n\n56332\n192017\nJohn\nMusker\nLittle Mermaid, The\n1989\n7.3\n\n\n58201\n30959\nChristopher\nNolan\nBatman Begins\n2005\nNA\n\n\n58201\n210511\nChristopher\nNolan\nMemento\n2000\n8.7\n\n\n65940\n111813\nRob\nReiner\nFew Good Men, A\n1992\n7.5\n\n\n66849\n306032\nGuy\nRitchie\nSnatch.\n2000\n7.9\n\n\n68161\n116907\nHerbert (I)\nRoss\nFootloose\n1984\n5.8\n\n\n74758\n238072\nSteven\nSoderbergh\nOcean's Eleven\n2001\n7.5\n\n\n76524\n167324\nOliver (I)\nStone\nJFK\n1991\n7.8\n\n\n78273\n176711\nQuentin\nTarantino\nKill Bill: Vol. 1\n2003\n8.4\n\n\n78273\n176712\nQuentin\nTarantino\nKill Bill: Vol. 2\n2004\n8.2\n\n\n78273\n267038\nQuentin\nTarantino\nPulp Fiction\n1994\n8.7\n\n\n78273\n276217\nQuentin\nTarantino\nReservoir Dogs\n1992\n8.3\n\n\n82525\n147603\nPaul (I)\nVerhoeven\nHollow Man\n2000\n5.3\n\n\n83616\n207992\nAndy\nWachowski\nMatrix, The\n1999\n8.5\n\n\n83617\n207992\nLarry\nWachowski\nMatrix, The\n1999\n8.5\n\n\n88802\n256630\nUnknown\nDirector\nPirates of the Caribbean\n2003\nNA"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#joining-on-multiple-variables",
+    "href": "slides/week-4/week-4-joins.html#joining-on-multiple-variables",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Joining on Multiple Variables",
+    "text": "Joining on Multiple Variables\nConsider the rodent data from Lab 2.\n\nWe want to add species_id to the rodent measurements.\n\n\nSpeciesMeasurements\n\n\n\nspecies\n\n\n\n\n\n\n\ngenus\nspecies\ntaxa\nspecies_id\n\n\n\n\nDipodomys\nmerriami\nRodent\nDM\n\n\nDipodomys\nordii\nRodent\nDO\n\n\nPerognathus\nflavus\nRodent\nPF\n\n\nChaetodipus\npenicillatus\nRodent\nPP\n\n\nPeromyscus\neremicus\nRodent\nPE\n\n\nOnychomys\nleucogaster\nRodent\nOL\n\n\nReithrodontomys\nmegalotis\nRodent\nRM\n\n\nDipodomys\nspectabilis\nRodent\nDS\n\n\nOnychomys\ntorridus\nRodent\nOT\n\n\nNeotoma\nalbigula\nRodent\nNL\n\n\nPeromyscus\nmaniculatus\nRodent\nPM\n\n\nSigmodon\nhispidus\nRodent\nSH\n\n\nReithrodontomys\nfulvescens\nRodent\nRF\n\n\nChaetodipus\nbaileyi\nRodent\nPB\n\n\n\n\n\n\n\n\n\nmeasurements\n\n\n\n\n\n\n\ngenus_name\nspecies\nsex\nhindfoot_length\nweight\n\n\n\n\nDipodomys\nmerriami\nM\n35\n40\n\n\nDipodomys\nmerriami\nM\n37\n48\n\n\nDipodomys\nmerriami\nF\n34\n29\n\n\nDipodomys\nmerriami\nF\n35\n46\n\n\nDipodomys\nmerriami\nM\n35\n36\n\n\nDipodomys\nordii\nF\n32\n52\n\n\nPerognathus\nflavus\nM\n15\n8\n\n\nDipodomys\nmerriami\nF\n36\n35\n\n\nPerognathus\nflavus\nM\n12\n7\n\n\nDipodomys\nmerriami\nF\n32\n22\n\n\nPerognathus\nflavus\nM\n16\n9\n\n\nDipodomys\nmerriami\nF\n34\n42\n\n\nPerognathus\nflavus\nF\n14\n8\n\n\nDipodomys\nmerriami\nF\n35\n41\n\n\nDipodomys\nmerriami\nF\n37\n37\n\n\nDipodomys\nmerriami\nF\n35\n43\n\n\nDipodomys\nmerriami\nF\n35\n41\n\n\nDipodomys\nmerriami\nF\n33\n40\n\n\nPerognathus\nflavus\nF\n11\n9\n\n\nDipodomys\nmerriami\nF\n35\n45\n\n\nChaetodipus\npenicillatus\nF\n20\n15\n\n\nDipodomys\nmerriami\nM\n35\n29\n\n\nDipodomys\nmerriami\nM\n35\n39\n\n\nDipodomys\nmerriami\nF\n36\n43\n\n\nDipodomys\nmerriami\nM\n38\n46\n\n\nDipodomys\nmerriami\nM\n36\n41\n\n\nDipodomys\nmerriami\nM\n36\n41\n\n\nDipodomys\nmerriami\nM\n38\n40\n\n\nDipodomys\nmerriami\nM\n37\n45\n\n\nDipodomys\nmerriami\nF\n35\n46\n\n\nDipodomys\nmerriami\nF\n35\n40\n\n\nDipodomys\nmerriami\nF\n35\n30\n\n\nDipodomys\nmerriami\nM\n35\n39\n\n\nDipodomys\nmerriami\nM\n35\n34\n\n\nDipodomys\nmerriami\nF\n37\n42\n\n\nDipodomys\nmerriami\nM\n37\n42\n\n\nPerognathus\nflavus\nF\n13\n8\n\n\nDipodomys\nmerriami\nF\n37\n31\n\n\nDipodomys\nmerriami\nF\n36\n40\n\n\nDipodomys\nmerriami\nM\n36\n37\n\n\nDipodomys\nmerriami\nM\n36\n48\n\n\nDipodomys\nmerriami\nM\n37\n42\n\n\nDipodomys\nmerriami\nF\n39\n45\n\n\nChaetodipus\npenicillatus\nF\n21\n16\n\n\nDipodomys\nmerriami\nF\n36\n36\n\n\nDipodomys\nmerriami\nM\n36\n42\n\n\nDipodomys\nmerriami\nM\n36\n44\n\n\nDipodomys\nmerriami\nF\n36\n41\n\n\nDipodomys\nmerriami\nF\n36\n40\n\n\nDipodomys\nmerriami\nM\n37\n34\n\n\nDipodomys\nmerriami\nM\n33\n40\n\n\nDipodomys\nmerriami\nM\n33\n44\n\n\nDipodomys\nmerriami\nM\n37\n44\n\n\nDipodomys\nmerriami\nM\n34\n36\n\n\nDipodomys\nmerriami\nM\n35\n33\n\n\nDipodomys\nmerriami\nF\n37\n46\n\n\nDipodomys\nmerriami\nF\n34\n35\n\n\nDipodomys\nmerriami\nM\n36\n46\n\n\nDipodomys\nmerriami\nF\n33\n37\n\n\nDipodomys\nmerriami\nM\n36\n34\n\n\nDipodomys\nmerriami\nF\n36\n45\n\n\nPerognathus\nflavus\nF\n15\n7\n\n\nDipodomys\nmerriami\nM\n37\n51\n\n\nDipodomys\nmerriami\nM\n35\n39\n\n\nDipodomys\nmerriami\nM\n36\n29\n\n\nDipodomys\nmerriami\nF\n32\n48\n\n\nDipodomys\nmerriami\nM\n38\n46\n\n\nDipodomys\nmerriami\nF\n37\n41\n\n\nDipodomys\nmerriami\nM\n37\n45\n\n\nDipodomys\nmerriami\nF\n35\n42\n\n\nDipodomys\nmerriami\nF\n36\n53\n\n\nDipodomys\nmerriami\nF\n35\n49\n\n\nDipodomys\nmerriami\nF\n36\n46\n\n\nPerognathus\nflavus\nF\n13\n9\n\n\nChaetodipus\npenicillatus\nF\n19\n15\n\n\nPerognathus\nflavus\nM\n13\n4\n\n\nDipodomys\nmerriami\nM\n36\n48\n\n\nDipodomys\nmerriami\nM\n37\n51\n\n\nDipodomys\nmerriami\nM\n38\n50\n\n\nDipodomys\nmerriami\nM\n35\n44\n\n\nDipodomys\nmerriami\nM\n25\n44\n\n\nDipodomys\nmerriami\nM\n35\n45\n\n\nDipodomys\nmerriami\nF\n37\n45\n\n\nPeromyscus\neremicus\nM\n20\n19\n\n\nDipodomys\nmerriami\nF\n38\n44\n\n\nDipodomys\nmerriami\nF\n36\n42\n\n\nDipodomys\nmerriami\nM\n37\n39\n\n\nDipodomys\nmerriami\nM\n37\n47\n\n\nDipodomys\nmerriami\nM\n36\n42\n\n\nDipodomys\nmerriami\nM\n36\n49\n\n\nDipodomys\nmerriami\nM\n38\n39\n\n\nDipodomys\nmerriami\nF\n36\n43\n\n\nDipodomys\nmerriami\nM\n35\n50\n\n\nDipodomys\nmerriami\nM\n36\n41\n\n\nDipodomys\nmerriami\nM\n37\n47\n\n\nDipodomys\nmerriami\nF\n36\n37\n\n\nDipodomys\nmerriami\nM\n36\n41\n\n\nDipodomys\nmerriami\nF\n36\n36\n\n\nDipodomys\nmerriami\nM\n36\n45\n\n\nPeromyscus\neremicus\nM\n19\n20"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#join-by-species-genus",
+    "href": "slides/week-4/week-4-joins.html#join-by-species-genus",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Join by species + genus",
+    "text": "Join by species + genus\n\n\nmeasurements |&gt; \n  left_join(species,\n            by = join_by(species == species, \n                         genus_name == genus)\n            )\n\n\n\n\n\n\n\n\ngenus_name\nspecies\nsex\nhindfoot_length\nweight\ntaxa\nspecies_id\n\n\n\n\nDipodomys\nmerriami\nM\n35\n40\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n48\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n34\n29\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n35\n46\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n35\n36\nRodent\nDM\n\n\nDipodomys\nordii\nF\n32\n52\nRodent\nDO\n\n\nPerognathus\nflavus\nM\n15\n8\nRodent\nPF\n\n\nDipodomys\nmerriami\nF\n36\n35\nRodent\nDM\n\n\nPerognathus\nflavus\nM\n12\n7\nRodent\nPF\n\n\nDipodomys\nmerriami\nF\n32\n22\nRodent\nDM\n\n\nPerognathus\nflavus\nM\n16\n9\nRodent\nPF\n\n\nDipodomys\nmerriami\nF\n34\n42\nRodent\nDM\n\n\nPerognathus\nflavus\nF\n14\n8\nRodent\nPF\n\n\nDipodomys\nmerriami\nF\n35\n41\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n37\n37\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n35\n43\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n35\n41\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n33\n40\nRodent\nDM\n\n\nPerognathus\nflavus\nF\n11\n9\nRodent\nPF\n\n\nDipodomys\nmerriami\nF\n35\n45\nRodent\nDM\n\n\nChaetodipus\npenicillatus\nF\n20\n15\nRodent\nPP\n\n\nDipodomys\nmerriami\nM\n35\n29\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n35\n39\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n43\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n38\n46\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n41\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n41\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n38\n40\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n45\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n35\n46\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n35\n40\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n35\n30\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n35\n39\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n35\n34\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n37\n42\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n42\nRodent\nDM\n\n\nPerognathus\nflavus\nF\n13\n8\nRodent\nPF\n\n\nDipodomys\nmerriami\nF\n37\n31\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n40\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n37\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n48\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n42\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n39\n45\nRodent\nDM\n\n\nChaetodipus\npenicillatus\nF\n21\n16\nRodent\nPP\n\n\nDipodomys\nmerriami\nF\n36\n36\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n42\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n44\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n41\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n40\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n34\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n33\n40\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n33\n44\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n44\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n34\n36\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n35\n33\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n37\n46\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n34\n35\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n46\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n33\n37\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n34\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n45\nRodent\nDM\n\n\nPerognathus\nflavus\nF\n15\n7\nRodent\nPF\n\n\nDipodomys\nmerriami\nM\n37\n51\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n35\n39\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n29\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n32\n48\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n38\n46\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n37\n41\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n45\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n35\n42\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n53\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n35\n49\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n46\nRodent\nDM\n\n\nPerognathus\nflavus\nF\n13\n9\nRodent\nPF\n\n\nChaetodipus\npenicillatus\nF\n19\n15\nRodent\nPP\n\n\nPerognathus\nflavus\nM\n13\n4\nRodent\nPF\n\n\nDipodomys\nmerriami\nM\n36\n48\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n51\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n38\n50\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n35\n44\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n25\n44\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n35\n45\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n37\n45\nRodent\nDM\n\n\nPeromyscus\neremicus\nM\n20\n19\nRodent\nPE\n\n\nDipodomys\nmerriami\nF\n38\n44\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n42\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n39\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n47\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n42\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n49\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n38\n39\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n43\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n35\n50\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n41\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n37\n47\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n37\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n41\nRodent\nDM\n\n\nDipodomys\nmerriami\nF\n36\n36\nRodent\nDM\n\n\nDipodomys\nmerriami\nM\n36\n45\nRodent\nDM\n\n\nPeromyscus\neremicus\nM\n19\n20\nRodent\nPE\n\n\n\n\n\n\n\n\n\nWhat if a species was included in the species dataset, but not in the measurement dataset?"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#what-is-a-factor-variable",
+    "href": "slides/week-4/week-4-joins.html#what-is-a-factor-variable",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "What is a factor variable?",
+    "text": "What is a factor variable?\n\nIn general, factors are used for:\n\ncategorical variables with a fixed and known set of possible values.\n\n\nE.g., day_born = Sunday, Monday, Tuesday, …, Saturday\n\n\ndisplaying character vectors in non-alphabetical order."
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#eras-tour",
+    "href": "slides/week-4/week-4-joins.html#eras-tour",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Eras Tour",
+    "text": "Eras Tour\nLet’s consider songs that Taylor Swift played on her Eras Tour. I have randomly selected 25 songs (and their albums) to consider.\n\neras_data \n\n# A tibble: 25 × 2\n   Song               Album     \n   &lt;chr&gt;              &lt;chr&gt;     \n 1 22                 Red       \n 2 ...Ready for It?   Reputation\n 3 The Archer         Lover     \n 4 Bejeweled          Midnights \n 5 Style              1989      \n 6 You Belong With Me Fearless  \n 7 Don't Blame Me     Reputation\n 8 illicit affairs    Folklore  \n 9 Lavender Haze      Midnights \n10 marjorie           Evermore  \n# ℹ 15 more rows"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#creating-a-factor-base-r",
+    "href": "slides/week-4/week-4-joins.html#creating-a-factor-base-r",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Creating a Factor – Base R",
+    "text": "Creating a Factor – Base R\n\nA character vector:A factor vector:\n\n\n\n\neras_data |&gt; \n  pull(Album)\n\n [1] \"Red\"        \"Reputation\" \"Lover\"      \"Midnights\"  \"1989\"      \n [6] \"Fearless\"   \"Reputation\" \"Folklore\"   \"Midnights\"  \"Evermore\"  \n[11] \"Evermore\"   \"Lover\"      \"Lover\"      \"Red\"        \"Reputation\"\n[16] \"Reputation\" \"Speak Now\"  \"Red\"        \"Midnights\"  \"Fearless\"  \n[21] \"1989\"       \"Midnights\"  \"Fearless\"   \"Folklore\"   \"Lover\"     \n\n\n\n\n\n\n\neras_data |&gt; \n  pull(Album) |&gt; \n  as.factor()\n\n [1] Red        Reputation Lover      Midnights  1989       Fearless  \n [7] Reputation Folklore   Midnights  Evermore   Evermore   Lover     \n[13] Lover      Red        Reputation Reputation Speak Now  Red       \n[19] Midnights  Fearless   1989       Midnights  Fearless   Folklore  \n[25] Lover     \n9 Levels: 1989 Evermore Fearless Folklore Lover Midnights Red ... Speak Now"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#creating-a-factor-base-r-1",
+    "href": "slides/week-4/week-4-joins.html#creating-a-factor-base-r-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Creating a Factor – Base R",
+    "text": "Creating a Factor – Base R\nWhen you create a factor variable from a vector…\n\nEvery unique element in the vector becomes a level.\nThe levels are ordered alphabetically.\nThe elements are no longer displayed in quotes."
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#creating-a-factor-base-r-2",
+    "href": "slides/week-4/week-4-joins.html#creating-a-factor-base-r-2",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Creating a Factor – Base R",
+    "text": "Creating a Factor – Base R\nYou can specify the order of the levels with the levels argument.\n\neras_data |&gt; \n  pull(Album) |&gt; \n  factor(levels = c(\"Fearless\",\n                    \"Speak Now\",\n                    \"Red\",\n                    \"1989\",\n                    \"Reputation\",\n                    \"Lover\",\n                    \"Folklore\",\n                    \"Evermore\",\n                    \"Midnights\")\n         )"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#forcats",
+    "href": "slides/week-4/week-4-joins.html#forcats",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "forcats",
+    "text": "forcats\n\n\n\nWe use this package to…\n\nturn character variables into factors.\nmake factors by discretizing numeric variables.\nrename or reorder the levels of an existing factor.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nforcats loads with tidyverse!\n\n\nThe packages forcats (“for categoricals”) helps wrangle categorical variables."
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#creating-a-factor-fct",
+    "href": "slides/week-4/week-4-joins.html#creating-a-factor-fct",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Creating a Factor – fct",
+    "text": "Creating a Factor – fct\nWith fct(), the levels are automatically ordered in the order of first appearance.\n\n\neras_data |&gt; \n  pull(Album) |&gt; \n  fct()\n\n [1] Red        Reputation Lover      Midnights  1989       Fearless  \n [7] Reputation Folklore   Midnights  Evermore   Evermore   Lover     \n[13] Lover      Red        Reputation Reputation Speak Now  Red       \n[19] Midnights  Fearless   1989       Midnights  Fearless   Folklore  \n[25] Lover     \n9 Levels: Red Reputation Lover Midnights 1989 Fearless Folklore ... Speak Now"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#creating-a-factor",
+    "href": "slides/week-4/week-4-joins.html#creating-a-factor",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Creating a Factor",
+    "text": "Creating a Factor\n\n\neras_data &lt;- eras_data |&gt; \n  mutate(Album = fct(Album))\n\n\n\n\n\n\n\n\n\nTo change a column type to factor, you must wrap fct() in a mutate() call.\n\n\n\n\n\n\n\n\n\n\nI am using pull() to display the outcome:\n\neras_data |&gt; \n  pull(Album) |&gt; \n  fct()\n\n [1] Red        Reputation Lover      Midnights  1989       Fearless  \n [7] Reputation Folklore   Midnights  Evermore   Evermore   Lover     \n[13] Lover      Red        Reputation Reputation Speak Now  Red       \n[19] Midnights  Fearless   1989       Midnights  Fearless   Folklore  \n[25] Lover     \n9 Levels: Red Reputation Lover Midnights 1989 Fearless Folklore ... Speak Now"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#creating-a-factor-fct-1",
+    "href": "slides/week-4/week-4-joins.html#creating-a-factor-fct-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Creating a Factor – fct",
+    "text": "Creating a Factor – fct\nYou can still specify the order of the levels with level.\n\n\neras_data |&gt; \n  pull(Album) |&gt; \n  fct(levels = c(\"Fearless\",\n                 \"Speak Now\",\n                 \"Red\",\n                 \"1989\",\n                 \"Reputation\",\n                 \"Lover\",\n                 \"Folklore\",\n                 \"Evermore\",\n                 \"Midnights\")\n      )"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#creating-a-factor-fct-2",
+    "href": "slides/week-4/week-4-joins.html#creating-a-factor-fct-2",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Creating a Factor – fct",
+    "text": "Creating a Factor – fct\nYou can also specify non-present levels.\n\neras_data |&gt; \n  pull(Album) |&gt; \n  fct(levels = c(\"Taylor Swift\",\n                 \"Fearless\",\n                 \"Speak Now\",\n                 \"Red\",\n                 \"1989\",\n                 \"Reputation\",\n                 \"Lover\",\n                 \"Folklore\",\n                 \"Evermore\",\n                 \"Midnights\",\n                 \"The Tortured Poets Department\")\n      )"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#re-coding-a-factor-fct_recode",
+    "href": "slides/week-4/week-4-joins.html#re-coding-a-factor-fct_recode",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Re-coding a Factor – fct_recode",
+    "text": "Re-coding a Factor – fct_recode\n\nOops, we have a typo in some of our levels! We change existing levels with the syntax: \"&lt;new level&gt;\" = \"&lt;old level&gt;\".\n\n\n\n\neras_data |&gt;\n  mutate(Album = fct_recode(.f = Album,\n                            \"folklore\" = \"Folklore\",\n                            \"evermore\" = \"Evermore\",\n                            \"reputation\" = \"Reputation\")\n         )\n\n# A tibble: 25 × 2\n   Song               Album     \n   &lt;chr&gt;              &lt;fct&gt;     \n 1 22                 Red       \n 2 ...Ready for It?   reputation\n 3 The Archer         Lover     \n 4 Bejeweled          Midnights \n 5 Style              1989      \n 6 You Belong With Me Fearless  \n 7 Don't Blame Me     reputation\n 8 illicit affairs    folklore  \n 9 Lavender Haze      Midnights \n10 marjorie           evermore  \n# ℹ 15 more rows"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#re-coding-a-factor-case_when",
+    "href": "slides/week-4/week-4-joins.html#re-coding-a-factor-case_when",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Re-coding a Factor – case_when",
+    "text": "Re-coding a Factor – case_when\n\nWe have similar functionality with the case_when() function…\n\n\n\n\neras_data |&gt;\n  mutate(Album = case_when(Album == \"Folklore\" ~ \"folklore\",\n                           Album == \"Evermore\" ~ \"evermore\",\n                           Album == \"Reputation\" ~ \"reputation\",\n                           .default = Album),\n         Album = fct(Album)) |&gt; \n  pull(Album)\n\n [1] Red        reputation Lover      Midnights  1989       Fearless  \n [7] reputation folklore   Midnights  evermore   evermore   Lover     \n[13] Lover      Red        reputation reputation Speak Now  Red       \n[19] Midnights  Fearless   1989       Midnights  Fearless   folklore  \n[25] Lover     \n9 Levels: Red reputation Lover Midnights 1989 Fearless folklore ... Speak Now"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#collapsing-a-factor-fct_collapse",
+    "href": "slides/week-4/week-4-joins.html#collapsing-a-factor-fct_collapse",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Collapsing a Factor –fct_collapse",
+    "text": "Collapsing a Factor –fct_collapse\n\nCollapse multiple existing levels of a factor with the syntax:\n\"&lt;new level&gt;\" = c(\"&lt;old level&gt;\", \"&lt;old level&gt;\", ...).\n\n\n\n\neras_data |&gt; \n  mutate(Genre = fct_collapse(.f = Album,\n                       \"country pop\" = c(\"Taylor Swift\", \"Fearless\"),\n                       \"pop rock\" = c(\"Speak Now\", \"Red\"),\n                       \"electropop\" = c(\"1989\", \"Reputation\", \"Lover\"),\n                       \"folk pop\" = c(\"Folklore\", \"Evermore\"),\n                       \"alt-pop\" = \"Midnights\")\n         ) |&gt; \n  slice_sample(n = 6)\n\n# A tibble: 6 × 3\n  Song                                    Album      Genre      \n  &lt;chr&gt;                                   &lt;fct&gt;      &lt;fct&gt;      \n1 willow                                  Evermore   folk pop   \n2 You Belong With Me                      Fearless   country pop\n3 Lavender Haze                           Midnights  alt-pop    \n4 We Are Never Ever Getting Back Together Red        pop rock   \n5 illicit affairs                         Folklore   folk pop   \n6 Look What You Made Me Do                Reputation electropop"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#re-leveling-a-factor-fct_relevel",
+    "href": "slides/week-4/week-4-joins.html#re-leveling-a-factor-fct_relevel",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Re-leveling a Factor –fct_relevel",
+    "text": "Re-leveling a Factor –fct_relevel\nChange the order of the levels of an existing factor.\n\nOriginalOrdered by Copies Sold\n\n\n\neras_data |&gt;\n  pull(Album) |&gt; \n  levels()\n\n [1] \"Taylor Swift\"                  \"Fearless\"                     \n [3] \"Speak Now\"                     \"Red\"                          \n [5] \"1989\"                          \"Reputation\"                   \n [7] \"Lover\"                         \"Folklore\"                     \n [9] \"Evermore\"                      \"Midnights\"                    \n[11] \"The Tortured Poets Department\"\n\n\n\n\n\n\neras_data |&gt; \n  pull(Album) |&gt;\n  fct_relevel(c(\"Fearless\",\n                \"1989\",\n                \"Taylor Swift\",\n                \"Speak Now\",\n                \"Red\",\n                \"Midnights\",\n                \"Reputation\",\n                \"Folklore\",\n                \"Lover\",\n                \"Evermore\")\n              ) |&gt; \n  levels()"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#re-ordering-factors-in-ggplot2",
+    "href": "slides/week-4/week-4-joins.html#re-ordering-factors-in-ggplot2",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Re-ordering Factors in ggplot2",
+    "text": "Re-ordering Factors in ggplot2\n\nOriginalPlotSpecify LevelsPlot\n\n\nThe bars follow the default factor levels.\n\n\nfull_eras |&gt; \n  mutate(Album = fct(Album)) |&gt; \n  ggplot(mapping = aes(y = Album,\n               fill = Album)\n         ) +\n  geom_bar() +\n  theme_minimal() +\n  theme(legend.position = \"none\") +\n  labs(x = \"\",\n       y = \"\",\n       title = \"Number of Songs Played on the Eras Tour by Album\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nWe can order factor levels to order the bar plot.\n\nfull_eras |&gt; \n  mutate(Album = fct(Album,\n                     levels = c(\"Fearless\",\n                                \"Speak Now\",\n                                \"Red\",\n                                \"1989\",\n                                \"Reputation\",\n                                \"Lover\",\n                                \"Folklore\",\n                                \"Evermore\",\n                                \"Midnights\")\n                     )\n         ) |&gt; \n  ggplot(mapping = aes(y = Album,\n               fill = Album)\n         ) +\n  geom_bar() +\n  theme_minimal() +\n  theme(legend.position = \"none\") +\n  labs(x = \"\",\n       y = \"\",\n       title = \"Number of Songs Played on the Eras Tour by Album\")"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#re-ordering-factors-in-ggplot2-1",
+    "href": "slides/week-4/week-4-joins.html#re-ordering-factors-in-ggplot2-1",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Re-ordering Factors in ggplot2",
+    "text": "Re-ordering Factors in ggplot2\n\n\n\n\nOriginalPlotfct_reorder()Plot\n\n\n\nThe ridge plots follow the order of the factor levels.\n\nfull_eras |&gt; \n  ggplot(mapping = aes(x = Length, \n                       y = Album, \n                       fill = Album)\n         ) +\n  geom_density_ridges() +\n  theme_minimal() +\n  theme(legend.position = \"none\")+\n  labs(x = \"Song Length (mins)\",\n       y = \"\",\n       title = \"Length of Songs Played on the Eras Tour by Album\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInside ggplot(), we can order factor levels by a summary value.\n\nfull_eras |&gt; \n  ggplot(aes(x = Length, \n             y = fct_reorder(.f = Album,\n                             .x = Length,\n                             .fun = mean), \n             fill = Album)\n         ) +\n  geom_density_ridges() +\n  theme_minimal() +\n  theme(legend.position = \"none\") +\n  labs(x = \"Song Length (mins)\",\n       y = \"\",\n       title = \"Length of Songs Played on the Eras Tour by Album\")"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#re-ordering-factors-in-ggplot2-2",
+    "href": "slides/week-4/week-4-joins.html#re-ordering-factors-in-ggplot2-2",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "Re-ordering Factors in ggplot2",
+    "text": "Re-ordering Factors in ggplot2\n\nOriginalPlotfct_reorder2()Plot\n\n\n\nThe legend follows the order of the factor levels.\n\nfull_eras |&gt; \n  filter(!Album %in% c(\"1989\",\"Fearless\")) |&gt; \n  group_by(Album, Single) |&gt; \n  summarise(avg_len = mean(Length)) |&gt; \n  ggplot(mapping = aes(x = Single, \n                       y = avg_len, \n                       color = Album)) +\n  geom_point(size = 1.5) +\n  geom_line() +\n  theme_minimal() +\n  scale_x_continuous(breaks = c(0,1),\n                     labels = c(\"No\", \"Yes\")\n                     ) +\n  labs(y = \"\",\n       title = \"Are Taylor Swift's Singles Shorter?\",\n       color = \"Album\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nInside ggplot(), we can order factor levels by the \\(y\\) values associated with the largest \\(x\\) values.\n\nfull_eras |&gt; \n  filter(!Album %in% c(\"1989\",\"Fearless\")) |&gt; \n  group_by(Album, Single) |&gt; \n  summarise(avg_len = mean(Length)) |&gt; \n  ggplot(mapping = aes(x = Single, \n                       y = avg_len, \n                       color = fct_reorder2(.f = Album,\n                                            .x = Single,\n                                            .y = avg_len)\n                       )\n         ) +\n  geom_point(size = 1.5) +\n  geom_line() +\n  theme_minimal() +\n  scale_x_continuous(breaks = c(0,1),\n                     labels = c(\"No\", \"Yes\")\n                     ) +\n  labs(y = \"\",\n       title = \"Are Taylor Swift's Singles Shorter?\",\n       color = \"Album\")"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#chatgpt-to-the-rescue",
+    "href": "slides/week-4/week-4-joins.html#chatgpt-to-the-rescue",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "ChatGPT to the Rescue!",
+    "text": "ChatGPT to the Rescue!\n\n\n\ncollapse the CA regions into the 10 Census regions"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#dplyr-resources",
+    "href": "slides/week-4/week-4-joins.html#dplyr-resources",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "dplyr Resources",
+    "text": "dplyr Resources\n\n\nEvery group should have a dplyr cheatsheet!\nOn the Back: The Combine Tables section gives advice on joining two datasets\n\nThe “Filtering Join” section will be helpful when performing an anti_join()!"
+  },
+  {
+    "objectID": "slides/week-4/week-4-joins.html#to-do",
+    "href": "slides/week-4/week-4-joins.html#to-do",
+    "title": "Extending Joins, Factors, Clean Variable Names",
+    "section": "To do…",
+    "text": "To do…\n\nLab 4: Childcare Costs in California\n\nDue Sunday (10/20) at 11:59pm\n\nRead Chapter 5: Strings + Dates\n\nCheck-in 5.1 due Tuesday (10/22) at 12:10pm\nCheck-in 5.2 due Thursday (10/24) at 12:10pm"
   }
 ]

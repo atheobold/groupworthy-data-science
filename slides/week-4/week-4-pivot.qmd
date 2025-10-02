@@ -12,8 +12,6 @@ editor: source
 #| label: setup
 
 library(tidyverse)
-library(palmerpenguins)
-library(ggridges)
 library(readxl)
 ```
 

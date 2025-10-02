@@ -1,0 +1,57 @@
+---
+title: "Untitled"
+format: revealjs
+execute: 
+  eval: false
+---
+
+# `janitor` Package
+
+![Image by Allison Horst](images/janitor_clean_names.png){fig-alt="janitor::clean_names(): convert all column names to *_case! Below, a cartoon beaver putting shapes with long, messy column names (pulled from a bin labeled 'MESS' and 'not so awesome column names') into a contraption that converts them to lower snake case. The output has stylized text reading 'Way more deal-withable column names.' Learn more about clean_names and other *awesome* data cleaning tools in janitor."}
+
+## Clean Variable Names with [`janitor`](https://sfirke.github.io/janitor/)
+
+::: {.small}
+Data from external sources likely has variable names not ideally formatted for R.
+
+Names may...
+
++ contain spaces.
++ start with numbers.
++ start with a mix of capital and lower case letters.
+:::
+
+. . .
+
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: false -->
+
+<!-- names(military_clean)[1:12] -->
+<!-- ``` -->
+
+## Clean Variable Names with [`janitor`](https://sfirke.github.io/janitor/)
+
+::: {.small}
+The `janitor` package converts all variable names in a dataset to *snake_case*.
+
+Names will...
+
++ start with a lower case letter.
++ have spaces filled in with `_`.
+
+<!-- ```{r} -->
+<!-- #| eval: true -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: "3-5" -->
+
+<!-- library(janitor) -->
+
+<!-- military_clean_names <- military |> -->
+<!--   clean_names() -->
+
+<!-- names(military_clean_names)[1:12] -->
+<!-- ``` -->
+:::
+

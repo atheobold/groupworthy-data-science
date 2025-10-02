@@ -9,19 +9,38 @@ editor: source
 ```{r setup}
 #| include: false
 #| message: false
+
 library(tidyverse)
-library(palmerpenguins)
-library(ggridges)
 library(readxl)
+library(ggridges)
 ```
 
 ```{r}
 #| eval: true
-#| label: imdb-data
+#| label: data
 #| include: false
 #| message: false
 #| warning: false
 
+military <- read_xlsx(here::here("group-activities",
+                                 "week-4", 
+                                 "data", 
+                                 "gov_spending_per_capita.xlsx"), 
+                      sheet = "Share of Govt. spending", 
+                      skip  = 7, 
+                      n_max = 190, 
+                      na = c(". .", "xxx", "..")
+                      )
+
+cont_region <- read_xlsx(here::here("group-activities",
+                                 "week-4", 
+                                 "data",
+                                 "gov_spending_per_capita.xlsx"), 
+                      sheet = "Regional totals", 
+                      skip = 14) |> 
+  filter(Region != "World total (including Iraq)", 
+         Region != "World total (excluding Iraq)")
+                      
 actors <- read_csv("data/actors.csv")
 directors <- read_csv("data/directors.csv")
 directors_genres <- read_csv("data/directors_genres.csv")
@@ -38,10 +57,9 @@ Today we will...
 ::: columns
 ::: {.column width="55%"}
 ::: {.small}
-- Debrief PA 4
-  + Describe the Code
-  + Clean Column Names  
-- Debrief Lab 3 & Challenge 3
+- Debrief PA 4 (7-minutes)
+  + An alternative approach to `filter()`ing 
+- Lab 3 & Challenge 3
   + Common Themes
   + Package Lifecycle Stages
   + Expectations for Tools Used
@@ -57,69 +75,94 @@ Today we will...
 -   New Material
     -   Relational Data
     -   Factors with `forcats`
--   [Lab 4: Childcare Costs in California](../../labs/instructions/lab-4-instructions.qmd)
+-   Lab 4
 :::
 :::
 :::
 
 # Practice Activity 4
 
-![](images/frustrated-about-r.png){fig-alt="A frustrated little monster sits on the ground with his hat next to him, saying 'I just need a minute.' Looking on empathetically is the R logo, with the word 'Error' in many different styles behind it."}
+![](images/military-relational-diagram.jpg){fig-alt="An image of two datasets, one named military_expenditures and one named region_totals. The military_expenditures datast has five (visible) columns titled: Country, Year, Expenditures, Notes, Reporting year. The region_totals dataset has 13 (visible) columns: Region, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 9157, 1958, 1959, 1960, and 1961. The Country column of military_expenditures is highlighted in red and the Region column of the region_totals column is also highlighted in red. The image is highlighting these columns as they are 'keys' linking the two datasets with one another." width=85%}
 
-<!-- # `janitor` Package -->
+## Filtering Joins
 
-<!-- ![Image by Allison Horst](images/janitor_clean_names.png){fig-alt="janitor::clean_names(): convert all column names to *_case! Below, a cartoon beaver putting shapes with long, messy column names (pulled from a bin labeled 'MESS' and 'not so awesome column names') into a contraption that converts them to lower snake case. The output has stylized text reading 'Way more deal-withable column names.' Learn more about clean_names and other *awesome* data cleaning tools in janitor."} -->
+> Filter *observations* based on values in new dataframe.
 
-<!-- ## Clean Variable Names with [`janitor`](https://sfirke.github.io/janitor/) -->
+## Filtering Joins: `anti_join()`
+**Removes** observations when their keys are present in **both** datasets, and **only keeps variables from the first dataset**.
 
-<!-- ::: {.small} -->
-<!-- Data from external sources likely has variable names not ideally formatted for R. -->
+![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/anti-join.gif){fig-alt="A looping animation shows two tables being compared under an ‘anti join’ operation. The left table has keys 1 (red), 2 (blue), 3 (green) paired with values x1, x2, x3. The right table has keys 1 (red), 2 (blue), and 4 (purple) paired with values y1, y2, y4. Lines indicate matching keys (1 and 2). The resulting table on the right contains only the rows from the left table that do not have a match in the right: key 3 with x3 (green). Keys 1 and 2 are excluded because they have matches in the right table."}
 
-<!-- Names may... -->
 
-<!-- + contain spaces. -->
-<!-- + start with numbers. -->
-<!-- + start with a mix of capital and lower case letters. -->
-<!-- ::: -->
+## Filtering Joins: `anti_join()`
 
-<!-- . . . -->
+::: panel-tabset
 
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: false -->
+### Using `filter()`
 
-<!-- names(military_clean)[1:12] -->
-<!-- ``` -->
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
 
-<!-- ## Clean Variable Names with [`janitor`](https://sfirke.github.io/janitor/) -->
+regions <- cont_region |> 
+  pull(Region)
+  
+military |> 
+  filter(! Country %in% regions)
+```
 
-<!-- ::: {.small} -->
-<!-- The `janitor` package converts all variable names in a dataset to *snake_case*. -->
+```{r}
+#| echo: false
+#| eval: false
 
-<!-- Names will... -->
+military |> 
+  filter(! Country %in% regions) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "200px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
 
-<!-- + start with a lower case letter. -->
-<!-- + have spaces filled in with `_`. -->
 
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "3-5" -->
+### Using `anti_join()` instead
 
-<!-- library(janitor) -->
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| message: false
+         
+military |> 
+  anti_join(cont_region, 
+            by = join_by(Country == Region))
+```
 
-<!-- military_clean_names <- military |>  -->
-<!--   clean_names() -->
+```{r}
+#| echo: false
+#| eval: true
 
-<!-- names(military_clean_names)[1:12] -->
-<!-- ``` -->
-<!-- ::: -->
+military |> 
+  anti_join(cont_region, 
+            by = join_by(Country == Region)) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "400px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+Countries: ~~Africa~~, ~~North Africa~~, **Algeria**, **Libya**, **Morocco**
+:::
+
+<!-- ## Filtering Joins: `semi_join()` -->
+
+<!-- Keeps observations when their keys are present in **both** datasets, -->
+<!-- **but only keeps variables from the first dataset**. -->
+
+<!-- ![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/semi-join.gif){fig-alt="A looping animation shows two tables side by side and the result of a semi join. The left table (x) has keys 1 (red), 2 (blue), 3 (green) paired with x1, x2, x3. The right table (y) has keys 1 (red), 2 (blue), 4 (purple) paired with y1, y2, y4. Matching key rows (1 and 2) are connected. The resulting output table includes only the rows from the left table that have matches in the right table: key 1 with x1 and key 2 with x2. The left row with key 3 is dropped, and no new columns from y are shown."} -->
 
 
 ## Lab 3 Common Themes
 
-::: {.small}
+::: {.midi}
 ::: {.incremental}
 + **Q1:** The [`tidyverse`](https://www.tidyverse.org/packages/) package automatically loads `ggplot2`, `dplyr`, `readr`, etc. -- do not load these twice!
 
@@ -127,6 +170,7 @@ Today we will...
 context of these data?
   + **Challenge 3:** When reaching a conclusion with the hypothesis test, what
   does Question 3 refer to?
+  
 - Saving an f*$# load of objects 
   + Not outputting the results
 :::
@@ -134,7 +178,7 @@ context of these data?
 
 ## Lab 3 Common Themes
 
-::: {.small}
+::: {.midi}
 - **Q5 & Q7**: Not using the "correct" function syntax
 
 ```{r}
@@ -147,14 +191,12 @@ if_any(.cols = everything(), .fns = ~ is.na(.x))
 ```
 :::
 
-::: {.small}
+::: {.midi}
 ::: {.incremental}
 - Not using `.x` to specify where the `.cols` input should go will go awry 
   when there are **multiple** function inputs. 
-- Using named arguments (e.g., `.cols = `, `.fns = `) makes your code more
+- Using named arguments (e.g., `.cols = `) makes your code more
 readable and is part of the code formatting guidelines for this class. 
-
-</br>
 
 - Think about "efficient" ways to do things
   + **Q5**: Are you using the same function `across()` multiple columns?
@@ -186,11 +228,22 @@ As packages get updated, the functions and function arguments included in those 
 
 ## Deprecated Functions
 
+```{r}
+#| echo: false
+#| eval: true
+
+military_clean <- military |> 
+  anti_join(cont_region, 
+            by = join_by(Country == Region))
+```
+
+
 ::: {.small}
 A **deprecated** functionality has a better alternative available and is scheduled for removal.
 
 + You get a warning telling you what to use instead.
 :::
+
 . . .
 
 ::: {.small}
@@ -199,10 +252,10 @@ A **deprecated** functionality has a better alternative available and is schedul
 #| message: true
 #| echo: true
 #| code-line-numbers: "2"
-#| eval: false
+#| eval: true
 
 military_clean |> 
-  filter(across(.cols = Notes:`2019`, 
+  filter(across(.cols = -Country, 
                 .fns = ~ is.na(.x)
                 )
          ) 
@@ -219,10 +272,10 @@ Instead, we use...
 ```{r}
 #| echo: true
 #| code-line-numbers: "2"
-#| eval: false
+#| eval: true
 
 military_clean |>
-  filter(if_all(.cols = Notes:`2019`, 
+  filter(if_all(.cols = -Country, 
                 .fns = ~ is.na(.x)
                 )
          ) 
@@ -278,266 +331,6 @@ accomplish a given task.
 
 > Insert your review into the comment box! 
 
-# Relational Data
-
-<!-- Multiple, interconnected tables of data are called **relational**. -->
-
-<!-- + It is the *relation* between datasets, not just the individual datasets themselves, that are important. -->
-
-
-## Data Joins
-
-We can **combine** (join) data tables based on their relations.
-
-::: columns
-::: {.column width="50%"}
-**Mutating joins**
-
-Add *variables* from a new dataframe to observations in an existing dataframe.
-
-`left_join()`,   
-`right_join()`,   
-`inner_join()`,  
-`full_join()`
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="45%"}
-**Filtering Joins**
-
-Filter *observations* based on values in new dataframe.
-
-`semi_join()`, `anti_join()`
-:::
-:::
-
-## Keys
-
-::: {.midi}
-A key uniquely identifies an observation in a data set.
-
-+ To combine (join) two datasets, the **key** needs to be present in both.
-:::
-
-. . .
-
-![](images/military-relational-diagram.jpg){fig-alt="An image of two datasets, one named military_expenditures and one named region_totals. The military_expenditures datast has five (visible) columns titled: Country, Year, Expenditures, Notes, Reporting year. The region_totals dataset has 13 (visible) columns: Region, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 9157, 1958, 1959, 1960, and 1961. The Country column of military_expenditures is highlighted in red and the Region column of the region_totals column is also highlighted in red. The image is highlighting these columns as they are 'keys' linking the two datasets with one another." width=85%}
-
-
-## Filtering Joins: `semi_join()`
-
-Keeps observations when their keys are present in **both** datasets,
-**but only keeps variables from the first dataset**.
-
-![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/semi-join.gif){fig-alt="A looping animation shows two tables side by side and the result of a semi join. The left table (x) has keys 1 (red), 2 (blue), 3 (green) paired with x1, x2, x3. The right table (y) has keys 1 (red), 2 (blue), 4 (purple) paired with y1, y2, y4. Matching key rows (1 and 2) are connected. The resulting output table includes only the rows from the left table that have matches in the right table: key 1 with x1 and key 2 with x2. The left row with key 3 is dropped, and no new columns from y are shown."}
-
-## Filtering Joins: `semi_join()`
-
-::: panel-tabset
-
-### `semi_join()`
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-directors_genres |> 
-  semi_join(movies_directors)
-```
-
-```{r}
-#| echo: false
-#| eval: false
-
-semi_join(directors_genres_subset, movies_directors_subset) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "320px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-<!-- Movie Directors: 429, ~~**2931**~~, 11652, 14927, 15092 -->
-
-### Connection to `filter()`
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-directors_genres |>
-  filter(director_id %in% movies_directors$director_id)
-```
-
-```{r}
-#| echo: false
-#| eval: false
-directors_genres_subset |>
-  filter(director_id %in% movies_directors_subset$director_id) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "320px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-
-
-## Filtering Joins: `anti_join()`
-
-**Removes** observations when their keys are present in **both** datasets, and **only keeps variables from the first dataset**.
-
-![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/anti-join.gif){fig-alt="A looping animation shows two tables being compared under an ‘anti join’ operation. The left table has keys 1 (red), 2 (blue), 3 (green) paired with values x1, x2, x3. The right table has keys 1 (red), 2 (blue), and 4 (purple) paired with values y1, y2, y4. Lines indicate matching keys (1 and 2). The resulting table on the right contains only the rows from the left table that do not have a match in the right: key 3 with x3 (green). Keys 1 and 2 are excluded because they have matches in the right table."}
-
-<!-- :::: {.columns} -->
-<!-- ::: {.column width="60%"} -->
-
-<!-- ![](images/semi1.png){fig-alt="Two tables on the left labeled 'x' and 'y,' each with two columns, show key-value pairs. The 'x' table contains a key column with values 1, 2, and 3 and a value column with 'x1,' 'x2,' and 'x3.' The 'y' table contains a key column with values 1, 2, and 4 and a value column with 'y1,' 'y2,' and 'y4.'"} -->
-<!-- ::: -->
-<!-- ::: {.column width="15%"} -->
-
-<!-- <br> -->
-
-<!-- ::: {.r-fit-text} -->
-<!-- &rarr; &emsp; -->
-<!-- ::: -->
-
-<!-- ::: -->
-<!-- ::: {.column width="25%"} -->
-
-<!-- <br> -->
-
-<!-- ![](images/anti2.png){fi-alt="An arrow points to the right, showing the result of an anti join. The resulting table includes the row from 'x' where the key (3) does not have a corresponding match in 'y.' It contains only the key-value pair (3, x3), demonstrating that the anti join keeps only the unmatched rows from the left table ('x')."} -->
-
-<!-- ::: -->
-<!-- :::: -->
-
-
-## Filtering Joins: `anti_join()`
-
-::: panel-tabset
-
-### `anti_join()`
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-directors_genres |> 
-  anti_join(movies_directors)
-```
-
-```{r}
-#| echo: false
-#| eval: false
-
-anti_join(directors_genres_subset, movies_directors_subset) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "200px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-Movie Directors: ~~429~~, **2931**, ~~11652~~, ~~14927~~, ~~15092~~
-
-### Connection to `filter()`
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-directors_genres |>
-  filter(!director_id %in% movies_directors$director_id)
-```
-
-```{r}
-#| echo: false
-#| eval: false
-
-directors_genres_subset |>
-  filter(!director_id %in% movies_directors_subset$director_id) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "200px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-
-<!-- ![IMDb movie relational data](images/imdb_relational.png){fig-alt="A diagram depicting the relationships between various tables in a movie database. The tables and their columns are as follows. directors_genres: Contains 'director_id' (int), 'genre' (varchar), and 'prob' (float). Linked to the 'directors' table by 'director_id.' movies_directors: Contains 'director_id' (int) and 'movie_id' (int). Linked to both the 'directors' and 'movies' tables by 'director_id' and 'movie_id.' movies_genres: Contains 'movie_id' (int) and 'genre' (varchar). Linked to the 'movies' table by 'movie_id.' roles: Contains 'actor_id' (int), 'movie_id' (int), and 'role' (varchar). Linked to both the 'actors' and 'movies' tables by 'actor_id' and 'movie_id.' The following entity tables are represented at the bottom: directors: Contains 'id' (int), 'first_name' (varchar), and 'last_name' (varchar). movies: Contains 'id' (int), 'name' (varchar), 'year' (int), and 'rank' (float). actors: Contains 'id' (int), 'first_name' (varchar), 'last_name' (varchar), and 'gender' (char). Arrows represent relationships between the various tables, with foreign keys connecting them."} -->
-
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- #| include: false -->
-<!-- #| message: false -->
-<!-- #| warning: false -->
-<!-- #| label: imdb-data-import -->
-
-<!-- library(RMariaDB) -->
-<!-- library(dm) -->
-
-<!-- # IMDb -->
-<!-- con <- dbConnect( -->
-<!--   drv = RMariaDB::MariaDB(),  -->
-<!--   username = "guest", -->
-<!--   password = "relational",  -->
-<!--   host = "relational.fit.cvut.cz",  -->
-<!--   port = 3306, -->
-<!--   dbname = "imdb_small") -->
-<!-- dbListTables(con) -->
-
-<!-- my_dm <- dm_from_src(con) -->
-
-<!-- actors <- my_dm$actors |>  -->
-<!--   as.data.frame() -->
-<!-- write_csv(actors, "data/actors.csv", na = "") -->
-
-<!-- directors <- my_dm$directors |>  -->
-<!--   as.data.frame() -->
-<!-- write_csv(directors, "data/directors.csv", na = "") -->
-
-<!-- directors_genres <- my_dm$directors_genres |>  -->
-<!--   as.data.frame() -->
-<!-- write_csv(directors_genres, "data/directors_genres.csv", na = "") -->
-
-<!-- movies <- my_dm$movies |>  -->
-<!--   as.data.frame() -->
-<!-- write_csv(movies, "data/movies.csv", na = "") -->
-
-<!-- movies_directors <- my_dm$movies_directors |>  -->
-<!--   as.data.frame() -->
-<!-- write_csv(movies_directors, "data/movies_directors.csv", na = "") -->
-
-<!-- movies_genres <- my_dm$movies_genres |>  -->
-<!--   as.data.frame() -->
-<!-- write_csv(movies_genres, "data/movies_genres.csv", na = "") -->
-
-<!-- roles <- my_dm$roles |>  -->
-<!--   as.data.frame() -->
-<!-- write_csv(roles, "data/roles.csv", na = "") -->
-
-<!-- dbDisconnect(con) -->
-<!-- rm(con, my_dm) -->
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| include: false -->
-<!-- #| message: false -->
-<!-- #| warning: false -->
-<!-- #| label: import-data-retrieved-from-imdb -->
-
-<!-- actors <- read_csv("data/actors.csv") -->
-<!-- directors <- read_csv("data/directors.csv") -->
-<!-- directors_genres <- read_csv("data/directors_genres.csv") -->
-<!-- movies <- read_csv("data/movies.csv") -->
-<!-- movies_directors <- read_csv("data/movies_directors.csv") -->
-<!-- movies_genres <- read_csv("data/movies_genres.csv") -->
-<!-- roles <- read_csv("data/roles.csv") -->
-<!-- ``` -->
-
-
-
 ## Relational Data
 
 When we work with multiple tables of data, we say we are working with
@@ -552,12 +345,19 @@ When we work with relational data, we rely on **keys**.
 -   A key uniquely identifies an observation in a dataset.
 -   A key allows us to relate datasets to each other
 
+## Childcare Costs
 
-## IMDb Movies Data
-
-![](images/imdb-keys.png){fig-alt="A diagram depicting the relationships between various tables in a movie database. The tables and their columns are as follows. directors_genres: Contains 'director_id' (int), 'genre' (varchar), and 'prob' (float). Linked to the 'directors' table by 'director_id.' movies_directors: Contains 'director_id' (int) and 'movie_id' (int). Linked to both the 'directors' and 'movies' tables by 'director_id' and 'movie_id.' movies_genres: Contains 'movie_id' (int) and 'genre' (varchar). Linked to the 'movies' table by 'movie_id.' roles: Contains 'actor_id' (int), 'movie_id' (int), and 'role' (varchar). Linked to both the 'actors' and 'movies' tables by 'actor_id' and 'movie_id.' The following entity tables are represented at the bottom: directors: Contains 'id' (int), 'first_name' (varchar), and 'last_name' (varchar). movies: Contains 'id' (int), 'name' (varchar), 'year' (int), and 'rank' (float). actors: Contains 'id' (int), 'first_name' (varchar), 'last_name' (varchar), and 'gender' (char). Arrows represent relationships between the various tables, with foreign keys connecting them."}
+![](images/relational-childcare.jpg){fig-alt=""}
 
 <!-- **How can we find each director's active years?** -->
+
+## Mutating Joins 
+
+Add *variables* from a new dataframe to observations in an existing dataframe.
+
+`left_join()`,   
+`right_join()`,   
+`inner_join()`,  
 
 ## `inner_join()`
 
@@ -574,159 +374,12 @@ Keeps observations when their keys are present in **both** datasets.
 ::::
 
 
-## `inner_join()`: IMDb Example
-
-```{r}
-directors_genres_subset <- directors_genres |>
-  filter(director_id %in% c(429, 2931, 11652, 14927, 15092)) |> 
-  group_by(director_id) |> 
-  slice_max(order_by = prob, n = 2, with_ties = F)
-
-movies_directors_subset <- movies_directors |> 
-  filter(director_id %in% c(429, 9247, 11652, 14927, 15092))
-
-directors_subset <- directors |> 
-  filter(id %in% c(429, 9247, 11652, 14927, 15092))
-```
-
-:::: {.columns}
-::: {.column width="50%"}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-directors_genres
-```
-
-```{r}
-#| eval: true
-#| echo: false
-directors_genres_subset |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "160px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-::: {.column width="50%"}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-movies_directors
-```
-
-```{r}
-#| eval: true
-#| echo: false
-movies_directors_subset |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "160px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-::::
-
-<font size = 6>
-
-ID: 429, **2931**, 11652, 14927, 15092  &emsp; &emsp; &ensp;  ID: 429, **9247**, 11652, 14927, 15092
-
-</font>
-
-. . .
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-inner_join(directors_genres, movies_directors)
-```
-
-```{r}
-#| eval: true
-#| echo: false
-inner_join(directors_genres_subset, movies_directors_subset) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "160px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-<font size = 6>
-
-ID: 429, ~~**2931**~~, ~~**9247**~~, 11652, 14927, 15092
-
-</font>
+## `inner_join()`: Childcare Data
 
 
-## `inner_join()`: IMDb Example
+## `inner_join()`: Childcare Data
 
 What if our **key** does not have the same name?
-
-:::: {.columns}
-::: {.column width="50%"}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-directors_genres
-```
-
-```{r}
-#| eval: true
-#| echo: false
-directors_genres_subset |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "170px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-::: {.column width="50%"}
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-directors
-```
-
-```{r}
-#| eval: true
-#| echo: false
-directors_subset |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "170px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-::::
-
-. . .
-
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: "3"
-inner_join(directors_genres, 
-           directors, 
-           by = join_by(director_id == id))
-```
-
-```{r}
-#| eval: true
-#| echo: false
-inner_join(directors_subset,
-           directors_genres_subset,
-           by = join_by(id == director_id)) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "170px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
 
 ## Piping Joins
 
@@ -792,7 +445,7 @@ directors_genres |>
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 #| echo: false
 
 directors_genres_subset |> 
@@ -815,7 +468,7 @@ movies_directors |>
 ```
 
 ```{r}
-#| eval: true
+#| eval: false
 #| echo: false
 movies_directors_subset |> 
   distinct(director_id) |> 
@@ -828,78 +481,9 @@ movies_directors_subset |>
 
 ## Joining Multiple Data Sets
 
-::: panel-tabset
-### Data
-
-:::: {.columns}
-::: {.column width="50%"}
-::: {.small}
-```{r}
-#| echo: true
-directors[1:4,]
-```
-:::
-:::
-
-::: {.column width="50%"}
-::: {.small}
-```{r}
-#| echo: true
-movies_directors[1:4,]
-```
-:::
-::: 
-::::
-
-:::: {.columns}
-::: {.column width="25%"}
-:::
-
-::: {.column width="50%"}
-::: {.small}
-```{r}
-#| echo: true
-movies[1:4,]
-```
-:::
-:::
-::::
-
 ### Sketch
 
-```{r}
-#| out-width: "90%"
-#| fig-align: center
-#| fig-alt: "The image illustrates a relational database schema involving three tables: movies_directors, directors, and movies. The movies_directors table has two columns: director_id (int) and movie_id (int). The directors table contains id (int), first_name (char), and last_name (char), while the movies table includes id (int), name (char), year (int), and rank (float). A caution is noted, highlighting that there are two columns named id, but they store different types of information. The goal is to keep only observations that appear in all three datasets, which requires using two calls to the inner_join() function. There's also a suggestion to rename the column name in the final dataset, which would contain columns like director_id, movie_id, first_name, last_name, name, year, and rank."
-
-knitr::include_graphics("images/multiple_joins.png")
-```
-
 ### 1st + 2nd
-
-::: {.small}
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-movies_directors |> 
-  inner_join(directors, 
-             by = join_by(director_id == id)
-             )
-```
-:::
-
-```{r}
-#| eval: true
-#| echo: false
-movies_directors |> 
-  inner_join(directors, 
-             join_by(director_id == id)) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "400px") |> 
-  kableExtra::kable_styling(font_size = 25)
-```
 
 ### + 3rd
 
@@ -932,113 +516,9 @@ movies_directors |>
   kableExtra::scroll_box(height = "300px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
-
-:::
-
-
-## Joining on Multiple Variables
-
-Consider the `rodent` data from Lab 2.
-
-+ We want to add `species_id` to the rodent measurements.
-
-```{r}
-rodent <- read_csv(here::here("labs", 
-                              "student", 
-                              "data", 
-                              "surveys.csv")
-                   )
-
-species <- rodent |> 
-  select(genus:taxa, species_id) |> 
-  distinct()
-
-measurements <- rodent |> 
-  select(genus, species, sex:weight) |> 
-  rename(genus_name = genus)
-```
-
-::: panel-tabset
-
-## Species
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-species
-```
-
-```{r}
-#| eval: true
-#| echo: false
-species |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "300px") |> 
-  kableExtra::kable_styling(font_size = 25)
-```
-
-## Measurements
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-measurements
-```
-
-```{r}
-#| eval: true
-#| echo: false
-measurements[1:100,] |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "300px") |> 
-  kableExtra::kable_styling(font_size = 25)
-```
-:::
-
-## Join by `species` + `genus`
-
-::: {.small}
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-measurements |> 
-  left_join(species,
-            by = join_by(species == species, 
-                         genus_name == genus)
-            )
-```
-:::
-
-```{r}
-#| eval: true
-#| echo: false
-measurements[1:100, ] |> 
-  left_join(species,
-            by = join_by(species == species, 
-                         genus_name == genus)
-            ) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "300px") |> 
-  kableExtra::kable_styling(font_size = 25)
-```
-
-. . .
-
-</br> 
-
-::: {.small}
-**What if a species was included in the `species` dataset, but not in the
-`measurement` dataset?**
 :::
 
 # Factor Variables
-
 
 ## What is a factor variable?
 
@@ -1105,38 +585,6 @@ eras_data |>
 ```
 :::
 :::
-
-## Creating a Factor -- Base `R`
-
-When you create a factor variable from a vector...
-
-+ Every unique element in the vector becomes a **level**.
-+ The levels are ordered alphabetically.
-+ The elements are no longer displayed in quotes.
-
-
-## Creating a Factor -- Base `R`
-
-You can **specify the order of the levels** with the `levels` argument.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-#| eval: false
-
-eras_data |> 
-  pull(Album) |> 
-  factor(levels = c("Fearless",
-                    "Speak Now",
-                    "Red",
-                    "1989",
-                    "Reputation",
-                    "Lover",
-                    "Folklore",
-                    "Evermore",
-                    "Midnights")
-         )
-```
 
 ## `forcats`
 

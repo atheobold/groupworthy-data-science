@@ -1,0 +1,178 @@
+---
+title: "Lab 3: Student Evaluations of Teaching"
+author: "Your name here!"
+format: html
+editor: source
+embed-resources: true
+---
+
+In this lab, we will be using the `dplyr` package to explore student evaluations
+of teaching data. **You are expected to use functions from `dplyr` to do your data manipulation!**
+
+<!-- See instructions for words of advice on completing the assignment! -->
+
+## The Data
+
+The `teacher_evals` dataset contains student evaluations of reaching (SET)
+collected from students at a University in Poland. There are SET surveys from 
+students in all fields and all levels of study offered by the university.
+
+The SET questionnaire that every student at this university completes is as
+follows:
+
+> Evaluation survey of the teaching staff of University of Poland. Please
+> complete the following evaluation form, which aims to assess the lecturer’s
+> performance. Only one answer should be indicated for each question. The
+> answers are coded in the following way: 5 - I strongly agree; 4 - I agree;
+> 3 - Neutral; 2 - I don’t agree; 1 - I strongly don’t agree.
+>
+> Question 1: I learned a lot during the course.
+>
+> Question 2: I think that the knowledge acquired during the course is very
+> useful.
+>
+> Question 3: The professor used activities to make the class more engaging.
+>
+> Question 4: If it was possible, I would enroll for a course conducted by this
+> lecturer again.
+>
+> Question 5: The classes started on time.
+>
+> Question 6: The lecturer always used time efficiently.
+>
+> Question 7: The lecturer delivered the class content in an understandable and
+> efficient way.
+>
+> Question 8: The lecturer was available when we had doubts.
+>
+> Question 9. The lecturer treated all students equally regardless of their
+> race, background and ethnicity.
+
+These data are from the end of the winter semester of the 2020-2021 academic
+year. In the period of data collection, all university classes were entirely
+online amid the COVID-19 pandemic. While expected learning outcomes were not
+changed, the online mode of study could have affected grading policies and could
+have implications for data.
+
+**Average SET scores** were combined with many other variables, including:
+
+1.  **characteristics of the teacher** (degree, seniority, gender, SET scores in
+the past 6 semesters).
+2.  **characteristics of the course** (time of day, day of the week, course
+type, course breadth, class duration, class size).
+3.  **percentage of students providing SET feedback.**
+4.  **course grades** (mean, standard deviation, percentage failed for the
+current course and previous six semesters).
+
+This rich dataset allows us to **investigate many of the biases in student evaluations of teaching** that have been reported in the literature and to formulate new
+hypotheses.
+
+Before tackling the problems below, study the description of each variable
+included in the `teacher_evals_codebook.pdf` inside the "resources" folder.
+
+**1. Load the appropriate R packages for your analysis.**
+*Hint: The ggplot2 package and the readr package can both be loaded with the tidyverse package.*
+
+```{r}
+#| label: packages
+
+```
+
+**2. Load in the `teacher_evals` data.** 
+*Hint: You should use the `here()` function from the __here__ package!*
+
+```{r}
+#| label: load-data
+
+```
+
+### Data Inspection + Summary
+
+**3. Provide a brief overview (~4 sentences) of the dataset.**
+
+```{r}
+#| label: explore-data
+# you may want to use code to answer this question
+
+```
+
+**4. What is the unit of observation (i.e. a single row in the dataset) identified by?**
+
+```{r}
+#| label: row-identification
+# you may want to use code to answer this question
+
+```
+
+**5. Use _one_ `dplyr` pipeline to clean the data by:**
+
+- **renaming the `gender` variable `sex`**
+- **removing all courses with fewer than 10 respondents**
+- **changing data types in whichever way you see fit (e.g., is the instructor ID really a numeric data type?)**
+- **only keeping the columns we will use -- `course_id`, `teacher_id`, `question_no`, `no_participants`, `resp_share`, `SET_score_avg`, `percent_failed_cur`, `academic_degree`, `seniority`, and `sex`**
+
+**Assign your cleaned data to a new variable named `teacher_evals_clean` –- use these data going forward.**
+
+```{r}
+#| label: data-cleaning
+
+
+```
+
+**6. How many unique instructors and unique courses are present in the cleaned dataset?**
+
+```{r}
+#| label: unique-courses
+
+
+```
+
+**7. What are the demographics of the instructors in this study? Investigate the variables `academic_degree`, `seniority`, and `sex` and summarize your findings in ~3 complete sentences.**
+
+```{r}
+#| label: exploring-demographics-of-instructors
+
+
+```
+
+**8. One teacher-course combination has some missing values, coded as `NA`. Which instructor has these missing values? Which course? What variable are the missing values in?**
+
+```{r}
+#| label: uncovering-missing-values
+
+
+```
+
+**9. Each course seems to have used a different subset of the nine evaluation questions. How many teacher-course combinations asked all nine questions?**
+
+```{r}
+#| label: teacher-course-asked-every-question
+
+
+```
+
+## Rate my Professor
+
+**10. Which instructors who had _at least five_ courses reviewed in the data had the highest and lowest average rating for Question 1 (I learnt a lot during the course.) across all their courses?**
+
+```{r}
+#| label: question-1-high-low
+
+
+```
+
+**11. Which instructors with one year of experience had the highest and lowest average percentage of students failing in the current semester across all their courses?**
+
+```{r}
+#| label: one-year-experience-failing-students
+
+
+```
+
+**12. Which instructor(s) with either a doctorate or professor degree had the highest and lowest average percent of students responding to the evaluation across all their courses? Include how many years the instructor had worked (seniority) and their sex in your output.**
+
+```{r}
+#| label: female-instructor-student-response
+
+
+```

@@ -14,6 +14,7 @@ execute:
 resources: 
   - data/teacher_evals_codebook.pdf
   - data/teacher_evals.csv
+  - ../student/lab-3-student.qmd
 ---
 
 # Part One: Set-up

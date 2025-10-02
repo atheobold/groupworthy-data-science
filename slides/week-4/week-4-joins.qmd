@@ -22,6 +22,8 @@ library(ggridges)
 #| message: false
 #| warning: false
 
+# PA 4 Data
+
 military <- read_xlsx(here::here("group-activities",
                                  "week-4", 
                                  "data", 
@@ -40,14 +42,14 @@ cont_region <- read_xlsx(here::here("group-activities",
                       skip = 14) |> 
   filter(Region != "World total (including Iraq)", 
          Region != "World total (excluding Iraq)")
-                      
-actors <- read_csv("data/actors.csv")
-directors <- read_csv("data/directors.csv")
-directors_genres <- read_csv("data/directors_genres.csv")
-movies <- read_csv("data/movies.csv")
-movies_directors <- read_csv("data/movies_directors.csv")
-movies_genres <- read_csv("data/movies_genres.csv")
-roles <- read_csv("data/roles.csv")
+
+# Lab 4 Data
+
+childcare_costs <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/childcare_costs.csv')
+
+counties <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/counties.csv')
+
+ca_tax_rev <- read_csv('https://atheobold.github.io/groupworthy-data-science/labs/instructions/data/ca_tax_revenue.csv')
 ```
 
 ## Thursday, October 17
@@ -347,21 +349,32 @@ When we work with relational data, we rely on **keys**.
 
 ## Childcare Costs
 
-![](images/relational-childcare.jpg){fig-alt=""}
+::: {.centered}
 
-<!-- **How can we find each director's active years?** -->
+![](images/childcare-relations.jpg){fig-alt="A figure showing the relations between three different datasets: childcare_costs, counties, and ca_tax_revenue. The childcare_costs dataset has an arrow connecting the variable 'county_fips_code' to the 'county_fips' in the counties dataset. The counties dataset has an arrow connecting the 'county name' variable to the 'entity name' variable in the ca_tax_revenue dataset. Each of the arrows represents the keys (variables) that link each dataset." width=50%}
+
+:::
+
+. . .
+
+::: {.midi}
+**Do counties with higher property taxes also have higher childcare costs? Has this relationship changed over time?**
+:::
 
 ## Mutating Joins 
 
 Add *variables* from a new dataframe to observations in an existing dataframe.
 
-`left_join()`,   
-`right_join()`,   
-`inner_join()`,  
+`inner_join()` 
+
+`left_join()`   
+
+`right_join()`  
+ 
 
 ## `inner_join()`
 
-Keeps observations when their keys are present in **both** datasets.
+> Keeps observations when their keys are present in **both** datasets.
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -376,10 +389,172 @@ Keeps observations when their keys are present in **both** datasets.
 
 ## `inner_join()`: Childcare Data
 
+::: {.midi}
+> Keeps observations when their keys are present in **both** datasets.
+:::
+
+```{r}
+#| label: counties-inner
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+inner_join(x = counties, 
+           y = ca_tax_rev, 
+           by = join_by(county_name == entity_name)
+           )
+```
+
+. . .
+
+::: {.midi}
+::: {.callout-important}
+# Keys with different names
+
+The "key" columns linking the `counties` and `ca_tax_rev` datasets have
+different names. So, we need to use the `join_by()` function to link the names
+together! Notice, `county_name` is the column from the `x` dataset (`counties`)
+and `entity_name` is the column from the `y` dataset (`ca_tax_rev`). Order 
+matters!
+:::
+:::
 
 ## `inner_join()`: Childcare Data
 
-What if our **key** does not have the same name?
+::: {.midi}
+> Keeps observations when their keys are present in **both** datasets.
+
+
+```{r}
+#| label: counties-inner-2
+#| eval: false
+#| echo: true
+
+inner_join(x = counties, 
+           y = ca_tax_rev, 
+           by = join_by(county_name == entity_name)
+           )
+```
+
+What counties will remain in the joined dataset?
+:::
+
+. . .
+
+::: {.midi}
+~~Autauga County~~, ~~Baldwin County~~, ~~Barbour County~~, **Nevada County**, 
+**Santa Cruz County**, ...
+:::
+
+## More Mutating Joins
+
+::: {.midi}
+-   `left_join()` -- keep only (and all) observations present in the left data set
+
+-   `right_join()` -- keep only (and all) observations present in the right data set 
+
+-   `full_join()` -- keep only (and all) observations present in **both** data sets
+:::
+
+::: {.centered}
+![](images/joins.png){width=60% fig-alt="Four Venn diagrams illustrating different types of joins between two datasets, labeled 'x' and 'y.' inner_join(x, y): Shows two overlapping circles with only the intersection shaded, representing records that are common to both 'x' and 'y.' left_join(x, y): Shows two overlapping circles with the left circle ('x') fully shaded and the intersection shaded, representing all records from 'x' and the matching records from 'y.' right_join(x, y): Shows two overlapping circles with the right circle ('y') fully shaded and the intersection shaded, representing all records from 'y' and the matching records from 'x.' full_join(x, y): Shows two overlapping circles with both circles fully shaded, representing all records from both 'x' and 'y,' including those without matches."}
+
+:::
+
+
+## More Mutating Joins
+
+::: {.midi}
+Which counties would **remain** for each of the following joins?
+
+```{r}
+#| eval: false
+#| echo: true
+#| label: mutating-joins
+#| code-line-numbers: false
+
+left_join(x = counties, 
+          y = ca_tax_rev, 
+          by = join_by(county_name == entity_name)
+          )
+          
+right_join(x = counties, 
+          y = ca_tax_rev, 
+          by = join_by(county_name == entity_name)
+          )
+
+full_join(x = counties, 
+          y = ca_tax_rev, 
+          by = join_by(county_name == entity_name)
+          )
+```
+
+:::
+
+## Checking Your Intuition
+
+::: panel-tabset
+
+## `left_join()`
+
+::: {.midi}
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+counties |> 
+  distinct(county_name)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+
+counties |> 
+  distinct(county_name) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "320px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+What if a county in `counties` doesn't have a match in `ca_tax_rev`?
+:::
+
+## `right_join()`
+
+::: {.midi}
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+ca_tax_rev |> 
+  distinct(entity_name)
+```
+
+```{r}
+#| eval: true
+#| echo: false
+
+ca_tax_rev |> 
+  distinct(entity_name) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "320px") |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+What if a county in `ca_tax_rev` doesn't have a match in `counties`?
+:::
+
+## `full_join()`
+
+**Every county!** 
+
+What if a there are counties that don't have matches?
+
+:::
+
 
 ## Piping Joins
 
@@ -393,7 +568,7 @@ Remember: the dataset you pipe in becomes the **first argument** of the function
 #| eval: false
 #| echo: true
 #| code-line-numbers: false
-inner_join(directors_genres, movies_directors)
+#inner_join(directors_genres, movies_directors)
 ```
 
 ...is equivalent to...
@@ -402,82 +577,9 @@ inner_join(directors_genres, movies_directors)
 #| eval: false
 #| echo: true
 #| code-line-numbers: false
-directors_genres |> 
-  inner_join(movies_directors)
+# directors_genres |> 
+#   inner_join(movies_directors)
 ```
-
-
-
-## More Mutating Joins
-
-::: {.small}
--   `left_join()` -- keep only (and all) observations present in the left data set
-
--   `right_join()` -- keep only (and all) observations present in the right data set 
-
--   `full_join()` -- keep only (and all) observations present in **both** data sets
-:::
-
-![](images/joins.png){width=50% fig-alt="Four Venn diagrams illustrating different types of joins between two datasets, labeled 'x' and 'y.' inner_join(x, y): Shows two overlapping circles with only the intersection shaded, representing records that are common to both 'x' and 'y.' left_join(x, y): Shows two overlapping circles with the left circle ('x') fully shaded and the intersection shaded, representing all records from 'x' and the matching records from 'y.' right_join(x, y): Shows two overlapping circles with the right circle ('y') fully shaded and the intersection shaded, representing all records from 'y' and the matching records from 'x.' full_join(x, y): Shows two overlapping circles with both circles fully shaded, representing all records from both 'x' and 'y,' including those without matches."}
-
-</center>
-
-
-## More Mutating Joins
-
-Which directors would **remain** for each of the following?
-
-::: {.small}
--   `left_join(directors_genres, movies_directors)`
--   `right_join(directors_genres, movies_directors)`
--   `full_join(directors_genres, movies_directors)`
-:::
-
-::: columns
-::: column
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-
-directors_genres |> 
-  distinct(director_id)
-```
-
-```{r}
-#| eval: false
-#| echo: false
-
-directors_genres_subset |> 
-  distinct(director_id) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "320px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-:::
-
-::: column
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-
-movies_directors |> 
-  distinct(director_id)
-```
-
-```{r}
-#| eval: false
-#| echo: false
-movies_directors_subset |> 
-  distinct(director_id) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "320px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-:::
-:::
 
 ## Joining Multiple Data Sets
 
@@ -492,29 +594,28 @@ movies_directors_subset |>
 #| echo: true
 #| eval: false
 #| code-line-numbers: false
-movies_directors |> 
-  inner_join(directors, 
-             by = join_by(director_id == id)
-             ) |> 
-  inner_join(movies,
-             by = join_by(movie_id == id)
-             ) |> 
-  rename(movie_name = name)
+# movies_directors |> 
+#   inner_join(directors, 
+#              by = join_by(director_id == id)
+#              ) |> 
+#   inner_join(movies,
+#              by = join_by(movie_id == id)
+#              ) |> 
+#   rename(movie_name = name)
 ```
-:::
 
 ```{r}
 #| eval: true
 #| echo: false
-movies_directors |> 
-  inner_join(directors, 
-             join_by(director_id == id)) |> 
-  inner_join(movies,
-             join_by(movie_id == id)) |> 
-  rename(movie_name = name) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "300px") |> 
-  kableExtra::kable_styling(font_size = 25)
+# movies_directors |> 
+#   inner_join(directors, 
+#              join_by(director_id == id)) |> 
+#   inner_join(movies,
+#              join_by(movie_id == id)) |> 
+#   rename(movie_name = name) |> 
+#   knitr::kable() |> 
+#   kableExtra::scroll_box(height = "300px") |> 
+#   kableExtra::kable_styling(font_size = 25)
 ```
 :::
 

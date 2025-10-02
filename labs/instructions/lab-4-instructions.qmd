@@ -13,6 +13,7 @@ execute:
   warning: false
 resources: 
   - ../student/lab-4-student.qmd
+  - /data/ca_tax_revenue.csv
 ---
 
 # Part One: Set-up

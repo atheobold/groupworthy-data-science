@@ -55,3 +55,307 @@ Names will...
 <!-- ``` -->
 :::
 
+## Creating a Factor -- `fct`
+
+You can also **specify non-present levels**.
+
+```{r}
+#| echo: true
+#| code-line-numbers: "3,13"
+#| eval: false
+
+eras_data |> 
+  pull(Album) |> 
+  fct(levels = c("Taylor Swift",
+                 "Fearless",
+                 "Speak Now",
+                 "Red",
+                 "1989",
+                 "Reputation",
+                 "Lover",
+                 "Folklore",
+                 "Evermore",
+                 "Midnights",
+                 "The Tortured Poets Department")
+      ) 
+```
+
+```{r}
+#| echo: false
+#| eval: false
+eras_data <- eras_data |> 
+  mutate(Album = fct(Album,
+                     levels = c("Taylor Swift",
+                                "Fearless","Speak Now","Red",
+                                "1989","Reputation","Lover",
+                                "Folklore","Evermore","Midnights",
+                                "The Tortured Poets Department")))
+```
+
+
+## Re-coding a Factor -- `fct_recode`
+
+::: {.small}
+Oops, we have a typo in some of our levels! We change existing levels with the
+syntax: `"<new level>" = "<old level>"`.
+:::
+
+. . .
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| eval: false
+eras_data |>
+  mutate(Album = fct_recode(.f = Album,
+                            "folklore" = "Folklore",
+                            "evermore" = "Evermore",
+                            "reputation" = "Reputation")
+         )
+```
+:::
+
+## Re-coding a Factor -- `case_when`
+
+::: {.small}
+We have similar functionality with the `case_when()` function...
+:::
+
+. . .
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| eval: false
+eras_data |>
+  mutate(Album = case_when(Album == "Folklore" ~ "folklore",
+                           Album == "Evermore" ~ "evermore",
+                           Album == "Reputation" ~ "reputation",
+                           .default = Album),
+         Album = fct(Album)) |> 
+  pull(Album)
+```
+:::
+
+
+## Re-leveling a Factor --`fct_relevel`
+
+Change the **order** of the levels of an existing factor.
+
+::: panel-tabset
+
+### Original
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| eval: false
+eras_data |>
+  pull(Album) |> 
+  levels()
+```
+
+### Ordered by Copies Sold
+
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| eval: false
+
+eras_data |> 
+  pull(Album) |>
+  fct_relevel(c("Fearless",
+                "1989",
+                "Taylor Swift",
+                "Speak Now",
+                "Red",
+                "Midnights",
+                "Reputation",
+                "Folklore",
+                "Lover",
+                "Evermore")
+              ) |> 
+  levels()
+```
+:::
+:::
+
+## Re-ordering Factors in `ggplot2`
+
+::: panel-tabset
+
+### Original
+
+The bars follow the default factor levels.
+
+::: {.small}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "2"
+
+full_eras |> 
+  mutate(Album = fct(Album)) |> 
+  ggplot(mapping = aes(y = Album,
+               fill = Album)
+         ) +
+  geom_bar() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(x = "",
+       y = "",
+       title = "Number of Songs Played on the Eras Tour by Album")
+```
+:::
+
+### Plot
+
+```{r}
+#| echo: false
+#| eval: false
+full_eras |> 
+  mutate(Album = fct(Album)) |> 
+  ggplot(mapping = aes(y = Album,
+               fill = Album)
+         ) +
+  geom_bar() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(x = "",
+       y = "",
+       title = "Number of Songs Played on the Eras Tour by Album")
+```
+
+### Specify Levels
+
+::: {.small}
+We can order factor levels to order the bar plot.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "2-13"
+
+full_eras |> 
+  mutate(Album = fct(Album,
+                     levels = c("Fearless",
+                                "Speak Now",
+                                "Red",
+                                "1989",
+                                "Reputation",
+                                "Lover",
+                                "Folklore",
+                                "Evermore",
+                                "Midnights")
+                     )
+         ) |> 
+  ggplot(mapping = aes(y = Album,
+               fill = Album)
+         ) +
+  geom_bar() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(x = "",
+       y = "",
+       title = "Number of Songs Played on the Eras Tour by Album")
+```
+:::
+
+### Plot
+
+```{r}
+#| echo: false
+#| eval: false
+full_eras |> 
+  mutate(Album = fct(Album,
+                     levels = c("Fearless",
+                                "Speak Now",
+                                "Red",
+                                "1989",
+                                "Reputation",
+                                "Lover",
+                                "Folklore",
+                                "Evermore",
+                                "Midnights")
+                     )
+         ) |> 
+  ggplot(mapping = aes(y = Album,
+               fill = Album)
+         ) +
+  geom_bar() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(x = "",
+       y = "",
+       title = "Number of Songs Played on the Eras Tour by Album")
+```
+:::
+
+
+## Re-ordering Factors in `ggplot2`
+
+::: {.small}
+```{r}
+#| eval: false
+full_eras <- full_eras |> 
+  mutate(Album = fct(Album,
+                     levels = c("Fearless",
+                                "Speak Now",
+                                "Red",
+                                "1989",
+                                "Reputation",
+                                "Lover",
+                                "Folklore",
+                                "Evermore",
+                                "Midnights")
+                     )
+         )
+```
+:::
+
+::: panel-tabset
+
+### Original
+
+::: {.small}
+The ridge plots follow the order of the factor levels.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: "3"
+
+full_eras |> 
+  ggplot(mapping = aes(x = Length, 
+                       y = Album, 
+                       fill = Album)
+         ) +
+  geom_density_ridges() +
+  theme_minimal() +
+  theme(legend.position = "none")+
+  labs(x = "Song Length (mins)",
+       y = "",
+       title = "Length of Songs Played on the Eras Tour by Album")
+```
+::: 
+
+### Plot
+
+```{r}
+#| echo: false
+#| eval: false
+full_eras |> 
+  ggplot(mapping = aes(x = Length, 
+                       y = Album, 
+                       fill = Album)
+         ) +
+  geom_density_ridges() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(x = "Song Length (mins)",
+       y = "",
+       title = "Length of Songs Played on the Eras Tour by Album")
+```

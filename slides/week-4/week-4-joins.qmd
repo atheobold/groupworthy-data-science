@@ -59,8 +59,6 @@ Today we will...
 ::: columns
 ::: {.column width="55%"}
 ::: {.small}
-- Debrief PA 4 (7-minutes)
-  + An alternative approach to `filter()`ing 
 - Lab 3 & Challenge 3
   + Common Themes
   + Package Lifecycle Stages
@@ -76,90 +74,12 @@ Today we will...
 ::: {.small}
 -   New Material
     -   Relational Data
+    -   Filtering Joins (PA 4 Review)
     -   Factors with `forcats`
 -   Lab 4
 :::
 :::
 :::
-
-# Practice Activity 4
-
-![](images/military-relational-diagram.jpg){fig-alt="An image of two datasets, one named military_expenditures and one named region_totals. The military_expenditures datast has five (visible) columns titled: Country, Year, Expenditures, Notes, Reporting year. The region_totals dataset has 13 (visible) columns: Region, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 9157, 1958, 1959, 1960, and 1961. The Country column of military_expenditures is highlighted in red and the Region column of the region_totals column is also highlighted in red. The image is highlighting these columns as they are 'keys' linking the two datasets with one another." width=85%}
-
-## Filtering Joins
-
-> Filter *observations* based on values in new dataframe.
-
-## Filtering Joins: `anti_join()`
-**Removes** observations when their keys are present in **both** datasets, and **only keeps variables from the first dataset**.
-
-![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/anti-join.gif){fig-alt="A looping animation shows two tables being compared under an ‘anti join’ operation. The left table has keys 1 (red), 2 (blue), 3 (green) paired with values x1, x2, x3. The right table has keys 1 (red), 2 (blue), and 4 (purple) paired with values y1, y2, y4. Lines indicate matching keys (1 and 2). The resulting table on the right contains only the rows from the left table that do not have a match in the right: key 3 with x3 (green). Keys 1 and 2 are excluded because they have matches in the right table."}
-
-
-## Filtering Joins: `anti_join()`
-
-::: panel-tabset
-
-### Using `filter()`
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-regions <- cont_region |> 
-  pull(Region)
-  
-military |> 
-  filter(! Country %in% regions)
-```
-
-```{r}
-#| echo: false
-#| eval: false
-
-military |> 
-  filter(! Country %in% regions) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "200px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-
-### Using `anti_join()` instead
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-#| message: false
-         
-military |> 
-  anti_join(cont_region, 
-            by = join_by(Country == Region))
-```
-
-```{r}
-#| echo: false
-#| eval: true
-
-military |> 
-  anti_join(cont_region, 
-            by = join_by(Country == Region)) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "400px") |> 
-  kableExtra::kable_styling(font_size = 25)
-```
-
-Countries: ~~Africa~~, ~~North Africa~~, **Algeria**, **Libya**, **Morocco**
-:::
-
-<!-- ## Filtering Joins: `semi_join()` -->
-
-<!-- Keeps observations when their keys are present in **both** datasets, -->
-<!-- **but only keeps variables from the first dataset**. -->
-
-<!-- ![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/semi-join.gif){fig-alt="A looping animation shows two tables side by side and the result of a semi join. The left table (x) has keys 1 (red), 2 (blue), 3 (green) paired with x1, x2, x3. The right table (y) has keys 1 (red), 2 (blue), 4 (purple) paired with y1, y2, y4. Matching key rows (1 and 2) are connected. The resulting output table includes only the rows from the left table that have matches in the right table: key 1 with x1 and key 2 with x2. The left row with key 3 is dropped, and no new columns from y are shown."} -->
 
 
 ## Lab 3 Common Themes
@@ -560,7 +480,7 @@ What if a there are counties that don't have matches?
 
 Remember: the dataset you pipe in becomes the **first argument** of the function you are piping into!
 
-+ So if you are using a pipe, you will only be specifying the **right** dataset inside the `join` function.
++ So if you are using a pipe, you will only be specifying the **right** (`x`) dataset inside the `join_XXX()` function.
 
 . . .
 
@@ -568,7 +488,11 @@ Remember: the dataset you pipe in becomes the **first argument** of the function
 #| eval: false
 #| echo: true
 #| code-line-numbers: false
-#inner_join(directors_genres, movies_directors)
+
+left_join(x = counties, 
+          y = ca_tax_rev, 
+          by = join_by(county_name == entity_name)
+          )
 ```
 
 ...is equivalent to...
@@ -577,47 +501,98 @@ Remember: the dataset you pipe in becomes the **first argument** of the function
 #| eval: false
 #| echo: true
 #| code-line-numbers: false
-# directors_genres |> 
-#   inner_join(movies_directors)
+
+counties |> 
+  left_join(y = ca_tax_rev, 
+            by = join_by(county_name == entity_name)
+            )
 ```
 
-## Joining Multiple Data Sets
+## Lab 4 Preview: Joining Multiple Data Sets
 
-### Sketch
+Suppose we wanted to compare the taxes and costs of childcare for counties in 
+California. To do this, we would need to join **all three** datasets together!
 
-### 1st + 2nd
+![](images/childcare-relations.jpg){width=50%}
 
-### + 3rd
+# Practice Activity 4
 
-::: {.small}
+![](images/military-relational-diagram.jpg){fig-alt="An image of two datasets, one named military_expenditures and one named region_totals. The military_expenditures datast has five (visible) columns titled: Country, Year, Expenditures, Notes, Reporting year. The region_totals dataset has 13 (visible) columns: Region, 1950, 1951, 1952, 1953, 1954, 1955, 1956, 9157, 1958, 1959, 1960, and 1961. The Country column of military_expenditures is highlighted in red and the Region column of the region_totals column is also highlighted in red. The image is highlighting these columns as they are 'keys' linking the two datasets with one another." width=85%}
+
+## Filtering Joins
+
+> Filter *observations* based on values in new dataframe.
+
+## Filtering Joins: `anti_join()`
+**Removes** observations when their keys are present in **both** datasets, and **only keeps variables from the first dataset**.
+
+![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/anti-join.gif){fig-alt="A looping animation shows two tables being compared under an ‘anti join’ operation. The left table has keys 1 (red), 2 (blue), 3 (green) paired with values x1, x2, x3. The right table has keys 1 (red), 2 (blue), and 4 (purple) paired with values y1, y2, y4. Lines indicate matching keys (1 and 2). The resulting table on the right contains only the rows from the left table that do not have a match in the right: key 3 with x3 (green). Keys 1 and 2 are excluded because they have matches in the right table."}
+
+
+## Filtering Joins: `anti_join()`
+
+::: panel-tabset
+
+### Using `filter()`
+
 ```{r}
 #| echo: true
 #| eval: false
 #| code-line-numbers: false
-# movies_directors |> 
-#   inner_join(directors, 
-#              by = join_by(director_id == id)
-#              ) |> 
-#   inner_join(movies,
-#              by = join_by(movie_id == id)
-#              ) |> 
-#   rename(movie_name = name)
+
+regions <- cont_region |> 
+  pull(Region)
+  
+military |> 
+  filter(! Country %in% regions)
 ```
 
 ```{r}
-#| eval: true
 #| echo: false
-# movies_directors |> 
-#   inner_join(directors, 
-#              join_by(director_id == id)) |> 
-#   inner_join(movies,
-#              join_by(movie_id == id)) |> 
-#   rename(movie_name = name) |> 
-#   knitr::kable() |> 
-#   kableExtra::scroll_box(height = "300px") |> 
-#   kableExtra::kable_styling(font_size = 25)
+#| eval: false
+
+military |> 
+  filter(! Country %in% regions) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "200px") |> 
+  kableExtra::kable_styling(font_size = 30)
 ```
+
+
+### Using `anti_join()` instead
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+#| message: false
+         
+military |> 
+  anti_join(cont_region, 
+            by = join_by(Country == Region))
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+military |> 
+  anti_join(cont_region, 
+            by = join_by(Country == Region)) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "400px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+Countries: ~~Africa~~, ~~North Africa~~, **Algeria**, **Libya**, **Morocco**
 :::
+
+<!-- ## Filtering Joins: `semi_join()` -->
+
+<!-- Keeps observations when their keys are present in **both** datasets, -->
+<!-- **but only keeps variables from the first dataset**. -->
+
+<!-- ![© Garrick Aden-Buie](https://github.com/gadenbuie/tidyexplain/raw/main/images/semi-join.gif){fig-alt="A looping animation shows two tables side by side and the result of a semi join. The left table (x) has keys 1 (red), 2 (blue), 3 (green) paired with x1, x2, x3. The right table (y) has keys 1 (red), 2 (blue), 4 (purple) paired with y1, y2, y4. Matching key rows (1 and 2) are connected. The resulting output table includes only the rows from the left table that have matches in the right table: key 1 with x1 and key 2 with x2. The left row with key 3 is dropped, and no new columns from y are shown."} -->
 
 # Factor Variables
 
@@ -631,75 +606,32 @@ In general, factors are used for:
   + E.g., `day_born` = Sunday, Monday, Tuesday, ..., Saturday
 2. displaying character vectors in non-alphabetical order.
 
+## California Counties
 
-## Eras Tour
-
-Let's consider songs that Taylor Swift played on her Eras Tour. I have randomly
-selected 25 songs (and their albums) to consider.
+Let's consider the counties included in the `ca_tax_rev` data. I have randomly 
+selected 25 counties for us to consider.
 
 ```{r}
 #| echo: false
 
 set.seed(2)
 
-full_eras <- read_xlsx("data/TS_data.xlsx", sheet = 1)
-
-eras_data <- full_eras |> 
-  slice_sample(n = 25) |> 
-  select(Song, Album)
+ca_tax_rev |> 
+  distinct(entity_name) |> 
+  slice_sample(n = 25)
 ```
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-eras_data 
-```
-
-
-## Creating a Factor -- Base `R`
-
-::: panel-tabset
-
-## A **character** vector:
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-eras_data |> 
-  pull(Album)
-```
-:::
-
-## A **factor** vector:
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-eras_data |> 
-  pull(Album) |> 
-  as.factor()
-```
-:::
-:::
 
 ## `forcats`
 
 :::: {.columns}
 ::: {.column width="80%"}
-::: {.small}
 We use this package to...
 
-+ turn character variables into factors.
++ turn character variables into factors
 
-+ make factors by discretizing numeric variables.
++ make factors by discretizing numeric variables
 
-+ rename or reorder the levels of an existing factor.
-:::
++ rename or reorder the levels of an existing factor
 :::
 
 ::: {.column width="20%"}
@@ -712,42 +644,35 @@ knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/thumb
 :::
 ::::
 
-::: {.small}
 ::: callout-note
 # `forcats` loads with `tidyverse`!
 The packages `forcats` ("for categoricals") helps wrangle categorical variables.
 :::
-:::
-
 
 ## Creating a Factor -- `fct`
 
 With `fct()`, the levels are automatically ordered in the **order of first appearance**.
 
-::: {.small}
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
-eras_data |> 
-  pull(Album) |> 
+ca_tax_rev |> 
+  pull(entity_name) |> 
   fct()
 ```
-:::
 
 ## Creating a Factor 
 
-::: {.small}
 ```{r}
 #| echo: true
-#| eval: false
 #| code-line-numbers: false
-eras_data <- eras_data |> 
-  mutate(Album = fct(Album))
-```
-:::
 
-::: {.small}
+ca_tax_rev <- ca_tax_rev |> 
+  mutate(entity_name = fct(entity_name))
+```
+
+::: {.midi}
 ::: {.callout-warning}
 # To change a column type to factor, you must wrap `fct()` in a `mutate()` call.
 :::
@@ -757,21 +682,23 @@ eras_data <- eras_data |>
 
 </br> 
 
-::: {.small}
+::: {.midi}
 I am using `pull()` to display the outcome:
 
 ```{r}
 #| echo: true
 #| code-line-numbers: false
-eras_data |> 
-  pull(Album) |> 
-  fct()
+
+ca_tax_rev |> 
+  pull(entity_name)
 ```
 :::
 
 ## Creating a Factor -- `fct`
 
-You can still **specify the order of the levels** with `level`.
+::: {.midi}
+You can **specify the order of the levels** with `level`.
+:::
 
 ::: {.small}
 ```{r}
@@ -781,108 +708,161 @@ You can still **specify the order of the levels** with `level`.
 
 eras_data |> 
   pull(Album) |> 
-  fct(levels = c("Fearless",
-                 "Speak Now",
-                 "Red",
-                 "1989",
-                 "Reputation",
-                 "Lover",
-                 "Folklore",
-                 "Evermore",
-                 "Midnights")
+  fct(levels = c("Los Angeles County", 
+                 "San Diego County", 
+                 "Orange County", 
+                 "Riverside County", 
+                 "San Bernardino County", 
+                 "Santa Clara County", 
+                 "Alameda County", 
+                 "Sacramento County", 
+                 "Contra Costa County", 
+                 "Fresno County", 
+                 "Kern County", 
+                 "Ventura County", 
+                 "San Joaquin County", 
+                 "San Mateo County". 
+                 ...
+                 )
       )
 ```
 :::
 
-## Creating a Factor -- `fct`
-
-You can also **specify non-present levels**.
-
-```{r}
-#| echo: true
-#| code-line-numbers: "3,13"
-#| eval: false
-
-eras_data |> 
-  pull(Album) |> 
-  fct(levels = c("Taylor Swift",
-                 "Fearless",
-                 "Speak Now",
-                 "Red",
-                 "1989",
-                 "Reputation",
-                 "Lover",
-                 "Folklore",
-                 "Evermore",
-                 "Midnights",
-                 "The Tortured Poets Department")
-      ) 
-```
-
-```{r}
-#| echo: false
-eras_data <- eras_data |> 
-  mutate(Album = fct(Album,
-                     levels = c("Taylor Swift",
-                                "Fearless","Speak Now","Red",
-                                "1989","Reputation","Lover",
-                                "Folklore","Evermore","Midnights",
-                                "The Tortured Poets Department")))
-```
-
-
-## Re-coding a Factor -- `fct_recode`
-
-::: {.small}
-Oops, we have a typo in some of our levels! We change existing levels with the
-syntax: `"<new level>" = "<old level>"`.
+::: {.midi}
+But that seems pretty tedious.
 :::
 
-. . .
+## `fct_reorder()`
 
-::: {.small}
+::: {.midi}
+Often times, we want to reorder a factor based on the values of another 
+variable. For example, we might want to reorder the CA counties based on their
+mean sales taxes. 
+:::
+
+::: {.panel-tabset}
+
+## Code
+
+::: {.midi}
 ```{r}
+#| label: reorder-mutate
 #| echo: true
 #| code-line-numbers: false
+#| eval: false
 
-eras_data |>
-  mutate(Album = fct_recode(.f = Album,
-                            "folklore" = "Folklore",
-                            "evermore" = "Evermore",
-                            "reputation" = "Reputation")
+ca_tax_rev <- ca_tax_rev |> 
+  mutate(entity_name = fct_reorder(.f = entity_name,
+                                   .x = sales_and_use_taxes,
+                                   .fun = mean)
          )
 ```
 :::
 
-## Re-coding a Factor -- `case_when`
+## Arguments
 
-::: {.small}
-We have similar functionality with the `case_when()` function...
+::: {.midi}
+`.f`: the factor variable you want to reorder
+
+`.x`: the variable you want to the reordering to be based on
+
+`.fun`: the function you want to use when doing the reordering
+:::
 :::
 
-. . .
+## `fct_reoder()` with `ggplot()`
+
+::: {.small}
+The vast majority of the time we want to reorder a factor because we want our
+visualization to look nicer. 
+:::
+
+```{r}
+#| echo: false
+
+ca_tax_rev |> 
+  filter(sales_and_use_taxes < quantile(sales_and_use_taxes, probs = 0.1)) |> 
+  ggplot(aes(x = sales_and_use_taxes, 
+             y = fct_reorder(.f = entity_name,
+                             .x = sales_and_use_taxes,
+                             .fun = mean), 
+             fill = entity_name)
+         ) +
+  geom_density_ridges() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(x = "Sales and Use Taxes",
+       y = "") +
+  scale_x_continuous(labels = scales::label_dollar())
+```
+
+## `fct_reoder()` with `ggplot()`
+
+::: {.small}
+So, we could instead do this process **inside** `ggplot()`. 
+:::
 
 ::: {.small}
 ```{r}
 #| echo: true
-#| code-line-numbers: false
+#| eval: false
+#| code-line-numbers: "4-6"
 
-eras_data |>
-  mutate(Album = case_when(Album == "Folklore" ~ "folklore",
-                           Album == "Evermore" ~ "evermore",
-                           Album == "Reputation" ~ "reputation",
-                           .default = Album),
-         Album = fct(Album)) |> 
-  pull(Album)
+ca_tax_rev |> 
+  filter(sales_and_use_taxes < quantile(sales_and_use_taxes, probs = 0.1))|> 
+  ggplot(aes(x = sales_and_use_taxes, 
+             y = fct_reorder(.f = entity_name,
+                             .x = sales_and_use_taxes,
+                             .fun = mean), 
+             fill = entity_name)
+         ) +
+  geom_density_ridges() +
+  theme_minimal() +
+  theme(legend.position = "none") +
+  labs(x = "Sales and Use Taxes",
+       y = "") +
+  scale_x_continuous(labels = scales::label_dollar())
 ```
 :::
 
-## Collapsing a Factor --`fct_collapse`
+## `fct_reorder2()`
 
 ::: {.small}
-Collapse multiple existing levels of a factor with the syntax:
+There might be times were we want to use **two** variables to reorder the levels
+of a factor. 
+:::
 
-`"<new level>" = c("<old level>", "<old level>", ...)`.
+::: {.small}
+```{r}
+#| echo: true
+#| code-line-numbers: 5-7
+#| code-fold: true
+
+ca_tax_rev |> 
+  filter(sales_and_use_taxes < quantile(sales_and_use_taxes, probs = 0.1)) |> 
+  ggplot(aes(x = sales_and_use_taxes, 
+             y = total_property_taxes,
+             color = fct_reorder2(.f = entity_name,
+                                  .x = sales_and_use_taxes,
+                                  .y = total_property_taxes)
+             )
+         ) +
+  geom_point(size = 1.5) +
+  theme_bw() +
+  scale_y_continuous(labels = scales::label_dollar()) +
+  scale_x_continuous(labels = scales::label_dollar()) +
+  labs(y = "",
+       x = "Sales and Use Taxes",
+       color = "California County")
+```
+:::
+
+## Collapsing a Factor --`fct_collapse()`
+
+::: {.midi}
+Suppose we want to make a new variable that classifies the county based on its 
+population: low, medium, and high. Here, we want to **collapse** existing
+levels of a factor. 
 :::
 
 . . .
@@ -892,406 +872,59 @@ Collapse multiple existing levels of a factor with the syntax:
 #| echo: true
 #| code-line-numbers: false
 
-eras_data |> 
-  mutate(Genre = fct_collapse(.f = Album,
-                       "country pop" = c("Taylor Swift", "Fearless"),
-                       "pop rock" = c("Speak Now", "Red"),
-                       "electropop" = c("1989", "Reputation", "Lover"),
-                       "folk pop" = c("Folklore", "Evermore"),
-                       "alt-pop" = "Midnights")
+high_pop <- c(
+  "Los Angeles County", "San Diego County", "Orange County", "Riverside County", 
+  "San Bernardino County", "Santa Clara County", "Alameda County", 
+  "Sacramento County", "Contra Costa County", "Fresno County", "Kern County", 
+  "Ventura County", "San Joaquin County", "San Mateo County", 
+  "Stanislaus County", "Sonoma County", "Tulare County"
+)
+
+medium_pop <- c(
+  "Solano County", "Santa Barbara County", "Monterey County", "Placer County", 
+  "Merced County", "San Luis Obispo County", "Santa Cruz County", "Marin County", 
+  "Yolo County", "Butte County", "El Dorado County", "Imperial County", 
+  "Shasta County", "Madera County", "Kings County", "Napa County", 
+  "Humboldt County", "Nevada County", "Sutter County", "Mendocino County", 
+  "Yuba County", "San Benito County", "Lake County", "Tehama County", 
+  "Tuolumne County", "Calaveras County", "Siskiyou County", "Amador County", 
+  "Lassen County", "Glenn County", "Del Norte County", "Colusa County"
+)
+
+low_pop <- c(
+  "Plumas County", "Inyo County", "Mariposa County", "Trinity County", 
+  "Mono County", "Modoc County", "Sierra County", "Alpine County"
+)
+```
+:::
+
+## Collapsing a Factor --`fct_collapse()`
+
+::: {.small}
+```{r}
+#| echo: true
+#| eval: true
+ca_tax_rev |> 
+  mutate(pop_class = fct_collapse(.f = entity_name,
+                                  high = high_pop,
+                                  medium = medium_pop, 
+                                  low = low_pop)
          ) |> 
+  select(entity_name, pop_class) |> 
   slice_sample(n = 6)
 ```
 :::
 
-## Re-leveling a Factor --`fct_relevel`
-
-Change the **order** of the levels of an existing factor.
-
-::: panel-tabset
-
-### Original
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-eras_data |>
-  pull(Album) |> 
-  levels()
-```
-
-### Ordered by Copies Sold
-
 ::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-#| eval: false
+::: {.callout-important}
 
-eras_data |> 
-  pull(Album) |>
-  fct_relevel(c("Fearless",
-                "1989",
-                "Taylor Swift",
-                "Speak Now",
-                "Red",
-                "Midnights",
-                "Reputation",
-                "Folklore",
-                "Lover",
-                "Evermore")
-              ) |> 
-  levels()
-```
+The syntax here is: 
+
+`"<new level>" = c("<old level>", "<old level>", ...)`
 :::
 :::
 
-
-## Re-ordering Factors in `ggplot2`
-
-::: panel-tabset
-
-### Original
-
-The bars follow the default factor levels.
-
-::: {.small}
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "2"
-
-full_eras |> 
-  mutate(Album = fct(Album)) |> 
-  ggplot(mapping = aes(y = Album,
-               fill = Album)
-         ) +
-  geom_bar() +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(x = "",
-       y = "",
-       title = "Number of Songs Played on the Eras Tour by Album")
-```
-:::
-
-### Plot
-
-```{r}
-#| echo: false
-#| 
-full_eras |> 
-  mutate(Album = fct(Album)) |> 
-  ggplot(mapping = aes(y = Album,
-               fill = Album)
-         ) +
-  geom_bar() +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(x = "",
-       y = "",
-       title = "Number of Songs Played on the Eras Tour by Album")
-```
-
-### Specify Levels
-
-::: {.small}
-We can order factor levels to order the bar plot.
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "2-13"
-
-full_eras |> 
-  mutate(Album = fct(Album,
-                     levels = c("Fearless",
-                                "Speak Now",
-                                "Red",
-                                "1989",
-                                "Reputation",
-                                "Lover",
-                                "Folklore",
-                                "Evermore",
-                                "Midnights")
-                     )
-         ) |> 
-  ggplot(mapping = aes(y = Album,
-               fill = Album)
-         ) +
-  geom_bar() +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(x = "",
-       y = "",
-       title = "Number of Songs Played on the Eras Tour by Album")
-```
-:::
-
-### Plot
-
-```{r}
-#| echo: false
-
-full_eras |> 
-  mutate(Album = fct(Album,
-                     levels = c("Fearless",
-                                "Speak Now",
-                                "Red",
-                                "1989",
-                                "Reputation",
-                                "Lover",
-                                "Folklore",
-                                "Evermore",
-                                "Midnights")
-                     )
-         ) |> 
-  ggplot(mapping = aes(y = Album,
-               fill = Album)
-         ) +
-  geom_bar() +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(x = "",
-       y = "",
-       title = "Number of Songs Played on the Eras Tour by Album")
-```
-:::
-
-
-## Re-ordering Factors in `ggplot2`
-
-::: {.small}
-```{r}
-
-full_eras <- full_eras |> 
-  mutate(Album = fct(Album,
-                     levels = c("Fearless",
-                                "Speak Now",
-                                "Red",
-                                "1989",
-                                "Reputation",
-                                "Lover",
-                                "Folklore",
-                                "Evermore",
-                                "Midnights")
-                     )
-         )
-```
-:::
-
-::: panel-tabset
-
-### Original
-
-::: {.small}
-The ridge plots follow the order of the factor levels.
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "3"
-
-full_eras |> 
-  ggplot(mapping = aes(x = Length, 
-                       y = Album, 
-                       fill = Album)
-         ) +
-  geom_density_ridges() +
-  theme_minimal() +
-  theme(legend.position = "none")+
-  labs(x = "Song Length (mins)",
-       y = "",
-       title = "Length of Songs Played on the Eras Tour by Album")
-```
-::: 
-
-### Plot
-
-```{r}
-#| echo: false
-
-full_eras |> 
-  ggplot(mapping = aes(x = Length, 
-                       y = Album, 
-                       fill = Album)
-         ) +
-  geom_density_ridges() +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(x = "Song Length (mins)",
-       y = "",
-       title = "Length of Songs Played on the Eras Tour by Album")
-```
-
-### `fct_reorder()`
-
-::: {.small}
-Inside `ggplot()`, we can order factor levels by a summary value.
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "3-5"
-full_eras |> 
-  ggplot(aes(x = Length, 
-             y = fct_reorder(.f = Album,
-                             .x = Length,
-                             .fun = mean), 
-             fill = Album)
-         ) +
-  geom_density_ridges() +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(x = "Song Length (mins)",
-       y = "",
-       title = "Length of Songs Played on the Eras Tour by Album")
-```
-::: 
-
-### Plot
-
-```{r}
-#| echo: false
-full_eras |> 
-  ggplot(mapping = aes(x = Length, 
-             y = fct_reorder(.f = Album,
-                             .x = Length,
-                             .fun = mean), 
-             fill = Album)
-         ) +
-  geom_density_ridges() +
-  theme_minimal() +
-  theme(legend.position = "none") +
-  labs(x = "Song Length (mins)",
-       y = "",
-       title = "Length of Songs Played on the Eras Tour by Album")
-```
-
-:::
-
-
-## Re-ordering Factors in `ggplot2`
-
-::: panel-tabset
-
-### Original
-
-```{r}
-full_eras <- full_eras |> 
-  mutate(Single = if_else(Single == "Y", 1, 0))
-```
-
-::: {.small}
-The legend follows the order of the factor levels.
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "7"
-
-full_eras |> 
-  filter(!Album %in% c("1989","Fearless")) |> 
-  group_by(Album, Single) |> 
-  summarise(avg_len = mean(Length)) |> 
-  ggplot(mapping = aes(x = Single, 
-                       y = avg_len, 
-                       color = Album)) +
-  geom_point(size = 1.5) +
-  geom_line() +
-  theme_minimal() +
-  scale_x_continuous(breaks = c(0,1),
-                     labels = c("No", "Yes")
-                     ) +
-  labs(y = "",
-       title = "Are Taylor Swift's Singles Shorter?",
-       color = "Album")
-```
-:::
-
-### Plot
-
-```{r}
-#| echo: false
-
-full_eras |> 
-  filter(!Album %in% c("1989","Fearless")) |> 
-  group_by(Album, Single) |> 
-  summarise(avg_len = mean(Length)) |> 
-  ggplot(mapping = aes(x = Single, 
-                       y = avg_len, 
-                       color = Album)) +
-  geom_point(size = 1.5) +
-  geom_line() +
-  theme_minimal() +
-  scale_x_continuous(breaks = c(0,1),
-                     labels = c("No", "Yes")
-                     ) +
-  labs(y = "",
-       title = "Are Taylor Swift's Singles Shorter?",
-       color = "Album")
-```
-
-### `fct_reorder2()`
-
-::: {.small}
-Inside `ggplot()`, we can order factor levels by the $y$ values associated with the largest $x$ values.
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: 7-9
-
-full_eras |> 
-  filter(!Album %in% c("1989","Fearless")) |> 
-  group_by(Album, Single) |> 
-  summarise(avg_len = mean(Length)) |> 
-  ggplot(mapping = aes(x = Single, 
-                       y = avg_len, 
-                       color = fct_reorder2(.f = Album,
-                                            .x = Single,
-                                            .y = avg_len)
-                       )
-         ) +
-  geom_point(size = 1.5) +
-  geom_line() +
-  theme_minimal() +
-  scale_x_continuous(breaks = c(0,1),
-                     labels = c("No", "Yes")
-                     ) +
-  labs(y = "",
-       title = "Are Taylor Swift's Singles Shorter?",
-       color = "Album")
-```
-:::
-
-### Plot
-
-```{r}
-#| echo: false
-full_eras |> 
-  filter(!Album %in% c("1989","Fearless")) |> 
-  group_by(Album, Single) |> 
-  summarise(avg_len = mean(Length)) |> 
-  ggplot(aes(x = Single, 
-             y = avg_len, 
-             color = fct_reorder2(.f = Album,
-                                  .x = Single,
-                                  .y = avg_len))) +
-  geom_point(size = 1.5) +
-  geom_line() +
-  theme_minimal() +
-  scale_x_continuous(breaks = c(0,1),
-                     labels = c("No","Yes")) +
-  labs(y = "",
-       subtitle = "Average Song Length",
-       color = "Album")
-```
-
-::: 
-
-# [Lab 4: Childcare Costs in California](../../labs/instructions/lab-4-instructions.qmd)
+# Lab 4: Childcare Costs in California
 
 ::: columns
 ::: {.column width="40%"}
@@ -1306,46 +939,11 @@ full_eras |>
 :::
 :::
 
-## ChatGPT to the Rescue! 
-
-::: columns
-::: {.column width="40%"}
-> [collapse the CA regions into the 10 Census regions](https://chatgpt.com/c/67103b47-d8ec-8012-bb72-5cb0467ebe18)
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="55%"}
-![](images/ca-counties.png){fig-alt="The image displays a map of California divided into regions based on the 2020 Census, along with a table listing the counties in each region. The map on the left uses different colors to highlight each of the 10 regions, with areas such as the San Francisco Bay Area and South Coast labeled. A legend at the bottom of the map assigns numbers and colors to each region: Superior California, North Coast, San Francisco Bay Area, Northern San Joaquin Valley, Central Coast, Southern San Joaquin Valley, Inland Empire, Los Angeles County, Orange County, and San Diego/Imperial. On the right side, a table lists the regions by number and their respective counties. For example, Region 1 includes counties like Butte, Colusa, and El Dorado, while Region 8 consists solely of Los Angeles County. Other regions contain a mix of multiple counties, such as Region 3, which includes Alameda, Contra Costa, and San Francisco."}
-:::
-:::
-
-## dplyr Resources
-
-::: columns
-::: {.column width="60%"}
-Every group should have a **dplyr** cheatsheet!
-
-**On the Back**: The Combine Tables section gives advice on joining two datasets
-
-- The "Filtering Join" section will be helpful when performing an `anti_join()`!
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="35%"}
-![](images/dplyr-cheatsheet-back.png){fig-alt="A picture of the dplyr cheatsheet, which contains helpful information on working with data in a variety of ways."}
-:::
-:::
-
-
 ## To do...
 
 -   **Lab 4: Childcare Costs in California**
-    -   Due Sunday (10/20) at 11:59pm
--   **Read Chapter 5: Strings + Dates**
-    -   **Check-in 5.1** due Tuesday (10/22) at 12:10pm
-    -   **Check-in 5.2** due Thursday (10/24) at 12:10pm
+    -   Due Monday (10/13) at 11:59pm
+-   **Week 5: Strings + Dates**
+    -   **Check-in 5.1** due Tuesday (10/14) at 8am
+    -   **Check-in 5.2** due Thursday (10/14) at 8am
 

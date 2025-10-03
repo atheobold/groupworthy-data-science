@@ -240,20 +240,20 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.06415218</code></pre>
+<pre><code>[1] -0.284785</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.2889557</code></pre>
+<pre><code>[1] 0.1981524</code></pre>
 </div>
 </div>
 <p>Fortunately, pseudo-randomness depends on a <strong>seed</strong>, which is an arbitrary number where the randomizing process starts. Normally, R will choose the seed for you, from a pre-generated vector:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(.Random.seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]       10403           4 -1728879876   443029842  2112270029 -1186167161</code></pre>
+<pre><code>[1]       10403           4   620828760  -118129402 -1889363743   296194163</code></pre>
 </div>
 </div>
 <p>However, you can also choose your own seed using the <code>set.seed()</code> function. This guarantees your results will be consistent across runs (and hopefully computers):</p>

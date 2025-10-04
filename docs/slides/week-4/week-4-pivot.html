@@ -1,208 +1,248 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<link href="../../images/stat-331-hex.png" rel="icon" type="image/png">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.22">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Data Pivots + Joins – Introduction to Statistical Computing in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/stat-331-hex.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-be11573b6374e633292ee320d3d6b571.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  <title>Introduction to Statistical Computing in R – Data Pivots + Joins</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-      vertical-align: middle;
-    }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-  </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c990e76e4e8f51fe5aa6f0d132950ebc.css">
-  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-    .reveal div.sourceCode {
-      margin: 0;
-      overflow: auto;
-    }
-    .reveal div.hanging-indent {
-      margin-left: 1em;
-      text-indent: -1em;
-    }
-    .reveal .slide:not(.center) {
-      height: 100%;
-    }
-    .reveal .slide.scrollable {
-      overflow-y: auto;
-    }
-    .reveal .footnotes {
-      height: 100%;
-      overflow-y: auto;
-    }
-    .reveal .slide .absolute {
-      position: absolute;
-      display: block;
-    }
-    .reveal .footnotes ol {
-      counter-reset: ol;
-      list-style-type: none; 
-      margin-left: 0;
-    }
-    .reveal .footnotes ol li:before {
-      counter-increment: ol;
-      content: counter(ol) ". "; 
-    }
-    .reveal .footnotes ol li > p:first-child {
-      display: inline-block;
-    }
-    .reveal .slide ul,
-    .reveal .slide ol {
-      margin-bottom: 0.5em;
-    }
-    .reveal .slide ul li,
-    .reveal .slide ol li {
-      margin-top: 0.4em;
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide ul[role="tablist"] li {
-      margin-bottom: 0;
-    }
-    .reveal .slide ul li > *:first-child,
-    .reveal .slide ol li > *:first-child {
-      margin-block-start: 0;
-    }
-    .reveal .slide ul li > *:last-child,
-    .reveal .slide ol li > *:last-child {
-      margin-block-end: 0;
-    }
-    .reveal .slide .columns:nth-child(3) {
-      margin-block-start: 0.8em;
-    }
-    .reveal blockquote {
-      box-shadow: none;
-    }
-    .reveal .tippy-content>* {
-      margin-top: 0.2em;
-      margin-bottom: 0.7em;
-    }
-    .reveal .tippy-content>*:last-child {
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide > img.stretch.quarto-figure-center,
-    .reveal .slide > img.r-stretch.quarto-figure-center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-left,
-    .reveal .slide > img.r-stretch.quarto-figure-left  {
-      display: block;
-      margin-left: 0;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-right,
-    .reveal .slide > img.r-stretch.quarto-figure-right  {
-      display: block;
-      margin-left: auto;
-      margin-right: 0; 
-    }
-  </style>
-  <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
-  <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 </head>
-<body class="quarto-light">
-  <div class="reveal">
-    <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Data Pivots + Joins</h1>
+<body class="nav-fixed quarto-light">
 
-<div class="quarto-title-authors">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Introduction to Statistical Computing in R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../course-materials/calendar.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../course-materials/syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../portfolio/portfolio-instructions.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../course-materials/course-resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#tuesday-october-15" id="toc-tuesday-october-15" class="nav-link active" data-scroll-target="#tuesday-october-15">Tuesday, October 15</a></li>
+  <li><a href="#grade-expectations" id="toc-grade-expectations" class="nav-link" data-scroll-target="#grade-expectations">Grade Expectations</a></li>
+  <li><a href="#grade-expectations-1" id="toc-grade-expectations-1" class="nav-link" data-scroll-target="#grade-expectations-1">Grade Expectations</a></li>
+  <li><a href="#grade-expectations-2" id="toc-grade-expectations-2" class="nav-link" data-scroll-target="#grade-expectations-2">Grade Expectations</a></li>
+  <li><a href="#data-layouts" id="toc-data-layouts" class="nav-link" data-scroll-target="#data-layouts">Data Layouts</a>
+  <ul class="collapse">
+  <li><a href="#tidy-data" id="toc-tidy-data" class="nav-link" data-scroll-target="#tidy-data">Tidy Data</a></li>
+  <li><a href="#creating-tidy-data" id="toc-creating-tidy-data" class="nav-link" data-scroll-target="#creating-tidy-data">Creating Tidy Data</a></li>
+  </ul></li>
+  <li><a href="#military-expenditures" id="toc-military-expenditures" class="nav-link" data-scroll-target="#military-expenditures">Military Expenditures</a>
+  <ul class="collapse">
+  <li><a href="#military-expenditures-1" id="toc-military-expenditures-1" class="nav-link" data-scroll-target="#military-expenditures-1">Military Expenditures</a></li>
+  <li><a href="#a-messy-excel-file" id="toc-a-messy-excel-file" class="nav-link" data-scroll-target="#a-messy-excel-file">A Messy Excel File</a></li>
+  <li><a href="#exploring-read_xlsx-arguments" id="toc-exploring-read_xlsx-arguments" class="nav-link" data-scroll-target="#exploring-read_xlsx-arguments">Exploring <code>read_xlsx()</code> Arguments</a></li>
+  <li><a href="#declaring-the-sheet" id="toc-declaring-the-sheet" class="nav-link" data-scroll-target="#declaring-the-sheet">Declaring the Sheet</a></li>
+  <li><a href="#skipping-the-notes-at-the-top" id="toc-skipping-the-notes-at-the-top" class="nav-link" data-scroll-target="#skipping-the-notes-at-the-top">Skipping the Notes at the Top</a></li>
+  <li><a href="#skipping-the-footnotes-at-the-bottom" id="toc-skipping-the-footnotes-at-the-bottom" class="nav-link" data-scroll-target="#skipping-the-footnotes-at-the-bottom">Skipping the Footnotes at the Bottom</a></li>
+  </ul></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a>
+  <ul class="collapse">
+  <li><a href="#missing-data" id="toc-missing-data" class="nav-link" data-scroll-target="#missing-data">Missing Data</a></li>
+  <li><a href="#finding-the-na-values" id="toc-finding-the-na-values" class="nav-link" data-scroll-target="#finding-the-na-values">Finding the <code>NA</code> Values</a></li>
+  <li><a href="#declaring-na-values" id="toc-declaring-na-values" class="nav-link" data-scroll-target="#declaring-na-values">Declaring <code>NA</code> Values</a></li>
+  </ul></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a>
+  <ul class="collapse">
+  <li><a href="#creating-tidy-data-1" id="toc-creating-tidy-data-1" class="nav-link" data-scroll-target="#creating-tidy-data-1">Creating Tidy Data</a></li>
+  </ul></li>
+  <li><a href="#pivoting-data" id="toc-pivoting-data" class="nav-link" data-scroll-target="#pivoting-data">Pivoting Data</a>
+  <ul class="collapse">
+  <li><a href="#manual-method" id="toc-manual-method" class="nav-link" data-scroll-target="#manual-method">Manual Method</a></li>
+  <li><a href="#manual-method-steps" id="toc-manual-method-steps" class="nav-link" data-scroll-target="#manual-method-steps">Manual Method: Steps</a></li>
+  <li><a href="#manual-method-steps-1" id="toc-manual-method-steps-1" class="nav-link" data-scroll-target="#manual-method-steps-1">Manual Method: Steps</a></li>
+  <li><a href="#manual-method-steps-2" id="toc-manual-method-steps-2" class="nav-link" data-scroll-target="#manual-method-steps-2">Manual Method: Steps</a></li>
+  <li><a href="#pivot_longer" id="toc-pivot_longer" class="nav-link" data-scroll-target="#pivot_longer"><code>pivot_longer()</code></a></li>
+  <li><a href="#pivot_longer-1" id="toc-pivot_longer-1" class="nav-link" data-scroll-target="#pivot_longer-1"><code>pivot_longer()</code></a></li>
+  <li><a href="#pivot_longer-2" id="toc-pivot_longer-2" class="nav-link" data-scroll-target="#pivot_longer-2"><code>pivot_longer()</code></a></li>
+  <li><a href="#pivot_longer-3" id="toc-pivot_longer-3" class="nav-link" data-scroll-target="#pivot_longer-3"><code>pivot_longer()</code></a></li>
+  <li><a href="#pivot_longer-4" id="toc-pivot_longer-4" class="nav-link" data-scroll-target="#pivot_longer-4"><code>pivot_longer()</code></a></li>
+  <li><a href="#remember-if_any-if_all" id="toc-remember-if_any-if_all" class="nav-link" data-scroll-target="#remember-if_any-if_all">Remember: <code>if_any()</code> &amp; <code>if_all()</code></a></li>
+  <li><a href="#if_any-example" id="toc-if_any-example" class="nav-link" data-scroll-target="#if_any-example"><code>if_any()</code> Example</a></li>
+  <li><a href="#if_any-example-1" id="toc-if_any-example-1" class="nav-link" data-scroll-target="#if_any-example-1"><code>if_any()</code> Example</a></li>
+  </ul></li>
+  <li><a href="#pa-4-military-spending" id="toc-pa-4-military-spending" class="nav-link" data-scroll-target="#pa-4-military-spending">PA 4: Military Spending</a>
+  <ul class="collapse">
+  <li><a href="#this-activity-will-require-knowledge-of" id="toc-this-activity-will-require-knowledge-of" class="nav-link" data-scroll-target="#this-activity-will-require-knowledge-of">This activity will require knowledge of:</a></li>
+  <li><a href="#tidyr-resources" id="toc-tidyr-resources" class="nav-link" data-scroll-target="#tidyr-resources">tidyr Resources</a></li>
+  <li><a href="#pair-programming-expectations" id="toc-pair-programming-expectations" class="nav-link" data-scroll-target="#pair-programming-expectations">Pair Programming Expectations</a></li>
+  <li><a href="#external-resources" id="toc-external-resources" class="nav-link" data-scroll-target="#external-resources">External Resources</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  </ul></li>
+  <li><a href="#minute-break" id="toc-minute-break" class="nav-link" data-scroll-target="#minute-break">5-minute break</a>
+  <ul class="collapse">
+  <li><a href="#team-assignments---9am" id="toc-team-assignments---9am" class="nav-link" data-scroll-target="#team-assignments---9am">Team Assignments - 9am</a></li>
+  <li><a href="#team-assignments---12pm" id="toc-team-assignments---12pm" class="nav-link" data-scroll-target="#team-assignments---12pm">Team Assignments - 12pm</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="week-4-pivot.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Data Pivots + Joins</h1>
 </div>
 
-</section>
-<section id="tuesday-october-15" class="slide level2">
-<h2>Tuesday, October 15</h2>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="tuesday-october-15" class="level2">
+<h2 class="anchored" data-anchor-id="tuesday-october-15">Tuesday, October 15</h2>
 <p>Today we will discuss…</p>
 <ul>
 <li>Grade Expectations
@@ -218,53 +258,49 @@
 <li>PA 4: Military Spending</li>
 </ul>
 </section>
-<section id="grade-expectations" class="title-slide slide level1 center">
+<section id="grade-expectations" class="level1">
 <h1>Grade Expectations</h1>
-
 </section>
-
-<section id="grade-expectations-1" class="title-slide slide level1 center">
+<section id="grade-expectations-1" class="level1">
 <h1>Grade Expectations</h1>
-<blockquote>
+<blockquote class="blockquote">
 <p>The <a href="../../course-materials/syllabus.html#sec-grades">course syllabus</a> has been updated to reflect the grade criteria you all proposed.</p>
 </blockquote>
 </section>
-
-<section id="grade-expectations-2" class="title-slide slide level1 center">
+<section id="grade-expectations-2" class="level1">
 <h1>Grade Expectations</h1>
-<blockquote>
+<blockquote class="blockquote">
 <p>The <a href="../../course-materials/course-syllabus.qmd#sec-grades">course syllabus</a> has been updated to reflect the grade criteria you all proposed.</p>
 </blockquote>
 <p>You have until Sunday <a href="">to vote</a> on whether you agree with the proposed criteria, and to suggest ways these criteria could be revised.</p>
 </section>
-
-<section>
-<section id="data-layouts" class="title-slide slide level1 center">
+<section id="data-layouts" class="level1">
 <h1>Data Layouts</h1>
-
-</section>
-<section id="tidy-data" class="slide level2">
-<h2>Tidy Data</h2>
+<section id="tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="tidy-data">Tidy Data</h2>
 <p>Tidy data…</p>
 <ul>
 <li>is rectangular.</li>
 <li>has observations as rows and variables as columns.</li>
 <li><strong>has different formats for different tasks.</strong></li>
 </ul>
-
-<img data-src="https://r4ds.hadley.nz/images/tidy-1.png" alt="This image shows a visual representation of the three key concepts in tidy data: variables, observations, and values. It is divided into three sections. The first section on the left highlights vertical arrows pointing down each column of a table, labeled 'variables,' showing that each column represents a different variable (country, year, cases, population). The middle section has horizontal arrows pointing across rows of the same table, labeled 'observations,' indicating that each row is an observation or data point. The third section on the right has circles around individual data points within the table, labeled 'values,' indicating the actual values for each variable in the dataset." class="r-stretch"></section>
-<section id="creating-tidy-data" class="slide level2">
-<h2>Creating Tidy Data</h2>
-<p>We may need to <strong>transform</strong> our data to turn it into the <strong>version of tidy</strong> that is best for a task at hand.</p>
-
-<img data-src="https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg" alt="An illustration of two round, fluffy characters, one green and one purple, holding a large table between them labeled 'TIDY.' The table is held by clamps on either side labeled 'WRANGLE' in orange and pink. The green character on the left is smiling with one arm raised, while the purple character on the right is cheering with both arms up. The table represents tidy data, and the clamps labeled 'WRANGLE' suggest data manipulation or preparation." class="r-stretch quarto-figure-center"><p class="caption">Image by Allison Horst</p></section></section>
-<section>
-<section id="military-expenditures" class="title-slide slide level1 center">
-<h1>Military Expenditures</h1>
-
+<p><img src="https://r4ds.hadley.nz/images/tidy-1.png" class="img-fluid" alt="This image shows a visual representation of the three key concepts in tidy data: variables, observations, and values. It is divided into three sections. The first section on the left highlights vertical arrows pointing down each column of a table, labeled 'variables,' showing that each column represents a different variable (country, year, cases, population). The middle section has horizontal arrows pointing across rows of the same table, labeled 'observations,' indicating that each row is an observation or data point. The third section on the right has circles around individual data points within the table, labeled 'values,' indicating the actual values for each variable in the dataset."></p>
 </section>
-<section id="military-expenditures-1" class="slide level2">
-<h2>Military Expenditures</h2>
+<section id="creating-tidy-data" class="level2">
+<h2 class="anchored" data-anchor-id="creating-tidy-data">Creating Tidy Data</h2>
+<p>We may need to <strong>transform</strong> our data to turn it into the <strong>version of tidy</strong> that is best for a task at hand.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://www.openscapes.org/img/blog/tidydata/tidydata_4.jpg" class="img-fluid figure-img" alt="An illustration of two round, fluffy characters, one green and one purple, holding a large table between them labeled 'TIDY.' The table is held by clamps on either side labeled 'WRANGLE' in orange and pink. The green character on the left is smiling with one arm raised, while the purple character on the right is cheering with both arms up. The table represents tidy data, and the clamps labeled 'WRANGLE' suggest data manipulation or preparation."></p>
+<figcaption>Image by Allison Horst</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="military-expenditures" class="level1">
+<h1>Military Expenditures</h1>
+<section id="military-expenditures-1" class="level2">
+<h2 class="anchored" data-anchor-id="military-expenditures-1">Military Expenditures</h2>
 <div class="midi">
 <p>We will be using data from the Stockholm International Peace Research Institute (SIPRI). The SIPRI Military Expenditure Database is an open source data set containing time series on the military spending of countries from 1949–2019. The database is updated annually, which may include updates to data from previous years.</p>
 <p>Military expenditure is presented in many ways:</p>
@@ -275,26 +311,24 @@
 </ul>
 </div>
 </section>
-<section id="a-messy-excel-file" class="slide level2">
-<h2><a href="https://cpslo-my.sharepoint.com/:x:/g/personal/atheobol_calpoly_edu/ESF5LJhLI0FLihBUZINkS7MB-qdforgA9uA7p1-ZbmwvXQ?e=B4g3iI">A Messy Excel File</a></h2>
+<section id="a-messy-excel-file" class="level2">
+<h2 class="anchored" data-anchor-id="a-messy-excel-file"><a href="https://cpslo-my.sharepoint.com/:x:/g/personal/atheobol_calpoly_edu/ESF5LJhLI0FLihBUZINkS7MB-qdforgA9uA7p1-ZbmwvXQ?e=B4g3iI">A Messy Excel File</a></h2>
 <div class="midi">
 <p>First, you should notice that there are ten different sheets included in the dataset.</p>
 <p>We are interested in the sheet labeled <em>“Share of Govt. spending”</em>, which contains information about the share of all government spending that is allocated to the military.</p>
 </div>
 <p><br></p>
-<div class="fragment">
+<p>. . .</p>
 <div class="midi">
 <p>Next, you’ll notice that there are notes about the data in the first six rows. Ugh!</p>
 </div>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <div class="midi">
 <p>Finally, you should also note that the last six rows are footnotes about the data. <strong>Ugh</strong>!</p>
 </div>
-</div>
 </section>
-<section id="exploring-read_xlsx-arguments" class="slide level2">
-<h2>Exploring <code>read_xlsx()</code> Arguments</h2>
+<section id="exploring-read_xlsx-arguments" class="level2">
+<h2 class="anchored" data-anchor-id="exploring-read_xlsx-arguments">Exploring <code>read_xlsx()</code> Arguments</h2>
 <p>The <code>read_xlsx()</code> function has several useful arguments:</p>
 <ul>
 <li><code>sheet</code>: specify the name of the sheet that you want to use. The name must be passed in as a string (in quotations)!</li>
@@ -302,174 +336,208 @@
 <li><code>n_max</code>: specify the maximum number of rows of data to read in.</li>
 </ul>
 </section>
-<section id="declaring-the-sheet" class="slide level2">
-<h2>Declaring the Sheet</h2>
+<section id="declaring-the-sheet" class="level2">
+<h2 class="anchored" data-anchor-id="declaring-the-sheet">Declaring the Sheet</h2>
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
-<span id="cb1-2"><a></a>                      <span class="at">sheet =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sheet =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Argument Input</strong></p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Argument Input
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>What should we input as the <code>sheet</code>?</p>
 </div>
 </div>
-</div>
 </section>
-<section id="skipping-the-notes-at-the-top" class="slide level2">
-<h2>Skipping the Notes at the Top</h2>
+<section id="skipping-the-notes-at-the-top" class="level2">
+<h2 class="anchored" data-anchor-id="skipping-the-notes-at-the-top">Skipping the Notes at the Top</h2>
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
-<span id="cb2-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
-<span id="cb2-3"><a></a>                      <span class="at">skip  =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip  =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Argument Input</strong></p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Argument Input
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>How many rows should we <code>skip</code> at the top of the Excel file?</p>
 </div>
 </div>
-</div>
 </section>
-<section id="skipping-the-footnotes-at-the-bottom" class="slide level2">
-<h2>Skipping the Footnotes at the Bottom</h2>
+<section id="skipping-the-footnotes-at-the-bottom" class="level2">
+<h2 class="anchored" data-anchor-id="skipping-the-footnotes-at-the-bottom">Skipping the Footnotes at the Bottom</h2>
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
-<span id="cb3-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
-<span id="cb3-3"><a></a>                      <span class="at">skip  =</span> <span class="dv">7</span>, </span>
-<span id="cb3-4"><a></a>                      <span class="at">n_max =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip  =</span> <span class="dv">7</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">n_max =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Argument Input</strong></p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Argument Input
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>What is the maximum number of rows we should let <code>read_xlsx()</code> read in?</p>
 </div>
 </div>
-</div>
-</section></section>
-<section>
-<section id="section" class="title-slide slide level1 center">
+</section>
+</section>
+<section id="section" class="level1">
 <h1></h1>
-
-<img data-src="images/high-five.webp" class="r-stretch"></section>
-<section id="missing-data" class="slide level2">
-<h2>Missing Data</h2>
+<p><img src="images/high-five.webp" class="img-fluid"></p>
+<section id="missing-data" class="level2">
+<h2 class="anchored" data-anchor-id="missing-data">Missing Data</h2>
 <div class="midi">
 <p>The availability of data varies considerably by country, but we note that data is available from at least the late 1950s for a majority of countries that were independent at the time.</p>
 <p>Estimates for regional military expenditure have been extended backwards depending on availability of data, but no estimates for total world military expenditure are available before 1988 due to the lack of data from the Soviet Union.</p>
 </div>
 </section>
-<section id="finding-the-na-values" class="slide level2">
-<h2>Finding the <code>NA</code> Values</h2>
+<section id="finding-the-na-values" class="level2">
+<h2 class="anchored" data-anchor-id="finding-the-na-values">Finding the <code>NA</code> Values</h2>
 <p>Open the Excel file and see if you can find the three ways missing values were coded!</p>
 </section>
-<section id="declaring-na-values" class="slide level2">
-<h2>Declaring <code>NA</code> Values</h2>
+<section id="declaring-na-values" class="level2">
+<h2 class="anchored" data-anchor-id="declaring-na-values">Declaring <code>NA</code> Values</h2>
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
-<span id="cb4-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
-<span id="cb4-3"><a></a>                      <span class="at">skip  =</span> <span class="dv">7</span>, </span>
-<span id="cb4-4"><a></a>                      <span class="at">n_max =</span> <span class="dv">190</span>, </span>
-<span id="cb4-5"><a></a>                      <span class="at">na =</span> <span class="fu">c</span>(<span class="st">". ."</span>, <span class="st">"xxx"</span>, <span class="st">".."</span>)</span>
-<span id="cb4-6"><a></a>                      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">skip  =</span> <span class="dv">7</span>, </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">n_max =</span> <span class="dv">190</span>, </span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">na =</span> <span class="fu">c</span>(<span class="st">". ."</span>, <span class="st">"xxx"</span>, <span class="st">".."</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                      )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Multiple Versions of <code>NA</code>s</strong></p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Multiple Versions of <code>NA</code>s
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>Note that if there was only <strong>one</strong> other version of an <code>NA</code> (e.g., <code>99999</code>), then we wouldn’t need the <code>c()</code> function. We could just use <code>na = "99999"</code>.</p>
 </div>
 </div>
-</div>
-</section></section>
-<section>
-<section id="section-1" class="title-slide slide level1 center">
+</section>
+</section>
+<section id="section-1" class="level1">
 <h1></h1>
-
-<img data-src="images/heck-yeah.webp" class="r-stretch"></section>
-<section id="creating-tidy-data-1" class="slide level2">
-<h2>Creating Tidy Data</h2>
+<p><img src="images/heck-yeah.webp" class="img-fluid"></p>
+<section id="creating-tidy-data-1" class="level2">
+<h2 class="anchored" data-anchor-id="creating-tidy-data-1">Creating Tidy Data</h2>
 <div class="midi">
 <p>Let’s say we want to plot how military expenditures have changed over time.</p>
 </div>
-
-<img data-src="week-4-pivot_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"><div class="fragment">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>eastern_europe <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Armenia"</span>, </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Azerbaijan"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Belarus"</span>, </span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Georgia"</span>, </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Moldova"</span>, </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Russia"</span>, </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"Ukraine"</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Expenditures"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Country <span class="sc">%in%</span> eastern_europe, </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>         Year <span class="sc">&gt;</span> <span class="dv">1994</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Expenditures)) <span class="sc">+</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_percent</span>()) <span class="sc">+</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>( <span class="at">x =</span> <span class="st">""</span>, </span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">y =</span> <span class="st">""</span>, </span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Percentage of GDP Allocated to Military Spending"</span>, </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">subtitle =</span> <span class="st">"in Former Soviet Republics"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 20 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="week-4-pivot_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>. . .</p>
 <div class="midi">
 <p>To do this, we need to pivot the year from wide to long format!</p>
 </div>
-</div>
-</section></section>
-<section>
-<section id="pivoting-data" class="title-slide slide level1 center">
+</section>
+</section>
+<section id="pivoting-data" class="level1">
 <h1>Pivoting Data</h1>
 <div class="columns">
 <div class="column">
-<p><img data-src="https://github.com/gadenbuie/tidyexplain/raw/main/images/static/png/original-dfs-tidy.png" alt="Two tables side by side, illustrating the difference between 'wide' and 'long' data formats. The left table labeled 'wide' has columns: 'id,' 'x,' 'y,' and 'z.' The 'id' column contains the values 1 and 2, and the 'x,' 'y,' and 'z' columns contain the values a, b, c, d, e, and f spread across the rows. The right table labeled 'long' has columns: 'id,' 'key,' and 'val.' The 'id' column has repeated values (1 and 2), the 'key' column contains 'x,' 'y,' and 'z,' and the 'val' column contains 'a' through 'f,' corresponding to the wide table but reorganized in a 'long' format."></p>
+<p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/static/png/original-dfs-tidy.png" class="img-fluid" alt="Two tables side by side, illustrating the difference between 'wide' and 'long' data formats. The left table labeled 'wide' has columns: 'id,' 'x,' 'y,' and 'z.' The 'id' column contains the values 1 and 2, and the 'x,' 'y,' and 'z' columns contain the values a, b, c, d, e, and f spread across the rows. The right table labeled 'long' has columns: 'id,' 'key,' and 'val.' The 'id' column has repeated values (1 and 2), the 'key' column contains 'x,' 'y,' and 'z,' and the 'val' column contains 'a' through 'f,' corresponding to the wide table but reorganized in a 'long' format."></p>
 </div><div class="column">
-<p><img data-src="https://github.com/gadenbuie/tidyexplain/raw/main/images/tidyr-pivoting.gif" alt="A gif showing the visual transformation of the data pictured, going from the wide format to the long format. Above the image is the R code that would produce each data layout."></p>
-</div></div>
-</section>
-<section id="manual-method" class="slide level2">
-<h2>Manual Method</h2>
+<p><img src="https://github.com/gadenbuie/tidyexplain/raw/main/images/tidyr-pivoting.gif" class="img-fluid" alt="A gif showing the visual transformation of the data pictured, going from the wide format to the long format. Above the image is the R code that would produce each data layout."></p>
+</div>
+</div>
+<section id="manual-method" class="level2">
+<h2 class="anchored" data-anchor-id="manual-method">Manual Method</h2>
 <div class="large">
 <p>Given the current layout of the data, how would you <strong>manually</strong> convert this dataset into a <strong>long format</strong>?</p>
 </div>
 </section>
-<section id="manual-method-steps" class="slide level2">
-<h2>Manual Method: Steps</h2>
+<section id="manual-method-steps" class="level2">
+<h2 class="anchored" data-anchor-id="manual-method-steps">Manual Method: Steps</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
+<div class="incremental">
 <div class="small">
-<ol start="0" type="1">
-<li class="fragment">Keep the column <code>Country</code>.</li>
-<li class="fragment">Create a new column <code>Year</code>.</li>
-<li class="fragment">Create a new column <code>Expenditures</code> (hold yearly military expenditure values).</li>
-<li class="fragment">Now we have three columns – move Algeria’s values over.</li>
+<ol class="incremental" start="0" type="1">
+<li>Keep the column <code>Country</code>.</li>
+<li>Create a new column <code>Year</code>.</li>
+<li>Create a new column <code>Expenditures</code> (hold yearly military expenditure values).</li>
+<li>Now we have three columns – move Algeria’s values over.</li>
 </ol>
+</div>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:55%;">
 <div class="fragment">
 <div class="centered">
-<p><img data-src="images/pivot_algeria.png" style="width:45.0%" alt=""></p>
+<p><img src="images/pivot_algeria.png" class="img-fluid" style="width:45.0%" alt=""></p>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 </section>
-<section id="manual-method-steps-1" class="slide level2">
-<h2>Manual Method: Steps</h2>
+<section id="manual-method-steps-1" class="level2">
+<h2 class="anchored" data-anchor-id="manual-method-steps-1">Manual Method: Steps</h2>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="small">
@@ -485,12 +553,13 @@
 
 </div><div class="column" style="width:55%;">
 <div class="centered">
-<p><img data-src="images/pivot_algeria_libya.png" style="width:45.0%" alt=""></p>
+<p><img src="images/pivot_algeria_libya.png" class="img-fluid" style="width:45.0%" alt=""></p>
 </div>
-</div></div>
+</div>
+</div>
 </section>
-<section id="manual-method-steps-2" class="slide level2">
-<h2>Manual Method: Steps</h2>
+<section id="manual-method-steps-2" class="level2">
+<h2 class="anchored" data-anchor-id="manual-method-steps-2">Manual Method: Steps</h2>
 <div class="small">
 <ol start="0" type="1">
 <li>Keep the column <code>Country</code>.</li>
@@ -503,8 +572,8 @@
 </ol>
 </div>
 </section>
-<section id="pivot_longer" class="slide level2">
-<h2><code>pivot_longer()</code></h2>
+<section id="pivot_longer" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_longer"><code>pivot_longer()</code></h2>
 <p>We can use <code>pivot_longer()</code> to turn a <strong>wide</strong> dataset into a <strong>long(er)</strong> dataset.</p>
 <ul>
 <li><code>cols</code> – specify the columns that should be pivoted.
@@ -515,85 +584,85 @@
 <li><code>values_to</code> – the name of the new column containing the old column values.</li>
 </ul>
 </section>
-<section id="pivot_longer-1" class="slide level2">
-<h2><code>pivot_longer()</code></h2>
+<section id="pivot_longer-1" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_longer-1"><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> ,</span>
-<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
-<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> ,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Argument Input</strong></p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Argument Input
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>What columns do we want to pivot longer?</p>
 </div>
 </div>
-</div>
 </section>
-<section id="pivot_longer-2" class="slide level2">
-<h2><code>pivot_longer()</code></h2>
+<section id="pivot_longer-2" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_longer-2"><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
-<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
-<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Argument Input</strong></p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Argument Input
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>What name should we give the new column column containing the old column names?</p>
 </div>
 </div>
-</div>
 </section>
-<section id="pivot_longer-3" class="slide level2">
-<h2><code>pivot_longer()</code></h2>
+<section id="pivot_longer-3" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_longer-3"><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
-<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Argument Input</strong></p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Argument Input
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>What name should we give the new column containing the old column values?</p>
 </div>
 </div>
-</div>
 </section>
-<section id="pivot_longer-4" class="slide level2">
-<h2><code>pivot_longer()</code></h2>
+<section id="pivot_longer-4" class="level2">
+<h2 class="anchored" data-anchor-id="pivot_longer-4"><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Expenditures"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Expenditures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Country</th>
@@ -43169,38 +43238,37 @@
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="remember-if_any-if_all" class="slide level2">
-<h2>Remember: <code>if_any()</code> &amp; <code>if_all()</code></h2>
+<section id="remember-if_any-if_all" class="level2">
+<h2 class="anchored" data-anchor-id="remember-if_any-if_all">Remember: <code>if_any()</code> &amp; <code>if_all()</code></h2>
 <p>These functions are used with <code>filter()</code> to select rows based on a logical statement applied to multiple columns</p>
 <ul>
 <li><p><code>if_any()</code> – returns a logical vector (one element for each row) that is <code>TRUE</code> if the logical statement is true for <strong>any</strong> column in the supplied columns</p></li>
 <li><p><code>if_all()</code> – returns a logical vector (one element for each row) that is <code>TRUE</code> if the logical statement is true for <strong>all</strong> columns in the supplied columns</p></li>
 </ul>
 </section>
-<section id="if_any-example" class="slide level2">
-<h2><code>if_any()</code> Example</h2>
+<section id="if_any-example" class="level2">
+<h2 class="anchored" data-anchor-id="if_any-example"><code>if_any()</code> Example</h2>
 <div class="midi">
 <p>Suppose we want to know what countries have missing values for <strong>at least one</strong> of the years.</p>
 <p>We can <code>filter()</code> our data to only include observations where <strong>any</strong> of the columns have a missing value.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">if_any</span>(</span>
-<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">.cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
-<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x)</span>
-<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">if_any</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">.cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </section>
-<section id="if_any-example-1" class="slide level2">
-<h2><code>if_any()</code> Example</h2>
+<section id="if_any-example-1" class="level2">
+<h2 class="anchored" data-anchor-id="if_any-example-1"><code>if_any()</code> Example</h2>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Country</th>
@@ -48759,14 +48827,13 @@
 </div>
 </div>
 </div>
-</section></section>
-<section>
-<section id="pa-4-military-spending" class="title-slide slide level1 center">
+</section>
+</section>
+<section id="pa-4-military-spending" class="level1">
 <h1>PA 4: Military Spending</h1>
 <p>Today you will be tidying messy data to explore the relationship between countries of the world and military spending.</p>
-</section>
-<section id="this-activity-will-require-knowledge-of" class="slide level2">
-<h2>This activity will require knowledge of:</h2>
+<section id="this-activity-will-require-knowledge-of" class="level2">
+<h2 class="anchored" data-anchor-id="this-activity-will-require-knowledge-of">This activity will require knowledge of:</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="small">
@@ -48783,10 +48850,11 @@
 
 </div><div class="column" style="width:35%;">
 <p><span class="midi"><strong>None of us have all these abilities. Each of us has some of these abilities.</strong></span></p>
-</div></div>
+</div>
+</div>
 </section>
-<section id="tidyr-resources" class="slide level2">
-<h2>tidyr Resources</h2>
+<section id="tidyr-resources" class="level2">
+<h2 class="anchored" data-anchor-id="tidyr-resources">tidyr Resources</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
 <p>Every group should have a <strong>tidyr</strong> cheatsheet!</p>
@@ -48794,15 +48862,16 @@
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:35%;">
-<p><img data-src="images/tidyr-cheatsheet.png" alt="A picture of the tidyr cheatsheet, which contains helpful information on transforming data in a variety of ways."></p>
-</div></div>
+<p><img src="images/tidyr-cheatsheet.png" class="img-fluid" alt="A picture of the tidyr cheatsheet, which contains helpful information on transforming data in a variety of ways."></p>
+</div>
+</div>
 </section>
-<section id="pair-programming-expectations" class="slide level2">
-<h2>Pair Programming Expectations</h2>
-
-<img data-src="images/collab-process.png" alt="A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize." class="r-stretch"></section>
-<section id="external-resources" class="slide level2">
-<h2>External Resources</h2>
+<section id="pair-programming-expectations" class="level2">
+<h2 class="anchored" data-anchor-id="pair-programming-expectations">Pair Programming Expectations</h2>
+<p><img src="images/collab-process.png" class="img-fluid" alt="A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize."></p>
+</section>
+<section id="external-resources" class="level2">
+<h2 class="anchored" data-anchor-id="external-resources">External Resources</h2>
 <p>During the Practice Activity, you <strong>are not</strong> permitted to use Google or ChatGPT for help.</p>
 <p><br></p>
 <p>You <strong>are</strong> permitted to use:</p>
@@ -48813,8 +48882,8 @@
 <li>the course slides.</li>
 </ul>
 </section>
-<section id="submission" class="slide level2">
-<h2>Submission</h2>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
 <ul>
 <li>Each person will input your responses to Canvas Questions 1, 2, and 3 into the PA4 Canvas quiz.</li>
 <li>The person who last occupied the role of Computer will print and submit the <code>PA-4.pdf</code> file for the group.
@@ -48822,14 +48891,12 @@
 <li>Only one submission per group!</li>
 </ul></li>
 </ul>
-</section></section>
-<section>
-<section id="minute-break" class="title-slide slide level1 center">
-<h1>5-minute break</h1>
-
 </section>
-<section id="team-assignments---9am" class="slide level2">
-<h2>Team Assignments - 9am</h2>
+</section>
+<section id="minute-break" class="level1">
+<h1>5-minute break</h1>
+<section id="team-assignments---9am" class="level2">
+<h2 class="anchored" data-anchor-id="team-assignments---9am">Team Assignments - 9am</h2>
 <div class="centered">
 <!-- ![](images/section-70-seats.png){width=75%} -->
 </div>
@@ -48837,8 +48904,8 @@
 <p>The partner who woke up the earliest starts as the Coder!</p>
 </div>
 </section>
-<section id="team-assignments---12pm" class="slide level2">
-<h2>Team Assignments - 12pm</h2>
+<section id="team-assignments---12pm" class="level2">
+<h2 class="anchored" data-anchor-id="team-assignments---12pm">Team Assignments - 12pm</h2>
 <div class="centered">
 <!-- ![](images/section-71-seats.png){width=75%} -->
 </div>
@@ -48847,427 +48914,425 @@
 </div>
 
 
-</section></section>
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
-<div class="footer footer-default">
+</section>
+</section>
 
-</div>
-</div></div>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://revealjs.com/config/
-      Reveal.initialize({
-'controlsAuto': true,
-'previewLinksAuto': false,
-'pdfSeparateFragments': false,
-'autoAnimateEasing': "ease",
-'autoAnimateDuration': 1,
-'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
- 
-        // Display controls in the bottom right corner
-        controls: false,
-
-        // Help the user learn the controls by providing hints, for example by
-        // bouncing the down arrow when they first encounter a vertical slide
-        controlsTutorial: false,
-
-        // Determines where controls appear, "edges" or "bottom-right"
-        controlsLayout: 'edges',
-
-        // Visibility rule for backwards navigation arrows; "faded", "hidden"
-        // or "visible"
-        controlsBackArrows: 'faded',
-
-        // Display a presentation progress bar
-        progress: true,
-
-        // Display the page number of the current slide
-        slideNumber: false,
-
-        // 'all', 'print', or 'speaker'
-        showSlideNumber: 'all',
-
-        // Add the current slide number to the URL hash so that reloading the
-        // page/copying the URL will return you to the same slide
-        hash: true,
-
-        // Start with 1 for the hash rather than 0
-        hashOneBasedIndex: false,
-
-        // Flags if we should monitor the hash and change slides accordingly
-        respondToHashChanges: true,
-
-        // Push each slide change to the browser history
-        history: true,
-
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-
-        // Enable the slide overview mode
-        overview: true,
-
-        // Disables the default reveal.js slide layout (scaling and centering)
-        // so that you can use custom CSS layout
-        disableLayout: false,
-
-        // Vertical centering of slides
-        center: false,
-
-        // Enables touch navigation on devices with touch input
-        touch: true,
-
-        // Loop the presentation
-        loop: false,
-
-        // Change the presentation direction to be RTL
-        rtl: false,
-
-        // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'linear',
-
-        // Randomizes the order of slides each time the presentation loads
-        shuffle: false,
-
-        // Turns fragments on and off globally
-        fragments: true,
-
-        // Flags whether to include the current fragment in the URL,
-        // so that reloading brings you to the same fragment position
-        fragmentInURL: false,
-
-        // Flags if the presentation is running in an embedded mode,
-        // i.e. contained within a limited portion of the screen
-        embedded: false,
-
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-
-        // Flags if it should be possible to pause the presentation (blackout)
-        pause: true,
-
-        // Flags if speaker notes should be visible to all viewers
-        showNotes: false,
-
-        // Global override for autoplaying embedded media (null/true/false)
-        autoPlayMedia: null,
-
-        // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
-
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
-
-        // Use this method for navigation when auto-sliding
-        autoSlideMethod: null,
-
-        // Specify the average time in seconds that you think you will spend
-        // presenting each slide. This is used to show a pacing timer in the
-        // speaker view
-        defaultTiming: null,
-
-        // Enable slide navigation via mouse wheel
-        mouseWheel: false,
-
-        // The display mode that will be used to show slides
-        display: 'block',
-
-        // Hide cursor if inactive
-        hideInactiveCursor: true,
-
-        // Time before the cursor is hidden (in ms)
-        hideCursorTime: 5000,
-
-        // Opens links in an iframe preview overlay
-        previewLinks: false,
-
-        // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
-
-        // Transition speed (default/fast/slow)
-        transitionSpeed: 'default',
-
-        // Transition style for full page slide backgrounds
-        // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
-
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
-
-        // Number of slides away from the current that are visible on mobile
-        // devices. It is advisable to set this to a lower number than
-        // viewDistance in order to save resources.
-        mobileViewDistance: 2,
-
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: 1050,
-
-        height: 700,
-
-        // Factor of the display size that should remain empty around the content
-        margin: 0.1,
-
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
-
-          RevealMath,
-          RevealNotes,
-          RevealSearch,
-          RevealZoom
-        ]
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
-    </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/github\.com\/atheobold\/groupworthy-data-science");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-
-      })();
-    </script>
-
-    <script id="quarto-html-after-body" type="application/javascript">
-      window.document.addEventListener("DOMContentLoaded", function (event) {
-        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-        tabsets.forEach(function(tabset) {
-          const tabby = new Tabby('#' + tabset.id);
-        });
-        const isCodeAnnotation = (el) => {
-          for (const clz of el.classList) {
-            if (clz.startsWith('code-annotation-')) {                     
-              return true;
-            }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
-          return false;
         }
-        const onCopySuccess = function(e) {
-          // button target
-          const button = e.trigger;
-          // don't keep focus
-          button.blur();
-          // flash "checked"
-          button.classList.add('code-copy-button-checked');
-          var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copied!");
-          let tooltip;
-          if (window.bootstrap) {
-            button.setAttribute("data-bs-toggle", "tooltip");
-            button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copied!");
-            tooltip = new bootstrap.Tooltip(button, 
-              { trigger: "manual", 
-                customClass: "code-copy-button-tooltip",
-                offset: [0, -8]});
-            tooltip.show();    
-          }
-          setTimeout(function() {
-            if (tooltip) {
-              tooltip.hide();
-              button.removeAttribute("data-bs-title");
-              button.removeAttribute("data-bs-toggle");
-              button.removeAttribute("data-bs-placement");
-            }
-            button.setAttribute("title", currentTitle);
-            button.classList.remove('code-copy-button-checked');
-          }, 1000);
-          // clear code selection
-          e.clearSelection();
-        }
-        const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
-            }
-            return codeEl.innerText;
-        }
-        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-          text: getTextToCopy
-        });
-        clipboard.on('success', onCopySuccess);
-        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-            text: getTextToCopy,
-            container: window.document.getElementById('quarto-embedded-source-code-modal')
-          });
-          clipboardModal.on('success', onCopySuccess);
-        }
-          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-          var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/github\.com\/atheobold\/groupworthy-data-science");
-          var isInternal = (href) => {
-              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-          }
-          // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-          for (var i=0; i<links.length; i++) {
-            const link = links[i];
-            if (!isInternal(link.href)) {
-              // undo the damage that might have been done by quarto-nav.js in the case of
-              // links that we want to consider external
-              if (link.dataset.originalHref !== undefined) {
-                link.href = link.dataset.originalHref;
-              }
-            }
-          }
-        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-          const config = {
-            allowHTML: true,
-            maxWidth: 500,
-            delay: 100,
-            arrow: false,
-            appendTo: function(el) {
-                return el.closest('section.slide') || el.parentElement;
-            },
-            interactive: true,
-            interactiveBorder: 10,
-            theme: 'light-border',
-            placement: 'bottom-start',
-          };
-          if (contentFn) {
-            config.content = contentFn;
-          }
-          if (onTriggerFn) {
-            config.onTrigger = onTriggerFn;
-          }
-          if (onUntriggerFn) {
-            config.onUntrigger = onUntriggerFn;
-          }
-            config['offset'] = [0,0];
-            config['maxWidth'] = 700;
-          window.tippy(el, config); 
-        }
-        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-        for (var i=0; i<noterefs.length; i++) {
-          const ref = noterefs[i];
-          tippyHover(ref, function() {
-            // use id or data attribute instead here
-            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-            try { href = new URL(href).hash; } catch {}
-            const id = href.replace(/^#\/?/, "");
-            const note = window.document.getElementById(id);
-            if (note) {
-              return note.innerHTML;
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
             } else {
-              return "";
+              container.appendChild(child.cloneNode(true));
+              break;
             }
-          });
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        const findCites = (el) => {
-          const parentEl = el.parentElement;
-          if (parentEl) {
-            const cites = parentEl.dataset.cites;
-            if (cites) {
-              return {
-                el,
-                cites: cites.split(' ')
-              };
-            } else {
-              return findCites(el.parentElement)
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
             }
           } else {
-            return undefined;
-          }
-        };
-        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-        for (var i=0; i<bibliorefs.length; i++) {
-          const ref = bibliorefs[i];
-          const citeInfo = findCites(ref);
-          if (citeInfo) {
-            tippyHover(citeInfo.el, function() {
-              var popup = window.document.createElement('div');
-              citeInfo.cites.forEach(function(cite) {
-                var citeDiv = window.document.createElement('div');
-                citeDiv.classList.add('hanging-indent');
-                citeDiv.classList.add('csl-entry');
-                var biblioDiv = window.document.getElementById('ref-' + cite);
-                if (biblioDiv) {
-                  citeDiv.innerHTML = biblioDiv.innerHTML;
-                }
-                popup.appendChild(citeDiv);
-              });
-              return popup.innerHTML;
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
             });
           }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
         }
+      }, function(instance) {
       });
-      </script>
-    
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Allison Theobold &amp; Judith Canner</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
 
 </body></html>

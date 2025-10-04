@@ -240,6 +240,14 @@ Useful variables: `question_no`, `teacher_id`, `SET_score_avg`, `percent_failed_
 
 ```
 
+**11. Which instructors with one year of experience had the highest and lowest average percentage of students failing in the current semester across all their courses?**
+
+```{r}
+#| label: one-year-experience-failing-students
+
+
+```
+
 
 **12. Which instructor(s) with either a doctorate or professor degree had the highest and lowest average percent of students responding to the evaluation across all their courses? Include how many years the instructor had worked (seniority) and their sex in your output.**
 

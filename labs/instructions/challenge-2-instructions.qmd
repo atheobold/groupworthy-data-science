@@ -168,17 +168,18 @@ ggplot(data = penguins,
   labs(x = "Bill Length (mm)", 
        y = "", 
        title = "Length of Different Penguin Species' Bills", 
-       subtitle = "Separated by <span style = 'color:#c8251d;'>Biscoe</span>, <span style = 'color:#a11b26;'>Dream</span> and <span style = 'color:#ef6552;'>Torgenson</span> Islands") +
+       subtitle = "Separated by <span style='color: #c8251d;'>Biscoe</span>, <span style='color:  #a11b26;'>Dream</span> and <span style='color: #ef6552;'>Torgenson</span> Islands") +
+  theme_bw() +
   theme(
     legend.position = "none", 
     plot.subtitle = element_markdown()
-    ) +
-  theme_bw()
+    )
+ 
 ```
 
 Notice that the subtitle is still specified as a string. Inside the string there
 are HTML elements (`<span>`) that declare the colors of the text. For example, 
-`<span style = 'color:#c8251d;'>Biscoe</span>` declares that the text "Biscoe"
+`<span style='color: #c8251d;'>Biscoe</span>` declares that the text "Biscoe"
 should be printed with the color `#c8251d`. The beginning of the span (`<span `)
 and the end of the span (`</span>`) declare when the coloring starts and ends. 
 

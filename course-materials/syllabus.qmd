@@ -455,29 +455,41 @@ We will generate the descriptions / expectations of these grades together after 
 
 # Academic Integrity and Class Conduct
 
-**Our academic community is at its best when we treat each other with fairness, honesty, respect, and trust. Unfortunately, sometimes students slip up and do something that gives themselves (or someone else) an unfair advantage over other students.  Such actions will not be tolerated in this class.**
+**Our academic community thrives when we treat each other with fairness, honesty, respect, and trust. These values are at the heart of everything we do. Actions that give any student an unfair advantage over others—intentionally or unintentionally—undermine that trust and will not be tolerated in this class.**
 
-It is most likely that a student will slip up if they are feeling overwhelmed or unsure of how to approach a problem that they are stuck on. So **let's be proactive to prevent those situations!!** If you are helpless in an assignment or in studying, post on discord, come to office hours, or email me or one of your classmates! I am working hard to provide all of the resources you need to succeed
+Often, academic integrity issues arise when students feel overwhelmed or unsure how to proceed. Let’s work together to prevent those situations. If you find yourself stuck on an assignment or concept, **please reach out for help**---post on Discord, come to office hours, or email me or your classmates. I’m committed to providing you with the resources you need to succeed, but it’s up to you to take advantage of them.
 
+::: {style="color: red"}  
+At Cal Poly, you have full access to tools like ChatGPT. Used thoughtfully, 
+these tools can support your learning---for example, by helping you debug code
+or understand a tricky concept. However, they can also become a shortcut that
+prevents real learning. Only you can make the right choice about how you use
+them.
 
-However, **the college doesn't really care if you break the rules on purpose or by accident.** If I suspect you have done something that violates academic integrity on any graded elements of the course (included those graded for completion), you will receive an email to tell you about my suspicion and how the situation will be handled. **Typically, students earn a 0 for the  assignment on which academic misconduct is found.** University policy dictates that we must report every instance of suspected academic dishonesty to the Office of Student Rights and Responsibilities, no matter how small. For more information on academic misconduct and what constitutes cheating and
-plagiarism, please see
-[academicprograms.calpoly.edu/content/academicpolicies/Cheating](https://academicprograms.calpoly.edu/content/academicpolicies/Cheating).
+To help you stay on the right side of that line, here are a few AI guardrails
+for this course:
 
-It is important to note that paraphrasing or quoting another's work
-without proper citation is a form of academic misconduct. This includes
-the `R` code produced by someone else! Writing code is like writing a
-paper, it is obvious if you copied-and-pasted a sentence from someone
-else into your paper because the way each person writes is different.
+- Do not copy and paste assignment prompts or entire code files into ChatGPT
+(for example, your full `.qmd` file or a specific question from a lab).
 
-Even inadvertent or unintentional misuse or appropriation of another’s
-work (such as relying heavily on source material that is not expressly
-acknowledged) is considered plagiarism. This includes using **Chat GPT,
-which should only be used to help you problem solve just as a tutor or
-peer would, and not as a substitute for your own work.** If you are
-struggling with writing the `R` code for an assignment, please reach out
-to me. I would prefer that I get to help you rather than you spending
-hours Googling things and get nowhere!
+- Instead, use ChatGPT as a learning aid: describe what you’re trying to do, 
+explain what you’ve already tried, and ask for guidance or clarification.
+
+- Your questions should invite understanding, not replacement of your own
+thinking.
+:::
+
+Remember, paraphrasing or reproducing another’s work without proper citation is
+a form of academic misconduct—and that includes code. Writing code is like
+writing prose: each person has a unique "voice," and copied work is easy to
+spot.
+
+Even unintentional misuse of someone else’s work (for instance, relying heavily
+on uncited material or AI-generated code) constitutes plagiarism. **Tools like
+ChatGPT should be used as a tutor or to help you problem-solve**, not as
+a substitute for your own effort. If you’re struggling with your R code or an
+assignment, please reach out. I’d much rather help you directly than have you
+lose hours to frustration or risk crossing academic integrity lines.
 
 ::: callout-tip
 ## Always Cite Outside Resources!
@@ -492,6 +504,10 @@ In this class the assumed knowledge is the course materials, including the cours
 
 ::: {.callout-warning}
 The first incident of failing to cite your resources, will result in a warning. The second incident of failing to cite your resources will result in a 0 on the assignment, meaning you will not be able to include **any** code from that Lab or Challenge in your Final Portfolio. You will also be reported to the Office of Student Rights and Responsibilities.
+
+For more information on academic misconduct and what constitutes cheating and
+plagiarism, please see
+[academicprograms.calpoly.edu/content/academicpolicies/Cheating](https://academicprograms.calpoly.edu/content/academicpolicies/Cheating).
 :::
 
 **If you have any questions about using and citing sources, you are

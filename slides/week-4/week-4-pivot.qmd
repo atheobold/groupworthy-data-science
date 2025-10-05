@@ -19,6 +19,8 @@ library(readxl)
 
 Today we will discuss...
 
+-   Challenge 2 Sticking Points
+    + Updated ChatGPT Policy
 -   Grade Expectations 
     + Survey on Canvas
 -   New Material
@@ -26,6 +28,58 @@ Today we will discuss...
     -   Filtering out 
     -   Pivoting data with `tidyr`
 -   PA 4: Military Spending
+
+# Challenge 2
+
+## Common Sticking Points
+
+::: {.midi}
+- What are these species of???
+    + I want you to spend more time creating really good plot labels that 
+    include details about the data context!
+:::
+
+. . .
+
+::: {.midi}    
+- After Lab 1, your Challenges will **always** be a separate `.qmd` file. 
+    + Please do not add these to the end of your Lab submission! 
+:::
+
+. . .
+
+::: {.midi}
+- Jittered points are nice to add to a boxplot, but with too many points it 
+gets hard to see the boxplots! 
+    + Move the points behind the boxplot! 
+    + Make the points more transparent! 
+::: 
+
+## Updates to ChatGPT Policy
+
+::: {.small}
+At Cal Poly, you have full access to ChatGPT. Used thoughtfully, these tools 
+can support your learning. However, they can also become a shortcut that
+prevents real learning. Only you can make the right choice about how you use
+them.
+:::
+
+. . .
+
+::: {.small}
+To help you stay on the right side of that line, here are a few AI guardrails
+for this course:
+
+- Do not copy and paste assignment prompts or entire code files into ChatGPT. 
+
+- Use ChatGPT as a learning aid: 
+    + describe what you’re trying to do,
+    + explain what you’ve already tried, and 
+    + ask for guidance or clarification.
+
+- Your questions should invite understanding, not replacement of your own
+thinking.
+:::
 
 # Grade Expectations
 
@@ -605,8 +659,8 @@ You **are** permitted to use:
 
 - Each person will input your responses to Canvas Questions 1, 2, and 3 into 
 the PA4 Canvas quiz.
-- The person who last occupied the role of Computer will print and submit
-the `PA-4.pdf` file for the group.
+- The person who last occupied the role of Computer will submit the link to your
+group's Colab notebook.
   + Only one submission per group!
 
 # 5-minute break

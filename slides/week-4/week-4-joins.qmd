@@ -86,7 +86,8 @@ Today we will...
 
 ::: {.midi}
 ::: {.incremental}
-+ **Q1:** The [`tidyverse`](https://www.tidyverse.org/packages/) package automatically loads `ggplot2`, `dplyr`, `readr`, etc. -- do not load these twice!
++ **Q1:** The [`tidyverse`](https://www.tidyverse.org/packages/) package
+automatically loads `ggplot2`, `dplyr`, `readr`, etc. -- do not load these twice!
 
 - **Q3:** Where did these data come from? How were they collected? What is the
 context of these data?
@@ -128,9 +129,9 @@ readable and is part of the code formatting guidelines for this class.
 :::
 :::
 
-# Lifecycle Stages
+# Function Lifecycle Stages
 
-## Lifceycle Stages
+## Function Lifceycle Stages
 
 As packages get updated, the functions and function arguments included in those packages will change.
 
@@ -144,7 +145,7 @@ As packages get updated, the functions and function arguments included in those 
 
 <center>
 
-![](images/summarize_lifecycle.png){width=70% fig-alt="The image shows the documentation for the summarise() (or summarize(), using the American spelling) function in R, commonly used in the dplyr package for data manipulation. The summarise() function is used to create summary statistics for data frames or tibbles. The key arguments include .data, which is the data frame or tibble input, and ..., which represents name-value pairs of summary functions. The .by and .groups arguments are optional and used to control grouping behavior in the summarization. A key point in the documentation is that returning values with size 0 or greater than 1 in summary functions, such as min(), n(), or sum(), was deprecated as of version 1.1.0. Instead, users are encouraged to use the reframe() function, which replaces the deprecated behavior. The lifecycle badge marks the deprecation of this feature, ensuring that users know that previous versions' behavior should be updated for compatibility with future versions of the package."}
+![](images/mutate_at.png){width=70% fig-alt="The image shows the documentation for the mutate_at() function in R, from the dplyr package for data manipulation. At the top of the documentation it states that this function (and its relatives mutate_all, mutate_if, transmute_all, transmute_if, transmute_at) is superseded. The description states that these functions have been replaced by the pick() or across() functions."}
 
 </center>
 
@@ -173,7 +174,7 @@ A **deprecated** functionality has a better alternative available and is schedul
 #| warning: true
 #| message: true
 #| echo: true
-#| code-line-numbers: "2"
+#| code-line-numbers: "2-5"
 #| eval: true
 
 military_clean |> 
@@ -193,7 +194,7 @@ Instead, we use...
 
 ```{r}
 #| echo: true
-#| code-line-numbers: "2"
+#| code-line-numbers: "2-5"
 #| eval: true
 
 military_clean |>
@@ -369,11 +370,11 @@ What counties will remain in the joined dataset?
 ## More Mutating Joins
 
 ::: {.midi}
--   `left_join()` -- keep only (and all) observations present in the left data set
+-   `left_join()` -- keeps only (and all) observations present in the left data set
 
--   `right_join()` -- keep only (and all) observations present in the right data set 
+-   `right_join()` -- keeps only (and all) observations present in the right data set 
 
--   `full_join()` -- keep only (and all) observations present in **both** data sets
+-   `full_join()` -- keeps all observations present in **both** data sets
 :::
 
 ::: {.centered}
@@ -618,7 +619,10 @@ set.seed(2)
 
 ca_tax_rev |> 
   distinct(entity_name) |> 
-  slice_sample(n = 25)
+  slice_sample(n = 25) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "400px") |> 
+  kableExtra::kable_styling(font_size = 25)
 ```
 
 ## `forcats`
@@ -653,6 +657,7 @@ The packages `forcats` ("for categoricals") helps wrangle categorical variables.
 
 With `fct()`, the levels are automatically ordered in the **order of first appearance**.
 
+::: {.midi}
 ```{r}
 #| echo: true
 #| code-line-numbers: false
@@ -661,6 +666,7 @@ ca_tax_rev |>
   pull(entity_name) |> 
   fct()
 ```
+:::
 
 ## Creating a Factor 
 
@@ -676,22 +682,6 @@ ca_tax_rev <- ca_tax_rev |>
 ::: {.callout-warning}
 # To change a column type to factor, you must wrap `fct()` in a `mutate()` call.
 :::
-:::
-
-. . .
-
-</br> 
-
-::: {.midi}
-I am using `pull()` to display the outcome:
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-ca_tax_rev |> 
-  pull(entity_name)
-```
 :::
 
 ## Creating a Factor -- `fct`

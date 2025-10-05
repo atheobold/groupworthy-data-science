@@ -5,407 +5,154 @@ execute:
   eval: false
 ---
 
-
-```{r setup}
+```{r}
 #| include: false
 #| message: false
+#| label: setup
+
 library(tidyverse)
 library(liver)
 library(readxl)
 library(ggridges)
 ```
 
+## Lab 3 Debrief 
 
-::: callout-warning
-For this lab, you need to download data from the Week 4 Notes page on the course website and add them to a `data/` directory.
-:::
+1. Why do you need to use a `.x` inside ` ~ mean()` for the `across()` function?
 
+2. What does it mean for a function to be "superseded"?
 
+3. What does it mean for a function to be "deprecated"?
 
-# Data
+4. How would you know if the function you are using is superseded or deprecated?
 
-We will use 7 datasets that describe movies from [IMDb](https://www.imdb.com/). 
-
-```{r}
-#| echo: false
-#| eval: true
-#| fig-cap: "Relationship between data sets in IMDb movie data."
-#| out-width: 90%
-knitr::include_graphics("https://github.com/manncz/stat-331-s25/blob/main/slides/week-4/images/imdb_relational.png?raw=true")
-```
+5. What should you do if the function you are using is superseded or deprecated?
 
 
-```{r}
-load(file = "data/imdb_data.Rdata")
-```
+## Relational Data
 
+> Do counties with higher property taxes also have higher childcare costs? Has this relationship changed over time?
 
-On Thursday will also look at joining datasets created from the Lab 2 Rodent data. **Note that you will need to change the file path to be appropriate for your directory strucure!**
+![](images/childcare-relations.jpg){fig-alt="A figure showing the relations between three different datasets: childcare_costs, counties, and ca_tax_revenue. The childcare_costs dataset has an arrow connecting the variable 'county_fips_code' to the 'county_fips' in the counties dataset. The counties dataset has an arrow connecting the 'county name' variable to the 'entity name' variable in the ca_tax_revenue dataset. Each of the arrows represents the keys (variables) that link each dataset." width=50%}
 
-```{r, rodent-data}
-rodent <- read_csv("../../labs/lab2/surveys.csv")
+### `inner_join()`
 
-species <- rodent |> 
-  select(genus:taxa, species_id) |> 
-  distinct()
-
-measurements <- rodent |> 
-  select(genus, species, sex:weight) |> 
-  rename(genus_name = genus)
-```
-
-... and daily rainfall observed in SLO in January 2023. 
-[Data source](cesanluisobispo.ucanr.edu)
-
+> Keeps observations when their keys are present in **both** datasets.
 
 ```{r}
-slo_rainfall <- read_excel("data/2023-rainfall-slo.xlsx")
+#| label: counties-inner-2
+#| eval: false
+#| echo: true
 
-slo_rainfall <- slo_rainfall |> 
-  mutate(across(Sunday:Saturday, as.numeric))
+inner_join(x = counties, 
+           y = ca_tax_rev, 
+           by = join_by(county_name == entity_name)
+           )
 ```
 
-
-... and to practice working with factor variables, we will use data on songs that Taylor Swift included in the Era's Tour.
-
-```{r}
-full_eras <- read_excel("data/TS_data.xlsx", sheet = "full")
-
-# randomly sample 25 songs
-set.seed(2)
-eras_data <- full_eras |> 
-  slice_sample(n = 25) |> 
-  select(Song, Album)
-```
-
-# Tuesday
-
-## Data Joins
-
-```{r}
-inner_join(directors_genres, 
-           movies_directors, 
-           by = "director_id")
-```
-```{r}
-inner_join(directors_genres, 
-           directors, 
-           by = join_by(director_id == id))
-```
-
-```{r}
-directors_genres |> 
-  inner_join(movies_directors, 
-             by = "director_id")
-```
+6. Why am I using `join_by()` to join these two datasets?
 
 
-## Which Join?
+7. What counties will remain in the joined dataset?
 
-How many movies are there in the data for each director (by name), including if any directors don’t have any movies in the data?
+
+### `left_join()`
+
+> Keeps only (and all) observations present in the left data set
 
 ```{r}
 #| eval: false
+#| echo: true
 
-directors |> 
-  ??_join(movies_directors, 
-          by = join_by(id == director_id))
+left_join(x = counties, 
+          y = ca_tax_rev, 
+          by = join_by(county_name == entity_name)
+          )
 ```
+ 
 
-What is the complete set of movies and actors included in the data?
+8. What counties will remain in the joined dataset?
+
+### `right_join()`
+
+> Keeps only (and all) observations present in the right data set 
 
 ```{r}
 #| eval: false
+#| echo: true
 
-roles |> 
-  ??_join(actors, 
-          by = join_by(actor_id == id))
+right_join(x = counties, 
+          y = ca_tax_rev, 
+          by = join_by(county_name == entity_name)
+          )
+          
 ```
 
+9. What counties will remain in the joined dataset?
+
+### `NAs` in Joins
+
+10. What might be the cause of `NA` values when joining two datasets together?
 
 ## Filtering Joins
 
-```{r}
-directors_genres |> 
-  semi_join(movies_directors)
-```
+> Filter *observations* based on values in new dataframe.
+
+### `anti_join()`
+
+> Removes observations when their keys are present in both datasets, and only keeps variables from the first dataset
 
 ```{r}
-directors_genres |>
-  filter(director_id %in% movies_directors$director_id)
-```
-```{r}
-directors_genres |> 
-  anti_join(movies_directors)
+military |> 
+  anti_join(cont_region, 
+            by = join_by(Country == Region))
 ```
 
-```{r}
-directors_genres |>
-  filter(!director_id %in% movies_directors$director_id)
-```
+11. How is this approach different from what we did in the Practice Activity?
 
-## Data Pivots
+## Factor Variables
 
-Example data includes the `cereal` dataset from the `liver` package (which we saw last week)...
+12. What are the two general purposes for factor variables (in R)?
 
-```{r}
-data(cereal)
-```
+13. What function have you used previously to create a factor variable? What function inside the **forcats** package does this?
 
+14. Can you specify the order you want the levels (of a factor) to be in?
 
-How would we plot the mean cereal nutrients by shelf (as shown below) with the wide data?
-
-
-
-
-
-
-
-
-
-
+### `fct_reorder()`
 
 ```{r}
-my_colors <- c("calories_col" = "steelblue", "sugars_col" = "orange3")
+#| echo: true
+#| eval: false
 
-cereal |> 
-  group_by(shelf) |> 
-  summarise(across(calories:vitamins, mean)) |> 
-  ggplot() +
-  geom_point(aes(x = shelf, y = calories, color = "calories_col")) +
-  geom_line(aes(x = shelf, y = calories, color = "calories_col")) + 
-  geom_point(aes(x = shelf, y = sugars, color = "sugars_col")) +
-  geom_line(aes(x = shelf, y = sugars, color = "sugars_col")) +
-  scale_color_manual(values = my_colors, labels = names(my_colors)) +
-  labs(x = "Shelf", y = "", subtitle = "Mean Amount", color = "Nutrient")
+ca_tax_rev <- ca_tax_rev |> 
+  mutate(entity_name = fct_reorder(.f = entity_name,
+                                   .x = sales_and_use_taxes,
+                                   .fun = mean)
+         )
 ```
 
+15. What does this code do?
 
-```{r}
-cereal_long <- cereal |> 
-  pivot_longer(cols = calories:vitamins,
-               names_to = "Nutrient",
-               values_to = "Amount") |> 
-  group_by(shelf, Nutrient) |> 
-  summarise(mean_amount = mean(Amount))
-```
+16. In what setting would you want to use code like this?
 
-```{r}
-cereal_long |> 
-  ggplot(aes(x = shelf, 
-             y = mean_amount, 
-             color = Nutrient)) +
-  geom_point() +
-  geom_line() +
-  labs(x = "Shelf", y = "", subtitle = "Mean Amount")
-```
+### `fct_reorder2()`
 
+17. What does this function do? 
 
+18. When would you want to use it?
 
-```{r}
-slo_rainfall |> 
-  pivot_longer(cols      = Sunday:Saturday,
-               names_to  = "Day_of_Week",
-               values_to = "Daily_Rainfall")
-```
+### `fct_collapse()`
 
+19. What does this function do? 
 
+20. When would you want to use it?
 
-```{r}
-mean_protein <- cereal |> 
-  group_by(manuf, shelf) |> 
-  summarize(mean_protein = mean(protein))
-```
-
-
-```{r}
-mean_protein |> 
-  pivot_wider(id_cols = manuf,
-              names_from = shelf,
-              values_from = mean_protein)
-```
-
-
-# Thursday
-
-## Extending Joins
-
-
-```{r}
-movies_directors |> 
-  inner_join(directors, 
-             join_by(director_id == id)) |> 
-  inner_join(movies,
-             join_by(movie_id == id)) |> 
-  group_by(first_name, last_name) |>
-  summarize(start_year = min(year),
-            end_year = max(year)) |> 
-  mutate(n_years_active = end_year - start_year) |> 
-  arrange(desc(n_years_active))
-```
-
-```{r}
-directors |> 
-  inner_join(movies_directors, 
-             join_by(id == director_id))
-```
-
-
-```{r}
-head(species)
-head(measurements)
-```
-
-```{r}
-#| warning: true
-
-measurements |> 
-  inner_join(species, 
-             by = join_by(genus_name == genus))
-```
-
-```{r}
-species |> 
-  full_join(measurements,
-            join_by(species == species, 
-                    genus == genus_name))
-```
-
-
-## Factors with `forcats`
-
-
-
-```{r}
-eras_data |> 
-  mutate(Album = fct(Album)) |> 
-  pull(Album)
-```
-
-
-```{r}
-eras_data |> 
-  mutate(Album = fct(Album,
-                     levels = c("Fearless","Speak Now","Red",
-                                "1989", "Reputation","Lover",
-                                "Folklore", "Evermore","Midnights"))) |> 
-  pull(Album) 
-```
-
-```{r}
-eras_data |> 
-  mutate(Album = fct(Album, 
-                     levels = c("Taylor Swift",
-                                "Fearless","Speak Now","Red",
-                                "1989", "Reputation","Lover",
-                                "Folklore", "Evermore","Midnights",
-                                "The Tortured Poets Department"))) |> 
-  pull(Album) 
-```
-
-```{r}
-eras_data |>
-  mutate(Album = fct_recode(.f = Album,
-                            "folklore" = "Folklore",
-                            "evermore" = "Evermore",
-                            "reputation" = "Reputation")) |>
-  pull(Album) 
-```
-
-```{r}
-eras_data |> 
-  mutate(Genre = fct_collapse(.f= Album,
-                       "country pop" = c("Taylor Swift", "Fearless"),
-                       "pop rock" = c("Speak Now","Red"),
-                       "electropop" = c("1989","reputation","Lover"),
-                       "folk pop" = c("folklore","evermore"),
-                       "alt-pop" = "Midnights")) |> 
-  slice_sample(n = 6)
-```
-
-
-```{r}
-eras_data |> 
-  mutate(Album = fct_relevel(.f = Album, 
-                             c("Fearless","1989","Taylor Swift",
-                               "Speak Now","Red","Midnights","reputation",
-                               "folklore","Lover","evermore"))) |>
-  pull(Album) |>
-  levels()
-```
-
-## Re-order Factors for Plots
-
-```{r}
-full_eras |> 
-  mutate(Album = fct(Album,
-                     levels = c("Fearless","Speak Now","Red",
-                                "1989","Reputation","Lover",
-                                "Folklore","Evermore",
-                                "Midnights"))) |> 
-  ggplot() +
-  geom_bar(aes(y = Album), fill = "#A5C9A5") +
-  theme_minimal() +
-  labs(x = "Number of Songs",
-       y = "",
-       subtitle = "Album",
-       title = "Songs Played on the Eras Tour")
-```
-
-
-
-```{r}
-full_eras |> 
-  ggplot() +
-  geom_bar(aes(y = fct_infreq(Album)), 
-           fill = "#A5C9A5") +
-  theme_minimal() +
-  labs(x = "Number of Songs",
-       y = "",
-       subtitle = "Album",
-       title = "Songs Played on the Eras Tour")
-```
-
-
-```{r}
-full_eras |> 
-  ggplot(aes(x = Length, 
-             y = fct_reorder(.f = Album,
-                             .x = Length,
-                             .fun = mean), 
-             fill = Album)) +
-  geom_density_ridges() +
-  theme_minimal() +
-  theme(legend.position = "none")+
-  labs(x = "Song Length (mins)",
-       y = "",
-       subtitle = "Album",
-       title = "Songs Played on the Eras Tour")
-```
-
-```{r}
-cereal_long |> 
-  ggplot(aes(x = shelf, 
-             y = mean_amount, 
-             color = fct_reorder2(.x = shelf,
-                                  .y = mean_amount,
-                                  .f = Nutrient))) +
-  geom_point() +
-  geom_line() +
-  labs(x = "Shelf", y = "", 
-       subtitle = "Mean Amount",
-       color = "Nutrient")
-```
 
 ## Code Formatting
 
-Don't forget, writing "tidy" and "well documented" code are two of the learning
-targets for this course. As such, I would strongly encourage you to use every
-opportunity to practice these skills.
+Don't forget, writing "tidy" and "well documented" code are two of the learning targets for this course. As such, I would strongly encourage you to use every opportunity to practice these skills.
 
-As you are writing code for this assignment, make sure your code follows the
-[tidyverse style guide for dplyr code](https://style.tidyverse.org/pipes.html).
-Specifically, your code should:
+As you are writing code for this assignment, make sure your code follows the [tidyverse style guide for dplyr code](https://style.tidyverse.org/pipes.html). Specifically, your code should:
 
 -   use whitespace liberally
     -   before & after every `=` sign
@@ -414,4 +161,3 @@ Specifically, your code should:
 -   use new lines liberally
     -   after every `|>`
     -   after `,` when needed (if code is more than 80 characters in length)
-

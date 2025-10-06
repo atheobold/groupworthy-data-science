@@ -26,10 +26,10 @@ Let’s compare the level of SET ratings for Question 3 (The professor used acti
 **1. Using the original `teacher_evals` dataset (not `teacher_evals_clean`), create a new dataset that accomplishes the following with *one*`dplyr` pipeline:**
 
 -   **includes responses for Question 3 only**
--   **creates a new variable called `SET_level` that is “excellent” if the `SET_score_avg` is 4 or higher (inclusive) and “standard” otherwise**
--   **creates a new variable called `sen_level` that is “junior” if `seniority` is 4 or less (inclusive) and “senior” otherwise**
+-   **creates a new variable called set_level that is "excellent" if the SET_score_avg is 4 or higher (inclusive) and "standard" otherwise**
+-   **creates a new variable called sen_level that is "junior'”' if the instructor has been teaching for 4 years or less (inclusive), "senior" if between 5-8 years (inclusive), and "very senior" if more than 8 years**
 -   **contains only the variables we are interested in –- `course_id`, `SET_level`, and `sen_level`**
--   **saves the mutated data into a new object named `teacher_evals_compare`.**
+-   **saves the mutated data into a new data frame named `teacher_evals_compare`**
 
 ::: callout-tip
 Helpful functions: `filter()`, `mutate()`, `if_else()`, `select()`

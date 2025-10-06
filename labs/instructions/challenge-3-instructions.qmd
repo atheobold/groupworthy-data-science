@@ -2,17 +2,14 @@
 title: "Challenge 3: Extending Teaching Evaluation Investigations"
 ---
 
-This challenge builds on the work you already did with the data on
-teacher evaluations. Specifically, you are tasked with recreating
-a plot, carrying out a Chi-Squared test of independence, and 
-providing a critique of the design and collection of these data. 
+This challenge builds on the work you already did with the data on teacher evaluations. Specifically, you are tasked with recreating a plot, carrying out a Chi-Squared test of independence, and providing a critique of the design and collection of these data.
 
 ## Accessing the Challenge
 
-Download the template Challenge 3 Quarto file here: <a href="../student/challenge-3-student.qmd" download>`challenge-3-student.qmd`</a> 
+Download the template Challenge 3 Quarto file here: <a href="../student/challenge-3-student.qmd" download>`challenge-3-student.qmd`</a>
 
-::: {.callout-important}
-Be sure to save the file in the Lab 3 folder, inside your Week 3 folder, inside your STAT 331 folder! 
+::: callout-important
+Be sure to save the file in the Lab 3 folder, inside your Week 3 folder, inside your STAT 331 folder!
 :::
 
 # Chi-Square Test of Independence
@@ -20,16 +17,16 @@ Be sure to save the file in the Lab 3 folder, inside your Week 3 folder, inside 
 ::: callout-tip
 ## Refresher on Chi-square test of Independence
 
-In case it has been a second or two since you did a Chi-Squared test, [this chapter](https://openintro-ims.netlify.app/inference-tables#inference-tables) provides a friendly refresher. 
+In case it has been a second or two since you did a Chi-Squared test, [this chapter](https://openintro-ims.netlify.app/inference-tables#inference-tables) provides a friendly refresher.
 :::
 
 Let’s compare the level of SET ratings for Question 3 (The professor used activities to make the class more engaging.) between senior instructors and junior instructors.
 
-**1. Using the original `teacher_evals` dataset (not `teacher_evals_clean`), create a new dataset that accomplishes the following with *one* `dplyr` pipeline:**
+**1. Using the original `teacher_evals` dataset (not `teacher_evals_clean`), create a new dataset that accomplishes the following with *one*`dplyr` pipeline:**
 
 -   **includes responses for Question 3 only**
-- **creates a new variable called set_level that is "excellent" if the SET_score_avg is 4 or higher (inclusive) and "standard" otherwise**
-- **creates a new variable called sen_level that is "junior'”' if the instructor has been teaching for 4 years or less (inclusive), "senior" if between 5-8 years (inclusive), and "very senior" if more than 8 years**
+-   **creates a new variable called set_level that is "excellent" if the SET_score_avg is 4 or higher (inclusive) and "standard" otherwise**
+-   **creates a new variable called sen_level that is "junior'”' if the instructor has been teaching for 4 years or less (inclusive), "senior" if between 5-8 years (inclusive), and "very senior" if more than 8 years**
 -   **contains only the variables we are interested in –- `course_id`, `SET_level`, and `sen_level`**
 -   **saves the mutated data into a new data frame named `teacher_evals_compare`**
 

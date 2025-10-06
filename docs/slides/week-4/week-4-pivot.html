@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Data Pivots + Joins</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-1c35b41652cab16ef815a191b3564630.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c990e76e4e8f51fe5aa6f0d132950ebc.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -288,16 +288,16 @@
 <section id="grade-expectations-1" class="title-slide slide level1 center">
 <h1>Grade Expectations</h1>
 <blockquote>
-<p>The <a href="../../course-materials/syllabus.html#sec-grades">course syllabus</a> has been updated to reflect the grade criteria you all proposed.</p>
+<p>The course syllabus has been updated to reflect the grade criteria you all proposed.</p>
 </blockquote>
 </section>
 
 <section id="grade-expectations-2" class="title-slide slide level1 center">
 <h1>Grade Expectations</h1>
 <blockquote>
-<p>The <a href="../../course-materials/course-syllabus.qmd#sec-grades">course syllabus</a> has been updated to reflect the grade criteria you all proposed.</p>
+<p>The course syllabus has been updated to reflect the grade criteria you all proposed.</p>
 </blockquote>
-<p>You have until Sunday <a href="">to vote</a> on whether you agree with the proposed criteria, and to suggest ways these criteria could be revised.</p>
+<p>You have until Sunday to vote on whether you agree with the proposed criteria, and to suggest ways these criteria could be revised.</p>
 </section>
 
 <section>
@@ -368,8 +368,8 @@
 <h2>Declaring the Sheet</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
-<span id="cb1-2"><a></a>                      <span class="at">sheet =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<span id="cb1-2"><a></a>                      <span class="at">sheet =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
@@ -390,9 +390,9 @@
 <h2>Skipping the Notes at the Top</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
 <span id="cb2-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
-<span id="cb2-3"><a></a>                      <span class="at">skip  =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-3"><a></a>                      <span class="at">skip  =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
@@ -413,10 +413,10 @@
 <h2>Skipping the Footnotes at the Bottom</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
 <span id="cb3-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
 <span id="cb3-3"><a></a>                      <span class="at">skip  =</span> <span class="dv">7</span>, </span>
-<span id="cb3-4"><a></a>                      <span class="at">n_max =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-4"><a></a>                      <span class="at">n_max =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
@@ -453,12 +453,12 @@
 <h2>Declaring <code>NA</code> Values</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
 <span id="cb4-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
 <span id="cb4-3"><a></a>                      <span class="at">skip  =</span> <span class="dv">7</span>, </span>
 <span id="cb4-4"><a></a>                      <span class="at">n_max =</span> <span class="dv">190</span>, </span>
 <span id="cb4-5"><a></a>                      <span class="at">na =</span> <span class="fu">c</span>(<span class="st">". ."</span>, <span class="st">"xxx"</span>, <span class="st">".."</span>)</span>
-<span id="cb4-6"><a></a>                      )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-6"><a></a>                      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -486,7 +486,7 @@
 <p>Let’s say we want to plot how military expenditures have changed over time.</p>
 </div>
 
-<img data-src="week-4-pivot_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"><div class="fragment">
+<img data-src="week-4-pivot_files/figure-revealjs/unnamed-chunk-1-1.png" width="960" class="r-stretch"><div class="fragment">
 <div class="midi">
 <p>To do this, we need to pivot the year from wide to long format!</p>
 </div>
@@ -580,10 +580,10 @@
 <section id="pivot_longer-1" class="slide level2">
 <h2><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> ,</span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
-<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -602,10 +602,10 @@
 <section id="pivot_longer-2" class="slide level2">
 <h2><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
 <span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
-<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -624,10 +624,10 @@
 <section id="pivot_longer-3" class="slide level2">
 <h2><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
-<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -646,16 +646,16 @@
 <section id="pivot_longer-4" class="slide level2">
 <h2><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
 <span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Expenditures"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Expenditures"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
-<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Country</th>
@@ -43247,13 +43247,13 @@
 <p>Suppose we want to know what countries have missing values for <strong>at least one</strong> of the years.</p>
 <p>We can <code>filter()</code> our data to only include observations where <strong>any</strong> of the columns have a missing value.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">if_any</span>(</span>
 <span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">.cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
 <span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x)</span>
 <span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>    ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -43262,7 +43262,7 @@
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; ">
-<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Country</th>
@@ -48893,7 +48893,7 @@
 <section id="team-assignments---9am" class="slide level2">
 <h2>Team Assignments - 9am</h2>
 <div class="centered">
-<!-- ![](images/section-70-seats.png){width=75%} -->
+<p><img data-src="images/section-70-seats.png" style="width:75.0%"></p>
 </div>
 <div class="small">
 <p>The partner who woke up the earliest starts as the Coder!</p>
@@ -48902,7 +48902,7 @@
 <section id="team-assignments---12pm" class="slide level2">
 <h2>Team Assignments - 12pm</h2>
 <div class="centered">
-<!-- ![](images/section-71-seats.png){width=75%} -->
+<p><img data-src="images/section-71-seats.png" style="width:75.0%"></p>
 </div>
 <div class="small">
 <p>The partner who woke up the earliest starts as the Coder!</p>
@@ -49099,7 +49099,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

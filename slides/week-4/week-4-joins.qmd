@@ -1,5 +1,5 @@
 ---
-title: "Extending Joins, Factors, Clean Variable Names"
+title: "Relational Data & Factors"
 format: 
   revealjs:
         theme: [simple, ../style.scss]

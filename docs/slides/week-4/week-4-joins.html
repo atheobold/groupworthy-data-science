@@ -7,10 +7,10 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
-  <title>Introduction to Statistical Computing in R – Extending Joins, Factors, Clean Variable Names</title>
+  <title>Introduction to Statistical Computing in R – Relational Data &amp; Factors</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-1c35b41652cab16ef815a191b3564630.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c990e76e4e8f51fe5aa6f0d132950ebc.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -195,7 +195,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Extending Joins, Factors, Clean Variable Names</h1>
+  <h1 class="title">Relational Data &amp; Factors</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -256,7 +256,7 @@
 <li><strong>Q5 &amp; Q7</strong>: Not using the “correct” function syntax</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">if_any</span>(<span class="at">.cols =</span> <span class="fu">everything</span>(), <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">if_any</span>(<span class="at">.cols =</span> <span class="fu">everything</span>(), <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="midi">
@@ -303,11 +303,11 @@
 <div class="fragment">
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" data-code-line-numbers="2-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>military_clean <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="2-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>military_clean <span class="sc">|&gt;</span> </span>
 <span id="cb2-2"><a></a>  <span class="fu">filter</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="sc">-</span>Country, </span>
 <span id="cb2-3"><a></a>                <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x)</span>
 <span id="cb2-4"><a></a>                )</span>
-<span id="cb2-5"><a></a>         ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-5"><a></a>         ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Using `across()` in `filter()` was deprecated in dplyr 1.0.8.
 ℹ Please use `if_any()` or `if_all()` instead.</code></pre>
@@ -337,11 +337,11 @@
 <p>You <strong>should not</strong> use deprecated functions!</p>
 <p>Instead, we use…</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" data-code-line-numbers="2-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>military_clean <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb5" data-code-line-numbers="2-5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>military_clean <span class="sc">|&gt;</span></span>
 <span id="cb5-2"><a></a>  <span class="fu">filter</span>(<span class="fu">if_all</span>(<span class="at">.cols =</span> <span class="sc">-</span>Country, </span>
 <span id="cb5-3"><a></a>                <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x)</span>
 <span id="cb5-4"><a></a>                )</span>
-<span id="cb5-5"><a></a>         ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-5"><a></a>         ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 35
   Country       Notes `Reporting year` `1988` `1989` `1990` `1991` `1992` `1993`
@@ -453,10 +453,10 @@
 </blockquote>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(<span class="at">x =</span> counties, </span>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(<span class="at">x =</span> counties, </span>
 <span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> ca_tax_rev, </span>
 <span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">by =</span> <span class="fu">join_by</span>(county_name <span class="sc">==</span> entity_name)</span>
-<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>           )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>           )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="midi">
@@ -483,10 +483,10 @@
 <p>Keeps observations when their keys are present in <strong>both</strong> datasets.</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">inner_join</span>(<span class="at">x =</span> counties, </span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">inner_join</span>(<span class="at">x =</span> counties, </span>
 <span id="cb8-2"><a></a>           <span class="at">y =</span> ca_tax_rev, </span>
 <span id="cb8-3"><a></a>           <span class="at">by =</span> <span class="fu">join_by</span>(county_name <span class="sc">==</span> entity_name)</span>
-<span id="cb8-4"><a></a>           )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-4"><a></a>           )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>What counties will remain in the joined dataset?</p>
 </div>
@@ -514,7 +514,7 @@
 <div class="midi">
 <p>Which counties would <strong>remain</strong> for each of the following joins?</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(<span class="at">x =</span> counties, </span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(<span class="at">x =</span> counties, </span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> ca_tax_rev, </span>
 <span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">join_by</span>(county_name <span class="sc">==</span> entity_name)</span>
 <span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>          )</span>
@@ -527,7 +527,7 @@
 <span id="cb9-11"><a aria-hidden="true" tabindex="-1"></a><span class="fu">full_join</span>(<span class="at">x =</span> counties, </span>
 <span id="cb9-12"><a aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> ca_tax_rev, </span>
 <span id="cb9-13"><a aria-hidden="true" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">join_by</span>(county_name <span class="sc">==</span> entity_name)</span>
-<span id="cb9-14"><a aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-14"><a aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -539,13 +539,13 @@
 <div id="tabset-1-1">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="sc">|&gt;</span> </span>
-<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(county_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(county_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:320px; ">
-<table class="table caption-top" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">county_name</th>
@@ -6200,13 +6200,13 @@
 <div id="tabset-1-2">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(entity_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(entity_name)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:320px; ">
-<table class="table caption-top" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">entity_name</th>
@@ -6407,17 +6407,17 @@
 </ul>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(<span class="at">x =</span> counties, </span>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">left_join</span>(<span class="at">x =</span> counties, </span>
 <span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>          <span class="at">y =</span> ca_tax_rev, </span>
 <span id="cb12-3"><a aria-hidden="true" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">join_by</span>(county_name <span class="sc">==</span> entity_name)</span>
-<span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a>          )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb12-4"><a aria-hidden="true" tabindex="-1"></a>          )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>…is equivalent to…</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>counties <span class="sc">|&gt;</span> </span>
 <span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="at">y =</span> ca_tax_rev, </span>
 <span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">join_by</span>(county_name <span class="sc">==</span> entity_name)</span>
-<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a>            )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -6449,23 +6449,23 @@
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> cont_region <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>regions <span class="ot">&lt;-</span> cont_region <span class="sc">|&gt;</span> </span>
 <span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Region)</span>
 <span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span> Country <span class="sc">%in%</span> regions)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span> Country <span class="sc">%in%</span> regions)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-2">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
 <span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">anti_join</span>(cont_region, </span>
-<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">join_by</span>(Country <span class="sc">==</span> Region))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">join_by</span>(Country <span class="sc">==</span> Region))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; ">
-<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">Country</th>
@@ -13057,7 +13057,7 @@
 <div class="cell">
 <div class="cell-output-display">
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:400px; ">
-<table class="table caption-top" style="font-size: 25px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 25px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th data-quarto-table-cell-role="th" style="text-align: left; position: sticky; top: 0; background-color: #FFFFFF;">entity_name</th>
@@ -13185,9 +13185,9 @@
 <p>With <code>fct()</code>, the levels are automatically ordered in the <strong>order of first appearance</strong>.</p>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
 <span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(entity_name) <span class="sc">|&gt;</span> </span>
-<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] Alameda County         Alameda County         Alameda County        
   [4] Alameda County         Alameda County         Alameda County        
@@ -13463,8 +13463,8 @@
 <section id="creating-a-factor" class="slide level2">
 <h2>Creating a Factor</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>ca_tax_rev <span class="ot">&lt;-</span> ca_tax_rev <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">entity_name =</span> <span class="fu">fct</span>(entity_name))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>ca_tax_rev <span class="ot">&lt;-</span> ca_tax_rev <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">entity_name =</span> <span class="fu">fct</span>(entity_name))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="midi">
 <div class="callout callout-warning callout-titled callout-style-default">
@@ -13481,285 +13481,6 @@
 </div>
 </div>
 </div>
-<div class="fragment">
-<p><br></p>
-<div class="midi">
-<p>I am using <code>pull()</code> to display the outcome:</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(entity_name)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  [1] Alameda County         Alameda County         Alameda County        
-  [4] Alameda County         Alameda County         Alameda County        
-  [7] Alameda County         Alameda County         Alameda County        
- [10] Alameda County         Alameda County         Alameda County        
- [13] Alameda County         Alameda County         Alpine County         
- [16] Alpine County          Alpine County          Alpine County         
- [19] Alpine County          Alpine County          Alpine County         
- [22] Alpine County          Alpine County          Alpine County         
- [25] Alpine County          Alpine County          Alpine County         
- [28] Alpine County          Amador County          Amador County         
- [31] Amador County          Amador County          Amador County         
- [34] Amador County          Amador County          Amador County         
- [37] Amador County          Amador County          Amador County         
- [40] Amador County          Amador County          Amador County         
- [43] Butte County           Butte County           Butte County          
- [46] Butte County           Butte County           Butte County          
- [49] Butte County           Butte County           Butte County          
- [52] Butte County           Butte County           Butte County          
- [55] Butte County           Butte County           Calaveras County      
- [58] Calaveras County       Calaveras County       Calaveras County      
- [61] Calaveras County       Calaveras County       Calaveras County      
- [64] Calaveras County       Calaveras County       Calaveras County      
- [67] Calaveras County       Calaveras County       Calaveras County      
- [70] Calaveras County       Colusa County          Colusa County         
- [73] Colusa County          Colusa County          Colusa County         
- [76] Colusa County          Colusa County          Colusa County         
- [79] Colusa County          Colusa County          Colusa County         
- [82] Colusa County          Colusa County          Colusa County         
- [85] Contra Costa County    Contra Costa County    Contra Costa County   
- [88] Contra Costa County    Contra Costa County    Contra Costa County   
- [91] Contra Costa County    Contra Costa County    Contra Costa County   
- [94] Contra Costa County    Contra Costa County    Contra Costa County   
- [97] Contra Costa County    Contra Costa County    Del Norte County      
-[100] Del Norte County       Del Norte County       Del Norte County      
-[103] Del Norte County       Del Norte County       Del Norte County      
-[106] Del Norte County       Del Norte County       Del Norte County      
-[109] Del Norte County       Del Norte County       Del Norte County      
-[112] Del Norte County       El Dorado County       El Dorado County      
-[115] El Dorado County       El Dorado County       El Dorado County      
-[118] El Dorado County       El Dorado County       El Dorado County      
-[121] El Dorado County       El Dorado County       El Dorado County      
-[124] El Dorado County       El Dorado County       El Dorado County      
-[127] Fresno County          Fresno County          Fresno County         
-[130] Fresno County          Fresno County          Fresno County         
-[133] Fresno County          Fresno County          Fresno County         
-[136] Fresno County          Fresno County          Fresno County         
-[139] Fresno County          Fresno County          Glenn County          
-[142] Glenn County           Glenn County           Glenn County          
-[145] Glenn County           Glenn County           Glenn County          
-[148] Glenn County           Glenn County           Glenn County          
-[151] Glenn County           Glenn County           Glenn County          
-[154] Glenn County           Humboldt County        Humboldt County       
-[157] Humboldt County        Humboldt County        Humboldt County       
-[160] Humboldt County        Humboldt County        Humboldt County       
-[163] Humboldt County        Humboldt County        Humboldt County       
-[166] Humboldt County        Humboldt County        Humboldt County       
-[169] Imperial County        Imperial County        Imperial County       
-[172] Imperial County        Imperial County        Imperial County       
-[175] Imperial County        Imperial County        Imperial County       
-[178] Imperial County        Imperial County        Imperial County       
-[181] Imperial County        Imperial County        Inyo County           
-[184] Inyo County            Inyo County            Inyo County           
-[187] Inyo County            Inyo County            Inyo County           
-[190] Inyo County            Inyo County            Inyo County           
-[193] Inyo County            Inyo County            Inyo County           
-[196] Inyo County            Kern County            Kern County           
-[199] Kern County            Kern County            Kern County           
-[202] Kern County            Kern County            Kern County           
-[205] Kern County            Kern County            Kern County           
-[208] Kern County            Kern County            Kern County           
-[211] Kings County           Kings County           Kings County          
-[214] Kings County           Kings County           Kings County          
-[217] Kings County           Kings County           Kings County          
-[220] Kings County           Kings County           Kings County          
-[223] Kings County           Kings County           Lake County           
-[226] Lake County            Lake County            Lake County           
-[229] Lake County            Lake County            Lake County           
-[232] Lake County            Lake County            Lake County           
-[235] Lake County            Lake County            Lake County           
-[238] Lake County            Lassen County          Lassen County         
-[241] Lassen County          Lassen County          Lassen County         
-[244] Lassen County          Lassen County          Lassen County         
-[247] Lassen County          Lassen County          Lassen County         
-[250] Lassen County          Lassen County          Lassen County         
-[253] Los Angeles County     Los Angeles County     Los Angeles County    
-[256] Los Angeles County     Los Angeles County     Los Angeles County    
-[259] Los Angeles County     Los Angeles County     Los Angeles County    
-[262] Los Angeles County     Los Angeles County     Los Angeles County    
-[265] Los Angeles County     Los Angeles County     Madera County         
-[268] Madera County          Madera County          Madera County         
-[271] Madera County          Madera County          Madera County         
-[274] Madera County          Madera County          Madera County         
-[277] Madera County          Madera County          Madera County         
-[280] Madera County          Marin County           Marin County          
-[283] Marin County           Marin County           Marin County          
-[286] Marin County           Marin County           Marin County          
-[289] Marin County           Marin County           Marin County          
-[292] Marin County           Marin County           Marin County          
-[295] Mariposa County        Mariposa County        Mariposa County       
-[298] Mariposa County        Mariposa County        Mariposa County       
-[301] Mariposa County        Mariposa County        Mariposa County       
-[304] Mariposa County        Mariposa County        Mariposa County       
-[307] Mariposa County        Mariposa County        Mendocino County      
-[310] Mendocino County       Mendocino County       Mendocino County      
-[313] Mendocino County       Mendocino County       Mendocino County      
-[316] Mendocino County       Mendocino County       Mendocino County      
-[319] Mendocino County       Mendocino County       Mendocino County      
-[322] Mendocino County       Merced County          Merced County         
-[325] Merced County          Merced County          Merced County         
-[328] Merced County          Merced County          Merced County         
-[331] Merced County          Merced County          Merced County         
-[334] Merced County          Merced County          Merced County         
-[337] Modoc County           Modoc County           Modoc County          
-[340] Modoc County           Modoc County           Modoc County          
-[343] Modoc County           Modoc County           Modoc County          
-[346] Modoc County           Modoc County           Modoc County          
-[349] Modoc County           Modoc County           Mono County           
-[352] Mono County            Mono County            Mono County           
-[355] Mono County            Mono County            Mono County           
-[358] Mono County            Mono County            Mono County           
-[361] Mono County            Mono County            Mono County           
-[364] Mono County            Monterey County        Monterey County       
-[367] Monterey County        Monterey County        Monterey County       
-[370] Monterey County        Monterey County        Monterey County       
-[373] Monterey County        Monterey County        Monterey County       
-[376] Monterey County        Monterey County        Monterey County       
-[379] Napa County            Napa County            Napa County           
-[382] Napa County            Napa County            Napa County           
-[385] Napa County            Napa County            Napa County           
-[388] Napa County            Napa County            Napa County           
-[391] Napa County            Napa County            Nevada County         
-[394] Nevada County          Nevada County          Nevada County         
-[397] Nevada County          Nevada County          Nevada County         
-[400] Nevada County          Nevada County          Nevada County         
-[403] Nevada County          Nevada County          Nevada County         
-[406] Nevada County          Orange County          Orange County         
-[409] Orange County          Orange County          Orange County         
-[412] Orange County          Orange County          Orange County         
-[415] Orange County          Orange County          Orange County         
-[418] Orange County          Orange County          Orange County         
-[421] Placer County          Placer County          Placer County         
-[424] Placer County          Placer County          Placer County         
-[427] Placer County          Placer County          Placer County         
-[430] Placer County          Placer County          Placer County         
-[433] Placer County          Placer County          Plumas County         
-[436] Plumas County          Plumas County          Plumas County         
-[439] Plumas County          Plumas County          Plumas County         
-[442] Plumas County          Plumas County          Plumas County         
-[445] Plumas County          Plumas County          Plumas County         
-[448] Plumas County          Riverside County       Riverside County      
-[451] Riverside County       Riverside County       Riverside County      
-[454] Riverside County       Riverside County       Riverside County      
-[457] Riverside County       Riverside County       Riverside County      
-[460] Riverside County       Riverside County       Riverside County      
-[463] Sacramento County      Sacramento County      Sacramento County     
-[466] Sacramento County      Sacramento County      Sacramento County     
-[469] Sacramento County      Sacramento County      Sacramento County     
-[472] Sacramento County      Sacramento County      Sacramento County     
-[475] Sacramento County      Sacramento County      San Benito County     
-[478] San Benito County      San Benito County      San Benito County     
-[481] San Benito County      San Benito County      San Benito County     
-[484] San Benito County      San Benito County      San Benito County     
-[487] San Benito County      San Benito County      San Benito County     
-[490] San Benito County      San Bernardino County  San Bernardino County 
-[493] San Bernardino County  San Bernardino County  San Bernardino County 
-[496] San Bernardino County  San Bernardino County  San Bernardino County 
-[499] San Bernardino County  San Bernardino County  San Bernardino County 
-[502] San Bernardino County  San Bernardino County  San Bernardino County 
-[505] San Diego County       San Diego County       San Diego County      
-[508] San Diego County       San Diego County       San Diego County      
-[511] San Diego County       San Diego County       San Diego County      
-[514] San Diego County       San Diego County       San Diego County      
-[517] San Diego County       San Diego County       San Joaquin County    
-[520] San Joaquin County     San Joaquin County     San Joaquin County    
-[523] San Joaquin County     San Joaquin County     San Joaquin County    
-[526] San Joaquin County     San Joaquin County     San Joaquin County    
-[529] San Joaquin County     San Joaquin County     San Joaquin County    
-[532] San Joaquin County     San Luis Obispo County San Luis Obispo County
-[535] San Luis Obispo County San Luis Obispo County San Luis Obispo County
-[538] San Luis Obispo County San Luis Obispo County San Luis Obispo County
-[541] San Luis Obispo County San Luis Obispo County San Luis Obispo County
-[544] San Luis Obispo County San Luis Obispo County San Luis Obispo County
-[547] San Mateo County       San Mateo County       San Mateo County      
-[550] San Mateo County       San Mateo County       San Mateo County      
-[553] San Mateo County       San Mateo County       San Mateo County      
-[556] San Mateo County       San Mateo County       San Mateo County      
-[559] San Mateo County       San Mateo County       Santa Barbara County  
-[562] Santa Barbara County   Santa Barbara County   Santa Barbara County  
-[565] Santa Barbara County   Santa Barbara County   Santa Barbara County  
-[568] Santa Barbara County   Santa Barbara County   Santa Barbara County  
-[571] Santa Barbara County   Santa Barbara County   Santa Barbara County  
-[574] Santa Barbara County   Santa Clara County     Santa Clara County    
-[577] Santa Clara County     Santa Clara County     Santa Clara County    
-[580] Santa Clara County     Santa Clara County     Santa Clara County    
-[583] Santa Clara County     Santa Clara County     Santa Clara County    
-[586] Santa Clara County     Santa Clara County     Santa Clara County    
-[589] Santa Cruz County      Santa Cruz County      Santa Cruz County     
-[592] Santa Cruz County      Santa Cruz County      Santa Cruz County     
-[595] Santa Cruz County      Santa Cruz County      Santa Cruz County     
-[598] Santa Cruz County      Santa Cruz County      Santa Cruz County     
-[601] Santa Cruz County      Santa Cruz County      Shasta County         
-[604] Shasta County          Shasta County          Shasta County         
-[607] Shasta County          Shasta County          Shasta County         
-[610] Shasta County          Shasta County          Shasta County         
-[613] Shasta County          Shasta County          Shasta County         
-[616] Shasta County          Sierra County          Sierra County         
-[619] Sierra County          Sierra County          Sierra County         
-[622] Sierra County          Sierra County          Sierra County         
-[625] Sierra County          Sierra County          Sierra County         
-[628] Sierra County          Sierra County          Sierra County         
-[631] Siskiyou County        Siskiyou County        Siskiyou County       
-[634] Siskiyou County        Siskiyou County        Siskiyou County       
-[637] Siskiyou County        Siskiyou County        Siskiyou County       
-[640] Siskiyou County        Siskiyou County        Siskiyou County       
-[643] Siskiyou County        Siskiyou County        Solano County         
-[646] Solano County          Solano County          Solano County         
-[649] Solano County          Solano County          Solano County         
-[652] Solano County          Solano County          Solano County         
-[655] Solano County          Solano County          Solano County         
-[658] Solano County          Sonoma County          Sonoma County         
-[661] Sonoma County          Sonoma County          Sonoma County         
-[664] Sonoma County          Sonoma County          Sonoma County         
-[667] Sonoma County          Sonoma County          Sonoma County         
-[670] Sonoma County          Sonoma County          Sonoma County         
-[673] Stanislaus County      Stanislaus County      Stanislaus County     
-[676] Stanislaus County      Stanislaus County      Stanislaus County     
-[679] Stanislaus County      Stanislaus County      Stanislaus County     
-[682] Stanislaus County      Stanislaus County      Stanislaus County     
-[685] Stanislaus County      Stanislaus County      Sutter County         
-[688] Sutter County          Sutter County          Sutter County         
-[691] Sutter County          Sutter County          Sutter County         
-[694] Sutter County          Sutter County          Sutter County         
-[697] Sutter County          Sutter County          Sutter County         
-[700] Sutter County          Tehama County          Tehama County         
-[703] Tehama County          Tehama County          Tehama County         
-[706] Tehama County          Tehama County          Tehama County         
-[709] Tehama County          Tehama County          Tehama County         
-[712] Tehama County          Tehama County          Tehama County         
-[715] Trinity County         Trinity County         Trinity County        
-[718] Trinity County         Trinity County         Trinity County        
-[721] Trinity County         Trinity County         Trinity County        
-[724] Trinity County         Trinity County         Trinity County        
-[727] Trinity County         Trinity County         Tulare County         
-[730] Tulare County          Tulare County          Tulare County         
-[733] Tulare County          Tulare County          Tulare County         
-[736] Tulare County          Tulare County          Tulare County         
-[739] Tulare County          Tulare County          Tulare County         
-[742] Tulare County          Tuolumne County        Tuolumne County       
-[745] Tuolumne County        Tuolumne County        Tuolumne County       
-[748] Tuolumne County        Tuolumne County        Tuolumne County       
-[751] Tuolumne County        Tuolumne County        Tuolumne County       
-[754] Tuolumne County        Tuolumne County        Tuolumne County       
-[757] Ventura County         Ventura County         Ventura County        
-[760] Ventura County         Ventura County         Ventura County        
-[763] Ventura County         Ventura County         Ventura County        
-[766] Ventura County         Ventura County         Ventura County        
-[769] Ventura County         Ventura County         Yolo County           
-[772] Yolo County            Yolo County            Yolo County           
-[775] Yolo County            Yolo County            Yolo County           
-[778] Yolo County            Yolo County            Yolo County           
-[781] Yolo County            Yolo County            Yolo County           
-[784] Yolo County            Yuba County            Yuba County           
-[787] Yuba County            Yuba County            Yuba County           
-[790] Yuba County            Yuba County            Yuba County           
-[793] Yuba County            Yuba County            Yuba County           
-[796] Yuba County            Yuba County            Yuba County           
-57 Levels: Alameda County Alpine County Amador County ... Yuba County</code></pre>
-</div>
-</div>
-</div>
-</div>
 </section>
 <section id="creating-a-factor-fct-1" class="slide level2">
 <h2>Creating a Factor – <code>fct</code></h2>
@@ -13768,25 +13489,25 @@
 </div>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span> </span>
-<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Album) <span class="sc">|&gt;</span> </span>
-<span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Los Angeles County"</span>, </span>
-<span id="cb21-4"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"San Diego County"</span>, </span>
-<span id="cb21-5"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Orange County"</span>, </span>
-<span id="cb21-6"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Riverside County"</span>, </span>
-<span id="cb21-7"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"San Bernardino County"</span>, </span>
-<span id="cb21-8"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Santa Clara County"</span>, </span>
-<span id="cb21-9"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Alameda County"</span>, </span>
-<span id="cb21-10"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Sacramento County"</span>, </span>
-<span id="cb21-11"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Contra Costa County"</span>, </span>
-<span id="cb21-12"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Fresno County"</span>, </span>
-<span id="cb21-13"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Kern County"</span>, </span>
-<span id="cb21-14"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Ventura County"</span>, </span>
-<span id="cb21-15"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"San Joaquin County"</span>, </span>
-<span id="cb21-16"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"San Mateo County"</span>. </span>
-<span id="cb21-17"><a aria-hidden="true" tabindex="-1"></a>                 ...</span>
-<span id="cb21-18"><a aria-hidden="true" tabindex="-1"></a>                 )</span>
-<span id="cb21-19"><a aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Album) <span class="sc">|&gt;</span> </span>
+<span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Los Angeles County"</span>, </span>
+<span id="cb19-4"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"San Diego County"</span>, </span>
+<span id="cb19-5"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Orange County"</span>, </span>
+<span id="cb19-6"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Riverside County"</span>, </span>
+<span id="cb19-7"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"San Bernardino County"</span>, </span>
+<span id="cb19-8"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Santa Clara County"</span>, </span>
+<span id="cb19-9"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Alameda County"</span>, </span>
+<span id="cb19-10"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Sacramento County"</span>, </span>
+<span id="cb19-11"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Contra Costa County"</span>, </span>
+<span id="cb19-12"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Fresno County"</span>, </span>
+<span id="cb19-13"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Kern County"</span>, </span>
+<span id="cb19-14"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"Ventura County"</span>, </span>
+<span id="cb19-15"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"San Joaquin County"</span>, </span>
+<span id="cb19-16"><a aria-hidden="true" tabindex="-1"></a>                 <span class="st">"San Mateo County"</span>. </span>
+<span id="cb19-17"><a aria-hidden="true" tabindex="-1"></a>                 ...</span>
+<span id="cb19-18"><a aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb19-19"><a aria-hidden="true" tabindex="-1"></a>      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="midi">
@@ -13804,11 +13525,11 @@
 <div id="tabset-3-1">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>ca_tax_rev <span class="ot">&lt;-</span> ca_tax_rev <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">entity_name =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> entity_name,</span>
-<span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.x =</span> sales_and_use_taxes,</span>
-<span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> mean)</span>
-<span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>ca_tax_rev <span class="ot">&lt;-</span> ca_tax_rev <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">entity_name =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> entity_name,</span>
+<span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.x =</span> sales_and_use_taxes,</span>
+<span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>                                   <span class="at">.fun =</span> mean)</span>
+<span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -13828,7 +13549,7 @@
 <p>The vast majority of the time we want to reorder a factor because we want our visualization to look nicer.</p>
 </div>
 
-<img data-src="week-4-joins_files/figure-revealjs/unnamed-chunk-26-1.png" width="960" class="r-stretch"></section>
+<img data-src="week-4-joins_files/figure-revealjs/unnamed-chunk-19-1.png" width="960" class="r-stretch"></section>
 <section id="fct_reoder-with-ggplot-1" class="slide level2">
 <h2><code>fct_reoder()</code> with <code>ggplot()</code></h2>
 <div class="small">
@@ -13836,20 +13557,20 @@
 </div>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23" data-code-line-numbers="4-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
-<span id="cb23-2"><a></a>  <span class="fu">filter</span>(sales_and_use_taxes <span class="sc">&lt;</span> <span class="fu">quantile</span>(sales_and_use_taxes, <span class="at">probs =</span> <span class="fl">0.1</span>))<span class="sc">|&gt;</span> </span>
-<span id="cb23-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sales_and_use_taxes, </span>
-<span id="cb23-4"><a></a>             <span class="at">y =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> entity_name,</span>
-<span id="cb23-5"><a></a>                             <span class="at">.x =</span> sales_and_use_taxes,</span>
-<span id="cb23-6"><a></a>                             <span class="at">.fun =</span> mean), </span>
-<span id="cb23-7"><a></a>             <span class="at">fill =</span> entity_name)</span>
-<span id="cb23-8"><a></a>         ) <span class="sc">+</span></span>
-<span id="cb23-9"><a></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
-<span id="cb23-10"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb23-11"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
-<span id="cb23-12"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sales and Use Taxes"</span>,</span>
-<span id="cb23-13"><a></a>       <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
-<span id="cb23-14"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb21" data-code-line-numbers="4-6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
+<span id="cb21-2"><a></a>  <span class="fu">filter</span>(sales_and_use_taxes <span class="sc">&lt;</span> <span class="fu">quantile</span>(sales_and_use_taxes, <span class="at">probs =</span> <span class="fl">0.1</span>))<span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sales_and_use_taxes, </span>
+<span id="cb21-4"><a></a>             <span class="at">y =</span> <span class="fu">fct_reorder</span>(<span class="at">.f =</span> entity_name,</span>
+<span id="cb21-5"><a></a>                             <span class="at">.x =</span> sales_and_use_taxes,</span>
+<span id="cb21-6"><a></a>                             <span class="at">.fun =</span> mean), </span>
+<span id="cb21-7"><a></a>             <span class="at">fill =</span> entity_name)</span>
+<span id="cb21-8"><a></a>         ) <span class="sc">+</span></span>
+<span id="cb21-9"><a></a>  <span class="fu">geom_density_ridges</span>() <span class="sc">+</span></span>
+<span id="cb21-10"><a></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-11"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb21-12"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sales and Use Taxes"</span>,</span>
+<span id="cb21-13"><a></a>       <span class="at">y =</span> <span class="st">""</span>) <span class="sc">+</span></span>
+<span id="cb21-14"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -13862,27 +13583,27 @@
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24" data-code-line-numbers="5-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
-<span id="cb24-2"><a></a>  <span class="fu">filter</span>(sales_and_use_taxes <span class="sc">&lt;</span> <span class="fu">quantile</span>(sales_and_use_taxes, <span class="at">probs =</span> <span class="fl">0.1</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb24-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sales_and_use_taxes, </span>
-<span id="cb24-4"><a></a>             <span class="at">y =</span> total_property_taxes,</span>
-<span id="cb24-5"><a></a>             <span class="at">color =</span> <span class="fu">fct_reorder2</span>(<span class="at">.f =</span> entity_name,</span>
-<span id="cb24-6"><a></a>                                  <span class="at">.x =</span> sales_and_use_taxes,</span>
-<span id="cb24-7"><a></a>                                  <span class="at">.y =</span> total_property_taxes)</span>
-<span id="cb24-8"><a></a>             )</span>
-<span id="cb24-9"><a></a>         ) <span class="sc">+</span></span>
-<span id="cb24-10"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
-<span id="cb24-11"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
-<span id="cb24-12"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
-<span id="cb24-13"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
-<span id="cb24-14"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb24-15"><a></a>       <span class="at">x =</span> <span class="st">"Sales and Use Taxes"</span>,</span>
-<span id="cb24-16"><a></a>       <span class="at">color =</span> <span class="st">"California County"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="5-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a></a>  <span class="fu">filter</span>(sales_and_use_taxes <span class="sc">&lt;</span> <span class="fu">quantile</span>(sales_and_use_taxes, <span class="at">probs =</span> <span class="fl">0.1</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb22-3"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sales_and_use_taxes, </span>
+<span id="cb22-4"><a></a>             <span class="at">y =</span> total_property_taxes,</span>
+<span id="cb22-5"><a></a>             <span class="at">color =</span> <span class="fu">fct_reorder2</span>(<span class="at">.f =</span> entity_name,</span>
+<span id="cb22-6"><a></a>                                  <span class="at">.x =</span> sales_and_use_taxes,</span>
+<span id="cb22-7"><a></a>                                  <span class="at">.y =</span> total_property_taxes)</span>
+<span id="cb22-8"><a></a>             )</span>
+<span id="cb22-9"><a></a>         ) <span class="sc">+</span></span>
+<span id="cb22-10"><a></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb22-11"><a></a>  <span class="fu">theme_bw</span>() <span class="sc">+</span></span>
+<span id="cb22-12"><a></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb22-13"><a></a>  <span class="fu">scale_x_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_dollar</span>()) <span class="sc">+</span></span>
+<span id="cb22-14"><a></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">""</span>,</span>
+<span id="cb22-15"><a></a>       <span class="at">x =</span> <span class="st">"Sales and Use Taxes"</span>,</span>
+<span id="cb22-16"><a></a>       <span class="at">color =</span> <span class="st">"California County"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure>
-<p><img data-src="week-4-joins_files/figure-revealjs/unnamed-chunk-28-1.png" width="960"></p>
+<p><img data-src="week-4-joins_files/figure-revealjs/unnamed-chunk-21-1.png" width="960"></p>
 </figure>
 </div>
 </div>
@@ -13897,29 +13618,29 @@
 <div class="fragment">
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a aria-hidden="true" tabindex="-1"></a>high_pop <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb25-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Los Angeles County"</span>, <span class="st">"San Diego County"</span>, <span class="st">"Orange County"</span>, <span class="st">"Riverside County"</span>, </span>
-<span id="cb25-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"San Bernardino County"</span>, <span class="st">"Santa Clara County"</span>, <span class="st">"Alameda County"</span>, </span>
-<span id="cb25-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sacramento County"</span>, <span class="st">"Contra Costa County"</span>, <span class="st">"Fresno County"</span>, <span class="st">"Kern County"</span>, </span>
-<span id="cb25-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ventura County"</span>, <span class="st">"San Joaquin County"</span>, <span class="st">"San Mateo County"</span>, </span>
-<span id="cb25-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Stanislaus County"</span>, <span class="st">"Sonoma County"</span>, <span class="st">"Tulare County"</span></span>
-<span id="cb25-7"><a aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-8"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a aria-hidden="true" tabindex="-1"></a>medium_pop <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb25-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Solano County"</span>, <span class="st">"Santa Barbara County"</span>, <span class="st">"Monterey County"</span>, <span class="st">"Placer County"</span>, </span>
-<span id="cb25-11"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Merced County"</span>, <span class="st">"San Luis Obispo County"</span>, <span class="st">"Santa Cruz County"</span>, <span class="st">"Marin County"</span>, </span>
-<span id="cb25-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Yolo County"</span>, <span class="st">"Butte County"</span>, <span class="st">"El Dorado County"</span>, <span class="st">"Imperial County"</span>, </span>
-<span id="cb25-13"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Shasta County"</span>, <span class="st">"Madera County"</span>, <span class="st">"Kings County"</span>, <span class="st">"Napa County"</span>, </span>
-<span id="cb25-14"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Humboldt County"</span>, <span class="st">"Nevada County"</span>, <span class="st">"Sutter County"</span>, <span class="st">"Mendocino County"</span>, </span>
-<span id="cb25-15"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Yuba County"</span>, <span class="st">"San Benito County"</span>, <span class="st">"Lake County"</span>, <span class="st">"Tehama County"</span>, </span>
-<span id="cb25-16"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tuolumne County"</span>, <span class="st">"Calaveras County"</span>, <span class="st">"Siskiyou County"</span>, <span class="st">"Amador County"</span>, </span>
-<span id="cb25-17"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Lassen County"</span>, <span class="st">"Glenn County"</span>, <span class="st">"Del Norte County"</span>, <span class="st">"Colusa County"</span></span>
-<span id="cb25-18"><a aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb25-19"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-20"><a aria-hidden="true" tabindex="-1"></a>low_pop <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb25-21"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Plumas County"</span>, <span class="st">"Inyo County"</span>, <span class="st">"Mariposa County"</span>, <span class="st">"Trinity County"</span>, </span>
-<span id="cb25-22"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Mono County"</span>, <span class="st">"Modoc County"</span>, <span class="st">"Sierra County"</span>, <span class="st">"Alpine County"</span></span>
-<span id="cb25-23"><a aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a>high_pop <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Los Angeles County"</span>, <span class="st">"San Diego County"</span>, <span class="st">"Orange County"</span>, <span class="st">"Riverside County"</span>, </span>
+<span id="cb23-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"San Bernardino County"</span>, <span class="st">"Santa Clara County"</span>, <span class="st">"Alameda County"</span>, </span>
+<span id="cb23-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Sacramento County"</span>, <span class="st">"Contra Costa County"</span>, <span class="st">"Fresno County"</span>, <span class="st">"Kern County"</span>, </span>
+<span id="cb23-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Ventura County"</span>, <span class="st">"San Joaquin County"</span>, <span class="st">"San Mateo County"</span>, </span>
+<span id="cb23-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Stanislaus County"</span>, <span class="st">"Sonoma County"</span>, <span class="st">"Tulare County"</span></span>
+<span id="cb23-7"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-8"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a aria-hidden="true" tabindex="-1"></a>medium_pop <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb23-10"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Solano County"</span>, <span class="st">"Santa Barbara County"</span>, <span class="st">"Monterey County"</span>, <span class="st">"Placer County"</span>, </span>
+<span id="cb23-11"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Merced County"</span>, <span class="st">"San Luis Obispo County"</span>, <span class="st">"Santa Cruz County"</span>, <span class="st">"Marin County"</span>, </span>
+<span id="cb23-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Yolo County"</span>, <span class="st">"Butte County"</span>, <span class="st">"El Dorado County"</span>, <span class="st">"Imperial County"</span>, </span>
+<span id="cb23-13"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Shasta County"</span>, <span class="st">"Madera County"</span>, <span class="st">"Kings County"</span>, <span class="st">"Napa County"</span>, </span>
+<span id="cb23-14"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Humboldt County"</span>, <span class="st">"Nevada County"</span>, <span class="st">"Sutter County"</span>, <span class="st">"Mendocino County"</span>, </span>
+<span id="cb23-15"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Yuba County"</span>, <span class="st">"San Benito County"</span>, <span class="st">"Lake County"</span>, <span class="st">"Tehama County"</span>, </span>
+<span id="cb23-16"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Tuolumne County"</span>, <span class="st">"Calaveras County"</span>, <span class="st">"Siskiyou County"</span>, <span class="st">"Amador County"</span>, </span>
+<span id="cb23-17"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Lassen County"</span>, <span class="st">"Glenn County"</span>, <span class="st">"Del Norte County"</span>, <span class="st">"Colusa County"</span></span>
+<span id="cb23-18"><a aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-19"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-20"><a aria-hidden="true" tabindex="-1"></a>low_pop <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb23-21"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Plumas County"</span>, <span class="st">"Inyo County"</span>, <span class="st">"Mariposa County"</span>, <span class="st">"Trinity County"</span>, </span>
+<span id="cb23-22"><a aria-hidden="true" tabindex="-1"></a>  <span class="st">"Mono County"</span>, <span class="st">"Modoc County"</span>, <span class="st">"Sierra County"</span>, <span class="st">"Alpine County"</span></span>
+<span id="cb23-23"><a aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -13928,14 +13649,14 @@
 <h2>Collapsing a Factor –<code>fct_collapse()</code></h2>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
-<span id="cb26-2"><a></a>  <span class="fu">mutate</span>(<span class="at">pop_class =</span> <span class="fu">fct_collapse</span>(<span class="at">.f =</span> entity_name,</span>
-<span id="cb26-3"><a></a>                                  <span class="at">high =</span> high_pop,</span>
-<span id="cb26-4"><a></a>                                  <span class="at">medium =</span> medium_pop, </span>
-<span id="cb26-5"><a></a>                                  <span class="at">low =</span> low_pop)</span>
-<span id="cb26-6"><a></a>         ) <span class="sc">|&gt;</span> </span>
-<span id="cb26-7"><a></a>  <span class="fu">select</span>(entity_name, pop_class) <span class="sc">|&gt;</span> </span>
-<span id="cb26-8"><a></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a></a>ca_tax_rev <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a></a>  <span class="fu">mutate</span>(<span class="at">pop_class =</span> <span class="fu">fct_collapse</span>(<span class="at">.f =</span> entity_name,</span>
+<span id="cb24-3"><a></a>                                  <span class="at">high =</span> high_pop,</span>
+<span id="cb24-4"><a></a>                                  <span class="at">medium =</span> medium_pop, </span>
+<span id="cb24-5"><a></a>                                  <span class="at">low =</span> low_pop)</span>
+<span id="cb24-6"><a></a>         ) <span class="sc">|&gt;</span> </span>
+<span id="cb24-7"><a></a>  <span class="fu">select</span>(entity_name, pop_class) <span class="sc">|&gt;</span> </span>
+<span id="cb24-8"><a></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 2
   entity_name      pop_class
@@ -14183,7 +13904,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

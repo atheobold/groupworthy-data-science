@@ -85,17 +85,16 @@ thinking.
 
 # Grade Expectations
 
-> The [course syllabus](../../course-materials/syllabus.qmd#sec-grades)
-> has been updated to reflect the grade criteria you all proposed. 
+> The course syllabus has been updated to reflect the grade criteria you all
+> proposed. 
 
 # Grade Expectations
 
-> The [course syllabus](../../course-materials/course-syllabus.qmd#sec-grades)
-> has been updated to reflect the grade criteria you all proposed. 
+> The course syllabus has been updated to reflect the grade criteria you all
+> proposed. 
 
-You have until Sunday [to vote]() 
-on whether you agree with the proposed criteria, and to suggest ways these
-criteria could be revised.
+You have until Sunday to vote on whether you agree with the proposed criteria,
+and to suggest ways these criteria could be revised.
 
 # Data Layouts
 
@@ -668,7 +667,7 @@ group's Colab notebook.
 ## Team Assignments - 9am
 
 ::: {.centered}
-<!-- ![](images/section-70-seats.png){width=75%} -->
+![](images/section-70-seats.png){width=75%}
 :::
 
 ::: {.small}
@@ -678,7 +677,7 @@ The partner who woke up the earliest starts as the Coder!
 ## Team Assignments - 12pm
 
 ::: {.centered}
-<!-- ![](images/section-71-seats.png){width=75%} -->
+![](images/section-71-seats.png){width=75%}
 :::
 
 ::: {.small}

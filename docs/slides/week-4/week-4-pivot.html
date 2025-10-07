@@ -204,6 +204,7 @@
 <section id="tuesday-october-15" class="slide level2">
 <h2>Tuesday, October 15</h2>
 <p>Today we will discuss…</p>
+<div class="midi">
 <ul>
 <li>Challenge 2 Sticking Points
 <ul>
@@ -221,6 +222,7 @@
 </ul></li>
 <li>PA 4: Military Spending</li>
 </ul>
+</div>
 </section>
 <section>
 <section id="challenge-2" class="title-slide slide level1 center">
@@ -337,13 +339,14 @@
 </ul>
 </div>
 </section>
-<section id="a-messy-excel-file" class="slide level2">
-<h2><a href="https://cpslo-my.sharepoint.com/:x:/g/personal/atheobol_calpoly_edu/ESF5LJhLI0FLihBUZINkS7MB-qdforgA9uA7p1-ZbmwvXQ?e=B4g3iI">A Messy Excel File</a></h2>
+<section id="open-the-gov_spending_per_capita.xlsx-data-file-posted-on-canvas" class="slide level2">
+<h2><a href="https://cpslo-my.sharepoint.com/:x:/g/personal/atheobol_calpoly_edu/ESF5LJhLI0FLihBUZINkS7MB-qdforgA9uA7p1-ZbmwvXQ?e=B4g3iI">Open the <code>gov_spending_per_capita.xlsx</code> Data File (Posted on Canvas)</a></h2>
+<div class="fragment">
 <div class="midi">
 <p>First, you should notice that there are ten different sheets included in the dataset.</p>
 <p>We are interested in the sheet labeled <em>“Share of Govt. spending”</em>, which contains information about the share of all government spending that is allocated to the military.</p>
 </div>
-<p><br></p>
+</div>
 <div class="fragment">
 <div class="midi">
 <p>Next, you’ll notice that there are notes about the data in the first six rows. Ugh!</p>
@@ -432,6 +435,15 @@
 </div>
 </div>
 </div>
+</section>
+<section id="skipping-the-footnotes-at-the-bottom-1" class="slide level2">
+<h2>Skipping the Footnotes at the Bottom</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<span id="cb4-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
+<span id="cb4-3"><a></a>                      <span class="at">skip  =</span> <span class="dv">7</span>, </span>
+<span id="cb4-4"><a></a>                      <span class="at">n_max =</span> <span class="dv">190</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section></section>
 <section>
 <section id="section" class="title-slide slide level1 center">
@@ -453,12 +465,12 @@
 <h2>Declaring <code>NA</code> Values</h2>
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
-<span id="cb4-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
-<span id="cb4-3"><a></a>                      <span class="at">skip  =</span> <span class="dv">7</span>, </span>
-<span id="cb4-4"><a></a>                      <span class="at">n_max =</span> <span class="dv">190</span>, </span>
-<span id="cb4-5"><a></a>                      <span class="at">na =</span> <span class="fu">c</span>(<span class="st">". ."</span>, <span class="st">"xxx"</span>, <span class="st">".."</span>)</span>
-<span id="cb4-6"><a></a>                      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a>military <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"gov_spending_per_capita.xlsx"</span>, </span>
+<span id="cb5-2"><a></a>                      <span class="at">sheet =</span> <span class="st">"Share of Govt. spending"</span>, </span>
+<span id="cb5-3"><a></a>                      <span class="at">skip  =</span> <span class="dv">7</span>, </span>
+<span id="cb5-4"><a></a>                      <span class="at">n_max =</span> <span class="dv">190</span>, </span>
+<span id="cb5-5"><a></a>                      <span class="at">na =</span> <span class="fu">c</span>(<span class="st">". ."</span>, <span class="st">"xxx"</span>, <span class="st">".."</span>)</span>
+<span id="cb5-6"><a></a>                      )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -580,10 +592,10 @@
 <section id="pivot_longer-1" class="slide level2">
 <h2><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> ,</span>
-<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
-<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> ,</span>
+<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
+<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -602,10 +614,10 @@
 <section id="pivot_longer-2" class="slide level2">
 <h2><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
-<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
-<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> ,</span>
+<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -624,10 +636,10 @@
 <section id="pivot_longer-3" class="slide level2">
 <h2><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
-<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
+<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -646,10 +658,10 @@
 <section id="pivot_longer-4" class="slide level2">
 <h2><code>pivot_longer()</code></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Expenditures"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>,</span>
+<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to  =</span> <span class="st">"Year"</span>,</span>
+<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"Expenditures"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -43247,13 +43259,13 @@
 <p>Suppose we want to know what countries have missing values for <strong>at least one</strong> of the years.</p>
 <p>We can <code>filter()</code> our data to only include observations where <strong>any</strong> of the columns have a missing value.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
-<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">if_any</span>(</span>
-<span id="cb9-4"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">.cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
-<span id="cb9-5"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x)</span>
-<span id="cb9-6"><a aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb9-7"><a aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a>military <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb10-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">if_any</span>(</span>
+<span id="cb10-4"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">.cols =</span> <span class="st">`</span><span class="at">1988</span><span class="st">`</span><span class="sc">:</span><span class="st">`</span><span class="at">2019</span><span class="st">`</span>, </span>
+<span id="cb10-5"><a aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">is.na</span>(.x)</span>
+<span id="cb10-6"><a aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb10-7"><a aria-hidden="true" tabindex="-1"></a>    ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>

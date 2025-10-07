@@ -19,6 +19,7 @@ library(readxl)
 
 Today we will discuss...
 
+::: {.midi}
 -   Challenge 2 Sticking Points
     + Updated ChatGPT Policy
 -   Grade Expectations 
@@ -28,6 +29,8 @@ Today we will discuss...
     -   Filtering out 
     -   Pivoting data with `tidyr`
 -   PA 4: Military Spending
+
+:::
 
 # Challenge 2
 
@@ -132,7 +135,9 @@ Military expenditure is presented in many ways:
 + as a share of GDP and per capita.
 :::
 
-## [A Messy Excel File](https://cpslo-my.sharepoint.com/:x:/g/personal/atheobol_calpoly_edu/ESF5LJhLI0FLihBUZINkS7MB-qdforgA9uA7p1-ZbmwvXQ?e=B4g3iI)
+## [Open the `gov_spending_per_capita.xlsx` Data File (Posted on Canvas)](https://cpslo-my.sharepoint.com/:x:/g/personal/atheobol_calpoly_edu/ESF5LJhLI0FLihBUZINkS7MB-qdforgA9uA7p1-ZbmwvXQ?e=B4g3iI)
+
+. . .
 
 ::: {.midi}
 First, you should notice that there are ten different sheets included in the
@@ -142,8 +147,6 @@ We are interested in the sheet labeled *"Share of Govt. spending"*,
 which contains information about the share of all government spending that is
 allocated to the military.
 :::
-
-</br>
 
 . . .
 
@@ -230,14 +233,14 @@ military <- read_xlsx("gov_spending_per_capita.xlsx",
 What is the maximum number of rows we should let `read_xlsx()` read in? 
 :::
 
+## Skipping the Footnotes at the Bottom
+
 ```{r}
 #| label: reading-in-data
-#| echo: false
+#| echo: true
+#| eval: false
 
-military <- read_xlsx(here::here("group-activities",
-                                 "week-4", 
-                                 "data", 
-                                 "gov_spending_per_capita.xlsx"), 
+military <- read_xlsx("gov_spending_per_capita.xlsx", 
                       sheet = "Share of Govt. spending", 
                       skip  = 7, 
                       n_max = 190)

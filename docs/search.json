@@ -1145,7 +1145,7 @@
     "href": "slides/week-4/week-4-pivot.html#tuesday-october-15",
     "title": "Data Pivots + Joins",
     "section": "Tuesday, October 15",
-    "text": "Tuesday, October 15\nToday we will discuss…\n\nChallenge 2 Sticking Points\n\nUpdated ChatGPT Policy\n\nGrade Expectations\n\nSurvey on Canvas\n\nNew Material\n\nReading in Excel spreadsheets with readxl\nFiltering out\nPivoting data with tidyr\n\nPA 4: Military Spending"
+    "text": "Tuesday, October 15\nToday we will discuss…\n\n\nChallenge 2 Sticking Points\n\nUpdated ChatGPT Policy\n\nGrade Expectations\n\nSurvey on Canvas\n\nNew Material\n\nReading in Excel spreadsheets with readxl\nFiltering out\nPivoting data with tidyr\n\nPA 4: Military Spending"
   },
   {
     "objectID": "slides/week-4/week-4-pivot.html#common-sticking-points",
@@ -5192,5 +5192,26 @@
     "title": "Loops and Iteration",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI fully support more R packages being cat themed.↩︎"
+  },
+  {
+    "objectID": "slides/week-4/week-4-pivot.html#open-the-gov_spending_per_capita.xlsx-data-file",
+    "href": "slides/week-4/week-4-pivot.html#open-the-gov_spending_per_capita.xlsx-data-file",
+    "title": "Data Pivots + Joins",
+    "section": "Open the gov_spending_per_capita.xlsx Data File",
+    "text": "Open the gov_spending_per_capita.xlsx Data File\n\n\nFirst, you should notice that there are ten different sheets included in the dataset.\nWe are interested in the sheet labeled “Share of Govt. spending”, which contains information about the share of all government spending that is allocated to the military.\n\n\n\n\n\nNext, you’ll notice that there are notes about the data in the first six rows. Ugh!\n\n\n\n\nFinally, you should also note that the last six rows are footnotes about the data. Ugh!"
+  },
+  {
+    "objectID": "slides/week-4/week-4-pivot.html#open-the-gov_spending_per_capita.xlsx-data-file-posted-on-canvas",
+    "href": "slides/week-4/week-4-pivot.html#open-the-gov_spending_per_capita.xlsx-data-file-posted-on-canvas",
+    "title": "Data Pivots + Joins",
+    "section": "Open the gov_spending_per_capita.xlsx Data File (Posted on Canvas)",
+    "text": "Open the gov_spending_per_capita.xlsx Data File (Posted on Canvas)\n\n\nFirst, you should notice that there are ten different sheets included in the dataset.\nWe are interested in the sheet labeled “Share of Govt. spending”, which contains information about the share of all government spending that is allocated to the military.\n\n\n\n\nNext, you’ll notice that there are notes about the data in the first six rows. Ugh!\n\n\n\n\nFinally, you should also note that the last six rows are footnotes about the data. Ugh!"
+  },
+  {
+    "objectID": "slides/week-4/week-4-pivot.html#skipping-the-footnotes-at-the-bottom-1",
+    "href": "slides/week-4/week-4-pivot.html#skipping-the-footnotes-at-the-bottom-1",
+    "title": "Data Pivots + Joins",
+    "section": "Skipping the Footnotes at the Bottom",
+    "text": "Skipping the Footnotes at the Bottom\n\nmilitary &lt;- read_xlsx(\"gov_spending_per_capita.xlsx\", \n                      sheet = \"Share of Govt. spending\", \n                      skip  = 7, \n                      n_max = 190)"
   }
 ]

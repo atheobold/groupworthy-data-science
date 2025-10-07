@@ -11,53 +11,95 @@ execute:
 #| echo: false
 
 library(tidyverse)
+library(ggtext)
 ```
 
 # Challenge 2
+
+Here are some of the exemplary assignments from your peers! 
 
 ```{r}
 #| label: data-for-lab-2
 #| echo: false
 
-survey_data <- read_csv(here::here("labs", 
-                                   "student",
-                                   "data", 
-                                   "surveys.csv")
+surveys <- read_csv(here::here("labs",
+                               "student",
+                               "data", 
+                               "surveys.csv")
                         )
 
 ```
 
-This code is brought to us by Zack Kramer! I think this code is so special because Zack managed to specify **every** annotation within *one* call to the `annotate()` function---very efficient!
+## Themes
+
+This code is brought to us by Jonathan Flores! I really appreciated the extensive themes they included and how these themes make the plot clearer to the reader.
 
 ```{r}
-#| label: challenge-3-spicy
+#| label: challenge-3-themes
 
-ggplot(data = survey_data,
-       mapping = aes(x = weight, y = species)) + 
-  geom_boxplot(aes(color = genus),
-               outliers = FALSE) + 
-  scale_colour_brewer(palette = "Set1") +
-  annotate("text", y = 1:14, x = 250, label = c("Neomota",
-                                                "Chaetodipus",
-                                                "Peromyscus",
-                                                "Perognathus",
-                                                "Reithrodontomys",
-                                                "Sigmodon",
-                                                "Onychomys",
-                                                "Peromyscus",
-                                                "Reithrodontomys",
-                                                "Dipodomys",
-                                                "Dipodomys",
-                                                "Chaetodipus",
-                                                "Dipodomys",
-                                                "Onychromys")) +
-  theme(legend.position = "none") +
-  labs(title = "Rodent Weight Distribution by Species",
-       x = "Weight (g)",
-       y = "")
+ggplot(data = surveys,
+    mapping = aes(x = species, y = weight)) +
+  geom_boxplot(outliers = FALSE) +
+  geom_jitter(color = "steel blue", alpha = 0.08) +
+  labs(title = "Distribution of Weight by Species Boxplot",
+       subtitle = "Vertical Orientation",
+       x = "Species Name", y = "Weight (g)") + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45),
+        axis.ticks.length.x = unit(8, "mm"),
+        axis.ticks.x = element_line(color = "white"),
+        panel.border = element_rect(color = "black", linewidth = 1),
+        plot.title = element_text(face = "bold"),
+        plot.subtitle = element_text(color = "steelblue"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank())
 ```
 
-# Lab 3
+## Unique Colors
+
+This code is brought to us by Fisher Fraley! I really appreciated how they found a unique color theme from a context they liked! 
+
+```{r}
+# Color Palette: https://color.adobe.com/TRON-color-theme-6970180/
+tron_colors <- c("#DF7212", "#6FC3DF", "#E6FFFF", "#FFE64D", "#0C141F")
+
+ggplot(data = surveys, aes(x = weight, y = species, color = sex)) +
+  geom_boxplot(outlier.shape = NA, width = 0.6) +
+  geom_jitter(width = 0.15, height = 0, alpha = 0.3, size = 1) +
+  scale_color_manual(values = tron_colors) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1)) +
+  labs(
+    title = "Rodent Weight by Species",
+    subtitle = "Y-Axis = Rodent Species",
+    x = "Rodent Weight (g)",
+    y = NULL,
+    caption = "Source: Portal Project Database"
+   )
+```
+
+## Removing the Legend (and More)
+
+This code is brought to us by Lucy Thackray! I thought it was special that Lucy stacked all three challenged to make a clean, easy to read plot. 
+
+```{r}
+colors <- c("#f07857", "#4fb06d" )
+
+ggplot(data = surveys,
+       mapping = aes(x = weight, y = species)) +
+  geom_jitter( alpha = 0.5) +
+  geom_boxplot(outliers = FALSE, mapping = aes(color = sex)) +
+  labs(x = "Weight (g)", y = "Species", color = "Sex",
+       subtitle = "<span style = 'color:#f07857;'>Female</span> vs <span style = 'color:#4fb06d;'>Male</span> rodent species weights") +
+  theme_bw() +
+  theme(panel.grid.minor = element_blank()) +
+   theme(
+    legend.position = "none", 
+    plot.subtitle = element_markdown()) +
+   theme(axis.ticks.y = element_blank()) +
+scale_color_manual(values = colors)
+```
+
+<!-- # Lab 3 -->
 
 ```{r}
 #| label: data-for-lab-3
@@ -92,47 +134,7 @@ teacher_evals_clean <- teacher_evals |>
   filter(no_participants >= 10)
 ```
 
-This code is brought to us by a student who wishes to remain anonymous. What I appreciated about their code is both their efficiency and their concise output!
-
-**3. Provide a brief overview (\~4 sentences) of the dataset.**
-
-*This data set contains the metrics generated from students’ teacher evaluations at a University in Poland during the winter semester of the 2020-2021 academic year. The data set is 8015 by 22, representing 8015 observations with 22 variables. Each row of data corresponds to a specific teacher, their class identifier and an evaluation question. And for each of these, the average score of the question, the teacher’s information, and additional student metrics are observed.*
-
-**6. How many unique instructors and unique courses are present in the cleaned dataset?**
-
-```{r}
-teacher_evals_clean |>
-  summarise(unique_teachers = n_distinct(teacher_id),
-            unique_courses = n_distinct(course_id),
-            unique_combinations = n_distinct(course_id,teacher_id))
-```
-
-**9. Each course seems to have used a different subset of the nine evaluation questions. How many teacher-course combinations asked all nine questions?**
-
-```{r}
-teacher_evals_clean |>
-  group_by(course_id, teacher_id) |>
-  summarise(question_count = n_distinct(question_no), 
-            .groups = "drop") |>
-  filter(question_count == 9) |>
-  count() |>
-  rename(teacher_course = n)
-
-```
-
-**10. Which instructors had the highest and lowest average rating for Question 1 (I learnt a lot during the course.) across all their courses?**
-
-```{r}
-teacher_evals_clean |>
-  group_by(teacher_id) |>
-  filter(question_no == 901) |>
-  summarize(avg_q1_score = mean(SET_score_avg), 
-            .groups = "drop") |>
-  filter(avg_q1_score == min(avg_q1_score) |
-            avg_q1_score == max(avg_q1_score))
-```
-
-# Lab 4
+<!-- # Lab 4 -->
 
 ```{r}
 #| label: data-for-lab-4
@@ -208,139 +210,9 @@ ca_childcare <- counties |>
                                )
          )
 
-## Needed for Tillman's solution
-median_inc <- ca_childcare |>
-  filter(study_year %in% c(2008, 2018)) |>
-  group_by(region, study_year) |>
-  summarize(median_household_income = median(mhi_2018)) |>
-  pivot_wider(names_from = study_year, values_from = median_household_income)
 ```
 
-**4. Let's consider the median household income of each region, and how that income has changed over time. Create a table with ten rows, one for each region, and two columns, one for 2008 and one for 2018. The cells should contain the `median` of the median household income (expressed in 2018 dollars) of the `region` and the `study_year`. Arrange the rows by 2018 values.**
-
-This code is brought to us by Oliver Lane & Cassandra Miller! What I appreciate about their code is how their tables have descriptive titles!
-
-**Oliver's Code**:
-
-```{r}
-ca_childcare |>
-  filter(study_year %in% c(2008, 2018)) |>
-  group_by(region, study_year) |>
-  summarise(median_income = median(mhi_2018, na.rm = TRUE), .groups = 'drop') |>
-  pivot_wider(names_from = study_year,
-              values_from = median_income,
-              names_prefix = "median_income_") |>
-  arrange(desc(median_income_2018))
-```
-
-**Cassandra's Code**:
-
-```{r}
-median_income_by_region <- ca_childcare |> 
-  filter(study_year %in% c(2008, 2018)) |> 
-  group_by(region, study_year) |> 
-  summarise(median_income = median(mhi_2018, na.rm = TRUE), .groups = 'drop') |> 
-  pivot_wider(names_from = study_year, values_from = median_income, names_prefix = "Income_")
-
-```
-
-**5. Which California `region` had the lowest `median` full-time median weekly price for center-based childcare for infants in 2018? Does this `region` correspond to the `region` with the lowest `median` income in 2018 that you found in Q4?**
-
-This code is brought to us by Eva Moylan & Tillman Erb! What I appreciate about their code is how they went above and beyond by including **both** the median price of center-based childcare for infants **and** median household income for each region.
-
-**Eva's Code**:
-
-```{r}
-ca_childcare |>
-  group_by(region, study_year) |>
-  summarize(mhi_2018 = median(mhi_2018), #values now are median for each year at each county
-            mc_infant = median(mc_infant),
-            .groups = 'drop') |>
-  filter(study_year == 2018) |>
-  pivot_wider(id_cols = "region", #region stays from original table orientation 
-              names_from = study_year,
-              values_from = c(mhi_2018,
-                              mc_infant)) |> 
-  slice_min(mc_infant_2018) #Superior CA has the lowest med childcare for infants in 2018
-```
-
-**Tillman's Code**:
-
-```{r}
-ca_childcare |>
-  filter(study_year == 2018) |>
-  group_by(region) |>
-  summarize(median_weekly_cc_price = median(mc_infant)) |>
-  arrange(median_weekly_cc_price) |>
-  inner_join(select(median_inc, -`2008`)) |>
-  rename(median_household_income =`2018`)
-```
-
-**6. The following plot shows, for all ten regions, the change over time of the full-time median price for center-based childcare for infants, toddlers, and preschoolers. Recreate the plot. You do not have to replicate the exact colors or theme, but your plot should have the same content, including the order of the facets and legend, reader-friendly labels, axes breaks, and a loess smoother.**
-
-This code is brought to us by Isabel Villafuerte! What I appreciate about their code is the reordering of the facets and legend, adding dollar signs to the y-axis labels, and dodging the x-axis labels (a clever way to not need to remove some labels!).
-
-```{r}
-ca_childcare |>
-  filter(study_year >= 2008) |>
-  pivot_longer(cols = c(mc_infant,
-                        mc_toddler,
-                        mc_preschool),
-               names_to = "age_demo",
-               values_to = "median_weekly_price") |>
-  mutate(age_demo = fct_recode(age_demo,
-                               "Infant" = "mc_infant",
-                               "Toddler" = "mc_toddler",
-                               "Preschool" = "mc_preschool"),
-         age_demo = fct_relevel(age_demo,
-                                 "Infant",
-                                 "Toddler",
-                                 "Preschool")
-         ) |> 
-ggplot(mapping = aes (x = study_year,
-                        y = median_weekly_price,
-                      color = fct_reorder2(region,
-                                           .x = study_year,
-                                           .y = median_weekly_price))) +
-  geom_point() +
-  geom_smooth(method = "loess",
-              se = TRUE) +
-  facet_wrap(~age_demo) +
-  labs(x = "Study Year",
-       y = "",
-       title = "Weekly Median Price for Center-Based Childcare ($)",
-       color = "California Region") +
-  scale_x_continuous(breaks = seq(2008,
-                                  2018,
-                                  by = 2)) +
-  guides(x = guide_axis(n.dodge = 2)) +
-  theme_bw() +
-  scale_y_continuous(limits = c(0,
-                                500),
-                     labels = scales::label_dollar())
-```
-
-**7. Create a scatterplot showing the relationship between median household income (expressed in 2018 dollars) and the full-time median weekly price charged for center-based childcare for an infant in California. Overlay a linear regression line (lm) to show the trend.**
-
-This code is brought to us by Oliver Lane & Cassandra Miller! What I appreciate about their plot is their use of color, themes, and thoughtful plot titles!
-
-```{r}
-ggplot(ca_childcare, aes(x = mhi_2018, y = mc_infant)) +
-  geom_point(alpha = 0.6, color = "steelblue") +  # Scatterplot points
-  geom_smooth(method = "lm", se = TRUE, color = "darkred", linetype = "dashed") + 
-  theme_bw() +
-  labs(
-    title = "Household Income vs. Infant Care Prices",
-    x = "Median Household Income (dollars)",
-    y = "",
-    subtitle = "Median Weekly Price for Infant Care (dollars)"
-  ) +
-  theme(
-    plot.title = element_text(hjust = 0.5, face = "bold") 
-  )
-```
-
-# Lab 7
+<!-- # Lab 7 -->
 
 ```{r}
 #| echo: false
@@ -355,243 +227,3 @@ fish <- read_csv(here::here("labs",
                  )
 ```
 
-**2. Create ONE thoughtful visualization that explores the frequency of missing values across the different years, sections, and trips.**
-
-This code is brought to us by Tillman Erb! I appreciate Tillman's use of non-standard colors and facet titles that are clear to the reader.
-
-```{r}
-fish |>
-  filter(if_any(.cols = everything(), .fns = is.na)) |>
-  mutate(trip = as.character(trip),
-         trip = fct_recode(trip,
-      "Trip 1" = "1",
-      "Trip 2" = "2")) |>
-  ggplot(mapping = aes(x = year, fill = section)) +
-  facet_grid(~ trip) + 
-  geom_bar() +
-  scale_fill_viridis_d() + 
-  labs(x = "Year",
-       y = NULL,
-       title = "Missing observation frequency by section, trip and year",
-       subtitle = "Number of missing observations",
-       color = "Section")
-```
-
-This code is brought to us by Christopher Hawkins! I really like how Christopher thought outside the box and combined the year and the trip number to a single variable on the y-axis (with a descriptive plot title!).
-
-```{r}
-fish |>
-  group_by(year, section, trip) |>
-  summarize(missing_weight = sum(is.na(weight)), .groups = "drop") |>
-  # Create a combined label for year and trip
-  mutate(year_trip = paste(year, trip, sep = "-")) |>
-  # Plotting the data
-  ggplot(mapping = aes(x = missing_weight, y = year_trip, fill = section)) +
-  geom_bar(stat = "identity", position = "dodge") +
-  labs(
-    title = "Count of Missing Values in Weight by Year, Section, and Trip",
-    subtitle = "Year-Trip #",
-    x = "Count of Missing Weight Values",
-    y = "",
-    fill = "Section"
-  ) +
-  theme_minimal()
-```
-
-This visualization is brought to us by Siwuthara Prak! What I really appreciate about this plot is how it plots **every** year that there were measurements.
-
-```{r}
-fish |>
-  filter(is.na(weight)) |>
-  mutate(trip = factor(trip, levels = c("1", "2")), 
-         trip = fct_recode(trip, 
-                           `Trip 1` = "1",
-                           `Trip 2` = "2")
-         )|>
-  group_by(year, 
-           section, 
-           trip) |>
-  summarise(missing_count = n(), 
-            .groups = 'drop') |>
-  ggplot(aes(x = factor(year), 
-             y = missing_count, 
-             fill = section)) +
-  geom_bar(stat = "identity", 
-           position = "stack") +
-  facet_wrap(~ trip, ncol = 2) +
-  theme_bw(base_size = 8) +
-  labs(
-    x = "Year",
-    y = "",
-    subtitle = "Number of Missing Values",
-    fill = "Section",
-    title = "Frequency of Missing Values in 'Weight' by Year, Section, and Trip"
-  ) +
-  scale_fill_manual(values = c("Johnsrud" = "steelblue", "ScottyBrown" = "gray"))  # Adjusted color for ScottyBrown
-```
-
-This code is brought to us by Alex Lung! I love the idea of faceting by year, since it gets at the same idea as Siwuthara's plot, where the reader can see **every** year there are data values for. Alex also uses some fun (non-standard) colors!
-
-```{r}
-fish |> 
-  #Make sure it is rows lacking wight data
-  filter(is.na(weight)) |>
-  #Alter into a usable distincter variable
-  mutate(trip = as.factor(trip)) |>
-  group_by(year, section, trip) |>
-  summarise(Missing_Count = n(), .groups = "drop") |>
-  ggplot(aes(x = section, y = Missing_Count, fill = trip)) +
-  geom_bar(stat = "identity") +
-  facet_wrap(~ year, ncol = 5) +
-  labs(
-    title = "Frequency of Missing Weight Values by Year, Section, and Trip",
-    subtitle = "Count of Missing Values",
-    x = "Section",
-    y = "",
-    fill = "Trip"
-  ) +
-  theme_bw(base_size = 8) +  
-  theme(
-    strip.text = element_text(size = 12),
-    aspect.ratio = 0.6,
-    panel.grid.major = element_blank(), 
-    panel.grid.minor = element_blank()
-  ) +
-  scale_fill_manual(values = c("darkcyan", "cyan2"))
-```
-
-This code is brought to us by a student who wishes to remain anonymous. I think a line plot is a great approach here to see the changes in missing values over time, plus they use some great colors!
-
-```{r}
-fish |>
-  group_by(year, section, trip) |>
-  summarize(missing_count = sum(is.na(weight)), .groups = "drop") |>
-  mutate(trip = case_when(
-    trip == 1 ~ "Trip 1",
-    trip == 2 ~ "Trip 2")) |>
-  ggplot(aes(x = year, y = missing_count, color = section)) +
-  geom_line(size = 1) +
-  scale_color_brewer(palette = "Set2") +
-  labs(
-    title = "Missing Data in Measurements of Trout Species (Blackfoot River)",
-    x = "Year",
-    subtitle = "Weight Values",
-    y = "",
-    color = "Section") +
-  facet_wrap(~ trip) +
-  theme_minimal()
-```
-
-This code is brought to us by Cassandra Miller! Cassandra also used a line plot, with great facet labels and a great plot title!
-
-```{r}
-fish |>   
-  filter(is.na(weight)) |>   
-  group_by(year, section, trip) |>   
-  mutate(trip = recode(trip, 
-                       '1' = 'Trip 1',
-                       '2' = 'Trip 2')) |>   
-  summarise(Missing_amount = n(), .groups = 'drop') |>   
-  ggplot(aes(x = year, y = Missing_amount, color = section)) +   
-  geom_line() +   
-  facet_wrap(~trip) +   
-  theme_minimal() +   
-  labs(
-    x = 'Year',
-    y = '',
-    title = 'Frequency of Missing Values Across Various Years, Sections and Trips',
-    subtitle = 'Count of Missing Values Across Years',
-    color = 'Section'
-  )
-```
-
-**5. Let's incorporate some input validation into your function. Modify your previous code so that the function stops if ...**
-
--   **... the input vector is not numeric.**
--   **... the length of the input vector is not greater than 1.**
-
-This code is brought to us by Ryan Chen! I was excited to see that Ryan figured out how to add messages to the `stopifnot()` function!
-
-```{r}
-rescale_01 <- function(vec){
-  # validate input vector
-  stopifnot("Error: Input vector must be numeric" = is.numeric(vec),
-            "Error: Input vector must contain more than one element" = length(x) > 1)
-  
-  min_val = min(vec,
-                na.rm = TRUE)
-  max_val = max(vec,
-                na.rm = TRUE)
-  return((vec - min_val) / (max_val - min_val))
-}
-```
-
-This code is brought to us by Daniel Bush! I thought it was really clever to add an additional check to see if the min and the max values were identical.
-
-```{r}
-rescale_01 <- function(vector) {   
-  stopifnot(is.numeric(vector),
-            length(vector) > 1)  
-
-  range_vals <- range(vector, na.rm = TRUE)
-  min_val <- range_vals[1]  
-  max_val <- range_vals[2]
-  
-  if (min_val == max_val) {     
-    return(rep(NA,
-               length(vector)))  
-  }     
-    rescaled_vector <- (vector - min_val) / (max_val - min_val)      
-
-  return(rescaled_vector) 
-}
-```
-
-This code is brought to us by Tillman! I was very impressed with the addition of a `na.rm` argument (that's optional!), to control the output of the final vector.
-
-```{r}
-rescale_01 <- function(vec, na.rm = TRUE) {
-  if (!is.numeric(vec[1])){
-    stop("Error: vector provided is not numeric")
-  } else if (length(vec) <= 1) {
-    stop("Error: vector length must be greater than 1")
-  }
-  vec_range <- range(vec, na.rm = TRUE, finite = TRUE)
-  vec <- (vec - vec_range[1]) / 
-           (vec_range[2] - vec_range[1])
-  if (na.rm){
-    vec <- vec[!is.na(vec)]
-    }
-  return(vec)
-}
-```
-
-```{r}
-#| label: checking-errors
-#| echo: false
-#| error: true
-
-rescale_01 <- function(vec) {
-  
-  stopifnot("Input vector is not numeric" = is.numeric(vec), 
-            "Input vector length must have at least two elements" = length(vec) > 1)
-  
-  range <- range(vec, na.rm = TRUE)
-  
-  return((vec - range[1]) / (range[2] - range[1])) 
-}
-  
-
-x <- c(1:25, NA)
-
-rescale_01(x)
-
-y <- letters
-
-rescale_01(y)
-
-z <- 2
-
-rescale_01(z)
-
-```

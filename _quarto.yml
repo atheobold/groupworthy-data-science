@@ -39,8 +39,8 @@ website:
         text: Portfolio
       - href: course-materials/course-resources.qmd
         text: Resources
-      # - href: labs/exemplars/student-work.qmd
-      #   text: "Exemplary Student Work"
+      - href: labs/exemplars/student-work.qmd
+        text: "Exemplary Student Work"
 
 format:
   html:

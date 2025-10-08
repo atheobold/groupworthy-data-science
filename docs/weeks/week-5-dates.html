@@ -159,9 +159,12 @@ ul.task-list li input[type="checkbox"] {
 
 <p>This week is all about special data types in R. Similar to the tools you learned last week for working with factors, this week you are going to learn about tools for working with dates. By the end of this week you should be able to:</p>
 <ul>
-<li>Work with date and time variables using <code>lubridate</code></li>
+<li>recognize structure of how dates were stored (e.g., day-month-year, month-day-year, month-day-year-hours-minutes)</li>
+<li>specify time zones for data variables</li>
+<li>extract elements of a date variable</li>
+<li>create intervals of time using the %–% operator</li>
+<li>check if a date is within an interval using the %within% operator</li>
 </ul>
-<!-- add more here -->
 <div class="columns">
 <div class="column" style="width:60%;">
 <section id="watch-videos-20-minutes" class="level4">
@@ -200,7 +203,6 @@ ul.task-list li input[type="checkbox"] {
 <div class="callout-body-container callout-body">
 <ul>
 <li><p><a href="https://lubridate.tidyverse.org/reference/"><strong>lubridate</strong> website</a></p></li>
-<li><p>Download the <a href="https://posit.co/wp-content/uploads/2022/10/lubridate-1.pdf"><strong>lubridate</strong> cheatsheet</a></p></li>
 <li><p><a href="https://www.cyclismo.org/tutorial/R/time.html">A more in-depth discussion of the POSIXlt and POSIXct data classes.</a></p></li>
 <li><p><a href="https://data.library.virginia.edu/working-with-dates-and-time-in-r-using-the-lubridate-package/">A tutorial on lubridate</a> - scroll down for details on intervals if you have trouble with <code>%within%</code> and <code>%--%</code></p></li>
 </ul>
@@ -208,27 +210,42 @@ ul.task-list li input[type="checkbox"] {
 </div>
 </div>
 </section>
-<section id="check-in-5.2-functions-from-lubridate" class="level3">
+<section id="check-in-5.2-functions-from-lubridate" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="check-in-5.2-functions-from-lubridate">✅ <strong>Check-in 5.2: Functions from <code>lubridate</code></strong></h3>
-<p><strong>Q1</strong> Which of the following is true about the <code>year()</code> function?</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>lubridate</strong> cheatsheet is in Week 5 of your coursepack! If you do not have a coursepack I would strongly recommending printing the <a href="https://rstudio.github.io/cheatsheets/lubridate.pdf">lubridate cheatsheet</a>.</p>
+</div>
+</div>
+</div></div><p><strong>Q1</strong>: Which of the following is true about the <code>year()</code> function?</p>
 <ul>
 <li><code>year()</code> creates a duration object to be added to a datetime</li>
 <li><code>year()</code> extracts the year of a datetime object</li>
 </ul>
-<p><strong>Q3</strong> What <code>tz</code> would you use for San Luis Obispo? <em>Use the <strong>exact input</strong> you would use in R!</em></p>
-<p><strong>Q3</strong> Which of the following is true about the <code>%within%</code> operator?</p>
+<p><strong>Q2</strong>: What <code>tz</code> would you use for San Luis Obispo? <em>Use the <strong>exact input</strong> you would use in R!</em></p>
+<p><strong>Q3</strong>: Which of the following is true about the <code>%within%</code> operator?</p>
 <ul>
 <li>it checks if a date is included in an interval</li>
 <li>it returns a logical value</li>
 <li>it creates an interval with a start and end time</li>
 </ul>
-<p><strong>Q4</strong> Which of the following is true about the <code>%--%</code> operator?</p>
+<p><strong>Q4</strong>: Which of the following is true about the <code>%--%</code> operator?</p>
 <ul>
 <li>it creates an interval with a start and end time</li>
 <li>it returns a logical value</li>
 <li>it checks if a date is included in an interval</li>
 </ul>
-<p><strong>Q5</strong> What day does the <code>make_date()</code> function use as default if no <code>day</code> argument is provided?</p>
+<p><strong>Q5</strong>: What day does the <code>make_date()</code> function use as default if no <code>day</code> argument is provided?</p>
 
 
 </section>

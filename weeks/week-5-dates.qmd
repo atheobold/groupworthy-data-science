@@ -22,9 +22,11 @@ last week for working with factors, this week you are going to learn about
 tools for working with dates. By the end of this week you should be
 able to:
 
-+ Work with date and time variables using `lubridate`
-
-<!-- add more here -->
++ recognize structure of how dates were stored (e.g., day-month-year, month-day-year, month-day-year-hours-minutes)
++ specify time zones for data variables
++ extract elements of a date variable
++ create intervals of time using the %--% operator
++ check if a date is within an interval using the %within% operator
 
 ::: columns
 ::: {.column width="60%"}
@@ -61,9 +63,6 @@ easier.
 # Extra resources
 
 -   [**lubridate** website](https://lubridate.tidyverse.org/reference/)
-
--   Download the [**lubridate** cheatsheet](https://posit.co/wp-content/uploads/2022/10/lubridate-1.pdf)
-
 -   [A more in-depth discussion of the POSIXlt and POSIXct data classes.](https://www.cyclismo.org/tutorial/R/time.html)
 
 -   [A tutorial on lubridate](https://data.library.virginia.edu/working-with-dates-and-time-in-r-using-the-lubridate-package/) - scroll down for details on intervals if you have trouble with `%within%` and `%--%`
@@ -71,26 +70,32 @@ easier.
 
 ### ✅   **Check-in 5.2: Functions from `lubridate`**
 
-**Q1** Which of the following is true about the `year()` function?
+::: {.column-margin}
+::: callout-important
+The **lubridate** cheatsheet is in Week 5 of your coursepack! If you do not have a coursepack I would strongly recommending printing the [lubridate cheatsheet](https://rstudio.github.io/cheatsheets/lubridate.pdf).
+:::
+:::
+
+**Q1**: Which of the following is true about the `year()` function?
 
 -   `year()` creates a duration object to be added to a datetime
 -   `year()` extracts the year of a datetime object
 
-**Q3** What `tz` would you use for San Luis Obispo? *Use the __exact input__ 
+**Q2**: What `tz` would you use for San Luis Obispo? *Use the __exact input__ 
 you would use in R!*
 
-**Q3** Which of the following is true about the `%within%` operator?
+**Q3**: Which of the following is true about the `%within%` operator?
 
 -   it checks if a date is included in an interval
 -   it returns a logical value
 -   it creates an interval with a start and end time
 
-**Q4** Which of the following is true about the `%--%` operator?
+**Q4**: Which of the following is true about the `%--%` operator?
 
 -   it creates an interval with a start and end time
 -   it returns a logical value
 -   it checks if a date is included in an interval
 
-**Q5** What day does the `make_date()` function use as default if no `day`
+**Q5**: What day does the `make_date()` function use as default if no `day`
 argument is provided?
 

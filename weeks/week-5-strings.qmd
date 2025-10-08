@@ -20,7 +20,10 @@ library(babynames)
 
 This week is all about special data types in R. Similar to the tools you learned last week for working with factors, this week you are going to learn about tools for working with strings and dates. By the end of this week you should be able to:
 
-<!-- add more here -->
+- hypothesize what type of output a `str_XXX()` function will provide (e.g., character vector, logical vector, matrix, numeric vector) 
+- recognize what `str_XXX()` function is best suited for a particular problem (e.g., replacing, detecting a pattern, removing whitespace)
+- construct simple regular expressions using character classes (`[]`), repeated
+patterns (`{2,}`), anchoring (`^` and `$`), and groups (`()`)
 
 :::::: columns
 ::: {.column width="60%"}

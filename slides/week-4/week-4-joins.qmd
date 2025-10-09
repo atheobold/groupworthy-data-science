@@ -101,7 +101,6 @@ context of these data?
 
 ## Lab 3 Common Themes
 
-::: {.midi}
 - **Q5 & Q7**: Not using the "correct" function syntax
 
 ```{r}
@@ -112,22 +111,21 @@ context of these data?
 
 if_any(.cols = everything(), .fns = ~ is.na(.x))
 ```
-:::
 
-::: {.midi}
-::: {.incremental}
+. . .
+
 - Not using `.x` to specify where the `.cols` input should go will go awry 
   when there are **multiple** function inputs. 
 - Using named arguments (e.g., `.cols = `) makes your code more
 readable and is part of the code formatting guidelines for this class. 
+
+## Lab 3 Common Themes
 
 - Think about "efficient" ways to do things
   + **Q5**: Are you using the same function `across()` multiple columns?
   + **Q6**: Can you calculate multiple summary statistics in one pipeline?
   + **Q10-12**: Is there a way you can get **both** the max *and* min in one
   pipeline?
-:::
-:::
 
 # Function Lifecycle Stages
 
@@ -145,7 +143,7 @@ As packages get updated, the functions and function arguments included in those 
 
 <center>
 
-![](images/mutate_at.png){width=70% fig-alt="The image shows the documentation for the mutate_at() function in R, from the dplyr package for data manipulation. At the top of the documentation it states that this function (and its relatives mutate_all, mutate_if, transmute_all, transmute_if, transmute_at) is superseded. The description states that these functions have been replaced by the pick() or across() functions."}
+![](images/scales-percent.png){width=70% fig-alt="The image shows the documentation for the percent() and percent_format() functions in R, from the scales package for modifying the scales of data visualizations. At the top of the documentation it states that this function is superseded. The description states that these functions have been replaced by the label_percent() function."}
 
 </center>
 
@@ -291,6 +289,8 @@ Add *variables* from a new dataframe to observations in an existing dataframe.
 `left_join()`   
 
 `right_join()`  
+
+`full_join()`
  
 
 ## `inner_join()`
@@ -400,9 +400,9 @@ left_join(x = counties,
           )
           
 right_join(x = counties, 
-          y = ca_tax_rev, 
-          by = join_by(county_name == entity_name)
-          )
+           y = ca_tax_rev, 
+           by = join_by(county_name == entity_name)
+           )
 
 full_join(x = counties, 
           y = ca_tax_rev, 
@@ -479,11 +479,15 @@ What if a there are counties that don't have matches?
 
 ## Piping Joins
 
+::: {.midi}
 Remember: the dataset you pipe in becomes the **first argument** of the function you are piping into!
 
 + So if you are using a pipe, you will only be specifying the **right** (`x`) dataset inside the `join_XXX()` function.
+:::
 
 . . .
+
+::: {.midi}
 
 ```{r}
 #| eval: false
@@ -508,13 +512,16 @@ counties |>
             by = join_by(county_name == entity_name)
             )
 ```
+:::
 
 ## Lab 4 Preview: Joining Multiple Data Sets
 
 Suppose we wanted to compare the taxes and costs of childcare for counties in 
 California. To do this, we would need to join **all three** datasets together!
 
-![](images/childcare-relations.jpg){width=50%}
+::: {.centered}
+![](images/childcare-relations.jpg){fig-alt="A figure showing the relations between three different datasets: childcare_costs, counties, and ca_tax_revenue. The childcare_costs dataset has an arrow connecting the variable 'county_fips_code' to the 'county_fips' in the counties dataset. The counties dataset has an arrow connecting the 'county name' variable to the 'entity name' variable in the ca_tax_revenue dataset. Each of the arrows represents the keys (variables) that link each dataset." width=50%}
+:::
 
 # Practice Activity 4
 
@@ -562,30 +569,30 @@ military |>
 
 ### Using `anti_join()` instead
 
+::: {.midi}
 ```{r}
 #| echo: true
 #| eval: false
 #| code-line-numbers: false
 #| message: false
          
-military |> 
-  anti_join(cont_region, 
-            by = join_by(Country == Region))
+anti_join(military, 
+          cont_region, 
+          by = join_by(Country == Region))
 ```
 
 ```{r}
 #| echo: false
 #| eval: true
 
-military |> 
-  anti_join(cont_region, 
-            by = join_by(Country == Region)) |> 
+anti_join(military, 
+          cont_region, 
+          by = join_by(Country == Region)) |> 
   knitr::kable() |> 
   kableExtra::scroll_box(height = "400px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
-
-Countries: ~~Africa~~, ~~North Africa~~, **Algeria**, **Libya**, **Morocco**
+:::
 :::
 
 <!-- ## Filtering Joins: `semi_join()` -->
@@ -599,13 +606,12 @@ Countries: ~~Africa~~, ~~North Africa~~, **Algeria**, **Libya**, **Morocco**
 
 ## What is a factor variable?
 
-</br> 
-
 In general, factors are used for: 
 
 1. categorical variables with a fixed and known set of possible values.
-  + E.g., `day_born` = Sunday, Monday, Tuesday, ..., Saturday
+  + e.g., `month_born` = January, February, March, ..., December
 2. displaying character vectors in non-alphabetical order.
+  + e.g., `day_born` = Sunday, Monday, Tuesday, ..., Saturday
 
 ## California Counties
 
@@ -633,9 +639,9 @@ We use this package to...
 
 + turn character variables into factors
 
-+ make factors by discretizing numeric variables
-
 + rename or reorder the levels of an existing factor
+
++ collapse levels of an existing factor
 :::
 
 ::: {.column width="20%"}
@@ -653,22 +659,7 @@ knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/thumb
 The packages `forcats` ("for categoricals") helps wrangle categorical variables.
 :::
 
-## Creating a Factor -- `fct`
-
-With `fct()`, the levels are automatically ordered in the **order of first appearance**.
-
-::: {.midi}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-ca_tax_rev |> 
-  pull(entity_name) |> 
-  fct()
-```
-:::
-
-## Creating a Factor 
+## Creating a Factor -- `fct()`
 
 ```{r}
 #| echo: true
@@ -678,13 +669,17 @@ ca_tax_rev <- ca_tax_rev |>
   mutate(entity_name = fct(entity_name))
 ```
 
-::: {.midi}
 ::: {.callout-warning}
 # To change a column type to factor, you must wrap `fct()` in a `mutate()` call.
 :::
-:::
 
-## Creating a Factor -- `fct`
+</br>
+
+. . .
+
+With `fct()`, the levels are automatically ordered in the **order of first appearance**.
+
+## Creating a Factor -- `fct()`
 
 ::: {.midi}
 You can **specify the order of the levels** with `level`.
@@ -696,30 +691,31 @@ You can **specify the order of the levels** with `level`.
 #| code-line-numbers: false
 #| eval: false
 
-eras_data |> 
-  pull(Album) |> 
-  fct(levels = c("Los Angeles County", 
-                 "San Diego County", 
-                 "Orange County", 
-                 "Riverside County", 
-                 "San Bernardino County", 
-                 "Santa Clara County", 
-                 "Alameda County", 
-                 "Sacramento County", 
-                 "Contra Costa County", 
-                 "Fresno County", 
-                 "Kern County", 
-                 "Ventura County", 
-                 "San Joaquin County", 
-                 "San Mateo County". 
-                 ...
-                 )
-      )
+ca_tax_rev <- ca_tax_rev |> 
+  mutate(entity_name = fct(entity_name, 
+                           levels = c("Los Angeles County", 
+                                      "San Diego County", 
+                                      "Orange County", 
+                                      "Riverside County", 
+                                      "San Bernardino County",
+                                      "Santa Clara County", 
+                                      "Alameda County", 
+                                      "Sacramento County", 
+                                      "Contra Costa County", 
+                                      "Fresno County", 
+                                      "Kern County", 
+                                      "Ventura County", 
+                                      "San Joaquin County", 
+                                      "San Mateo County", 
+                                       ...
+                                       )
+                           )
+         )
 ```
 :::
 
 ::: {.midi}
-But that seems pretty tedious.
+But that is sometimes a bit tedious.
 :::
 
 ## `fct_reorder()`
@@ -778,7 +774,7 @@ ca_tax_rev |>
                              .fun = mean), 
              fill = entity_name)
          ) +
-  geom_density_ridges() +
+  geom_density_ridges(alpha = 0.5) +
   theme_minimal() +
   theme(legend.position = "none") +
   labs(x = "Sales and Use Taxes",
@@ -786,7 +782,7 @@ ca_tax_rev |>
   scale_x_continuous(labels = scales::label_dollar())
 ```
 
-## `fct_reoder()` with `ggplot()`
+## `fct_reorder()` with `ggplot()`
 
 ::: {.small}
 So, we could instead do this process **inside** `ggplot()`. 
@@ -806,7 +802,7 @@ ca_tax_rev |>
                              .fun = mean), 
              fill = entity_name)
          ) +
-  geom_density_ridges() +
+  geom_density_ridges(alpha = 0.5) +
   theme_minimal() +
   theme(legend.position = "none") +
   labs(x = "Sales and Use Taxes",
@@ -841,7 +837,7 @@ ca_tax_rev |>
   theme_bw() +
   scale_y_continuous(labels = scales::label_dollar()) +
   scale_x_continuous(labels = scales::label_dollar()) +
-  labs(y = "",
+  labs(y = "Total Property Taxes",
        x = "Sales and Use Taxes",
        color = "California County")
 ```
@@ -890,27 +886,57 @@ low_pop <- c(
 
 ## Collapsing a Factor --`fct_collapse()`
 
-::: {.small}
+::: {.midi}
 ```{r}
 #| echo: true
 #| eval: true
-ca_tax_rev |> 
+ca_tax_rev <- ca_tax_rev |> 
   mutate(pop_class = fct_collapse(.f = entity_name,
                                   high = high_pop,
                                   medium = medium_pop, 
                                   low = low_pop)
-         ) |> 
-  select(entity_name, pop_class) |> 
-  slice_sample(n = 6)
+         ) 
 ```
 :::
 
+</br>
+
+
+::: columns
+::: {.column width="40%"}
 ::: {.small}
 ::: {.callout-important}
 
 The syntax here is: 
 
-`"<new level>" = c("<old level>", "<old level>", ...)`
+```{r}
+#| eval: false
+#| echo: true
+#| code-line-numbers: false
+
+<new level> = c("<old level>",
+                "<old level>",
+                ...)
+
+```
+:::
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+::: {.fragment}
+```{r}
+ca_tax_rev |> 
+  select(entity_name, pop_class) |> 
+  slice_sample(n = 6) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "250px") |> 
+  kableExtra::kable_styling(font_size = 20)
+```
+:::
 :::
 :::
 
@@ -932,8 +958,8 @@ The syntax here is:
 ## To do...
 
 -   **Lab 4: Childcare Costs in California**
-    -   Due Monday (10/13) at 11:59pm
+    -   Due Monday (10/13) at 5pm
 -   **Week 5: Strings + Dates**
-    -   **Check-in 5.1** due Tuesday (10/14) at 8am
-    -   **Check-in 5.2** due Thursday (10/14) at 8am
+    -   **Check-in 5.1 (Strings)** due Tuesday (10/14) at 8am
+    -   **Check-in 5.2 (Dates)** due Thursday (10/14) at 8am
 

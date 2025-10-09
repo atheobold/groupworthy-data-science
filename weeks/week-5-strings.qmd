@@ -1,0 +1,316 @@
+---
+title: "Working with Strings Using **stringr**"
+format: html
+number-sections: true
+number-depth: 2
+bibliography: references.bib
+editor: source
+execute: 
+  echo: true
+  include: true
+---
+
+```{r}
+#| include: false
+
+library(tidyverse)
+library(lubridate)
+library(babynames)
+```
+
+This week is all about special data types in R. Similar to the tools you learned last week for working with factors, this week you are going to learn about tools for working with strings and dates. By the end of this week you should be able to:
+
+- hypothesize what type of output a `str_XXX()` function will provide (e.g., character vector, logical vector, matrix, numeric vector) 
+- recognize what `str_XXX()` function is best suited for a particular problem (e.g., replacing, detecting a pattern, removing whitespace)
+- construct simple regular expressions using character classes (`[]`), repeated
+patterns (`{2,}`), anchoring (`^` and `$`), and groups (`()`)
+
+:::::: columns
+::: {.column width="60%"}
+#### 📽 Watch Videos: 20 minutes
+
+#### 📖 Readings: 60-75 minutes
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="35%"}
+#### ✅ Preview Activities: 1
+:::
+::::::
+
+# Working with Strings {#sec-strings}
+
+Strings are a powerful way to work with text variables (e.g., `day_of_week`, `job_title`, `gender`). We've encountered a few functions related to strings in Week 3 when we were selecting columns from a dataset based on their names (e.g., `select(colleges, starts_with(TUITION)`)) and also when we filtered a column based on its values (e.g., `filter(colleges, STABBR == "CO"))`). Notice that in both cases, we are using the literal names of the variables or values in the data.
+
+This week, we are going to learn about regular expressions---a short hand way to search for values of a string.
+
+### 📖 [Required Reading: *R4DS* -- Strings](https://r4ds.had.co.nz/strings.html)
+
+::: column-margin
+{{< video https://www.youtube.com/embed/Oo_MtXwpi2Q >}}
+:::
+
+::: callout-important
+The **stringr** cheatsheet is in Week 5 of your coursepack! If you do not have a coursepack I would strongly recommending printing the [stringr cheatsheet](https://rstudio.github.io/cheatsheets/strings.pdf).
+:::
+
+::: callout-note
+### Common **stringr** functions and what they do
+
+|  |  |  |
+|---------------------------|---------------------------|------------------|
+| **Task** | **stringr** | **Output** |
+| Find a `pattern` and replace it | `str_replace(x, pattern, replacement)` and `str_replace_all(x, pattern, replacement)` | Modified string or character vector |
+| Convert a string from uppercase to lower case or visa versa | `str_to_lower(x)`, `str_to_upper(x)` , `str_to_title(x)` | Modified string or character vector |
+| Strip whitespace from the start / end of a string | `str_trim(x)` , `str_squish(x)` | Modified string or character vector |
+| Detect if the string contains a pattern | `str_detect(x, pattern)` | Logical |
+| Count how many times a pattern appears in the string | `str_count(x, pattern)` | Numeric |
+| Find the first appearance of the pattern within the string | `str_locate(x, pattern)` | Integer matrix (start position, end position) |
+| Find all appearances of the pattern within the string | `str_locate_all(x, pattern)` | Integer matrix (start position, end position) |
+| Detect if a string contains a pattern at the start / end | `str_starts(x, pattern)`, `str_ends(x, pattern)` | Logical |
+| Subset a string from index a to b | `str_sub(x, a, b)` | Modified string or character vector |
+
+: Across **every** function in the **stringr** package, `x` is the string (or vector of strings) and `pattern` is a pattern to be found within the string.
+:::
+
+<!-- ![Alternately, the XKCD version](https://imgs.xkcd.com/comics/perl_problems.png){fig-alt="A cartoon of two stick figures talking to each other. The first frame has a stick figure in sunglasses saying 'If you're havin' Perl problemms, I feel bad for you son.' The second frame the figure then says 'I got 99 problems,' then the next frame says 'So I used regular expressions.' The final frame says 'Now I have 100 problems.'"} -->
+
+## Regular Expressions
+
+> Some people, when confronted with a problem, think "I know, I'll use regular expressions." Now they have two problems. - Jamie Zawinski
+
+Regular expressions (or regex) is a concise and powerful language created to
+describe patterns in strings. You can think of regular expressions as an 
+advanced versions of “Find” in a text editor, helping you search for 
+specific patterns in strings. These expressions use symbols to define 
+flexible search patterns. For example, the symbol `.` is used to match any 
+character (letter, number, punctuation) and the symbol `\d` is used to match any
+digit. 
+
+We're going to learn a little bit more about regular expressions and how you 
+can use them to search for specific patterns. 
+
+::: {.column-margin}
+::: callout-important
+A cheatsheet on regular expressions is included in Week 5 of your coursepack! If
+you do not have a coursepack I would strongly recommending printing the [regular expression cheatsheet](https://rstudio.github.io/cheatsheets/regex.pdf).
+:::
+:::
+
+### 📖 [Recommended Reading: *R4DS* Chapter 15 (Regular Expressions)](https://r4ds.hadley.nz/regexps.html)
+
+::: callout-tip
+# Read at least through **Section 15.4.1**.
+:::
+
+
+
+::: {.callout-note collapse="true"}
+# Here is Dr. T's short primer on regular expressions
+
+You may find it helpful to follow along with this section using this [web app](https://spannbaueradam.shinyapps.io/r_regex_tester/) built to test R
+regular expressions. The subset of regular expression syntax we're going to
+cover here is fairly limited, but [you can find regular expressions to do just about anything string-related](https://stackoverflow.com/questions/tagged/regex?tab=Votes). 
+As with any tool, there are situations where it's useful, and situations where
+you should not use a regular expression, no matter how much you want to.
+
+Here are the basics of regular expressions:
+
+-   `[]` enclose sets of characters
+    + For example, `[abc]` will match any single character `a`, `b`, `c`
+
+-   `-` specifies a range of characters 
+    + For example, `A-z` will match all upper and lower case letters (A-Z, and then a-z)
+
+-   `.` matches any character (except a newline)
+
+-   To match special characters, you need to escape them using a `\` (in most
+languages) or `\\` (in R). 
+    + For example, a `\.` or `\\.` will match a literal `.`, `\$` or `\\$` will
+    match a literal `$`.
+
+```{r}
+#| label: phone-strings
+
+num_string <- "phone: 123-456-7890, nuid: 12345678, ssn: 123-45-6789"
+
+str_extract(num_string, 
+            pattern = "[0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9][0-9][0-9]")
+```
+
+### Repeating Patterns
+
+Listing out all of those numbers can get repetitive, though. How do we specify repetition?
+
+-   `*` means repeat between 0 and inf times
+-   `+` means 1 or more times
+-   `?` means 0 or 1 times -- most useful when you're looking for something
+optional
+-   `{a, b}` means repeat between `a` and `b` times, where `a` and `b` are
+integers. 
+    + Note that `b` can be blank. So `[abc]{3,}` will match `abc`, `aaaa`, 
+    `cbbaa`, but not `ab`, `bb`, or `a`.
+-   `{a}` specifies an exact number of repeated charaters. 
+    + For example, `{3}` means "exactly 3 times" whereas `{3,}` means "3 or
+    more times."
+
+```{r}
+#| label: regular-expression-phone-ssn
+
+num_string
+
+# Matches a sequence of *three* numbers, followed by a dash, 
+# then a sequence of *two* numbers, followed by a dash, 
+# then a sequence of *four* numbers, followed by a dash.
+str_extract(num_string, pattern = "[0-9]{3}-[0-9]{2}-[0-9]{4}")
+
+# Matches a sequence of *three* numbers, followed by any character, 
+# then a sequence of *three* numbers, followed by any character, 
+# then a sequence of *four* numbers, followed by any character, 
+str_extract(num_string, pattern = "[0-9]{3}.[0-9]{3}.[0-9]{4}")
+
+# Matches a sequence of at least *eight* numbers 
+str_extract(num_string, pattern = "[0-9]{8,}")
+
+```
+
+### Anchoring
+
+There are also ways to "anchor" a pattern to a part of the string (e.g. the beginning or the end)
+
+-   `^` has multiple meanings:
+    -   If `^` is the first character in a pattern (e.g., `^Al`) it matches the
+    beginning of a string.
+    -   If `^` follows a `[` (e.g., `[^abc]`) then it means "not." So, `[^abc]`
+    means "the collection of all characters that **are not** a, b, or c."
+-   `$` means the end of a string (e.g., `bold$`)
+
+Combined with pre and post-processing, these let you make sense out of semi-structured string data, such as addresses.
+
+```{r}
+#| label: regular-expression-addresses
+
+address <- "1600 Pennsylvania Ave NW, Washington D.C., 20500"
+```
+
+**Grabbing the house number**
+```{r}
+# Match a sequence of one or more digits at the beginning of the string
+house_num <- str_extract(address, pattern = "^[0-9]{1,}")
+house_num
+```
+
+**Grabbing the street**
+
+```{r} 
+# Match everything alphanumeric up to the comma
+street <- str_extract(address, pattern = "[A-z0-9 ]{1,}")
+street
+
+# Remove house number from street address
+street <- str_remove(street, house_num) |> 
+  # Trim any leading or trailing whitespace from remaining string
+  str_trim() 
+street
+```
+
+**Grabbing the city**
+
+```{r} 
+# Match one or more characters between the two commas  
+city <- str_extract(address, pattern = ",.{1,},") |> 
+  # Remove the leading and trailing commas
+  str_remove_all(",") |> 
+  # Trim any leading or trailing whitespace from remaining string
+  str_trim()
+city
+```
+
+**Grabbing the zip code**
+
+```{r} 
+# Matches both 5 and 9 digit zip codes found at the end of the string
+zip <- str_extract(address, pattern = "[0-9]{5,10}$") 
+zip
+```
+
+### Making Groups
+
+-   `()` are used to capture information
+    + For example, `([0-9]{4})` captures any 4-digit number
+-   an `|` means "or" 
+    + For example, `a|b` will select a or b.
+
+**Making a group of characters**
+```{r}
+#| label: regular-expression-groups
+
+fruit
+
+# Searches for fruits containing a group of two p's (need to be together)
+str_view(fruit, pattern = "(pp)")
+
+```
+
+**Using an "or"**
+```{r}
+#| label: regular-expression-or 
+
+# Searches for fruits containing apple OR melon OR nut
+str_view(fruit, pattern = "apple|melon|nut")
+
+```
+
+**Referencing groups**
+
+```{r}
+#| label: regular-expression-back-references
+
+# Searches for fruits where there are two characters (..) that get repeated
+# a second time \\1
+str_view(fruit, pattern = "(..)\\1")
+```
+
+:::
+
+### ✅ **Check-in 5.1: Functions from `stringr`**
+
+**1 Which of the follow are differences between `length()` and `str_length()`?**
+
+-   `length()` gives the number of elements in a vector
+-   `str_length()` gives the number of characters in a string
+-   `str_length()` gives the number of strings in a vector
+-   `length()` gives the dimensions of a dataframe
+
+**2 What of the following is true about `str_replace()`?**
+
+-   `str_replace()` replaces the first instance of the `pattern`
+-   `str_replace()` replaces the last instance of the `pattern`
+-   `str_replace()` replaces every instance of the `pattern`
+
+**3 `str_trim()` allows you to remove whitespace on what sides?**
+
+-   left
+-   right
+-   both
+
+**4 Which of the following does `str_sub()` use to create a substring?** Select
+all that apply!
+
+-   starting position
+-   ending position
+-   pattern to search for
+
+**5 Which of the following does `str_subset()` use to create a substring?** 
+Select all that apply!
+
+-   starting position
+-   ending position
+-   pattern to search for
+
+**6 What does the `collapse` argument do in `str_c()`?**
+
+-   specifies a string to be used when combining inputs into a single string
+-   specifies whether the string should be collapsed

@@ -143,7 +143,7 @@ As packages get updated, the functions and function arguments included in those 
 
 <center>
 
-![](images/mutate_at.png){width=70% fig-alt="The image shows the documentation for the mutate_at() function in R, from the dplyr package for data manipulation. At the top of the documentation it states that this function (and its relatives mutate_all, mutate_if, transmute_all, transmute_if, transmute_at) is superseded. The description states that these functions have been replaced by the pick() or across() functions."}
+![](images/scales-percent.png){width=70% fig-alt="The image shows the documentation for the percent() and percent_format() functions in R, from the scales package for modifying the scales of data visualizations. At the top of the documentation it states that this function is superseded. The description states that these functions have been replaced by the label_percent() function."}
 
 </center>
 

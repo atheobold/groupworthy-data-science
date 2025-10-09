@@ -75,7 +75,7 @@ create and manipulate factor variables.
 
 📖 [Required Reading: *R4DS* Chapter 16 (Factors) ](https://r4ds.hadley.nz/factors.html)
 
-### ✅  **Check-in 4.3: Functions from `forcats`**
+### ✅  **Check-in 4.4 Functions from  forcats`*
 
 Answer the following questions in the Canvas Quiz.
 

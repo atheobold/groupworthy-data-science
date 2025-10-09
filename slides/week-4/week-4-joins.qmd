@@ -959,9 +959,21 @@ ca_tax_rev |>
 
 ## To do...
 
+::: columns
+::: {.column width="50%"}
 -   **Lab 4: Childcare Costs in California**
     -   Due Monday (10/13) at 5pm
 -   **Week 5: Strings + Dates**
     -   **Check-in 5.1 (Strings)** due Tuesday (10/14) at 8am
     -   **Check-in 5.2 (Dates)** due Thursday (10/14) at 8am
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
+![](images/keats.jpg){width=80%}
+:::
+:::
+
 

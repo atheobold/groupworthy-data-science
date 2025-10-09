@@ -129,6 +129,8 @@ readable and is part of the code formatting guidelines for this class.
 
 # Function Lifecycle Stages
 
+> **PE-4**: I can use modern tools when carrying out my analysis.
+
 ## Function Lifceycle Stages
 
 As packages get updated, the functions and function arguments included in those packages will change.

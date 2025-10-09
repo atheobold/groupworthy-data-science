@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Writing Vector Functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-1c35b41652cab16ef815a191b3564630.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c990e76e4e8f51fe5aa6f0d132950ebc.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -277,15 +277,15 @@
 <li>You run the code to define the function just <strong>once</strong>.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="fragment">
 <p>Let’s <strong>call</strong> the function!</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7</code></pre>
 </div>
@@ -296,9 +296,9 @@
 <h2>Naming: <code>add_two</code></h2>
 <p>The <strong>name</strong> of the function is chosen by the author.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="callout callout-caution callout-titled callout-style-default">
@@ -312,13 +312,13 @@
 <div class="callout-content">
 <p>The name you give to a function does not affect what the function does.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>add_three <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>add_three <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">7</span></span>
-<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">add_three</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a><span class="fu">add_three</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
@@ -351,9 +351,9 @@
 </div><div class="column" style="width:50%;">
 <p><br></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </div>
@@ -367,22 +367,22 @@
 <div class="midi">
 <p>If we supply a <strong>default</strong> value when <em>defining</em> the function, the argument is <strong>optional</strong> when <em>calling</em> the function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">something =</span> <span class="dv">2</span>){</span>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">something =</span> <span class="dv">2</span>){</span>
 <span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> something)</span>
-<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb9-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
 <div class="midi">
 <p>If a value is not supplied, <code>something</code> defaults to 2.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">5</span>, <span class="at">something =</span> <span class="dv">6</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">5</span>, <span class="at">something =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11</code></pre>
 </div>
@@ -394,11 +394,11 @@
 <div class="midi">
 <p>If we <strong>do not</strong> supply a default value when <em>defining</em> the function, the argument is <strong>required</strong> when <em>calling</em> the function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
 <span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> something</span>
 <span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in add_something(x = 2): argument "something" is missing, with no default</code></pre>
 </div>
@@ -416,31 +416,31 @@
 <li>The code in the body will be executed (in order) whenever the function is called.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb16-2"><a></a>  x <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb16-3"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="output-return" class="slide level2">
 <h2>Output: <code>return()</code></h2>
 <p>Your function will <em>give back</em> what would normally <em>print out</em>…</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb17-2"><a></a>  x <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb17-3"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb17-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="dv">7</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9</code></pre>
 </div>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>(<span class="dv">7</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>(<span class="dv">7</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 9</code></pre>
 </div>
@@ -450,9 +450,9 @@
 <div class="fragment">
 <p>…but it’s better to be explicit and use <code>return()</code>*.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb22-2"><a></a>  <span class="fu">return</span>(x <span class="sc">+</span> <span class="dv">2</span>)</span>
-<span id="cb22-3"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-3"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -469,13 +469,13 @@
 <div class="column" style="width:45%;">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Good</span></span>
 <span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>find_abs <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb23-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
 <span id="cb23-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(x)</span>
 <span id="cb23-5"><a aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb23-6"><a aria-hidden="true" tabindex="-1"></a>  x <span class="sc">*</span> <span class="sc">-</span><span class="dv">1</span></span>
-<span id="cb23-7"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb23-7"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div><div class="column" style="width:5%;">
@@ -483,10 +483,10 @@
 </div><div class="column" style="width:45%;">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a><span class="co"># Bad</span></span>
 <span id="cb24-2"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
 <span id="cb24-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> y)</span>
-<span id="cb24-4"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-4"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div></div>
@@ -516,7 +516,7 @@
 </div>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>min_max <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>min_max <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
 <span id="cb25-2"><a></a>  lowest <span class="ot">&lt;-</span> <span class="fu">min</span>(x)</span>
 <span id="cb25-3"><a></a>  highest <span class="ot">&lt;-</span> <span class="fu">max</span>(x)</span>
 <span id="cb25-4"><a></a>  <span class="fu">return</span>(<span class="fu">list</span>(lowest, highest))</span>
@@ -528,7 +528,7 @@
 <span id="cb25-10"><a></a>         <span class="dv">112</span>, </span>
 <span id="cb25-11"><a></a>         <span class="dv">58</span>)</span>
 <span id="cb25-12"><a></a></span>
-<span id="cb25-13"><a></a><span class="fu">min_max</span>(vec)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-13"><a></a><span class="fu">min_max</span>(vec)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 [1] 58
@@ -548,12 +548,12 @@
 <div id="tabset-2-1">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
+<div class="sourceCode cell-code" id="cb27" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
 <span id="cb27-2"><a></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x))</span>
 <span id="cb27-3"><a></a>  <span class="fu">return</span>(x <span class="sc">+</span> something)</span>
 <span id="cb27-4"><a></a>}</span>
 <span id="cb27-5"><a></a></span>
-<span id="cb27-6"><a></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="st">"statistics"</span>, <span class="at">something =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-6"><a></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="st">"statistics"</span>, <span class="at">something =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in add_something(x = "statistics", something = 5): is.numeric(x) is not TRUE</code></pre>
 </div>
@@ -563,14 +563,14 @@
 <div id="tabset-2-2">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" data-code-line-numbers="2-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
+<div class="sourceCode cell-code" id="cb29" data-code-line-numbers="2-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
 <span id="cb29-2"><a></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x)){</span>
 <span id="cb29-3"><a></a>    <span class="fu">stop</span>(<span class="st">"Please provide a numeric input for the x argument."</span>)</span>
 <span id="cb29-4"><a></a>  }</span>
 <span id="cb29-5"><a></a>  <span class="fu">return</span>(x <span class="sc">+</span> something)</span>
 <span id="cb29-6"><a></a>}</span>
 <span id="cb29-7"><a></a></span>
-<span id="cb29-8"><a></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="st">"statistics"</span>, <span class="at">something =</span> <span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-8"><a></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="st">"statistics"</span>, <span class="at">something =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in add_something(x = "statistics", something = 5): Please provide a numeric input for the x argument.</code></pre>
 </div>
@@ -593,14 +593,14 @@
 <div class="tab-content">
 <div id="tabset-3-1">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31" data-code-line-numbers="2-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
+<div class="sourceCode cell-code" id="cb31" data-code-line-numbers="2-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
 <span id="cb31-2"><a></a>  <span class="cf">if</span>(<span class="sc">!</span><span class="fu">is.numeric</span>(x) <span class="sc">|</span> <span class="sc">!</span><span class="fu">is.numeric</span>(something)){</span>
 <span id="cb31-3"><a></a>    <span class="fu">stop</span>(<span class="st">"Please provide numeric inputs for both arguments."</span>)</span>
 <span id="cb31-4"><a></a>  }</span>
 <span id="cb31-5"><a></a>  <span class="fu">return</span>(x <span class="sc">+</span> something)</span>
 <span id="cb31-6"><a></a>}</span>
 <span id="cb31-7"><a></a></span>
-<span id="cb31-8"><a></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">something =</span> <span class="st">"R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-8"><a></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">something =</span> <span class="st">"R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in add_something(x = 2, something = "R"): Please provide numeric inputs for both arguments.</code></pre>
 </div>
@@ -608,12 +608,12 @@
 </div>
 <div id="tabset-3-2">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
+<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, something){</span>
 <span id="cb33-2"><a></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x), <span class="fu">is.numeric</span>(something))</span>
 <span id="cb33-3"><a></a>  <span class="fu">return</span>(x <span class="sc">+</span> something)</span>
 <span id="cb33-4"><a></a>}</span>
 <span id="cb33-5"><a></a></span>
-<span id="cb33-6"><a></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">something =</span> <span class="st">"R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb33-6"><a></a><span class="fu">add_something</span>(<span class="at">x =</span> <span class="dv">2</span>, <span class="at">something =</span> <span class="st">"R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in add_something(x = 2, something = "R"): is.numeric(something) is not TRUE</code></pre>
 </div>
@@ -672,16 +672,16 @@
 <h2>Function Environment</h2>
 <p>We <strong>cannot</strong> access variables created inside a function outside of the function.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb35-2"><a aria-hidden="true" tabindex="-1"></a>  my_result <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">2</span></span>
 <span id="cb35-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(my_result)</span>
-<span id="cb35-4"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb35-4"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:45%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>(<span class="dv">9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>(<span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 11</code></pre>
 </div>
@@ -691,9 +691,9 @@
 </div><div class="column" style="width:45%;">
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a aria-hidden="true" tabindex="-1"></a>my_result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a aria-hidden="true" tabindex="-1"></a>my_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
-<pre><code>Error in eval(expr, envir, enclos): object 'my_result' not found</code></pre>
+<pre><code>Error: object 'my_result' not found</code></pre>
 </div>
 </div>
 </div>
@@ -706,16 +706,16 @@
 <div class="columns">
 <div class="column" style="width:45%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<div class="sourceCode cell-code" id="cb40" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
 <span id="cb40-2"><a></a>  my_result <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">2</span></span>
 <span id="cb40-3"><a></a>  <span class="fu">return</span>(my_result)</span>
-<span id="cb40-4"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb40-4"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:45%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a>my_result <span class="ot">&lt;-</span> <span class="dv">2000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a>my_result <span class="ot">&lt;-</span> <span class="dv">2000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div></div>
 </div>
@@ -726,14 +726,14 @@
 <div class="columns">
 <div class="column">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>(<span class="dv">5</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 7</code></pre>
 </div>
 </div>
 </div><div class="column">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-hidden="true" tabindex="-1"></a>my_result</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-hidden="true" tabindex="-1"></a>my_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2000</code></pre>
 </div>
@@ -752,11 +752,11 @@
 <li>If the object doesn’t exist in either, the code will give an error.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a aria-hidden="true" tabindex="-1"></a>add_two <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
 <span id="cb46-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">+</span> <span class="dv">2</span>)</span>
 <span id="cb46-3"><a aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb46-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb46-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb46-5"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in add_two(): object 'x' not found</code></pre>
 </div>
@@ -767,9 +767,9 @@
 <li>If it doesn’t exist in the function environment, then it will look in the global environment</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb48-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb48-3"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_two</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
@@ -864,17 +864,17 @@
 <div class="tab-content">
 <div id="tabset-4-1">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a aria-hidden="true" tabindex="-1"></a>make <span class="ot">&lt;-</span> <span class="fu">word</span>(<span class="at">string =</span> <span class="st">"Toyota Camry"</span>,</span>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a aria-hidden="true" tabindex="-1"></a>make <span class="ot">&lt;-</span> <span class="fu">word</span>(<span class="at">string =</span> <span class="st">"Toyota Camry"</span>,</span>
 <span id="cb50-2"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">start =</span> <span class="dv">1</span>, </span>
 <span id="cb50-3"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">end =</span> <span class="dv">1</span>)</span>
-<span id="cb50-4"><a aria-hidden="true" tabindex="-1"></a>make</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb50-4"><a aria-hidden="true" tabindex="-1"></a>make</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Toyota"</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a aria-hidden="true" tabindex="-1"></a>make <span class="ot">&lt;-</span> <span class="fu">word</span>(<span class="at">string =</span> <span class="st">"Ford Anglica"</span>,</span>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a aria-hidden="true" tabindex="-1"></a>make <span class="ot">&lt;-</span> <span class="fu">word</span>(<span class="at">string =</span> <span class="st">"Ford Anglica"</span>,</span>
 <span id="cb52-2"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">start =</span> <span class="dv">1</span>, </span>
 <span id="cb52-3"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">end =</span> <span class="dv">1</span>)</span>
-<span id="cb52-4"><a aria-hidden="true" tabindex="-1"></a>make</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb52-4"><a aria-hidden="true" tabindex="-1"></a>make</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ford"</code></pre>
 </div>
@@ -882,12 +882,12 @@
 </div>
 <div id="tabset-4-2">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a aria-hidden="true" tabindex="-1"></a>car_name <span class="ot">&lt;-</span> <span class="st">"Toyota Camry"</span></span>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a aria-hidden="true" tabindex="-1"></a>car_name <span class="ot">&lt;-</span> <span class="st">"Toyota Camry"</span></span>
 <span id="cb54-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-3"><a aria-hidden="true" tabindex="-1"></a>make <span class="ot">&lt;-</span> <span class="fu">word</span>(<span class="at">string =</span> car_name, </span>
 <span id="cb54-4"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">start =</span> <span class="dv">1</span>, </span>
 <span id="cb54-5"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">end =</span> <span class="dv">1</span>)</span>
-<span id="cb54-6"><a aria-hidden="true" tabindex="-1"></a>make</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb54-6"><a aria-hidden="true" tabindex="-1"></a>make</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Toyota"</code></pre>
 </div>
@@ -904,7 +904,7 @@
 <h2><code>find_car_make()</code></h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a aria-hidden="true" tabindex="-1"></a>find_car_make <span class="ot">&lt;-</span> <span class="cf">function</span>(car_name){</span>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a aria-hidden="true" tabindex="-1"></a>find_car_make <span class="ot">&lt;-</span> <span class="cf">function</span>(car_name){</span>
 <span id="cb56-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if there is a space in the string (so there are separate parts)</span></span>
 <span id="cb56-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(</span>
 <span id="cb56-4"><a aria-hidden="true" tabindex="-1"></a>    stringr<span class="sc">::</span><span class="fu">str_detect</span>(car_name, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">w"</span>)</span>
@@ -915,7 +915,7 @@
 <span id="cb56-9"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">end =</span> <span class="dv">1</span>)</span>
 <span id="cb56-10"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb56-11"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(make)</span>
-<span id="cb56-12"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb56-12"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -923,7 +923,7 @@
 <div class="column" style="width:45%;">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">find_car_make</span>(<span class="st">"Toyota Camry"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">find_car_make</span>(<span class="st">"Toyota Camry"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Toyota"</code></pre>
 </div>
@@ -934,7 +934,7 @@
 </div><div class="column" style="width:45%;">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">find_car_make</span>(<span class="st">"Ford Anglica"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">find_car_make</span>(<span class="st">"Ford Anglica"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Ford"</code></pre>
 </div>
@@ -1239,7 +1239,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

@@ -28,76 +28,81 @@ library(tidyverse)
 message_data <- read_csv("https://github.com/earobinson95/stat331-calpoly/raw/master/practice-activities/data/scrambled_message.txt")
 ```
 
-## Extracting the Secret Message
+## Working with the Secret Message Data
 
-For this activity, we will practice using the `stringr` functions on a 
-character vector. In the code below, we extract the `Word` column from the 
-`message_data`, which is then stored as a character vector. With the character
-vector, you can use indexing (e.g., `message[1]`) to extract elements. 
+If you preview the data, you'll notice this is a **very** simple data frame with
+only one column---`Word`. This column contains strings (or words). 
+
+*In this activity, when I say "word" I mean a set of characters with no white space. That is, even though many of elements of the scrambled mess vector are nonsense, and some have punctuation, you can consider each element to be a "word".*
 
 ```{r}
-#| label: convert-message-to-vector
-
-message <- message_data |> 
-  pull(Word)
-
-class(message)
+message_data
 ```
 
-*In this activity, a "word" is a set of characters with no white space. That is, even though many of elements of the scrambled mess vector are nonsense, and some have punctuation, you can consider each element to be a "word".*
+Since the `Word` is stored in a data frame, you will need to use some of the 
+**dplyr** functions you have learned to work with the data. 
 
-## Warm-up exercises
+For example, if you need to find words that have a certain pattern, then you
+will likely want to pair a `str_XXXX()` function with **`filter()`**. 
+
+If you need to make changes to the words, then you will likely want 
+to pair a `str_XXXX()` function with **`mutate()`**. 
+
+If you want to summarize patterns in the words, then you will likely want 
+to pair a `str_XXXX()` function with **`summarize()`**. 
+
+
+## Warm-up Exercises
 
 <!-- The person who has the most pets starts as the Developer (typing and
 listening to instructions from the Coder)!  -->
 
-1.  How many characters are in the scrambled message?
-
-```{r}
-#| label: count-characters
-
-```
-
-2.  How many words are in the scrambled message?
-
-```{r}
-#| label: count-characters
-
-```
-
-3.  Print out every word in the scrambled message that starts with the letter "m".
+1.  Print out every word in the scrambled message that starts with the letter "m".
+*Hint: What symbol do you use to indicate the beginning of a string?*
 
 ```{r}
 #| label: words-starting-with-m
 
 ```
 
-<!-- Switch roles! Coder becomes Developer, Developer becomes Coder. -->
-
-4.  Print out every word in the scrambled message that ends with the letter "z"
+2.  Print out every word in the scrambled message that ends with the letter "z".
+*Hint: What symbol do you use to indicate the end of a string?*
 
 ```{r}
 #| label: words-ending-with-z
 
 ```
 
-5.  Print out the punctuation symbols that are present in the scrambled message.
+3.  Print out the punctuation symbols that are present in the scrambled message.
+*Hint: You don't need to type out every punctuation symbol! There is a shortcut way to look for any punctuation symbol.*
 
 ```{r}
 #| label: find-punctuation
 
 ```
 
+<!-- Switch roles! Talker becomes Typer, Typer becomes Talker. -->
+
+5.  Print out the words that have more than 16 characters.
+*Hint: This should take two steps!*
+
+```{r}
+#| label: count-characters
+
+```
+
 6.  Print out the longest word in the scrambled message.
+*Hint: If you already have the length of each word, you can grab the max easily!*
 
 ```{r}
 #| label: longest-word
 
 ```
 
-<!-- Switch roles! Coder becomes Developer, Developer becomes Coder. -->
 
 ## Decode the Message
+
+<!-- Switch roles! Talker becomes Typer, Typer becomes Talker. -->
 
 Complete the following steps to decode the message.
 

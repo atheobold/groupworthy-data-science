@@ -731,6 +731,24 @@ knitr::include_graphics("https://studioplayhouse.org/wp-content/uploads/2020/06/
 ```
 
 
+<!-- ### `str_glue()` -->
+
+<!-- Use variables in the environment to create a string based on {expressions}. -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: false -->
+
+<!-- first <- "James" -->
+<!-- last <- "Bond" -->
+<!-- str_glue("My name is {last}, {first} {last}") -->
+<!-- ``` -->
+
+<!-- ::: callout-tip -->
+<!-- For more details, I would recommend looking up the [`glue` R package](https://glue.tidyverse.org/)! -->
+<!-- ::: -->
+<!-- ::: -->
+
 ## `glue()`
 
 :::: {.columns}

@@ -43,8 +43,7 @@ dim(suspects)
 
 ```
 
-<!-- The person whose woke up first today starts as the Developer (typing and
-listening to instructions from the Coder)!  -->
+<!-- The person who has broken the most bones starts as the Typer (listening to explanations from the Talker)!  -->
 
 1. The crime was committed in Montecito, CA, so we need to make sure the time
 zone for these dates are correct. Modify the `Time.Spotted` variable to have the
@@ -65,6 +64,8 @@ heist was not committed in the morning.
 
 ```
 
+<!-- Swap roles -- Developer becomes Coder, Coder becomes Developer! -->
+
 3. The room where the heist was committed is closed on Tuesdays and Thursdays
 (and there were no signs of forced entry), so the heist did not happen on those
 days.
@@ -76,8 +77,6 @@ days.
 
 ```
 
-<!-- Swap roles -- Developer becomes Coder, Coder becomes Developer! -->
-
 4. It is believed that the heist was committed within 5 weeks (35 days) of
 Thanksgiving 2022. *Hint: Pay attention to time zones!*
 
@@ -87,6 +86,8 @@ Thanksgiving 2022. *Hint: Pay attention to time zones!*
 
 
 ```
+
+<!-- Swap roles -- Developer becomes Coder, Coder becomes Developer! -->
 
 5. The detectives partially decoded a message from the thief to a notorious
 fence in Iceland. In it, the thief said the job would be done "after the sun

@@ -13,13 +13,13 @@ execute:
   message: false
   warning: false
 resources: 
-  - lab-5-student.qmd
+  - ./student/lab-5-student.qmd
 ---
 
 For this lab, you will be joining and filtering related datasets to solve a
 murder mystery!
 
-Download the template `.qmd` file here: [`lab-5-student.qmd`](lab-5-student.qmd)
+Download the template Lab 5 Quarto file here: <a href="../student/lab-5-student.qmd" download>`lab-5-student.qmd`</a> 
 
 ::: {.callout-important}
 Be sure to save this in the Lab 5 folder, inside your Week 5 folder, 

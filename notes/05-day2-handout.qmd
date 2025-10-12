@@ -6,7 +6,7 @@ execute:
 ---
 
 |  |  |
-|-----------------------------------|-------------------------------------|
+|----|----|
 | **Task** | **lubridate** |
 | Force the times to be stored in a specific time zone | `force_tz(...)` |
 | Convert times from one time zone to another | `with_tz(...)` |

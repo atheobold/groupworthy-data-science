@@ -83,7 +83,7 @@ listening to instructions from the Coder)!  -->
 
 <!-- Switch roles! Talker becomes Typer, Typer becomes Talker. -->
 
-5.  Print out the words that have more than 16 characters.
+5.  Print out the words that have more than 12 characters.
 *Hint: This should take two steps!*
 
 ```{r}

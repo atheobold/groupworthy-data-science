@@ -1,0 +1,18 @@
+---
+title: "Week 5 Day 2: Working with Dates"
+format: docx
+execute: 
+  eval: false
+---
+
+|  |  |
+|-----------------------------------|-------------------------------------|
+| **Task** | **lubridate** |
+| Force the times to be stored in a specific time zone | `force_tz(...)` |
+| Convert times from one time zone to another | `with_tz(...)` |
+| Look up possible time zones to use | `OlsonNames()` |
+| Extracting components of a date-time object | `year(...)month(...)day(...)wday(..., label = TRUE, abbr = FALSE)` |
+| Make an interval | `interval(date1, date2)date1 %--% date2` |
+| Check if a date-time is within an interval | `date3 %within% interval` |
+| Add / Subtract a period of time to / from a date-time object | `date1 + days(...)date2 - years(...)` |
+| Find the number of seconds between two date-time objects | `as.duration(...)` |

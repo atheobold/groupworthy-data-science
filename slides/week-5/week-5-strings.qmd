@@ -2,8 +2,10 @@
 title: "Using `stringr` to Work with Strings"
 format: 
   revealjs:
-        theme: [simple, ../style.scss]
+    theme: [simple, ../style.scss]
 editor: source
+execute: 
+  cache: true
 ---
 
 ```{r}
@@ -12,23 +14,20 @@ editor: source
 #| label: setup
 
 library(tidyverse)
-library(palmerpenguins)
-library(liver)
 
-data(cereal)
+colleges <- read_csv("https://www.dropbox.com/s/bt5hvctdevhbq6j/colleges.csv?dl=1") 
 ```
 
-## Monday, April 29
+## Tuesday, October 14
 
 Today we will...
 
-+ New layout this week 
-+ What you can expect in Week 6
++ Layout for Week 5
 + New material
   + String variables
   + Functions for working with strings
   + Regular expressions
-+ [PA 5.1: Scrambled Message](../../group-activities/week-5/PA-5-strings.qmd)
++ PA 5.1: Scrambled Message
 
 # Week 5 Layout
 
@@ -46,57 +45,6 @@ Today we will...
 
 - Lab Assignment Solving a Murder Mystery
   + Using `dplyr` + `stringr` + `ludridate`
-  
-# Week 6 Layout
-
-# Week 6 Layout
-
-- Tuesday: Writing Basic Functions
-  + Practice Activity
-  
-. . .
-
-- Thursday: Midterm Portfolio Work Session
-  + Midterm Portfolios Due Sunday, November 3
-
-<!-- ## Comments from Week 4 -->
-
-<!-- :::: {.columns} -->
-<!-- ::: {.column width="40%"} -->
-
-<!-- **Read** -->
-
-<!-- --------- -->
-<!-- Average -->
-
-<!-- Total -->
-
-<!-- Which or For Each -->
-
-<!-- Minimum -->
-
-<!-- Maximum -->
-
-<!-- ::: -->
-<!-- ::: {.column width="60%"} -->
-
-<!-- **Think** -->
-
-<!-- --------- -->
-
-<!-- `summarize(avg = mean())` -->
-
-<!-- `summarize(total = sum())` -->
-
-<!-- `group_by()` -->
-
-<!-- `slice_min()` -->
-
-<!-- `slice_max()` -->
-
-<!-- ::: -->
-<!-- :::: -->
-
 
 # String Variables
 
@@ -138,11 +86,111 @@ my_vector <- c("Hi", "my", "name", "is", "Bond")
 my_vector
 ```
 
+## Strings in a Data Frame
+
+We've encountered **a lot** of strings before in the datasets we've worked with. 
+
+::: {.midi}
+::: columns
+::: {.column width="60%"}
+- `penguins`
+  + species
+  + island
+  + sex
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="35%"}
+- `colleges`
+  + STABBR
+  + INSTNM
+  
+- `military`
+  + Country
+:::
+:::
+:::
+
+</br>
+
+::: {.midi}
+Until now, we've taken for granted the values of these string variables, but
+today we're going to learn how to use expressions to look for and / or modify 
+specific values!
+:::
+
+## Strings in a Data Frame
+
+For the `colleges` dataset:
+
+::: columns
+::: {.column width="50%"}
+a string is:
+
+```{r}
+#| echo: true
+#| eval: false
+#| label: character-cp-code
+#| code-line-numbers: false
+
+colleges$INSTNM[214]
+```
+
+</br>
+
+```{r}
+#| echo: false
+#| label: character-cp
+
+colleges$INSTNM[214] |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "100px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+a character vector is:
+
+```{r}
+#| label: character-vector-inst-name-code
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges$INSTNM 
+```
+
+</br>
+
+```{r}
+#| label: character-vector-inst-name
+#| echo: false
+#| eval: true
+
+colleges$INSTNM |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+:::
+:::
+:::
+
+
 ## `stringr`
 
 :::: {.columns}
 ::: {.column width="80%"}
-**Common tasks**
+[**Common tasks**]{.large}
 
 + Identify strings containing a particular pattern.
 + Remove or replace a pattern.
@@ -153,7 +201,7 @@ my_vector
 
 ```{r}
 #| fig-align: center
-#| fig-alt: ""
+#| fig-alt: "A green hex sticker for the stringr package in R. The sticker has a violin and under the violin the text 'stringr' is printed."
 knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/PNG/stringr.png?raw=true")
 ```
 :::
@@ -164,28 +212,53 @@ knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/PNG/s
 + All functions are  of the form `str_xxx()`.
 :::
 
+## `string =`
+
+::: {.midi}
+None of the `stringr` functions have a `.data = ` argument! These functions only
+accept a character vector (`string = `) as an input. 
+
+```{r}
+#| echo: true
+#| error: true
+#| code-line-numbers: false
+
+str_detect(data = colleges, 
+           string = INSTNM, 
+           pattern = "California")
+```
+:::
+
+. . .
+
+</br>
+
+::: {.midi}
+So, these functions will need to be **combined** with functions from `dplyr` to
+work with a dataset!
+:::
 
 ## `pattern = `
 
 The `pattern` **argument** appears in many `stringr` functions.
 
-+ The pattern **must** be supplied inside quotes.
+- The pattern **must** be supplied inside quotes.
 
-::: {.small}
+::: {.midi}
 ```{r}
 #| eval: false
 #| echo: true
 #| code-line-numbers: false
 
-my_vector <- c("Hello,", 
-               "my name is", 
-               "Bond", 
-               "James Bond")
+str_detect(colleges$INSTNM, 
+           pattern = "Polytechnic")
 
-str_detect(my_vector, pattern = "Bond")
-str_locate(my_vector, pattern = "James Bond")
-str_match(my_vector, pattern = "[bB]ond")
-str_extract(my_vector, pattern = "[jJ]ames [bB]ond")
+str_remove(colleges$INSTNM, 
+           pattern = "(University|College)")
+
+str_replace(colleges$INSTNM, 
+            pattern = "$u", 
+            replacement = "U")
 
 ```
 :::
@@ -194,458 +267,24 @@ str_extract(my_vector, pattern = "[jJ]ames [bB]ond")
 
 . . .
 
-Let's explore these functions!
+Let's talk more about what some of these symbols mean.
 
-
-## `str_detect()`
-
-Returns a **logical vector** indicating whether the pattern was found in each element of the supplied vector.
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-my_vector <- c("Hello,", 
-               "my name is", 
-               "Bond", 
-               "James Bond")
-str_detect(my_vector, pattern = "Bond")
-```
-:::
-
-. . .
-
-::: {.small}
-+ Pairs well with `filter()`.
-+ Works with `summarise()` + `sum` (to get total matches) or `mean` (to get proportion of matches).
-:::
-
-. . .
-
-::: {.small}
-::: {.callout-note collapse="true"}
-## Related Function
-
-`str_which()` returns the indexes of the strings that contain a match.
-:::
-:::
-
-## `str_match()` 
-
-Returns a **character matrix** containing either `NA` or the pattern, depending on if the pattern was found.
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-my_vector <- c("Hello,", 
-               "my name is", 
-               "Bond", 
-               "James Bond")
-
-str_match(my_vector, pattern = "Bond")
-```
-:::
-
-<!-- . . . -->
-
-<!-- The matrix will have more columns if you use regex groups. -->
+<!-- The real power of these `str_xxx` functions comes when you specify the `pattern` using **regular expressions**! -->
 
 <!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- my_vector <- c("Hello,", "my name is", "Bond", "James Bond") -->
-<!-- str_match(my_vector, pattern = "(.)o(.)") -->
+<!-- #| fig-align: center -->
+<!-- #| out-width: 70% -->
+<!-- #| fig-alt: "The image is a comic strip from xkcd titled 'Regular Expressions.' It humorously portrays a programmer's overconfidence in using regular expressions to solve complex text processing tasks. In the first panel, a stick figure declares, 'EVERYBODY STAND BACK,' and in the second panel, they assert, 'I KNOW REGULAR EXPRESSIONS,' suggesting that their expertise is both a warning and a badge of honor. This reflects the sentiment that while regular expressions are powerful tools in programming, they can also lead to intricate and hard-to-maintain code if not used judiciously." -->
+
+<!-- knitr::include_graphics("images/regular_expressions.png") -->
 <!-- ``` -->
+# Regular Expressions
 
+# Regular Expressions
 
-## `str_extract()` 
-
-Returns a **character vector** with either `NA` or the pattern, depending on if the pattern was found.
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-my_vector <- c("Hello,", 
-               "my name is", 
-               "Bond", 
-               "James Bond")
-
-str_extract(my_vector, pattern = "Bond")
-```
-:::
-
-. . .
-
-::: callout-warning
-
-`str_extract()` only returns the **first** pattern match.
-
-Use `str_extract_all()` to return **every** pattern match.
-
-:::
-
-## What do you mean by the *first* match?
-
-Suppose we had a slightly different vector...
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-alt_vector <- c("Hello,", 
-               "my name is", 
-               "Bond, James Bond")
-```
-
-. . .
-
-If we were to extract ***every*** instance of `"Bond"` from the vector...
-
-::: columns
-::: {.column width="45%"}
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_extract(alt_vector, 
-            pattern = "Bond")
-```
-:::
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column width="52%"}
-::: {.fragment}
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_extract_all(alt_vector, 
-                pattern = "Bond")
-```
-:::
-:::
-:::
-:::
-
-
-## `str_locate()` 
-
-Returns a **dateframe** with two **numeric variables** -- the starting and ending location of the pattern. The values are `NA` if the pattern is not found.
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-my_vector <- c("Hello,", 
-               "my name is", 
-               "Bond", 
-               "James Bond")
-
-str_locate(my_vector, pattern = "Bond")
-```
-:::
-
-. . .
-
-::: {.small}
-::: callout-note
-## Related Function
-
-`str_sub()` extracts values based on a starting and ending location.
-:::
-:::
-
-## `str_subset()`
-
-Returns a **character vector** containing a subset of the original **character vector** consisting of the elements where the pattern was found.
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-my_vector <- c("Hello,", 
-               "my name is", 
-               "Bond", 
-               "James Bond")
-
-str_subset(my_vector, pattern = "Bond")
-```
-:::
-
-## Try it out!
-
-::: {.small}
-```{r}
-#| eval: false
-#| echo: true
-#| code-line-numbers: false
-
-my_vector <- c("I scream,", 
-               "you scream", 
-               "we all",
-               "scream",
-               "for",
-               "ice cream")
-
-str_detect(my_vector, pattern = "cream")
-str_locate(my_vector, pattern = "cream")
-str_match(my_vector, pattern = "cream")
-str_extract(my_vector, pattern = "cream")
-str_subset(my_vector, pattern = "cream")
-```
-
-::: callout-note
-For each of these functions, write down:
-
-+ the **object structure** of the output.
-+ the **data type** of the output.
-+ a brief explanation of what they do.
-::::
-:::
-
-## Replace / Remove Patterns
-
-::: panel-tabset
-
-### `str_replace()`
-
-::: {.small}
-Replace the **first** matched pattern in each string.
-
-+ Pairs well with `mutate()`.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_replace(my_vector, 
-            pattern = "Bond", 
-            replace = "Franco")
-```
-:::
-
-</br> 
-
-::: {.small}
-::: {.callout-note collapse="true"}
-## Related Function
-
-`str_replace_all()` replaces **all** matched patterns in each string.
-:::
-:::
-
-### `str_remove()`
-
-::: {.small}
-Remove the **first** matched pattern in each string.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_remove(my_vector, 
-           pattern = "Bond")
-```
-:::
-
-</br>
-
-::: {.small}
-::: {.callout-note collapse="true"}
-## Related Functions
-
-This is a special case of  `str_replace(x, pattern, replacement = "")`.
-
-`str_remove_all()` removes **all** matched patterns in each string.
-:::
-:::
-:::
-
-
-## Edit Strings
-
-Convert letters in a string to a specific capitalization format.
-
-::: panel-tabset
-
-### lower
-
-`str_to_lower()` converts all letters in a string to lowercase.
-
-<br>
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_to_lower(my_vector)
-```
-
-### UPPER
-
-`str_to_upper()` converts all letters in a string to uppercase.
-
-<br>
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_to_upper(my_vector)
-```
-
-### Title
-
-`str_to_title()` converts the first letter of each word to uppercase.
-
-<br>
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_to_title(my_vector)
-```
-
-::: {.callout-tip}
-# This is handy for axis labels!
-:::
-:::
-
-
-## Combine Strings
-
-::: panel-tabset
-### `str_c()`
-
-Join multiple strings into a single character vector.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-prompt <- "Hello, my name is"
-first  <- "James"
-last   <- "Bond"
-str_c(prompt, last, ",", first, last, sep = " ")
-```
-
-::: callout-note
-Similar to `paste()` and `paste0()`.
-:::
-
-### `str_flatten()`
-
-Combine a vector of strings into a single string.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-my_vector <- c("Hello,", 
-               "my name is", 
-               "Bond", 
-               "James Bond")
-
-str_flatten(my_vector, collapse = " ")
-```
-
-### `str_glue()`
-
-Use variables in the environment to create a string based on {expressions}.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-first <- "James"
-last <- "Bond"
-str_glue("My name is {last}, {first} {last}")
-```
-
-::: callout-tip
-For more details, I would recommend looking up the [`glue` R package](https://glue.tidyverse.org/)!
-:::
-:::
-
-## Tips for String Success
-
-+ Refer to the [`stringr` cheatsheet](https://posit.co/wp-content/uploads/2022/10/strings-1.pdf)
-
-+ Remember that `str_xxx` functions need the first argument to be a **vector of strings**, not a **dataset**!
-  + You will use these functions *inside* `dplyr` verbs like `filter()` or `mutate()`.
-
-```{r}
-#| echo: true
-#| code-line-numbers: "2"
-#| eval: false
-cereal |> 
-  mutate(is_bran = str_detect(name, "Bran"), 
-         .after = name)
-```
-
-
-```{r}
-#| eval: true
-#| echo: false
-
-cereal |> 
-  mutate(is_bran = str_detect(name, "Bran"), 
-         .after = name) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "200px") |> 
-  kableExtra::kable_styling(font_size = 30)
-```
-
-
-## Tips for String Success
-
-The real power of these `str_xxx` functions comes when you specify the `pattern` using **regular expressions**!
-
-```{r}
-#| fig-align: center
-#| out-width: 70%
-#| fig-alt: "The image is a comic strip from xkcd titled 'Regular Expressions.' It humorously portrays a programmer's overconfidence in using regular expressions to solve complex text processing tasks. In the first panel, a stick figure declares, 'EVERYBODY STAND BACK,' and in the second panel, they assert, 'I KNOW REGULAR EXPRESSIONS,' suggesting that their expertise is both a warning and a badge of honor. This reflects the sentiment that while regular expressions are powerful tools in programming, they can also lead to intricate and hard-to-maintain code if not used judiciously."
-
-knitr::include_graphics("images/regular_expressions.png")
-```
-
-
-# regex
-
-## Regular Expressions
-
-> "Regexps are a very terse language that allow you to describe patterns in strings."
+> "Regular expressions are a very terse language that allow you to describe patterns in strings."
 >
 > *R for Data Science*
-
-. . .
-
-Use `str_xxx` functions + **regular expressions**!
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "2"
-str_detect(string  = my_string_vector,
-           pattern = "p[ei]ck[a-z]")
-```
-
-. . .
-
-::: callout-tip
-You might encounter `gsub()`, `grep()`, etc. from Base R, but I would highly recommending using functions from the `stringr` package instead.
-:::
 
 ## Regular Expressions
 
@@ -654,46 +293,37 @@ You might encounter `gsub()`, `grep()`, etc. from Base R, but I would highly rec
 + There are lots of new symbols to keep straight.
 + There are a lot of cases to think through.
 
-<br>
+</br>
 
-This [web app](https://spannbaueradam.shinyapps.io/r_regex_tester/) for testing R regular expressions might be handy!
+We're going to focus on:
 
+::: columns
+::: {.column width="40%"}
+- anchors
+- quantifiers 
+:::
 
-## Special Characters
+::: {.column width="5%"}
+:::
 
-There is a set of characters that have a specific meaning when using regex.
+::: {.column width="55%"}
+- character classes
+- groups
+:::
+:::
 
-+ The `stringr` package **does not** read these as normal characters.
-+ These characters are:
+<!-- ## Special Characters -->
 
-<center>
+<!-- There is a set of characters that have a specific meaning when using regex. -->
 
-`.` `^`  `$` `\`  `|` `*` `+` `?` `{` `}` `[` `]` `(` `)`
+<!-- + The `stringr` package **does not** read these as normal characters. -->
+<!-- + These characters are: -->
 
-</center>
+<!-- <center> -->
 
+<!-- `.` `^`  `$` `\`  `|` `*` `+` `?` `{` `}` `[` `]` `(` `)` -->
 
-## Wild Card Character: `.`
-
-This character can match **any** character.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x <- c("She", 
-       "sells", 
-       "seashells", 
-       "by", 
-       "the", 
-       "seashore!")
-
-str_subset(x, pattern = ".ells")
-```
-
-<br>
-
-This matches strings that contain any character followed by "ells".
+<!-- </center> -->
 
 
 ## Anchor Characters: `^ $`
@@ -705,19 +335,26 @@ This matches strings that contain any character followed by "ells".
 
 ```{r}
 #| echo: true
+#| eval: false
 #| code-line-numbers: false
 
-x <- c("She", 
-       "sells", 
-       "seashells", 
-       "by", 
-       "the", 
-       "seashore!")
-
-str_subset(x, pattern = "^s")
+str_subset(colleges$INSTNM, 
+           pattern = "^California State")
 ```
 
-This matches strings that start with "s".
+```{r}
+#| echo: false
+#| eval: true
+#| code-line-numbers: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "^California State") |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
 :::
 
 :::
@@ -732,541 +369,732 @@ This matches strings that start with "s".
 
 ```{r}
 #| echo: true
+#| eval: false
 #| code-line-numbers: false
 
-x <- c("She", 
-       "sells", 
-       "seashells", 
-       "by", 
-       "the", 
-       "seashore!")
-
-str_subset(x, pattern = "s$")
+str_subset(colleges$INSTNM, 
+           pattern = "State University$")
 ```
 
-This matches strings that end with "s".
-:::
-
-:::
-:::
-:::
-
-
-## Quantifier Characters: `? + *`
-
-::: {.small}
-`?`  -- matches when the preceding character occurs 0 or 1 times in a row.
-
 ```{r}
-#| echo: true
+#| echo: false
 #| code-line-numbers: false
 
-x <- c("shes", 
-       "shels", 
-       "shells", 
-       "shellls", 
-       "shelllls")
-
-str_subset(x, pattern = "shel?s")
+str_subset(colleges$INSTNM, 
+           pattern = "State University$") |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
 ```
 :::
 
-. . .
+:::
+:::
+:::
+
+
+## Quantifier Characters: `+ *`
 
 ::: {.small}
-`+` -- occurs 1 or more times in a row.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_subset(x, pattern = "shel+s")
-```
-:::
-
-. . .
-
-::: {.small}
-`*` -- occurs 0 or more times in a row.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_subset(x, pattern = "shel*s")
-```
-:::
-
-## Quantifier Characters: `{}`
-
-::: {.small}
-`{n}` -- matches when the preceding character occurs exactly n times in a row.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x <- c("shes", 
-       "shels", 
-       "shells", 
-       "shellls", 
-       "shelllls")
-
-str_subset(x, pattern = "shel{2}s")
-```
-:::
-
-. . .
-
-::: {.small}
-`{n,}` -- occurs at least n times in a row.
-
-```{r}
-#| echo: true
-str_subset(x, pattern = "shel{2,}s")
-```
-:::
-
-. . .
-
-::: {.small}
-`{n,m}` -- occurs between n and m times in a row.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_subset(x, pattern = "shel{1,3}s")
-```
-:::
-
-## Character Groups: `()`
-
-::: {.small}
-Groups are created with `( )`.
-
-+ We can specify "either" / "or" within a group using `|`.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x <- c("Peter", 
-       "Piper", 
-       "picked", 
-       "a", 
-       "peck",
-       "of", 
-       "pickled",
-       "peppers!")
-
-str_subset(x, pattern = "p(e|i)ck")
-```
-:::
-
-<br>
-
-::: {.small}
-This matches strings that contain **either** "peck"
- **or** "pick".
-:::
-
-## Character Classes: `[]`
-
-::: {.small}
-Character classes let you specify multiple possible characters to match on.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x <- c("Peter", 
-       "Piper", 
-       "picked", 
-       "a",
-       "peck",
-       "of",
-       "pickled",
-       "peppers!")
-
-str_subset(x, pattern = "p[ei]ck")
-```
-:::
-
-. . .
-
-::: {.callout-tip}
-# Why use `[]` instead of `()`?
-
-`()` is better for making *groups* of characters, plus you can only use a `|` with `()`.  
-
-`[]` is better for referencing multiple characters, plus you can only use a `^` with `[]`...
-:::
-
-## Matches you don't want
-
-`[^ ]`  -- specifies characters **not** to match on (think **except**)
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_subset(x, pattern = "p[^i]ck")
-```
-
-. . .
-
-</br>
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_subset(x, pattern = "^p")
-```
-
-. . .
-
-</br> 
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_subset(x, pattern = "^[^p]")
-```
-
-
-## Character Classes: `[]`
-
-::: {.small}
-`[ - ]`  -- specifies a range of characters.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x <- c("Peter", 
-       "Piper", 
-       "picked", 
-       "a",
-       "peck",
-       "of",
-       "pickled",
-       "peppers!")
-
-str_subset(x, pattern = "p[ei]ck[a-z]")
-```
-:::
-
-. . .
-
-::: {.small}
-+ [A-Z] matches any capital letter.
-+ [a-z] matches any lowercase letter.
-+ [A-z] or [:alpha:] matches any letter
-+ [0-9] or [:digit:] matches any number
-:::
-
-## Shortcuts
-
-::: {.small}
-- `\\w` -- matches any **"word"**  (`\\W` matches **not** "word") 
-
-  + A "word" contains any letters and numbers.
-
-- `\\d` -- matches any **digit** (`\\D` matches **not** digit) 
-
-- `\\s` -- matches any **whitespace** (`\\S` matches **not** whitespace) 
-
-  + Whitespace includes spaces, tabs, newlines, etc.
-:::
-
-. . .
-
-</br> 
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x <- "phone number: 1234567899"
-
-str_extract(x, pattern = "\\d+")
-str_extract_all(x, pattern = "\\S+")
-```
-:::
-
-## Try it out!
-
-What regular expressions would match words that...
-
 ::: columns
 ::: {.column width="40%"}
-+ end with a vowel?
-+ start with x, y, or z?
-+ *do not* contain x, y, or z?
-+ contain [British spelling](https://www.oxfordinternationalenglish.com/differences-in-british-and-american-spelling/)?
+
+`+` -- occurs 1 or more times
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| eval: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "St\\.+")
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| code-line-numbers: false
+#| eval: true
+
+str_subset(colleges$INSTNM, pattern = "St[.]+") |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+``` 
+:::
 :::
 
 ::: {.column width="5%"}
 :::
 
 ::: {.column width="55%"}
+::: {.fragment}
+`*` -- occurs 0 or more times
+
 ```{r}
 #| echo: true
 #| code-line-numbers: false
+#| eval: false
 
-x <- c("zebra", 
-       "xray", 
-       "apple", 
-       "yellow",
-       "color", 
-       "colour",
-       "summarize",
-       "summarise")
+str_subset(colleges$INSTNM, 
+           pattern = "\\s*-\\s*")
+
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
+#| code-line-numbers: false
+#| eval: true
+
+str_subset(colleges$INSTNM, 
+           pattern = "\\s*-\\s*") |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+
 ```
 :::
 :::
-
-## Some Possible Solutions...
-
-+ end with a vowel?
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-str_subset(x, "[aeiouy]$")
-```
-
-+ start with x, y, or z?
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-str_subset(x, "^[xyz]")
-```
-
-+ *do not* contain x, y, or z?
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-str_subset(x, "[^xyz]")
-```
-
-+ contain [British spelling](https://www.oxfordinternationalenglish.com/differences-in-british-and-american-spelling/)?
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-str_subset(x, "(our)|(i[sz]e)")
-```
+:::
+:::
+:::
 
 
-## Escape: `\\`
+## Quantifier Characters: `{}`
 
 ::: {.small}
-To match a *special character*, you need to **escape** it.
+::: columns
+::: {.column width="40%"}
+
+`{n}` -- occurs exactly n times
 
 ```{r}
 #| echo: true
-#| error: true
 #| code-line-numbers: false
+#| eval: false
 
-x <- c("How",
-       "much", 
-       "wood",
-       "could",
-       "a",
-       "woodchuck",
-       "chuck",
-       "if",
-       "a",
-       "woodchuck",
-       "could",
-       "chuck",
-       "wood?")
+str_subset(colleges$INSTNM, 
+           pattern = "[A-Z]{4}")
+```
 
-str_subset(x, pattern = "?")
+::: {.fragment}
+```{r}
+#| echo: false
+#| eval: true
+
+str_subset(colleges$INSTNM, pattern = "[A-Z]{4}") |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
 ```
 :::
+:::
 
-## Escape: `\\`
+::: {.column width="5%"}
+:::
 
-Use `\\` to escape the `?` -- it is now read as a normal character.
+::: {.column width="55%"}
+::: {.fragment}
+
+`{n,m}` -- occurs between n and m times
+
 
 ```{r}
 #| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "[A-Z]{4,6}")
+```
+
+::: {.fragment}
+```{r}
+#| echo: false
 #| eval: true
 #| code-line-numbers: false
 
-str_subset(x, pattern = "\\?")
+str_subset(colleges$INSTNM, pattern = "[A-Z]{4,6}") |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
 ```
 
-. . .
+::: {.callout-tip}
+If you wanted **at least 4** you could leave off the value for `m`: `{4,}`
+:::
+:::
+:::
+:::
+:::
+:::
+
+## Character Groups: `()`
+
+::: {.small}
++ `()` creates a group of characters
++ We can specify "either" / "or" within a group using `|`.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "(T|t)ech")
+```
+:::
+
+```{r}
+#| echo: false
+#| eval: true
+#| code-line-numbers: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "(T|t)ech") |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+## Character Classes: `[]`
+
+::: {.midi}
+`[ ]`  -- specifies a range of characters.
+:::
+
+::: {.small}
+::: columns
+::: {.column width="45%"}
++ [A-Z] or [:upper:] matches any capital letter.
++ [a-z] or [:lower:] matches any lowercase letter.
++ [A-z] or [:alpha:] matches any letter
++ [0-9] or [:digit:] matches any number
++ [:alnum:] matches any alpha numeric character
++ [:punct:] matches any punctuation character
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="50%"}
+::: {.fragment}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| eval: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "[A-Z]{4}")
+
+str_subset(colleges$INSTNM, 
+           pattern = "[:digit:]+")
+
+str_subset(colleges$INSTNM, 
+           pattern = "[:punct:]{2,}")
+```
+:::
+:::
+:::
+:::
+
+## Excluding Characters
+
+::: {.midi}
+`[^ ]`  -- specifies characters **not** to match on
+:::
+
+::: {.small}
+::: columns
+::: {.column width="50%"}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "[^University]")
+```
+
+```{r}
+#| echo: false
+#| eval: true
+#| code-line-numbers: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "[^University]") |> 
+  as_tibble() |> 
+  rename(INSTNM = value) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
+
+::: {.fragment}
+
+[Beware: a `^` doesn't always mean "not"]{.large}
 
 </br>
 
+**Starts with "University"**
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "^University")
+```
+
+
+**[Does not]{.underline} starts with "University"**
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+str_subset(colleges$INSTNM, 
+           pattern = "^[^University]")
+```
+:::
+:::
+:::
+:::
+
+# Let's use these expressions!
+
+# Detecting Patterns
+
+## `str_detect()`
+
+Returns a **logical vector** indicating whether the pattern was found in each element of the supplied vector.
+
+::: {.midi}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+my_vector <- c("Hello,", 
+               "my name is", 
+               "Bond", 
+               "James Bond")
+
+
+str_detect(my_vector, pattern = "Bond")
+```
+:::
+
+. . .
+
+:::{.midi}
+::: columns
+::: {.column width="40%"}
++ Pairs well with `filter()`
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
++ Works with `summarise()` 
+    + `sum` (to get total matches)
+    + `mean` (to get proportion of matches)
+:::
+:::
+:::
+
+## `str_detect()` with `filter()`
+
+> Which colleges in the dataset have "Polytechnic" in their name?
+
+```{r}
+#| echo: true
+#| label: str-detect-filter
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  filter(str_detect(INSTNM, pattern = "Polytechnic"))
+```
+
+</br>
+
+```{r}
+#| echo: false
+#| label: str-detect-filter-code
+#| eval: true
+
+colleges |> 
+  filter(str_detect(INSTNM, pattern = "Polytechnic")) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+
+## `str_detect()` with `summarize()`
+
+> How many colleges in the `colleges` dataset have "Polytechnic" in their name?
+
+```{r}
+#| echo: true
+#| label: str-detect-summarize
+#| code-line-numbers: false
+
+colleges |> 
+  summarize(
+    count_polytech = sum(
+      str_detect(INSTNM, pattern = "Polytechnic")
+      ) 
+    )
+```
+
+# Replace / Remove Patterns
+
+## `str_replace()`
+
+> replace the **first** matched pattern in each string
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+str_replace(my_vector, 
+            pattern = "Bond", 
+            replace = "Franco")
+```
+
+## `str_replace()` with `mutate()`
+
+> Make capitalization of "University" consistent
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(INSTNM = str_replace(INSTNM, 
+                              pattern = "$u", 
+                              replacement = "U")
+         )
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+colleges |> 
+  mutate(INSTNM = str_replace(INSTNM, 
+                              pattern = "$u", 
+                              replacement = "U")
+         ) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+
+## `str_remove()`
+
+> remove the **first** matched pattern in each string
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+str_remove(my_vector, 
+           pattern = "Bond")
+```
+
+</br> 
+
+::: {.midi}
+::: {.callout-note collapse="true"}
+## Related Functions
+
+This is a special case of  `str_replace(x, pattern, replacement = "")`.
+:::
+:::
+
+## `str_remove()` with `mutate()`
+
+> Remove "College" or "University" at the end of each name so only the main institution name remains.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(INSTNM = str_remove(INSTNM, 
+                             pattern = "(College|University)"
+                             )
+         )
+```
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(INSTNM = str_remove(INSTNM, 
+                             pattern = "(College|University)"
+                             )
+         ) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+# Find the Length of a String
+
+## `str_length()`
+
+> returns number of elements (characters) of a string
+
+```{r}
+colleges |> 
+  mutate(
+    name_length = str_length(INSTNM)
+         )
+```
+
+# Change the Length of a String
+
+> shorten or lengthen a string to a specified length
+
+::: panel-tabset
+
+### `str_sub()`
+
+::: {.midi}
+Extract values of a string based on a starting and ending location.
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(short_name = str_sub(INSTNM, 
+                                  start = 1,
+                                  end = 8)
+         ) |> 
+  select(INSTNM, short_name)
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+colleges |> 
+  mutate(short_name = str_sub(INSTNM, 
+                                  start = 1,
+                                  end = 8)
+         ) |> 
+  select(INSTNM, short_name) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+### `str_pad()`
+
+::: {.midi}
+Make every string have a fixed length (width)
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(long_name = str_pad(INSTNM, 
+                                  width = 20, 
+                                  pad = "_")
+         ) |> 
+  select(INSTNM, long_name)
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+colleges |> 
+  mutate(long_name = str_pad(INSTNM, 
+                                  width = 20, 
+                                  pad = "_")
+         ) |> 
+  select(INSTNM, long_name) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+:::
+
+# Modify Characters
+
+## Edit Capitalization of Strings
+
+::: {.midi}
+Convert letters in a string to a specific capitalization format.
+:::
+
+::: panel-tabset
+
+### `str_to_lower()` 
+
+> converts all letters in a string to lowercase.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(INSTNM = str_to_lower(INSTNM))
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+colleges |> 
+  mutate(INSTNM = str_to_lower(INSTNM)) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+### `str_to_upper()` 
+
+> converts all letters in a string to uppercase.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(INSTNM = str_to_upper(INSTNM))
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+colleges |> 
+  mutate(INSTNM = str_to_upper(INSTNM)) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+
+### `str_to_title()` 
+
+> converts the first letter of each word to uppercase.
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(INSTNM = str_to_title(INSTNM))
+```
+
+```{r}
+#| echo: false
+#| eval: true
+
+colleges |> 
+  mutate(INSTNM = str_to_title(INSTNM)) |> 
+  knitr::kable() |> 
+  kableExtra::scroll_box(height = "450px") |> 
+  kableExtra::kable_styling(font_size = 25)
+```
+:::
+
+# Handling Whitespace
+
+## `str_trim()`
+
+> removes whitespace from start and end of string
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(
+    INSTNM = str_trim(INSTNM, side = "both")
+         )
+```
+
+# Joining Strings
+
+## `str_c()`
+
+> join multiple strings into a single character vector
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+colleges |> 
+  mutate(
+    address = str_c(CITY, STABBR, ZIP, sep = ", ")
+         )
+```
+
 ::: callout-note
-Alternatively, you could use `[]`:
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_subset(x, pattern = "[?]")
-```
+Similar to `paste()` and `paste0()` but with more precision.
 :::
 
-## When in Doubt
+## Tips for String Success
 
-<br>
++ Refer to the [`stringr` cheatsheet](https://posit.co/wp-content/uploads/2022/10/strings-1.pdf)
++ Refer to your handout!
 
-```{r}
-#| fig-align: center
-#| out-width: 80%
-knitr::include_graphics("images/backslashes.png")
-```
++ Remember that `str_xxx` functions need the first argument to be a 
+**vector of strings**, not a **dataset**!
+  + You will use these functions *inside* `dplyr` verbs like `filter()` or
+  `mutate()`.
 
-Use the [web app](https://spannbaueradam.shinyapps.io/r_regex_tester/) to test R regular expressions.
-
-## Tips for working with regex
-
-+ Read the regular expressions out loud like a request.
-
-. . .
-
-+ Test out your expressions on small examples first.
-
-::: {.callout-note collapse="true"}  
-### `str_view()`
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-str_view(c("shes", "shels", "shells", "shellls", "shelllls"), "l+")
-```
-:::
-
-. . .
-
-+ Use the `stringr` [cheatsheet](https://posit.co/wp-content/uploads/2022/10/strings-1.pdf).
-
-. . .
-
-+ Be kind to yourself! 
-
-
-<!-- # Strings in the `tidyverse` -->
-
-<!-- ## `stringr` functions + `dplyr` verbs! -->
-
-
-<!-- ```{r} -->
-<!-- #| include: false -->
-<!-- library(readxl) -->
-<!-- military <- read_xlsx(here::here("group-activities",  -->
-<!--                                  "week-4",  -->
-<!--                                  "data", -->
-<!--                                  "gov_spending_per_capita.xlsx"), -->
-<!--                       sheet = "Share of Govt. spending",  -->
-<!--                       skip  = 7,  -->
-<!--                       n_max  = 191) -->
-<!-- ``` -->
-
-<!-- Country names with a (capital or lowercase) "Z"? -->
-
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| eval: false -->
-<!-- #| code-line-numbers: "2" -->
-<!-- military |>  -->
-<!--   filter(str_detect(Country, "[Zz]")) |>  -->
-<!--   distinct(Country) -->
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- #| eval: true -->
-<!-- #| echo: false -->
-<!-- military |>  -->
-<!--   filter(str_detect(Country, "[Zz]")) |>  -->
-<!--   distinct(Country) |>  -->
-<!--   knitr::kable() |>  -->
-<!--   kableExtra::scroll_box(height = "125px") |>  -->
-<!--   kableExtra::kable_styling(font_size = 25) -->
-<!-- ``` -->
-
-<!-- . . . -->
-
-<!-- The proportion of country names with a compass direction? -->
-
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- #| code-line-numbers: "3-4" -->
-<!-- military |>  -->
-<!--   distinct(Country) |>  -->
-<!--   summarize(prop = mean(str_detect(Country, -->
-<!--                                    pattern = "[Nn]orth|[Ss]outh|[Ee]ast|[Ww]est"))) -->
-<!-- ``` -->
-
-
-<!-- ## `matches(pattern)` -->
-
-<!-- Select all variables with a name that matches the supplied pattern. -->
-
-<!-- + Pairs well with `select()`, `rename_with()`, and `across()`. -->
-
-<!-- ::: panel-tabset -->
-
-<!-- ### Before -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- military_clean <- military |>  -->
-<!--   mutate(across(`1988`:`2019`,  -->
-<!--                 ~ na_if(.x, y = ". .")), -->
-<!--          across(`1988`:`2019`,  -->
-<!--                 ~ na_if(.x, y = "xxx"))) -->
-<!-- ``` -->
-
-<!-- ### With regex -->
-<!-- ```{r} -->
-<!-- #| echo: true -->
-<!-- military_clean <- military |>  -->
-<!--   mutate(across(matches("[1-9]{4}"),  -->
-<!--                 ~ na_if(.x, y = ". .")), -->
-<!--          across(matches("[1-9]{4}"),  -->
-<!--                 ~ na_if(.x, y = "xxx"))) -->
-<!-- ``` -->
-
-<!-- ::: -->
-
-<!-- ## Messy Covid Variants! -->
-
-<!-- ![](images/covid-data-snip.JPG) -->
-
-<!-- What is that variable?! -->
-
-<!-- <font size = 4> -->
-
-<!-- `[{'variant': 'Other', 'cumWeeklySequenced': 2366843.0, 'newWeeklyPercentage': 4.59}, {'variant': 'V-20DEC-01 (Alpha)', 'cumWeeklySequenced': 0.0, 'newWeeklyPercentage': 0.0}, {'variant': 'V-21APR-02 (Delta B.1.617.2)', 'cumWeeklySequenced': 0.0, 'newWeeklyPercentage': 0.0}, {'variant': 'V-21OCT-01 (Delta AY 4.2)', 'cumWeeklySequenced': 0.0, 'newWeeklyPercentage': 0.0}, {'variant': 'V-22DEC-01 (Omicron CH.1.1)', 'cumWeeklySequenced': 2366843.0, 'newWeeklyPercentage': 24.56}, {'variant': 'V-22JUL-01 (Omicron BA.2.75)', 'cumWeeklySequenced': 2366843.0, 'newWeeklyPercentage': 8.93}, {'variant': 'V-22OCT-01 (Omicron BQ.1)', 'cumWeeklySequenced': 2366843.0, 'newWeeklyPercentage': 49.57}, {'variant': 'VOC-21NOV-01 (Omicron BA.1)', 'cumWeeklySequenced': 2366843.0, 'newWeeklyPercentage': 0.02}, {'variant': 'VOC-22APR-03 (Omicron BA.4)', 'cumWeeklySequenced': 2366843.0, 'newWeeklyPercentage': 0.08}, {'variant': 'VOC-22APR-04 (Omicron BA.5)', 'cumWeeklySequenced': 2366843.0, 'newWeeklyPercentage': 5.59}, {'variant': 'VOC-22JAN-01 (Omicron BA.2)', 'cumWeeklySequenced': 2366843.0, 'newWeeklyPercentage': 1.41}, {'variant': 'unclassified_variant', 'cumWeeklySequenced': 2366843.0, 'newWeeklyPercentage': 5.26}]` -->
-
-<!-- </font> -->
-
-# [PA 5.1: Scrambled Message](../../group-activities/week-5/PA-5-strings.qmd)
+# PA 5.1: Scrambled Message
 
 ::: columns
 ::: {.column width="40%"}
-In this activity, you will use functions from the `stringr` package and regex to decode a message.
+In this activity, you will use functions from the `stringr` package and regular
+expressions to decode a message.
 :::
 
 ::: {.column width="5%"}
@@ -1301,102 +1129,6 @@ In this activity, you will use functions from the `stringr` package and regex to
 :::
 :::
 
-## A Refresher on [Indexing Vectors](https://earobinson95.github.io/stat331-calpoly-text/00-prereading.html#indexing-by-location) with `[]`
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x <- c("She",
-       "sells",
-       "seashells",
-       "by", 
-       "the",
-       "seashore!")
-```
-
-:::: {.columns}
-::: {.column width="50%"}
-::: {.fragment}
-+ Grab elements out of a vector with indices.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x[c(1, 4, 5)]
-```
-:::
-:::
-::: {.column width="50%"}
-::: {.fragment}
-+ Grab elements out of a vector with logicals.
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x[c(TRUE, FALSE, FALSE, TRUE, TRUE, FALSE)]
-```
-:::
-:::
-::::
-
-## Translating into `stringr`
-
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x <- c("She",
-       "sells",
-       "seashells",
-       "by", 
-       "the",
-       "seashore!")
-```
-:::
-
-::: columns
-::: {.column width="45%"}
-::: {.small}
-Detect what strings have a certain pattern:
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x[
-  str_detect(x, 
-             pattern = "ll")
-  ]
-```
-:::
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column width="52%"}
-::: {.fragment}
-::: {.small}
-Replace that pattern with a different pattern:
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-x <- str_replace_all(x, 
-                     pattern = "ll", 
-                     replacement = "zz")
-x
-```
-:::
-:::
-:::
-:::
-
 ## stringr Resources
 
 ::: columns
@@ -1423,52 +1155,19 @@ Every group should have a **stringr** cheatsheet!
 :::
 :::
 
-## Task Card
-
-Every group should have a **task card**! 
-
-. . .
-
-::: columns
-::: {.column width="40%"}
-**On the Front**
-
-- the expectations of each role
-- the norms of collaborating
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="55%"}
-::: {.fragment}
-**On the Back**
-
-::: {.small}
-- `stringr` functions for different tasks you may encounter
-- Regular expressions for different tasks you may encounter
-  + Matching patterns (e.g., `[:punct:]`, `\\w`)
-  + Special characters (e.g., `^`, `$`)
-  + Creating groups of characters (e.g., `[Kk]`)
-  + Repeated patters (e.g., `?`, `+`, `{2}`)
-:::
-:::
-:::
-:::
-
 ## Pair Programming Expectations
 
 ::: columns
 ::: {.column width="49%"}
-**Developer**
+**Typer**
 
 ::: {.small}
--   Reads prompt and ensures Coder understands what is being asked. 
--   Types the code specified by the Coder into the Quarto document.
--   Runs the code provided by the Coder. 
--   Works with Coder to debug the code. 
+-   Reads prompt and ensures Talker understands what is being asked. 
+-   Types the code specified by the Talker into the Quarto document.
+-   Runs the code provided by the Talker. 
+-   Works with Talker to debug the code. 
 -   Evaluates the output.  
--   Works with Coder to write code comments. 
+-   Works with Talker to write code comments. 
 :::
 :::
 
@@ -1477,15 +1176,15 @@ Every group should have a **task card**!
 
 ::: {.column width="49%"}
 ::: {.fragment}
-**Coder**
+**Talker**
 
 ::: {.small}
 -   Reads out instructions or prompts
--   Directs the Developer what to type. 
--   Talks with Developer about their ideas. 
+-   Directs the Typer what to type. 
+-   Talks with Typer about their ideas. 
 -   Manages resources (e.g., cheatsheets, textbook, slides). 
--   Works with Developer to debug the code. 
--   Works with Developer to write code comments. 
+-   Works with Typer to debug the code. 
+-   Works with Typer to write code comments. 
 :::
 :::
 :::
@@ -1505,13 +1204,13 @@ First, both of you will do the following:
 . . .
 
 ::: {.small}
-Then, the partner who has the most pets starts as the Developer (typing
-and listening to instructions from the Coder)!
+Then, the partner who has the most pets starts as the Typer (typing
+and listening to instructions from the Talker)!
 
-- The Coder **does not type**. 
+- The Talker **does not type**. 
   * The collaborative editing feature should allow you to track what is being 
   typed. 
-- The Developer **only types what they are told to type**. 
+- The Typer **only types what they are told to type**. 
 :::
 
 ## External Resources
@@ -1533,7 +1232,7 @@ You **are** permitted to use:
 > Submit the name of the movie the quote is from. 
 
 - Each person will input the full name of the movie the scrambled message is from into the PA5 quiz. 
-- The person who last occupied the role of Developer will download and submit the `PA-5.html` file for the group.
+- The person who last occupied the role of Typer will download and submit the `PA-5.html` file for the group.
   + Only one submission per group!
 
 # Exit Ticket
@@ -1541,6 +1240,6 @@ You **are** permitted to use:
 ## To do...
 
 + **PA 5.1: Scrambled Message**
-  + Due Thursday, October 24 at 12:10pm
+  + Due Wednesday, October 13 at 5pm
 + Check-in 5.2: Functions from `lubridate`
-  + Due Thursday, October 24 at 12:10pm
+  + Due Thursday, October 14 at 8am

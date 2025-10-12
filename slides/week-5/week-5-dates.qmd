@@ -23,8 +23,9 @@ Today we will...
 -   Reminder About Lab 3 / Challenge 3 Revisions
 -   Debrief Lab 4
     + Lab 4 Peer Code Review
--   Midterm Portfolio
+-   Week 6 Layout
     + What to Expect
+    + Midterm Portfolios
     + How to Get Started
 -   New Material
     -   Working with Date & Time Variables
@@ -173,7 +174,18 @@ lowest_child_care_price_2018
 
 > Insert your review into the comment box! 
 
-# Midterm Portfolios
+# Week 6 Layout
+
+# Week 6 Layout
+
+- Tuesday: Writing Basic Functions
+  + Practice Activity
+  
+. . .
+
+- Thursday: Midterm Portfolio Work Session
+  + Midterm Portfolios Due Sunday, November 3
+
 
 ## What to Expect
 

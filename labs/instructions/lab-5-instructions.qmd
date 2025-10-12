@@ -12,34 +12,22 @@ execute:
   echo: true
   message: false
   warning: false
+resources: 
+  - lab-5-student.qmd
 ---
 
-For this lab, you will be joining and filtering related datasets to solve a murder mystery!
+For this lab, you will be joining and filtering related datasets to solve a
+murder mystery!
 
-# Part 1: GitHub Workflow
+Download the template `.qmd` file here: [`lab-5-student.qmd`](lab-5-student.qmd)
 
-## Step 1: Making a Copy from GitHub Classroom
+::: {.callout-important}
+Be sure to save this in the Lab 5 folder, inside your Week 5 folder, 
+inside your STAT 331 folder! 
+:::
 
-You can access the Lab 5 materials through the [Lab 5 GitHub Repository](https://github.com/Statistical-Computing-with-R/lab-5). 
-
-This week, to get a copy of the repository, we're going to follow a slightly different process. Use these steps to fork your own copy of the Lab 5 repository, then clone that repository into RStudio: [List of Steps to Fork GitHub Repository](https://scribehow.com/shared/Forking_a_GitHub_Repository__TKGOvrrYQ1GMfYCafxercg)
-
-## Step 2: Making a Small Change
-
-Now, find the `lab-5-student.qmd` file in the "Files" tab in the lower right 
-hand corner. Click on this file to open it. 
-
-At the top of the document (in the YAML) there is an `author` line that says 
-`"Your name here!"`. Change this to be your name and save your file either by
-clicking on the blue floppy disk or with a shortcut (command / control + s). 
-
-## Step 3: Pushing Your Lab to GitHub
-
-Now for our last step, we need to [commit the files to our repo](https://happygitwithr.com/existing-github-first#stage-and-commit). 
-
-## Step 4: Let's get started!
-
-# Part 2: Some Words of Advice
+::: {.callout-tip collapse=TRUE}
+# Words of Advice
 
 -   Set chunk options carefully.
 
@@ -51,8 +39,9 @@ in your environment.
 -   Make your code readable and nicely formatted.
 
 -   Think through your desired result **before** writing any code.
+:::
 
-# Part 3: Finding the Killer
+# Finding the Killer
 
 Northwestern University's Knight Lab wanted to help sharpen users' database
 skills, so they created a murder mystery. Can you solve this crime in SQL City??

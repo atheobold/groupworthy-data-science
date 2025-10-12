@@ -1,0 +1,424 @@
+---
+title: "Untitled"
+format: revealjs
+execute: 
+  eval: false
+---
+
+## `str_extract()`
+
+Returns a **character vector** with either `NA` or the pattern, depending on if the pattern was found.
+
+::: small
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+my_vector <- c("Hello,", 
+               "my name is", 
+               "Bond", 
+               "James Bond")
+
+str_extract(my_vector, pattern = "Bond")
+```
+:::
+
+. . .
+
+::: callout-warning
+`str_extract()` only returns the **first** pattern match.
+
+Use `str_extract_all()` to return **every** pattern match.
+:::
+
+## What do you mean by the *first* match?
+
+Suppose we had a slightly different vector...
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+alt_vector <- c("Hello,", 
+               "my name is", 
+               "Bond, James Bond")
+```
+
+. . .
+
+If we were to extract ***every*** instance of `"Bond"` from the vector...
+
+::::::::: columns
+:::: {.column width="45%"}
+::: small
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+str_extract(alt_vector, 
+            pattern = "Bond")
+```
+:::
+::::
+
+::: {.column width="3%"}
+:::
+
+::::: {.column width="52%"}
+:::: fragment
+::: small
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+str_extract_all(alt_vector, 
+                pattern = "Bond")
+```
+:::
+::::
+:::::
+:::::::::
+
+## `str_match()`
+
+Returns a **character matrix** containing either `NA` or the pattern, depending on if the pattern was found.
+
+::: small
+```{r}
+#| echo: true
+#| code-line-numbers: false
+my_vector <- c("Hello,", 
+               "my name is", 
+               "Bond", 
+               "James Bond")
+
+str_match(my_vector, pattern = "Bond")
+```
+:::
+
+## `str_locate()`
+
+Returns a **dateframe** with two **numeric variables** -- the starting and ending location of the pattern. The values are `NA` if the pattern is not found.
+
+::: small
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+my_vector <- c("Hello,", 
+               "my name is", 
+               "Bond", 
+               "James Bond")
+
+str_locate(my_vector, pattern = "Bond")
+```
+:::
+
+. . .
+
+## `str_subset()`
+
+Returns a **character vector** containing a subset of the original **character vector** consisting of the elements where the pattern was found.
+
+::: small
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+my_vector <- c("Hello,", 
+               "my name is", 
+               "Bond", 
+               "James Bond")
+
+str_subset(my_vector, pattern = "Bond")
+```
+:::
+
+<!-- ## Try it out! -->
+
+<!-- What regular expressions would match words that... -->
+
+<!-- ::: columns -->
+
+<!-- ::: {.column width="40%"} -->
+
+<!-- + end with a vowel? -->
+
+<!-- + start with x, y, or z? -->
+
+<!-- + *do not* contain x, y, or z? -->
+
+<!-- + contain [British spelling](https://www.oxfordinternationalenglish.com/differences-in-british-and-american-spelling/)? -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="5%"} -->
+
+<!-- ::: -->
+
+<!-- ::: {.column width="55%"} -->
+
+<!-- ```{r} -->
+
+<!-- #| echo: true -->
+
+<!-- #| code-line-numbers: false -->
+
+<!-- x <- c("zebra",  -->
+
+<!--        "xray",  -->
+
+<!--        "apple",  -->
+
+<!--        "yellow", -->
+
+<!--        "color",  -->
+
+<!--        "colour", -->
+
+<!--        "summarize", -->
+
+<!--        "summarise") -->
+
+<!-- ``` -->
+
+<!-- ::: -->
+
+<!-- ::: -->
+
+<!-- ## Some Possible Solutions... -->
+
+<!-- + end with a vowel? -->
+
+<!-- ```{r} -->
+
+<!-- #| echo: true -->
+
+<!-- #| eval: false -->
+
+<!-- #| code-line-numbers: false -->
+
+<!-- str_subset(x, "[aeiouy]$") -->
+
+<!-- ``` -->
+
+<!-- + start with x, y, or z? -->
+
+<!-- ```{r} -->
+
+<!-- #| echo: true -->
+
+<!-- #| eval: false -->
+
+<!-- #| code-line-numbers: false -->
+
+<!-- str_subset(x, "^[xyz]") -->
+
+<!-- ``` -->
+
+<!-- + *do not* contain x, y, or z? -->
+
+<!-- ```{r} -->
+
+<!-- #| echo: true -->
+
+<!-- #| eval: false -->
+
+<!-- #| code-line-numbers: false -->
+
+<!-- str_subset(x, "[^xyz]") -->
+
+<!-- ``` -->
+
+<!-- + contain [British spelling](https://www.oxfordinternationalenglish.com/differences-in-british-and-american-spelling/)? -->
+
+<!-- ```{r} -->
+
+<!-- #| echo: true -->
+
+<!-- #| eval: false -->
+
+<!-- #| code-line-numbers: false -->
+
+<!-- str_subset(x, "(our)|(i[sz]e)") -->
+
+<!-- ``` -->
+
+## Escape: `\\`
+
+::: small
+To match a *special character*, you need to **escape** it.
+
+```{r}
+#| echo: true
+#| error: true
+#| code-line-numbers: false
+
+x <- c("How",
+       "much", 
+       "wood",
+       "could",
+       "a",
+       "woodchuck",
+       "chuck",
+       "if",
+       "a",
+       "woodchuck",
+       "could",
+       "chuck",
+       "wood?")
+
+str_subset(x, pattern = "?")
+```
+:::
+
+## Escape: `\\`
+
+Use `\\` to escape the `?` -- it is now read as a normal character.
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+str_subset(x, pattern = "\\?")
+```
+
+. . .
+
+</br>
+
+::: callout-note
+Alternatively, you could use `[]`:
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+str_subset(x, pattern = "[?]")
+```
+:::
+
+## When in Doubt
+
+<br>
+
+```{r}
+#| fig-align: center
+#| out-width: 80%
+knitr::include_graphics("images/backslashes.png")
+```
+
+Use the [web app](https://spannbaueradam.shinyapps.io/r_regex_tester/) to test R regular expressions.
+
+<!-- ### With regex -->
+
+<!-- ```{r} -->
+
+<!-- #| echo: true -->
+
+<!-- military_clean <- military |>  -->
+
+<!--   mutate(across(matches("[1-9]{4}"),  -->
+
+<!--                 ~ na_if(.x, y = ". .")), -->
+
+<!--          across(matches("[1-9]{4}"),  -->
+
+<!--                 ~ na_if(.x, y = "xxx"))) -->
+
+<!-- ``` -->
+
+<!-- ::: -->
+
+<!-- ## Wild Card Character: `.` -->
+
+<!-- This character can match **any** character. -->
+
+<!-- ```{r} -->
+
+<!-- #| echo: true -->
+
+<!-- #| code-line-numbers: false -->
+
+<!-- x <- c("She",  -->
+
+<!--        "sells",  -->
+
+<!--        "seashells",  -->
+
+<!--        "by",  -->
+
+<!--        "the",  -->
+
+<!--        "seashore!") -->
+
+<!-- str_subset(x, pattern = ".ells") -->
+
+<!-- ``` -->
+
+<!-- <br> -->
+
+<!-- This matches strings that contain any character followed by "ells". -->
+
+## What do you mean by the *first* match?
+
+Suppose we had a slightly different vector...
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+alt_vector <- c("Hello,", 
+               "my name is", 
+               "Bond, James Bond")
+```
+
+. . .
+
+If we were to extract ***every*** instance of `"Bond"` from the vector...
+
+:::::::: small
+::::::: columns
+::: {.column width="45%"}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+str_extract(alt_vector, 
+            pattern = "Bond")
+```
+:::
+
+::: {.column width="3%"}
+:::
+
+:::: {.column width="52%"}
+::: fragment
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+str_extract_all(alt_vector, 
+                pattern = "Bond")
+```
+:::
+::::
+:::::::
+::::::::
+
+### `str_flatten()`
+
+Combine a vector of strings into a single string.
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+my_vector <- c("Hello,", 
+               "my name is", 
+               "Bond", 
+               "James Bond")
+
+str_flatten(my_vector, collapse = " ")
+```

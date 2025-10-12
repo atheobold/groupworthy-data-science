@@ -5,6 +5,11 @@ execute:
   eval: false
 ---
 
+```{r}
+library(tidyverse)
+```
+
+
 ## `str_extract()`
 
 Returns a **character vector** with either `NA` or the pattern, depending on if the pattern was found.
@@ -278,7 +283,6 @@ Use `\\` to escape the `?` -- it is now read as a normal character.
 
 ```{r}
 #| echo: true
-#| eval: true
 #| code-line-numbers: false
 
 str_subset(x, pattern = "\\?")

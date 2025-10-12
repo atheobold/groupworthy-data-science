@@ -159,20 +159,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#part-1-github-workflow" id="toc-part-1-github-workflow" class="nav-link active" data-scroll-target="#part-1-github-workflow"><span class="header-section-number">1</span> Part 1: GitHub Workflow</a>
+  <li><a href="#finding-the-killer" id="toc-finding-the-killer" class="nav-link active" data-scroll-target="#finding-the-killer"><span class="header-section-number">1</span> Finding the Killer</a>
   <ul class="collapse">
-  <li><a href="#step-1-making-a-copy-from-github-classroom" id="toc-step-1-making-a-copy-from-github-classroom" class="nav-link" data-scroll-target="#step-1-making-a-copy-from-github-classroom"><span class="header-section-number">1.1</span> Step 1: Making a Copy from GitHub Classroom</a></li>
-  <li><a href="#step-2-making-a-small-change" id="toc-step-2-making-a-small-change" class="nav-link" data-scroll-target="#step-2-making-a-small-change"><span class="header-section-number">1.2</span> Step 2: Making a Small Change</a></li>
-  <li><a href="#step-3-pushing-your-lab-to-github" id="toc-step-3-pushing-your-lab-to-github" class="nav-link" data-scroll-target="#step-3-pushing-your-lab-to-github"><span class="header-section-number">1.3</span> Step 3: Pushing Your Lab to GitHub</a></li>
-  <li><a href="#step-4-lets-get-started" id="toc-step-4-lets-get-started" class="nav-link" data-scroll-target="#step-4-lets-get-started"><span class="header-section-number">1.4</span> Step 4: Let’s get started!</a></li>
-  </ul></li>
-  <li><a href="#part-2-some-words-of-advice" id="toc-part-2-some-words-of-advice" class="nav-link" data-scroll-target="#part-2-some-words-of-advice"><span class="header-section-number">2</span> Part 2: Some Words of Advice</a></li>
-  <li><a href="#part-3-finding-the-killer" id="toc-part-3-finding-the-killer" class="nav-link" data-scroll-target="#part-3-finding-the-killer"><span class="header-section-number">3</span> Part 3: Finding the Killer</a>
+  <li><a href="#access-the-data" id="toc-access-the-data" class="nav-link" data-scroll-target="#access-the-data"><span class="header-section-number">1.1</span> Access the Data</a></li>
+  <li><a href="#solve-the-crime" id="toc-solve-the-crime" class="nav-link" data-scroll-target="#solve-the-crime"><span class="header-section-number">1.2</span> Solve the Crime</a>
   <ul class="collapse">
-  <li><a href="#access-the-data" id="toc-access-the-data" class="nav-link" data-scroll-target="#access-the-data"><span class="header-section-number">3.1</span> Access the Data</a></li>
-  <li><a href="#solve-the-crime" id="toc-solve-the-crime" class="nav-link" data-scroll-target="#solve-the-crime"><span class="header-section-number">3.2</span> Solve the Crime</a>
-  <ul class="collapse">
-  <li><a href="#crime-scene-report" id="toc-crime-scene-report" class="nav-link" data-scroll-target="#crime-scene-report"><span class="header-section-number">3.2.1</span> Crime Scene Report</a></li>
+  <li><a href="#crime-scene-report" id="toc-crime-scene-report" class="nav-link" data-scroll-target="#crime-scene-report"><span class="header-section-number">1.2.1</span> Crime Scene Report</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -202,28 +194,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>For this lab, you will be joining and filtering related datasets to solve a murder mystery!</p>
-<section id="part-1-github-workflow" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Part 1: GitHub Workflow</h1>
-<section id="step-1-making-a-copy-from-github-classroom" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="step-1-making-a-copy-from-github-classroom"><span class="header-section-number">1.1</span> Step 1: Making a Copy from GitHub Classroom</h2>
-<p>You can access the Lab 5 materials through the <a href="https://github.com/Statistical-Computing-with-R/lab-5">Lab 5 GitHub Repository</a>.</p>
-<p>This week, to get a copy of the repository, we’re going to follow a slightly different process. Use these steps to fork your own copy of the Lab 5 repository, then clone that repository into RStudio: <a href="https://scribehow.com/shared/Forking_a_GitHub_Repository__TKGOvrrYQ1GMfYCafxercg">List of Steps to Fork GitHub Repository</a></p>
-</section>
-<section id="step-2-making-a-small-change" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="step-2-making-a-small-change"><span class="header-section-number">1.2</span> Step 2: Making a Small Change</h2>
-<p>Now, find the <code>lab-5-student.qmd</code> file in the “Files” tab in the lower right hand corner. Click on this file to open it.</p>
-<p>At the top of the document (in the YAML) there is an <code>author</code> line that says <code>"Your name here!"</code>. Change this to be your name and save your file either by clicking on the blue floppy disk or with a shortcut (command / control + s).</p>
-</section>
-<section id="step-3-pushing-your-lab-to-github" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="step-3-pushing-your-lab-to-github"><span class="header-section-number">1.3</span> Step 3: Pushing Your Lab to GitHub</h2>
-<p>Now for our last step, we need to <a href="https://happygitwithr.com/existing-github-first#stage-and-commit">commit the files to our repo</a>.</p>
-</section>
-<section id="step-4-lets-get-started" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="step-4-lets-get-started"><span class="header-section-number">1.4</span> Step 4: Let’s get started!</h2>
-</section>
-</section>
-<section id="part-2-some-words-of-advice" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Part 2: Some Words of Advice</h1>
+<p>Download the template <code>.qmd</code> file here: <a href="lab-5-student.qmd"><code>lab-5-student.qmd</code></a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Words of Advice
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
 <ul>
 <li><p>Set chunk options carefully.</p></li>
 <li><p>Make sure you don’t print out more output than you need.</p></li>
@@ -231,9 +214,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Make your code readable and nicely formatted.</p></li>
 <li><p>Think through your desired result <strong>before</strong> writing any code.</p></li>
 </ul>
-</section>
-<section id="part-3-finding-the-killer" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Part 3: Finding the Killer</h1>
+</div>
+</div>
+</div>
+<section id="finding-the-killer" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Finding the Killer</h1>
 <p>Northwestern University’s Knight Lab wanted to help sharpen users’ database skills, so they created a murder mystery. Can you solve this crime in SQL City??</p>
 <p>The relational data you will be working with contains tables with different pieces of information pertinent to the crime - people, social media check-ins, driver’s licenses, crime scene reports, police interviews, and more!</p>
 <div class="quarto-figure quarto-figure-center">
@@ -263,8 +248,8 @@ Tip
 <p>You may find the <code>pull()</code> function handy for displaying each clue as you go along.</p>
 </div>
 </div>
-<section id="access-the-data" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="access-the-data"><span class="header-section-number">3.1</span> Access the Data</h2>
+<section id="access-the-data" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="access-the-data"><span class="header-section-number">1.1</span> Access the Data</h2>
 <p>This code chunk will read in <strong>all</strong> of the tables of data for you. Don’t modify or remove this!</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
@@ -275,10 +260,10 @@ Tip
 <span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"https://raw.githubusercontent.com/atheobold/groupworthy-data-science/main/labs/instructions/lab-5-setup.R"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="solve-the-crime" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="solve-the-crime"><span class="header-section-number">3.2</span> Solve the Crime</h2>
-<section id="crime-scene-report" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="crime-scene-report"><span class="header-section-number">3.2.1</span> Crime Scene Report</h3>
+<section id="solve-the-crime" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="solve-the-crime"><span class="header-section-number">1.2</span> Solve the Crime</h2>
+<section id="crime-scene-report" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="crime-scene-report"><span class="header-section-number">1.2.1</span> Crime Scene Report</h3>
 <p>Detective Wickham reaches out to you…</p>
 <blockquote class="blockquote">
 <p>A crime has taken place and I need your help! There was a murder in SQL City sometime on January 15, 2018. Could you retrieve the crime scene report from the police department’s database and follow the clues to find the person responsible for the murder?!</p>
@@ -786,117 +771,101 @@ And the final suspect is…
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>For this lab, you will be joining and filtering related datasets to solve a murder mystery!</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="an">resources:</span><span class="co"> </span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co">  - lab-5-student.qmd</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 1: GitHub Workflow</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 1: Making a Copy from GitHub Classroom</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>You can access the Lab 5 materials through the <span class="co">[</span><span class="ot">Lab 5 GitHub Repository</span><span class="co">](https://github.com/Statistical-Computing-with-R/lab-5)</span>. </span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>This week, to get a copy of the repository, we're going to follow a slightly different process. Use these steps to fork your own copy of the Lab 5 repository, then clone that repository into RStudio: <span class="co">[</span><span class="ot">List of Steps to Fork GitHub Repository</span><span class="co">](https://scribehow.com/shared/Forking_a_GitHub_Repository__TKGOvrrYQ1GMfYCafxercg)</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>For this lab, you will be joining and filtering related datasets to solve a</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>murder mystery!</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>Download the template <span class="in">`.qmd`</span> file here: <span class="co">[</span><span class="ot">`lab-5-student.qmd`</span><span class="co">](lab-5-student.qmd)</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>::: {.callout-tip collapse=TRUE}</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># Words of Advice</span></span>
 <span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 2: Making a Small Change</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Set chunk options carefully.</span>
 <span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>Now, find the <span class="in">`lab-5-student.qmd`</span> file in the "Files" tab in the lower right </span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>hand corner. Click on this file to open it. </span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>At the top of the document (in the YAML) there is an <span class="in">`author`</span> line that says </span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="in">`"Your name here!"`</span>. Change this to be your name and save your file either by</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>clicking on the blue floppy disk or with a shortcut (command / control + s). </span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Make sure you don't print out more output than you need.</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Make sure you don't assign more objects than necessary---avoid "object junk"</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>in your environment.</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Make your code readable and nicely formatted.</span>
 <span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 3: Pushing Your Lab to GitHub</span></span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>Now for our last step, we need to <span class="co">[</span><span class="ot">commit the files to our repo</span><span class="co">](https://happygitwithr.com/existing-github-first#stage-and-commit)</span>. </span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a><span class="fu">## Step 4: Let's get started!</span></span>
-<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 2: Some Words of Advice</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Think through your desired result **before** writing any code.</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="fu"># Finding the Killer</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>Northwestern University's Knight Lab wanted to help sharpen users' database</span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>skills, so they created a murder mystery. Can you solve this crime in SQL City??</span>
 <span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Set chunk options carefully.</span>
-<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Make sure you don't print out more output than you need.</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>The relational data you will be working with contains tables with different</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>pieces of information pertinent to the crime - people, social media check-ins,</span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>driver's licenses, crime scene reports, police interviews, and more!</span>
 <span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Make sure you don't assign more objects than necessary---avoid "object junk"</span>
-<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>in your environment.</span>
-<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Make your code readable and nicely formatted.</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a><span class="al">![Database schema](https://mystery.knightlab.com/schema.png)</span>{fig-alt="This is an entity-relationship diagram that showcases multiple interconnected tables. The central table is labeled 'person' with attributes including id, name, license_id, address_number, address_street_name, and ssn. It connects to various other tables. One connection leads to 'drivers_license,' which contains id, age, height, eye_color, hair_color, gender, plate_number, car_make, and car_model. Another connection leads to the 'income' table, which includes ssn and annual_income. Additionally, the 'person' table is linked to 'get_fit_now_member,' which has id, person_id, name, membership_start_date, and membership_status attributes. The 'get_fit_now_member' table connects to 'get_fit_now_check_in,' which lists membership_id, check_in_date, check_in_time, and check_out_time. Another linked table is 'facebook_event_checkin,' containing person_id, event_id, event_name, and date. The diagram also includes an 'interview' table with person_id and transcript, a 'crime_scene_report' table with date, type, description, and city, and a small table labeled 'solution' with user and value attributes. The diagram visualizes relationships and interactions across these entities."}</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>Solve the murder mystery, showing **all of your work in this document**. Your</span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>document and code must be well organized, easy to follow, and reproducible.</span>
 <span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>Think through your desired result **before** writing any code.</span>
-<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># Part 3: Finding the Killer</span></span>
-<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>Northwestern University's Knight Lab wanted to help sharpen users' database</span>
-<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>skills, so they created a murder mystery. Can you solve this crime in SQL City??</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Use headers and written descriptions to indicate what you are doing.</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Use <span class="in">`dplyr`</span> verbs and <span class="in">`join`</span> functions rather than just looking through the</span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>tables manually.</span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Use good code formatting practices.</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Comment your code.</span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Cite any external sources you use to solve the mystery.</span>
 <span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>The relational data you will be working with contains tables with different</span>
-<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>pieces of information pertinent to the crime - people, social media check-ins,</span>
-<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>driver's licenses, crime scene reports, police interviews, and more!</span>
-<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a><span class="al">![Database schema](https://mystery.knightlab.com/schema.png)</span>{fig-alt="This is an entity-relationship diagram that showcases multiple interconnected tables. The central table is labeled 'person' with attributes including id, name, license_id, address_number, address_street_name, and ssn. It connects to various other tables. One connection leads to 'drivers_license,' which contains id, age, height, eye_color, hair_color, gender, plate_number, car_make, and car_model. Another connection leads to the 'income' table, which includes ssn and annual_income. Additionally, the 'person' table is linked to 'get_fit_now_member,' which has id, person_id, name, membership_start_date, and membership_status attributes. The 'get_fit_now_member' table connects to 'get_fit_now_check_in,' which lists membership_id, check_in_date, check_in_time, and check_out_time. Another linked table is 'facebook_event_checkin,' containing person_id, event_id, event_name, and date. The diagram also includes an 'interview' table with person_id and transcript, a 'crime_scene_report' table with date, type, description, and city, and a small table labeled 'solution' with user and value attributes. The diagram visualizes relationships and interactions across these entities."}</span>
-<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>Solve the murder mystery, showing **all of your work in this document**. Your</span>
-<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>document and code must be well organized, easy to follow, and reproducible.</span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>You may find the <span class="in">`pull()`</span> function handy for displaying each clue as you go</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>along.</span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a><span class="fu">## Access the Data</span></span>
 <span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Use headers and written descriptions to indicate what you are doing.</span>
-<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Use <span class="in">`dplyr`</span> verbs and <span class="in">`join`</span> functions rather than just looking through the</span>
-<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>tables manually.</span>
-<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Use good code formatting practices.</span>
-<span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Comment your code.</span>
-<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="ss">+ </span>Cite any external sources you use to solve the mystery.</span>
-<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a>::: callout-tip</span>
-<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a>You may find the <span class="in">`pull()`</span> function handy for displaying each clue as you go</span>
-<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a>along.</span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>This code chunk will read in **all** of the tables of data for you. Don't modify or</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>remove this!</span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-74"><a href="#cb3-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-75"><a href="#cb3-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb3-76"><a href="#cb3-76" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb3-77"><a href="#cb3-77" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: read-in-data</span></span>
+<span id="cb3-78"><a href="#cb3-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-80"><a href="#cb3-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a><span class="fu">## Access the Data</span></span>
-<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a>This code chunk will read in **all** of the tables of data for you. Don't modify or</span>
-<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a>remove this!</span>
-<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
-<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: read-in-data</span></span>
+<span id="cb3-81"><a href="#cb3-81" aria-hidden="true" tabindex="-1"></a><span class="co"># If purrr is not detected, install the package</span></span>
+<span id="cb3-82"><a href="#cb3-82" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="st">"purrr"</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()) <span class="fu">install.packages</span>(<span class="st">"purrr"</span>)</span>
+<span id="cb3-83"><a href="#cb3-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"https://raw.githubusercontent.com/atheobold/groupworthy-data-science/main/labs/instructions/lab-5-setup.R"</span>)</span>
+<span id="cb3-85"><a href="#cb3-85" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-86"><a href="#cb3-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-87"><a href="#cb3-87" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solve the Crime</span></span>
+<span id="cb3-88"><a href="#cb3-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-89"><a href="#cb3-89" aria-hidden="true" tabindex="-1"></a><span class="fu">### Crime Scene Report</span></span>
+<span id="cb3-90"><a href="#cb3-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-91"><a href="#cb3-91" aria-hidden="true" tabindex="-1"></a>Detective Wickham reaches out to you...</span>
+<span id="cb3-92"><a href="#cb3-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-93"><a href="#cb3-93" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; A crime has taken place and I need your help! There was a murder in SQL City sometime on January 15, 2018. Could you retrieve the crime scene report from the police department’s database and follow the clues to find the person responsible for the murder?!</span></span>
 <span id="cb3-94"><a href="#cb3-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-95"><a href="#cb3-95" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb3-96"><a href="#cb3-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="co"># If purrr is not detected, install the package</span></span>
-<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="st">"purrr"</span> <span class="sc">%in%</span> <span class="fu">installed.packages</span>()) <span class="fu">install.packages</span>(<span class="st">"purrr"</span>)</span>
+<span id="cb3-97"><a href="#cb3-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-98"><a href="#cb3-98" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for looking at the relevant crime scene report.</span></span>
 <span id="cb3-99"><a href="#cb3-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"https://raw.githubusercontent.com/atheobold/groupworthy-data-science/main/labs/instructions/lab-5-setup.R"</span>)</span>
-<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-100"><a href="#cb3-100" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb3-101"><a href="#cb3-101" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-102"><a href="#cb3-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a><span class="fu">## Solve the Crime</span></span>
+<span id="cb3-103"><a href="#cb3-103" aria-hidden="true" tabindex="-1"></a>**Follow the evidence to the person responsible for the murder, building a report as you go.**</span>
 <span id="cb3-104"><a href="#cb3-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a><span class="fu">### Crime Scene Report</span></span>
-<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>Detective Wickham reaches out to you...</span>
+<span id="cb3-105"><a href="#cb3-105" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
+<span id="cb3-106"><a href="#cb3-106" aria-hidden="true" tabindex="-1"></a>Make sure you check for interviews with any suspects!</span>
+<span id="cb3-107"><a href="#cb3-107" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb3-108"><a href="#cb3-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a><span class="at">&gt; A crime has taken place and I need your help! There was a murder in SQL City sometime on January 15, 2018. Could you retrieve the crime scene report from the police department’s database and follow the clues to find the person responsible for the murder?!</span></span>
-<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for looking at the relevant crime scene report.</span></span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>**Follow the evidence to the person responsible for the murder, building a report as you go.**</span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>::: callout-caution</span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>Make sure you check for interviews with any suspects!</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-125"><a href="#cb3-125" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
-<span id="cb3-126"><a href="#cb3-126" aria-hidden="true" tabindex="-1"></a><span class="fu">## And the final suspect is...</span></span>
-<span id="cb3-127"><a href="#cb3-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-128"><a href="#cb3-128" aria-hidden="true" tabindex="-1"></a>*put the name of the person responsible for the murder here.*</span>
-<span id="cb3-129"><a href="#cb3-129" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>::: callout-note</span>
+<span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a><span class="fu">## And the final suspect is...</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>*put the name of the person responsible for the murder here.*</span>
+<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

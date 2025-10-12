@@ -1,213 +1,237 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<link href="../../images/stat-331-hex.png" rel="icon" type="image/png">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Iteration – Introduction to Statistical Computing in R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/stat-331-hex.png" rel="icon" type="image/png">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.7.32">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-9d3871c3a33628a85db1522934fdc5ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
-  <title>Introduction to Statistical Computing in R – Iteration</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/reveal.css">
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-      vertical-align: middle;
-    }
-    /* CSS for syntax highlighting */
-    html { -webkit-text-size-adjust: 100%; }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-  </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c990e76e4e8f51fe5aa6f0d132950ebc.css">
-  <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-    .reveal div.sourceCode {
-      margin: 0;
-      overflow: auto;
-    }
-    .reveal div.hanging-indent {
-      margin-left: 1em;
-      text-indent: -1em;
-    }
-    .reveal .slide:not(.center) {
-      height: 100%;
-    }
-    .reveal .slide.scrollable {
-      overflow-y: auto;
-    }
-    .reveal .footnotes {
-      height: 100%;
-      overflow-y: auto;
-    }
-    .reveal .slide .absolute {
-      position: absolute;
-      display: block;
-    }
-    .reveal .footnotes ol {
-      counter-reset: ol;
-      list-style-type: none; 
-      margin-left: 0;
-    }
-    .reveal .footnotes ol li:before {
-      counter-increment: ol;
-      content: counter(ol) ". "; 
-    }
-    .reveal .footnotes ol li > p:first-child {
-      display: inline-block;
-    }
-    .reveal .slide ul,
-    .reveal .slide ol {
-      margin-bottom: 0.5em;
-    }
-    .reveal .slide ul li,
-    .reveal .slide ol li {
-      margin-top: 0.4em;
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide ul[role="tablist"] li {
-      margin-bottom: 0;
-    }
-    .reveal .slide ul li > *:first-child,
-    .reveal .slide ol li > *:first-child {
-      margin-block-start: 0;
-    }
-    .reveal .slide ul li > *:last-child,
-    .reveal .slide ol li > *:last-child {
-      margin-block-end: 0;
-    }
-    .reveal .slide .columns:nth-child(3) {
-      margin-block-start: 0.8em;
-    }
-    .reveal blockquote {
-      box-shadow: none;
-    }
-    .reveal .tippy-content>* {
-      margin-top: 0.2em;
-      margin-bottom: 0.7em;
-    }
-    .reveal .tippy-content>*:last-child {
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide > img.stretch.quarto-figure-center,
-    .reveal .slide > img.r-stretch.quarto-figure-center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-left,
-    .reveal .slide > img.r-stretch.quarto-figure-left  {
-      display: block;
-      margin-left: 0;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-right,
-    .reveal .slide > img.r-stretch.quarto-figure-right  {
-      display: block;
-      margin-left: auto;
-      margin-right: 0; 
-    }
-  </style>
-  <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
-  <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 </head>
-<body class="quarto-light">
-  <div class="reveal">
-    <div class="slides">
 
-<section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Iteration</h1>
+<body class="nav-fixed quarto-light">
 
-<div class="quarto-title-authors">
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Introduction to Statistical Computing in R</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../course-materials/calendar.html"> 
+<span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../course-materials/syllabus.html"> 
+<span class="menu-text">Syllabus</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../portfolio/portfolio-instructions.html"> 
+<span class="menu-text">Portfolio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../course-materials/course-resources.html"> 
+<span class="menu-text">Resources</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../labs/exemplars/student-work.html"> 
+<span class="menu-text">Exemplary Student Work</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#same-seating-chart" id="toc-same-seating-chart" class="nav-link active" data-scroll-target="#same-seating-chart">Same Seating Chart!</a>
+  <ul class="collapse">
+  <li><a href="#today-we-will" id="toc-today-we-will" class="nav-link" data-scroll-target="#today-we-will">Today we will…</a></li>
+  </ul></li>
+  <li><a href="#its-week-8" id="toc-its-week-8" class="nav-link" data-scroll-target="#its-week-8">It’s Week 8…</a></li>
+  <li><a href="#performing-repeated-tasks" id="toc-performing-repeated-tasks" class="nav-link" data-scroll-target="#performing-repeated-tasks">Performing Repeated Tasks</a>
+  <ul class="collapse">
+  <li><a href="#repetition" id="toc-repetition" class="nav-link" data-scroll-target="#repetition">Repetition</a></li>
+  <li><a href="#iteration" id="toc-iteration" class="nav-link" data-scroll-target="#iteration">Iteration</a></li>
+  <li><a href="#vectorization" id="toc-vectorization" class="nav-link" data-scroll-target="#vectorization">Vectorization</a></li>
+  <li><a href="#vectorization-1" id="toc-vectorization-1" class="nav-link" data-scroll-target="#vectorization-1">Vectorization</a></li>
+  <li><a href="#what-do-we-do-instead" id="toc-what-do-we-do-instead" class="nav-link" data-scroll-target="#what-do-we-do-instead">What do we do instead?</a></li>
+  <li><a href="#what-do-we-do-instead-1" id="toc-what-do-we-do-instead-1" class="nav-link" data-scroll-target="#what-do-we-do-instead-1">What do we do instead?</a></li>
+  <li><a href="#some-functions-cannot-be-vectorized" id="toc-some-functions-cannot-be-vectorized" class="nav-link" data-scroll-target="#some-functions-cannot-be-vectorized">Some functions cannot be vectorized!</a></li>
+  <li><a href="#what-can-we-do-instead" id="toc-what-can-we-do-instead" class="nav-link" data-scroll-target="#what-can-we-do-instead">What can we do instead?</a></li>
+  </ul></li>
+  <li><a href="#but-loops-are-computationally-intensive" id="toc-but-loops-are-computationally-intensive" class="nav-link" data-scroll-target="#but-loops-are-computationally-intensive">…but loops are computationally intensive</a>
+  <ul class="collapse">
+  <li><a href="#what-can-we-do-instead-1" id="toc-what-can-we-do-instead-1" class="nav-link" data-scroll-target="#what-can-we-do-instead-1">What can we do instead?</a></li>
+  <li><a href="#but-across-uses-a-for-loop" id="toc-but-across-uses-a-for-loop" class="nav-link" data-scroll-target="#but-across-uses-a-for-loop">But <code>across()</code> uses a <code>for()</code> loop!</a></li>
+  </ul></li>
+  <li><a href="#functional-programming" id="toc-functional-programming" class="nav-link" data-scroll-target="#functional-programming">Functional Programming</a>
+  <ul class="collapse">
+  <li><a href="#functional-programming-big-picture" id="toc-functional-programming-big-picture" class="nav-link" data-scroll-target="#functional-programming-big-picture">Functional Programming – Big Picture</a></li>
+  <li><a href="#purrr" id="toc-purrr" class="nav-link" data-scroll-target="#purrr"><code>purrr</code></a></li>
+  <li><a href="#map" id="toc-map" class="nav-link" data-scroll-target="#map"><code>map()</code></a></li>
+  <li><a href="#map-dataframes" id="toc-map-dataframes" class="nav-link" data-scroll-target="#map-dataframes"><code>map()</code> + Dataframes</a></li>
+  <li><a href="#the-map-family" id="toc-the-map-family" class="nav-link" data-scroll-target="#the-map-family">The <code>map()</code> Family</a></li>
+  <li><a href="#map-penguins" id="toc-map-penguins" class="nav-link" data-scroll-target="#map-penguins"><code>map()</code> + penguins</a></li>
+  <li><a href="#comparing-speed" id="toc-comparing-speed" class="nav-link" data-scroll-target="#comparing-speed">Comparing Speed</a></li>
+  <li><a href="#map_if" id="toc-map_if" class="nav-link" data-scroll-target="#map_if"><code>map_if()</code></a></li>
+  <li><a href="#the-pmap-family" id="toc-the-pmap-family" class="nav-link" data-scroll-target="#the-pmap-family">The <code>pmap()</code> Family</a></li>
+  <li><a href="#the-pmap-family-1" id="toc-the-pmap-family-1" class="nav-link" data-scroll-target="#the-pmap-family-1">The <code>pmap()</code> Family</a></li>
+  <li><a href="#use-functional-programming" id="toc-use-functional-programming" class="nav-link" data-scroll-target="#use-functional-programming">Use functional programming!</a></li>
+  <li><a href="#pa-8-the-twelve-days-of-christmas" id="toc-pa-8-the-twelve-days-of-christmas" class="nav-link" data-scroll-target="#pa-8-the-twelve-days-of-christmas">PA 8: The Twelve Days of Christmas</a></li>
+  <li><a href="#glue" id="toc-glue" class="nav-link" data-scroll-target="#glue"><code>glue()</code></a></li>
+  <li><a href="#pa-8" id="toc-pa-8" class="nav-link" data-scroll-target="#pa-8">PA 8</a></li>
+  <li><a href="#task-card" id="toc-task-card" class="nav-link" data-scroll-target="#task-card">Task Card</a></li>
+  <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting Started</a></li>
+  <li><a href="#submission" id="toc-submission" class="nav-link" data-scroll-target="#submission">Submission</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="iteration-part-1.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Iteration</h1>
 </div>
 
-</section>
-<section>
-<section id="same-seating-chart" class="title-slide slide level1 center">
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="same-seating-chart" class="level1">
 <h1>Same Seating Chart!</h1>
-<p><img data-src="../week-7/images/week-7-seats.png"></p>
-</section>
-<section id="today-we-will" class="slide level2">
-<h2>Today we will…</h2>
+<p><img src="../week-7/images/week-7-seats.png" class="img-fluid"></p>
+<section id="today-we-will" class="level2">
+<h2 class="anchored" data-anchor-id="today-we-will">Today we will…</h2>
 <ul>
 <li>New Material
 <ul>
@@ -216,52 +240,46 @@
 </ul></li>
 <li>PA 8: The Twelve Days of Christmas Starter Functions</li>
 </ul>
-</section></section>
-<section id="its-week-8" class="title-slide slide level1 center">
+</section>
+</section>
+<section id="its-week-8" class="level1">
 <h1>It’s Week 8…</h1>
-<div class="fragment">
-<blockquote>
+<p>. . .</p>
+<blockquote class="blockquote">
 <p>How are you taking care of yourself?</p>
 </blockquote>
-</div>
 </section>
-
-<section>
-<section id="performing-repeated-tasks" class="title-slide slide level1 center">
+<section id="performing-repeated-tasks" class="level1">
 <h1>Performing Repeated Tasks</h1>
-
-</section>
-<section id="repetition" class="slide level2">
-<h2>Repetition</h2>
+<section id="repetition" class="level2">
+<h2 class="anchored" data-anchor-id="repetition">Repetition</h2>
 <p>Type out the task over and over.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/bart_board_iter.png" class="quarto-figure quarto-figure-center" style="width:50.0%" alt="The image shows a chalkboard scene styled after The Simpsons with Bart Simpson standing beside a chalkboard, where he has written repeatedly in large, white text: 'I WILL NOT USE LOOPS IN R.' This is a humorous reference to programming practices in R, suggesting a preference for avoiding loops in favor of other approaches. Bart is holding a piece of chalk and looking over his shoulder at the viewer with a mischievous expression."></p>
+<figure class="figure">
+<p><img src="images/bart_board_iter.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="The image shows a chalkboard scene styled after The Simpsons with Bart Simpson standing beside a chalkboard, where he has written repeatedly in large, white text: 'I WILL NOT USE LOOPS IN R.' This is a humorous reference to programming practices in R, suggesting a preference for avoiding loops in favor of other approaches. Bart is holding a piece of chalk and looking over his shoulder at the viewer with a mischievous expression."></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <p>Do not do this.</p>
-</div>
 </section>
-<section id="iteration" class="slide level2">
-<h2>Iteration</h2>
+<section id="iteration" class="level2">
+<h2 class="anchored" data-anchor-id="iteration">Iteration</h2>
 <p>Repeatedly execute the <em>same</em> operation over and over.</p>
-<div class="fragment">
+<p>. . .</p>
 <ul>
 <li>Loops (e.g., <code>for()</code> and <code>while()</code>) allow us to iterate.</li>
 </ul>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
-<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>){</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 1
 [1] 4
@@ -275,35 +293,34 @@
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/bart_board_for.png" class="quarto-figure quarto-figure-center" style="width:80.0%" alt="The image shows a chalkboard with Bart Simpson standing beside it, holding a piece of chalk. The chalkboard displays R code that humorously contradicts the message by using a loop to discourage using loops in R. The code reads: `FOR (I IN 1:100) { PRINT(I WILL NOT USE LOOPS IN R) }`. This satirical twist emphasizes a preference in R programming for avoiding traditional loops in favor of functional programming methods. Bart appears to be looking at the code on the chalkboard."></p>
+<figure class="figure">
+<p><img src="images/bart_board_for.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="The image shows a chalkboard with Bart Simpson standing beside it, holding a piece of chalk. The chalkboard displays R code that humorously contradicts the message by using a loop to discourage using loops in R. The code reads: `FOR (I IN 1:100) { PRINT(I WILL NOT USE LOOPS IN R) }`. This satirical twist emphasizes a preference in R programming for avoiding traditional loops in favor of functional programming methods. Bart appears to be looking at the code on the chalkboard."></p>
 </figure>
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <!-- . . . -->
 <!-- + But loops tend to be **slow**! -->
-</div>
 </section>
-<section id="vectorization" class="slide level2">
-<h2>Vectorization</h2>
+<section id="vectorization" class="level2">
+<h2 class="anchored" data-anchor-id="vectorization">Vectorization</h2>
 <p>Many operations in R are <strong>vectorized</strong>.</p>
 <ul>
 <li>These functions operate on <em>vectors</em> of values rather than a <em>single</em> value.</li>
 <li>We can iterate <em>without</em> writing a loop.</li>
 </ul>
-<div class="fragment">
+<p>. . .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="sc">-</span><span class="dv">4</span>, <span class="at">to =</span> <span class="dv">6</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <p><br></p>
 <div class="columns">
 <div class="column" style="width:47%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">abs</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 4 3 2 1 0 1 2 3 4 5 6</code></pre>
 </div>
@@ -313,45 +330,45 @@
 </div><div class="column" style="width:50%;">
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
-<span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>  x[i] <span class="ot">&lt;-</span> <span class="fu">abs</span>(x[i])</span>
-<span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  x[i] <span class="ot">&lt;-</span> <span class="fu">abs</span>(x[i])</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 4 3 2 1 0 1 2 3 4 5 6</code></pre>
 </div>
 </div>
 </div>
-</div></div>
+</div>
 </div>
 </section>
-<section id="vectorization-1" class="slide level2">
-<h2>Vectorization</h2>
+<section id="vectorization-1" class="level2">
+<h2 class="anchored" data-anchor-id="vectorization-1">Vectorization</h2>
 <p><strong>Not every function is vectorized.</strong></p>
 <ul>
 <li>For example, <code>if()</code> statements <strong>cannot</strong> operate on vectors.</li>
 </ul>
-<div class="fragment">
+<p>. . .</p>
 <div class="columns">
 <div class="column" style="width:55%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>pos_neg_zero <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"Greater than 0!"</span>)</span>
-<span id="cb8-4"><a aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb8-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
-<span id="cb8-6"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"Less than 0!"</span>)</span>
-<span id="cb8-7"><a aria-hidden="true" tabindex="-1"></a>  } </span>
-<span id="cb8-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
-<span id="cb8-9"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"Equal to 0!"</span>)</span>
-<span id="cb8-10"><a aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb8-11"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>pos_neg_zero <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>){</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"Greater than 0!"</span>)</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="cf">if</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>){</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"Less than 0!"</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> {</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"Equal to 0!"</span>)</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:45%;">
 <div class="fragment">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">pos_neg_zero</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pos_neg_zero</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in if (x &gt; 0) {: the condition has length &gt; 1</code></pre>
 </div>
@@ -362,103 +379,97 @@
 <p>This means that <code>if(x &gt; 0)</code> can only be checked for something of length 1 (a single number, not a vector).</p>
 </div>
 </div>
-</div></div>
+</div>
 </div>
 </section>
-<section id="what-do-we-do-instead" class="slide level2">
-<h2>What do we do instead?</h2>
-<div class="fragment">
+<section id="what-do-we-do-instead" class="level2">
+<h2 class="anchored" data-anchor-id="what-do-we-do-instead">What do we do instead?</h2>
+<p>. . .</p>
 <p><strong>Option 1 – Looping</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))</span>
-<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
-<span id="cb11-4"><a aria-hidden="true" tabindex="-1"></a>  result[i] <span class="ot">&lt;-</span> <span class="fu">pos_neg_zero</span>(x[i])</span>
-<span id="cb11-5"><a aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb11-6"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  result[i] <span class="ot">&lt;-</span> <span class="fu">pos_neg_zero</span>(x[i])</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Less than 0!"    "Less than 0!"    "Less than 0!"    "Less than 0!"   
  [5] "Equal to 0!"     "Greater than 0!" "Greater than 0!" "Greater than 0!"
  [9] "Greater than 0!" "Greater than 0!" "Greater than 0!"</code></pre>
 </div>
 </div>
-</div>
 </section>
-<section id="what-do-we-do-instead-1" class="slide level2">
-<h2>What do we do instead?</h2>
-<div class="fragment">
+<section id="what-do-we-do-instead-1" class="level2">
+<h2 class="anchored" data-anchor-id="what-do-we-do-instead-1">What do we do instead?</h2>
+<p>. . .</p>
 <p><strong>Option 2 – Write a Vectorized Function</strong></p>
 <div class="midi">
 <p><code>if_else()</code> and <code>case_when()</code> are the <strong>vectorized</strong> versions of <code>if()</code> and <code>else if()</code></p>
 </div>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>pos_neg_zero <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>  state <span class="ot">&lt;-</span> <span class="fu">case_when</span>(x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Greater than 0!"</span>, </span>
-<span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>                     x <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Less than 0!"</span>, </span>
-<span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a>                     <span class="at">.default =</span> <span class="st">"Equal to 0!"</span>)</span>
-<span id="cb13-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(state)</span>
-<span id="cb13-6"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>pos_neg_zero <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  state <span class="ot">&lt;-</span> <span class="fu">case_when</span>(x <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Greater than 0!"</span>, </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                     x <span class="sc">&lt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"Less than 0!"</span>, </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">.default =</span> <span class="st">"Equal to 0!"</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(state)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">pos_neg_zero</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pos_neg_zero</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "Less than 0!"    "Less than 0!"    "Less than 0!"    "Less than 0!"   
  [5] "Equal to 0!"     "Greater than 0!" "Greater than 0!" "Greater than 0!"
  [9] "Greater than 0!" "Greater than 0!" "Greater than 0!"</code></pre>
 </div>
 </div>
-</div>
 </section>
-<section id="some-functions-cannot-be-vectorized" class="slide level2">
-<h2>Some functions cannot be vectorized!</h2>
-<div class="fragment">
+<section id="some-functions-cannot-be-vectorized" class="level2">
+<h2 class="anchored" data-anchor-id="some-functions-cannot-be-vectorized">Some functions cannot be vectorized!</h2>
+<p>. . .</p>
 <p>Applying <code>class()</code> to a <strong>single</strong> variable in a data frame returns the data type of that column:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(penguins[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(penguins[[<span class="dv">1</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "factor"</code></pre>
 </div>
 </div>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <p><br></p>
 <p>Trying to apply <code>class()</code> to <strong>every</strong> variable in a data frame returns the data type of the data frame:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(penguins)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
 </div>
-</div>
 </section>
-<section id="what-can-we-do-instead" class="slide level2">
-<h2>What can we do instead?</h2>
+<section id="what-can-we-do-instead" class="level2">
+<h2 class="anchored" data-anchor-id="what-can-we-do-instead">What can we do instead?</h2>
 <p>Write a <code>for()</code> loop…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>data_type <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">length =</span> <span class="fu">ncol</span>(penguins))</span>
-<span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(penguins)){</span>
-<span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>  data_type[i] <span class="ot">&lt;-</span> <span class="fu">class</span>(penguins[[i]])</span>
-<span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>data_type <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="at">length =</span> <span class="fu">ncol</span>(penguins))</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="fu">seq_along</span>(penguins)){</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  data_type[i] <span class="ot">&lt;-</span> <span class="fu">class</span>(penguins[[i]])</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a></a><span class="fu">tibble</span>(<span class="at">column =</span> <span class="fu">names</span>(penguins), </span>
-<span id="cb21-2"><a></a>       <span class="at">type =</span> data_type) <span class="sc">|&gt;</span> </span>
-<span id="cb21-3"><a></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> column, </span>
-<span id="cb21-4"><a></a>              <span class="at">values_from =</span> type) <span class="sc">|&gt;</span>  </span>
-<span id="cb21-5"><a></a>  knitr<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
-<span id="cb21-6"><a></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">column =</span> <span class="fu">names</span>(penguins), </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">type =</span> data_type) <span class="sc">|&gt;</span> </span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> column, </span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> type) <span class="sc">|&gt;</span>  </span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
@@ -486,28 +497,25 @@
 </table>
 </div>
 </div>
-</div>
-</section></section>
-<section>
-<section id="but-loops-are-computationally-intensive" class="title-slide slide level1 center">
-<h1>…but loops are computationally intensive</h1>
-
 </section>
-<section id="what-can-we-do-instead-1" class="slide level2">
-<h2>What can we do instead?</h2>
+</section>
+<section id="but-loops-are-computationally-intensive" class="level1">
+<h1>…but loops are computationally intensive</h1>
+<section id="what-can-we-do-instead-1" class="level2">
+<h2 class="anchored" data-anchor-id="what-can-we-do-instead-1">What can we do instead?</h2>
 <p>What about <code>across()</code>?</p>
 <ul>
 <li>Easily perform the <strong>same</strong> operation on multiple columns.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22" data-code-line-numbers="2-4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb22-2"><a></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">everything</span>(), </span>
-<span id="cb22-3"><a></a>                   <span class="at">.fns =</span> class)</span>
-<span id="cb22-4"><a></a>            ) <span class="sc">|&gt;</span>  </span>
-<span id="cb22-5"><a></a>  knitr<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
-<span id="cb22-6"><a></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="fu">summarise</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">everything</span>(), </span>
+<span id="cb22-3"><a href="#cb22-3"></a>                   <span class="at">.fns =</span> class)</span>
+<span id="cb22-4"><a href="#cb22-4"></a>            ) <span class="sc">|&gt;</span>  </span>
+<span id="cb22-5"><a href="#cb22-5"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>() <span class="sc">|&gt;</span></span>
+<span id="cb22-6"><a href="#cb22-6"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_styling</span>(<span class="at">font_size =</span> <span class="dv">30</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
@@ -536,8 +544,8 @@
 </div>
 </div>
 </section>
-<section id="but-across-uses-a-for-loop" class="slide level2">
-<h2>But <code>across()</code> uses a <code>for()</code> loop!</h2>
+<section id="but-across-uses-a-for-loop" class="level2">
+<h2 class="anchored" data-anchor-id="but-across-uses-a-for-loop">But <code>across()</code> uses a <code>for()</code> loop!</h2>
 <p><br> <br></p>
 <div class="centered">
 <div class="large">
@@ -547,12 +555,12 @@
   k &lt;- k + 1L</code></pre>
 </div>
 </div>
-</section></section>
-<section>
-<section id="functional-programming" class="title-slide slide level1 center">
+</section>
+</section>
+<section id="functional-programming" class="level1">
 <h1>Functional Programming</h1>
-<div class="fragment">
-<blockquote>
+<p>. . .</p>
+<blockquote class="blockquote">
 <p>To understand computations in R, two slogans are helpful:</p>
 <ul>
 <li><p>Everything that exists is an object.</p></li>
@@ -560,89 +568,86 @@
 </ul>
 <p>John Chambers (creator of the pre-cursor to R)</p>
 </blockquote>
-</div>
-</section>
-<section id="functional-programming-big-picture" class="slide level2">
-<h2>Functional Programming – Big Picture</h2>
+<section id="functional-programming-big-picture" class="level2">
+<h2 class="anchored" data-anchor-id="functional-programming-big-picture">Functional Programming – Big Picture</h2>
 <ul>
 <li>We will use <strong>functions</strong> as the <strong>arguments</strong> to other functions!</li>
 </ul>
 <p><br></p>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Note</strong></p>
+<div class="callout-title-container flex-fill">
+Note
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>There are a slew of <code>apply()</code> functions you will likely come across.</p>
 <p>We will instead focus on the <code>purrr</code> package and the <code>map()</code> family of functions.</p>
 </div>
 </div>
-</div>
 </section>
-<section id="purrr" class="slide level2">
-<h2><code>purrr</code></h2>
+<section id="purrr" class="level2">
+<h2 class="anchored" data-anchor-id="purrr"><code>purrr</code></h2>
 <div class="columns">
 <div class="column" style="width:80%;">
 <p>The <code>purrr</code> package breaks common list manipulations into small, independent pieces.</p>
 <p><br></p>
 <p>This strategy involves two steps:</p>
 </div><div class="column" style="width:20%;">
-<p><img data-src="images/purrr.png" style="width:80.0%" alt="The image is a hexagonal logo for the R package purrr. It features a simple, hand-drawn outline of a content, sleeping cat with closed eyes, representing the package's name, which sounds like a cat's purr. The logo's design conveys a sense of calm and ease, suggesting that the purrr package makes functional programming in R more intuitive and manageable."></p>
-</div></div>
-<div class="fragment">
+<p><img src="images/purrr.png" class="img-fluid" style="width:80.0%" alt="The image is a hexagonal logo for the R package purrr. It features a simple, hand-drawn outline of a content, sleeping cat with closed eyes, representing the package's name, which sounds like a cat's purr. The logo's design conveys a sense of calm and ease, suggesting that the purrr package makes functional programming in R more intuitive and manageable."></p>
+</div>
+</div>
+<p>. . .</p>
 <ol type="1">
 <li>Break a complex problem into smaller <strong>sub-problems</strong>.</li>
 </ol>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <ol start="2" type="1">
 <li>Solve each sub-problem for <strong>a single element</strong> of a list.
 <ul>
 <li>Once done, <code>purrr</code> will generalize the solution to every element in the list.</li>
 </ul></li>
 </ol>
-</div>
 </section>
-<section id="map" class="slide level2">
-<h2><code>map()</code></h2>
+<section id="map" class="level2">
+<h2 class="anchored" data-anchor-id="map"><code>map()</code></h2>
 <p>The <code>map()</code> function <strong>iterates</strong> through each item in a list and applies a function, then returns the new list.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/map.png" class="quarto-figure quarto-figure-center" style="width:30.0%" alt="The image illustrates the concept of a mapping function in programming, specifically in the context of applying a function to each element of a list or vector. On the left, there is a vertical stack of colored blocks in varying shades of orange, representing individual elements. The text `map( , f)` suggests the application of a function f to each element in the sequence. An arrow points to the right, leading to a new vertical stack where each block is enclosed in a box labeled `f()`, indicating that the function `f` has been applied to each element individually. This visual representation demonstrates how mapping functions work by transforming each element in a sequence."></p>
+<figure class="figure">
+<p><img src="images/map.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%" alt="The image illustrates the concept of a mapping function in programming, specifically in the context of applying a function to each element of a list or vector. On the left, there is a vertical stack of colored blocks in varying shades of orange, representing individual elements. The text `map( , f)` suggests the application of a function f to each element in the sequence. An arrow points to the right, leading to a new vertical stack where each block is enclosed in a box labeled `f()`, indicating that the function `f` has been applied to each element individually. This visual representation demonstrates how mapping functions work by transforming each element in a sequence."></p>
 </figure>
 </div>
 </div>
 </div>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Using the |&gt;</strong></p>
+<div class="callout-title-container flex-fill">
+Using the |&gt;
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>The first argument in <code>map()</code> is the list, so if we pipe into it, we <strong>only</strong> specify the function we want to iterate!</p>
 </div>
 </div>
-</div>
 </section>
-<section id="map-dataframes" class="slide level2">
-<h2><code>map()</code> + Dataframes</h2>
+<section id="map-dataframes" class="level2">
+<h2 class="anchored" data-anchor-id="map-dataframes"><code>map()</code> + Dataframes</h2>
 <p>A data frame is just a list of columns – <code>map()</code> will apply a function to every column.</p>
-<div class="fragment">
+<p>. . .</p>
 <div class="columns">
 <div class="column" style="width:65%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb24-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span></span>
-<span id="cb24-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="at">.f =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="fu">where</span>(is.numeric)) <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map</span>(<span class="at">.f =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$bill_length_mm
 [1] 43.92193
@@ -666,11 +671,11 @@ $year
 <div class="fragment">
 <p>Use a lambda function (with <code>~</code> and <code>.x</code>), just like in <code>across()</code>!</p>
 </div>
-</div></div>
+</div>
 </div>
 </section>
-<section id="the-map-family" class="slide level2">
-<h2>The <code>map()</code> Family</h2>
+<section id="the-map-family" class="level2">
+<h2 class="anchored" data-anchor-id="the-map-family">The <code>map()</code> Family</h2>
 <p>The <code>map_xxx()</code> variants allow you to specify the <strong>type of output</strong> you want.</p>
 <ul>
 <li><code>map()</code> creates a <em>list</em>.</li>
@@ -681,17 +686,17 @@ $year
 </ul>
 <p>All take in a list (<code>.x</code>) and a function (<code>.f</code>) as arguments.</p>
 </section>
-<section id="map-penguins" class="slide level2">
-<h2><code>map()</code> + penguins</h2>
-<div class="panel-tabset">
-<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1"><code>map_dbl()</code></a></li><li><a href="#tabset-1-2"><code>map_int()</code></a></li><li><a href="#tabset-1-3"><code>map_lgl()</code></a></li></ul>
+<section id="map-penguins" class="level2">
+<h2 class="anchored" data-anchor-id="map-penguins"><code>map()</code> + penguins</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true"><code>map_dbl()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><code>map_int()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false"><code>map_lgl()</code></a></li></ul>
 <div class="tab-content">
-<div id="tabset-1-1">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>Calculate the mean of each column.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb26-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(bill_length_mm<span class="sc">:</span>body_mass_g) <span class="sc">|&gt;</span> </span>
-<span id="cb26-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="at">.f =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(bill_length_mm<span class="sc">:</span>body_mass_g) <span class="sc">|&gt;</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_dbl</span>(<span class="at">.f =</span> <span class="sc">~</span> <span class="fu">mean</span>(.x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g 
          43.92193          17.15117         200.91520        4201.75439 </code></pre>
@@ -700,11 +705,11 @@ $year
 <p><br></p>
 <p>Output is a <strong>vector of doubles</strong>.</p>
 </div>
-<div id="tabset-1-2">
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>Calculate the number of <code>NA</code>s in each column.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_int</span>(<span class="at">.f =</span> <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_int</span>(<span class="at">.f =</span> <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>          species            island    bill_length_mm     bill_depth_mm 
                 0                 0                 2                 2 
@@ -714,11 +719,11 @@ flipper_length_mm       body_mass_g               sex              year
 </div>
 <p>Output is a <strong>vector of integers</strong>.</p>
 </div>
-<div id="tabset-1-3">
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <p>Calculate the number of <code>NA</code>s in each column.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb30-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_lgl</span>(<span class="at">.f =</span> <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_lgl</span>(<span class="at">.f =</span> <span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.x)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `map_lgl()`:
 ℹ In index: 3.
@@ -732,41 +737,41 @@ Caused by error:
 </div>
 </div>
 </section>
-<section id="comparing-speed" class="slide level2">
-<h2>Comparing Speed</h2>
+<section id="comparing-speed" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-speed">Comparing Speed</h2>
 <p>Using functional programming can be <strong>much faster</strong> than using <code>for</code> loops.</p>
-<div class="panel-tabset">
-<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1"><code>for()</code></a></li><li><a href="#tabset-2-2"><code>map()</code></a></li><li><a href="#tabset-2-3">Run</a></li><li><a href="#tabset-2-4">Compare</a></li></ul>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><code>for()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><code>map()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false">Run</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-4" role="tab" aria-controls="tabset-2-4" aria-selected="false">Compare</a></li></ul>
 <div class="tab-content">
-<div id="tabset-2-1">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>loop_func <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
-<span id="cb32-2"><a aria-hidden="true" tabindex="-1"></a>  typ <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">ncol</span>(df))</span>
-<span id="cb32-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df)){</span>
-<span id="cb32-4"><a aria-hidden="true" tabindex="-1"></a>    typ[i] <span class="ot">&lt;-</span> <span class="fu">class</span>(df[[i]])</span>
-<span id="cb32-5"><a aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb32-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(typ)</span>
-<span id="cb32-7"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>loop_func <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  typ <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">ncol</span>(df))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">ncol</span>(df)){</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    typ[i] <span class="ot">&lt;-</span> <span class="fu">class</span>(df[[i]])</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(typ)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-2-2">
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a aria-hidden="true" tabindex="-1"></a>map_func <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
-<span id="cb33-2"><a aria-hidden="true" tabindex="-1"></a>  typ <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(df, class)</span>
-<span id="cb33-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(typ)</span>
-<span id="cb33-4"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>map_func <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  typ <span class="ot">&lt;-</span> <span class="fu">map_chr</span>(df, class)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(typ)</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<div id="tabset-2-3">
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="dv">1</span>,</span>
-<span id="cb34-2"><a aria-hidden="true" tabindex="-1"></a>                           <span class="at">nrow =</span> <span class="dv">5</span>,</span>
-<span id="cb34-3"><a aria-hidden="true" tabindex="-1"></a>                           <span class="at">ncol =</span> <span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(<span class="fu">matrix</span>(<span class="dv">1</span>,</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>                           <span class="at">nrow =</span> <span class="dv">5</span>,</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>                           <span class="at">ncol =</span> <span class="dv">7</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="columns">
 <div class="column" style="width:47%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">loop_func</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">loop_func</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "numeric" "numeric" "numeric" "numeric" "numeric" "numeric" "numeric"</code></pre>
 </div>
@@ -775,46 +780,47 @@ Caused by error:
 
 </div><div class="column" style="width:47%;">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">map_func</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map_func</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       V1        V2        V3        V4        V5        V6        V7 
 "numeric" "numeric" "numeric" "numeric" "numeric" "numeric" "numeric" </code></pre>
 </div>
 </div>
-</div></div>
 </div>
-<div id="tabset-2-4">
+</div>
+</div>
+<div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
 <div class="small">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(</span>
-<span id="cb39-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="dv">1</span>,</span>
-<span id="cb39-3"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">nrow =</span> <span class="dv">5</span>,</span>
-<span id="cb39-4"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">ncol =</span> <span class="dv">100000</span>)</span>
-<span id="cb39-5"><a aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb39-6"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-7"><a aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(<span class="fu">loop_func</span>(df),</span>
-<span id="cb39-8"><a aria-hidden="true" tabindex="-1"></a>                               <span class="fu">map_func</span>(df),</span>
-<span id="cb39-9"><a aria-hidden="true" tabindex="-1"></a>                               <span class="at">times =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">matrix</span>(<span class="dv">1</span>,</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">nrow =</span> <span class="dv">5</span>,</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ncol =</span> <span class="dv">100000</span>)</span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a>microbenchmark<span class="sc">::</span><span class="fu">microbenchmark</span>(<span class="fu">loop_func</span>(df),</span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">map_func</span>(df),</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>                               <span class="at">times =</span> <span class="dv">20</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<p><img data-src="images/speed.png" alt="The image shows a benchmarking result table comparing the execution times of two functions, loop_func(df) and map_func(df), in milliseconds. The table has columns labeled expr, min, lq, mean, median, uq, max, and neval. For loop_func(df), the mean time is approximately 7182.34 milliseconds, with a minimum of 6996.32 milliseconds and a maximum of 8215.57 milliseconds. For map_func(df), the mean time is about 61.49 milliseconds, with a minimum of 54.02 milliseconds and a maximum of 135.86 milliseconds. The results show that map_func(df) performs significantly faster than loop_func(df). Both functions were evaluated 20 times, as indicated in the neval column."></p>
+<p><img src="images/speed.png" class="img-fluid" alt="The image shows a benchmarking result table comparing the execution times of two functions, loop_func(df) and map_func(df), in milliseconds. The table has columns labeled expr, min, lq, mean, median, uq, max, and neval. For loop_func(df), the mean time is approximately 7182.34 milliseconds, with a minimum of 6996.32 milliseconds and a maximum of 8215.57 milliseconds. For map_func(df), the mean time is about 61.49 milliseconds, with a minimum of 54.02 milliseconds and a maximum of 135.86 milliseconds. The results show that map_func(df) performs significantly faster than loop_func(df). Both functions were evaluated 20 times, as indicated in the neval column."></p>
 </div>
 </div>
 </div>
 </section>
-<section id="map_if" class="slide level2">
-<h2><code>map_if()</code></h2>
+<section id="map_if" class="level2">
+<h2 class="anchored" data-anchor-id="map_if"><code>map_if()</code></h2>
 <p>The <code>map_if()</code> function allows us to <strong>conditionally</strong> apply a function to each item in a list.</p>
-<div class="fragment">
-<div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1"><code>across()</code></a></li><li><a href="#tabset-3-2"><code>map_if()</code></a></li><li><a href="#tabset-3-3"><code>map_if()</code> to data frame</a></li></ul>
+<p>. . .</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><code>across()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><code>map_if()</code></a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false"><code>map_if()</code> to data frame</a></li></ul>
 <div class="tab-content">
-<div id="tabset-3-1">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb40-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">where</span>(is.numeric), </span>
-<span id="cb40-3"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">.fns =</span> scale))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">where</span>(is.numeric), </span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">.fns =</span> scale))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -833,11 +839,11 @@ Caused by error:
 </div>
 </div>
 </div>
-<div id="tabset-3-2">
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb42-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_if</span>(is.numeric, scale)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_if</span>(is.numeric, scale)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>$species
   [1] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   
@@ -2741,12 +2747,12 @@ attr(,"scaled:scale")
 </div>
 </div>
 </div>
-<div id="tabset-3-3">
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb44-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_if</span>(is.numeric, scale) <span class="sc">|&gt;</span> </span>
-<span id="cb44-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_if</span>(is.numeric, scale) <span class="sc">|&gt;</span> </span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">bind_cols</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -2767,10 +2773,9 @@ attr(,"scaled:scale")
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="the-pmap-family" class="slide level2">
-<h2>The <code>pmap()</code> Family</h2>
+<section id="the-pmap-family" class="level2">
+<h2 class="anchored" data-anchor-id="the-pmap-family">The <code>pmap()</code> Family</h2>
 <p>These functions take in a <strong>list of vectors</strong> and a <strong>function</strong>.</p>
 <ul>
 <li>The function must accept a number of arguments equal to the length of the list,</li>
@@ -2778,22 +2783,22 @@ attr(,"scaled:scale")
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/pmap.png" class="quarto-figure quarto-figure-center" style="width:65.0%" alt="The image illustrates the concept of a parallel mapping function, specifically pmap, which applies a function to multiple lists or vectors element-wise. On the left, there are three vertical stacks of colored blocks in different shades of orange, blue, and yellow, each representing a separate list or vector. The text `pmap( , f)` indicates that a function f will be applied to elements from each of these lists in parallel. An arrow points to the right, leading to a new layout where each row contains a function application `f( , , )` with one element from each list placed within the function. This visual demonstrates how pmap applies a function to corresponding elements from multiple inputs simultaneously."></p>
+<figure class="figure">
+<p><img src="images/pmap.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%" alt="The image illustrates the concept of a parallel mapping function, specifically pmap, which applies a function to multiple lists or vectors element-wise. On the left, there are three vertical stacks of colored blocks in different shades of orange, blue, and yellow, each representing a separate list or vector. The text `pmap( , f)` indicates that a function f will be applied to elements from each of these lists in parallel. An arrow points to the right, leading to a new layout where each row contains a function application `f( , , )` with one element from each list placed within the function. This visual demonstrates how pmap applies a function to corresponding elements from multiple inputs simultaneously."></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="the-pmap-family-1" class="slide level2">
-<h2>The <code>pmap()</code> Family</h2>
+<section id="the-pmap-family-1" class="level2">
+<h2 class="anchored" data-anchor-id="the-pmap-family-1">The <code>pmap()</code> Family</h2>
 <p>The vectors need to have the <strong>same names</strong> as the arguments of the function you are applying.</p>
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">string =</span> <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>),</span>
-<span id="cb46-2"><a aria-hidden="true" tabindex="-1"></a>                    <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"p"</span>, <span class="st">"n"</span>, <span class="st">"h"</span>),</span>
-<span id="cb46-3"><a aria-hidden="true" tabindex="-1"></a>                    <span class="at">replacement =</span> <span class="fu">c</span>(<span class="st">"P"</span>, <span class="st">"N"</span>, <span class="st">"H"</span>))</span>
-<span id="cb46-4"><a aria-hidden="true" tabindex="-1"></a>fruit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">string =</span> <span class="fu">c</span>(<span class="st">"apple"</span>, <span class="st">"banana"</span>, <span class="st">"cherry"</span>),</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">pattern =</span> <span class="fu">c</span>(<span class="st">"p"</span>, <span class="st">"n"</span>, <span class="st">"h"</span>),</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">replacement =</span> <span class="fu">c</span>(<span class="st">"P"</span>, <span class="st">"N"</span>, <span class="st">"H"</span>))</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a>fruit</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  string pattern replacement
 1  apple       p           P
@@ -2802,43 +2807,55 @@ attr(,"scaled:scale")
 </div>
 </div>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <p><br></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> </span>
-<span id="cb48-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pmap_chr</span>(str_replace_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>fruit <span class="sc">|&gt;</span> </span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pmap_chr</span>(str_replace_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "aPPle"  "baNaNa" "cHerry"</code></pre>
 </div>
 </div>
-</div>
 </section>
-<section id="use-functional-programming" class="slide level2">
-<h2>Use functional programming!</h2>
+<section id="use-functional-programming" class="level2">
+<h2 class="anchored" data-anchor-id="use-functional-programming">Use functional programming!</h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/bart_board_map.png" class="quarto-figure quarto-figure-center" style="width:70.0%" alt="The image shows a chalkboard with Bart Simpson standing beside it, holding a piece of chalk. The chalkboard contains R code that encourages the use of mapping functions instead of loops. The code reads: `S <- I WILL REPLACE LOOPS BY MAPPING FUNCTIONS`, `V <- REP(S, 100)`, and `PURRR::MAP_CHR(V, PRINT)`. This is a humorous take on functional programming in R, advocating for the use of functions from the purrr package as an alternative to traditional loops. Bart looks toward the chalkboard with a satisfied expression."></p>
+<figure class="figure">
+<p><img src="images/bart_board_map.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="The image shows a chalkboard with Bart Simpson standing beside it, holding a piece of chalk. The chalkboard contains R code that encourages the use of mapping functions instead of loops. The code reads: `S <- I WILL REPLACE LOOPS BY MAPPING FUNCTIONS`, `V <- REP(S, 100)`, and `PURRR::MAP_CHR(V, PRINT)`. This is a humorous take on functional programming in R, advocating for the use of functions from the purrr package as an alternative to traditional loops. Bart looks toward the chalkboard with a satisfied expression."></p>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="pa-8-the-twelve-days-of-christmas" class="slide level2">
-<h2><a href="../../group-activities/week-8/PA-8-iteration.html">PA 8: The Twelve Days of Christmas</a></h2>
+<section id="pa-8-the-twelve-days-of-christmas" class="level2">
+<h2 class="anchored" data-anchor-id="pa-8-the-twelve-days-of-christmas"><a href="../../group-activities/week-8/PA-8-iteration.html">PA 8: The Twelve Days of Christmas</a></h2>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="https://studioplayhouse.org/wp-content/uploads/2020/06/12-Days-of-christmas.jpg" class="quarto-figure quarto-figure-center" style="width:80.0%" alt="The image is an illustrated representation of the Christmas song 'The 12 Days of Christmas,' with each square depicting the gifts given on each day. From left to right and top to bottom, the gifts are a partridge in a pear tree, two turtle doves, three French hens, four calling birds, five golden rings, six geese a-laying, seven swans a-swimming, eight maids a-milking, nine ladies dancing, ten lords a-leaping, eleven pipers piping, and twelve drummers drumming. The title 'The 12 Days of Christmas' is displayed in the center in festive green and red lettering, surrounded by small seasonal decorations. Each illustration captures the traditional imagery associated with this beloved Christmas carol."></p>
+<figure class="figure">
+<p><img src="https://studioplayhouse.org/wp-content/uploads/2020/06/12-Days-of-christmas.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="The image is an illustrated representation of the Christmas song 'The 12 Days of Christmas,' with each square depicting the gifts given on each day. From left to right and top to bottom, the gifts are a partridge in a pear tree, two turtle doves, three French hens, four calling birds, five golden rings, six geese a-laying, seven swans a-swimming, eight maids a-milking, nine ladies dancing, ten lords a-leaping, eleven pipers piping, and twelve drummers drumming. The title 'The 12 Days of Christmas' is displayed in the center in festive green and red lettering, surrounded by small seasonal decorations. Each illustration captures the traditional imagery associated with this beloved Christmas carol."></p>
 </figure>
 </div>
 </div>
 </div>
+<!-- ### `str_glue()` -->
+<!-- Use variables in the environment to create a string based on {expressions}. -->
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: false -->
+<!-- first <- "James" -->
+<!-- last <- "Bond" -->
+<!-- str_glue("My name is {last}, {first} {last}") -->
+<!-- ``` -->
+<!-- ::: callout-tip -->
+<!-- For more details, I would recommend looking up the [`glue` R package](https://glue.tidyverse.org/)! -->
+<!-- ::: -->
+<!-- ::: -->
 </section>
-<section id="glue" class="slide level2">
-<h2><code>glue()</code></h2>
+<section id="glue" class="level2">
+<h2 class="anchored" data-anchor-id="glue"><code>glue()</code></h2>
 <div class="columns">
 <div class="column" style="width:70%;">
 <p>The <code>glue</code> package embeds R expressions in curly brackets that are then evaluated and inserted into the argument string.</p>
@@ -2846,18 +2863,19 @@ attr(,"scaled:scale")
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/glue.jpg" class="quarto-figure quarto-figure-center" style="width:50.0%" alt="The image is a hexagonal logo for the R package 'glue.' It features an illustration of a glue bottle with an orange label that reads 'glue' in white, playful font. The bottle has an orange nozzle and a gray cap, and the background of the hexagon is textured with a subtle pattern. This design conveys the package's purpose, which is to glue together strings in R, making it easier to combine text and data dynamically."></p>
+<figure class="figure">
+<p><img src="images/glue.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%" alt="The image is a hexagonal logo for the R package 'glue.' It features an illustration of a glue bottle with an orange label that reads 'glue' in white, playful font. The bottle has an orange nozzle and a gray cap, and the background of the hexagon is textured with a subtle pattern. This design conveys the package's purpose, which is to glue together strings in R, making it easier to combine text and data dynamically."></p>
 </figure>
 </div>
 </div>
 </div>
-</div></div>
+</div>
+</div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
-<span id="cb50-2"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-3"><a aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Dr. Theobold"</span></span>
-<span id="cb50-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">'My name is {name}.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(glue)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="st">"Dr. Theobold"</span></span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glue</span>(<span class="st">'My name is {name}.'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>My name is Dr. Theobold.</code></pre>
 </div>
@@ -2865,13 +2883,13 @@ attr(,"scaled:scale")
 <p><br></p>
 <p>This will be a handy function (and package) for putting our song together!</p>
 </section>
-<section id="pa-8" class="slide level2">
-<h2>PA 8</h2>
+<section id="pa-8" class="level2">
+<h2 class="anchored" data-anchor-id="pa-8">PA 8</h2>
 <div class="midi">
 <p>You will write <strong>two</strong> functions, one helper function and one body function, to assist you in singing phrases from the 12 Days of Christmas.</p>
 <p>Many of the functions have been started for you, but <strong>none</strong> of them are complete as is.</p>
 </div>
-<div class="fragment">
+<p>. . .</p>
 <div class="columns">
 <div class="column" style="width:55%;">
 <div class="small">
@@ -2889,27 +2907,26 @@ attr(,"scaled:scale")
 </div><div class="column" style="width:40%;">
 <p><br> <br></p>
 <p><span class="midi"><strong>None of us have all these abilities. Each of us has some of these abilities.</strong></span></p>
-</div></div>
+</div>
 </div>
 </section>
-<section id="task-card" class="slide level2">
-<h2>Task Card</h2>
+<section id="task-card" class="level2">
+<h2 class="anchored" data-anchor-id="task-card">Task Card</h2>
 <p>Every group should have a <strong>task card</strong>!</p>
 <p><strong>On the front</strong>:</p>
 <ul>
 <li>Reminders about string functions from <code>stringr</code></li>
 <li>Reminders about regular expressions</li>
 </ul>
-<div class="fragment">
+<p>. . .</p>
 <p><strong>On the back</strong>:</p>
 <ul>
 <li><code>if()</code>, <code>else if()</code>, and <code>else()</code> statements</li>
 <li><code>if_else()</code> and <code>case_when()</code> functions</li>
 </ul>
-</div>
 </section>
-<section id="getting-started" class="slide level2">
-<h2>Getting Started</h2>
+<section id="getting-started" class="level2">
+<h2 class="anchored" data-anchor-id="getting-started">Getting Started</h2>
 <p>The partner who has <strong>the most vowels in their name</strong> starts as the Coder (dictating their proposed solution to the Developer (typing and listening).</p>
 <p>If you are tied, play rock-paper-scissors. :)</p>
 <ul>
@@ -2920,9 +2937,9 @@ attr(,"scaled:scale")
 <li>The Developer <strong>only types what they are told to type</strong>.</li>
 </ul>
 </section>
-<section id="submission" class="slide level2">
-<h2>Submission</h2>
-<blockquote>
+<section id="submission" class="level2">
+<h2 class="anchored" data-anchor-id="submission">Submission</h2>
+<blockquote class="blockquote">
 <p>Your <code>full_phrase</code> column is the answer to this week’s Practice Activity.</p>
 </blockquote>
 <ul>
@@ -2934,427 +2951,425 @@ attr(,"scaled:scale")
 </ul>
 
 
-</section></section>
-    </div>
-  <div class="quarto-auto-generated-content" style="display: none;">
-<div class="footer footer-default">
+</section>
+</section>
 
-</div>
-</div></div>
-
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
-
-      // Full list of configuration options available at:
-      // https://revealjs.com/config/
-      Reveal.initialize({
-'controlsAuto': true,
-'previewLinksAuto': false,
-'pdfSeparateFragments': false,
-'autoAnimateEasing': "ease",
-'autoAnimateDuration': 1,
-'autoAnimateUnmatched': true,
-'jumpToSlide': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
- 
-        // Display controls in the bottom right corner
-        controls: false,
-
-        // Help the user learn the controls by providing hints, for example by
-        // bouncing the down arrow when they first encounter a vertical slide
-        controlsTutorial: false,
-
-        // Determines where controls appear, "edges" or "bottom-right"
-        controlsLayout: 'edges',
-
-        // Visibility rule for backwards navigation arrows; "faded", "hidden"
-        // or "visible"
-        controlsBackArrows: 'faded',
-
-        // Display a presentation progress bar
-        progress: true,
-
-        // Display the page number of the current slide
-        slideNumber: false,
-
-        // 'all', 'print', or 'speaker'
-        showSlideNumber: 'all',
-
-        // Add the current slide number to the URL hash so that reloading the
-        // page/copying the URL will return you to the same slide
-        hash: true,
-
-        // Start with 1 for the hash rather than 0
-        hashOneBasedIndex: false,
-
-        // Flags if we should monitor the hash and change slides accordingly
-        respondToHashChanges: true,
-
-        // Push each slide change to the browser history
-        history: true,
-
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-
-        // Enable the slide overview mode
-        overview: true,
-
-        // Disables the default reveal.js slide layout (scaling and centering)
-        // so that you can use custom CSS layout
-        disableLayout: false,
-
-        // Vertical centering of slides
-        center: false,
-
-        // Enables touch navigation on devices with touch input
-        touch: true,
-
-        // Loop the presentation
-        loop: false,
-
-        // Change the presentation direction to be RTL
-        rtl: false,
-
-        // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'linear',
-
-        // Randomizes the order of slides each time the presentation loads
-        shuffle: false,
-
-        // Turns fragments on and off globally
-        fragments: true,
-
-        // Flags whether to include the current fragment in the URL,
-        // so that reloading brings you to the same fragment position
-        fragmentInURL: false,
-
-        // Flags if the presentation is running in an embedded mode,
-        // i.e. contained within a limited portion of the screen
-        embedded: false,
-
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-
-        // Flags if it should be possible to pause the presentation (blackout)
-        pause: true,
-
-        // Flags if speaker notes should be visible to all viewers
-        showNotes: false,
-
-        // Global override for autoplaying embedded media (null/true/false)
-        autoPlayMedia: null,
-
-        // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
-
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
-
-        // Use this method for navigation when auto-sliding
-        autoSlideMethod: null,
-
-        // Specify the average time in seconds that you think you will spend
-        // presenting each slide. This is used to show a pacing timer in the
-        // speaker view
-        defaultTiming: null,
-
-        // Enable slide navigation via mouse wheel
-        mouseWheel: false,
-
-        // The display mode that will be used to show slides
-        display: 'block',
-
-        // Hide cursor if inactive
-        hideInactiveCursor: true,
-
-        // Time before the cursor is hidden (in ms)
-        hideCursorTime: 5000,
-
-        // Opens links in an iframe preview overlay
-        previewLinks: false,
-
-        // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
-
-        // Transition speed (default/fast/slow)
-        transitionSpeed: 'default',
-
-        // Transition style for full page slide backgrounds
-        // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
-
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
-
-        // Number of slides away from the current that are visible on mobile
-        // devices. It is advisable to set this to a lower number than
-        // viewDistance in order to save resources.
-        mobileViewDistance: 2,
-
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: 1050,
-
-        height: 700,
-
-        // Factor of the display size that should remain empty around the content
-        margin: 0.1,
-
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
-
-          RevealMath,
-          RevealNotes,
-          RevealSearch,
-          RevealZoom
-        ]
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
-    </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/github\.com\/atheobold\/groupworthy-data-science");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-
-      })();
-    </script>
-
-    <script id="quarto-html-after-body" type="application/javascript">
-      window.document.addEventListener("DOMContentLoaded", function (event) {
-        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-        tabsets.forEach(function(tabset) {
-          const tabby = new Tabby('#' + tabset.id);
-        });
-        const isCodeAnnotation = (el) => {
-          for (const clz of el.classList) {
-            if (clz.startsWith('code-annotation-')) {                     
-              return true;
-            }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
           }
-          return false;
         }
-        const onCopySuccess = function(e) {
-          // button target
-          const button = e.trigger;
-          // don't keep focus
-          button.blur();
-          // flash "checked"
-          button.classList.add('code-copy-button-checked');
-          var currentTitle = button.getAttribute("title");
-          button.setAttribute("title", "Copied!");
-          let tooltip;
-          if (window.bootstrap) {
-            button.setAttribute("data-bs-toggle", "tooltip");
-            button.setAttribute("data-bs-placement", "left");
-            button.setAttribute("data-bs-title", "Copied!");
-            tooltip = new bootstrap.Tooltip(button, 
-              { trigger: "manual", 
-                customClass: "code-copy-button-tooltip",
-                offset: [0, -8]});
-            tooltip.show();    
-          }
-          setTimeout(function() {
-            if (tooltip) {
-              tooltip.hide();
-              button.removeAttribute("data-bs-title");
-              button.removeAttribute("data-bs-toggle");
-              button.removeAttribute("data-bs-placement");
-            }
-            button.setAttribute("title", currentTitle);
-            button.classList.remove('code-copy-button-checked');
-          }, 1000);
-          // clear code selection
-          e.clearSelection();
-        }
-        const getTextToCopy = function(trigger) {
-            const codeEl = trigger.previousElementSibling.cloneNode(true);
-            for (const childEl of codeEl.children) {
-              if (isCodeAnnotation(childEl)) {
-                childEl.remove();
-              }
-            }
-            return codeEl.innerText;
-        }
-        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-          text: getTextToCopy
-        });
-        clipboard.on('success', onCopySuccess);
-        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-            text: getTextToCopy,
-            container: window.document.getElementById('quarto-embedded-source-code-modal')
-          });
-          clipboardModal.on('success', onCopySuccess);
-        }
-          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-          var mailtoRegex = new RegExp(/^mailto:/);
-            var filterRegex = new RegExp("https:\/\/github\.com\/atheobold\/groupworthy-data-science");
-          var isInternal = (href) => {
-              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-          }
-          // Inspect non-navigation links and adorn them if external
-         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-          for (var i=0; i<links.length; i++) {
-            const link = links[i];
-            if (!isInternal(link.href)) {
-              // undo the damage that might have been done by quarto-nav.js in the case of
-              // links that we want to consider external
-              if (link.dataset.originalHref !== undefined) {
-                link.href = link.dataset.originalHref;
-              }
-            }
-          }
-        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-          const config = {
-            allowHTML: true,
-            maxWidth: 500,
-            delay: 100,
-            arrow: false,
-            appendTo: function(el) {
-                return el.closest('section.slide') || el.parentElement;
-            },
-            interactive: true,
-            interactiveBorder: 10,
-            theme: 'light-border',
-            placement: 'bottom-start',
-          };
-          if (contentFn) {
-            config.content = contentFn;
-          }
-          if (onTriggerFn) {
-            config.onTrigger = onTriggerFn;
-          }
-          if (onUntriggerFn) {
-            config.onUntrigger = onUntriggerFn;
-          }
-            config['offset'] = [0,0];
-            config['maxWidth'] = 700;
-          window.tippy(el, config); 
-        }
-        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-        for (var i=0; i<noterefs.length; i++) {
-          const ref = noterefs[i];
-          tippyHover(ref, function() {
-            // use id or data attribute instead here
-            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-            try { href = new URL(href).hash; } catch {}
-            const id = href.replace(/^#\/?/, "");
-            const note = window.document.getElementById(id);
-            if (note) {
-              return note.innerHTML;
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
             } else {
-              return "";
+              container.appendChild(child.cloneNode(true));
+              break;
             }
-          });
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
         }
-        const findCites = (el) => {
-          const parentEl = el.parentElement;
-          if (parentEl) {
-            const cites = parentEl.dataset.cites;
-            if (cites) {
-              return {
-                el,
-                cites: cites.split(' ')
-              };
-            } else {
-              return findCites(el.parentElement)
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
             }
           } else {
-            return undefined;
-          }
-        };
-        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-        for (var i=0; i<bibliorefs.length; i++) {
-          const ref = bibliorefs[i];
-          const citeInfo = findCites(ref);
-          if (citeInfo) {
-            tippyHover(citeInfo.el, function() {
-              var popup = window.document.createElement('div');
-              citeInfo.cites.forEach(function(cite) {
-                var citeDiv = window.document.createElement('div');
-                citeDiv.classList.add('hanging-indent');
-                citeDiv.classList.add('csl-entry');
-                var biblioDiv = window.document.getElementById('ref-' + cite);
-                if (biblioDiv) {
-                  citeDiv.innerHTML = biblioDiv.innerHTML;
-                }
-                popup.appendChild(citeDiv);
-              });
-              return popup.innerHTML;
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
             });
           }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
         }
+      }, function(instance) {
       });
-      </script>
-    
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Allison Theobold &amp; Judith Canner</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
 
 </body></html>

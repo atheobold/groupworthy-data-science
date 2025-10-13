@@ -16,10 +16,12 @@ library(palmerpenguins)
 ```
 
 
-## Thursday, October 24
+## Thursday, October 16
 
 Today we will...
 
+::: columns
+::: {.column width="55%"}
 -   Reminder About Lab 3 / Challenge 3 Revisions
 -   Debrief Lab 4
     + Lab 4 Peer Code Review
@@ -27,9 +29,18 @@ Today we will...
     + What to Expect
     + Midterm Portfolios
     + How to Get Started
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="40%"}
 -   New Material
     -   Working with Date & Time Variables
--   [PA 5.2: Jewel Heist](../../group-activities/week-5/PA-5-dates.qmd)    
+-   PA 5.2: Jewel Heist 
+:::
+:::
+
 
 # Lab 3 / Challenge 3 Revisions
 
@@ -49,15 +60,20 @@ feedback
 ::: {.incremental}
 ::: {.small}
 - **Q1**: Who collected these data? When were the data collected?
+
 - **Q4**: Column titles of `2008` and `2018` are not descriptive! 
-    + Creating column names that **describe** the values stored in those columns!
-    + The `names_prefix = ` argument to `pivot_wider()` can help you make better column names! 
+    + Creating column names that **describe** the values stored in those
+    columns!
+    + The `names_prefix = ` argument to `pivot_wider()` can help you make better
+    column names! 
     + DVS-6: I can create tables which make my summaries clear to the reader
+
 - **Q4**: Unless you specify `.groups = "drop"` within `summarize()` your table 
 still is grouped! 
     + `group_by()` + `summarize()` only drops the first group. 
     + If you have two variables inside `group_by()`, then the data will still 
     be grouped by the second variable!
+    
 - **Q7**: The data description contains important information! 
     + `mc_toddler` -- Aggregated weekly, full-time **median** price charged for
     Center-based Care for toddlers.
@@ -67,8 +83,10 @@ still is grouped!
 
 ## Recreating the Plot
 
+::: {.midi}
 > DVS-2: I use plot modifications to make my visualizations clearer to the
 > reader
+:::
 
 ::: {.small}
 - Facets ordered based on developmental stage **not** alphabetically
@@ -78,7 +96,9 @@ in the plot.
 
 . . .
 
+::: {.midi}
 > DVS-3: I show creativity in my visualizations
+:::
 
 ::: {.small}
 - Exploring different color themes
@@ -97,7 +117,7 @@ in the plot.
 
 ## Other "Big Picture" Code Feedback
 
-::: {.small}
+::: {.midi}
 > I strongly recommend against nested functions, as they are difficult for
 people to understand what your code is doing. Having two lines is not less
 efficient and is more readable. 
@@ -106,7 +126,7 @@ efficient and is more readable.
 #| eval: false
 #| echo: true
 #| label: nested-functions-from-student-code
-#| code-line-numbers: "|1"
+#| code-line-numbers: "|1-4|1,5-7"
 
 mutate(age_group = fct_relevel(fct_recode(age_group,
                                           "Infant" = "mc_infant",
@@ -118,28 +138,6 @@ mutate(age_group = fct_relevel(fct_recode(age_group,
 ```
 ::: 
 
-</br>
-
-. . .
-
-::: {.small}
-> Can you do this entire process in *one* pipeline?
-
-```{r}
-#| eval: false
-#| echo: true
-#| label: multiple-lines-instead-of-one-from-student-code
-#| code-line-numbers: false
-
-ca_counties <- counties |>
-  filter(state_name == "California")
-
-ca_childcare <- childcare_costs |>
-  inner_join(ca_counties)
-```
-:::
-
-
 ## Saving Objects That Aren't Worth Saving
 
 ::: {.small}
@@ -149,7 +147,7 @@ ca_childcare <- childcare_costs |>
 #| eval: false
 #| echo: true
 #| label: intermediate-object-from-student-code
-#| code-line-numbers: "|7"
+#| code-line-numbers: false
 
 lowest_child_care_price_2018 <- ca_childcare |>
   filter(study_year == 2018) |>
@@ -178,13 +176,14 @@ lowest_child_care_price_2018
 
 # Week 6 Layout
 
-- Tuesday: Writing Basic Functions
-  + Practice Activity
+- Tuesday: Version Control
+  + Live Code / Troubleshoot In-Class 
+  + Midterm Portfolio Work Session
   
 . . .
 
 - Thursday: Midterm Portfolio Work Session
-  + Midterm Portfolios Due Sunday, November 3
+  + Midterm Portfolios Due **Sunday**, October 19
 
 
 ## What to Expect
@@ -207,13 +206,10 @@ assignments.
 ## Getting Started
 
 ::: {.incremental}
-1. Follow [these directions](https://scribehow.com/shared/Forking_a_GitHub_Repository__TKGOvrrYQ1GMfYCafxercg) to fork a copy of the [Final Portfolio repository](https://github.com/atheobold/STAT331_portfolio_template). 
-
-2. Clone the repository into RStudio. 
-
-3. Open the `reflection_template.qmd` file and give it a read!
-
-4. Start finding excerpts of code you wrote for the Labs or Challenges that fit each learning target. 
+1. Follow [these directions]() to install `git` and sign-up for a GitHub account
+2. Follow [these directions](https://scribehow.com/shared/Forking_a_GitHub_Repository__TKGOvrrYQ1GMfYCafxercg) to fork a copy of the [Final Portfolio repository](https://github.com/atheobold/STAT331_portfolio_template). 
+3. Start finding excerpts of code you wrote for the Labs or Challenges that fit
+each learning target. 
 :::
 
 # Date + Time Variables
@@ -253,20 +249,21 @@ knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/thumb
 The `lubridate` package **installs** and **loads** with the `tidyverse`. 
 :::
 
-## `date-time` Objects
+<!-- ## `date-time` Objects -->
 
-There are multiple **data types** for dates and times.
+<!-- There are multiple **data types** for dates and times. -->
 
--   A date:
-    -   `date` or `Date`
--   A date and a time (identifies a unique instant in time):
-    -   `dtm`
-    -   `POSIXlt` -- stores date-times as the number of seconds since January 1, 1970 ("Unix Epoch")
-    -   `POSIXct` -- stores date-times as a list with elements for second, minute, hour, day, month, year, etc.
+<!-- -   A date: -->
+<!--     -   `date` or `Date` -->
+<!-- -   A date and a time (identifies a unique instant in time): -->
+<!--     -   `dtm` -->
+<!--     -   `POSIXlt` -- stores date-times as the number of seconds since January 1, 1970 ("Unix Epoch") -->
+<!--     -   `POSIXct` -- stores date-times as a list with elements for second, minute, hour, day, month, year, etc. -->
 
 ## Creating `date-time` Objects
 
-Create a date from individual components:
+::: {.midi}
+From individual components:
 
 ```{r}
 #| echo: true
@@ -274,10 +271,13 @@ Create a date from individual components:
 
 make_date(year = 1995, month = 05, day = 08)
 ```
+:::
 
-## Create a `date-time` Object from a String
+. . .
 
-::: {.small}
+::: {.midi}
+From a string:
+
 ```{r}
 #| echo: true
 #| code-line-numbers: false
@@ -288,7 +288,9 @@ mdy("August 29, 1991")
 
 . . .
 
-::: {.small}
+::: {.midi}
+With a time zone:
+
 ```{r}
 #| echo: true
 #| code-line-numbers: false
@@ -296,11 +298,7 @@ mdy("August 29, 1991")
 dmy("29-August-1991", 
     tz = "America/Denver")
 ```
-:::
 
-. . .
-
-::: {.small}
 ```{r}
 #| echo: true
 #| code-line-numbers: false
@@ -310,33 +308,25 @@ dmy_hms("29-August-1991 9:32:12",
 ```
 :::
 
-. . .
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: false -->
 
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
+<!-- as_datetime("91-08-29",  -->
+<!--             format = "%y-%m-%d") -->
+<!-- ``` -->
 
-as_datetime("91-08-29", 
-            format = "%y-%m-%d")
-```
-:::
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: false -->
 
-. . .
+<!-- parse_datetime("8/29/1991",  -->
+<!--                format = "%m/%d/%Y") -->
+<!-- ``` -->
 
-::: {.small}
-```{r}
-#| echo: true
-#| code-line-numbers: false
+<!-- ## Creating `date-time` Objects -->
 
-parse_datetime("8/29/1991", 
-               format = "%m/%d/%Y")
-```
-:::
-
-## Creating `date-time` Objects
-
-![](images/date_symbols.png){width="80%" fig-alt=""}
+<!-- ![](images/date_symbols.png){width="80%" fig-alt=""} -->
 
 ## Common Mistake with Dates
 
@@ -396,7 +386,7 @@ bday
 
 ::::: columns
 ::: column
-::: {.small}
+::: {.midi}
 ```{r}
 #| echo: true
 #| code-line-numbers: false
@@ -404,12 +394,13 @@ bday
 year(bday)
 month(bday)
 day(bday)
+hour(bday)
 ```
 :::
 :::
 
 ::: column
-::: {.small}
+::: {.midi}
 ::: {.fragment}
 ```{r}
 #| echo: true
@@ -451,8 +442,8 @@ How long did it take me to type this slide?
 #| echo: true
 #| code-line-numbers: false
 
-begin <- mdy_hms("10/21/2024 20:40:34")
-finish <- mdy_hms("10/21/2024 20:43:11")
+begin <- mdy_hms("10/13/2025 6:40:34")
+finish <- mdy_hms("10/13/2025 6:43:11")
 
 finish - begin
 ```
@@ -531,6 +522,42 @@ mdy(01141989) + dyears(99)
 :::
 :::
 
+## Intervals of Time
+
+::: {.midi}
+
+Suppose American Airlines requires members to travel within 4 weeks before or
+after their birthday to earn a "Birthday Bonus Flight."
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+interval_start <- bday - weeks(4)
+interval_end <- bday + weeks(4)
+bonus_flight_window <- interval(interval_start, interval_end)
+
+today() %within% bonus_flight_window
+```
+:::
+
+. . .
+
+</br>
+
+::: {.midi}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+bonus_flight_window <- interval(bday - weeks(4),
+                                bday + weeks(4), 
+                                tzone = "America/Los_Angeles")
+                          
+today() %within% bonus_flight_window
+```
+:::
+
 
 ## Time Zones...
 
@@ -556,31 +583,34 @@ Sys.timezone()
 
 ## Time Zones
 
+::: {.midi}
 You can change the time zone of a date in two ways:
 
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
-x <- ymd_hms("2024-10-24 18:00:00", 
+x <- ymd_hms("2025-10-13 18:00:00", 
              tz = "Europe/Copenhagen")
 ```
+:::
 
 . . .
 
 ::: columns
-::: {.column width="48%"}
+::: {.column width="52%"}
 `with_tz()`
 
 ::: {.small}
-Keeps the instant in time the same, but changes the visual representation.
+Keeps the instant in time the same, but modifies the representation based on the
+new time zone
 
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
 x |> 
-  with_tz()
+  with_tz(tzone = "America/Los_Angeles")
 
 x |> 
   with_tz(tzone = "Asia/Kolkata")
@@ -591,7 +621,7 @@ x |>
 ::: {.column width="3%"}
 :::
 
-::: {.column width="48%"}
+::: {.column width="45%"}
 ::: {.fragment}
 `force_tz()`
 
@@ -603,7 +633,7 @@ Changes the instant in time by forcing a time zone change.
 #| code-line-numbers: false
 
 x |> 
-  force_tz()
+  force_tz(tzone = "America/Los_Angeles")
 
 x |> 
   force_tz(tzone = "Asia/Kolkata")
@@ -615,10 +645,19 @@ x |>
 
 ## Common Mistake with Dates
 
+::: {.midi}
 When you read data in or create a new date-time object, the default time zone (if not specified) is UTC (Universal Time Coordinated)*.  
+:::
+
+::: {.small}
+*UTC is the same as GMT (Greenwich Mean Time)
+:::
 
 . . .
 
+</br>
+
+::: {.midi}
 So, make sure you specify your desired time zone!
 
 ```{r}
@@ -637,12 +676,11 @@ x <- mdy("11/20/1993",
          tz = "America/Los_Angeles")
 tz(x)
 ```
-
-::: {.small}
-*UTC is the same as GMT (Greenwich Mean Time)
 :::
 
-# [PA 5.2: Jewel Heist](../../group-activities/week-5/PA-5-dates.qmd) 
+
+
+# PA 5.2: Jewel Heist
 
 ::: columns
 ::: {.column width="40%"}
@@ -708,74 +746,58 @@ from dates
 :::
 :::
 
-## Task Card
+## Pair Programming Expectations
 
-Every group should have a **task card**! 
+```{r}
+#| echo: false
+#| fig-alt: "A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize."
 
-. . .
+knitr::include_graphics(here::here("group-activities", 
+                                   "collab-process.png")
+                        )
+```
 
-::: columns
-::: {.column width="40%"}
-**On the Front**
+## External Resources
 
-- the expectations of each role
-- the norms of collaborating
-:::
+During the Practice Activity, you **are not** permitted to use Google or ChatGPT
+for help. 
 
-::: {.column width="5%"}
-:::
+</br> 
 
-::: {.column width="55%"}
-::: {.fragment}
-**On the Back**
+You **are** permitted to use:
 
-::: {.small}
-- `lubridate` functions for different tasks you may encounter
-
-:::
-
-::: {.small}
-
-:::
-:::
-:::
-:::
-
-## Getting Started
-
-The partner who got the most sleep starts as the Developer (typing
-and listening to instructions from the Coder)!
-
-- The Coder **does not type**. 
-  * The collaborative editing feature should allow you to track what is being 
-  typed. 
-- The Developer **only types what they are told to type**. 
+- the `lubridate` cheatsheet,
+- the course textbook, 
+- any notes you've taken, and
+- the course slides. 
 
 ## Submission
 
 > Submit the name of the thief to the Canvas Quiz.
 
 - Each person will input the full name of the thief into the PA 5.2 quiz. 
-- The person who last occupied the role of Developer will download and submit 
-the `PA-5-dates.html` file for the group.
+- The person who last occupied the role of Computer will submit the link to your
+group's Colab notebook.
   + Only one submission per group!
 
-# [Lab 5: Murder in SQL City](../../labs/instructions/challenge-5-instructions.qmd)
+# 5-minute break
 
-::: columns
-::: {.column width="40%"}
+## Team Assignments - 9am
 
+::: {.centered}
+<!-- ![](images/section-70-seats.png){width=75%} -->
 :::
 
-::: {.column width="5%"}
+::: {.small}
+The partner who has broken the most bones starts as the Talker!
 :::
 
-::: {.column width="55%"}
-![](images/murder-in-sql-city.png){fig-alt="The image depicts a detective scene where a person wearing a trench coat and a wide-brimmed hat is standing in front of a bulletin board. The board contains various items connected by red strings, including a map, a photograph of mountains, a newspaper article with a photo of a person, a police badge, and a sticky note with the number '1992' on it. This setup is commonly associated with solving a mystery or crime, where clues are visually linked to help unravel the case. The detective appears to be analyzing these clues."}
-:::
+## Team Assignments - 12pm
+
+::: {.centered}
+<!-- ![](images/section-71-seats.png){width=75%} -->
 :::
 
-## To do...
-
--   **Lab 5: Murder in SQL City**
-    + due Sunday, October 27 at 11:59pm
+::: {.small}
+The partner who has broken the most bones starts as the Talker!
+:::

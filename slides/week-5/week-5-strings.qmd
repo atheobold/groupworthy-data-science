@@ -1155,67 +1155,49 @@ Every group should have a **stringr** cheatsheet!
 :::
 :::
 
+<!-- ## Pair Programming Expectations -->
+
+<!-- ::: columns -->
+<!-- ::: {.column width="49%"} -->
+<!-- **Typer** -->
+
+<!-- ::: {.small} -->
+<!-- -   Reads prompt and ensures Talker understands what is being asked.  -->
+<!-- -   Types the code specified by the Talker into the Quarto document. -->
+<!-- -   Runs the code provided by the Talker.  -->
+<!-- -   Works with Talker to debug the code.  -->
+<!-- -   Evaluates the output.   -->
+<!-- -   Works with Talker to write code comments.  -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ::: {.column width="2%"} -->
+<!-- ::: -->
+
+<!-- ::: {.column width="49%"} -->
+<!-- ::: {.fragment} -->
+<!-- **Talker** -->
+
+<!-- ::: {.small} -->
+<!-- -   Reads out instructions or prompts -->
+<!-- -   Directs the Typer what to type.  -->
+<!-- -   Talks with Typer about their ideas.  -->
+<!-- -   Manages resources (e.g., cheatsheets, textbook, slides).  -->
+<!-- -   Works with Typer to debug the code.  -->
+<!-- -   Works with Typer to write code comments.  -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::: -->
+
 ## Pair Programming Expectations
 
-::: columns
-::: {.column width="49%"}
-**Typer**
-
-::: {.small}
--   Reads prompt and ensures Talker understands what is being asked. 
--   Types the code specified by the Talker into the Quarto document.
--   Runs the code provided by the Talker. 
--   Works with Talker to debug the code. 
--   Evaluates the output.  
--   Works with Talker to write code comments. 
-:::
-:::
-
-::: {.column width="2%"}
-:::
-
-::: {.column width="49%"}
-::: {.fragment}
-**Talker**
-
-::: {.small}
--   Reads out instructions or prompts
--   Directs the Typer what to type. 
--   Talks with Typer about their ideas. 
--   Manages resources (e.g., cheatsheets, textbook, slides). 
--   Works with Typer to debug the code. 
--   Works with Typer to write code comments. 
-:::
-:::
-:::
-:::
-
-## Getting Started
-
-::: {.small}
-First, both of you will do the following:
-
-- Join your Practice Activity workspace in Posit Cloud
-- Log-in to Posit Cloud
-- Open the PA 5: Decode Secret Message project
-- Open the `PA-5-stringr.qmd` file
-:::
-
-. . .
-
-::: {.small}
-Then, the partner who has the most pets starts as the Typer (typing
-and listening to instructions from the Talker)!
-
-- The Talker **does not type**. 
-  * The collaborative editing feature should allow you to track what is being 
-  typed. 
-- The Typer **only types what they are told to type**. 
-:::
+![](images/collab-process.png){fig-alt="A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize."}
 
 ## External Resources
 
-During the Practice Activity, you **are not** permitted to use Google, ChatGPT, or websites for regular expressions for help. 
+During the Practice Activity, you **are not** permitted to use Google or ChatGPT
+for help. 
 . . .
 
 </br> 
@@ -1231,15 +1213,32 @@ You **are** permitted to use:
 
 > Submit the name of the movie the quote is from. 
 
-- Each person will input the full name of the movie the scrambled message is from into the PA5 quiz. 
-- The person who last occupied the role of Typer will download and submit the `PA-5.html` file for the group.
+- Each person will input the full name of the movie the scrambled message is
+from into the PA5 quiz. 
+- The person who last occupied the role of Typer will submit the link for your 
+Colab notebook (don't forget to use the share link!)
   + Only one submission per group!
 
+# 5-minute break
+
+## Team Assignments - 9am
+
+::: {.centered}
+<!-- ![](images/section-70-seats.png){width=75%} -->
+:::
+
+::: {.small}
+The partner who woke up the earliest starts as the Coder!
+:::
+
+## Team Assignments - 12pm
+
+::: {.centered}
+<!-- ![](images/section-71-seats.png){width=75%} -->
+:::
+
+::: {.small}
+The partner who woke up the earliest starts as the Coder!
+:::
+
 # Exit Ticket
-
-## To do...
-
-+ **PA 5.1: Scrambled Message**
-  + Due Wednesday, October 13 at 5pm
-+ Check-in 5.2: Functions from `lubridate`
-  + Due Thursday, October 14 at 8am

@@ -16,7 +16,7 @@ library(ggtext)
 
 # Challenge 2
 
-Here are some of the exemplary assignments from your peers! 
+Here are some of the exemplary assignments from your peers!
 
 ```{r}
 #| label: data-for-lab-2
@@ -57,7 +57,7 @@ ggplot(data = surveys,
 
 ## Unique Colors
 
-This code is brought to us by Fisher Fraley! I really appreciated how they found a unique color theme from a context they liked! 
+This code is brought to us by Fisher Fraley! I really appreciated how they found a unique color theme from a context they liked!
 
 ```{r}
 # Color Palette: https://color.adobe.com/TRON-color-theme-6970180/
@@ -79,7 +79,7 @@ ggplot(data = surveys, aes(x = weight, y = species, color = sex)) +
 
 ## Removing the Legend (and More)
 
-This code is brought to us by Lucy Thackray! I thought it was special that Lucy stacked all three challenged to make a clean, easy to read plot. 
+This code is brought to us by Lucy Thackray! I thought it was special that Lucy stacked all three challenged to make a clean, easy to read plot.
 
 ```{r}
 colors <- c("#f07857", "#4fb06d" )
@@ -99,7 +99,7 @@ ggplot(data = surveys,
 scale_color_manual(values = colors)
 ```
 
-<!-- # Lab 3 -->
+# Challenge 3
 
 ```{r}
 #| label: data-for-lab-3
@@ -133,6 +133,14 @@ teacher_evals_clean <- teacher_evals |>
   ) |>
   filter(no_participants >= 10)
 ```
+
+## Hypothesis Test Conclusion**
+
+These statements are brought to us by Abel Alcala and Sebastien Montgrain! I really appreciated the context they infused into their hypothesis test conclusion!
+
+**Based on the results of the Chi-Squared test of Independence, we have a p-value of 0.006075 and a X^2 value of 10.207. Since the p-value is less than α = 0.05, we reject the null hypotheses indicating a statistically significant association between seniority level and SET evaluation results. This suggests that instructor experience across junior, senior, and very senior appears to influence how students perceive the use of engaging activities in class.**
+
+**Because the p-value of our Chi-squared test of independence is less than 0.05 (0.006075), we know that there is an association between a teachers seniority and their SET scores from question 3 on if the professor used activities to make the class more engaging. Combining this Chi-squared test with the graph, we can see that more experienced teachers do a better job of implementing engaging activities is their classes.**
 
 <!-- # Lab 4 -->
 
@@ -226,4 +234,3 @@ fish <- read_csv(here::here("labs",
                             "BlackfootFish.csv")
                  )
 ```
-

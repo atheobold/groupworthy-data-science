@@ -99,20 +99,41 @@ ggplot(data = surveys,
 scale_color_manual(values = colors)
 ```
 
-# Challenge 3
+# Lab 3
 
 ```{r}
 #| label: data-for-lab-3
 #| echo: false
+
+library(knitr)
+
 teacher_evals <- read_csv(here::here("labs", 
                                      "student",
                                      "data",
                                      "teacher_evals.csv")
                           )
+```
 
-# From student's lab
+## `across()` + `mutate()`
+
+This code is brought to us by a student who wishes to remain anonymous! What I appreciated about this code was the use of `across()` when converting multiple columns to numeric. I also loved their use of the most current syntax for the
+`across()` function!
+
+```{r}
 teacher_evals_clean <- teacher_evals |>
   rename(sex = gender) |>
+  mutate(teacher_id = as.character(teacher_id),
+         question_no = as.character(question_no),
+         across(
+           .cols = c(no_participants, 
+                     resp_share, 
+                     SET_score_avg, 
+                     percent_failed_cur, 
+                     seniority),
+           .fns = ~ as.numeric(.x)
+           )
+         )|>
+  filter(no_participants > 10) |>
   select(course_id,
          teacher_id,
          question_no,
@@ -122,23 +143,107 @@ teacher_evals_clean <- teacher_evals |>
          percent_failed_cur,
          academic_degree,
          seniority,
-         sex
-         ) |>
-  mutate(
-    course_id = as.factor(course_id),
-    teacher_id = as.factor(teacher_id),
-    sex = as.factor(sex),
-    academic_degree = as.factor(academic_degree),
-    question_no = as.integer(question_no)
-  ) |>
-  filter(no_participants >= 10)
+         sex)
 ```
 
-## Hypothesis Test Conclusion**
+## Confirming Unique Row Identification
+
+This code is brought to us by Akshat Khandelwal! I thought it was very clever how Akshat played with different combinations of variables to confirm which combination uniquely identified a row.
+
+```{r}
+#| echo: true
+
+teacher_question <- teacher_evals |>
+  distinct(teacher_id, question_no)
+
+print(nrow(teacher_question) == nrow(teacher_evals))  # False
+
+teacher_question_course <- teacher_evals |>
+  distinct(teacher_id, question_no, course_id)
+
+print(nrow(teacher_question_course) == nrow(teacher_evals))  # True
+
+course_question <- teacher_evals |>
+  distinct(question_no, course_id) 
+
+print(nrow(course_question) == nrow(teacher_evals)) # False
+```
+
+## Proportions in Demographic Table
+
+This code is brought to us by Arturo Ordaz-Gutierrez! I really appreciated how Art added the proportions to this demographic table so it is easier to see the representation of each group. 
+
+```{r}
+#| echo: true
+
+teacher_evals_clean |>
+  distinct(teacher_id, .keep_all = TRUE) |>
+  count(academic_degree, sex) |>
+  mutate(percent = round(100 * n / sum(n), 1)) |>
+  arrange(desc(percent))
+```
+
+## `across()` + `summarize()`
+
+This code is brought to us by Rachel Survilas! I loved how Rachel noticed they were using the same `n_distinct()` function **across** multiple columns and 
+decided to use `across()`! Also, the syntax they are using is on point!
+
+```{r}
+#| echo: true
+
+teacher_evals_clean |> 
+  summarize(
+    across(
+      .cols = c(teacher_id, course_id),
+      .fns = ~ n_distinct(.x))
+    )
+```
+
+## Slicing the Max & Min Together
+
+This code is brought to us by a student who wishes to remain anonymous! I thought this code was great because they got both the maximum values and the minimum values in **one** pipeline. Very efficient!
+
+```{r}
+#| echo: true
+
+teacher_evals_clean |>
+  filter(seniority == 1) |>
+  group_by(teacher_id) |>
+  summarize(
+    avg_rating = mean(percent_failed_cur, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  filter(
+    avg_rating == min(avg_rating)|
+    avg_rating == max(avg_rating)
+  ) |> 
+  arrange(avg_rating)
+```
+
+## Using `kable()` for Nicer Looking Tables
+
+This code is brought to us by a student who wishes to remain anonymous! I appreciated that they read the instructions to use the `kable()` function to get nicer looking tables. The code is very simple, but the tables look **much** nicer!
+
+```{r}
+#| echo: true
+
+percent_failed <- teacher_evals_clean |> 
+  group_by(teacher_id) |> 
+  filter(seniority == 1) |> 
+  summarize(avg_percent_failed = mean(percent_failed_cur))
+
+percent_failed |> 
+  slice_min(avg_percent_failed) |> 
+  kable()
+```
+
+# Challenge 3
+
+## Hypothesis Test Conclusion
 
 These statements are brought to us by Abel Alcala and Sebastien Montgrain! I really appreciated the context they infused into their hypothesis test conclusion!
 
-**Based on the results of the Chi-Squared test of Independence, we have a p-value of 0.006075 and a X^2 value of 10.207. Since the p-value is less than α = 0.05, we reject the null hypotheses indicating a statistically significant association between seniority level and SET evaluation results. This suggests that instructor experience across junior, senior, and very senior appears to influence how students perceive the use of engaging activities in class.**
+**Based on the results of the Chi-Squared test of Independence, we have a p-value of 0.006075 and a X\^2 value of 10.207. Since the p-value is less than α = 0.05, we reject the null hypotheses indicating a statistically significant association between seniority level and SET evaluation results. This suggests that instructor experience across junior, senior, and very senior appears to influence how students perceive the use of engaging activities in class.**
 
 **Because the p-value of our Chi-squared test of independence is less than 0.05 (0.006075), we know that there is an association between a teachers seniority and their SET scores from question 3 on if the professor used activities to make the class more engaging. Combining this Chi-squared test with the graph, we can see that more experienced teachers do a better job of implementing engaging activities is their classes.**
 

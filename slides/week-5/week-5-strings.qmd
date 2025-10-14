@@ -1129,31 +1129,31 @@ expressions to decode a message.
 :::
 :::
 
-## stringr Resources
+<!-- ## stringr Resources -->
 
-::: columns
-::: {.column width="60%"}
-Every group should have a **stringr** cheatsheet!
+<!-- ::: columns -->
+<!-- ::: {.column width="60%"} -->
+<!-- Every group should have a **stringr** cheatsheet! -->
 
-::: {.small}
-**On the Front**: 
+<!-- ::: {.small} -->
+<!-- **On the Front**:  -->
 
-- Detecting matches (e.g., Does a string have a specific pattern?)
-- Subsetting strings (e.g., Extract strings with specific patterns!)
-- Managing lengths (e.g., How long are the strings? Removing whitespace!)
-- Mutating strings (e.g., Replace specific patterns!)
-- Join & Flatten (e.g., Collapsing multiple strings into a single string!)
-:::
-:::
+<!-- - Detecting matches (e.g., Does a string have a specific pattern?) -->
+<!-- - Subsetting strings (e.g., Extract strings with specific patterns!) -->
+<!-- - Managing lengths (e.g., How long are the strings? Removing whitespace!) -->
+<!-- - Mutating strings (e.g., Replace specific patterns!) -->
+<!-- - Join & Flatten (e.g., Collapsing multiple strings into a single string!) -->
+<!-- ::: -->
+<!-- ::: -->
 
-::: {.column width="5%"}
-:::
+<!-- ::: {.column width="5%"} -->
+<!-- ::: -->
 
-::: {.column width="35%"}
-![](images/stringr-cheatsheet.png){fig-alt=""}
+<!-- ::: {.column width="35%"} -->
+<!-- ![](images/stringr-cheatsheet.png){fig-alt=""} -->
 
-:::
-:::
+<!-- ::: -->
+<!-- ::: -->
 
 <!-- ## Pair Programming Expectations -->
 
@@ -1204,8 +1204,8 @@ for help.
 
 You **are** permitted to use:
 
+- the handout, 
 - the `stringr` cheatsheet, 
-- the task card, 
 - the course textbook, and
 - the course slides. 
 
@@ -1224,21 +1224,23 @@ Colab notebook (don't forget to use the share link!)
 ## Team Assignments - 9am
 
 ::: {.centered}
-<!-- ![](images/section-70-seats.png){width=75%} -->
+![](images/section-70-seats.png){width=75%}
 :::
 
 ::: {.small}
-The partner who woke up the earliest starts as the Coder!
+The person who has the most pets starts as the Typer (listening to explanations
+from the Talker)!
 :::
 
 ## Team Assignments - 12pm
 
 ::: {.centered}
-<!-- ![](images/section-71-seats.png){width=75%} -->
+![](images/section-71-seats.png){width=75%}
 :::
 
 ::: {.small}
-The partner who woke up the earliest starts as the Coder!
+The person who has the most pets starts as the Typer (listening to explanations
+from the Talker)!
 :::
 
 # Exit Ticket

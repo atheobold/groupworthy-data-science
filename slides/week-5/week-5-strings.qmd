@@ -148,7 +148,6 @@ colleges$INSTNM[214] |>
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "100px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 
@@ -178,7 +177,6 @@ colleges$INSTNM |>
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 :::
@@ -352,7 +350,6 @@ str_subset(colleges$INSTNM,
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 :::
@@ -385,7 +382,6 @@ str_subset(colleges$INSTNM,
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 :::
@@ -418,11 +414,10 @@ str_subset(colleges$INSTNM,
 #| code-line-numbers: false
 #| eval: true
 
-str_subset(colleges$INSTNM, pattern = "St[.]+") |> 
+str_subset(colleges$INSTNM, pattern = "St\\.+") |> 
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ``` 
 :::
@@ -456,7 +451,6 @@ str_subset(colleges$INSTNM,
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 
 ```
@@ -493,7 +487,6 @@ str_subset(colleges$INSTNM, pattern = "[A-Z]{4}") |>
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 :::
@@ -527,12 +520,11 @@ str_subset(colleges$INSTNM, pattern = "[A-Z]{4,6}") |>
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 
 ::: {.callout-tip}
-If you wanted **at least 4** you could leave off the value for `m`: `{4,}`
+## Want **at least 4**? `{4,}`
 :::
 :::
 :::
@@ -566,7 +558,6 @@ str_subset(colleges$INSTNM,
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 
@@ -604,7 +595,7 @@ str_subset(colleges$INSTNM,
            pattern = "[:digit:]+")
 
 str_subset(colleges$INSTNM, 
-           pattern = "[:punct:]{2,}")
+           pattern = "[:punct:]{1,}")
 ```
 :::
 :::
@@ -626,7 +617,7 @@ str_subset(colleges$INSTNM,
 #| code-line-numbers: false
 
 str_subset(colleges$INSTNM, 
-           pattern = "[^University]")
+           pattern = "[^y]$")
 ```
 
 ```{r}
@@ -635,11 +626,10 @@ str_subset(colleges$INSTNM,
 #| code-line-numbers: false
 
 str_subset(colleges$INSTNM, 
-           pattern = "[^University]") |> 
+           pattern = "[^y]$") |> 
   as_tibble() |> 
   rename(INSTNM = value) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 :::
@@ -748,7 +738,6 @@ colleges |>
 colleges |> 
   filter(str_detect(INSTNM, pattern = "Polytechnic")) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 
@@ -811,7 +800,6 @@ colleges |>
                               replacement = "U")
          ) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 
@@ -855,9 +843,8 @@ colleges |>
 ```
 
 ```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
+#| echo: false
+#| eval: true
 
 colleges |> 
   mutate(INSTNM = str_remove(INSTNM, 
@@ -865,7 +852,6 @@ colleges |>
                              )
          ) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
 
@@ -876,13 +862,15 @@ colleges |>
 > returns number of elements (characters) of a string
 
 ```{r}
+#| echo: true
 colleges |> 
   mutate(
     name_length = str_length(INSTNM)
-         )
+         ) |> 
+  select(INSTNM, name_length)
 ```
 
-# Change the Length of a String
+# Change the Length
 
 > shorten or lengthen a string to a specified length
 
@@ -903,23 +891,7 @@ colleges |>
   mutate(short_name = str_sub(INSTNM, 
                                   start = 1,
                                   end = 8)
-         ) |> 
-  select(INSTNM, short_name)
-```
-
-```{r}
-#| echo: false
-#| eval: true
-
-colleges |> 
-  mutate(short_name = str_sub(INSTNM, 
-                                  start = 1,
-                                  end = 8)
-         ) |> 
-  select(INSTNM, short_name) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
-  kableExtra::kable_styling(font_size = 25)
+         )
 ```
 
 ### `str_pad()`
@@ -935,25 +907,10 @@ Make every string have a fixed length (width)
 
 colleges |> 
   mutate(long_name = str_pad(INSTNM, 
-                                  width = 20, 
-                                  pad = "_")
-         ) |> 
-  select(INSTNM, long_name)
-```
-
-```{r}
-#| echo: false
-#| eval: true
-
-colleges |> 
-  mutate(long_name = str_pad(INSTNM, 
-                                  width = 20, 
-                                  pad = "_")
-         ) |> 
-  select(INSTNM, long_name) |> 
-  knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
-  kableExtra::kable_styling(font_size = 25)
+                             width = 20, 
+                             pad = "_", 
+                             side = "both")
+         )
 ```
 
 :::
@@ -962,14 +919,15 @@ colleges |>
 
 ## Edit Capitalization of Strings
 
-::: {.midi}
+::: {.small}
 Convert letters in a string to a specific capitalization format.
 :::
 
 ::: panel-tabset
 
-### `str_to_lower()` 
+### [`str_to_lower()`]{.midi}
 
+::: {.small}
 > converts all letters in a string to lowercase.
 
 ```{r}
@@ -988,12 +946,13 @@ colleges |>
 colleges |> 
   mutate(INSTNM = str_to_lower(INSTNM)) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
+:::
 
-### `str_to_upper()` 
+### [`str_to_upper()`]{.midi}
 
+::: {.small}
 > converts all letters in a string to uppercase.
 
 ```{r}
@@ -1012,12 +971,13 @@ colleges |>
 colleges |> 
   mutate(INSTNM = str_to_upper(INSTNM)) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
+:::
 
-### `str_to_title()` 
+### [`str_to_title()`]{.midi}
 
+::: {.small}
 > converts the first letter of each word to uppercase.
 
 ```{r}
@@ -1036,9 +996,9 @@ colleges |>
 colleges |> 
   mutate(INSTNM = str_to_title(INSTNM)) |> 
   knitr::kable() |> 
-  kableExtra::scroll_box(height = "450px") |> 
   kableExtra::kable_styling(font_size = 25)
 ```
+:::
 :::
 
 # Handling Whitespace
@@ -1110,7 +1070,7 @@ expressions to decode a message.
 ::: columns
 ::: {.column width="60%"}
 ::: {.small}
-- indexing vectors
+- functions from `dplyr`
 - `stringr` functions for previewing string contents
 - regular expressions for locating patterns
 - `stringr` functions for removing whitespace
@@ -1192,7 +1152,14 @@ expressions to decode a message.
 
 ## Pair Programming Expectations
 
-![](images/collab-process.png){fig-alt="A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize."}
+```{r}
+#| echo: false
+#| fig-alt: "A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize."
+
+knitr::include_graphics(here::here("group-activities", 
+                                   "collab-process.png")
+                        )
+```
 
 ## External Resources
 

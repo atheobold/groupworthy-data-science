@@ -23,8 +23,7 @@ Today we will...
 ::: columns
 ::: {.column width="55%"}
 -   Reminder About Lab 3 / Challenge 3 Revisions
--   Debrief Lab 4
-    + Lab 4 Peer Code Review
+-   Reminder About Lab 4 Peer Code Review
 -   Week 6 Layout
     + What to Expect
     + Midterm Portfolios
@@ -52,115 +51,6 @@ Today we will...
 
 Any problem receiving a "Growing" can be revised and submitted for additional
 feedback
-
-# Lab 4
-
-## Common Mishaps
-
-::: {.incremental}
-::: {.small}
-- **Q1**: Who collected these data? When were the data collected?
-
-- **Q4**: Column titles of `2008` and `2018` are not descriptive! 
-    + Creating column names that **describe** the values stored in those
-    columns!
-    + The `names_prefix = ` argument to `pivot_wider()` can help you make better
-    column names! 
-    + DVS-6: I can create tables which make my summaries clear to the reader
-
-- **Q4**: Unless you specify `.groups = "drop"` within `summarize()` your table 
-still is grouped! 
-    + `group_by()` + `summarize()` only drops the first group. 
-    + If you have two variables inside `group_by()`, then the data will still 
-    be grouped by the second variable!
-    
-- **Q7**: The data description contains important information! 
-    + `mc_toddler` -- Aggregated weekly, full-time **median** price charged for
-    Center-based Care for toddlers.
-    + `mhi_2018` -- **Median** household income expressed in 2018 dollars.
-:::
-:::
-
-## Recreating the Plot
-
-::: {.midi}
-> DVS-2: I use plot modifications to make my visualizations clearer to the
-> reader
-:::
-
-::: {.small}
-- Facets ordered based on developmental stage **not** alphabetically
-- Ordering colors in the legend so they appear in the same order as the lines
-in the plot. 
-:::
-
-. . .
-
-::: {.midi}
-> DVS-3: I show creativity in my visualizations
-:::
-
-::: {.small}
-- Exploring different color themes
-    + Personally, I like the `"Accent"` palette from the RColorBrewer package, 
-    but you might like others! 
-    + Getting 10 colors is hard! I would recommend looking into the 
-    `colorRampPalette()` function to get more colors. 
-:::
-
-. . .
-
-::: {.small}
-- Exploring different plot themes
-    + Personally, I like `theme_bw()`, but you might like others! 
-:::
-
-## Other "Big Picture" Code Feedback
-
-::: {.midi}
-> I strongly recommend against nested functions, as they are difficult for
-people to understand what your code is doing. Having two lines is not less
-efficient and is more readable. 
-
-```{r}
-#| eval: false
-#| echo: true
-#| label: nested-functions-from-student-code
-#| code-line-numbers: "|1-4|1,5-7"
-
-mutate(age_group = fct_relevel(fct_recode(age_group,
-                                          "Infant" = "mc_infant",
-                                          "Toddler" = "mc_toddler",
-                                          "Preschool" = "mc_preschool"),
-                                "Infant",
-                                "Toddler",
-                                "Preschool"))
-```
-::: 
-
-## Saving Objects That Aren't Worth Saving
-
-::: {.small}
-> We should only save objects that we need to use later! 
-
-```{r}
-#| eval: false
-#| echo: true
-#| label: intermediate-object-from-student-code
-#| code-line-numbers: false
-
-lowest_child_care_price_2018 <- ca_childcare |>
-  filter(study_year == 2018) |>
-  group_by(region) |>   
-  summarise(median_infant_price = median(mc_infant)) |> 
-  slice_min(order_by = median_infant_price)
-
-lowest_child_care_price_2018
-```
-
-
-:::
-
 
 # Don't forget to complete your Lab 4 code review!
 
@@ -528,16 +418,21 @@ mdy(01141989) + dyears(99)
 
 Suppose American Airlines requires members to travel within 4 weeks before or
 after their birthday to earn a "Birthday Bonus Flight."
+:::
+
+. . .
+
+::: {.midi}
+Well, we first need to make an interval of time around my birthday.
 
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
-interval_start <- bday - weeks(4)
-interval_end <- bday + weeks(4)
-bonus_flight_window <- interval(interval_start, interval_end)
-
-today() %within% bonus_flight_window
+bonus_flight_window <- interval(
+  bday - weeks(4),
+  bday + weeks(4)
+  )
 ```
 :::
 
@@ -546,14 +441,13 @@ today() %within% bonus_flight_window
 </br>
 
 ::: {.midi}
+
+Then I can check if today is within this interval. 
+
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
-bonus_flight_window <- interval(bday - weeks(4),
-                                bday + weeks(4), 
-                                tzone = "America/Los_Angeles")
-                          
 today() %within% bonus_flight_window
 ```
 :::
@@ -714,37 +608,37 @@ tz(x)
 [**None of us have all these abilities. Each of us has some of these abilities.**]{.midi}
 
 
-## lubridate Resources
+<!-- ## lubridate Resources -->
 
-::: columns
-::: {.column width="60%"}
-Every group should have a **lubridate** cheatsheet!
+<!-- ::: columns -->
+<!-- ::: {.column width="60%"} -->
+<!-- Every group should have a **lubridate** cheatsheet! -->
 
-::: {.small}
-**On the Front**: 
+<!-- ::: {.small} -->
+<!-- **On the Front**:  -->
 
-- **Middle Column** -- functions related to "getting components" of dates
-- **Bottom Right** -- functions related to time zones
-:::
+<!-- - **Middle Column** -- functions related to "getting components" of dates -->
+<!-- - **Bottom Right** -- functions related to time zones -->
+<!-- ::: -->
 
-::: {.fragment}
-::: {.small}
-**On the Back**: 
+<!-- ::: {.fragment} -->
+<!-- ::: {.small} -->
+<!-- **On the Back**:  -->
 
-- **Left Column** -- functions related to adding / subtracting "periods" to / 
-from dates
-- **Right Column** -- functions related to creating and using intervals of time
-:::
-:::
-:::
+<!-- - **Left Column** -- functions related to adding / subtracting "periods" to /  -->
+<!-- from dates -->
+<!-- - **Right Column** -- functions related to creating and using intervals of time -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::: -->
 
-::: {.column width="5%"}
-:::
+<!-- ::: {.column width="5%"} -->
+<!-- ::: -->
 
-::: {.column width="35%"}
-![](images/lubridate-cheatsheet.png){fig-alt="The image is a cheat sheet for the lubridate R package, titled 'Dates and times with lubridate::CHEATSHEET.' It is packed with key information on working with dates and times using lubridate, displayed in a visually organized format."}
-:::
-:::
+<!-- ::: {.column width="35%"} -->
+<!-- ![](images/lubridate-cheatsheet.png){fig-alt="The image is a cheat sheet for the lubridate R package, titled 'Dates and times with lubridate::CHEATSHEET.' It is packed with key information on working with dates and times using lubridate, displayed in a visually organized format."} -->
+<!-- ::: -->
+<!-- ::: -->
 
 ## Pair Programming Expectations
 
@@ -766,10 +660,10 @@ for help.
 
 You **are** permitted to use:
 
+- today's handout, 
 - the `lubridate` cheatsheet,
-- the course textbook, 
-- any notes you've taken, and
-- the course slides. 
+- the course slides, and 
+- the course textbook
 
 ## Submission
 

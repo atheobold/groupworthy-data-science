@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.22">
+<meta name="generator" content="quarto-1.7.32">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Week 1, Part 3: Version Control with Git and GitHub – Introduction to Statistical Computing in R</title>
+<title>Week 6: Version Control with Git and GitHub – Introduction to Statistical Computing in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -87,15 +87,14 @@ div.csl-indent {
 <link href="../images/stat-331-hex.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-be11573b6374e633292ee320d3d6b571.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-9d3871c3a33628a85db1522934fdc5ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -134,8 +133,6 @@ div.csl-indent {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Introduction to Statistical Computing in R</span>
     </a>
@@ -185,27 +182,26 @@ div.csl-indent {
   <li><a href="#objectives" id="toc-objectives" class="nav-link active" data-scroll-target="#objectives"><span class="header-section-number">0.1</span> Objectives</a></li>
   <li><a href="#what-is-version-control" id="toc-what-is-version-control" class="nav-link" data-scroll-target="#what-is-version-control"><span class="header-section-number">1</span> What is Version Control?</a>
   <ul class="collapse">
-  <li><a href="#required-reading-big-picture" id="toc-required-reading-big-picture" class="nav-link" data-scroll-target="#required-reading-big-picture">📖 Required Reading: Big Picture</a></li>
+  <li><a href="#required-reading-big-picture-why-git-why-github" id="toc-required-reading-big-picture-why-git-why-github" class="nav-link" data-scroll-target="#required-reading-big-picture-why-git-why-github">📖 Required Reading: Big Picture: Why Git? Why GitHub?</a></li>
   </ul></li>
   <li><a href="#git" id="toc-git" class="nav-link" data-scroll-target="#git"><span class="header-section-number">2</span> Git</a>
   <ul class="collapse">
   <li><a href="#git-basics" id="toc-git-basics" class="nav-link" data-scroll-target="#git-basics">Git Basics</a></li>
-  <li><a href="#check-in-1.6-install-git" id="toc-check-in-1.6-install-git" class="nav-link" data-scroll-target="#check-in-1.6-install-git">✅ Check-in 1.6: Install Git</a></li>
   </ul></li>
   <li><a href="#github" id="toc-github" class="nav-link" data-scroll-target="#github"><span class="header-section-number">3</span> GitHub</a>
   <ul class="collapse">
   <li><a href="#required-reading-register-for-a-github-account" id="toc-required-reading-register-for-a-github-account" class="nav-link" data-scroll-target="#required-reading-register-for-a-github-account">📖 Required Reading: Register for a GitHub Account</a></li>
-  <li><a href="#check-in-1.7-register-for-a-github-account" id="toc-check-in-1.7-register-for-a-github-account" class="nav-link" data-scroll-target="#check-in-1.7-register-for-a-github-account">✅ Check-in 1.7 Register for a GitHub Account</a></li>
+  <li><a href="#check-in-6.2-register-for-a-github-account" id="toc-check-in-6.2-register-for-a-github-account" class="nav-link" data-scroll-target="#check-in-6.2-register-for-a-github-account">✅ Check-in 6.2 Register for a GitHub Account</a></li>
   </ul></li>
   <li><a href="#introducing-yourself-to-git" id="toc-introducing-yourself-to-git" class="nav-link" data-scroll-target="#introducing-yourself-to-git"><span class="header-section-number">4</span> Introducing Yourself to Git</a>
   <ul class="collapse">
   <li><a href="#required-reading-introduce-yourself-to-git" id="toc-required-reading-introduce-yourself-to-git" class="nav-link" data-scroll-target="#required-reading-introduce-yourself-to-git">📖 Required Reading: Introduce Yourself to Git</a></li>
-  <li><a href="#check-in-1.8-introduce-yourself-to-git" id="toc-check-in-1.8-introduce-yourself-to-git" class="nav-link" data-scroll-target="#check-in-1.8-introduce-yourself-to-git">✅ Check-in 1.8: Introduce Yourself to git</a></li>
+  <li><a href="#check-in-6.3-introduce-yourself-to-git" id="toc-check-in-6.3-introduce-yourself-to-git" class="nav-link" data-scroll-target="#check-in-6.3-introduce-yourself-to-git">✅ Check-in 6.3 Introduce Yourself to git</a></li>
   </ul></li>
   <li><a href="#connecting-git-github-and-rstudio" id="toc-connecting-git-github-and-rstudio" class="nav-link" data-scroll-target="#connecting-git-github-and-rstudio"><span class="header-section-number">5</span> Connecting Git, GitHub, and RStudio</a>
   <ul class="collapse">
   <li><a href="#required-reading-personal-access-tokens-for-https" id="toc-required-reading-personal-access-tokens-for-https" class="nav-link" data-scroll-target="#required-reading-personal-access-tokens-for-https">📖 Required Reading: Personal Access Tokens for HTTPS</a></li>
-  <li><a href="#check-in-1.9-pat" id="toc-check-in-1.9-pat" class="nav-link" data-scroll-target="#check-in-1.9-pat">✅ Check-in 1.9: PAT</a></li>
+  <li><a href="#check-in-6.4-pat" id="toc-check-in-6.4-pat" class="nav-link" data-scroll-target="#check-in-6.4-pat">✅ Check-in 6.4: PAT</a></li>
   </ul></li>
   <li><a href="#getting-started-with-github" id="toc-getting-started-with-github" class="nav-link" data-scroll-target="#getting-started-with-github"><span class="header-section-number">6</span> Getting Started with GitHub</a></li>
   <li><a href="#learn-more" id="toc-learn-more" class="nav-link" data-scroll-target="#learn-more"><span class="header-section-number">7</span> Learn More</a>
@@ -220,7 +216,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 1, Part 3: Version Control with Git and GitHub</h1>
+<h1 class="title">Week 6: Version Control with Git and GitHub</h1>
 </div>
 
 
@@ -248,7 +244,7 @@ div.csl-indent {
 </section>
 <section id="objectives" class="level2" data-number="0.1">
 <h2 data-number="0.1" class="anchored" data-anchor-id="objectives"><span class="header-section-number">0.1</span> Objectives</h2>
-<p>Most of this section is either heavily inspired by Happy Git and Github for the UseR <span class="citation" data-cites="bryanHappyGitGitHub2021">(<a href="#ref-bryanHappyGitGitHub2021" role="doc-biblioref">Bryan, Hester, and The Stat 545 TAs 2021</a>)</span> or directly links to that book.</p>
+<p>Most of this section is either heavily inspired by <a href="https://happygitwithr.com/">Happy Git and Github for the UseR</a> <span class="citation" data-cites="bryanHappyGitGitHub2021">(<a href="#ref-bryanHappyGitGitHub2021" role="doc-biblioref">Bryan, Hester, and The Stat 545 TAs 2021</a>)</span> or directly links to that book.</p>
 <ul>
 <li>Recognize the benefits of using version control to improve your coding practices and workflow.</li>
 <li>Identify git / GitHub as a version control platform (and helper).</li>
@@ -259,22 +255,23 @@ div.csl-indent {
 <section id="what-is-version-control" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> What is Version Control?</h1>
 <p>Version control is a system that (1) allows you to store your files in the cloud, (2) track change in those files over time, and (3) share your files with others.</p>
-<section id="required-reading-big-picture" class="level3">
-<h3 class="anchored" data-anchor-id="required-reading-big-picture">📖 Required Reading: <a href="https://happygitwithr.com/big-picture">Big Picture</a></h3>
+<section id="required-reading-big-picture-why-git-why-github" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading-big-picture-why-git-why-github">📖 Required Reading: <a href="https://happygitwithr.com/big-picture">Big Picture: Why Git? Why GitHub?</a></h3>
 </section>
 </section>
 <section id="git" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> Git</h1>
 <div class="columns">
-<div class="column" style="width:40%;">
+<div class="column" style="width:35%;">
 <p>Git is a <strong>version control system</strong> - a structured way for tracking changes to files over the course of a project that may also make it easy to have multiple people working on the same files at the same time. Git manages a collection of files in a structured way—like “track changes” in Microsoft Word or version history in Google Docs, but much more powerful.</p>
+<p>If you are working alone, you will benefit from adopting version control because it removes the need to add <code>_final.qmd</code> or <code>_final_finalforreal.qmd</code> to the end of your file names. However, most of us work in collaboration</p>
 </div><div class="column" style="width:5%;">
 
-</div><div class="column" style="width:55%;">
-<p><img src="https://www.phdcomics.com/comics/archive/phd101212s.gif" class="img-fluid" style="width:50.0%" alt=""></p>
+</div><div class="column" style="width:50%;">
+<p><img src="https://www.phdcomics.com/comics/archive/phd101212s.gif" class="img-fluid" style="width:80.0%" alt=""></p>
 </div>
 </div>
-<p>If you are working alone, you will benefit from adopting version control because it removes the need to add <code>_final.qmd</code> or <code>_final_finalforreal.qmd</code> to the end of your file names. However, most of us work in collaboration with other people (or will have to work with others eventually), so one of the goals of this program is to teach you how to use git because it is a useful tool that will make you a better collaborator.</p>
+<p>with other people (or will have to work with others eventually), so one of the goals of this program is to teach you how to use git because it is a useful tool that will make you a better collaborator.</p>
 <p>In data science programming, we use git for a similar, but slightly different purpose. We use it to keep track of changes not only to code files, but to data files, figures, reports, and other essential bits of information.</p>
 <section id="git-basics" class="level3">
 <h3 class="anchored" data-anchor-id="git-basics">Git Basics</h3>
@@ -285,18 +282,97 @@ div.csl-indent {
 <section id="required-reading-install-git" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading-install-git">📖 Required Reading: <a href="https://happygitwithr.com/install-git">Install Git</a></h3>
 </section>
+<section id="check-in-6.1-install-git" class="level3">
+<h3 class="anchored" data-anchor-id="check-in-6.1-install-git">✅ Check-in 6.1 Install Git</h3>
+<p>We will be working with Git/GitHub every week for the next 10 weeks, starting this week! To be prepared for class, follow the instructions in the above reading to install Git onto your computer.</p>
+</section>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:45%;">
-<p><img src="images/week-1/git.png" class="img-fluid" alt="Person 1: 'This is GIT. It tracks collaborative work on projects through a beautiful distributed graph theory tree model'. Person 2: 'Cool, How do we use it?' Person 1: 'No Idea. Just memorize these shell commands and type them to sync up. If you get errors, save your work elsewhere, delete the project, and download a fresh copy.'"></p>
+<p><img src="images/week-6/git.png" class="img-fluid" alt="Person 1: 'This is GIT. It tracks collaborative work on projects through a beautiful distributed graph theory tree model'. Person 2: 'Cool, How do we use it?' Person 1: 'No Idea. Just memorize these shell commands and type them to sync up. If you get errors, save your work elsewhere, delete the project, and download a fresh copy.'"></p>
 </div>
 </div>
-</section>
-<section id="check-in-1.6-install-git" class="level3">
-<h3 class="anchored" data-anchor-id="check-in-1.6-install-git">✅ Check-in 1.6: Install Git</h3>
-<p>We will be working with Git/GitHub every week for the next 10 weeks, starting this week! To be prepared for class, follow the instructions in the above reading to install Git onto your computer.</p>
-<!-- Change to a screenshot they need to submit -->
-<p>Once you have installed Git, tell me “yes” in the Canvas Quiz.</p>
+<p><strong>Your submission for this check-in is a screenshot demonstrating that you have successfully installed git onto your computer.</strong></p>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+If you have a PC, then you need to:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Open the Command Prompt</li>
+</ol>
+<ul>
+<li>Press the Windows key, type cmd, and hit Enter.</li>
+</ul>
+<ol start="2" type="1">
+<li>Check the Git version:</li>
+</ol>
+<ul>
+<li>In the Command Prompt window, type: <code>git --version</code> and press Enter.</li>
+</ul>
+<p>You should see something like:</p>
+<pre><code>git version 2.45.1.windows.1</code></pre>
+<ol start="3" type="1">
+<li>Take a screenshot:</li>
+</ol>
+<ul>
+<li>Make sure both the command and the result are visible.</li>
+<li>Crop your image so it only included the necessary content (not your entire desktop!)</li>
+<li>Save it as a .png or .jpg file.</li>
+</ul>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:2%;">
+
+</div><div class="column" style="width:50%;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+If you have a Mac, you need to:
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Open the Terminal:</li>
+</ol>
+<ul>
+<li>Press Command + Space, type Terminal, and press Enter.</li>
+</ul>
+<ol start="2" type="1">
+<li>Check the Git version:</li>
+</ol>
+<ul>
+<li>In the Command Prompt window, type: <code>git --version</code> and press Return.</li>
+</ul>
+<p>You should see something like:</p>
+<pre><code>git version 2.49.0</code></pre>
+<ol start="3" type="1">
+<li>Take a screenshot:</li>
+</ol>
+<ul>
+<li>Press Command + Shift + 4, then drag to select the Terminal window.</li>
+<li>The screenshot will appear on your Desktop by default.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="github" class="level1" data-number="3">
@@ -307,10 +383,10 @@ div.csl-indent {
 <section id="required-reading-register-for-a-github-account" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading-register-for-a-github-account">📖 Required Reading: <a href="https://happygitwithr.com/github-acct">Register for a GitHub Account</a></h3>
 </section>
-<section id="check-in-1.7-register-for-a-github-account" class="level3">
-<h3 class="anchored" data-anchor-id="check-in-1.7-register-for-a-github-account">✅ Check-in 1.7 Register for a GitHub Account</h3>
+<section id="check-in-6.2-register-for-a-github-account" class="level3">
+<h3 class="anchored" data-anchor-id="check-in-6.2-register-for-a-github-account">✅ Check-in 6.2 Register for a GitHub Account</h3>
 <p>Follow the instructions in <a href="https://happygitwithr.com/github-acct.html">Registering a GitHub Account</a> to create a <strong>free</strong> GitHub account.</p>
-<p>Copy and paste the link to your GitHub profile into the Canvas quiz.</p>
+<p><strong>Copy and paste the link to your GitHub profile into the Canvas quiz.</strong></p>
 <ul>
 <li>Your GitHub profile link should look like – https://github.com/USERNAME</li>
 <li>Here is mine! <a href="https://github.com/atheobold">https://github.com/atheobold</a></li>
@@ -321,7 +397,7 @@ div.csl-indent {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>(Optional) Register for the Student Developer Pack
+(Optional) Register for the Student Developer Pack
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -334,12 +410,12 @@ div.csl-indent {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Save your login information!
+Save your login information!
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Make sure you remember your username and password so you don’t have to try to hack into your own account during class this week.</p>
-<p>Write your information down somewhere safe.</p>
+<p>Write your information down somewhere safe!</p>
 </div>
 </div>
 </section>
@@ -355,17 +431,17 @@ div.csl-indent {
 <li>Run the following code <strong>in your console</strong> (bottom left), substituting your name for <code>"Jane Doe"</code> and the email associated with your GitHub account with <code>"jane@example.org"</code>.</li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"usethis"</span>)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change this to use your name and your GitHub email address! </span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">"Jane Doe"</span>, </span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">user.email =</span> <span class="st">"jane@example.org"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"usethis"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Change this to use your name and your GitHub email address! </span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">"Jane Doe"</span>, </span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">user.email =</span> <span class="st">"jane@example.org"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="check-in-1.8-introduce-yourself-to-git" class="level3">
-<h3 class="anchored" data-anchor-id="check-in-1.8-introduce-yourself-to-git">✅ Check-in 1.8: Introduce Yourself to git</h3>
+<section id="check-in-6.3-introduce-yourself-to-git" class="level3">
+<h3 class="anchored" data-anchor-id="check-in-6.3-introduce-yourself-to-git">✅ Check-in 6.3 Introduce Yourself to git</h3>
 <p>Follow the instructions for introducing yourself to git by running the code in your console. Once you’ve run the code, take a screenshot of the output in your console.</p>
 </section>
 </section>
@@ -378,7 +454,7 @@ div.csl-indent {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>No support for username &amp; password credentials
+No support for username &amp; password credentials
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -393,7 +469,7 @@ div.csl-indent {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Skip Section 9.2
+Skip Section 9.2
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -401,16 +477,16 @@ div.csl-indent {
 </div>
 </div>
 </section>
-<section id="check-in-1.9-pat" class="level3">
-<h3 class="anchored" data-anchor-id="check-in-1.9-pat">✅ Check-in 1.9: PAT</h3>
+<section id="check-in-6.4-pat" class="level3">
+<h3 class="anchored" data-anchor-id="check-in-6.4-pat">✅ Check-in 6.4: PAT</h3>
 <p>Follow the instructions for setting up your own personal access token. When selecting an expiration either choose one of the options that will allow your PAT to last the entire quarter (90 days, No expiration, or use Custom and input a date after the end of the quarter).</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once you’ve completed this process, run the following code <strong>in your console</strong> and take a screenshot of the output you get. I’ve included the output I get when I run this, so you have an idea of how your output should look.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">git_sitrep</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <pre><code>── Git global (user) 
 • Name: 'Allison Theobold'
@@ -442,7 +518,7 @@ div.csl-indent {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Extra Resources
+Extra Resources
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -455,53 +531,6 @@ div.csl-indent {
 </ul>
 </div>
 </div>
-<!-- From Lab 1 instructions -->
-<!-- # Part One: Workflow for GitHub -->
-<!-- ## Step 1: Making a Copy from GitHub Classroom -->
-<!-- For the first few weeks of the quarter, we will use GitHub Classroom to create -->
-<!-- our lab repositories. GitHub Classroom is a wonderful tool, as it makes it -->
-<!-- **incredibly** simple to copy the contents of a repository.  -->
-<!-- Use these steps to make a copy of the Lab 1 repository: [List of Steps to Copy the Lab Assignment from GitHub Classroom](https://scribehow.com/shared/Copying_the_Lab_Assignment_with_GitHub_Classroom__jKUfxzJUQjOQ2lqJy2UPoQ)  -->
-<!-- ## Step 2: Inspecting the Lab -->
-<!-- Once you complete these steps, a dialogue box will open with messages about -->
-<!-- cloning (making a copy) of your Lab 1 repository. When the messages are -->
-<!-- finished, you should have a new RStudio session open. You should notice a few -->
-<!-- things: -->
-<!-- -   In the upper right corner you should see a blue R cube with  -->
-<!-- `introdcution-to-quarto` written next to it ![](images/r-project.png){width="15%" fig-alt="A picture of a blue cube with an R inside, next to the text 'introduction-to-quarto-allison-theobold'"}, this tells -->
-<!-- you that you are working in an R Project (we'll learn more about these next -->
-<!-- week). -->
-<!-- -   In the "Files" pane, you should see a list of all the files included in the -->
-<!-- `lab-1` repository you copied. -->
-<!-- -   In the upper right pane, you should see a tab labeled "Git". -->
-<!-- -   Nothing should be displayed in this pane, since you haven't made any changes  -->
-<!-- to the files that were copied!  -->
-<!-- ## Step 3: Making a Small Change -->
-<!-- Now, find the `lab-1-student.qmd` file in the "Files" tab in the lower right  -->
-<!-- hand corner. Click on this file to open it.  -->
-<!-- At the top of the document (in the YAML) there is an `author` line that says  -->
-<!-- `"Your name here!"`. Change this to be your name and save your file either by -->
-<!-- clicking on the blue floppy disk or with a shortcut (command / control + s).  -->
-<!-- ## Step 4: Pushing Your Lab to GitHub -->
-<!-- Now for our last step, we need to [commit the files to our repo](https://happygitwithr.com/existing-github-first#stage-and-commit).  -->
-<!-- -   Click the "Git" tab in upper right pane -->
-<!-- -   Check the "Staged" box for the `lab-1-student.qmd` file  -->
-<!-- -   Click "Commit" -->
-<!-- -   In the box that opens, type a message in "Commit message", such as -->
-<!-- "Added my name". -->
-<!-- -   Click "Commit". -->
-<!-- -   Click the green "Push" button to send your local changes to GitHub. -->
-<!-- RStudio will display something like: -->
-<!-- ```          -->
-<!-- >>> /usr/bin/git push origin HEAD:refs/heads/main -->
-<!-- To https://github.com/atheobold/introduction-to-quarto-allison-theobold.git -->
-<!--    3a2171f..6d58539  HEAD -> main -->
-<!-- ``` -->
-<!-- ## Step 5: Verifying Your Changes -->
-<!-- Go back to your browser. I assume you're still viewing the GitHub repo you just cloned. Refresh the page. You should see all the project files you committed there. If you click on "commits", you should see one with the message you used, e.g. "Added my name". -->
-<!-- ## Step 6: Let's get started working with Quarto! -->
-<!-- Now that you've added your name, go ahead and get started with the rest of the  -->
-<!-- lab!  -->
 <section id="references" class="level3 unnumbered">
 
 

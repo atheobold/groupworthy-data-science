@@ -78,7 +78,7 @@ feedback.
 . . .
 
 - Thursday: Midterm Portfolio Work Session
-  + Midterm Portfolios Due **Sunday**, October 19
+  + Midterm Portfolios Due **Sunday**, October 26
 
 
 ## What to Expect
@@ -144,17 +144,6 @@ knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/thumb
 ::: callout-note
 The `lubridate` package **installs** and **loads** with the `tidyverse`. 
 :::
-
-<!-- ## `date-time` Objects -->
-
-<!-- There are multiple **data types** for dates and times. -->
-
-<!-- -   A date: -->
-<!--     -   `date` or `Date` -->
-<!-- -   A date and a time (identifies a unique instant in time): -->
-<!--     -   `dtm` -->
-<!--     -   `POSIXlt` -- stores date-times as the number of seconds since January 1, 1970 ("Unix Epoch") -->
-<!--     -   `POSIXct` -- stores date-times as a list with elements for second, minute, hour, day, month, year, etc. -->
 
 ## Creating `date-time` Objects
 
@@ -325,7 +314,7 @@ Doing subtraction gives you a `difftime` object.
 #| echo: true
 #| code-line-numbers: false
 
-today() - mdy(01141989)
+today() - mdy("01-14-1989")
 ```
 
 . . .
@@ -346,38 +335,36 @@ finish - begin
 
 ## Durations and Periods
 
-::: columns
-::: {.column width="48%"}
-**Durations** will always give the time span in an **exact number of seconds**.
+**Durations** will always give the **exact number of seconds**.
 
+::: {.small}
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
 as.duration(
-  today() - mdy(01141989)
+  mdy_hms("10-16-2025 12:10:00", tz = "America/Los_Angeles") - 
+    mdy_hms("01-14-1989 12:03:12", tz = "America/Denver")
             )
 ```
-
 :::
 
-::: {.column width="3%"}
-:::
+. . .
 
-::: {.column width="48%"}
-::: {.fragment}
-**Periods** will give the time span in more approximate, but **human readable times**.
+</br>
 
+**Periods** give more approximate, **human readable times**.
+
+::: {.small}
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
 as.period(
-  today() - mdy(01141989)
-  )
+  mdy_hms("10-16-2025 12:10:00", tz = "America/Los_Angeles") - 
+    mdy_hms("01-14-1989 12:03:12", tz = "America/Denver")
+            )
 ```
-:::
-:::
 :::
 
 ## Durations and Periods
@@ -386,8 +373,7 @@ as.period(
 ::: {.column width="40%"}
 We can also **add** time to `date-time` objects:
 
--   `days()`, `years()`, etc. will add a **period** of time.
--   `ddays()`, `dyears()`, etc. will add a **duration** of time.
+-   `days()`, `years()`, `hours()`, `weeks()` etc. will add a **period** of time.
 :::
 
 ::: {.column width="5%"}
@@ -395,24 +381,13 @@ We can also **add** time to `date-time` objects:
 
 ::: {.column width="55%"}
 ::: {.fragment}
-Because durations use the **exact** number of seconds to represent days and years, you might get unexpected results. 
-
-</br> 
-
 When is is my 99th birthday?
 
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
-mdy(01141989) + years(99)
-```
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-mdy(01141989) + dyears(99)
+mdy("01-14-1989") + years(99)
 ```
 :::
 :::
@@ -435,6 +410,8 @@ Well, we first need to make an interval of time around my birthday.
 #| echo: true
 #| code-line-numbers: false
 
+bday 
+
 bonus_flight_window <- interval(
   bday - weeks(4),
   bday + weeks(4)
@@ -443,8 +420,6 @@ bonus_flight_window <- interval(
 :::
 
 . . .
-
-</br>
 
 ::: {.midi}
 
@@ -550,7 +525,7 @@ When you read data in or create a new date-time object, the default time zone (i
 :::
 
 ::: {.small}
-*UTC is the same as GMT (Greenwich Mean Time)
+*UTC is the same as GMT (Greenwich Mean Time) which is where Iceland is located
 :::
 
 . . .
@@ -564,7 +539,7 @@ So, make sure you specify your desired time zone!
 #| echo: true
 #| code-line-numbers: false
 
-x <- mdy("11/20/1993")
+x <- dmy("20/11/1993")
 tz(x)
 ```
 
@@ -572,8 +547,8 @@ tz(x)
 #| echo: true
 #| code-line-numbers: false
 
-x <- mdy("11/20/1993", 
-         tz = "America/Los_Angeles")
+x <- force_tz(x, 
+              tz = "America/Los_Angeles")
 tz(x)
 ```
 :::
@@ -667,8 +642,8 @@ for help.
 You **are** permitted to use:
 
 - today's handout, 
-- the `lubridate` cheatsheet,
-- the course slides, and 
+- the course slides, 
+- the `lubridate` cheatsheet, and 
 - the course textbook
 
 ## Submission

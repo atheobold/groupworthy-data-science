@@ -50,7 +50,12 @@ Today we will...
 . . .
 
 Any problem receiving a "Growing" can be revised and submitted for additional
-feedback
+feedback.
+
+. . .
+
+***Revisions must be accompanied by reflections on how your learning progressed.***
+
 
 # Don't forget to complete your Lab 4 code review!
 
@@ -60,14 +65,14 @@ feedback
 
 > Make sure your feedback follows the [code review guidelines](../../code-review/code-review-guidelines.qmd). 
 
-> Insert your review into the comment box! 
+**Insert your review into the comment box!**
 
 # Week 6 Layout
 
 # Week 6 Layout
 
 - Tuesday: Version Control
-  + Live Code / Troubleshoot In-Class 
+  + Live Code / Troubleshoot Pushing to GitHub
   + Midterm Portfolio Work Session
   
 . . .

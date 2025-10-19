@@ -7,7 +7,21 @@ format:
 editor: source
 ---
 
-## Common Mishaps
+## Thursday, September 26
+
+Today we will...
+
+::: {.small}
+-   Review Key Feedback from Lab 4
+-   New Material
+    -   Version Control
+-   Setting-up Portfolio 
+    +   Forking the Final Portfolio Repository
+    +   Cloning into RStudio
+    +   Making a Small Change, Committing & Pushing 
+:::
+
+## Lab 4 Common Mishaps
 
 ::: {.incremental}
 ::: {.small}
@@ -46,7 +60,7 @@ still is grouped!
 in the plot. 
 :::
 
-. . .
+## Recreating the Plot
 
 ::: {.midi}
 > DVS-3: I show creativity in my visualizations
@@ -65,6 +79,7 @@ in the plot.
 ::: {.small}
 - Exploring different plot themes
     + Personally, I like `theme_bw()`, but you might like others! 
+    + Remember to keep major gridlines! They are important for readablity!
 :::
 
 ## Other "Big Picture" Code Feedback
@@ -74,6 +89,11 @@ in the plot.
 people to understand what your code is doing. Having two lines is not less
 efficient and is more readable. 
 
+:::
+
+</br>
+
+::: {.small}
 ```{r}
 #| eval: false
 #| echo: true
@@ -87,6 +107,36 @@ mutate(age_group = fct_relevel(fct_recode(age_group,
                                 "Infant",
                                 "Toddler",
                                 "Preschool"))
+```
+::: 
+
+## Non-Nested Functions
+
+::: {.midi}
+> I strongly recommend against nested functions, as they are difficult for
+people to understand what your code is doing. Having two lines is not less
+efficient and is more readable. 
+
+:::
+
+</br>
+
+::: {.small}
+```{r}
+#| eval: false
+#| echo: true
+#| label: not-nested-functions
+#| code-line-numbers: false
+
+mutate(age_group = fct_recode(age_group,
+                              "Infant" = "mc_infant",
+                              "Toddler" = "mc_toddler",
+                              "Preschool" = "mc_preschool"),
+       age_group = fct_relevel(age_group, 
+                                "Infant",
+                                "Toddler",
+                                "Preschool")
+       )
 ```
 ::: 
 
@@ -109,56 +159,13 @@ lowest_child_care_price_2018 <- ca_childcare |>
 
 lowest_child_care_price_2018
 ```
-
-
 :::
 
-<!-- ## Thursday, September 26 -->
-
-<!-- Today we will... -->
-
-<!-- ::: {.small} -->
-<!-- -   Changes to Student Hours -->
-<!-- -   Answer Clarifying Questions: -->
-<!--     -   Syllabus? -->
-<!--     -   Ungrading? -->
-<!--     -   Participating in Dr. Theobold's research on group collaborations? -->
-<!-- -   New Material -->
-<!--     -   Scripts + Notebooks -->
-<!--     -   Version Control -->
-<!-- -   Lab 1: Introduction to Quarto -->
-<!-- -   Challenge 1: Modifying your Quarto Document -->
-<!-- ::: -->
 
 # Version Control
 
 > A process of **tracking changes** to a file or set of files over time so that
 you can **recall specific versions later**.
-
-
-## Git vs GitHub
-
-:::: columns
-::: column
-
-```{r}
-#| fig-align: center
-#| out-width: 50%
-#| fig-alt: "The image is the official logo for Git, a version control system. It consists of a diamond-shaped orange symbol with white lines inside that resemble a branching structure, symbolizing version control and branching in Git. Next to the symbol is the word 'Git' written in bold, black lowercase letters. The logo visually represents Git's core function of managing changes in code through branching and merging."
-
-knitr::include_graphics("https://bornsql.ca/wp-content/uploads/2022/03/Git-Logo-2Color.png") 
-```
-
-+ A system for version control that manages a collection of files in a structured way.
-+ Uses the command line or a GUI.
-+ Git is local.
-
-:::
-::: column
-
-
-:::
-::::
 
 
 ## Git vs GitHub
@@ -174,18 +181,18 @@ knitr::include_graphics("https://bornsql.ca/wp-content/uploads/2022/03/Git-Logo-
 
 :::
 ::: column
-
+::: {.fragment}
 ![](https://pngimg.com/d/github_PNG65.png){fig-align="center" width="60%" fig-alt="GitHub's logo, a black circle, with the outline of a cat in white. The cat seems to have a snake-like tail."}
 
 + A cloud-based service that lets you use git across many computers.
 + Basic services are free, advanced services are paid (like RStudio!). 
 + GitHub is remote.
-
+:::
 :::
 ::::
 
 
-## Why Learn GitHub?
+## Why learn version control?
 
 1. GitHub provides a structured way for tracking changes to files over the course of a project.
   + *Think Google Docs or Dropbox history, but more structured and powerful!*
@@ -194,6 +201,24 @@ knitr::include_graphics("https://bornsql.ca/wp-content/uploads/2022/03/Git-Logo-
 
 3. You can host a URL of fun things (like the class text, these slides, the course website, etc.) with [GitHub pages](https://pages.github.com/).
 
+## Preparatory Work 
+
+You were asked to complete the following steps **before** coming to class today:
+
+::: {.midi}
+1. Create a GitHub account
+2. Introduce yourself to git (in RStudio)
+3. Generate a Personal Access Token (PAT)
+4. Store your PAT in RStudio
+:::
+
+::: {.callout-note}
+# Using git and GitHub in RStudio
+
+I'm going to guide you through how to interact with git and GitHub through 
+RStudio. This is not the only way to do this! If you are comfortable with 
+version control, feel free to use the tool that you like best. 
+:::
 
 ## Git Repositories
 
@@ -204,7 +229,6 @@ Git is based on **repositories**.
 
 + Think of a repository (**repo**) as a directory (folder) for a single project.
   + This directory will likely contain code, documentation, data, to do lists, etc. associated with the project.
-  + You can link a local repo with a remote copy.
 
 :::
 ::: {.column width="20%"}
@@ -227,33 +251,82 @@ Git is based on **repositories**.
 
 # Actions in Git
 
-## Cloning a Repo
+## Forking a Repo
+
+> Make your own copy of a project.
 
 :::: columns
-::: column
-
-<bR>
-
-Create an exact copy of a remote repo on your local machine.
-
+::: {.column width="70%"}
+::: {.fragment}
+::: {.midi}
+- The original repository is like the main version of a project. 
+- When you fork it, you make your own copy of that project under your own
+account.
+- You can freely make changes, test ideas, or add new features in your fork. 
+   + The original project stays untouched.
 :::
-::: column
+:::
+:::
+
+::: {.column width="30%"}
+![](images/fork.png){fig-align="center" fig-alt="A picture of the graphic used by GitHub to represent a 'fork' of a repository." width="50%"}
+:::
+::::
+
+# Your Turn
+
+> Navigate the the Final Portfolio repository linked on Canvas. 
+>
+> Create your own fork of that repository. 
+
+## Cloning a Repo
+
+> Download the project onto your computer.
+
+<!-- Fork = make your own copy of a project online. -->
+<!-- Clone = download a repo (your own or someone else’s) to your computer. -->
+
+
+:::: columns
+::: {.column width="70%"}
+::: {.fragment}
+::: {.midi}
+- A repository (repo) lives online.
+- When you clone it, you make a local copy on your computer.
+    + All the project files, history, and branches come with it.
+:::
+:::
+:::
+
+::: {.column width="30%"}
 ![](images/git_clone_diagram.png){fig-align="center" fig-alt="A diagram of the process of cloning a repository. At the top of the picture, there is a cloud (representing the internet), with a pink box labeled 'remote' symbolizing the remote GitHub repository. There is a down arrow connecting the cloud to a laptop, mimicking the process of cloning a remote repository onto a local computer. The laptop has a greeen box labeled 'local' symbolizing the local copy of the remote GitHub repository." width="50%"}
 :::
 ::::
 
+# Your Turn
+
+> Navigate to your fork of the Final Project Portfolio repository -- the one 
+> you own!
+>
+> Follow the instructions posted on Canvas to clone that repository into 
+> RStudio.
 
 ## Committing Changes
 
-Tell git you have made changes you want to add to the repo.
-
-+ Also provide a *commit message* -- a short label describing what the changes are and why they exist.
+> Record any changes you've made.
 
 :::: {.columns}
 ::: {.column width="60%"}
-
-The red line is a change we commit (add) to the repo.
-
+::: {.fragment}
+::: {.midi}
+- Whenever you make changes you can "commit" those changes to record them
+permanently in your project’s history.
+- You also provide a *commit message* -- describing what changes
+you made. 
+    + The log of these changes is called your *commit history*.
+    + You can always go back to old copies!
+:::
+:::
 :::
 ::: {.column width="40%"}
 
@@ -262,50 +335,65 @@ The red line is a change we commit (add) to the repo.
 :::
 ::::
 
-. . .
-
-The log of these changes is called your *commit history*.
-
-+ You can always go back to old copies!
-
-
-
 ## Commit Tips
 
++ Commit small blocks of changes. 
+    - Commit every time you accomplish a small task (e.g., one learning target).
+    + With frequent commits, its easier to find the issue if / when you mess up!
+
+. . .
+
 + Use short, but informative commit messages.
-+ Commit small blocks of changes -- commit every time you accomplish a small task (e.g., one problem in the lab). 
-  + You’ll have a set of bite-sized changes (with description) to serve as a record of what you’ve done.
-  + With frequent commits, its easier to find the issue if / when you mess up!
++ You’ll end up with a set of bite-sized changes (with description) to serve as
+a record of what you’ve done.
+
+# Your Turn
+
+> Dr. Theobold will live code this process!
 
 
 ## Pushing Changes
 
-:::: columns
-::: column
+> Send your commit to the remote repository so others can see and access them.
 
-<br>
-
-Update the copy of your repo on GitHub so it has the most recent changes you’ve made on your machine.
-
+:::: {.columns}
+::: {.column width="60%"}
+::: {.fragment}
+- Send the changes you've saved in your commit to GitHub. 
+  + No one else can see the changes you've made locally unless you push them!
 :::
-::: column
+:::
+::: {.column width="40%"}
 
 ![](images/git_push_diagram.png){fig-align="center" width="75%" fig-alt="A diagram of the process of pushing local changes to the remote repository. There is a laptop with a green box labeled 'local' symbolizing the local copy of the GitHub repository. Above the laptop is cloud with a pink box labeled 'remote' symbolizing the remote GitHub repository (that lives on the internet). There is an arrow pointing from the laptop to the cloud with the phrase 'git push' next to the arrow, symbolizing the action of pushing the local changes (that have been committed) up to the remote repository."}
 :::
 ::::
 
+# Your Turn
+
+> Dr. Theobold will live code this process!
 
 ## Pulling Changes
 
+> Download the latest changes from the remote repository into your local copy.
+
+
 :::: columns
-::: column
-
-<br>
-
-Update the local copy of your repo (the copy on your computer) with the version on GitHub.
-
+::: {.column width="60%"}
+::: {.fragment}
+::: {.midi}
+- Your updates are saved online when you commit and push. 
+- To see those new edits in your offline copy, you have to pull them down.
 :::
-::: column
+
+::: {.callout-important}
+# Only relevant if you are working on two computers!
+
+If this is you, keeping both local versions up to date will be important!
+:::
+:::
+:::
+::: {.column width="40%"}
 
 ![](images/git_pull_diagram.png){fig-align="center" fig-alt="A diagram of the process of pulling from the remote repository to update the local repository. There is a laptop with a green box labeled 'local' symbolizing the local copy of the GitHub repository. Above the laptop is cloud with a pink box labeled 'remote' symbolizing the remote GitHub repository (that lives on the internet). There is an arrow pointing from the cloud to the laptop with the phrase 'git pull' next to the arrow, symbolizing the action of pull the changes that exist on the remote repository (possibly from a different computer) to update the local repository." width="75%"}
 :::
@@ -314,109 +402,16 @@ Update the local copy of your repo (the copy on your computer) with the version 
 
 ## Workflow
 
-**When you have an existing local repo:**
-
 ::: incremental
 1. Pull the repo to make sure you have the most up to date version (especially if you are working on different computers).
 2. Make some changes locally.
-3. Commit the changes to git.
+3. Commit the changes.
 4. Push your changes to GitHub.
-:::
-
-# Connect GitHub to RStudio
-
-## Previous Steps
-
-You were asked to complete the following steps **before** coming to class today:
-
-1. Create a GitHub account
-2. Introduce yourself to git (in RStudio)
-3. Generate a Personal Access Token (PAT)
-4. Store your PAT in RStudio
-
-## Verifying Your Connection
-
-::: columns
-::: {.column width="45%"}
-Open RStudio and run the following code in your console (lower left pane):
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="50%"}
-</br>
-
-```{r}
-#| label: sit-rep
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-usethis::git_sitrep()
-
-```
-:::
-:::
-
-. . .
-
-You should see something like:
-
-::: {.small}
-```
-── GitHub user 
-• Default GitHub host: 'https://github.com'
-• Personal access token for 'https://github.com': '<discovered>'
-• GitHub user: 'atheobold'
-• Token scopes: 'admin:org, admin:public_key, delete:packages, delete_repo, gist, notifications, repo, user, workflow, write:packages'
-• Email(s): 'atheobol@calpoly.edu (primary)', 'theobold.allison970@gmail.com', '12439090+atheobold@users.noreply.github.com'
-ℹ No active usethis project
-```
-:::
-
-. . .
-
-If that is not the case, Dr. Theobold will help you troubleshoot in 5-minutes!
-
-# Accessing Lab 1 
-
-# Accessing Lab 1 
-
-Here are step by step directions: [Copying the Lab Assignment with GitHub Classroom in 11 Steps](https://scribehow.com/shared/Copying_the_Lab_Assignment_with_GitHub_Classroom__jKUfxzJUQjOQ2lqJy2UPoQ)
-
-</br>
-
-::: {.small}
-Step 1: Open the [Lab 1 assignment on GitHub Classroom](https://classroom.github.com/a/j-bckA7U)
-
-Step 2: Open your Lab 1 repository
-
-Step 3: Clone the repository to your computer
-:::
-
-## Once You've Cloned the Repo
-
-Step 4: Open the `lab-1.qmd` file
-
-Step 5: Change your name 
-
-Step 6: Commit your change (with a nice message!)
-
-Step 7: Push your change
-
-# [Lab 1 & Challenge 1 Instructions](../../labs/instructions/lab-1-instructions.qmd)
-
-::: {.midi}
-*I would highly recommend having these pulled up alongside RStudio while you work! 
 :::
 
 ## To do...
 
--   **Lab 1: Introduction to Quarto**
-    -   Due Sunday (9/29) at 11:59pm
--   **Challenge 1: Modifying Your Quarto Document**
-    -   Due Sunday (9/29) at 11:59pm
--   **Complete the Week 2 Coursework**
-    -   **Check-ins 2.1, 2.2, 2.3** due Tuesday (10/1) by the start of class
-  
+-   Find code from your lab and challenge assignments to insert into your 
+portfolio. 
+-   Only fill in the code cells that have been covered thus far in the course! 
+    +   Your handout tells you what we've covered so far!

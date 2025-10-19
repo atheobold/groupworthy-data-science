@@ -1,0 +1,57 @@
+---
+title: "Week 6 Day 1: Version Control"
+format: docx
+execute: 
+  eval: false
+---
+
+# Lab 4 Review
+
+```{r}
+#| label: names-pivot
+#| eval: false
+#| echo: true
+
+ca_childcare |>
+  filter(study_year %in% c(2008, 2018)) |>
+  group_by(region, study_year) |>
+  summarise(median_income = median(mhi_2018, na.rm = TRUE)) |>
+  pivot_wider(names_from = study_year, 
+              values_from = median_income,
+              names_prefix = "year_")
+
+```
+
+1.  What does the `names_prefix` argument do in the above code?
+
+2.  What group variable(s) will remain after running the above code?
+
+3.  Why would you want to reorder your facets?
+
+4.  Why would you want to reorder your legend?
+
+```{r}
+#| label: nest-functions
+#| eval: false
+#| echo: true
+
+mutate(age_group = fct_relevel(fct_recode(age_group,
+                                          "Infant" = "mc_infant",
+                                          "Toddler" = "mc_toddler",
+                                          "Preschool" = "mc_preschool"),
+                                "Infant",
+                                "Toddler",
+                                "Preschool"))
+```
+
+5.  What would improve the readability of the above code?
+
+# Version Control
+
+| Action | What it does | Steps in RStudio | Did you do this for your portfolio? |
+|----|----|----|----|
+| Fork | Copy someone else’s online project |  |  |
+| Clone | Download a repo to your computer |  |  |
+| Commit | Save your changes locally |  |  |
+| Push | Upload your commits online |  |  |
+| Pull | Download others’ updates |  |  |

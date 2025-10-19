@@ -330,7 +330,7 @@ you made.
 :::
 ::: {.column width="40%"}
 
-![](images/git-commit.png){fig-align="center" fig-alt="A diagram of the process of committing changes that were made to a document. On the left is a document with four lines of text. The third line is colored red, to symbolize where a change was made, while the other lines are colored black. There is a right arrow connecting the document to a laptop, with the phrase 'git commit' printed above the arrow. The arrow terminates at a green box labeled 'local' on the laptop, symbolizing committing changes made to the document to the local repository."}
+![](images/git_commit_diagram.png){fig-align="center" fig-alt="A diagram of the process of committing changes that were made to a document. On the left is a document with four lines of text. The third line is colored red, to symbolize where a change was made, while the other lines are colored black. There is a right arrow connecting the document to a laptop, with the phrase 'git commit' printed above the arrow. The arrow terminates at a green box labeled 'local' on the laptop, symbolizing committing changes made to the document to the local repository."}
 
 :::
 ::::

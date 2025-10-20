@@ -1,0 +1,1429 @@
+---
+title: "Example A-level Portfolio"
+format: html 
+layout: margin-left
+editor: visual
+execute: 
+  eval: false
+  echo: true
+---
+
+[**My Grade:**]{.underline} I believe my grade equivalent to course work evidenced below to be an A.
+
+[**Learning Objective Evidence:**]{.underline} In the code chunks below, provide code from Lab or Challenge assignments where you believe you have demonstrated proficiency with the specified learning target. Be sure to specify **where** the code came from (e.g., Lab 4 Question 2).
+
+## Working with Data
+
+**WD-1: I can import data from a *variety* of formats (e.g., csv, xlsx, txt, etc.).**
+
+-   `csv`
+
+```{r}
+#| label: wd-1-csv
+# Challenge 3
+
+teacher_data <- read_csv(here::here("data", "teacher_evals.csv"))
+
+```
+
+-   `xlsx`
+
+```{r}
+#| label: wd-1-xlsx
+# PA 4
+
+military <- read_xlsx(here::here("data", 
+                                 "gov_spending_per_capita.xlsx"), 
+                      sheet = "Share of Govt. spending", 
+                      skip  = 7, 
+                      n_max = 191)
+
+```
+
+-   `txt`
+
+```{r}
+#| label: wd-1-txt
+# Check in 2.3 
+
+ages_tab <- 
+read_table
+(file = here::here("Week 2", "Check-ins", "Ages_Data", "ages_tab.txt"))
+
+```
+
+**WD-2: I can select necessary columns from a dataset.**
+
+```{r}
+#| label: wd-2
+# Lab 3, Question 5 
+
+# Success comment: I'd encourage you to be more consistent with your function 
+# syntax. The first syntax for the across() function is spot on, but the second 
+# one lacks the details you included in the first.
+
+teacher_evals_clean = teacher_data |> 
+  rename(sex=gender) |>
+  filter(no_participants >= 10) |> 
+  select(course_id, teacher_id, question_no, no_participants, 
+         resp_share, SET_score_avg, percent_failed_cur, 
+         academic_degree, seniority, sex) |>
+  mutate(
+    across(.cols = course_id:teacher_id, .fns = ~ as.character(.x)),
+    across(.cols = c(academic_degree, sex), .fns = ~ as.factor(.x)))
+```
+
+**WD-3: I can filter rows from a dataframe for a *variety* of data types (e.g., numeric, integer, character, factor, date).**
+
+-   numeric
+
+```{r}
+#| label: wd-3-numeric
+# Lab 4, Question 4
+
+# Success comments: I would recommend using the %in% operator instead of the or!
+# Nice work learning to drop the groups!
+# Nice column names! You could even be more specific and say "Median Income"!
+
+ca_childcare_clean |>
+  filter(study_year %in% c(2008, 2018))
+  group_by(region, study_year) |>
+  summarise(median_income = median(mhi_2018, na.rm = TRUE), .groups = 'drop') |>
+  pivot_wider(id_cols = region,
+              names_from = study_year, 
+              values_from = median_income, 
+              names_prefix = "Medium Income ") |>
+  arrange(`Income 2018`)
+
+```
+
+-   character -- specifically a string (example must use functions from **stringr**)
+
+```{r}
+#| label: wd-3-string
+# Lab 5 
+
+person |>
+  filter(
+    (address_street_name == "Northwestern Dr" & 
+     address_number == max(address_number)) | 
+    (str_detect(name, "Annabel") &
+    address_street_name == "Franklin Ave")) |>
+  left_join(interview, by = c("id" = "person_id")) |>
+  select(transcript)
+
+```
+
+-   factor
+
+```{r}
+#| label: wd-3-factor
+# Lab 5 
+
+person |>
+  filter(
+    (address_street_name == "Northwestern Dr" & 
+     address_number == max(address_number)) | 
+    (str_detect(name, "Annabel") &
+    address_street_name == "Franklin Ave")) |>
+  left_join(interview, by = c("id" = "person_id")) |>
+  select(transcript)
+
+```
+
+-   date (example must use functions from **lubridate**)
+
+```{r}
+#| label: wd-3-date
+# Lab 5
+
+# Chose an example where I extract the month and year using lubridate!
+# I changed my code so I use month(), year(), and ymd() instead of 
+# filter(str_starts(as.character(date), "2017")
+
+drivers_license |>
+  rename(license_id = id) |>
+  filter(
+    gender == "female",             
+    hair_color == "red",            
+    height >= 65 & height <= 67,                  
+    car_make == "Tesla",           
+    car_model == "Model S") |>
+  left_join(person, by = "license_id") |>
+  inner_join(facebook_event_checkin, by = c("id" = "person_id")) |>
+  mutate(date = ymd(date)) |>
+  filter(year(date) == 2017, month(date) == 12,
+         event_name == "SQL Symphony Concert") |>
+  group_by(id) |>
+  summarise(event_count = n(), .groups = "drop") |>
+  filter(event_count == 3) |>
+  inner_join(person, by = "id") |>
+  left_join(interview, by = c("id" = "person_id")) |>
+  select(name, transcript)
+
+```
+
+**WD-4: I can modify existing variables and create new variables in a dataframe for a *variety* of data types (e.g., numeric, integer, character, factor, date).**
+
+-   numeric (using `as.numeric()` is not sufficient)
+
+```{r}
+#| label: wd-4-numeric
+# Challenge 3, Question 1
+
+# I use to compare the question_no to just 903, 
+# but here I made modifications so I just refer to the numbers without
+# the leading 90. I also made sure to convert question_no back to a double
+# as I converted it to a string to remove the 90.
+
+teacher_evals_compare = teacher_data |> 
+  mutate(
+    question_no = as.numeric(str_remove(as.character(question_no), "^90")),
+    SET_level = if_else(SET_score_avg >= 4, "excellent", "standard"),
+    sen_level = if_else(seniority <= 4, "junior", "senior")) |> 
+  filter(question_no == 3) |>
+  select(course_id, SET_level, sen_level)
+
+```
+
+-   character -- specifically a string (example must use functions from **stringr**)
+
+```{r}
+#| label: wd-4-string
+# Lab 5
+
+# Clues: 
+# The membership number on the bag started with "48Z"
+# I was working out last week on January the 9th
+
+# I mutated the check_in_date to include dashes so I could compare the date 
+# by simply using "2018-01-09"
+membership_ids <- get_fit_now_check_in |>
+  mutate(
+    check_in_date = str_replace_all(check_in_date, 
+                      "(\\d{4})(\\d{2})(\\d{2})", "\\1-\\2-\\3")) |>
+  filter(
+    str_detect(membership_id, "^48Z"),
+    check_in_date == "2018-01-09") |>
+  select(membership_id)
+
+```
+
+-   factor (example must use functions from **forcats**)
+
+```{r}
+#| label: wd-4-factor
+# Lab 4, Question 6
+
+# Growing comment: Nice work pivoting and modifying the age variable! 
+# The recode() function is superseeded, in favor of case_when() and functions 
+# in the forcats package.
+
+# What I did: Before I changed the names of mc_infant, mc_toddler, mc_preschool 
+# to Infant, Toddler, Preschool using recode(), which is
+# superseeded! I changed it to case_when() this way
+# I am using the updated appropriate function.
+
+ca_childcare_long <- ca_childcare_clean |>
+  select(study_year, region, mc_infant, mc_toddler, mc_preschool) |>
+  # Transform wide to long format
+  pivot_longer(cols = starts_with("mc_"), 
+               # Create a new column "age" from the column names
+               names_to = "age", 
+               # The corresponding values will go in the "price" column
+               values_to = "price") |>
+  mutate(age = fct_relevel(case_when(
+    age == "mc_infant" ~ "Infant",
+    age == "mc_toddler" ~ "Toddler",
+    age == "mc_preschool" ~ "Preschool"
+  ), "Infant", "Toddler", "Preschool"))
+
+```
+
+-   date (example must use functions from **lubridate**)
+
+```{r}
+#| label: wd-4-date
+# Lab 5
+
+# I changed my code so I use month(), year(), and ymd() instead of 
+# filter(str_starts(as.character(date), "2017")
+# Here I mutated date, so I could then use year() and month() to filter
+
+drivers_license |>
+  rename(license_id = id) |>
+  filter(
+    gender == "female",             
+    hair_color == "red",            
+    height >= 65 & height <= 67,                  
+    car_make == "Tesla",           
+    car_model == "Model S") |>
+  left_join(person, by = "license_id") |>
+  inner_join(facebook_event_checkin, by = c("id" = "person_id")) |>
+  mutate(date = ymd(date)) |>
+  filter(year(date) == 2017, month(date) == 12,
+         event_name == "SQL Symphony Concert") |>
+  group_by(id) |>
+  summarise(event_count = n(), .groups = "drop") |>
+  filter(event_count == 3) |>
+  inner_join(person, by = "id") |>
+  left_join(interview, by = c("id" = "person_id")) |>
+  select(name, transcript)
+
+```
+
+**WD-5: I can use mutating joins to combine multiple dataframes.**
+
+-   `left_join()`
+
+```{r}
+#| label: wd-5-left
+
+# Lab 5
+# returns all the rows from the left table and the matching 
+# rows from the right table
+
+# Get only rows for people we want (include person and interview)
+person |>
+  filter(
+    (address_street_name == "Northwestern Dr" & 
+     address_number == max(address_number)) | 
+    (str_detect(name, "Annabel") &
+  address_street_name == "Franklin Ave")) |>
+  left_join(interview, by = c("id" = "person_id")) |>
+  select(transcript)
+
+```
+
+-   `right_join()`
+
+```{r}
+#| label: wd-5-right
+
+# An example for portfolio: 
+# returns all the rows from the right table and the matching rows 
+# from the left table
+
+# To see all interviews, but only have person info for those we want
+person |>
+  filter(
+    (address_street_name == "Northwestern Dr" & 
+     address_number == max(address_number)) | 
+    (str_detect(name, "Annabel") &
+    address_street_name == "Franklin Ave")) |>
+    right_join(interview, by = c("id" = "person_id"))
+
+```
+
+-   `inner_join()`
+
+```{r}
+#| label: wd-5-inner
+
+# lab 5
+# returns only the rows where there is a match in both tables 
+
+# Growing comment: You need to interview every suspect!
+# Added: finished the rest of the lab!
+
+drivers_license |>
+  rename(license_id = id) |>
+  filter(
+    gender == "female",             
+    hair_color == "red",            
+    height >= 65 & height <= 67,                  
+    car_make == "Tesla",           
+    car_model == "Model S"          
+  ) |>
+  left_join(person, by = "license_id") |>
+  inner_join(facebook_event_checkin, by = c("id" = "person_id")) |>
+  # since date is a double, change to character first
+  filter(str_starts(as.character(date), "2017"),
+         event_name == "SQL Symphony Concert") |>
+  group_by(id) |>
+  summarise(event_count = n(), .groups = "drop") |>
+  filter(event_count == 3) |>
+  inner_join(person, by = "id") |>
+  left_join(interview, by = c("id" = "person_id")) |>
+  # Confirm new suspect = shouldn't have an interview 
+  select(name, transcript)
+
+```
+
+**WD-6: I can use filtering joins to filter rows from a dataframe.**
+
+-   `semi_join()`
+
+```{r}
+#| label: wd-6-semi
+
+# returns rows from one table where there is a match in another table, 
+# but it does not return any columns from the second table
+
+# includes person info for people we want, no interviews
+person |>
+  filter(
+    (address_street_name == "Northwestern Dr" & 
+     address_number == max(address_number)) | 
+    (str_detect(name, "Annabel") &
+    address_street_name == "Franklin Ave")) |>
+    semi_join(interview, by = c("id" = "person_id")) 
+
+```
+
+-   `anti_join()`
+
+```{r}
+#| label: wd-6-anti
+
+# anti join is a type of join that returns rows from one table where there 
+# are no matches in another table
+
+# All people who don't have an interview
+person |>
+    anti_join(interview, by = c("id" = "person_id")) 
+
+```
+
+**WD-7: I can pivot dataframes from long to wide and visa versa**
+
+-   `pivot_longer()`
+
+```{r}
+#| label: wd-7-long
+# Lab 4, Question 6
+
+# Growing comment: Nice work pivoting and modifying the age variable! 
+# The recode() function is superseeded, in favor of case_when() and functions 
+# in the forcats package.
+
+# What I did: Before I changed the names of mc_infant, mc_toddler, mc_preschool 
+# to Infant, Toddler, Preschool using recode(), which is
+# superseeded! I changed it to case_when() this way
+# I am using the updated appropriate function.
+
+ca_childcare_long <- ca_childcare_clean |>
+  select(study_year, region, mc_infant, mc_toddler, mc_preschool) |>
+  # Transform wide to long format
+  pivot_longer(cols = starts_with("mc_"), 
+               # Create a new column "age" from the column names
+               names_to = "age", 
+               # The corresponding values will go in the "price" column
+               values_to = "price") |>
+  mutate(age = fct_relevel(case_when(
+    age == "mc_infant" ~ "Infant",
+    age == "mc_toddler" ~ "Toddler",
+    age == "mc_preschool" ~ "Preschool"), 
+    "Infant", "Toddler", "Preschool"))
+
+```
+
+-   `pivot_wider()`
+
+```{r}
+#| label: wd-7-wide
+
+# Lab 4, Question 4
+
+# Success comments: I would recommend using the %in% operator instead of the or!
+# Nice work learning to drop the groups!
+# Nice column names! You could even be more specific and say "Median Income"!
+
+ca_childcare_clean |>
+  filter(study_year %in% c(2008, 2018))
+  group_by(region, study_year) |>
+  summarise(median_income = median(mhi_2018, na.rm = TRUE), .groups = 'drop') |>
+  pivot_wider(id_cols = region,
+              names_from = study_year, 
+              values_from = median_income, 
+              names_prefix = "Medium Income ") |>
+  arrange(`Income 2018`)
+  
+```
+
+## Reproducibility
+
+**R-1: I can create professional looking, reproducible analyses using RStudio projects, Quarto documents, and the here package.**
+
+I've done this in the following provided assignments: Lab 2, Lab 3, Challenge 3, Lab 4, Lab 5
+
+**R-2: I can write well documented and tidy code.**
+
+-   Example of **ggplot2** plotting
+
+```{r}
+#| label: r-2-1
+
+# Lab 4, Question 6
+
+# Growing comments: Nice work changing the size of the x-axis and y-axis text! 
+# Can you make this change to other aspects of the plot? 
+# The legend is really large! Great job reordering the legend to go in the same 
+# order as the lines! The final step is to match the colors and theme I used. 
+# Personally, I like theme_bw() and the “Accent” palette from the RColorBrewer package.
+
+# I changed the size of my legend to be smaller, as it was massive before. 
+# This makes the graph more pleasing to look at. Lastly, I added the theme 
+# theme_bw() and modified the colors. Rather than using the defaults, 
+# it is important to explore different colors and themes that can make a 
+# graph more appealing!
+
+
+#| label: recreate-plot
+#| echo: true
+#| warning: false
+#| message: false
+
+ggplot(data = ca_childcare_long, aes(x = study_year, y = price, 
+  color = fct_reorder2(.f = region, .x = study_year, .y = price))) +
+  geom_smooth(method = "loess", linewidth = 0.5) +  
+  geom_point(size = 0.8, alpha = 0.5) + 
+  # creates separate graphs for age_groups
+  # each has its own x-axis
+  # in one row 
+  facet_wrap(~ age, scales = "free_x", nrow=1) +  
+  labs(title = "Weekly Median Price for Center-Based Childcare ($)",
+       x = "Study Year",
+       y = "",
+       color = "California Region") +
+  # adjust axis
+  scale_y_continuous(limits = c(100, 500), breaks = seq(100, 500, by = 100)) +
+  scale_x_continuous(breaks = seq(2008, 2018, by = 2)) +
+  theme_bw() +
+  theme(
+    # spaces the graphs apart, lines is a unit
+    panel.spacing = unit(1, "lines"), 
+    # change the aspect ratio to make it less tall
+    aspect.ratio = 1, # make it less tall
+    axis.text.x = element_text(size = 7), 
+    axis.text.y = element_text(size = 7), 
+    legend.title = element_text(size = 10), 
+    legend.text = element_text(size = 8), 
+    legend.key.size = unit(0.8, "lines")
+  ) +
+  scale_color_manual(values = colorRampPalette(brewer.pal(8, "Accent"))(10))
+
+```
+
+-   Example of **dplyr** pipeline
+
+```{r}
+#| label: r-2-2
+# Lab 4, Question 6
+
+# Growing comment: Nice work pivoting and modifying the age variable! 
+# The recode() function is superseeded, in favor of case_when() and functions 
+# in the forcats package.
+
+# What I did: Before I changed the names of mc_infant, mc_toddler, mc_preschool 
+# to Infant, Toddler, Preschool using recode(), which is
+# superseeded! I changed it to case_when() this way
+# I am using the updated appropriate function.
+
+ca_childcare_long <- ca_childcare_clean |>
+  select(study_year, region, mc_infant, mc_toddler, mc_preschool) |>
+  # Transform wide to long format
+  pivot_longer(cols = starts_with("mc_"), 
+               # Create a new column "age" from the column names
+               names_to = "age", 
+               # The corresponding values will go in the "price" column
+               values_to = "price") |>
+  mutate(age = fct_relevel(case_when(
+    age == "mc_infant" ~ "Infant",
+    age == "mc_toddler" ~ "Toddler",
+    age == "mc_preschool" ~ "Preschool"
+  ), "Infant", "Toddler", "Preschool"))
+
+```
+
+-   Example of function formatting
+
+```{r}
+#| label: r-2-3
+
+
+
+```
+
+**R-3: I can write robust programs that are resistant to changes in inputs.**
+
+-   Example -- any context
+
+```{r}
+#| label: r-3-example
+
+# Lab 4, Question 4
+
+# Success comments: I would recommend using the %in% operator instead of the or!
+# Nice work learning to drop the groups!
+# Nice column names! You could even be more specific and say "Median Income"!
+
+ca_childcare_clean |>
+  filter(study_year %in% c(2008, 2018))
+  group_by(region, study_year) |>
+  summarise(median_income = median(mhi_2018, na.rm = TRUE), .groups = 'drop') |>
+  pivot_wider(id_cols = region,
+              names_from = study_year, 
+              values_from = median_income, 
+              names_prefix = "Median Income ") |>
+  arrange(`Median Income 2018`)
+
+```
+
+-   Example of function stops
+
+```{r}
+#| label: r-3-function-stops
+
+
+
+```
+
+## Data Visualization & Summarization
+
+**DVS-1: I can create visualizations for a *variety* of variable types (e.g., numeric, character, factor, date)**
+
+-   at least two numeric variables
+
+```{r}
+#| label: dvs-1-num
+
+# Lab 4, Question 7
+
+# Success comments: Nice work removing your y-axis label so people 
+# don't tilt their head! I would recommend looking into the scales package, 
+# which provides an easy method for getting $ signs on the plot labels, 
+# with the label_dollar() function!
+
+ggplot(data = ca_childcare, aes(x = mhi_2018, y = mc_infant)) +
+  geom_point(alpha = 0.5) +  
+  geom_smooth(method = "lm", color = "steelblue") + 
+  labs(
+    title = "Correlation Between Household Income 
+    and Center-Based Childcare Costs in California",
+    y = "",
+    x = "2018 Dollars",
+    subtitle = "Median Weekly Price for Infants"
+  ) +
+  scale_x_continuous(labels = label_dollar()) +
+  theme_minimal()  
+
+```
+
+-   at least one numeric variable and one categorical variable
+
+```{r}
+#| label: dvs-2-num-cat
+
+# Lab 2, Question 16
+
+ggplot(data = surveys, 
+    mapping = aes(y = species, x = weight)) +
+    geom_boxplot(outliers = FALSE) +
+    geom_jitter(color = "steelblue", alpha = 0.2) +
+    labs(
+    y = "",
+    subtitle = "Species",
+    x = "Weight (grams)",
+    title = "Analyzing Weight Distributions Across Various Rodents") 
+
+```
+
+-   at least two categorical variables
+
+```{r}
+#| label: dvs-2-cat
+# Lab 4, Question 6
+
+# Growing comments: Nice work changing the size of the x-axis and y-axis text! 
+# Can you make this change to other aspects of the plot? 
+# The legend is really large! Great job reordering the legend to go in the same 
+# order as the lines! The final step is to match the colors and theme I used. 
+# Personally, I like theme_bw() and the “Accent” palette from the RColorBrewer package.
+
+# I changed the size of my legend to be smaller, as it was massive before. 
+# This makes the graph more pleasing to look at. Lastly, I added the theme 
+# theme_bw() and modified the colors. Rather than using the defaults, 
+# it is important to explore different colors and themes that can make a 
+# graph more appealing!
+
+ggplot(data = ca_childcare_long, aes(x = study_year, y = price, 
+  color = fct_reorder2(.f = region, .x = study_year, .y = price))) +
+  geom_smooth(method = "loess", linewidth = 0.5) +  
+  geom_point(size = 0.8, alpha = 0.5) + 
+  # creates seperate graphs for age_groups
+  # each has its own x-axis
+  # in one row 
+  facet_wrap(~ age, scales = "free_x", nrow=1) +  
+  labs(title = "Weekly Median Price for Center-Based Childcare ($)",
+       x = "Study Year",
+       y = "",
+       color = "California Region") +
+  # adjust axis
+  scale_y_continuous(limits = c(100, 500), breaks = seq(100, 500, by = 100)) +
+  scale_x_continuous(breaks = seq(2008, 2018, by = 2)) +
+  theme_bw() +
+  theme(
+    # spaces the graphs apart, lines is a unit
+    panel.spacing = unit(1, "lines"), 
+    # change the aspect ratio to make it less tall
+    aspect.ratio = 1, # make it less tall
+    axis.text.x = element_text(size = 7), 
+    axis.text.y = element_text(size = 7), 
+    legend.title = element_text(size = 10), 
+    legend.text = element_text(size = 8), 
+    legend.key.size = unit(0.8, "lines")
+  ) +
+  scale_color_manual(values = colorRampPalette(brewer.pal(8, "Accent"))(10))
+
+```
+
+-   dates (timeseries plot)
+
+```{r}
+#| label: dvs-2-date
+
+# Lab 4, Question 6
+
+# Growing comments: Nice work changing the size of the x-axis and y-axis text! 
+# Can you make this change to other aspects of the plot? 
+# The legend is really large! Great job reordering the legend to go in the same 
+# order as the lines! The final step is to match the colors and theme I used. 
+# Personally, I like theme_bw() and the “Accent” palette from the RColorBrewer package.
+
+# I changed the size of my legend to be smaller, as it was massive before. 
+# This makes the graph more pleasing to look at. Lastly, I added the theme 
+# theme_bw() and modified the colors. Rather than using the defaults, 
+# it is important to explore different colors and themes that can make a 
+# graph more appealing!
+
+ggplot(data = ca_childcare_long, aes(x = study_year, y = price, 
+  color = fct_reorder2(.f = region, .x = study_year, .y = price))) +
+  geom_smooth(method = "loess", linewidth = 0.5) +  
+  geom_point(size = 0.8, alpha = 0.5) + 
+  # creates seperate graphs for age_groups
+  # each has its own x-axis
+  # in one row 
+  facet_wrap(~ age, scales = "free_x", nrow=1) +  
+  labs(title = "Weekly Median Price for Center-Based Childcare ($)",
+       x = "Study Year",
+       y = "",
+       color = "California Region") +
+  # adjust axis
+  scale_y_continuous(limits = c(100, 500), breaks = seq(100, 500, by = 100)) +
+  scale_x_continuous(breaks = seq(2008, 2018, by = 2)) +
+  theme_bw() +
+  theme(
+    # spaces the graphs apart, lines is a unit
+    panel.spacing = unit(1, "lines"), 
+    # change the aspect ratio to make it less tall
+    aspect.ratio = 1, # make it less tall
+    axis.text.x = element_text(size = 7), 
+    axis.text.y = element_text(size = 7), 
+    legend.title = element_text(size = 10), 
+    legend.text = element_text(size = 8), 
+    legend.key.size = unit(0.8, "lines")
+  ) +
+  scale_color_manual(values = colorRampPalette(brewer.pal(8, "Accent"))(10))
+
+```
+
+**DVS-2: I use plot modifications to make my visualization clear to the reader.**
+
+-   I can ensure people don't tilt their head
+
+```{r}
+#| label: dvs-2-1
+
+# Lab 2, Question 16
+
+# Don't need to tilt head!
+ggplot(data = surveys, 
+    mapping = aes(y = species, x = weight)) +
+    geom_boxplot(outliers = FALSE) +
+    geom_jitter(color = "steelblue", alpha = 0.2) +
+    labs(
+    y = "",
+    subtitle = "Species",
+    x = "Weight (grams)",
+    title = "Analyzing Weight Distributions Across Various Rodents")
+
+```
+
+-   I can modify the text in my plot to be more readable
+
+```{r}
+#| label: dvs-2-2
+
+# Lab 4, Question 6
+
+# Growing comments: Nice work changing the size of the x-axis and y-axis text! 
+# Can you make this change to other aspects of the plot? 
+# The legend is really large! Great job reordering the legend to go in the same 
+# order as the lines! The final step is to match the colors and theme I used. 
+# Personally, I like theme_bw() and the “Accent” palette from the RColorBrewer package.
+
+# I changed the size of my legend to be smaller, as it was massive before. 
+# This makes the graph more pleasing to look at. Lastly, I added the theme 
+# theme_bw() and modified the colors. Rather than using the defaults, 
+# it is important to explore different colors and themes that can make a 
+# graph more appealing!
+
+ggplot(data = ca_childcare_long, aes(x = study_year, y = price, 
+  color = fct_reorder2(.f = region, .x = study_year, .y = price))) +
+  geom_smooth(method = "loess", linewidth = 0.5) +  
+  geom_point(size = 0.8, alpha = 0.5) + 
+  # creates separate graphs for age_groups
+  # each has its own x-axis
+  # in one row 
+  facet_wrap(~ age, scales = "free_x", nrow=1) +  
+  labs(title = "Weekly Median Price for Center-Based Childcare ($)",
+       x = "Study Year",
+       y = "",
+       color = "California Region") +
+  # adjust axis
+  scale_y_continuous(limits = c(100, 500), breaks = seq(100, 500, by = 100)) +
+  scale_x_continuous(breaks = seq(2008, 2018, by = 2)) +
+  theme_bw() +
+  theme(
+    # spaces the graphs apart, lines is a unit
+    panel.spacing = unit(1, "lines"), 
+    # change the aspect ratio to make it less tall
+    aspect.ratio = 1, # make it less tall
+    axis.text.x = element_text(size = 7), 
+    axis.text.y = element_text(size = 7), 
+    legend.title = element_text(size = 10), 
+    legend.text = element_text(size = 8), 
+    legend.key.size = unit(0.8, "lines")
+  ) +
+  scale_color_manual(values = colorRampPalette(brewer.pal(8, "Accent"))(10))
+
+```
+
+-   I can reorder my legend to align with the colors in my plot
+
+```{r}
+#| label: dvs-2-3
+
+# Lab 4, Question 6 
+
+# Growing comments: Nice work changing the size of the x-axis and y-axis text! 
+# Can you make this change to other aspects of the plot? 
+# The legend is really large! Great job reordering the legend to go in the same 
+# order as the lines! The final step is to match the colors and theme I used. 
+# Personally, I like theme_bw() and the “Accent” palette from the RColorBrewer package.
+
+# I changed the size of my legend to be smaller, as it was massive before. 
+# This makes the graph more pleasing to look at. Lastly, I added the theme 
+# theme_bw() and modified the colors. Rather than using the defaults, 
+# it is important to explore different colors and themes that can make a 
+# graph more appealing!
+
+ggplot(data = ca_childcare_long, aes(x = study_year, y = price, 
+  color = fct_reorder2(.f = region, .x = study_year, .y = price))) +
+  geom_smooth(method = "loess", linewidth = 0.5) +  
+  geom_point(size = 0.8, alpha = 0.5) + 
+  # creates separate graphs for age_groups
+  # each has its own x-axis
+  # in one row 
+  facet_wrap(~ age, scales = "free_x", nrow=1) +  
+  labs(title = "Weekly Median Price for Center-Based Childcare ($)",
+       x = "Study Year",
+       y = "",
+       color = "California Region") +
+  # adjust axis
+  scale_y_continuous(limits = c(100, 500), breaks = seq(100, 500, by = 100)) +
+  scale_x_continuous(breaks = seq(2008, 2018, by = 2)) +
+  theme_bw() +
+  theme(
+    # spaces the graphs apart, lines is a unit
+    panel.spacing = unit(1, "lines"), 
+    # change the aspect ratio to make it less tall
+    aspect.ratio = 1, # make it less tall
+    axis.text.x = element_text(size = 7), 
+    axis.text.y = element_text(size = 7), 
+    legend.title = element_text(size = 10), 
+    legend.text = element_text(size = 8), 
+    legend.key.size = unit(0.8, "lines")
+  ) +
+  scale_color_manual(values = colorRampPalette(brewer.pal(8, "Accent"))(10))
+
+```
+
+**DVS-3: I show creativity in my visualizations**
+
+-   I can use non-standard colors
+
+```{r}
+#| label: dvs-3-1
+
+# Lab 4, Question 6
+
+# Growing comments: Nice work changing the size of the x-axis and y-axis text! 
+# Can you make this change to other aspects of the plot? 
+# The legend is really large! Great job reordering the legend to go in the same 
+# order as the lines! The final step is to match the colors and theme I used. 
+# Personally, I like theme_bw() and the “Accent” palette from the RColorBrewer package.
+
+# I changed the size of my legend to be smaller, as it was massive before. 
+# This makes the graph more pleasing to look at. Lastly, I added the theme 
+# theme_bw() and modified the colors. Rather than using the defaults, 
+# it is important to explore different colors and themes that can make a 
+# graph more appealing!
+
+ggplot(data = ca_childcare_long, aes(x = study_year, y = price, 
+  color = fct_reorder2(.f = region, .x = study_year, .y = price))) +
+  geom_smooth(method = "loess", linewidth = 0.5) +  
+  geom_point(size = 0.8, alpha = 0.5) + 
+  # creates separate graphs for age_groups
+  # each has its own x-axis
+  # in one row 
+  facet_wrap(~ age, scales = "free_x", nrow=1) +  
+  labs(title = "Weekly Median Price for Center-Based Childcare ($)",
+       x = "Study Year",
+       y = "",
+       color = "California Region") +
+  # adjust axis
+  scale_y_continuous(limits = c(100, 500), breaks = seq(100, 500, by = 100)) +
+  scale_x_continuous(breaks = seq(2008, 2018, by = 2)) +
+  theme_bw() +
+  theme(
+    # spaces the graphs apart, lines is a unit
+    panel.spacing = unit(1, "lines"), 
+    # change the aspect ratio to make it less tall
+    aspect.ratio = 1, # make it less tall
+    axis.text.x = element_text(size = 7), 
+    axis.text.y = element_text(size = 7), 
+    legend.title = element_text(size = 10), 
+    legend.text = element_text(size = 8), 
+    legend.key.size = unit(0.8, "lines")
+  ) +
+  scale_color_manual(values = colorRampPalette(brewer.pal(8, "Accent"))(10))
+
+```
+
+-   I can use annotations
+
+```{r}
+#| label: dvs-3-2
+
+# Challenge 2, Hot
+# Originally I didn't do this challenge, I added it now for the portfolio
+
+# Fixed from first midterm check in
+# Made it more efficient using map2 instead of repeating annotate()!
+
+# https://chatgpt.com/share/674eb08f-bd5c-8006-8b97-c61b5ae788cd
+
+labels <- c("Neotoma", "Chaetodipus", "Peromyscus", "Perognathus", 
+            "Reithrodontomys", "Sigmodon", "Onychomys", "Peromyscus", 
+            "Reithrodontomys", "Dipodomys", "Dipodomys", "Chaetodipus", 
+            "Dipodomys", "Onychomys")
+
+x_positions <- 1:14  
+
+ggplot(data = surveys, 
+       mapping = aes(x = species, y = weight, color = genus)) + 
+  geom_boxplot() +
+  labs(
+    x = "",
+    subtitle = "Species",
+    y = "Weight (grams)",
+    title = "Analyzing Weight Distributions Across Various Rodents") +
+  coord_flip() +
+  theme(legend.position = "none") + 
+  scale_color_manual(values = cdPalette_grey) + 
+  map2(x_positions, labels, ~ annotate("text", x = .x, y = 250, label = .y)) 
+```
+
+-   I can be creative...
+
+```{r}
+#| label: dvs-3-3
+
+```
+
+**DVS-4: I can calculate numerical summaries of variables.**
+
+-   Example using `summarize()`
+
+```{r}
+#| label: dvs-4-summarize
+
+# lab 3, Question 10
+
+# Success comment: This suggests there is only *one* max and one min. 
+# Is that the case? Are there any ties?
+
+# Growing/ Reflect: Before I used slice and ordered the averages so I could just 
+# take out the first and last row (min/ max). However, I did not consider
+# ties. Now, I get the average SET_score_avg per professor and output 
+# all the professors where their average is equivalent to the average min and max.
+# This is an improvement because now rather than just seeing A professor that got
+# the min and max average score, I can see them ALL (accounting for ties). 
+
+teacher_evals_clean |>
+  group_by(teacher_id) |>
+  filter(question_no == 901) |>
+  summarize(avg = mean(SET_score_avg, na.rm = TRUE)) |>
+  filter(avg == min(avg) | avg == max(avg))
+
+
+```
+
+-   Example using `across()`
+
+```{r}
+#| label: dvs-4-across
+
+# Used data from lab 3 to demonstrate across!
+
+teacher_evals_clean |>
+  filter(question_no == 901) |> 
+  group_by(teacher_id) |>
+  summarize(
+    across(.cols = c(no_participants, resp_share, SET_score_avg),
+      .fns = mean, 
+      .names = "{.col}_avg"))
+
+```
+
+**DVS-5: I can find summaries of variables across multiple groups.**
+
+-   Example 1
+
+```{r}
+#| label: dvs-5-1
+# Lab 5 
+
+# Growing comment: You need to interview every suspect!
+# Added the rest of the lab!
+
+drivers_license |>
+  rename(license_id = id) |>
+  filter(
+    gender == "female",             
+    hair_color == "red",            
+    height >= 65 & height <= 67,                  
+    car_make == "Tesla",           
+    car_model == "Model S"          
+  ) |>
+  left_join(person, by = "license_id") |>
+  inner_join(facebook_event_checkin, by = c("id" = "person_id")) |>
+  # since date is a double, change to character first
+  filter(str_starts(as.character(date), "2017"),
+         event_name == "SQL Symphony Concert") |>
+  group_by(id) |>
+  summarise(event_count = n(), .groups = "drop") |>
+  filter(event_count == 3) |>
+  inner_join(person, by = "id") |>
+  left_join(interview, by = c("id" = "person_id")) |>
+  # Confirm new suspect = shouldn't have an interview 
+  select(name, transcript)
+
+```
+
+-   Example 2
+
+```{r}
+#| label: dvs-5-2
+
+# Lab 3, Question 9
+
+# Success comment: I strongly recommend against nested functions, as they are 
+# difficult for people to understand what your code is doing. Having two 
+# lines is not less efficient and is more readable.
+
+teacher_evals_clean |>
+  group_by(teacher_id, course_id) |>
+  summarize(num_questions = n_distinct(question_no)) |>
+  filter(num_questions == 9)
+
+```
+
+**DVS-6: I can create tables which make my summaries clear to the reader.**
+
+-   Example 1
+
+```{r}
+#| label: dvs-6-1
+
+# Lab 4, Question 4
+
+# Success comments: I would recommend using the %in% operator instead of the or!
+# Nice work learning to drop the groups!
+# Nice column names! You could even be more specific and say "Median Income"!
+
+ca_childcare_clean |>
+  filter(study_year %in% c(2008, 2018))
+  group_by(region, study_year) |>
+  summarise(median_income = median(mhi_2018, na.rm = TRUE), .groups = 'drop') |>
+  pivot_wider(id_cols = region,
+              names_from = study_year, 
+              values_from = median_income, 
+              names_prefix = "Median Income ") |>
+  arrange(`Median Income 2018`)
+
+```
+
+-   Example 2
+
+```{r}
+#| label: dvs-6-2
+
+# Lab 3, Question 12
+
+# Success comments: This suggests there is only *one* max and one min. 
+# Is that the case? Are there any ties? If you want both conditions to be 
+# satisfies in a filter() you can use a comma to separate them!
+# I would recommend using the %in% operator instead of the or!
+
+# I also added better names!
+
+teacher_evals_clean |>
+  group_by(teacher_id) |>
+  filter(sex == "female", academic_degree %in% c("dr", "prof")) |>
+  summarize(avg = mean(resp_share, na.rm = TRUE)) |>
+  filter(avg == min(avg) | avg == max(avg)) |>
+  rename(`Female Teacher` = teacher_id, 
+         `Average Response Rate (Min/ Max)` = avg)
+```
+
+**DVS-7: I show creativity in my tables.**
+
+-   Example 1
+
+```{r}
+#| label: dvs-7-1
+
+```
+
+-   Example 2
+
+```{r}
+#| label: dvs-7-2
+
+```
+
+## Program Efficiency
+
+**PE-1: I can write concise code which does not repeat itself.**
+
+-   using a single function call with multiple inputs (rather than multiple function calls)
+
+```{r}
+#| label: pe-1-one-call
+# Lab 5 
+
+# Growing comment: You need to interview every suspect!
+# Added the rest of the lab!
+
+drivers_license |>
+  rename(license_id = id) |>
+  filter(
+    gender == "female",             
+    hair_color == "red",            
+    height >= 65 & height <= 67,                  
+    car_make == "Tesla",           
+    car_model == "Model S"          
+  ) |>
+  left_join(person, by = "license_id") |>
+  inner_join(facebook_event_checkin, by = c("id" = "person_id")) |>
+  # since date is a double, change to character first
+  filter(str_starts(as.character(date), "2017"),
+         event_name == "SQL Symphony Concert") |>
+  group_by(id) |>
+  summarise(event_count = n(), .groups = "drop") |>
+  filter(event_count == 3) |>
+  inner_join(person, by = "id") |>
+  left_join(interview, by = c("id" = "person_id")) |>
+  # Confirm new suspect = shouldn't have an interview 
+  select(name, transcript)
+
+```
+
+-   `across()`
+
+```{r}
+#| label: pe-1-across
+# Lab 3, Question 5
+
+# Success comment: I'd encourage you to be more consistent with your function 
+# syntax. The first syntax for the across() function is spot on, but the second 
+# one lacks the details you included in the first.
+
+teacher_evals_clean = teacher_data |> 
+  rename(sex=gender) |>
+  filter(no_participants >= 10) |> 
+  select(course_id, teacher_id, question_no, no_participants, 
+         resp_share, SET_score_avg, percent_failed_cur, 
+         academic_degree, seniority, sex) |>
+  mutate(
+    across(.cols = course_id:teacher_id, .fns = ~ as.character(.x)),
+    across(.cols = c(academic_degree, sex), .fns = ~ as.factor(.x))
+    )
+
+```
+
+-   `map()` functions
+
+```{r}
+#| label: pe-1-map-1
+
+```
+
+**PE-2: I can write functions to reduce repetition in my code.**
+
+-   Function that operates on vectors
+
+```{r}
+#| label: pe-2-1
+
+```
+
+-   Function that operates on data frames
+
+```{r}
+#| label: pe-2-2
+
+```
+
+**PE-3:I can use iteration to reduce repetition in my code.**
+
+-   `across()`
+
+```{r}
+#| label: pe-3-across
+
+```
+
+-   `map()` function with **one** input (e.g., `map()`, `map_chr()`, `map_dbl()`, etc.)
+
+```{r}
+#| label: pe-3-map-1
+
+```
+
+-   `map()` function with **more than one** input (e.g., `map_2()` or `pmap()`)
+
+```{r}
+#| label: pe-3-map-2
+
+```
+
+**PE-4: I can use modern tools when carrying out my analysis.**
+
+-   I can use functions which are not superseded or deprecated
+
+```{r}
+#| label: pe-4-1
+
+# Lab 4, Question 6
+
+# Growing comment: Nice work pivoting and modifying the age variable! 
+# The recode() function is superseeded, in favor of case_when() and functions 
+# in the forcats package.
+
+# What I did: Before I changed the names of mc_infant, mc_toddler, mc_preschool 
+# to Infant, Toddler, Preschool using recode(), which is
+# superseeded! I changed it to case_when() this way
+# I am using the updated appropriate function.
+
+ca_childcare_long <- ca_childcare_clean |>
+  select(study_year, region, mc_infant, mc_toddler, mc_preschool) |>
+  # Transform wide to long format
+  pivot_longer(cols = starts_with("mc_"), 
+               # Create a new column "age" from the column names
+               names_to = "age", 
+               # The corresponding values will go in the "price" column
+               values_to = "price") |>
+  mutate(age = case_when(
+    age == "mc_infant" ~ "Infant",
+    age == "mc_toddler" ~ "Toddler",
+    age == "mc_preschool" ~ "Preschool"),
+    age = fct_relevel(age, "Infant", "Toddler", "Preschool")
+)
+ca_childcare_long
+
+```
+
+-   I can connect a data wrangling pipeline into a `ggplot()`
+
+```{r}
+#| label: pe-4-2
+
+# Lab 4, Question 6
+
+# Growing comments: Nice work changing the size of the x-axis and y-axis text! 
+# Can you make this change to other aspects of the plot? 
+# The legend is really large! Great job reordering the legend to go in the same 
+# order as the lines! The final step is to match the colors and theme I used. 
+# Personally, I like theme_bw() and the “Accent” palette from the RColorBrewer package.
+
+# I changed the size of my legend to be smaller, as it was massive before. 
+# This makes the graph more pleasing to look at. Lastly, I added the theme 
+# theme_bw() and modified the colors. Rather than using the defaults, 
+# it is important to explore different colors and themes that can make a 
+# graph more appealing!
+
+# I combined the pipeline with the ggplot!
+
+ca_childcare_clean |>
+  select(study_year, region, mc_infant, mc_toddler, mc_preschool) |>
+  # Transform wide to long format
+  pivot_longer(cols = starts_with("mc_"), 
+               # Create a new column "age" from the column names
+               names_to = "age", 
+               # The corresponding values will go in the "price" column
+               values_to = "price") |>
+  mutate(age = fct_relevel(case_when(
+    age == "mc_infant" ~ "Infant",
+    age == "mc_toddler" ~ "Toddler",
+    age == "mc_preschool" ~ "Preschool"
+  ), "Infant", "Toddler", "Preschool")) |>
+  ggplot(aes(x = study_year, y = price, 
+    color = fct_reorder2(.f = region, .x = study_year, .y = price))) +
+    geom_smooth(method = "loess", linewidth = 0.5) +  
+    geom_point(size = 0.8, alpha = 0.5) + 
+    # creates separate graphs for age_groups
+    # each has its own x-axis
+    # in one row 
+    facet_wrap(~ age, scales = "free_x", nrow=1) +  
+    labs(title = "Weekly Median Price for Center-Based Childcare ($)",
+         x = "Study Year",
+         y = "",
+         color = "California Region") +
+    # adjust axis
+    scale_y_continuous(limits = c(100, 500), breaks = seq(100, 500, by = 100)) +
+    scale_x_continuous(breaks = seq(2008, 2018, by = 2)) +
+    theme_bw() +
+    theme(
+      # spaces the graphs apart, lines is a unit
+      panel.spacing = unit(1, "lines"), 
+      # change the aspect ratio to make it less tall
+      aspect.ratio = 1, # make it less tall
+      axis.text.x = element_text(size = 7), 
+      axis.text.y = element_text(size = 7), 
+      legend.title = element_text(size = 10), 
+      legend.text = element_text(size = 8), 
+      legend.key.size = unit(0.8, "lines")
+    ) +
+    scale_color_manual(values = colorRampPalette(brewer.pal(8, "Accent"))(10))
+
+```
+
+## Data Simulation & Statisical Models
+
+**DSSM-1: I can simulate data from a *variety* of probability models.**
+
+-   Example 1
+
+```{r}
+#| label: dsm-1-1
+
+```
+
+-   Example 2
+
+```{r}
+#| label: dsm-1-2
+
+```
+
+**DSSM-2: I can conduct common statistical analyses in R.**
+
+-   Example 1
+
+```{r}
+#| label: dsm-2-1
+
+# Lab 4, Question 8
+# Linear Regression
+
+reg_mod1 <- lm(mc_infant ~ mhi_2018, data = ca_childcare)
+summary(reg_mod1)
+
+```
+
+-   Example 2
+
+```{r}
+#| label: dsm-2-2
+
+# Challenge 3, Question 3
+
+chisq.test(teacher_evals_compare$SET_level, 
+          teacher_evals_compare$sen_level)
+
+```
+
+## Revising My Thinking
+
+<!-- How did you revise your thinking throughout the course? How did you revise your thinking on the code examples you have provided in your portfolio? -->
+
+Throughout the course, I have revised all my growing areas and have been working
+hard to look at the success comments as well to incorporate into newer assignments.
+I wrote code comments in every chunk were I revised code to state what I changed
+and reflect on how the new code is better ensuring to focus on the "bigger 
+picture." This was sometimes challenging as most of my growing areas were small 
+fixes, but I still made sure to reflect. Overall, fixing all my growing areas 
+and reflecting on them was very valuable because it helped me remember to
+incorporate those changes into the following labs. In my portfolio, I revised
+code chunks to reflect the changes growing and success comments suggested. 
+
+<!-- For the revisions included in your Portfolio, to help me understand the nature of your revisions, please denote somehow the feedback I provided you (e.g., boldface, italics, colored text) before your revisions. -->
+
+## Extending My Thinking
+
+<!-- How did you extended your thinking throughout the course? How did you extend your thinking on the code examples you have provided in your portfolio? -->
+
+To extend my thinking, I try to think of what code functions might be
+most helpful and efficient for each particular situation. Essentially, gathering 
+what I learned from class and critically thinking as I apply it to my assignments.
+Also, if I was curious or wanted to learn more, I would Google to discover
+new information (e.g. finding new color palettes and themes). In the code 
+examples in my portfolio, I made sure to consider all the growing and success 
+comments on my assignments, improving my code to be tidy and efficient. I 
+also make a really big effort to do my best on every lab and challenge to 
+produce quality documents.
+
+## Peer Support & Collaboration
+
+<!-- Include an image or a description of feedback you gave that you are proud of (either in a peer review or in Discord). -->
+
+Here is my peer review from Lab 3. I particularly like this one, even though I 
+have done a peer review every week. For this review, I talked about specific 
+questions and gave advice on how the code can be made better. I made sure
+to comment what was good about the code too!
+
+"Hey! Good job on adding a table of contents and code folding options. 
+This makes your overall lab have a cleaner look and easier to follow. 
+
+In question 7, you add some extra spacing and indenting that is unnecessary and 
+makes the code look a little messy. Also, you can be more specific when using 
+if_any(). For example, try adding named arguments and correct function syntax. 
+if_any(.cols = everything(), .fns = ~ is.na(.x)). 
+
+For questions 10-12, you have some extra spacing and indentation that made 
+it hard to read / follow the code. Also, you repeat the main chunk of the code 
+twice, I think you could have combined these to get the min / max from one code 
+chunk to be more efficient. I also couldn't see the output of your code in most 
+of these.
+
+Overall, your results seem great! Make sure to not repeat big chunks of code, 
+always display the output, and remove extra spacing/ indents."
+
+<!-- Include a description of how you grew as a collaborator through the weekly pair programming activities.   -->
+
+During pair programming I made sure to follow the programmer vs coder routines. 
+When it was my partners turn to type, I would tell them what to write. When it 
+would be my turn to type, I listened to my partner and made sure to not just 
+type what I wanted to. If we were stuck and neither of us knew what to do, we 
+would collaborate and try to problem solve together. I also raised my hand when
+needed to help my partner and I when we couldn't figure out what to do. 
+
+
+
+
+
+

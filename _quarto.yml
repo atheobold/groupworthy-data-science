@@ -35,8 +35,18 @@ website:
         text: Schedule
       - href: course-materials/syllabus.qmd
         text: Syllabus
-      - href: portfolio/portfolio-instructions.qmd
-        text: Portfolio
+      - text: Portfolio
+        menu:
+            - href: portfolio/portfolio-instructions.qmd
+              text: Portfolio Instructions
+            - href: portfolio/midterm-portfolio-targets.qmd
+              text: Midterm Portfolio Learning Targets
+            - href: portfolio/examples/midterm-A.qmd
+              text: Example A-level Portfolio (Midterm)
+            - href: portfolio/examples/midterm-B.qmd
+              text: Example B-level Portfolio (Midterm)
+            - href: portfolio/examples/midterm-C.qmd
+              text: Example C-level Portfolio (Midterm)
       - href: course-materials/course-resources.qmd
         text: Resources
       - href: labs/exemplars/student-work.qmd

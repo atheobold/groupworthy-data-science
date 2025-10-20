@@ -1,8 +1,6 @@
 ---
 title: "Example C-level Portfolio"
-format: 
-  html: 
-    self-contained: true
+format: html
 layout: margin-left
 editor: visual
 execute: 
@@ -257,13 +255,6 @@ witness_1_interview <- person |>
 
 ```
 
--   `full_join()`
-
-```{r}
-#| label: wd-5-full
-
-```
-
 **WD-6: I can use filtering joins to filter rows from a dataframe.**
 
 -   `semi_join()`
@@ -383,17 +374,6 @@ teacher_evals_clean |>
 
 ```{r}
 #| label: r-2-3
-
-# Lab 2 question 4
-ggplot(data = surveys, aes(x = weight, y = hindfoot_length)) +
-  geom_point(alpha = 0.5) +
-  facet_wrap(~species) +
-  labs(
-    title = "relationship between weight and hindfoot_length of different species",
-    subtitle = "y-axis representing hindfoot_length (mm)",
-    x = "weight (g)",  # x-axis label
-    y = ""
-  )
 
 ```
 
@@ -644,28 +624,6 @@ teacher_evals_compare |>
 ```{r}
 #| label: dvs-3-3
 
-# Lab 4 question 6
-
-ca_childcare |> 
-  pivot_longer(cols = mc_infant:mc_preschool,
-               names_to = "study_group",
-               values_to = "median_amount") |>
-  select(study_year, study_group, median_amount, region) |>
-  mutate(study_group = str_to_title(str_remove(study_group, "mc_")),
-         study_group = fct_relevel(study_group, "Infant", "Toddler", "Preschool")) |>
-  ggplot(mapping = aes(x = study_year,
-                       y = median_amount,
-                       color = fct_reorder2(region, study_year, median_amount))) + 
-  geom_point() +
-  facet_wrap(~study_group) +
-  geom_smooth(method = "loess") +
-  labs(
-    x = "Study Year",
-    y = "",
-    title = "Weekly Median Price for Center-Based Childcare ($)",
-    color = "California Region"
-  ) +
-  theme_bw()
 ```
 
 **DVS-4: I can calculate numerical summaries of variables.**
@@ -769,43 +727,12 @@ teacher_evals_clean <- teacher_evals |>
 ```{r}
 #| label: dvs-7-1
 
-# Challenge 3 question 2
-teacher_evals_compare |> 
-  ggplot(mapping = aes(x = sen_level, fill = SET_level)) +
-  geom_bar() +
-  labs(
-    x = "Seniority of Instructor",
-    y = "",
-    title = "Number of Sections"
-  ) +
-  scale_fill_manual(
-    name = "SET Level",
-    values = c(
-      "excellent" = rgb(red = 74, green = 117, blue = 168, maxColorValue = 255),
-      "standard" = rgb(red = 188, green = 126, blue = 34, maxColorValue = 255)
-    )
-  ) +
-  theme_bw()
-
 ```
 
 -   Example 2
 
 ```{r}
 #| label: dvs-7-2
-
-
-# Challenge 2 Medium: Ridge Plots
-ggplot(data = surveys, aes(x = weight, y = species)) +
-  geom_density_ridges(outliers = FALSE) +
-  geom_jitter(color = "steelblue", alpha = 0.25, height = 0.1) +  # Adding jitter height to avoid overlapping points
-  labs(
-    x = "Weight (g)",
-    y = "",
-    title = "Species By Weight (g)"
-  ) +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
-
 
 ```
 
@@ -1018,7 +945,7 @@ I always used what I learned from my past labs and practice activities in future
 
 The following is the feedback that I gave that I'm most proud of in one of my peer review. I included an in-depth review of my peer's general code formatting. I also gave some suggestions on how to write more tidy codes like `adding more spaces between "=" and adding more return statements after ","` .
 
-![](images/clipboard-2152803014.png)
+![](images/peer-feedback-portfolio.png)
 
 <!-- Include a description of how you grew as a collaborator through the weekly pair programming activities.   -->
 

@@ -1,8 +1,6 @@
 ---
 title: "Example B-level Portfolio"
-format: 
-  html: 
-    self-contained: true
+format: html
 layout: margin-left
 editor: visual
 execute: 
@@ -86,15 +84,6 @@ teacher_evals_clean <- teacher_evals |>
 
 ```{r}
 #| label: wd-3-numeric
-
-#Lab 5, interviewing suspects based on their ids
-person_interview |>
-  filter(id == 51739 | 
-           id == 67318 | 
-           id == 78193 | 
-           id == 28819) |>
-  pull(transcript)
-
 
 #Lab 5, Finding the final suspect
 person |>
@@ -217,6 +206,14 @@ ca_childcare <- ca_childcare |>
 ```{r}
 #| label: wd-5-left
 
+#Lab 5, Checking license plate and date
+get_fit_now_member |>
+  left_join(get_fit_now_check_in,
+            join_by(id == membership_id)) |>
+  filter(membership_status == "gold",
+         str_detect(id, "48Z"),
+         ymd(check_in_date) == "2018-01-09") |>
+  pull(person_id)
 ```
 
 -   `right_join()`
@@ -239,28 +236,6 @@ person |>
                     "H42W")) |>
   pull(id)
 
-
-#Lab 5, joining interview and person datasets
-person_interview <- person |>
-  inner_join(interview, 
-             join_by(id == person_id))
-
-```
-
--   `full_join()`
-
-```{r}
-#| label: wd-5-full
-
-#Lab 5, Checking license plate and date
-get_fit_now_member |>
-  full_join(get_fit_now_check_in,
-            join_by(id == membership_id)) |>
-  filter(membership_status == "gold",
-         str_detect(id, "48Z"),
-         ymd(check_in_date) == "2018-01-09") |>
-  pull(person_id)
-
 ```
 
 **WD-6: I can use filtering joins to filter rows from a dataframe.**
@@ -276,11 +251,6 @@ get_fit_now_member |>
 
 ```{r}
 #| label: wd-6-anti
-
-#Practice Activity 4, Question 4 (Create stronger example for the final in a lab)
-military_clean <- anti_join(military, 
-                            cont_region,
-                            by = join_by(Country == Region))
 
 ```
 
@@ -612,35 +582,6 @@ ca_childcare |>
 ```{r}
 #| label: dvs-3-1
 
-#Challenge 2, Final Plot
-cdPalette_grey <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-
-ggplot(data = surveys, 
-       mapping = aes(y = species,
-                     x = weight,
-                     color = genus)) +
-  geom_boxplot() +
-  scale_color_manual(values = cdPalette_grey) + 
-  annotate("text", y = 14, x = 250, label = "Onychomys") +
-  annotate("text", y = 13, x = 250, label = "Dipodomys") +
-  annotate("text", y = 12, x = 250, label = "Chaetodipus") +
-  annotate("text", y = 11, x = 250, label = "Dipodomys") +
-  annotate("text", y = 10, x = 250, label = "Dipodomys") +
-  annotate("text", y = 9, x = 250, label = "Reithrodontomys") +
-  annotate("text", y = 8, x = 250, label = "Peromyscus") +
-  annotate("text", y = 7, x = 250, label = "Onychomys") +
-  annotate("text", y = 6, x = 250, label = "Sigmodon") +
-  annotate("text", y = 5, x = 250, label = "Reithrodontomys") +
-  annotate("text", y = 4, x = 250, label = "Perognathus") +
-  annotate("text", y = 3, x = 250, label = "Peromyscus") +
-  annotate("text", y = 2, x = 250, label = "Chaetodipus") +
-  annotate("text", y = 1, x = 250, label = "Neotoma") +
-  theme(legend.position = "none") +
-  labs(x = "Weight (g)",
-       y = "",
-       subtitle = "Species of Rodent",
-       title = "Rodent Weight by Species, Color Coded by Genus")
-
 ```
 
 -   I can use annotations
@@ -648,32 +589,6 @@ ggplot(data = surveys,
 ```{r}
 #| label: dvs-3-2
 
-#Challenge 2, Final Plot
-ggplot(data = surveys, 
-       mapping = aes(y = species,
-                     x = weight,
-                     color = genus)) +
-  geom_boxplot() +
-  scale_color_manual(values = cdPalette_grey) + 
-  annotate("text", y = 14, x = 250, label = "Onychomys") +
-  annotate("text", y = 13, x = 250, label = "Dipodomys") +
-  annotate("text", y = 12, x = 250, label = "Chaetodipus") +
-  annotate("text", y = 11, x = 250, label = "Dipodomys") +
-  annotate("text", y = 10, x = 250, label = "Dipodomys") +
-  annotate("text", y = 9, x = 250, label = "Reithrodontomys") +
-  annotate("text", y = 8, x = 250, label = "Peromyscus") +
-  annotate("text", y = 7, x = 250, label = "Onychomys") +
-  annotate("text", y = 6, x = 250, label = "Sigmodon") +
-  annotate("text", y = 5, x = 250, label = "Reithrodontomys") +
-  annotate("text", y = 4, x = 250, label = "Perognathus") +
-  annotate("text", y = 3, x = 250, label = "Peromyscus") +
-  annotate("text", y = 2, x = 250, label = "Chaetodipus") +
-  annotate("text", y = 1, x = 250, label = "Neotoma") +
-  theme(legend.position = "none") +
-  labs(x = "Weight (g)",
-       y = "",
-       subtitle = "Species of Rodent",
-       title = "Rodent Weight by Species, Color Coded by Genus")
 
 ```
 
@@ -681,35 +596,6 @@ ggplot(data = surveys,
 
 ```{r}
 #| label: dvs-3-3
-
-#Challenge 2, Final Plot
-cdPalette_grey <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
-
-ggplot(data = surveys, 
-       mapping = aes(y = species,
-                     x = weight,
-                     color = genus)) +
-  geom_boxplot() +
-  scale_color_manual(values = cdPalette_grey) + 
-  annotate("text", y = 14, x = 250, label = "Onychomys") +
-  annotate("text", y = 13, x = 250, label = "Dipodomys") +
-  annotate("text", y = 12, x = 250, label = "Chaetodipus") +
-  annotate("text", y = 11, x = 250, label = "Dipodomys") +
-  annotate("text", y = 10, x = 250, label = "Dipodomys") +
-  annotate("text", y = 9, x = 250, label = "Reithrodontomys") +
-  annotate("text", y = 8, x = 250, label = "Peromyscus") +
-  annotate("text", y = 7, x = 250, label = "Onychomys") +
-  annotate("text", y = 6, x = 250, label = "Sigmodon") +
-  annotate("text", y = 5, x = 250, label = "Reithrodontomys") +
-  annotate("text", y = 4, x = 250, label = "Perognathus") +
-  annotate("text", y = 3, x = 250, label = "Peromyscus") +
-  annotate("text", y = 2, x = 250, label = "Chaetodipus") +
-  annotate("text", y = 1, x = 250, label = "Neotoma") +
-  theme(legend.position = "none") +
-  labs(x = "Weight (g)",
-       y = "",
-       subtitle = "Species of Rodent",
-       title = "Rodent Weight by Species, Color Coded by Genus")
 
 ```
 
@@ -727,15 +613,6 @@ teacher_evals_clean |>
   summarise(avg_fail = mean(percent_failed_cur)) |>
   filter(avg_fail == max(avg_fail) | avg_fail == min(avg_fail)) |>
   arrange(desc(avg_fail))
-
-#Lab 4, Question 4
-ca_childcare |>
-  select(region, mhi_2018, study_year) |>
-  filter(study_year %in% c(2008, 2018)) |>
-  group_by(region, study_year) |>
-  summarize(avg_income = mean(mhi_2018)) |>
-  pivot_wider(names_from = study_year, values_from = avg_income) |>
-  arrange(desc(`2018`))
 
 ```
 
@@ -1012,7 +889,6 @@ ca_childcare |>
 
 #Lab 2, Question 17 (ANOVA)
 species_mod <- aov(surveys$weight ~ surveys$species)
-
 summary(species_mod)
 
 ```
@@ -1047,7 +923,7 @@ I believe that I mainly demonstrated extended thinking within my challenge assig
 <!-- Include an image or a description of feedback you gave that you are proud of (either in a peer review or in Discord). -->
 
 This was a peer review that I was proud of:
-"Hey Khoa, great job on Lab 4!
+"Hey Alison, great job on Lab 4!
 
 First off, I noticed that your code is very tidy for the most part. There were a couple instances where you could have made some returns after commas, but for the most part you did very well. Additionally, I appreciate you sizing down the text size on the x-axis of your graph, I will definitely be adding that to my revisions!
 

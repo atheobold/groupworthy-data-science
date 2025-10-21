@@ -13,6 +13,7 @@ Today we will...
 
 ::: {.small}
 -   Review Key Feedback from Lab 4
+    +   Discuss New Structure for Revisions
 -   New Material
     -   Version Control
 -   Setting-up Portfolio 
@@ -25,7 +26,7 @@ Today we will...
 
 ::: {.incremental}
 ::: {.small}
-- **Q1**: Who collected these data? When were the data collected?
+- **Q1**: Who collected these data? When? Why? How?
 
 - **Q4**: Column titles of `2008` and `2018` are not descriptive! 
     + Creating column names that **describe** the values stored in those
@@ -71,11 +72,9 @@ the tools we learned!
 > reader
 :::
 
-::: {.small}
 - Facets ordered based on developmental stage **not** alphabetically
 - Ordering colors in the legend so they appear in the same order as the lines
 in the plot. 
-:::
 
 ## Recreating the Plot
 
@@ -83,17 +82,17 @@ in the plot.
 > DVS-3: I show creativity in my visualizations
 :::
 
-::: {.small}
+::: {.midi}
 - Exploring different color themes
     + Personally, I like the `"Accent"` palette from the RColorBrewer package, 
     but you might like others! 
-    + Getting 10 colors is hard! I would recommend looking into the 
-    `colorRampPalette()` function to get more colors. 
+    + Getting 10 colors is hard! 
+    + Look at Rayan's question on Discord!
 :::
 
 . . .
 
-::: {.small}
+::: {.midi}
 - Exploring different plot themes
     + Personally, I like `theme_bw()`, but you might like others! 
     + Remember to keep major gridlines! They are important for readablity!
@@ -159,7 +158,7 @@ mutate(age_group = fct_recode(age_group,
 
 ## Saving Objects That Aren't Worth Saving
 
-::: {.small}
+::: {.midi}
 > We should only save objects that we need to use later! 
 
 ```{r}
@@ -178,6 +177,22 @@ lowest_child_care_price_2018
 ```
 :::
 
+## New Structure for Lab Revisions
+
+Due to the time it is taking me to give feedback for the lab and challenge
+assignments, I need to find a new plan for revisions.
+
+. . .
+
+**New Plan**: 
+
+::: {.midi}
+- Spend 45-minutes of class on Thursdays working on revisions with people around
+you, and discussing your revisions with me. 
+- Revisions will be graded as "Success" or "Growing" with no additional feedback
+provided.
+- Additional feedback can be given during student hours! 
+:::
 
 # Version Control
 
@@ -426,9 +441,22 @@ If this is you, keeping both local versions up to date will be important!
 4. Push your changes to GitHub.
 :::
 
+# Final Portfolio
+
+## Resources Available to You
+
+-   Handout on what learning targets we've covered thus far.
+    +   You shouldn't have code for the ones that aren't listed! 
+  
+-   [Examples of how to select a code example that satisfies multiple 
+learning targets](../../portfolio/midterm-portfolio-targets.qmd).
+    +   This can save you time!
+    
+-   Examples of portfolios from previous students
+    +   Please note the difference between the grade they suggested and the
+    grade they were assigned. 
+
 ## To do...
 
--   Find code from your lab and challenge assignments to insert into your 
-portfolio. 
--   Only fill in the code cells that have been covered thus far in the course! 
-    +   Your handout tells you what we've covered so far!
+- Lab 4 revisions due Friday at 11:59pm
+- Final Portfolio due Sunday at 11:59pm

@@ -4561,7 +4561,7 @@
     "href": "slides/week-6/week-6-version-control.html#thursday-september-26",
     "title": "Introduction to Version Control",
     "section": "Thursday, September 26",
-    "text": "Thursday, September 26\nToday we will…\n\n\nReview Key Feedback from Lab 4\n\nDiscuss New Structure for Revisions\n\nNew Material\n\nVersion Control\n\nSetting-up Portfolio\n\nForking the Final Portfolio Repository\nCloning into RStudio\nMaking a Small Change, Committing & Pushing"
+    "text": "Thursday, September 26\nToday we will…\n\n\nReview Key Feedback from Lab 4 & Challenge 4\n\nDiscuss New Structure for Revisions\n\nNew Material\n\nVersion Control\n\nSetting-up Portfolio\n\nForking the Final Portfolio Repository\nCloning into RStudio\nMaking a Small Change, Committing & Pushing"
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#lab-4-common-mishaps",
@@ -4582,7 +4582,7 @@
     "href": "slides/week-6/week-6-version-control.html#recreating-the-plot",
     "title": "Introduction to Version Control",
     "section": "Recreating the Plot",
-    "text": "Recreating the Plot\n\n\nDVS-2: I use plot modifications to make my visualizations clearer to the reader\n\n\n\nFacets ordered based on developmental stage not alphabetically\nOrdering colors in the legend so they appear in the same order as the lines in the plot."
+    "text": "Recreating the Plot\n\n\nDVS-2: I use plot modifications to make my visualizations clearer to the reader\n\n\nFacets ordered based on developmental stage not alphabetically.\nOrdering colors in the legend so they appear in the same order as the lines in the plot.\nAdding $ signs to axis labels.\nNot making people tilt their head to read your plot.\nUsing meaningful labels (e.g., “Infant” not “mfcc_infant”)."
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#recreating-the-plot-1",
@@ -5437,5 +5437,26 @@
     "title": "Loops and Iteration",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nI fully support more R packages being cat themed.↩︎"
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#challenge-3",
+    "href": "slides/week-6/week-6-version-control.html#challenge-3",
+    "title": "Introduction to Version Control",
+    "section": "Challenge 3",
+    "text": "Challenge 3\n\n\nDVS-2: I use plot modifications to make my visualizations clearer to the reader\n\n\nFacets ordered based on developmental stage not alphabetically.\nOrdering colors in the legend so they appear in the same order as the lines in the plot.\nAdding $ signs to axis labels.\nNot making people tilt their head to read your plot.\nUsing meaningful labels (e.g., “Infant” not “mfcc_infant”)."
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#challenge-3-1",
+    "href": "slides/week-6/week-6-version-control.html#challenge-3-1",
+    "title": "Introduction to Version Control",
+    "section": "Challenge 3",
+    "text": "Challenge 3\n\n\nDVS-3: I show creativity in my visualizations\n\n\n\n\nExploring different color themes\n\nHere is an incredible resource with extensive color themes: https://emilhvitfeldt.github.io/r-color-palettes/discrete.html\npaletter – multiple color palette packages in one place"
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html#challenge-3-2",
+    "href": "slides/week-6/week-6-version-control.html#challenge-3-2",
+    "title": "Introduction to Version Control",
+    "section": "Challenge 3",
+    "text": "Challenge 3\n\n\nDVS-3: I show creativity in my visualizations\n\n\n\n\nExploring different plot themes\n\nPersonally, I like theme_bw(), but you might like others!\nRemember to keep major gridlines! They are important for readablity!"
   }
 ]

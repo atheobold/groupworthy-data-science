@@ -12,7 +12,7 @@ editor: source
 Today we will...
 
 ::: {.small}
--   Review Key Feedback from Lab 4
+-   Review Key Feedback from Lab 4 & Challenge 4
     +   Discuss New Structure for Revisions
 -   New Material
     -   Version Control
@@ -63,39 +63,6 @@ still is grouped!
 the tools we learned!
   + Neither is `factor()`! 
   + Maybe try something from forcats!
-:::
-
-## Recreating the Plot
-
-::: {.midi}
-> DVS-2: I use plot modifications to make my visualizations clearer to the
-> reader
-:::
-
-- Facets ordered based on developmental stage **not** alphabetically
-- Ordering colors in the legend so they appear in the same order as the lines
-in the plot. 
-
-## Recreating the Plot
-
-::: {.midi}
-> DVS-3: I show creativity in my visualizations
-:::
-
-::: {.midi}
-- Exploring different color themes
-    + Personally, I like the `"Accent"` palette from the RColorBrewer package, 
-    but you might like others! 
-    + Getting 10 colors is hard! 
-    + Look at Rayan's question on Discord!
-:::
-
-. . .
-
-::: {.midi}
-- Exploring different plot themes
-    + Personally, I like `theme_bw()`, but you might like others! 
-    + Remember to keep major gridlines! They are important for readablity!
 :::
 
 ## Other "Big Picture" Code Feedback
@@ -177,6 +144,61 @@ lowest_child_care_price_2018
 ```
 :::
 
+## Challenge 3
+
+::: {.midi}
+> DVS-2: I use plot modifications to make my visualizations clearer to the
+> reader
+
+- Facets ordered based on developmental stage **not** alphabetically.
+- Ordering colors in the legend so they appear in the same order as the lines
+in the plot. 
+- Adding $ signs to axis labels.
+- Not making people tilt their head to read your plot.
+- Using meaningful labels (e.g., "Infant" not "mfcc_infant").
+:::
+
+## Challenge 3
+
+::: {.midi}
+> DVS-3: I show creativity in my visualizations
+:::
+
+::: {.midi}
+- Exploring different color themes
+    + Here is an incredible resource with extensive color themes: <https://emilhvitfeldt.github.io/r-color-palettes/discrete.html>
+    + **paletter** -- multiple color palette packages in one place
+:::
+
+::: columns
+::: {.column width="48%"}
+![](images/istanbul.svg)
+![](images/anteos_menippe.svg)
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+![](images/lover.svg)
+![](images/berry.svg)
+:::
+:::
+
+## Challenge 3
+
+::: {.midi}
+> DVS-3: I show creativity in my visualizations
+:::
+
+::: {.midi}
+- Exploring different plot themes
+    + Personally, I like `theme_bw()`, but you might like others! 
+    + Remember to keep major gridlines! They are important for readablity!
+:::
+
+
+
 ## New Structure for Lab Revisions
 
 Due to the time it is taking me to give feedback for the lab and challenge
@@ -193,6 +215,8 @@ you, and discussing your revisions with me.
 provided.
 - Additional feedback can be given during student hours! 
 :::
+
+# Version Control
 
 # Version Control
 

@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Introduction to Version Control</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-eec0788ef0355d468dea179c927c9482.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-42f76a1956414a0049aa0613aff3d6a7.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -204,7 +204,7 @@
 <p>Today we will…</p>
 <div class="small">
 <ul>
-<li>Review Key Feedback from Lab 4
+<li>Review Key Feedback from Lab 4 &amp; Challenge 4
 <ul>
 <li>Discuss New Structure for Revisions</li>
 </ul></li>
@@ -264,47 +264,6 @@
 </ul></li>
 </ul>
 </section>
-<section id="recreating-the-plot" class="slide level2">
-<h2>Recreating the Plot</h2>
-<div class="midi">
-<blockquote>
-<p>DVS-2: I use plot modifications to make my visualizations clearer to the reader</p>
-</blockquote>
-</div>
-<ul>
-<li>Facets ordered based on developmental stage <strong>not</strong> alphabetically</li>
-<li>Ordering colors in the legend so they appear in the same order as the lines in the plot.</li>
-</ul>
-</section>
-<section id="recreating-the-plot-1" class="slide level2">
-<h2>Recreating the Plot</h2>
-<div class="midi">
-<blockquote>
-<p>DVS-3: I show creativity in my visualizations</p>
-</blockquote>
-</div>
-<div class="midi">
-<ul>
-<li>Exploring different color themes
-<ul>
-<li>Personally, I like the <code>"Accent"</code> palette from the RColorBrewer package, but you might like others!</li>
-<li>Getting 10 colors is hard!</li>
-<li>Look at Rayan’s question on Discord!</li>
-</ul></li>
-</ul>
-</div>
-<div class="fragment">
-<div class="midi">
-<ul>
-<li>Exploring different plot themes
-<ul>
-<li>Personally, I like <code>theme_bw()</code>, but you might like others!</li>
-<li>Remember to keep major gridlines! They are important for readablity!</li>
-</ul></li>
-</ul>
-</div>
-</div>
-</section>
 <section id="other-big-picture-code-feedback" class="slide level2">
 <h2>Other “Big Picture” Code Feedback</h2>
 <div class="midi">
@@ -315,13 +274,13 @@
 <p><br></p>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-4|1,5-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">fct_relevel</span>(<span class="fu">fct_recode</span>(age_group,</span>
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|1-4|1,5-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">fct_relevel</span>(<span class="fu">fct_recode</span>(age_group,</span>
 <span id="cb1-2"><a></a>                                          <span class="st">"Infant"</span> <span class="ot">=</span> <span class="st">"mc_infant"</span>,</span>
 <span id="cb1-3"><a></a>                                          <span class="st">"Toddler"</span> <span class="ot">=</span> <span class="st">"mc_toddler"</span>,</span>
 <span id="cb1-4"><a></a>                                          <span class="st">"Preschool"</span> <span class="ot">=</span> <span class="st">"mc_preschool"</span>),</span>
 <span id="cb1-5"><a></a>                                <span class="st">"Infant"</span>,</span>
 <span id="cb1-6"><a></a>                                <span class="st">"Toddler"</span>,</span>
-<span id="cb1-7"><a></a>                                <span class="st">"Preschool"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-7"><a></a>                                <span class="st">"Preschool"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -335,7 +294,7 @@
 <p><br></p>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">fct_recode</span>(age_group,</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(<span class="at">age_group =</span> <span class="fu">fct_recode</span>(age_group,</span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Infant"</span> <span class="ot">=</span> <span class="st">"mc_infant"</span>,</span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Toddler"</span> <span class="ot">=</span> <span class="st">"mc_toddler"</span>,</span>
 <span id="cb2-4"><a aria-hidden="true" tabindex="-1"></a>                              <span class="st">"Preschool"</span> <span class="ot">=</span> <span class="st">"mc_preschool"</span>),</span>
@@ -343,7 +302,7 @@
 <span id="cb2-6"><a aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Infant"</span>,</span>
 <span id="cb2-7"><a aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Toddler"</span>,</span>
 <span id="cb2-8"><a aria-hidden="true" tabindex="-1"></a>                                <span class="st">"Preschool"</span>)</span>
-<span id="cb2-9"><a aria-hidden="true" tabindex="-1"></a>       )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-9"><a aria-hidden="true" tabindex="-1"></a>       )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -354,14 +313,71 @@
 <p>We should only save objects that we need to use later!</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>lowest_child_care_price_2018 <span class="ot">&lt;-</span> ca_childcare <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>lowest_child_care_price_2018 <span class="ot">&lt;-</span> ca_childcare <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(study_year <span class="sc">==</span> <span class="dv">2018</span>) <span class="sc">|&gt;</span></span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(region) <span class="sc">|&gt;</span>   </span>
 <span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median_infant_price =</span> <span class="fu">median</span>(mc_infant)) <span class="sc">|&gt;</span> </span>
 <span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_min</span>(<span class="at">order_by =</span> median_infant_price)</span>
 <span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a>lowest_child_care_price_2018</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a>lowest_child_care_price_2018</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
+</section>
+<section id="challenge-3" class="slide level2">
+<h2>Challenge 3</h2>
+<div class="midi">
+<blockquote>
+<p>DVS-2: I use plot modifications to make my visualizations clearer to the reader</p>
+</blockquote>
+<ul>
+<li>Facets ordered based on developmental stage <strong>not</strong> alphabetically.</li>
+<li>Ordering colors in the legend so they appear in the same order as the lines in the plot.</li>
+<li>Adding $ signs to axis labels.</li>
+<li>Not making people tilt their head to read your plot.</li>
+<li>Using meaningful labels (e.g., “Infant” not “mfcc_infant”).</li>
+</ul>
+</div>
+</section>
+<section id="challenge-3-1" class="slide level2">
+<h2>Challenge 3</h2>
+<div class="midi">
+<blockquote>
+<p>DVS-3: I show creativity in my visualizations</p>
+</blockquote>
+</div>
+<div class="midi">
+<ul>
+<li>Exploring different color themes
+<ul>
+<li>Here is an incredible resource with extensive color themes: <a href="https://emilhvitfeldt.github.io/r-color-palettes/discrete.html" class="uri">https://emilhvitfeldt.github.io/r-color-palettes/discrete.html</a></li>
+<li><strong>paletter</strong> – multiple color palette packages in one place</li>
+</ul></li>
+</ul>
+</div>
+<div class="columns">
+<div class="column" style="width:48%;">
+<p><img data-src="images/istanbul.svg"> <img data-src="images/anteos_menippe.svg"></p>
+</div><div class="column" style="width:4%;">
+
+</div><div class="column" style="width:48%;">
+<p><img data-src="images/lover.svg"> <img data-src="images/berry.svg"></p>
+</div></div>
+</section>
+<section id="challenge-3-2" class="slide level2">
+<h2>Challenge 3</h2>
+<div class="midi">
+<blockquote>
+<p>DVS-3: I show creativity in my visualizations</p>
+</blockquote>
+</div>
+<div class="midi">
+<ul>
+<li>Exploring different plot themes
+<ul>
+<li>Personally, I like <code>theme_bw()</code>, but you might like others!</li>
+<li>Remember to keep major gridlines! They are important for readablity!</li>
+</ul></li>
+</ul>
 </div>
 </section>
 <section id="new-structure-for-lab-revisions" class="slide level2">
@@ -378,8 +394,13 @@
 </div>
 </div>
 </section>
-<section>
 <section id="version-control" class="title-slide slide level1 center">
+<h1>Version Control</h1>
+
+</section>
+
+<section>
+<section id="version-control-1" class="title-slide slide level1 center">
 <h1>Version Control</h1>
 <blockquote>
 <p>A process of <strong>tracking changes</strong> to a file or set of files over time so that you can <strong>recall specific versions later</strong>.</p>
@@ -897,7 +918,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

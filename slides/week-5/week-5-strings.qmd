@@ -6,6 +6,7 @@ format:
 editor: source
 execute: 
   cache: true
+  eval: false
 ---
 
 ```{r}
@@ -171,7 +172,7 @@ colleges$INSTNM
 ```{r}
 #| label: character-vector-inst-name
 #| echo: false
-#| eval: true
+#| eval: false
 
 colleges$INSTNM |> 
   as_tibble() |> 
@@ -342,7 +343,7 @@ str_subset(colleges$INSTNM,
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 #| code-line-numbers: false
 
 str_subset(colleges$INSTNM, 
@@ -412,7 +413,7 @@ str_subset(colleges$INSTNM,
 ```{r}
 #| echo: false
 #| code-line-numbers: false
-#| eval: true
+#| eval: false
 
 str_subset(colleges$INSTNM, pattern = "St\\.+") |> 
   as_tibble() |> 
@@ -444,7 +445,7 @@ str_subset(colleges$INSTNM,
 ```{r}
 #| echo: false
 #| code-line-numbers: false
-#| eval: true
+#| eval: false
 
 str_subset(colleges$INSTNM, 
            pattern = "\\s*-\\s*") |> 
@@ -481,7 +482,7 @@ str_subset(colleges$INSTNM,
 ::: {.fragment}
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 
 str_subset(colleges$INSTNM, pattern = "[A-Z]{4}") |> 
   as_tibble() |> 
@@ -513,7 +514,7 @@ str_subset(colleges$INSTNM,
 ::: {.fragment}
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 #| code-line-numbers: false
 
 str_subset(colleges$INSTNM, pattern = "[A-Z]{4,6}") |> 
@@ -550,7 +551,7 @@ str_subset(colleges$INSTNM,
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 #| code-line-numbers: false
 
 str_subset(colleges$INSTNM, 
@@ -622,7 +623,7 @@ str_subset(colleges$INSTNM,
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 #| code-line-numbers: false
 
 str_subset(colleges$INSTNM, 
@@ -733,7 +734,7 @@ colleges |>
 ```{r}
 #| echo: false
 #| label: str-detect-filter-code
-#| eval: true
+#| eval: false
 
 colleges |> 
   filter(str_detect(INSTNM, pattern = "Polytechnic")) |> 
@@ -792,7 +793,7 @@ colleges |>
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 
 colleges |> 
   mutate(INSTNM = str_replace(INSTNM, 
@@ -844,7 +845,7 @@ colleges |>
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 
 colleges |> 
   mutate(INSTNM = str_remove(INSTNM, 
@@ -941,7 +942,7 @@ colleges |>
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 
 colleges |> 
   mutate(INSTNM = str_to_lower(INSTNM)) |> 
@@ -966,7 +967,7 @@ colleges |>
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 
 colleges |> 
   mutate(INSTNM = str_to_upper(INSTNM)) |> 
@@ -991,7 +992,7 @@ colleges |>
 
 ```{r}
 #| echo: false
-#| eval: true
+#| eval: false
 
 colleges |> 
   mutate(INSTNM = str_to_title(INSTNM)) |> 

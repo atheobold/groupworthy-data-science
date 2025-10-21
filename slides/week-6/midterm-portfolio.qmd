@@ -1,26 +1,25 @@
 ---
-title: "Midterm Portfolio Work Week"
+title: "Midterm Portfolio Work Session"
 format: 
   revealjs:
         theme: [simple, ../style.scss]
 editor: source
 ---
 
-# Step 1: Fork the [Final Portfolio Repository](https://github.com/atheobold/STAT331_portfolio_template)
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
 
-# Step 2: Clone your copy into RStudio
+library(tidyverse)
 
-# Step 3: Look over the `reflection_template.qmd` file
-
-# Step 4: Start finding code that demonstrate each learning target
-
-. . .
-
-> You can use **any** code from your Lab or Challenge assignments. 
-
+if (!"purrr" %in% installed.packages()) install.packages("purrr")
+source("https://raw.githubusercontent.com/zoerehnberg/STAT331-S23/main/challenges/bCH_murder_setup.R")
+```
 
 ## When locating code...
 
+> You can use **any** code from your Lab or Challenge assignments. 
 
 -   find 1-2 **high quality** examples (quality \> quantity)
 -   find examples that hit on **multiple** learning targets at the same time
@@ -28,23 +27,20 @@ editor: source
 ## For example..
 
 ::: {.small}
-the code below could be used to demonstrate proficiency
-with: 
+the code below could be used to demonstrate proficiency with: 
 
 ::: columns
 ::: {.column width="45%"}
 - WD-2 -- in two places (`select()` and `starts_with()`)!
-- WD-7
+- WD-7 -- pivoting longer
 :::
 
 ::: {.column width="5%"}
 :::
 
 ::: {.column width="50%"}
-- WD-4
-- R-2 (tidy code)
-- PE-4 (the `|>` is a "modern tool")
-
+- WD-4 -- reordering a factor
+- R-2 -- tidy dplyr pipeline
 :::
 :::
 
@@ -52,7 +48,7 @@ with:
 #| echo: true
 #| eval: false
 #| label: example-student-code
-#| code-line-numbers: "|2|8|8-11|12-16"
+#| code-line-numbers: false
 
 ca_childcare |>
   select(study_year,
@@ -73,88 +69,107 @@ ca_childcare |>
 ```
 :::
 
-# Revising Your Thinking
+## `semi_join()` & `anti_join()`
 
-## Revising Your Thinking 
+> An Example from Lab 5...
 
-> "I am wondering if there is a specific number for the amount of assignments
-> that constitutes [all but a few]{.underline} for when phrasing like this is
-> used in the grading criteria."
-
-. . .
-
-</br>
-
-No, but *to me* this indicates that you are submitting revisions frequently, 
-especially for the "bigger" problems where additional feedback is warranted.
-
-. . .
-
-It's possible that you are selective in the problems you choose to revise 
-and submit for additional feedback. This criteria does not say "Revises entire
-assignment."!
-
-
-
-## "Includes thoughtful reflections on why revisions are being requested."
-
-. . .
-
+::: columns
+::: {.column width="50%"}
+::: {.fragment}
 ::: {.small}
-> "I added information about where the data comes from, which is important.
-> because without any context data can easily be taken as universal fact, and
-> including context is necessary to show the specific situation the data was
-> collected. In this case, being collected during COVID could have big
-> implications, and without noting that it would be easy to extrapolate these
-> results to other years as well."
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+new_suspect <- drivers_license |> 
+  filter(height > 64, height < 68,
+         hair_color == "red",
+         gender == "female",
+         car_make == "Tesla",
+         car_model == "Model S") |>
+  # rename column so keys match
+  rename(license_id = id) |> 
+  inner_join(person,
+             by = "license_id") |> 
+  inner_join(facebook_event_checkin,
+             join_by(id == person_id)) |> 
+  group_by(id, event_name) |> 
+  count() |> 
+  filter(event_name == "SQL Symphony Concert",
+         n == 3)
+```
+:::
+:::
 :::
 
-. . .
+::: {.column width="5%"}
+:::
 
-</br> 
+::: {.column width="45%"}
 
-Demonstrating an understanding of the “bigger picture” ideas!
+::: {.fragment}
+::: {.small}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
 
-# "Takes all feedback into account...
+new_suspect
+```
+:::
+:::
+:::
+:::
 
-> (including problems receiving an S) and incorporates into future assignments."
+## `semi_join()` & `anti_join()`
 
-# Extending Your Thinking
+> An Example from Lab 5...
+
+::: {.midi}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+interview |> 
+  semi_join(new_suspect,
+            by = join_by(person_id == id)) |> 
+  pull(transcript)
+```
+:::
+
+# Reflective Essays (not Lightening Round)
+
+## Revising Your Thinking
+
+- Where have you revised your code? 
+- What have you learned by doing revisions? Be specific!
+- How have you incorporated this knowledge into future assignments? Be specific!
 
 ## Extending Your Thinking 
 
-> "I'm confused by what counts as progression and pushing yourself, how is that
-> measured. I think for me I would like a specific amount of challenges and
-> maybe a growth over time of challenging oneself."
+- On what assignments did you push yourself by extending beyond what we learned
+in class? 
+- In what way? Be specific!
 
-. . .
+## Looking for examples?
 
-</br> 
+</br>
+</br>
 
-You are making an argument about how you have extended your
-thinking---"pushing yourself" looks different for everyone. 
-
-# Supporting Your Peers
+The [Exemplary Student Work](https://atheobold.github.io/groupworthy-data-science/labs/exemplars/student-work.html) tab of the course website contains some exemplary code written
+by your peers!
 
 ## Supporting Your Peers
 
-> "While this would be good [following the collaborative protocol], this is hard
-> to measure and to show when arguing for our grades."
-
-. . .
-
-</br>
-
-::: {.incremental}
-::: {.small}
+::: {.midi}
 - What have you learned about collaboration through the groupwork protocol?
-  + How have you grown as a collaborator?
+  + How have you grown as a collaborator? Be specific!
 - How have you supported your peers through code review?
   + Do you have a specific code review you are proud of? Show me! 
 - Supporting your peers on Discord can look a variety of ways!
   + Did you ask questions that others could learn from?
   + Did you answer someone's question?
-:::
 :::
 
 # Determining Your Grade
@@ -166,18 +181,24 @@ thinking---"pushing yourself" looks different for everyone.
 . . .
 
 Your goal is to argue, convincingly and with concrete evidence, that you have
-met the criteria for both content proficiency, evidence of continued learning, 
-and growth as a team member that goes with a particular grade. 
+met the criteria that goes with a particular grade. 
+
+. . .
+
+This involves **every** part of the criteria--content proficiency, evidence of
+continued learning, revising your thinking, and growth as a team member.
 
 ## Plus / Minus Modifiers
 
 ::: columns
 ::: {.column width="48%"}
 ::: {.fragment}
-**+**
+[**+**]{.larger}
 
+::: {.midi}
 - You’ve met all the criteria for the letter grade along with a significant
 amount, but not all, of the criteria for the next letter grade up. 
+:::
 :::
 :::
 
@@ -186,12 +207,14 @@ amount, but not all, of the criteria for the next letter grade up.
 
 ::: {.column width="48%"}
 ::: {.fragment}
-**-** 
+[**-**]{.larger}
 
+::: {.midi}
 - You have met the requirements for a letter grade but only in a way that you
 believe is a bare minimum. 
 - You’ve met almost all the requirements for the letter grade except for a small
 number of minor criteria.
+:::
 :::
 :::
 :::
@@ -258,14 +281,13 @@ you have earned and why.
 
 . . .
 
-> Will occur on Thrusday of next week.
+> Will occur on Tuesday and Wednesday of next week.
 
 . . .
 
 </br> 
-</br> 
 
-Sign-up for your time here: [link to Google Sheet](https://docs.google.com/spreadsheets/d/1b4fUfPIT_05niJlpHNnne_y5HXXB-43Nzph6_FWZf80/edit?usp=sharing)
+Sign-up for your time here: [link to Google Sheet](https://docs.google.com/spreadsheets/d/1Lpstqy8YYs3MFzFNn2Kob7E289HyUJWxWpHkp1N_lJA/edit?usp=sharing)
 
 
 

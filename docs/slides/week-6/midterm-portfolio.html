@@ -7,10 +7,10 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
-  <title>Introduction to Statistical Computing in R – Midterm Portfolio Work Week</title>
+  <title>Introduction to Statistical Computing in R – Midterm Portfolio Work Session</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-1c35b41652cab16ef815a191b3564630.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-c990e76e4e8f51fe5aa6f0d132950ebc.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -193,38 +193,17 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Midterm Portfolio Work Week</h1>
+  <h1 class="title">Midterm Portfolio Work Session</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
-<section id="step-1-fork-the-final-portfolio-repository" class="title-slide slide level1 center">
-<h1>Step 1: Fork the <a href="https://github.com/atheobold/STAT331_portfolio_template">Final Portfolio Repository</a></h1>
-
-</section>
-
-<section id="step-2-clone-your-copy-into-rstudio" class="title-slide slide level1 center">
-<h1>Step 2: Clone your copy into RStudio</h1>
-
-</section>
-
-<section id="step-3-look-over-the-reflection_template.qmd-file" class="title-slide slide level1 center">
-<h1>Step 3: Look over the <code>reflection_template.qmd</code> file</h1>
-
-</section>
-
-<section>
-<section id="step-4-start-finding-code-that-demonstrate-each-learning-target" class="title-slide slide level1 center">
-<h1>Step 4: Start finding code that demonstrate each learning target</h1>
-<div class="fragment">
+<section id="when-locating-code" class="slide level2">
+<h2>When locating code…</h2>
 <blockquote>
 <p>You can use <strong>any</strong> code from your Lab or Challenge assignments.</p>
 </blockquote>
-</div>
-</section>
-<section id="when-locating-code" class="slide level2">
-<h2>When locating code…</h2>
 <ul>
 <li>find 1-2 <strong>high quality</strong> examples (quality &gt; quantity)</li>
 <li>find examples that hit on <strong>multiple</strong> learning targets at the same time</li>
@@ -238,120 +217,144 @@
 <div class="column" style="width:45%;">
 <ul>
 <li>WD-2 – in two places (<code>select()</code> and <code>starts_with()</code>)!</li>
-<li>WD-7</li>
+<li>WD-7 – pivoting longer</li>
 </ul>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:50%;">
 <ul>
-<li>WD-4</li>
-<li>R-2 (tidy code)</li>
-<li>PE-4 (the <code>|&gt;</code> is a “modern tool”)</li>
+<li>WD-4 – reordering a factor</li>
+<li>R-2 – tidy dplyr pipeline</li>
 </ul>
 </div></div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="|2|8|8-11|12-16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>ca_childcare <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a></a>  <span class="fu">select</span>(study_year,</span>
-<span id="cb1-3"><a></a>         mc_infant,</span>
-<span id="cb1-4"><a></a>         mc_toddler,</span>
-<span id="cb1-5"><a></a>         mc_preschool,</span>
-<span id="cb1-6"><a></a>         region</span>
-<span id="cb1-7"><a></a>         ) <span class="sc">|&gt;</span></span>
-<span id="cb1-8"><a></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"mc_"</span>), </span>
-<span id="cb1-9"><a></a>               <span class="at">names_to =</span> <span class="st">"age"</span>, </span>
-<span id="cb1-10"><a></a>               <span class="at">values_to =</span> <span class="st">"median_income"</span></span>
-<span id="cb1-11"><a></a>               ) <span class="sc">|&gt;</span> </span>
-<span id="cb1-12"><a></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">fct_relevel</span>(age, </span>
-<span id="cb1-13"><a></a>                          <span class="st">"mc_infant"</span>,</span>
-<span id="cb1-14"><a></a>                          <span class="st">"mc_toddler"</span>,</span>
-<span id="cb1-15"><a></a>                          <span class="st">"mc_preschool"</span>)</span>
-<span id="cb1-16"><a></a>        )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>ca_childcare <span class="sc">|&gt;</span></span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(study_year,</span>
+<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>         mc_infant,</span>
+<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>         mc_toddler,</span>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>         mc_preschool,</span>
+<span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a>         region</span>
+<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">|&gt;</span></span>
+<span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"mc_"</span>), </span>
+<span id="cb1-9"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"age"</span>, </span>
+<span id="cb1-10"><a aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"median_income"</span></span>
+<span id="cb1-11"><a aria-hidden="true" tabindex="-1"></a>               ) <span class="sc">|&gt;</span> </span>
+<span id="cb1-12"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">age =</span> <span class="fu">fct_relevel</span>(age, </span>
+<span id="cb1-13"><a aria-hidden="true" tabindex="-1"></a>                          <span class="st">"mc_infant"</span>,</span>
+<span id="cb1-14"><a aria-hidden="true" tabindex="-1"></a>                          <span class="st">"mc_toddler"</span>,</span>
+<span id="cb1-15"><a aria-hidden="true" tabindex="-1"></a>                          <span class="st">"mc_preschool"</span>)</span>
+<span id="cb1-16"><a aria-hidden="true" tabindex="-1"></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-</section></section>
+</section>
+<section id="semi_join-anti_join" class="slide level2">
+<h2><code>semi_join()</code> &amp; <code>anti_join()</code></h2>
+<blockquote>
+<p>An Example from Lab 5…</p>
+</blockquote>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="small">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>new_suspect <span class="ot">&lt;-</span> drivers_license <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">64</span>, height <span class="sc">&lt;</span> <span class="dv">68</span>,</span>
+<span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a>         hair_color <span class="sc">==</span> <span class="st">"red"</span>,</span>
+<span id="cb2-4"><a aria-hidden="true" tabindex="-1"></a>         gender <span class="sc">==</span> <span class="st">"female"</span>,</span>
+<span id="cb2-5"><a aria-hidden="true" tabindex="-1"></a>         car_make <span class="sc">==</span> <span class="st">"Tesla"</span>,</span>
+<span id="cb2-6"><a aria-hidden="true" tabindex="-1"></a>         car_model <span class="sc">==</span> <span class="st">"Model S"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="co"># rename column so keys match</span></span>
+<span id="cb2-8"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">license_id =</span> id) <span class="sc">|&gt;</span> </span>
+<span id="cb2-9"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(person,</span>
+<span id="cb2-10"><a aria-hidden="true" tabindex="-1"></a>             <span class="at">by =</span> <span class="st">"license_id"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-11"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(facebook_event_checkin,</span>
+<span id="cb2-12"><a aria-hidden="true" tabindex="-1"></a>             <span class="fu">join_by</span>(id <span class="sc">==</span> person_id)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-13"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(id, event_name) <span class="sc">|&gt;</span> </span>
+<span id="cb2-14"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-15"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(event_name <span class="sc">==</span> <span class="st">"SQL Symphony Concert"</span>,</span>
+<span id="cb2-16"><a aria-hidden="true" tabindex="-1"></a>         n <span class="sc">==</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:45%;">
+<div class="fragment">
+<div class="small">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>new_suspect</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+# Groups:   id, event_name [1]
+     id event_name               n
+  &lt;dbl&gt; &lt;chr&gt;                &lt;int&gt;
+1 99716 SQL Symphony Concert     3</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<section id="semi_join-anti_join-1" class="slide level2">
+<h2><code>semi_join()</code> &amp; <code>anti_join()</code></h2>
+<blockquote>
+<p>An Example from Lab 5…</p>
+</blockquote>
+<div class="midi">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>interview <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">semi_join</span>(new_suspect,</span>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">join_by</span>(person_id <span class="sc">==</span> id)) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(transcript)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>character(0)</code></pre>
+</div>
+</div>
+</div>
+</section>
 <section>
-<section id="revising-your-thinking" class="title-slide slide level1 center">
-<h1>Revising Your Thinking</h1>
+<section id="reflective-essays-not-lightening-round" class="title-slide slide level1 center">
+<h1>Reflective Essays (not Lightening Round)</h1>
 
 </section>
-<section id="revising-your-thinking-1" class="slide level2">
+<section id="revising-your-thinking" class="slide level2">
 <h2>Revising Your Thinking</h2>
-<blockquote>
-<p>“I am wondering if there is a specific number for the amount of assignments that constitutes <u>all but a few</u> for when phrasing like this is used in the grading criteria.”</p>
-</blockquote>
-<div class="fragment">
-<p><br></p>
-<p>No, but <em>to me</em> this indicates that you are submitting revisions frequently, especially for the “bigger” problems where additional feedback is warranted.</p>
-</div>
-<div class="fragment">
-<p>It’s possible that you are selective in the problems you choose to revise and submit for additional feedback. This criteria does not say “Revises entire assignment.”!</p>
-</div>
+<ul>
+<li>Where have you revised your code?</li>
+<li>What have you learned by doing revisions? Be specific!</li>
+<li>How have you incorporated this knowledge into future assignments? Be specific!</li>
+</ul>
 </section>
-<section id="includes-thoughtful-reflections-on-why-revisions-are-being-requested." class="slide level2">
-<h2>“Includes thoughtful reflections on why revisions are being requested.”</h2>
-<div class="fragment">
-<div class="small">
-<blockquote>
-<p>“I added information about where the data comes from, which is important. because without any context data can easily be taken as universal fact, and including context is necessary to show the specific situation the data was collected. In this case, being collected during COVID could have big implications, and without noting that it would be easy to extrapolate these results to other years as well.”</p>
-</blockquote>
-</div>
-</div>
-<div class="fragment">
-<p><br></p>
-<p>Demonstrating an understanding of the “bigger picture” ideas!</p>
-</div>
-</section></section>
-<section id="takes-all-feedback-into-account" class="title-slide slide level1 center">
-<h1>“Takes all feedback into account…</h1>
-<blockquote>
-<p>(including problems receiving an S) and incorporates into future assignments.”</p>
-</blockquote>
-</section>
-
-<section>
-<section id="extending-your-thinking" class="title-slide slide level1 center">
-<h1>Extending Your Thinking</h1>
-
-</section>
-<section id="extending-your-thinking-1" class="slide level2">
+<section id="extending-your-thinking" class="slide level2">
 <h2>Extending Your Thinking</h2>
-<blockquote>
-<p>“I’m confused by what counts as progression and pushing yourself, how is that measured. I think for me I would like a specific amount of challenges and maybe a growth over time of challenging oneself.”</p>
-</blockquote>
-<div class="fragment">
-<p><br></p>
-<p>You are making an argument about how you have extended your thinking—“pushing yourself” looks different for everyone.</p>
-</div>
-</section></section>
-<section>
-<section id="supporting-your-peers" class="title-slide slide level1 center">
-<h1>Supporting Your Peers</h1>
-
+<ul>
+<li>On what assignments did you push yourself by extending beyond what we learned in class?</li>
+<li>In what way? Be specific!</li>
+</ul>
 </section>
-<section id="supporting-your-peers-1" class="slide level2">
+<section id="looking-for-examples" class="slide level2">
+<h2>Looking for examples?</h2>
+<p><br> <br></p>
+<p>The <a href="https://atheobold.github.io/groupworthy-data-science/labs/exemplars/student-work.html">Exemplary Student Work</a> tab of the course website contains some exemplary code written by your peers!</p>
+</section>
+<section id="supporting-your-peers" class="slide level2">
 <h2>Supporting Your Peers</h2>
-<blockquote>
-<p>“While this would be good [following the collaborative protocol], this is hard to measure and to show when arguing for our grades.”</p>
-</blockquote>
-<div class="fragment">
-<p><br></p>
-<div class="small">
+<div class="midi">
 <ul>
-<li class="fragment">What have you learned about collaboration through the groupwork protocol?
+<li>What have you learned about collaboration through the groupwork protocol?
 <ul>
-<li class="fragment">How have you grown as a collaborator?</li>
+<li>How have you grown as a collaborator? Be specific!</li>
 </ul></li>
-<li class="fragment">How have you supported your peers through code review?
+<li>How have you supported your peers through code review?
 <ul>
-<li class="fragment">Do you have a specific code review you are proud of? Show me!</li>
+<li>Do you have a specific code review you are proud of? Show me!</li>
 </ul></li>
-<li class="fragment">Supporting your peers on Discord can look a variety of ways!
+<li>Supporting your peers on Discord can look a variety of ways!
 <ul>
-<li class="fragment">Did you ask questions that others could learn from?</li>
-<li class="fragment">Did you answer someone’s question?</li>
+<li>Did you ask questions that others could learn from?</li>
+<li>Did you answer someone’s question?</li>
 </ul></li>
 </ul>
-</div>
 </div>
 </section></section>
 <section>
@@ -365,7 +368,10 @@
 <p>I believe my grade equivalent to course work evidenced below to be an __.</p>
 </blockquote>
 <div class="fragment">
-<p>Your goal is to argue, convincingly and with concrete evidence, that you have met the criteria for both content proficiency, evidence of continued learning, and growth as a team member that goes with a particular grade.</p>
+<p>Your goal is to argue, convincingly and with concrete evidence, that you have met the criteria that goes with a particular grade.</p>
+</div>
+<div class="fragment">
+<p>This involves <strong>every</strong> part of the criteria–content proficiency, evidence of continued learning, revising your thinking, and growth as a team member.</p>
 </div>
 </section>
 <section id="plus-minus-modifiers" class="slide level2">
@@ -373,20 +379,24 @@
 <div class="columns">
 <div class="column" style="width:48%;">
 <div class="fragment">
-<p><strong>+</strong></p>
+<p><span class="larger"><strong>+</strong></span></p>
+<div class="midi">
 <ul>
 <li>You’ve met all the criteria for the letter grade along with a significant amount, but not all, of the criteria for the next letter grade up.</li>
 </ul>
+</div>
 </div>
 </div><div class="column" style="width:4%;">
 
 </div><div class="column" style="width:48%;">
 <div class="fragment">
-<p><strong>-</strong></p>
+<p><span class="larger"><strong>-</strong></span></p>
+<div class="midi">
 <ul>
 <li>You have met the requirements for a letter grade but only in a way that you believe is a bare minimum.</li>
 <li>You’ve met almost all the requirements for the letter grade except for a small number of minor criteria.</li>
 </ul>
+</div>
 </div>
 </div></div>
 </section>
@@ -430,12 +440,12 @@
 <h1>Midterm Portfolio Meetings</h1>
 <div class="fragment">
 <blockquote>
-<p>Will occur on Thrusday of next week.</p>
+<p>Will occur on Tuesday and Wednesday of next week.</p>
 </blockquote>
 </div>
 <div class="fragment">
-<p><br> <br></p>
-<p>Sign-up for your time here: <a href="https://docs.google.com/spreadsheets/d/1b4fUfPIT_05niJlpHNnne_y5HXXB-43Nzph6_FWZf80/edit?usp=sharing">link to Google Sheet</a></p>
+<p><br></p>
+<p>Sign-up for your time here: <a href="https://docs.google.com/spreadsheets/d/1Lpstqy8YYs3MFzFNn2Kob7E289HyUJWxWpHkp1N_lJA/edit?usp=sharing">link to Google Sheet</a></p>
 
 
 </div>
@@ -629,7 +639,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

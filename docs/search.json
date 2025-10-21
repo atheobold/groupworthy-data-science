@@ -730,63 +730,63 @@
   {
     "objectID": "slides/week-6/midterm-portfolio.html#when-locating-code",
     "href": "slides/week-6/midterm-portfolio.html#when-locating-code",
-    "title": "Midterm Portfolio Work Week",
+    "title": "Midterm Portfolio Work Session",
     "section": "When locating code…",
-    "text": "When locating code…\n\nfind 1-2 high quality examples (quality &gt; quantity)\nfind examples that hit on multiple learning targets at the same time"
+    "text": "When locating code…\n\nYou can use any code from your Lab or Challenge assignments.\n\n\nfind 1-2 high quality examples (quality &gt; quantity)\nfind examples that hit on multiple learning targets at the same time"
   },
   {
     "objectID": "slides/week-6/midterm-portfolio.html#for-example..",
     "href": "slides/week-6/midterm-portfolio.html#for-example..",
-    "title": "Midterm Portfolio Work Week",
+    "title": "Midterm Portfolio Work Session",
     "section": "For example..",
-    "text": "For example..\n\nthe code below could be used to demonstrate proficiency with:\n\n\n\nWD-2 – in two places (select() and starts_with())!\nWD-7\n\n\n\n\n\nWD-4\nR-2 (tidy code)\nPE-4 (the |&gt; is a “modern tool”)\n\n\n\nca_childcare |&gt;\n  select(study_year,\n         mc_infant,\n         mc_toddler,\n         mc_preschool,\n         region\n         ) |&gt;\n  pivot_longer(cols = starts_with(\"mc_\"), \n               names_to = \"age\", \n               values_to = \"median_income\"\n               ) |&gt; \n  mutate(age = fct_relevel(age, \n                          \"mc_infant\",\n                          \"mc_toddler\",\n                          \"mc_preschool\")\n        )"
+    "text": "For example..\n\nthe code below could be used to demonstrate proficiency with:\n\n\n\nWD-2 – in two places (select() and starts_with())!\nWD-7 – pivoting longer\n\n\n\n\n\nWD-4 – reordering a factor\nR-2 – tidy dplyr pipeline\n\n\n\nca_childcare |&gt;\n  select(study_year,\n         mc_infant,\n         mc_toddler,\n         mc_preschool,\n         region\n         ) |&gt;\n  pivot_longer(cols = starts_with(\"mc_\"), \n               names_to = \"age\", \n               values_to = \"median_income\"\n               ) |&gt; \n  mutate(age = fct_relevel(age, \n                          \"mc_infant\",\n                          \"mc_toddler\",\n                          \"mc_preschool\")\n        )"
   },
   {
     "objectID": "slides/week-6/midterm-portfolio.html#revising-your-thinking-1",
     "href": "slides/week-6/midterm-portfolio.html#revising-your-thinking-1",
-    "title": "Midterm Portfolio Work Week",
+    "title": "Midterm Portfolio Work Session",
     "section": "Revising Your Thinking",
-    "text": "Revising Your Thinking\n\n“I am wondering if there is a specific number for the amount of assignments that constitutes all but a few for when phrasing like this is used in the grading criteria.”\n\n\n\nNo, but to me this indicates that you are submitting revisions frequently, especially for the “bigger” problems where additional feedback is warranted.\n\n\nIt’s possible that you are selective in the problems you choose to revise and submit for additional feedback. This criteria does not say “Revises entire assignment.”!"
+    "text": "Revising Your Thinking\n\nWhere have you revised your code?\nWhat have you learned by doing revisions? Be specific!\nHow have you incorporated this knowledge into future assignments? Be specific!"
   },
   {
     "objectID": "slides/week-6/midterm-portfolio.html#includes-thoughtful-reflections-on-why-revisions-are-being-requested.",
     "href": "slides/week-6/midterm-portfolio.html#includes-thoughtful-reflections-on-why-revisions-are-being-requested.",
-    "title": "Midterm Portfolio Work Week",
+    "title": "Midterm Portfolio Work Session",
     "section": "“Includes thoughtful reflections on why revisions are being requested.”",
-    "text": "“Includes thoughtful reflections on why revisions are being requested.”\n\n\n\n“I added information about where the data comes from, which is important. because without any context data can easily be taken as universal fact, and including context is necessary to show the specific situation the data was collected. In this case, being collected during COVID could have big implications, and without noting that it would be easy to extrapolate these results to other years as well.”\n\n\n\n\n\nDemonstrating an understanding of the “bigger picture” ideas!"
+    "text": "“Includes thoughtful reflections on why revisions are being requested.”\n\n\n\n“I added information about where the data comes from, which is important. because without any context data can easily be taken as universal fact, and including context is necessary to show the specific situation the data was collected. In this case, being collected during COVID could have big implications, and without noting that it would be easy to extrapolate these results to other years as well.”"
   },
   {
     "objectID": "slides/week-6/midterm-portfolio.html#extending-your-thinking-1",
     "href": "slides/week-6/midterm-portfolio.html#extending-your-thinking-1",
-    "title": "Midterm Portfolio Work Week",
+    "title": "Midterm Portfolio Work Session",
     "section": "Extending Your Thinking",
-    "text": "Extending Your Thinking\n\n“I’m confused by what counts as progression and pushing yourself, how is that measured. I think for me I would like a specific amount of challenges and maybe a growth over time of challenging oneself.”\n\n\n\nYou are making an argument about how you have extended your thinking—“pushing yourself” looks different for everyone."
+    "text": "Extending Your Thinking\n\nOn what assignments did you push yourself by extending beyond what we learned in class?\nIn what way? Be specific!"
   },
   {
     "objectID": "slides/week-6/midterm-portfolio.html#supporting-your-peers-1",
     "href": "slides/week-6/midterm-portfolio.html#supporting-your-peers-1",
-    "title": "Midterm Portfolio Work Week",
+    "title": "Midterm Portfolio Work Session",
     "section": "Supporting Your Peers",
-    "text": "Supporting Your Peers\n\n“While this would be good [following the collaborative protocol], this is hard to measure and to show when arguing for our grades.”\n\n\n\n\n\nWhat have you learned about collaboration through the groupwork protocol?\n\nHow have you grown as a collaborator?\n\nHow have you supported your peers through code review?\n\nDo you have a specific code review you are proud of? Show me!\n\nSupporting your peers on Discord can look a variety of ways!\n\nDid you ask questions that others could learn from?\nDid you answer someone’s question?"
+    "text": "Supporting Your Peers\n\n\nWhat have you learned about collaboration through the groupwork protocol?\n\nHow have you grown as a collaborator?\n\nHow have you supported your peers through code review?\n\nDo you have a specific code review you are proud of? Show me!\n\nSupporting your peers on Discord can look a variety of ways!\n\nDid you ask questions that others could learn from?\nDid you answer someone’s question?"
   },
   {
     "objectID": "slides/week-6/midterm-portfolio.html#determining-your-grade-1",
     "href": "slides/week-6/midterm-portfolio.html#determining-your-grade-1",
-    "title": "Midterm Portfolio Work Week",
+    "title": "Midterm Portfolio Work Session",
     "section": "Determining Your Grade",
-    "text": "Determining Your Grade\n\nI believe my grade equivalent to course work evidenced below to be an __.\n\n\nYour goal is to argue, convincingly and with concrete evidence, that you have met the criteria for both content proficiency, evidence of continued learning, and growth as a team member that goes with a particular grade."
+    "text": "Determining Your Grade\n\nI believe my grade equivalent to course work evidenced below to be an __.\n\n\nYour goal is to argue, convincingly and with concrete evidence, that you have met the criteria that goes with a particular grade.\n\n\nThis involves every part of the criteria–content proficiency, evidence of continued learning, revising your thinking, and growth as a team member."
   },
   {
     "objectID": "slides/week-6/midterm-portfolio.html#plus-minus-modifiers",
     "href": "slides/week-6/midterm-portfolio.html#plus-minus-modifiers",
-    "title": "Midterm Portfolio Work Week",
+    "title": "Midterm Portfolio Work Session",
     "section": "Plus / Minus Modifiers",
-    "text": "Plus / Minus Modifiers\n\n\n\n+\n\nYou’ve met all the criteria for the letter grade along with a significant amount, but not all, of the criteria for the next letter grade up.\n\n\n\n\n\n\n-\n\nYou have met the requirements for a letter grade but only in a way that you believe is a bare minimum.\nYou’ve met almost all the requirements for the letter grade except for a small number of minor criteria."
+    "text": "Plus / Minus Modifiers\n\n\n\n+\n\n\nYou’ve met all the criteria for the letter grade along with a significant amount, but not all, of the criteria for the next letter grade up.\n\n\n\n\n\n\n\n-\n\n\nYou have met the requirements for a letter grade but only in a way that you believe is a bare minimum.\nYou’ve met almost all the requirements for the letter grade except for a small number of minor criteria."
   },
   {
     "objectID": "slides/week-6/midterm-portfolio.html#what-if-you-dont-agree",
     "href": "slides/week-6/midterm-portfolio.html#what-if-you-dont-agree",
-    "title": "Midterm Portfolio Work Week",
+    "title": "Midterm Portfolio Work Session",
     "section": "What if you don’t agree?",
     "text": "What if you don’t agree?\nThere are two ways this might happen.\n\n\n\n\nYou ask for a grade that is higher than the evidence supports.\n\n\nThat is, you grade yourself too highly. For example, you believe you earned an A in the course, but I do not feel the evidence you’ve provided supports this grade.\n\n\nIn this case, I’ll tell you what grade I would have given you based on the evidence you provided in the portfolio. You can then use this feedback when constructing your Final Portfolio.\n\n\n\n\n\n\n\n\n\nYou ask for a grade that was lower than your actual performance indicates.\n\n\nThat is, you “lowball” yourself, for example you say you earned a B when in fact I think you earned an A-.\n\n\nIn this case, I will tell you what grade I believe you have earned and why."
   },
@@ -5458,5 +5458,54 @@
     "title": "Introduction to Version Control",
     "section": "Challenge 3",
     "text": "Challenge 3\n\n\nDVS-3: I show creativity in my visualizations\n\n\n\n\nExploring different plot themes\n\nPersonally, I like theme_bw(), but you might like others!\nRemember to keep major gridlines! They are important for readablity!"
+  },
+  {
+    "objectID": "slides/week-6/midterm-portfolio.html#takes-all-feedback-into-account",
+    "href": "slides/week-6/midterm-portfolio.html#takes-all-feedback-into-account",
+    "title": "Midterm Portfolio Work Session",
+    "section": "“Takes all feedback into account…",
+    "text": "“Takes all feedback into account…\n\n(including problems receiving an S) and incorporates into future assignments.”"
+  },
+  {
+    "objectID": "slides/week-6/midterm-portfolio.html#revising-your-thinking",
+    "href": "slides/week-6/midterm-portfolio.html#revising-your-thinking",
+    "title": "Midterm Portfolio Work Session",
+    "section": "Revising Your Thinking",
+    "text": "Revising Your Thinking\n\nWhere have you revised your code?\nWhat have you learned by doing revisions? Be specific!\nHow have you incorporated this knowledge into future assignments? Be specific!"
+  },
+  {
+    "objectID": "slides/week-6/midterm-portfolio.html#extending-your-thinking",
+    "href": "slides/week-6/midterm-portfolio.html#extending-your-thinking",
+    "title": "Midterm Portfolio Work Session",
+    "section": "Extending Your Thinking",
+    "text": "Extending Your Thinking\n\nOn what assignments did you push yourself by extending beyond what we learned in class?\nIn what way? Be specific!"
+  },
+  {
+    "objectID": "slides/week-6/midterm-portfolio.html#supporting-your-peers",
+    "href": "slides/week-6/midterm-portfolio.html#supporting-your-peers",
+    "title": "Midterm Portfolio Work Session",
+    "section": "Supporting Your Peers",
+    "text": "Supporting Your Peers\n\n\nWhat have you learned about collaboration through the groupwork protocol?\n\nHow have you grown as a collaborator? Be specific!\n\nHow have you supported your peers through code review?\n\nDo you have a specific code review you are proud of? Show me!\n\nSupporting your peers on Discord can look a variety of ways!\n\nDid you ask questions that others could learn from?\nDid you answer someone’s question?"
+  },
+  {
+    "objectID": "slides/week-6/midterm-portfolio.html#semi_join-anti_join",
+    "href": "slides/week-6/midterm-portfolio.html#semi_join-anti_join",
+    "title": "Midterm Portfolio Work Session",
+    "section": "semi_join() & anti_join()",
+    "text": "semi_join() & anti_join()\n\nAn Example from Lab 5…\n\n\n\n\n\n\nnew_suspect &lt;- drivers_license |&gt; \n  filter(height &gt; 64, height &lt; 68,\n         hair_color == \"red\",\n         gender == \"female\",\n         car_make == \"Tesla\",\n         car_model == \"Model S\") |&gt;\n  # rename column so keys match\n  rename(license_id = id) |&gt; \n  inner_join(person,\n             by = \"license_id\") |&gt; \n  inner_join(facebook_event_checkin,\n             join_by(id == person_id)) |&gt; \n  group_by(id, event_name) |&gt; \n  count() |&gt; \n  filter(event_name == \"SQL Symphony Concert\",\n         n == 3)\n\n\n\n\n\n\n\n\n\nnew_suspect\n\n# A tibble: 1 × 3\n# Groups:   id, event_name [1]\n     id event_name               n\n  &lt;dbl&gt; &lt;chr&gt;                &lt;int&gt;\n1 99716 SQL Symphony Concert     3"
+  },
+  {
+    "objectID": "slides/week-6/midterm-portfolio.html#looking-for-examples",
+    "href": "slides/week-6/midterm-portfolio.html#looking-for-examples",
+    "title": "Midterm Portfolio Work Session",
+    "section": "Looking for examples?",
+    "text": "Looking for examples?\n \nThe Exemplary Student Work tab of the course website contains some exemplary code written by your peers!"
+  },
+  {
+    "objectID": "slides/week-6/midterm-portfolio.html#semi_join-anti_join-1",
+    "href": "slides/week-6/midterm-portfolio.html#semi_join-anti_join-1",
+    "title": "Midterm Portfolio Work Session",
+    "section": "semi_join() & anti_join()",
+    "text": "semi_join() & anti_join()\n\nAn Example from Lab 5…\n\n\n\ninterview |&gt; \n  semi_join(new_suspect,\n            by = join_by(person_id == id)) |&gt; \n  pull(transcript)\n\ncharacter(0)"
   }
 ]

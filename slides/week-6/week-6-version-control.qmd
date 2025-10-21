@@ -47,6 +47,23 @@ still is grouped!
 :::
 :::
 
+## Superseded Functions
+
+::: {.midi}
+> PE-4: I can use modern tools when carrying out my analysis.
+:::
+
+::: {.incremental}
+- `recode()` from the **dplyr** package has been superseded for the 
+`case_match()` function. 
+  + `case_match()` is the SQL cousin of `case_when()`
+
+- Neither of these functions live in the **forcats** package which includes 
+the tools we learned!
+  + Neither is `factor()`! 
+  + Maybe try something from forcats!
+:::
+
 ## Recreating the Plot
 
 ::: {.midi}

@@ -1,5 +1,6 @@
 ---
 title: "Introduction to Version Control"
+author: "Dr. Theobold"
 format: 
   revealjs:
     theme: [../style.scss, simple]

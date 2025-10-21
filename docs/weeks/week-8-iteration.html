@@ -154,10 +154,33 @@ div.csl-indent {
     <a class="nav-link" href="../course-materials/syllabus.html"> 
 <span class="menu-text">Syllabus</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../portfolio/portfolio-instructions.html"> 
-<span class="menu-text">Portfolio</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-portfolio" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Portfolio</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-portfolio">    
+        <li>
+    <a class="dropdown-item" href="../portfolio/portfolio-instructions.html">
+ <span class="dropdown-text">Portfolio Instructions</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../portfolio/midterm-portfolio-targets.html">
+ <span class="dropdown-text">Midterm Portfolio Learning Targets</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../portfolio/examples/midterm-A.html">
+ <span class="dropdown-text">Example A-level Portfolio (Midterm)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../portfolio/examples/midterm-B.html">
+ <span class="dropdown-text">Example B-level Portfolio (Midterm)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../portfolio/examples/midterm-C.html">
+ <span class="dropdown-text">Example C-level Portfolio (Midterm)</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="../course-materials/course-resources.html"> 
 <span class="menu-text">Resources</span></a>
@@ -421,20 +444,20 @@ div.csl-indent {
 <pre><code>$mean
 function (x, ...) 
 UseMethod("mean")
-&lt;bytecode: 0x10d3600e0&gt;
+&lt;bytecode: 0x1331278e0&gt;
 &lt;environment: namespace:base&gt;
 
 $med
 function (x, na.rm = FALSE, ...) 
 UseMethod("median")
-&lt;bytecode: 0x11f6e3f38&gt;
+&lt;bytecode: 0x1328ad938&gt;
 &lt;environment: namespace:stats&gt;
 
 $sd
 function (x, na.rm = FALSE) 
 sqrt(var(if (is.vector(x) || is.factor(x)) x else as.double(x), 
     na.rm = na.rm))
-&lt;bytecode: 0x10adc58b0&gt;
+&lt;bytecode: 0x134a605f0&gt;
 &lt;environment: namespace:stats&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(list_of_fcts)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>

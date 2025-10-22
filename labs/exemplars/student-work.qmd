@@ -235,7 +235,6 @@ individuals |>
       labs(x = "Academic Degree Held", y = "Count")
 ```
 
-
 ## Slicing the Max & Min Together
 
 This code is brought to us by a student who wishes to remain anonymous! I thought this code was great because they got both the maximum values and the minimum values in **one** pipeline. Very efficient!
@@ -284,7 +283,7 @@ These statements are brought to us by Abel Alcala and Sebastien Montgrain! I rea
 
 **Because the p-value of our Chi-squared test of independence is less than 0.05 (0.006075), we know that there is an association between a teachers seniority and their SET scores from question 3 on if the professor used activities to make the class more engaging. Combining this Chi-squared test with the graph, we can see that more experienced teachers do a better job of implementing engaging activities is their classes.**
 
-<!-- # Lab 4 -->
+# Challenge 4
 
 ```{r}
 #| label: data-for-lab-4
@@ -294,73 +293,289 @@ childcare_costs <- read_csv('https://raw.githubusercontent.com/rfordatascience/t
 
 counties <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-05-09/counties.csv')
 
+tax_rev <- read_csv('https://atheobold.github.io/groupworthy-data-science/labs/instructions/data/ca_tax_revenue.csv')
+
 ca_childcare <- counties |>
-  filter(state_abbreviation == "CA") |>
-  inner_join(childcare_costs,
-             by = "county_fips_code") %>% 
-    mutate(region = fct_collapse(county_name,
-                               `Superior California` = c("Butte County", 
-                                                         "Colusa County", 
-                                                         "El Dorado County", 
-                                                         "Glenn County", 
-                                                         "Lassen County", 
-                                                         "Modoc County", 
-                                                         "Nevada County", 
-                                                         "Placer County", 
-                                                         "Plumas County", 
-                                                         "Sacramento County", 
-                                                         "Shasta County", 
-                                                         "Sierra County", 
-                                                         "Siskiyou County", 
-                                                         "Sutter County", 
-                                                         "Tehama County", 
-                                                         "Yolo County", 
-                                                         "Yuba County"),
-                               `North Coast` = c("Del Norte County", 
-                                                 "Humboldt County", 
-                                                 "Lake County", 
-                                                 "Mendocino County", 
-                                                 "Napa County", 
-                                                 "Sonoma County", 
-                                                 "Trinity County"),
-                               `San Francisco Bay Area` = c("Alameda County", 
-                                                            "Contra Costa County",
-                                                            "Marin County",
-                                                            "San Francisco County",
-                                                            "San Mateo County",
-                                                            "Santa Clara County",
-                                                            "Solano County"),
-                               `Northern San Joaquin Valley` = c("Alpine County",
-                                                                 "Amador County",
-                                                                 "Calaveras County",
-                                                                 "Madera County",
-                                                                 "Mariposa County",
-                                                                 "Merced County",
-                                                                 "Mono County", 
-                                                                 "San Joaquin County",
-                                                                 "Stanislaus County",
-                                                                 "Tuolumne County"),
-                               `Central Coast` = c("Monterey County", 
-                                                   "San Benito County", 
-                                                   "San Luis Obispo County", 
-                                                   "Santa Barbara County", 
-                                                   "Santa Cruz County",
-                                                   "Ventura County"),
-                               `Southern San Joaquin Valley` = c("Fresno County",
-                                                                 "Inyo County", 
-                                                                 "Kern County",
-                                                                 "Kings County",
-                                                                 "Tulare County"),
-                               `Inland Empire` = c("Riverside County",
-                                                   "San Bernardino County"),
-                               `Los Angeles County` = c("Los Angeles County"),
-                               `Orange County` = c("Orange County"),
-                               `San Diego - Imperial` = c("Imperial County",
-                                                          "San Diego County")
-                               )
+  filter(state_name == "California") |>
+  left_join(y = childcare_costs,
+            join_by("county_fips_code")) |>
+  left_join(y = tax_rev,
+            join_by(county_name == entity_name,
+                    study_year == year))
+
+superior_counties <- c("Butte","Colusa","El Dorado",
+                       "Glenn","Lassen","Modoc",
+                       "Nevada","Placer","Plumas",
+                       "Sacramento","Shasta","Sierra","Siskiyou",
+                       "Sutter","Tehama","Yolo","Yuba")
+
+north_coast_counties <- c("Del Norte","Humboldt","Lake",
+                          "Mendocino","Napa","Sonoma","Trinity")
+
+san_fran_counties <- c("Alameda","Contra Costa","Marin",
+                       "San Francisco","San Mateo","Santa Clara",
+                       "Solano")
+
+n_san_joaquin_counties <- c("Alpine","Amador","Calaveras","Madera",
+                            "Mariposa","Merced","Mono","San Joaquin",
+                            "Stanislaus","Tuolumne")
+
+central_coast_counties <- c("Monterey","San Benito","San Luis Obispo",
+                            "Santa Barbara","Santa Cruz","Ventura")
+
+s_san_joaquin_counties <- c("Fresno","Inyo","Kern","Kings","Tulare")
+
+inland_counties <- c("Riverside","San Bernardino")
+
+la_county <- "Los Angeles"
+
+orange_county  <- "Orange"
+
+san_diego_imperial_counties <- c("Imperial","San Diego")
+
+ca_childcare <- ca_childcare |> 
+  mutate(county_name = str_remove(county_name, " County"),
+         census_region = fct_collapse(.f = county_name,
+                                      `Superior California` = superior_counties,
+                                      `North Coast` = north_coast_counties,
+                                      `San Francisco Bay Area` = san_fran_counties,
+                                      `North San Joaquin Valley` = n_san_joaquin_counties,
+                                      `South San Joaquin Valley` = s_san_joaquin_counties,
+                                      `Central Coast` = central_coast_counties,
+                                      `Inland Empire` = inland_counties,
+                                      `Los Angeles County` = la_county,
+                                      `Orange County` = orange_county,
+                                      `San Diego-Imperial` = san_diego_imperial_counties)
          )
 
 ```
+
+## Amazing Tables
+
+<!-- This table is brought to us by Shafay Syed! I thought their table stood out for -->
+<!-- a few reasons. First, they are using `kable()` to get a nicely formatted HTML -->
+<!-- table. Second, they gave their columns more intuitive names. Finally, they -->
+<!-- organized / arranged the table in an intuitive way.  -->
+
+```{r}
+#| eval: false
+#| echo: false
+
+summary_table <- ca_childcare |>
+  filter(study_year %in% c(2008, 2018)) |>
+  group_by(census_region, study_year) |>
+  summarise(
+    center = median(mc_infant, na.rm = TRUE),
+    family = median(mfcc_infant, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  pivot_wider(names_from = study_year, 
+              values_from = c(center, family), 
+              names_sep = "_") |>
+  rename(
+    region = census_region,
+    `Gap 2018 (Center−Family)` = center_2018 - family_2018,
+    `Center 2008` = center_2008,
+    `Family 2008` = family_2008,
+    `Center 2018` = center_2018,
+    `Family 2018` = family_2018
+  ) |>
+  select(region, `Center 2008`, `Family 2008`, 
+         `Center 2018`, `Family 2018`, `Gap 2018 (Center−Family)`) |>
+  arrange(desc(`Center 2018`)) |>
+  mutate(across(where(is.numeric), ~ round(.)))
+
+knitr::kable(summary_table, 
+             caption = "Median weekly infant prices (USD) by region and setting, 2008 vs 2018")
+```
+
+## Amazing Plots
+
+This plot is brought to us by Marietta Nikolskaya! I was really excited to see 
+someone create a "lollipop" plot, since they are what we (Statisticians) make
+to compare how different a summary statistic is between groups. When plotting 
+statistics like the mean, median, or difference, we generally advocate for this
+type of plot over a barplot since barplots are typically reserved for plots of 
+counts or proportions. 
+
+```{r}
+#| code-fold: true
+
+# Here is the data wrangling that happened to make this plot!
+
+ca_childcare_new <- ca_childcare |> 
+  filter(study_year == 2018) |>
+  select(census_region, mc_infant, mfcc_infant) |> 
+  mutate(cost_difference = mc_infant - mfcc_infant) |>
+  group_by(census_region) |>
+  summarize(
+    median_center = median(mc_infant),
+    median_family = median(mfcc_infant),
+    median_difference = median(cost_difference)) |>
+  arrange(desc(median_difference))
+```
+
+```{r}
+ca_childcare_new |>
+  ggplot(aes(y = fct_reorder(census_region, median_difference), 
+             x = median_difference)) +
+  geom_segment(aes(yend = census_region, x = 0, xend = median_difference), 
+               color = "gray50") +
+  geom_point(size = 4, color = "steelblue") +
+  labs(
+    y = "",
+    x = "Cost Difference: Center - Family ($)",
+    title = "Cost Difference Between Center and Family Childcare for Infants (2018)"
+  ) +
+  theme_minimal()
+```
+
+This plot is brought to us by Devin Hadley! I thought this plot was really 
+creative in their use of a non-standard geometry (`geom_ribbon()`) to fill the 
+space between the lines. I also appreciated that they moved the legend to the 
+top of the plot to make it easier to see! 
+
+```{r}
+#| code-fold: true
+
+# Here is the data wrangling that happened to make this plot!
+summary_table <- ca_childcare |>
+  group_by(study_year) |>
+  summarise(
+    median_center_price = median(mc_infant),
+    median_family_price = median(mfcc_infant)
+  ) |>
+  mutate(
+    center_minus_family_price = median_center_price - median_family_price
+  )
+
+summary_table_long <- summary_table |>
+  pivot_longer(
+    cols = c("median_center_price", "median_family_price"),
+    names_to = "care_type",
+    values_to = "median_price"
+  ) |>
+  mutate(
+    care_type = case_when(
+      care_type == "median_center_price" ~ "Center-Based",
+      care_type == "median_family_price" ~ "Family-Based",
+      TRUE ~ care_type
+    ))
+```
+
+```{r}
+ggplot(summary_table_long, aes(x = study_year, y = median_price, color = care_type)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 3) +
+  geom_ribbon(data = summary_table, aes(x = study_year, ymin = median_family_price, ymax = median_center_price, group = 1),
+              fill = "skyblue", alpha = 0.3, inherit.aes = FALSE) +
+  labs(
+    title = "Median Weekly Infant Childcare Costs in California (2008-2018)",
+    subtitle = "Based off the aggregated median price for each care type on an annual basis in various California counties.",
+    x = "Year",
+    y = "Median Weekly Price (2018 Dollars)",
+    color = "Type of Childcare"
+  ) +
+  scale_x_continuous(breaks = seq(2008, 2018, by = 2)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "top",
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(margin = margin(b = 10)),
+    axis.title = element_text(face = "bold"),
+    plot.background = element_rect(color = "black", linewidth = 1) 
+  )
+```
+
+This plot is brought to us by Isaiah Woodard! I really appreciated how Isaiah
+took the skills they learned in Challenge 2 and applied them to a new setting!
+
+```{r}
+#| code-fold: true
+# Here is the data wrangling that happened to make this plot!
+
+plot_data <- ca_childcare %>% 
+  select(census_region, study_year, mfccsa, mcsa) %>% 
+  filter(study_year == c("2008":"2018")) %>% 
+  group_by(census_region, study_year) %>% 
+  summarise(median_mcsa = median(mcsa),
+            median_mfccsa = median(mfccsa)) %>% 
+  pivot_longer(cols = c(median_mcsa, median_mfccsa),
+               names_to = "category",
+               values_to = "medians")
+```
+
+
+```{r}
+plot_data %>% 
+  ggplot(aes(x = study_year,
+             y = medians,
+             color = category)) +
+  facet_wrap(~ census_region) +
+  geom_point() +
+  scale_x_continuous(breaks = c(2008, 2010, 2012, 2014, 2016, 2018)) +
+  labs(title = "Price of Childcare Over Time in California",
+       subtitle = "Plots subdivided for <span style='color:#009e73;'>center-based</span> and <span     style='color:#d55e00;'>at-home</span> childcare",
+       x = "Study Year",
+       y = "Median Weekly Cost of Childcare ($)") +
+  scale_color_manual(values = c("#009e73", "#d55e00")) +
+  theme_bw() +
+  theme(plot.subtitle = ggtext::element_markdown(),
+        axis.text = element_text(size = 5),
+        legend.position = "")
+```
+
+This plot is brought to us by Rayan Tahir! I thought Rayan's plot was very
+clear and easy to understand. Moreover, their use of $ on the axis labels and
+moving the legend to the top of the plot made it even easier to understand 
+what was being plotted. 
+
+```{r}
+#| code-fold: true
+
+# Here is the data wrangling that happened to make this plot!
+
+ca_afford <- ca_childcare |>
+  mutate(
+    weekly_income = mhi_2018 / 52, 
+    center_afford = mc_infant / weekly_income,
+    family_afford = mfcc_infant / weekly_income
+  )
+
+ca_afford_long <- ca_afford |>
+  select(study_year, center_afford,          family_afford) |>
+  pivot_longer(
+    cols = c(center_afford, family_afford),
+    names_to = "Setting",
+    values_to = "Affordability"
+) |>
+mutate(
+  Setting = recode(Setting,
+                  center_afford = "Center-Based",
+                   family_afford = "Family-Based")
+)
+```
+
+```{r}
+ggplot(ca_afford_long, aes(x = study_year, y = Affordability, color = Setting)) +
+  stat_summary(fun = median, geom = "line", linewidth = 1.2) +
+  stat_summary(fun = median, geom = "point", size = 2.2) +
+  scale_y_continuous(labels = scales::label_percent(accuracy = 1)) + 
+  labs(
+  title = "Affordability of Childcare in California (2008-2018)",
+  subtitle = "Median Weekly Cost as a Share of County Median Household Income",
+  x = "Year",
+  y = "Median Share of Weekly Income Spent on Infant Care",
+  color = "Childcare Setting"
+) +
+theme_minimal(base_size = 11) +
+theme(
+  plot.title = element_text(face = "bold", size = 15, hjust = 0.5),
+  plot.subtitle= element_text(size = 12, hjust= 0.5),
+  legend.position = "top"
+)
+```
+
 
 <!-- # Lab 7 -->
 

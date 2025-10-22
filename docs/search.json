@@ -1843,16 +1843,16 @@
   {
     "objectID": "labs/instructions/lab-9-instructions.html",
     "href": "labs/instructions/lab-9-instructions.html",
-    "title": "Lab 9: Data Simulation Exploration",
+    "title": "Lab 9: Simulation Exploration",
     "section": "",
-    "text": "Perhaps you have seen the Random Babies applet? Suppose one night at a hospital four babies are born. The hospital is not very organized and looses track of which baby belongs to each parent(s), so they decide to return the babies to parents at random. Here, we are interested in the number of babies that are correctly returned to their respective parent(s).\n1. Simulate the distribution of the number of babies that are correctly returned. Use 10,000 simulations.\n\n\n\n\n\n\nTip\n\n\n\nWrite a function to accomplish one simulation, then use map_int() to run 10,000 simulations.\nKeep in mind that your function needs to output a single number (not data frame) for it to be compatible with map_int()!\n\n\n\nrandomBabies &lt;- function(nBabies){\n  ...\n}\n\nresults &lt;- map_int(.x = 1:10000,\n                  .f = \n                  )\n\n2. Create a table displaying the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s). Hint: A pivot_wider() will be helpful here!\n\n\n\n\n\n\nTip\n\n\n\nThe output of your map_int() is a vector, but to make a nice table (and plot) you need this to be a data frame! Luckily, the enframe() function does just that–it converts a vector to a data frame.\nYou may find the following code helpful:\n\nenframe(results, \n        name = \"simulation_number\", \n        value = \"ncorrect\")\n\n\n\n3. Now create a barplot showing the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).\n\n\n\n\n\n\nTip\n\n\n\nYou may find the following code helpful:\n\ngeom_bar(mapping = aes(y = after_stat(count) / sum(after_stat(count))\n                       )\n         )"
+    "text": "library(tidyverse)\nlibrary(broom)\nDownload .qmd starter file"
   },
   {
     "objectID": "labs/instructions/lab-9-instructions.html#random-babies-simulation",
     "href": "labs/instructions/lab-9-instructions.html#random-babies-simulation",
-    "title": "Lab 9: Data Simulation Exploration",
-    "section": "",
-    "text": "Perhaps you have seen the Random Babies applet? Suppose one night at a hospital four babies are born. The hospital is not very organized and looses track of which baby belongs to each parent(s), so they decide to return the babies to parents at random. Here, we are interested in the number of babies that are correctly returned to their respective parent(s).\n1. Simulate the distribution of the number of babies that are correctly returned. Use 10,000 simulations.\n\n\n\n\n\n\nTip\n\n\n\nWrite a function to accomplish one simulation, then use map_int() to run 10,000 simulations.\nKeep in mind that your function needs to output a single number (not data frame) for it to be compatible with map_int()!\n\n\n\nrandomBabies &lt;- function(nBabies){\n  ...\n}\n\nresults &lt;- map_int(.x = 1:10000,\n                  .f = \n                  )\n\n2. Create a table displaying the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s). Hint: A pivot_wider() will be helpful here!\n\n\n\n\n\n\nTip\n\n\n\nThe output of your map_int() is a vector, but to make a nice table (and plot) you need this to be a data frame! Luckily, the enframe() function does just that–it converts a vector to a data frame.\nYou may find the following code helpful:\n\nenframe(results, \n        name = \"simulation_number\", \n        value = \"ncorrect\")\n\n\n\n3. Now create a barplot showing the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).\n\n\n\n\n\n\nTip\n\n\n\nYou may find the following code helpful:\n\ngeom_bar(mapping = aes(y = after_stat(count) / sum(after_stat(count))\n                       )\n         )"
+    "title": "Lab 9: Simulation Exploration",
+    "section": "Random Babies Simulation",
+    "text": "Random Babies Simulation\nPerhaps you have seen the Random Babies applet? Suppose one night at a hospital some number of babies are born. The hospital is not very organized and looses track of which baby belongs to each parent(s), so they decide to return the babies to parents at random. Here, we are interested in the number of babies that are correctly returned to their respective parent(s).\n1. Simulate the distribution of the number of babies that are correctly returned if there were four babies born in a night at our disorganized hospital. Use 10,000 simulations. Make sure to add a line of code to make your simulation reproducible every time you run it.\n\n\n\n\n\n\nTip\n\n\n\nFirst, write a function to accomplish one simulation (i.e. one night), given a number of babies (n_babies) that were born in a hospital on a given night .\nThen use map_int() to run 10,000 simulations assuming 4 babies were born.\nKeep in mind that your function needs to output a single number (not data frame) for it to be compatible with map_int()!\n\n\n\nrandomBabies &lt;- function(n_babies){\n  ...\n}\n\n\nresults &lt;- map_int(.x = 1:10000,\n                   .f = \n                  )\n\n2. Create a table displaying the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).\n\n\n\n\n\n\nTip\n\n\n\nThe output of your map_int() is a vector, but to make a nice table (and plot) you need this to be a data frame! Luckily, the enframe() function does just that–it converts a vector to a data frame.\n\n\n\n# Q2 code\n\n3. Now create a barplot showing the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s). Don’t forget a title and appropriate axis labels.\n\n# Q3 code"
   },
   {
     "objectID": "labs/instructions/lab-9-instructions.html#central-limit-theorem-optional-somewhat-spicy",
@@ -1873,35 +1873,35 @@
     "href": "labs/instructions/lab-8-instructions.html",
     "title": "Lab 8: Searching for Efficiency",
     "section": "",
-    "text": "For this week’s lab, we will be revisiting questions from previous lab assignments, with the purpose of using functions from the map() family to iterate over certain tasks. To do this, we will need to load in the data from Lab 2, Lab 3, and Lab 7. I’ve included all the datasets in the data folder, so all you need to do is read them in. 🙃"
+    "text": "library(tidyverse)\nDownload .qmd starter file"
   },
   {
     "objectID": "labs/instructions/lab-8-instructions.html#lab-2",
     "href": "labs/instructions/lab-8-instructions.html#lab-2",
     "title": "Lab 8: Searching for Efficiency",
     "section": "Lab 2",
-    "text": "Lab 2\nFirst up, we’re going to revisit Question 3 from Lab 2. This question asked:\n\nWhat are the data types of the variables in this dataset?\n\n1. Using map_chr(), produce a nicely formatted table of the data type of each variable in the surveys dataset. Specifically, the table should have 15 columns, one for each variable, with the datatype of that variable immediately below it’s name."
+    "text": "Lab 2\nFirst up, we’re going to revisit Question 2 from Lab 2. This question asked:\n\nWhat are the data types of the variables in this dataset?\n\n1. Using map_chr(), produce a table of the data type of each variable in the surveys dataset. Specifically, the table should have two columns var_name and type with a row for each variable and be displayed using kable().\n\n\n\n\n\n\nTip\n\n\n\nYou will want to check out the enframe() function to help with this task.\n\n\n\n# Q1 code\n\n2. Format the table nicely! Think about the order of the rows to make the information easy to take in. Using either kable() and functions in the kableExtra package or gt() and functions from the gt package to make a table that includes a caption or header, and nice, bolded column names. Note that you should assign the column names when creating the table, not by renaming columns in the dataset itself because we hate variable names with spaces in them!\n\n# Q2 code"
   },
   {
     "objectID": "labs/instructions/lab-8-instructions.html#lab-3",
     "href": "labs/instructions/lab-8-instructions.html#lab-3",
     "title": "Lab 8: Searching for Efficiency",
     "section": "Lab 3",
-    "text": "Lab 3\nNow, were on to Lab 3 where we will revisit two questions.\nIn the original version of Lab 3, Question 5 asked you to:\n\nChange data types in whichever way you see fit (e.g., is the instructor ID really a numeric data type?)\n\n2. Using map_at(), convert the teacher_id, weekday, academic_degree, seniority, and sex columns to factors. Hint: You will need to use bind_cols() to transform the list output back into a data frame.\nNext up, we’re going revisit Question 7 which asked:\n\nWhat are the demographics of the instructors in this study? Investigate the variables academic_degree, seniority, and sex and summarize your findings in ~3 complete sentences.\n\nMany people created multiple tables of counts for each of these demographics, but in this exercise we are going to create one table with every demographic.\n3. Using pivot_longer() and pivot_wider(), recreate the table below.\n\n\n\n\n\n\n\nTipSame classification as Challenge 3\n\n\n\nI’m using the sen_level classification from Challenge 3\n\n\"junior\" = seniority is 4 or less (inclusive)\n\"senior\" = seniority is more than 4\n\n\n\n\n\n\n\n\n\nTipExtending you thinking…\n\n\n\nIf you are interested in exploring my table fomatting, I specifically used the kable() function from the knitr package to first get an HTML table. Then I styled that table using the kable_styling() function from the kableExtra package."
+    "text": "Lab 3\nNow, were on to Lab 3 where we will revisit two questions.\nIn the original version of Lab 3, Question 4 asked you to:\n\nChange data types in whichever way you see fit (e.g., is the instructor ID really a numeric data type?)\n\n3. Using map_at() or map_if(), convert the course_id, weekday, academic_degree, time_of_day, and sex columns to factors. In other words, convert all character variables into factors. DO NOT PRINT OUT YOUR NEW DATA FRAME, just show the code. Hint: You will need to use bind_cols() to transform the list output back into a data frame.\n\n# Q3 code\n\nNext up, we’re going revisit Question 7 which asked:\n\nWhat are the demographics of the instructors in this study? Investigate the variables academic_degree, seniority, and sex and summarize your findings in ~3 complete sentences.\n\nMany people created multiple tables of counts for each of these demographics, but in this exercise we are going to create one table with every demographic.\n4. Recreate the (mainly unformatted) table below using one pipeline. It is okay if the rows are not in the same order in your table.\n\n\n\n\n\n\n\nNote\n\n\n\nRepeat the data cleaning steps that we did in Lab 3 before question 7 to recreate this exact table. And remember that we needed to first only keep one row per instructor.\n\n\n\n\n\n\n\n\nTip\n\n\n\nThere are two main ways (that I have thought of) to approach this efficiently:\n\nUsing the map_at() funtion. The list_rbind() function and the names_to argument in that will be helpful!\nUsing both pivot_wider() and pivot_longer().\n\nIt is easiest to start with creating a dataframe that has the variable, level, and count columns and then calculate prop, the proportion of professors that are in each group.\nFinal tip (not required) - I used the following options in kable_styling() to output this table:\n  kable_styling(full_width = F,\n                bootstrap_options = \"striped\")\n\n\n\n\n\n\n\n\nSame classification as Lab 3\n\n\n\nI’m using the sen_level classification from Lab 3\n\n\"junior\" = seniority is 4 or less (inclusive)\n\"senior\" = seniority is between 4 and 8 (inclusive)\n\"very senior\" = seniority is greater than 8.\n\n\n\n\n# Q4 code\n\n5. Now turn that into a very nice table, like one of the examples below using kable() and kableExtra or gt.\n\n\n\n\n\n\nExample 1\n\n\n\n\n\n\n\nExample 2\n\n\n\n\n\nYour table does not need to copy one of these exactly but it should include:\n\nSome way of clearly indicating the three variable types as row groups\nGiving nice column names\nUsing a column header that spans the count and % columns\nNicely formatting the % column\nGiving it a title or a caption\n\n\n#Q5 code"
   },
   {
     "objectID": "labs/instructions/lab-8-instructions.html#lab-7",
     "href": "labs/instructions/lab-8-instructions.html#lab-7",
     "title": "Lab 8: Searching for Efficiency",
     "section": "Lab 7",
-    "text": "Lab 7\nFor our last problem, we will revisit a question from the most recent lab. Question 1 asked you to use across() to make a table which summarized:\n\nWhat variable(s) have missing values present?\nHow many observations have missing values?\n\n4. Using map_int(), produce a nicely formatted table of the number of missing values for each variable in the fish data."
+    "text": "Lab 7\nFor our last problem, we will revisit a question from the most recent lab. Question 1 asked you to use across() to make a table which summarized:\n\nWhat variable(s) have missing values present?\nHow many observations have missing values?\n\n7. Using map_int(), produce a nicely formatted table of the number of missing values for each variable in the fish data.\n\n#Q7 code"
   },
   {
     "objectID": "labs/instructions/lab-7-instructions.html",
     "href": "labs/instructions/lab-7-instructions.html",
     "title": "Lab 7: Functions + Fish",
     "section": "",
-    "text": "The goal of this lab is learn more about exploring missing data and writing modular code."
+    "text": "Download .qmd starter file\nDownload BlackfootFish.csv\nThe goal of this lab is learn more about exploring missing data and writing modular code.\nlibrary(tidyverse)\nfish &lt;- read.csv(\"BlackfootFish.csv\")"
   },
   {
     "objectID": "labs/instructions/lab-7-instructions.html#the-data",
@@ -1915,28 +1915,28 @@
     "href": "labs/instructions/lab-7-instructions.html#data-exploration",
     "title": "Lab 7: Functions + Fish",
     "section": "Data Exploration",
-    "text": "Data Exploration\nThe measurements of each captured fish were taken by a biologist on a raft in the river. The lack of a laboratory setting opens the door to the possibility of measurement errors.\n1. Let’s look for missing values in the dataset. Output ONE table that answers BOTH of the following questions:\n\nHow many observations have missing values?\nWhat variable(s) have missing values present?\n\n\n\n\n\n\n\nTipYou should use across()!\n\n\n\n\n\n\n2. Create ONE thoughtful visualization that explores the frequency of missing values across the different years, sections, and trips."
+    "text": "Data Exploration\nThe measurements of each captured fish were taken by a biologist on a raft in the river. The lack of a laboratory setting opens the door to the possibility of measurement errors.\n1. Let’s look for missing values in the dataset. Output ONE table that answers BOTH of the following questions:\n\nHow many observations have missing values?\nWhat variable(s) have missing values present?\n\n\n\n\n\n\n\nTip\n\n\n\nHint: use across().\n\n\n\n# Code for Q1.\n\n2. Create ONE thoughtful visualization that explores the frequency of missing values across the different years, sections, and trips.\n\n# Code for Q2."
   },
   {
     "objectID": "labs/instructions/lab-7-instructions.html#rescaling-the-data",
     "href": "labs/instructions/lab-7-instructions.html#rescaling-the-data",
     "title": "Lab 7: Functions + Fish",
     "section": "Rescaling the Data",
-    "text": "Rescaling the Data\nIf I wanted to rescale every quantitative variable in my dataset so that they only have values between 0 and 1, I could use this formula:\n\n\\[y_{scaled} = \\frac{y_i - min\\{y_1, y_2,..., y_n\\}}{max\\{y_1, y_2,..., y_n\\}\n- min\\{y_1, y_2,..., y_n\\}}\\]\n\nI might write the following R code to carry out the rescaling procedure for the length and weight columns of the BlackfoorFish data:\n\nfish &lt;- fish |&gt; \n  mutate(length = (length - min(length, na.rm = TRUE)) / \n           (max(length, na.rm = TRUE) - min(length, na.rm = TRUE)), \n         weight = (weight - min(weight, na.rm = TRUE)) / \n           (max(weight, na.rm = TRUE) - min(length, na.rm = TRUE)))\n\nThis process of duplicating an action multiple times can make it difficult to understand the intent of the process. Additionally, it can make it very difficult to spot mistakes.\n3. What is the mistake I made in the above rescaling code?\nWhen you find yourself copy-pasting lines of code, it’s time to write a function, instead!\n4. Transform the repeated process above into a rescale_01() function. Your function should…\n\n… take a single vector as input.\n… return the rescaled vector.\n\n\n\n\n\n\n\nTipEfficiency\n\n\n\nAre you calling the same function multiple times? You might want to look into the range() function.\n\n\n5. Let’s incorporate some input validation into your function. Modify your previous code so that the function stops if …\n\n… the input vector is not numeric.\n… the length of the input vector is not greater than 1.\n\n\n\n\n\n\n\nTipModify Previous Code\n\n\n\nDo not create a new code chunk here – simply add these stops to your function above!"
+    "text": "Rescaling the Data\nIf I wanted to rescale every quantitative variable in my dataset so that they only have values between 0 and 1, I could use this formula:\n\n\\[y_{scaled} = \\frac{y_i - min\\{y_1, y_2,..., y_n\\}}{max\\{y_1, y_2,..., y_n\\}\n- min\\{y_1, y_2,..., y_n\\}}\\]\n\nI might write the following R code to carry out the rescaling procedure for the length and weight columns of the BlackfootFish data:\n\nfish &lt;- fish |&gt; \n  mutate(length = (length - min(length, na.rm = TRUE)) / \n           (max(length, na.rm = TRUE) - min(length, na.rm = TRUE)), \n         weight = (weight - min(weight, na.rm = TRUE)) / \n           (max(weight, na.rm = TRUE) - min(length, na.rm = TRUE)))\n\nThis process of duplicating an action multiple times can make it difficult to understand the intent of the process. Additionally, it can make it very difficult to spot mistakes.\n3. What is the mistake I made in the above rescaling code?\nWhen you find yourself copy-pasting lines of code, it’s time to write a function, instead!\n4. Transform the repeated process above into a rescale_01() function. Your function should…\n\n… take a single vector as input.\n… return the rescaled vector.\n\n\n\n\n\n\n\nTip\n\n\n\nThink about the efficiency of your function. Are you calling the same function multiple times?\nLook into the function range().\n\n\n\n# Code for Q4 and Q5.\n\n5. Let’s incorporate some input validation into your function. Modify your previous code so that the function stops if …\n\n… the input vector is not numeric.\n… the length of the input vector is not greater than 1.\n\n\n\n\n\n\n\nTip\n\n\n\nDo not create a new code chunk here – simply add these stops to your function above!"
   },
   {
     "objectID": "labs/instructions/lab-7-instructions.html#test-your-function",
     "href": "labs/instructions/lab-7-instructions.html#test-your-function",
     "title": "Lab 7: Functions + Fish",
     "section": "Test Your Function",
-    "text": "Test Your Function\n6. Run the code below to test your function. Verify that the maximum of your rescaled vector is 1 and the minimum is 0!\n\nx &lt;- c(1:25, NA)\n\nrescaled &lt;- rescale_01(x)\nmin(rescaled, na.rm = TRUE)\nmax(rescaled, na.rm = TRUE)\n\nNext, let’s test the function on the length column of the BlackfootFish data.\n7. The code below makes a histogram of the original values of length. Add a plot of the rescaled values of length. Output your plots side-by-side, so the reader can confirm the only aspect that has changed is the scale.\n\n\n\n\n\n\nWarning\n\n\n\nThis will require you to call your rescale_01() function within a mutate() statement in order to create a length_scaled variable.\n\n\n\nfish |&gt;  \n  ggplot(aes(x = length)) + \n  geom_histogram(binwidth = 45) +\n  labs(x = \"Original Values of Fish Length (mm)\") +\n  scale_y_continuous(limits = c(0,4000))\n\n# Code for Q7 plot.\n\n\n\n\n\n\n\nTip\n\n\n\n\nSet the y-axis limits for both plots to go from 0 to 4000 to allow for direct comparison across plots.\nPay attention to binwidth!\nUse a Quarto code chunk option to put the plots side-by-side."
+    "text": "Test Your Function\n6. Run the code below to test your function. Verify that the maximum of your rescaled vector is 1 and the minimum is 0!\n\nx &lt;- c(1:25, NA)\n\nrescaled &lt;- rescale_01(x)\nmin(rescaled, na.rm = TRUE)\nmax(rescaled, na.rm = TRUE)\n\nNext, let’s test the function on the length column of the BlackfootFish data.\n7. The code below makes a histogram of the original values of length. Add a plot of the rescaled values of length. Output your plots side-by-side, so the reader can confirm the only aspect that has changed is the scale.\n\n\n\n\n\n\nWarning\n\n\n\nThis will require you to call your rescale_01() function within a mutate() statement in order to create a length_scaled variable.\n\n\n\n\n\n\n\n\nTip\n\n\n\n\nSet the y-axis limits for both plots to go from 0 to 4000 to allow for direct comparison across plots.\nPay attention to binwidth! Adjust it so that the plots are comparable (they may not look exactly the same).\nLook for a Quarto code-chunk option to put the plots side-by-side.\n\n\n\n\nfish |&gt;  \n  ggplot(aes(x = length)) + \n  geom_histogram(binwidth = 45) +\n  labs(x = \"Original Values of Fish Length (mm)\") +\n  scale_y_continuous(limits = c(0,4000))\n\n# Code for Q7 plot."
   },
   {
     "objectID": "labs/instructions/lab-7-instructions.html#use-variables-within-a-dataset",
     "href": "labs/instructions/lab-7-instructions.html#use-variables-within-a-dataset",
     "title": "Lab 7: Functions + Fish",
     "section": "Use Variables within a Dataset",
-    "text": "Use Variables within a Dataset\nSuppose you would like for your rescale() function to perform operations on a variable within a dataset. Ideally, your function would take in a data frame and a variable name as inputs and return a data frame where the variable has been rescaled.\n8. Create a rescale_column() function that accepts two arguments:\n\na dataframe\nthe name(s) of the variable(s) to be rescaled\n\nThe body of the function should call the original rescale_01() function you wrote previously. Your solution MUST use one of the rlang options from class.\n\n\n\n\n\n\nTip\n\n\n\nIf you are struggling with this task, I recommend looking back over the data frame functions section of R for Data Science!\n\n\n9. Use your rescale_column() function to rescale both the length and weight columns.\n\n\n\n\n\n\nWarning\n\n\n\nI expect that you carry out this process by calling the rescale_column() function only ONE time!"
+    "text": "Use Variables within a Dataset\nSuppose you would like for your rescale() function to perform operations on a variable within a dataset. Ideally, your function would take in a dataframe and a variable name as inputs and return a dataframe where the variable has been rescaled.\n8. Create a rescale_column() function that accepts two arguments: (1) a dataframe and (2) the name(s) of the variable(s) to be rescaled. The body of the function should call the original rescale_01() function you wrote previously. Your solution MUST use one of the rlang options from class.\n\n\n\n\n\n\nTip\n\n\n\nIf you are struggling with this task, I recommend looking here and at the slides from class on Wednesday!\n\n\n\n# Code for Q8.\n\n9. Use your rescale_column() function to rescale both the length and weight columns.\n\n\n\n\n\n\nWarning\n\n\n\nI expect that you carry out this process by calling the rescale_column() function only ONE time!\n\n\n\n# original values\nfish |&gt; \n select(length:weight) |&gt; \n head()\n\n# rescaled values\n\n# Code for Q9."
   },
   {
     "objectID": "labs/instructions/lab-5-instructions-old.html",
@@ -4336,22 +4336,22 @@
     "objectID": "slides/week-5/week-5-strings.html#tuesday-october-14",
     "href": "slides/week-5/week-5-strings.html#tuesday-october-14",
     "title": "Using stringr to Work with Strings",
-    "section": "Tuesday, October 14",
-    "text": "Tuesday, October 14\nToday we will…\n\nLayout for Week 5\nNew material\n\nString variables\nFunctions for working with strings\nRegular expressions\n\nPA 5.1: Scrambled Message"
+    "section": "",
+    "text": "Today we will…\n\nLayout for Week 5\nNew material\n\nString variables\nFunctions for working with strings\nRegular expressions\n\nPA 5.1: Scrambled Message"
   },
   {
     "objectID": "slides/week-5/week-5-strings.html#what-is-a-string",
     "href": "slides/week-5/week-5-strings.html#what-is-a-string",
     "title": "Using stringr to Work with Strings",
     "section": "What is a string?",
-    "text": "What is a string?\nA string is a bunch of characters.\n\nThere is a difference between…\n\n…a string (many characters, one object)…\nand\n…a character vector (vector of strings).\n\n\n\n\nmy_string &lt;- \"Hi, my name is Bond!\"\nmy_string\n\n\n\n\nmy_vector &lt;- c(\"Hi\", \"my\", \"name\", \"is\", \"Bond\")\nmy_vector"
+    "text": "What is a string?\nA string is a bunch of characters.\n. . .\nThere is a difference between…\n\n…a string (many characters, one object)…\nand\n…a character vector (vector of strings).\n\n. . .\n\nmy_string &lt;- \"Hi, my name is Bond!\"\nmy_string\n\n. . .\n\nmy_vector &lt;- c(\"Hi\", \"my\", \"name\", \"is\", \"Bond\")\nmy_vector"
   },
   {
     "objectID": "slides/week-5/week-5-strings.html#strings-in-a-data-frame",
     "href": "slides/week-5/week-5-strings.html#strings-in-a-data-frame",
     "title": "Using stringr to Work with Strings",
     "section": "Strings in a Data Frame",
-    "text": "Strings in a Data Frame\nWe’ve encountered a lot of strings before in the datasets we’ve worked with.\n\n\n\n\npenguins\n\nspecies\nisland\nsex\n\n\n\n\n\n\ncolleges\n\nSTABBR\nINSTNM\n\nmilitary\n\nCountry\n\n\n\n\n\n\nUntil now, we’ve taken for granted the values of these string variables, but today we’re going to learn how to use expressions to look for and / or modify specific values!"
+    "text": "Strings in a Data Frame\nWe’ve encountered a lot of strings before in the datasets we’ve worked with.\n\n\n\n\npenguins\n\nspecies\nisland\nsex\n\n\n\n\n\n\ncolleges\n\nSTABBR\nINSTNM\n\nmilitary\n\nCountry\n\n\n\n\n\n\n\nUntil now, we’ve taken for granted the values of these string variables, but today we’re going to learn how to use expressions to look for and / or modify specific values!"
   },
   {
     "objectID": "slides/week-5/week-5-strings.html#strings-in-a-data-frame-1",
@@ -4365,21 +4365,21 @@
     "href": "slides/week-5/week-5-strings.html#stringr",
     "title": "Using stringr to Work with Strings",
     "section": "stringr",
-    "text": "stringr\n\n\nCommon tasks\n\nIdentify strings containing a particular pattern.\nRemove or replace a pattern.\nEdit a string (e.g., make it lowercase).\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThe stringr package loads with tidyverse.\nAll functions are of the form str_xxx()."
+    "text": "stringr\n\n\nCommon tasks\n\nIdentify strings containing a particular pattern.\nRemove or replace a pattern.\nEdit a string (e.g., make it lowercase).\n\n\n\nknitr::include_graphics(\"https://github.com/rstudio/hex-stickers/blob/main/PNG/stringr.png?raw=true\")\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n\nThe stringr package loads with tidyverse.\nAll functions are of the form str_xxx()."
   },
   {
     "objectID": "slides/week-5/week-5-strings.html#string",
     "href": "slides/week-5/week-5-strings.html#string",
     "title": "Using stringr to Work with Strings",
     "section": "string =",
-    "text": "string =\n\nNone of the stringr functions have a .data = argument! These functions only accept a character vector (string =) as an input.\n\nstr_detect(data = colleges, \n           string = INSTNM, \n           pattern = \"California\")\n\n\n\n\n\nSo, these functions will need to be combined with functions from dplyr to work with a dataset!"
+    "text": "string =\n\nNone of the stringr functions have a .data = argument! These functions only accept a character vector (string =) as an input.\n\nstr_detect(data = colleges, \n           string = INSTNM, \n           pattern = \"California\")\n\n\n. . .\n\n\nSo, these functions will need to be combined with functions from dplyr to work with a dataset!"
   },
   {
     "objectID": "slides/week-5/week-5-strings.html#pattern",
     "href": "slides/week-5/week-5-strings.html#pattern",
     "title": "Using stringr to Work with Strings",
     "section": "pattern =",
-    "text": "pattern =\nThe pattern argument appears in many stringr functions.\n\nThe pattern must be supplied inside quotes.\n\n\n\nstr_detect(colleges$INSTNM, \n           pattern = \"Polytechnic\")\n\nstr_remove(colleges$INSTNM, \n           pattern = \"(University|College)\")\n\nstr_replace(colleges$INSTNM, \n            pattern = \"$u\", \n            replacement = \"U\")\n\n\n\n\nLet’s talk more about what some of these symbols mean."
+    "text": "pattern =\nThe pattern argument appears in many stringr functions.\n\nThe pattern must be supplied inside quotes.\n\n\n\nstr_detect(colleges$INSTNM, \n           pattern = \"Polytechnic\")\n\nstr_remove(colleges$INSTNM, \n           pattern = \"(University|College)\")\n\nstr_replace(colleges$INSTNM, \n            pattern = \"$u\", \n            replacement = \"U\")\n\n\n\n. . .\nLet’s talk more about what some of these symbols mean."
   },
   {
     "objectID": "slides/week-5/week-5-strings.html#regular-expressions-2",
@@ -4435,7 +4435,7 @@
     "href": "slides/week-5/week-5-strings.html#str_detect",
     "title": "Using stringr to Work with Strings",
     "section": "str_detect()",
-    "text": "str_detect()\nReturns a logical vector indicating whether the pattern was found in each element of the supplied vector.\n\n\nmy_vector &lt;- c(\"Hello,\", \n               \"my name is\", \n               \"Bond\", \n               \"James Bond\")\n\n\nstr_detect(my_vector, pattern = \"Bond\")\n\n\n\n\n\n\n\nPairs well with filter()\n\n\n\n\n\nWorks with summarise()\n\nsum (to get total matches)\nmean (to get proportion of matches)"
+    "text": "str_detect()\nReturns a logical vector indicating whether the pattern was found in each element of the supplied vector.\n\n\nmy_vector &lt;- c(\"Hello,\", \n               \"my name is\", \n               \"Bond\", \n               \"James Bond\")\n\n\nstr_detect(my_vector, pattern = \"Bond\")\n\n\n. . .\n\n\n\n\nPairs well with filter()\n\n\n\n\n\nWorks with summarise()\n\nsum (to get total matches)\nmean (to get proportion of matches)"
   },
   {
     "objectID": "slides/week-5/week-5-strings.html#str_detect-with-filter",
@@ -4470,7 +4470,7 @@
     "href": "slides/week-5/week-5-strings.html#str_remove",
     "title": "Using stringr to Work with Strings",
     "section": "str_remove()",
-    "text": "str_remove()\n\nremove the first matched pattern in each string\n\n\nstr_remove(my_vector, \n           pattern = \"Bond\")\n\n\n\n\n\n\n\n\n\nRelated Functions\n\n\nThis is a special case of str_replace(x, pattern, replacement = \"\")."
+    "text": "str_remove()\n\nremove the first matched pattern in each string\n\n\nstr_remove(my_vector, \n           pattern = \"Bond\")\n\n\n\n\n\n\n\n\n\nRelated Functions\n\n\n\n\n\nThis is a special case of str_replace(x, pattern, replacement = \"\")."
   },
   {
     "objectID": "slides/week-5/week-5-strings.html#str_remove-with-mutate",
@@ -4505,7 +4505,7 @@
     "href": "slides/week-5/week-5-strings.html#str_c",
     "title": "Using stringr to Work with Strings",
     "section": "str_c()",
-    "text": "str_c()\n\njoin multiple strings into a single character vector\n\n\ncolleges |&gt; \n  mutate(\n    address = str_c(CITY, STABBR, ZIP, sep = \", \")\n         )\n\n\n\n\n\n\n\nNote\n\n\nSimilar to paste() and paste0() but with more precision."
+    "text": "str_c()\n\njoin multiple strings into a single character vector\n\n\ncolleges |&gt; \n  mutate(\n    address = str_c(CITY, STABBR, ZIP, sep = \", \")\n         )\n\n\n\n\n\n\n\nNote\n\n\n\nSimilar to paste() and paste0() but with more precision."
   },
   {
     "objectID": "slides/week-5/week-5-strings.html#tips-for-string-success",
@@ -4560,22 +4560,22 @@
     "objectID": "slides/week-6/week-6-version-control.html#thursday-september-26",
     "href": "slides/week-6/week-6-version-control.html#thursday-september-26",
     "title": "Introduction to Version Control",
-    "section": "Thursday, September 26",
-    "text": "Thursday, September 26\nToday we will…\n\n\nReview Key Feedback from Lab 4 & Challenge 4\n\nDiscuss New Structure for Revisions\n\nNew Material\n\nVersion Control\n\nSetting-up Portfolio\n\nForking the Final Portfolio Repository\nCloning into RStudio\nMaking a Small Change, Committing & Pushing"
+    "section": "",
+    "text": "Today we will…\n\n\nReview Key Feedback from Lab 4 & Challenge 4\n\nDiscuss New Structure for Revisions\n\nNew Material\n\nVersion Control\n\nSetting-up Portfolio\n\nForking the Final Portfolio Repository\nCloning into RStudio\nMaking a Small Change, Committing & Pushing"
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#lab-4-common-mishaps",
     "href": "slides/week-6/week-6-version-control.html#lab-4-common-mishaps",
     "title": "Introduction to Version Control",
     "section": "Lab 4 Common Mishaps",
-    "text": "Lab 4 Common Mishaps\n\n\nQ1: Who collected these data? When? Why? How?\nQ4: Column titles of 2008 and 2018 are not descriptive!\n\nCreating column names that describe the values stored in those columns!\nThe names_prefix = argument to pivot_wider() can help you make better column names!\nDVS-6: I can create tables which make my summaries clear to the reader\n\nQ4: Unless you specify .groups = \"drop\" within summarize() your table still is grouped!\n\ngroup_by() + summarize() only drops the first group.\nIf you have two variables inside group_by(), then the data will still be grouped by the second variable!\n\nQ7: The data description contains important information!\n\nmc_toddler – Aggregated weekly, full-time median price charged for Center-based Care for toddlers.\nmhi_2018 – Median household income expressed in 2018 dollars."
+    "text": "Lab 4 Common Mishaps\n\n\n\nQ1: Who collected these data? When? Why? How?\nQ4: Column titles of 2008 and 2018 are not descriptive!\n\nCreating column names that describe the values stored in those columns!\nThe names_prefix = argument to pivot_wider() can help you make better column names!\nDVS-6: I can create tables which make my summaries clear to the reader\n\nQ4: Unless you specify .groups = \"drop\" within summarize() your table still is grouped!\n\ngroup_by() + summarize() only drops the first group.\nIf you have two variables inside group_by(), then the data will still be grouped by the second variable!\n\nQ7: The data description contains important information!\n\nmc_toddler – Aggregated weekly, full-time median price charged for Center-based Care for toddlers.\nmhi_2018 – Median household income expressed in 2018 dollars."
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#superseded-functions",
     "href": "slides/week-6/week-6-version-control.html#superseded-functions",
     "title": "Introduction to Version Control",
     "section": "Superseded Functions",
-    "text": "Superseded Functions\n\n\nPE-4: I can use modern tools when carrying out my analysis.\n\n\n\nrecode() from the dplyr package has been superseded for the case_match() function.\n\ncase_match() is the SQL cousin of case_when()\n\nNeither of these functions live in the forcats package which includes the tools we learned!\n\nNeither is factor()!\nMaybe try something from forcats!"
+    "text": "Superseded Functions\n\n\nPE-4: I can use modern tools when carrying out my analysis.\n\n\n\n\nrecode() from the dplyr package has been superseded for the case_match() function.\n\ncase_match() is the SQL cousin of case_when()\n\nNeither of these functions live in the forcats package which includes the tools we learned!\n\nNeither is factor()!\nMaybe try something from forcats!"
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#recreating-the-plot",
@@ -4617,7 +4617,7 @@
     "href": "slides/week-6/week-6-version-control.html#new-structure-for-lab-revisions",
     "title": "Introduction to Version Control",
     "section": "New Structure for Lab Revisions",
-    "text": "New Structure for Lab Revisions\nDue to the time it is taking me to give feedback for the lab and challenge assignments, I need to find a new plan for revisions.\n\nNew Plan:\n\n\nSpend 45-minutes of class on Thursdays working on revisions with people around you, and discussing your revisions with me.\nRevisions will be graded as “Success” or “Growing” with no additional feedback provided.\nAdditional feedback can be given during student hours!"
+    "text": "New Structure for Lab Revisions\nDue to the time it is taking me to give feedback for the lab and challenge assignments, I need to find a new plan for revisions.\n. . .\nNew Plan:\n\n\nSpend 45-minutes of class on Thursdays working on revisions with people around you, and discussing your revisions with me.\nRevisions will be graded as “Success” or “Growing” with no additional feedback provided.\nAdditional feedback can be given during student hours!"
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#git-vs-github",
@@ -4638,7 +4638,7 @@
     "href": "slides/week-6/week-6-version-control.html#preparatory-work",
     "title": "Introduction to Version Control",
     "section": "Preparatory Work",
-    "text": "Preparatory Work\nYou were asked to complete the following steps before coming to class today:\n\n\nCreate a GitHub account\nIntroduce yourself to git (in RStudio)\nGenerate a Personal Access Token (PAT)\nStore your PAT in RStudio\n\n\n\n\n\n\n\n\nUsing git and GitHub in RStudio\n\n\nI’m going to guide you through how to interact with git and GitHub through RStudio. This is not the only way to do this! If you are comfortable with version control, feel free to use the tool that you like best."
+    "text": "Preparatory Work\nYou were asked to complete the following steps before coming to class today:\n\n\nCreate a GitHub account\nIntroduce yourself to git (in RStudio)\nGenerate a Personal Access Token (PAT)\nStore your PAT in RStudio\n\n\n\n\n\n\n\n\nUsing git and GitHub in RStudio\n\n\n\nI’m going to guide you through how to interact with git and GitHub through RStudio. This is not the only way to do this! If you are comfortable with version control, feel free to use the tool that you like best."
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#git-repositories",
@@ -4673,7 +4673,7 @@
     "href": "slides/week-6/week-6-version-control.html#commit-tips",
     "title": "Introduction to Version Control",
     "section": "Commit Tips",
-    "text": "Commit Tips\n\nCommit small blocks of changes.\n\nCommit every time you accomplish a small task (e.g., one learning target).\nWith frequent commits, its easier to find the issue if / when you mess up!\n\n\n\n\nUse short, but informative commit messages.\nYou’ll end up with a set of bite-sized changes (with description) to serve as a record of what you’ve done."
+    "text": "Commit Tips\n\nCommit small blocks of changes.\n\nCommit every time you accomplish a small task (e.g., one learning target).\nWith frequent commits, its easier to find the issue if / when you mess up!\n\n\n. . .\n\nUse short, but informative commit messages.\nYou’ll end up with a set of bite-sized changes (with description) to serve as a record of what you’ve done."
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#pushing-changes",
@@ -4687,14 +4687,14 @@
     "href": "slides/week-6/week-6-version-control.html#pulling-changes",
     "title": "Introduction to Version Control",
     "section": "Pulling Changes",
-    "text": "Pulling Changes\n\nDownload the latest changes from the remote repository into your local copy.\n\n\n\n\n\n\nYour updates are saved online when you commit and push.\nTo see those new edits in your offline copy, you have to pull them down.\n\n\n\n\n\n\n\n\nOnly relevant if you are working on two computers!\n\n\nIf this is you, keeping both local versions up to date will be important!"
+    "text": "Pulling Changes\n\nDownload the latest changes from the remote repository into your local copy.\n\n\n\n\n\n\nYour updates are saved online when you commit and push.\nTo see those new edits in your offline copy, you have to pull them down.\n\n\n\n\n\n\n\n\nOnly relevant if you are working on two computers!\n\n\n\nIf this is you, keeping both local versions up to date will be important!"
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#workflow",
     "href": "slides/week-6/week-6-version-control.html#workflow",
     "title": "Introduction to Version Control",
     "section": "Workflow",
-    "text": "Workflow\n\nPull the repo to make sure you have the most up to date version (especially if you are working on different computers).\nMake some changes locally.\nCommit the changes.\nPush your changes to GitHub."
+    "text": "Workflow\n\n\nPull the repo to make sure you have the most up to date version (especially if you are working on different computers).\nMake some changes locally.\nCommit the changes.\nPush your changes to GitHub."
   },
   {
     "objectID": "slides/week-6/week-6-version-control.html#resources-available-to-you",
@@ -5507,5 +5507,61 @@
     "title": "Midterm Portfolio Work Session",
     "section": "semi_join() & anti_join()",
     "text": "semi_join() & anti_join()\n\nAn Example from Lab 5…\n\n\n\ninterview |&gt; \n  semi_join(new_suspect,\n            by = join_by(person_id == id)) |&gt; \n  pull(transcript)\n\ncharacter(0)"
+  },
+  {
+    "objectID": "labs/exemplars/student-work.html#amazing-tables",
+    "href": "labs/exemplars/student-work.html#amazing-tables",
+    "title": "Gallary of Exemplary Student Work",
+    "section": "Amazing Tables",
+    "text": "Amazing Tables"
+  },
+  {
+    "objectID": "labs/exemplars/student-work.html#amazing-plots",
+    "href": "labs/exemplars/student-work.html#amazing-plots",
+    "title": "Gallary of Exemplary Student Work",
+    "section": "Amazing Plots",
+    "text": "Amazing Plots\nThis plot is brought to us by Marietta Nikolskaya! I was really excited to see someone create a “lollipop” plot, since they are what we (Statisticians) make to compare how different a summary statistic is between groups. When plotting statistics like the mean, median, or difference, we generally advocate for this type of plot over a barplot since barplots are typically reserved for plots of counts or proportions.\n\n\nCode\n# Here is the data wrangling that happened to make this plot!\n\nca_childcare_new &lt;- ca_childcare |&gt; \n  filter(study_year == 2018) |&gt;\n  select(census_region, mc_infant, mfcc_infant) |&gt; \n  mutate(cost_difference = mc_infant - mfcc_infant) |&gt;\n  group_by(census_region) |&gt;\n  summarize(\n    median_center = median(mc_infant),\n    median_family = median(mfcc_infant),\n    median_difference = median(cost_difference)) |&gt;\n  arrange(desc(median_difference))\n\n\n\nca_childcare_new |&gt;\n  ggplot(aes(y = fct_reorder(census_region, median_difference), \n             x = median_difference)) +\n  geom_segment(aes(yend = census_region, x = 0, xend = median_difference), \n               color = \"gray50\") +\n  geom_point(size = 4, color = \"steelblue\") +\n  labs(\n    y = \"\",\n    x = \"Cost Difference: Center - Family ($)\",\n    title = \"Cost Difference Between Center and Family Childcare for Infants (2018)\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nThis plot is brought to us by Devin Hadley! I thought this plot was really creative in their use of a non-standard geometry (geom_ribbon()) to fill the space between the lines. I also appreciated that they moved the legend to the top of the plot to make it easier to see!\n\n\nCode\n# Here is the data wrangling that happened to make this plot!\nsummary_table &lt;- ca_childcare |&gt;\n  group_by(study_year) |&gt;\n  summarise(\n    median_center_price = median(mc_infant),\n    median_family_price = median(mfcc_infant)\n  ) |&gt;\n  mutate(\n    center_minus_family_price = median_center_price - median_family_price\n  )\n\nsummary_table_long &lt;- summary_table |&gt;\n  pivot_longer(\n    cols = c(\"median_center_price\", \"median_family_price\"),\n    names_to = \"care_type\",\n    values_to = \"median_price\"\n  ) |&gt;\n  mutate(\n    care_type = case_when(\n      care_type == \"median_center_price\" ~ \"Center-Based\",\n      care_type == \"median_family_price\" ~ \"Family-Based\",\n      TRUE ~ care_type\n    ))\n\n\n\nggplot(summary_table_long, aes(x = study_year, y = median_price, color = care_type)) +\n  geom_line(linewidth = 1.2) +\n  geom_point(size = 3) +\n  geom_ribbon(data = summary_table, aes(x = study_year, ymin = median_family_price, ymax = median_center_price, group = 1),\n              fill = \"skyblue\", alpha = 0.3, inherit.aes = FALSE) +\n  labs(\n    title = \"Median Weekly Infant Childcare Costs in California (2008-2018)\",\n    subtitle = \"Based off the aggregated median price for each care type on an annual basis in various California counties.\",\n    x = \"Year\",\n    y = \"Median Weekly Price (2018 Dollars)\",\n    color = \"Type of Childcare\"\n  ) +\n  scale_x_continuous(breaks = seq(2008, 2018, by = 2)) +\n  theme_minimal(base_size = 14) +\n  theme(\n    legend.position = \"top\",\n    plot.title = element_text(face = \"bold\"),\n    plot.subtitle = element_text(margin = margin(b = 10)),\n    axis.title = element_text(face = \"bold\"),\n    plot.background = element_rect(color = \"black\", linewidth = 1) \n  )\n\n\n\n\n\n\n\n\nThis plot is brought to us by Isaiah Woodard! I really appreciated how Isaiah took the skills they learned in Challenge 2 and applied them to a new setting!\n\n\nCode\n# Here is the data wrangling that happened to make this plot!\n\nplot_data &lt;- ca_childcare %&gt;% \n  select(census_region, study_year, mfccsa, mcsa) %&gt;% \n  filter(study_year == c(\"2008\":\"2018\")) %&gt;% \n  group_by(census_region, study_year) %&gt;% \n  summarise(median_mcsa = median(mcsa),\n            median_mfccsa = median(mfccsa)) %&gt;% \n  pivot_longer(cols = c(median_mcsa, median_mfccsa),\n               names_to = \"category\",\n               values_to = \"medians\")\n\n\n\nplot_data %&gt;% \n  ggplot(aes(x = study_year,\n             y = medians,\n             color = category)) +\n  facet_wrap(~ census_region) +\n  geom_point() +\n  scale_x_continuous(breaks = c(2008, 2010, 2012, 2014, 2016, 2018)) +\n  labs(title = \"Price of Childcare Over Time in California\",\n       subtitle = \"Plots subdivided for &lt;span style='color:#009e73;'&gt;center-based&lt;/span&gt; and &lt;span     style='color:#d55e00;'&gt;at-home&lt;/span&gt; childcare\",\n       x = \"Study Year\",\n       y = \"Median Weekly Cost of Childcare ($)\") +\n  scale_color_manual(values = c(\"#009e73\", \"#d55e00\")) +\n  theme_bw() +\n  theme(plot.subtitle = ggtext::element_markdown(),\n        axis.text = element_text(size = 5),\n        legend.position = \"\")\n\n\n\n\n\n\n\n\nThis plot is brought to us by Rayan Tahir! I thought Rayan’s plot was very clear and easy to understand. Moreover, their use of $ on the axis labels and moving the legend to the top of the plot made it even easier to understand what was being plotted.\n\n\nCode\n# Here is the data wrangling that happened to make this plot!\n\nca_afford &lt;- ca_childcare |&gt;\n  mutate(\n    weekly_income = mhi_2018 / 52, \n    center_afford = mc_infant / weekly_income,\n    family_afford = mfcc_infant / weekly_income\n  )\n\nca_afford_long &lt;- ca_afford |&gt;\n  select(study_year, center_afford,          family_afford) |&gt;\n  pivot_longer(\n    cols = c(center_afford, family_afford),\n    names_to = \"Setting\",\n    values_to = \"Affordability\"\n) |&gt;\nmutate(\n  Setting = recode(Setting,\n                  center_afford = \"Center-Based\",\n                   family_afford = \"Family-Based\")\n)\n\n\n\nggplot(ca_afford_long, aes(x = study_year, y = Affordability, color = Setting)) +\n  stat_summary(fun = median, geom = \"line\", linewidth = 1.2) +\n  stat_summary(fun = median, geom = \"point\", size = 2.2) +\n  scale_y_continuous(labels = scales::label_percent(accuracy = 1)) + \n  labs(\n  title = \"Affordability of Childcare in California (2008-2018)\",\n  subtitle = \"Median Weekly Cost as a Share of County Median Household Income\",\n  x = \"Year\",\n  y = \"Median Share of Weekly Income Spent on Infant Care\",\n  color = \"Childcare Setting\"\n) +\ntheme_minimal(base_size = 11) +\ntheme(\n  plot.title = element_text(face = \"bold\", size = 15, hjust = 0.5),\n  plot.subtitle= element_text(size = 12, hjust= 0.5),\n  legend.position = \"top\"\n)"
+  },
+  {
+    "objectID": "slides/week-6/week-6-version-control.html",
+    "href": "slides/week-6/week-6-version-control.html",
+    "title": "Introduction to Version Control",
+    "section": "",
+    "text": "Today we will…\n\n\nReview Key Feedback from Lab 4 & Challenge 4\n\nDiscuss New Structure for Revisions\n\nNew Material\n\nVersion Control\n\nSetting-up Portfolio\n\nForking the Final Portfolio Repository\nCloning into RStudio\nMaking a Small Change, Committing & Pushing"
+  },
+  {
+    "objectID": "labs/instructions/lab-8-instructions.html#the-data",
+    "href": "labs/instructions/lab-8-instructions.html#the-data",
+    "title": "Lab 8: Searching for Efficiency",
+    "section": "The Data",
+    "text": "The Data\nFor this week’s lab, we will be revisiting questions from previous lab assignments, with the purpose of using functions from the map() family to iterate over certain tasks. To do this, we will need to load in the data from Lab 2, Lab 3, and Lab 7.\nEdit the code below to read in the appropriate datsets that you should have saved from the previous labs!\n\n# Data from Lab 2\nsurveys &lt;- read_csv(\"../lab2/surveys.csv\")\n\n# Data from Lab 3\nevals &lt;- read_csv(\"../lab3/input/teacher_evals.csv\") |&gt; \n  rename(sex = gender)\n\n# Data from Lab 7\nfish &lt;- read_csv(\"../lab7/BlackfootFish.csv\")"
+  },
+  {
+    "objectID": "labs/instructions/lab-8-instructions.html#formatting-tables",
+    "href": "labs/instructions/lab-8-instructions.html#formatting-tables",
+    "title": "Lab 8: Searching for Efficiency",
+    "section": "Formatting Tables",
+    "text": "Formatting Tables\nIn this lab, we will also practice making nice, report worthy, tables!\nI would recommend you think of tables no different from the visualizations you’ve been making. We want all aspects of our tables to be clear to the reader, so the comparisons we want them to make are straightforward. You should be thinking about:\n\nColumn headers\nGrouping headers\nOrder of columns\nOrder of rows\nNumber of decimals included for numeric entries\netc.\n\nTables are also a great avenue to display creativity! In fact, there is a yearly RStudio table contest, and here is a gallery of the award winning tables!\nThere are many packages for generating tables but I recommend either kable() function from the knitr package or gt() function from the gt package and their add-ons.\nFor simple tables\n\nthe kable() function from the knitr package for simple tables\nthe gt() function from the gt package\n\nFor more sophisticated tables\n\nstyling functions from the kableExtra package (e.g., kable_styling(), kable_classic())\nadd-on functions from the gt package (e.g., cols_label(), tab_header(), fmt_percent())\n\n\n\n\n\n\n\nWarning\n\n\n\nQuarto doesn’t play nice with some options for formatting HTML tables in other packages.\nTo make sure that your tables render as expected, we need to specify html-table-processing: none in the YAML header. You will notice that I already included that in this lab.\nI also recommend using the Source Editor for this lab."
+  },
+  {
+    "objectID": "labs/instructions/lab-8-instructions.html#lab-5",
+    "href": "labs/instructions/lab-8-instructions.html#lab-5",
+    "title": "Lab 8: Searching for Efficiency",
+    "section": "Lab 5",
+    "text": "Lab 5\nIn lab 5 we got to solve a mystery using a bunch of different related data sets. Remember how we got the data?\n\nThis code chunk will read in all of the tables of data for you. Don’t modify or remove this!\n\nThis was also a mystery at the time! The code chunk given loaded an .Rdata file that included all of the data frames. However, your data may not always be saved in a nice .Rdata file~ Let’s write a more general function to read in lots of datasets ourselves!\n6. Write a function whose only argument is a directory that will read in all .csv files in that directory and return a list of the data frames.\nSpecifically your function should:\n\nFind the names of all .csv files in that directory (the list.files() function will be helpful).\nUse map() to efficiently read all of the files into R and save them in a list\nRename the elements of the list with the names of each file\nReturn the list\n\nTest your function on a directory that has at least two .csv files in it and show us that it works! DO NOT print full datasets. Show us that the output is a list and that the names of the list are file names. Your function should be able to handle if a directory includes files that aren’t only csv’s\n\n# Q6 code\n\n\n\n\n\n\n\nNote\n\n\n\nFor example, if I have a directory data/ that has surveys.csv, teacher_evals.csv, and bCH_murder_data.Rdata in it, the function should return a list with two elements - the surveys and teacher_evals data frames. The names of the list elements should be \"surveys\" and \"teacher_evals\"."
+  },
+  {
+    "objectID": "labs/instructions/lab-9-instructions.html#simulating-coverage",
+    "href": "labs/instructions/lab-9-instructions.html#simulating-coverage",
+    "title": "Lab 9: Simulation Exploration",
+    "section": "Simulating Coverage",
+    "text": "Simulating Coverage\nMany students struggle with the definition of a confidence interval when first learning the concept. The interpretation that a lot of textbooks include is somthing like “if we were to repeat the study many many times, 95% of the confidence intervals would contain the true population parameter.”\nWe are going to implement a simulation that illustrates this statistical concept using confidence intervals for the slope parameter in a linear regression model.\nLet’s break it down into a couple of steps.\nAs a reminder, the typical population model that we assume for a linear regression is:\n\\[Y = \\beta_0 + \\beta_1 X + \\varepsilon\\] Where \\(\\beta_0\\) and \\(\\beta_1\\) are the population intercept and slope parameters and and \\(\\varepsilon \\sim N(0, \\sigma^2)\\) is random noise that is normally distributed with mean 0 and variance \\(\\sigma^2\\).\nWe will design a simulation that uses this “data generating model.”\n4. Fill in the code below to generate a synthetic dataset with 100 observations. We will assume that the explanatory variable \\(X\\) is uniformly distributed from 0 to 1 and that \\(\\sigma^2\\) = 1. The synthetic data should be a dataframe with 100 rows and two columns: x and y.\n\n# define slope and intercept parameters\nintercept = 2\nslope = 1\n\n# generate x vector\n\n\n# generate noise `ep` vector\n\n\n# generate outcome from population model\ny = intercept + x*slope + ep\n\n\n# create an \"observed data\" dataframe with only the x and y vectors\n\n5. Fit a simple linear regression model of the outcome y on x. Use tidy() from the broom package to extract a dataframe from the lm() output that includes the slope estimate and a 95% confidence interval for the slope estimate.\n\n# Q5 code\n\n6. Check whether the true population slope is inside of the estimated 95% confidence interval for that simulated dataset. Specifically, add a variable called cover to the dataframe of estimates you created in the last question (Q5) that is 1 if the population slope is in the interval and 0 if not.\n\n\n\n\n\n\nTip\n\n\n\nAs a reminder, we set slope = 1 in the data generation (Q4) so the true population slope is \\(\\beta_1 = 1\\).\n\n\n\n# Q6 code\n\n7. Now put this all together into a function called mycifun! Run the check provided to ensure that it works correctly\n\nThe function should have three required arguments: beta0, beta1, and n (the number of observations in the simulated data).\nThe function should complete the steps in Q4-6 given these arguments:\n\ngenerate one synthetic dataset based on the data generating model as above\nfit a linear regression model\ncheck that the population slope is contained in the estimated 95% confidence interval for the sample slope\n\nThe output of the function should be a dataframe/tibble with one row and four columns: the slope estimate, lower bound of the CI, upper bound of the CI, and whether the population slope is within the CI.\n\n\n# Q7 code\n\n\nmycifun(beta0 = 1, beta1 = 2, n = 1000)\n\n8a. Now run this simulation 1,000 times using map_dfr() and the function you wrote (mycifun()). Generate data with \\(\\beta_0 = 3\\), \\(\\beta_1 = .5\\) and \\(n = 100\\). Make sure to add a line of code to make your simulation reproducible every time you run it.\n\nci_dat &lt;- map_dfr(.x = 1:1000,\n                  .f = \n                    )\n\n8b. What does one row in the resulting ci_dat represent?\n8c. What is your simulated coverage rate? In otherwords, for what proportion of the iterations was the population slope within the estimated 95% confidence interval? Write your answer as a sentence in Markdown using inline code!\n9. Create a visualization to illustrate the coverage rate.\nYou can create any visualization that effectively illustrates the concept. I included a plot below with my idea of an effective plot to illustrate the concept of coverage. Actually, a professor showed me a plot like this in undergrad and I have always remembered it!\n\n\n\n\n\n\nTip\n\n\n\nYou do not need to exactly copy the plot, even if you choose to do something like it. A couple of hints to get you started on making a plot like this one:\n\nCheck out geom_errorbar()\nCheck out geom_vline() for the line indicating the true population slope\nSee this slide for code from Dr. Theobold to include colors in a title rather than a legend.\nI took a random sample of 100 simulations to make it easier to look at.\n\n\n\n\n\n\nExample Plot\n\n\n\n# Q9 code"
+  },
+  {
+    "objectID": "slides/week-5/week-5-strings.html",
+    "href": "slides/week-5/week-5-strings.html",
+    "title": "Using stringr to Work with Strings",
+    "section": "",
+    "text": "Today we will…\n\nLayout for Week 5\nNew material\n\nString variables\nFunctions for working with strings\nRegular expressions\n\nPA 5.1: Scrambled Message"
   }
 ]

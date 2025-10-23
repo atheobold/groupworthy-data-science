@@ -1,0 +1,51 @@
+---
+title: "A Field Guide to Base R"
+format: html
+number-sections: true
+number-depth: 2
+editor: source
+execute: 
+  echo: true
+  include: true
+---
+
+The focus this week is on writing your own functions in R. While we've learned 
+a lot of great tools in R, these tools have largely lived in the **tidyverse**
+set of packages. This week, we're going to learn more about the functionality 
+of "base R," which will likely come in handy when we are writing our own
+functions. By the end of this coursework you should be able to:
+
++ use `[]` to extract elements from a vector
++ use `[]` and `$` to extract elements from a dataframe
++ explain the difference in behavior between a `tibble` and a `data.frame`
++ write one or more `if()` statements
++ write one or more `else if()` statement
++ write an `else()` statement
++ explain the difference between using `if()` + `else if()` and using `if_else()`
+
+
+::: columns
+::: {.column width="60%"}
+#### 📽 Watch Videos: 20 minutes
+
+#### 📖 Readings: 60-75 minutes
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="35%"}
+#### ✅   Preview Activities: 1
+:::
+:::
+
+## Working with Base R Tools
+
+<!-- https://r4ds.hadley.nz/base-R.html -->
+
+<!-- https://stat545.com/r-objects.html -->
+
+## Conditional Statements
+
+<!-- https://bradleyboehmke.github.io/uc-bana-7025/lesson-6a-conditional-statements.html -->

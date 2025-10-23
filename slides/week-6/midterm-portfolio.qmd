@@ -138,6 +138,49 @@ interview |>
 ```
 :::
 
+## Another way to think about it...
+
+If there are lots of specific features you are looking for, you could put them
+into a tibble (or a data frame). 
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+suspect_features <- tibble(
+         hair_color = "red",
+         gender = "female",
+         car_make = "Tesla",
+         car_model = "Model S")
+
+```
+
+## Another way to think about it...
+
+You can then use these data as a **filtering join**! 
+
+::: {.midi}
+```{r}
+#| echo: true
+#| code-line-numbers: "3"
+#| eval: false
+
+drivers_license |> 
+  filter(height > 64, height < 68) |>
+  semi_join(suspect_features) |> 
+  # rename column so keys match
+  rename(license_id = id) |> 
+  inner_join(person,
+             by = "license_id") |> 
+  inner_join(facebook_event_checkin,
+             join_by(id == person_id)) |> 
+  group_by(id, event_name) |> 
+  count() |> 
+  filter(event_name == "SQL Symphony Concert",
+         n == 3)
+```
+:::
+
 # Reflective Essays (not Lightening Round)
 
 ## Revising Your Thinking
@@ -288,6 +331,3 @@ you have earned and why.
 </br> 
 
 Sign-up for your time here: [link to Google Sheet](https://docs.google.com/spreadsheets/d/1Lpstqy8YYs3MFzFNn2Kob7E289HyUJWxWpHkp1N_lJA/edit?usp=sharing)
-
-
-

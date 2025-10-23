@@ -5563,5 +5563,19 @@
     "title": "Using stringr to Work with Strings",
     "section": "",
     "text": "Today we will…\n\nLayout for Week 5\nNew material\n\nString variables\nFunctions for working with strings\nRegular expressions\n\nPA 5.1: Scrambled Message"
+  },
+  {
+    "objectID": "slides/week-6/midterm-portfolio.html#another-way-to-think-about-it",
+    "href": "slides/week-6/midterm-portfolio.html#another-way-to-think-about-it",
+    "title": "Midterm Portfolio Work Session",
+    "section": "Another way to think about it…",
+    "text": "Another way to think about it…\nIf there are lots of specific features you are looking for, you could put them into a tibble (or a data frame).\n\nsuspect_features &lt;- tibble(\n         hair_color = \"red\",\n         gender = \"female\",\n         car_make = \"Tesla\",\n         car_model = \"Model S\")"
+  },
+  {
+    "objectID": "slides/week-6/midterm-portfolio.html#another-way-to-think-about-it-1",
+    "href": "slides/week-6/midterm-portfolio.html#another-way-to-think-about-it-1",
+    "title": "Midterm Portfolio Work Session",
+    "section": "Another way to think about it…",
+    "text": "Another way to think about it…\nYou can then use these data as a filtering join!\n\n\ndrivers_license |&gt; \n  filter(height &gt; 64, height &lt; 68) |&gt;\n  semi_join(suspect_features) |&gt; \n  # rename column so keys match\n  rename(license_id = id) |&gt; \n  inner_join(person,\n             by = \"license_id\") |&gt; \n  inner_join(facebook_event_checkin,\n             join_by(id == person_id)) |&gt; \n  group_by(id, event_name) |&gt; \n  count() |&gt; \n  filter(event_name == \"SQL Symphony Concert\",\n         n == 3)"
   }
 ]

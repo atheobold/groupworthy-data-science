@@ -312,6 +312,38 @@
 </div>
 </div>
 </section>
+<section id="another-way-to-think-about-it" class="slide level2">
+<h2>Another way to think about it…</h2>
+<p>If there are lots of specific features you are looking for, you could put them into a tibble (or a data frame).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>suspect_features <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">hair_color =</span> <span class="st">"red"</span>,</span>
+<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">gender =</span> <span class="st">"female"</span>,</span>
+<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">car_make =</span> <span class="st">"Tesla"</span>,</span>
+<span id="cb7-5"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">car_model =</span> <span class="st">"Model S"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="another-way-to-think-about-it-1" class="slide level2">
+<h2>Another way to think about it…</h2>
+<p>You can then use these data as a <strong>filtering join</strong>!</p>
+<div class="midi">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>drivers_license <span class="sc">|&gt;</span> </span>
+<span id="cb8-2"><a></a>  <span class="fu">filter</span>(height <span class="sc">&gt;</span> <span class="dv">64</span>, height <span class="sc">&lt;</span> <span class="dv">68</span>) <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a></a>  <span class="fu">semi_join</span>(suspect_features) <span class="sc">|&gt;</span> </span>
+<span id="cb8-4"><a></a>  <span class="co"># rename column so keys match</span></span>
+<span id="cb8-5"><a></a>  <span class="fu">rename</span>(<span class="at">license_id =</span> id) <span class="sc">|&gt;</span> </span>
+<span id="cb8-6"><a></a>  <span class="fu">inner_join</span>(person,</span>
+<span id="cb8-7"><a></a>             <span class="at">by =</span> <span class="st">"license_id"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb8-8"><a></a>  <span class="fu">inner_join</span>(facebook_event_checkin,</span>
+<span id="cb8-9"><a></a>             <span class="fu">join_by</span>(id <span class="sc">==</span> person_id)) <span class="sc">|&gt;</span> </span>
+<span id="cb8-10"><a></a>  <span class="fu">group_by</span>(id, event_name) <span class="sc">|&gt;</span> </span>
+<span id="cb8-11"><a></a>  <span class="fu">count</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb8-12"><a></a>  <span class="fu">filter</span>(event_name <span class="sc">==</span> <span class="st">"SQL Symphony Concert"</span>,</span>
+<span id="cb8-13"><a></a>         n <span class="sc">==</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
 <section>
 <section id="reflective-essays-not-lightening-round" class="title-slide slide level1 center">
 <h1>Reflective Essays (not Lightening Round)</h1>

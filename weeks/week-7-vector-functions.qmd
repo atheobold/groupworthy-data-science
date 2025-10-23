@@ -1,5 +1,5 @@
 ---
-title: "Writing Simple (Vector) Functions in R"
+title: "Writing Vector Functions in R"
 format: html
 number-sections: true
 number-depth: 2
@@ -19,6 +19,14 @@ set.seed(1234)
 library(tidyverse)
 library(lubridate)
 ```
+
+
+<!-- New chapters to incorporate: -->
+
+<!-- - https://stat545.com/functions-part1.html -->
+<!-- - https://stat545.com/functions-part2.html -->
+<!-- - https://stat545.com/functions-part3.html (maybe optional?) -->
+<!-- - https://stat545.com/functions-practicum.html (interesting project?) -->
 
 This week's coursework is broken into two parts. First you will learn how to 
 write functions that work with *vectors*. Then, in the second half of the week, 

@@ -2419,7 +2419,7 @@
     "href": "course-materials/calendar.html",
     "title": " Schedule",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the quarter. Note that this schedule will be updated as the quarter progresses, with all changes documented here.\n\n\n\n\n\nweek\n\n\ndate\n\n\ntopic\n\n\nprepare\n\n\nslides\n\n\nnotes\n\n\nactivity\n\n\nlab\n\n\nchallenge\n\n\nportfolio\n\n\n\n\n\n\n0\n\n\n16 September\n\n\nCourse Set-up\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to R & RStudio\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to Quarto & R Projects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n22 September\n\n\nLab 1 & Challenge 1 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n23 September\n\n\nData Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n25 September\n\n\nData Import\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n29 September\n\n\nLab 2 & Challenge 2 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n30 September\n\n\nData Wrangling with dplyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n2 October\n\n\nExtending Data Wrangling Verbs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n6 October\n\n\nLab 3 & Challenge 3 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n7 October\n\n\nData Joins & Transformations with tidyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n9 October\n\n\nWorking with Categorical Variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n13 October\n\n\nLab 4 & Challenge 4 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n14 October\n\n\nWorking with Strings\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n16 October\n\n\nWorking with Dates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n20 October\n\n\nLab 5 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n21 October\n\n\nVersion Control\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n23 October\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n27 October\n\n\nMidterm Portfolio Due\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n28 October\n\n\nPortfolio Conferences\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n30 October\n\n\nVector Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n4 November\n\n\nData Frame Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n6 November\n\n\nWhat is tidy eval?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n10 November\n\n\nLab 7 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n13 November\n\n\nIntroduction to Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n17 November\n\n\nLab 8 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n18 November\n\n\nSimulating Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n20 November\n\n\nSimulations & Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n24 November\n\n\nLab 9 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n2 December\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n5 December\n\n\nFinal Portfolio Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n6 December\n\n\nFinal Portfolio Conferences"
+    "text": "This page contains an outline of the topics, content, and assignments for the quarter. Note that this schedule will be updated as the quarter progresses, with all changes documented here.\n\n\n\n\n\nweek\n\n\ndate\n\n\ntopic\n\n\nprepare\n\n\nslides\n\n\nnotes\n\n\nactivity\n\n\nlab\n\n\nchallenge\n\n\nportfolio\n\n\n\n\n\n\n0\n\n\n16 September\n\n\nCourse Set-up\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to R & RStudio\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to Quarto & R Projects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n22 September\n\n\nLab 1 & Challenge 1 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n23 September\n\n\nData Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n25 September\n\n\nData Import\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n29 September\n\n\nLab 2 & Challenge 2 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n30 September\n\n\nData Wrangling with dplyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n2 October\n\n\nExtending Data Wrangling Verbs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n6 October\n\n\nLab 3 & Challenge 3 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n7 October\n\n\nData Joins & Transformations with tidyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n9 October\n\n\nWorking with Categorical Variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n13 October\n\n\nLab 4 & Challenge 4 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n14 October\n\n\nWorking with Strings\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n16 October\n\n\nWorking with Dates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n20 October\n\n\nLab 5 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n21 October\n\n\nVersion Control\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n23 October\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n27 October\n\n\nMidterm Portfolio Due\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n28 October\n\n\nBase R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n30 October\n\n\nVector Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n4 November\n\n\nData Frame Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n6 November\n\n\nWhat is tidy eval?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n10 November\n\n\nLab 7 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n13 November\n\n\nIntroduction to Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n17 November\n\n\nLab 8 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n18 November\n\n\nSimulating Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n20 November\n\n\nSimulations & Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n24 November\n\n\nLab 9 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n2 December\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n5 December\n\n\nFinal Portfolio Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n6 December\n\n\nFinal Portfolio Conferences"
   },
   {
     "objectID": "code-review/code-review-guidelines.html",
@@ -5597,7 +5597,7 @@
     "href": "weeks/week-7-base-r.html#extracting-elements-of-an-object",
     "title": "A Field Guide to Base R",
     "section": "1.2 Extracting Elements of an Object",
-    "text": "1.2 Extracting Elements of an Object\nAlright, now that we’ve learned more about the types of objects in R, let’s learn about the “base R” tools for extracting elements from these objects.\n\n📖 Required Reading: R4DS – Base R\n\n\n\n\n\n\nOnly read Sections 27.2 and 27.3\n\n\n\n\n\n\n\n\n\n\n\n\nExtra resources\n\n\n\n\n\nIf you are still a bit confused about the difference between a $ and [[]], I would recommend this section of Hands-on Programming with R: Dollar Signs & Double Brackets\n\n\n\n\n\n✅ Check-in 7.2: Extracting Elements of Vectors & Data Frames\n\nx &lt;- c(10, 3, NA, 5, 8, 1, NA)\n\n\nWhich output will !is.na(x) return?\n\n\nTRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE\n1 2 4 5 6\n10 3 5 8 1\n\n\nWhich output will x[c(3, 2, 5)] return?\n\n\nFALSE  TRUE TRUE  FALSE TRUE  FALSE FALSE\n3 2 5\nNA 3 8\n\n\nWhich output will x[-c(1, 3, 5)] return?\n\n\nFALSE  TRUE FALSE  TRUE  FALSE  TRUE TRUE\n-1 -3 -5\n3 5 1 NA\n\nSuppose we decided to give the elements of x names:\n\nx &lt;- c(a = 1, b = 2, c = 5)\n\n\nWhich of the following code would extract the a and c elements? Select all that apply!\n\n\nx[1, 2]\nx[c(1, 2)]\nx[-3]\nx[c(\"a\", \"c\")]\nx[\"a\", \"c\"]\nx[-c(\"b\")]\n\nSuppose we have the following data frame:\n\ndf &lt;- tibble::tibble(\n  x = 1:5, \n  y = c(\"a\", \"e\", \"f\", \"k\", \"z\"), \n  z = runif(5)\n)\n\ndf\n\n# A tibble: 5 × 3\n      x y          z\n  &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;\n1     1 a     0.627 \n2     2 e     0.421 \n3     3 f     0.0281\n4     4 k     0.546 \n5     5 z     0.323 \n\n\n\nSuppose I wanted to filter df so that the values of x were greater than 3. Previously we would have used df |&gt; filter(x &gt; 3). What base R code would we use? Select all that apply!\n\n\ndf[df$x &gt;= 4, ]\ndf[ , df$x &gt;= 4]\ndf[df$x &gt; 3, ]\ndf[ , df$x &gt; 3]\n\ndf[df$x &gt; 3]\n\ndf[which(df$x &gt; 3), ]\n\n\nSuppose I wanted to select the y and z columns of df. Previously, we would have used df |&gt; select(y, z). What base R code would we use? Select all that apply!\n\n\ndf[c(\"y\", \"z\")]\ndf[c(\"y\", \"z\") , ]\ndf[ , c(\"y\", \"z\")]\ndf[\"y\", \"z\"]\n\n\n\nPreviously, we could remove columns we were not interested in using a - inside of select(). The code below produces an error.\n\n\ndf[-c(\"x\")]\n\nError in -c(\"x\"): invalid argument to unary operator\n\n\nWhich of the following best explains why?\n\ntibble objects cannot use negative indices\n\"x\" is not a valid column name, so R can’t find it.\nNegative indices in R work only with numeric positions, not character names.\nYou need to use double brackets (df[[-\"x\"]]) to remove a column by name."
+    "text": "1.2 Extracting Elements of an Object\nAlright, now that we’ve learned more about the types of objects in R, let’s learn about the “base R” tools for extracting elements from these objects.\n\n📖 Required Reading: R4DS – Base R\n\n\n\n\n\n\nOnly read Sections 27.2 and 27.3\n\n\n\n\n\n\n\n\n\n\n\n\nExtra resources\n\n\n\n\n\nIf you are still a bit confused about the difference between a $ and [[]], I would recommend this section of Hands-on Programming with R: Dollar Signs & Double Brackets\n\n\n\n\n\n✅ Check-in 7.2: Extracting Elements of Vectors & Data Frames\n\nx &lt;- c(10, 3, NA, 5, 8, 1, NA)\n\n\nWhich output will !is.na(x) return?\n\n\nTRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE\n1 2 4 5 6\n10 3 5 8 1\n\n\nWhich output will x[c(3, 2, 5)] return?\n\n\nFALSE  TRUE TRUE  FALSE TRUE  FALSE FALSE\n3 2 5\nNA 3 8\n\n\nWhich output will x[-c(1, 3, 5)] return?\n\n\nFALSE  TRUE FALSE  TRUE  FALSE  TRUE TRUE\n-1 -3 -5\n3 5 1 NA\n\nSuppose we decided to give the elements of x names:\n\nx &lt;- c(a = 1, b = 2, c = 5)\n\n\nWhich of the following code would extract the a and c elements? Select all that apply!\n\n\nx[1, 3]\nx[c(1, 3)]\nx[-2]\nx[c(\"a\", \"c\")]\nx[\"a\", \"c\"]\nx[-\"b\"]\n\nSuppose we have the following data frame:\n\ndf &lt;- tibble::tibble(\n  x = 1:5, \n  y = c(\"a\", \"e\", \"f\", \"k\", \"z\"), \n  z = runif(5)\n)\n\ndf\n\n# A tibble: 5 × 3\n      x y          z\n  &lt;int&gt; &lt;chr&gt;  &lt;dbl&gt;\n1     1 a     0.0642\n2     2 e     0.111 \n3     3 f     0.366 \n4     4 k     0.480 \n5     5 z     0.741 \n\n\n\nSuppose I wanted to filter df so that the values of x were greater than 3. Previously we would have used df |&gt; filter(x &gt; 3). What base R code would we use? Select all that apply!\n\n\ndf[df$x &gt;= 4, ]\ndf[ , df$x &gt;= 4]\ndf[df$x &gt; 3, ]\ndf[ , df$x &gt; 3]\ndf[df$x &gt; 3]\ndf[which(df$x &gt; 3), ]\n\n\nSuppose I wanted to select the y and z columns of df. Previously, we would have used df |&gt; select(y, z). What base R code would we use? Select all that apply!\n\n\ndf[c(\"y\", \"z\")]\ndf[c(\"y\", \"z\") , ]\ndf[ , c(\"y\", \"z\")]\ndf[\"y\", \"z\"]\n\n\n\nPreviously, we could remove columns we were not interested in using a - inside of select(). The code below produces an error.\n\n\ndf[-c(\"x\")]\n\nError in -c(\"x\"): invalid argument to unary operator\n\n\nWhich of the following best explains why?\n\ntibble objects cannot use negative indices\n\"x\" is not a valid column name, so R can’t find it.\nNegative indices in R work only with numeric positions, not character names.\nYou need to use double brackets (df[[-\"x\"]]) to remove a column by name."
   },
   {
     "objectID": "weeks/week-9-iteration.html",
@@ -5675,5 +5675,754 @@
     "title": "Writing Data Frame & Plot Functions in R",
     "section": "1.1 Tidy Evaluation",
     "text": "1.1 Tidy Evaluation\nWriting functions that work with data frames and call on the functions we’ve become used to (e.g., filter(), select(), summarise()) requires we learn about tidy evaluation. To write these functions you will need to know, at a high level, whether the function you are trying to incorporate uses data masking or tidy selection.\nAt a high level, data masking is used in functions like arrange(), filter(), and summarize() that compute with variables. Whereas, tidy selection is used for functions like select() and rename() that select variables.\nYour intuition about which functions use tidy evaluation should be good for many of these functions. If you can input c(var1, var2, var3) into the function (e.g., select(mtcars, c(vs, am, gear))), then the function uses tidy selection! If you cannot input c(var1, var2, var3) into the function, then the function is performing computations on the data and uses data masking.\nIf you are interested in learning more about tidy evaluation, I would highly recommend:\n\nthis video by Jenny Bryan\n\nI do want to note that this video is from 2019 and some things have changed since then. Namely, we used to need to use the enquo() function to inject\nvariable names into dplyr functions, whereas we now use embracing {{}}. 🤗\n\nthis vignette for tidy evaluation with dplyr\n\n\n✅ Check-in 7.2: Writing Data Frame Functions\n\n\n\n\n\n\nData Structure\n\n\n\nNote for Questions 1 & 2, I am assuming the flight data has a similar structure to the nycflights data from the openintro R package.\n\nhead(openintro::nycflights)\n\n# A tibble: 6 × 16\n   year month   day dep_time dep_delay arr_time arr_delay carrier tailnum flight\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt;\n1  2013     6    30      940        15     1216        -4 VX      N626VA     407\n2  2013     5     7     1657        -3     2104        10 DL      N3760C     329\n3  2013    12     8      859        -1     1238        11 DL      N712TW     422\n4  2013     5    14     1841        -4     2122       -34 DL      N914DL    2391\n5  2013     7    21     1102        -3     1230        -8 9E      N823AY    3652\n6  2013     1     1     1817        -3     2008         3 AA      N3AXAA     353\n# ℹ 6 more variables: origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,\n#   hour &lt;dbl&gt;, minute &lt;dbl&gt;\n\n\n\n\nQuestion 1: Fill in the code below to write a function that finds all flights that were cancelled or delayed by more than a user supplied number of hours:\n\nfilter_severe &lt;- function(df, hours) { \n  df |&gt; \n    filter(dep_delay _____)\n}\n\n\nnycflights |&gt; \n  filter_severe(hours = 2)\n\nQuestion 2: Fill in the code below to write a function that converts the user supplied variable that uses clock time (e.g., dep_time, arr_time, etc.) into a decimal time (i.e. hours + (minutes / 60)).\n\nstandardize_time &lt;- function(df, time_var) {\n  df |&gt; \n    # Times are stored as 2008 for 8\n    mutate( {{ time_var }} := \n              as.numeric(\n                ## Grab first two numbers for hour\n                str_sub(\n                  {{ time_var }}, \n                  start = 1, \n                  end = 2)\n                ) +  \n              as.numeric(\n                ## Grab second two numbers for minutes\n                str_sub(\n                  {{ time_var }}, \n                  start = 3, \n                  end = 4)\n                ) / 60\n            )\n  \n}\n\nnycflights |&gt; \n  standardize_time(arr_time)\n\nQuestion 3: For each of the following functions determine if the function uses data-masking or tidy-selection:\n\ndistinct()\ncount()\ngroup_by()\nselect()\nrename_with()\nacross()"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html",
+    "href": "slides/week-9/iteration-part-1.html",
+    "title": "Iteration",
+    "section": "",
+    "text": "New Material\n\nPerforming Repeated Tasks + Vectorization\nFunctional Programming: the map() family\n\nPA 8: The Twelve Days of Christmas Starter Functions"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#today-we-will",
+    "href": "slides/week-9/iteration-part-1.html#today-we-will",
+    "title": "Iteration",
+    "section": "",
+    "text": "New Material\n\nPerforming Repeated Tasks + Vectorization\nFunctional Programming: the map() family\n\nPA 8: The Twelve Days of Christmas Starter Functions"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#repetition",
+    "href": "slides/week-9/iteration-part-1.html#repetition",
+    "title": "Iteration",
+    "section": "Repetition",
+    "text": "Repetition\nType out the task over and over.\n\n\n\n\n\n\n\n\n\n. . .\nDo not do this."
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#iteration",
+    "href": "slides/week-9/iteration-part-1.html#iteration",
+    "title": "Iteration",
+    "section": "Iteration",
+    "text": "Iteration\nRepeatedly execute the same operation over and over.\n. . .\n\nLoops (e.g., for() and while()) allow us to iterate.\n\n. . .\n\n\n\nfor(i in 1:6){\n  print(i^2)\n}\n\n[1] 1\n[1] 4\n[1] 9\n[1] 16\n[1] 25\n[1] 36"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#vectorization",
+    "href": "slides/week-9/iteration-part-1.html#vectorization",
+    "title": "Iteration",
+    "section": "Vectorization",
+    "text": "Vectorization\nMany operations in R are vectorized.\n\nThese functions operate on vectors of values rather than a single value.\nWe can iterate without writing a loop.\n\n. . .\n\nx &lt;- seq(from = -4, to = 6)\n\n. . .\n\n\n\n\nabs(x)\n\n [1] 4 3 2 1 0 1 2 3 4 5 6\n\n\n\n\n\n\n\nfor(i in 1:length(x)){\n  x[i] &lt;- abs(x[i])\n}\n\nx\n\n [1] 4 3 2 1 0 1 2 3 4 5 6"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#vectorization-1",
+    "href": "slides/week-9/iteration-part-1.html#vectorization-1",
+    "title": "Iteration",
+    "section": "Vectorization",
+    "text": "Vectorization\nNot every function is vectorized.\n\nFor example, if() statements cannot operate on vectors.\n\n. . .\n\n\n\npos_neg_zero &lt;- function(x){\n  if(x &gt; 0){\n    return(\"Greater than 0!\")\n  } \n  else if (x &lt; 0){\n    return(\"Less than 0!\")\n  } \n  else {\n    return(\"Equal to 0!\")\n  }\n}\n\n\n\n\npos_neg_zero(x)\n\nError in if (x &gt; 0) {: the condition has length &gt; 1\n\n\n\n\n\nThis means that if(x &gt; 0) can only be checked for something of length 1 (a single number, not a vector)."
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#what-do-we-do-instead",
+    "href": "slides/week-9/iteration-part-1.html#what-do-we-do-instead",
+    "title": "Iteration",
+    "section": "What do we do instead?",
+    "text": "What do we do instead?\n. . .\nOption 1 – Looping\n\nresult &lt;- rep(NA, length(x))\n\nfor(i in 1:length(x)){\n  result[i] &lt;- pos_neg_zero(x[i])\n}\n\nresult\n\n [1] \"Less than 0!\"    \"Less than 0!\"    \"Less than 0!\"    \"Less than 0!\"   \n [5] \"Equal to 0!\"     \"Greater than 0!\" \"Greater than 0!\" \"Greater than 0!\"\n [9] \"Greater than 0!\" \"Greater than 0!\" \"Greater than 0!\""
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#what-do-we-do-instead-1",
+    "href": "slides/week-9/iteration-part-1.html#what-do-we-do-instead-1",
+    "title": "Iteration",
+    "section": "What do we do instead?",
+    "text": "What do we do instead?\n. . .\nOption 2 – Write a Vectorized Function\n\nif_else() and case_when() are the vectorized versions of if() and else if()\n\n. . .\n\npos_neg_zero &lt;- function(x){\n  state &lt;- case_when(x &gt; 0 ~ \"Greater than 0!\", \n                     x &lt; 0 ~ \"Less than 0!\", \n                     .default = \"Equal to 0!\")\n  return(state)\n}\n\n. . .\n\npos_neg_zero(x)\n\n [1] \"Less than 0!\"    \"Less than 0!\"    \"Less than 0!\"    \"Less than 0!\"   \n [5] \"Equal to 0!\"     \"Greater than 0!\" \"Greater than 0!\" \"Greater than 0!\"\n [9] \"Greater than 0!\" \"Greater than 0!\" \"Greater than 0!\""
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#some-functions-cannot-be-vectorized",
+    "href": "slides/week-9/iteration-part-1.html#some-functions-cannot-be-vectorized",
+    "title": "Iteration",
+    "section": "Some functions cannot be vectorized!",
+    "text": "Some functions cannot be vectorized!\n. . .\nApplying class() to a single variable in a data frame returns the data type of that column:\n\nclass(penguins[[1]])\n\n[1] \"factor\"\n\n\n. . .\n\nTrying to apply class() to every variable in a data frame returns the data type of the data frame:\n\nclass(penguins)\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\""
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#what-can-we-do-instead",
+    "href": "slides/week-9/iteration-part-1.html#what-can-we-do-instead",
+    "title": "Iteration",
+    "section": "What can we do instead?",
+    "text": "What can we do instead?\nWrite a for() loop…\n\ndata_type &lt;- rep(NA, length = ncol(penguins))\n\nfor(i in seq_along(penguins)){\n  data_type[i] &lt;- class(penguins[[i]])\n}\n\n. . .\n\n\nCode\ntibble(column = names(penguins), \n       type = data_type) |&gt; \n  pivot_wider(names_from = column, \n              values_from = type) |&gt;  \n  knitr::kable() |&gt;\n  kableExtra::kable_styling(font_size = 30)\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\n\nfactor\nfactor\nnumeric\nnumeric\ninteger\ninteger\nfactor\ninteger"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#what-can-we-do-instead-1",
+    "href": "slides/week-9/iteration-part-1.html#what-can-we-do-instead-1",
+    "title": "Iteration",
+    "section": "What can we do instead?",
+    "text": "What can we do instead?\nWhat about across()?\n\nEasily perform the same operation on multiple columns.\n\n\npenguins |&gt; \n  summarise(across(.cols = everything(), \n                   .fns = class)\n            ) |&gt;  \n  knitr::kable() |&gt;\n  kableExtra::kable_styling(font_size = 30)\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\n\nfactor\nfactor\nnumeric\nnumeric\ninteger\ninteger\nfactor\ninteger"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#but-across-uses-a-for-loop",
+    "href": "slides/week-9/iteration-part-1.html#but-across-uses-a-for-loop",
+    "title": "Iteration",
+    "section": "But across() uses a for() loop!",
+    "text": "But across() uses a for() loop!\n \n\n\nfor (j in seq_fns) {\n  fn &lt;- fns[[j]]\n  out[[k]] &lt;- fn(col, ...)\n  k &lt;- k + 1L"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#functional-programming-big-picture",
+    "href": "slides/week-9/iteration-part-1.html#functional-programming-big-picture",
+    "title": "Iteration",
+    "section": "Functional Programming – Big Picture",
+    "text": "Functional Programming – Big Picture\n\nWe will use functions as the arguments to other functions!\n\n\n\n\n\n\n\n\nNote\n\n\n\nThere are a slew of apply() functions you will likely come across.\nWe will instead focus on the purrr package and the map() family of functions."
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#purrr",
+    "href": "slides/week-9/iteration-part-1.html#purrr",
+    "title": "Iteration",
+    "section": "purrr",
+    "text": "purrr\n\n\nThe purrr package breaks common list manipulations into small, independent pieces.\n\nThis strategy involves two steps:\n\n\n\n\n. . .\n\nBreak a complex problem into smaller sub-problems.\n\n. . .\n\nSolve each sub-problem for a single element of a list.\n\nOnce done, purrr will generalize the solution to every element in the list."
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#map",
+    "href": "slides/week-9/iteration-part-1.html#map",
+    "title": "Iteration",
+    "section": "map()",
+    "text": "map()\nThe map() function iterates through each item in a list and applies a function, then returns the new list.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nUsing the |&gt;\n\n\n\nThe first argument in map() is the list, so if we pipe into it, we only specify the function we want to iterate!"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#map-dataframes",
+    "href": "slides/week-9/iteration-part-1.html#map-dataframes",
+    "title": "Iteration",
+    "section": "map() + Dataframes",
+    "text": "map() + Dataframes\nA data frame is just a list of columns – map() will apply a function to every column.\n. . .\n\n\n\npenguins |&gt; \n  select(where(is.numeric)) |&gt;\n  map(.f = ~ mean(.x, na.rm = TRUE))\n\n$bill_length_mm\n[1] 43.92193\n\n$bill_depth_mm\n[1] 17.15117\n\n$flipper_length_mm\n[1] 200.9152\n\n$body_mass_g\n[1] 4201.754\n\n$year\n[1] 2008.029\n\n\n\n\n\n\nUse a lambda function (with ~ and .x), just like in across()!"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#the-map-family",
+    "href": "slides/week-9/iteration-part-1.html#the-map-family",
+    "title": "Iteration",
+    "section": "The map() Family",
+    "text": "The map() Family\nThe map_xxx() variants allow you to specify the type of output you want.\n\nmap() creates a list.\nmap_chr() creates a character vector.\nmap_lgl() creates an logical vector.\nmap_int() creates a integer vector.\nmap_dbl() creates a numeric vector.\n\nAll take in a list (.x) and a function (.f) as arguments."
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#map-penguins",
+    "href": "slides/week-9/iteration-part-1.html#map-penguins",
+    "title": "Iteration",
+    "section": "map() + penguins",
+    "text": "map() + penguins\n\nmap_dbl()map_int()map_lgl()\n\n\nCalculate the mean of each column.\n\npenguins |&gt; \n  select(bill_length_mm:body_mass_g) |&gt; \n  map_dbl(.f = ~ mean(.x, na.rm = TRUE))\n\n   bill_length_mm     bill_depth_mm flipper_length_mm       body_mass_g \n         43.92193          17.15117         200.91520        4201.75439 \n\n\n\nOutput is a vector of doubles.\n\n\nCalculate the number of NAs in each column.\n\npenguins |&gt; \n  map_int(.f = ~ sum(is.na(.x)))\n\n          species            island    bill_length_mm     bill_depth_mm \n                0                 0                 2                 2 \nflipper_length_mm       body_mass_g               sex              year \n                2                 2                11                 0 \n\n\nOutput is a vector of integers.\n\n\nCalculate the number of NAs in each column.\n\npenguins |&gt; \n  map_lgl(.f = ~ sum(is.na(.x)))\n\nError in `map_lgl()`:\nℹ In index: 3.\nℹ With name: bill_length_mm.\nCaused by error:\n! Can't coerce from an integer to a logical.\n\n\nR returns an error if the output is of the wrong type!"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#comparing-speed",
+    "href": "slides/week-9/iteration-part-1.html#comparing-speed",
+    "title": "Iteration",
+    "section": "Comparing Speed",
+    "text": "Comparing Speed\nUsing functional programming can be much faster than using for loops.\n\nfor()map()RunCompare\n\n\n\nloop_func &lt;- function(df){\n  typ &lt;- rep(NA, ncol(df))\n  for(i in 1:ncol(df)){\n    typ[i] &lt;- class(df[[i]])\n  }\n  return(typ)\n}\n\n\n\n\nmap_func &lt;- function(df){\n  typ &lt;- map_chr(df, class)\n  return(typ)\n}\n\n\n\n\ndf &lt;- as.data.frame(matrix(1,\n                           nrow = 5,\n                           ncol = 7))\n\n\n\n\nloop_func(df)\n\n[1] \"numeric\" \"numeric\" \"numeric\" \"numeric\" \"numeric\" \"numeric\" \"numeric\"\n\n\n\n\n\n\nmap_func(df)\n\n       V1        V2        V3        V4        V5        V6        V7 \n\"numeric\" \"numeric\" \"numeric\" \"numeric\" \"numeric\" \"numeric\" \"numeric\" \n\n\n\n\n\n\n\n\ndf &lt;- as_tibble(\n  matrix(1,\n         nrow = 5,\n         ncol = 100000)\n  )\n\nmicrobenchmark::microbenchmark(loop_func(df),\n                               map_func(df),\n                               times = 20)"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#map_if",
+    "href": "slides/week-9/iteration-part-1.html#map_if",
+    "title": "Iteration",
+    "section": "map_if()",
+    "text": "map_if()\nThe map_if() function allows us to conditionally apply a function to each item in a list.\n. . .\n\nacross()map_if()map_if() to data frame\n\n\n\n\npenguins |&gt; \n  mutate(across(.cols = where(is.numeric), \n                .fns = scale))\n\n\n\n# A tibble: 8 × 5\n  species island    bill_length_mm[,1] bill_depth_mm[,1] sex   \n  &lt;fct&gt;   &lt;fct&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;fct&gt; \n1 Adelie  Torgersen             -0.883             0.784 male  \n2 Adelie  Torgersen             -0.810             0.126 female\n3 Adelie  Torgersen             -0.663             0.430 female\n4 Adelie  Torgersen             NA                NA     &lt;NA&gt;  \n5 Adelie  Torgersen             -1.32              1.09  female\n6 Adelie  Torgersen             -0.847             1.75  male  \n7 Adelie  Torgersen             -0.920             0.329 female\n8 Adelie  Torgersen             -0.865             1.24  male  \n\n\n\n\n\n\n\npenguins |&gt; \n  map_if(is.numeric, scale)\n\n$species\n  [1] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n  [8] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [15] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [22] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [29] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [36] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [43] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [50] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [57] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [64] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [71] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [78] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [85] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [92] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n [99] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n[106] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n[113] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n[120] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n[127] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n[134] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n[141] Adelie    Adelie    Adelie    Adelie    Adelie    Adelie    Adelie   \n[148] Adelie    Adelie    Adelie    Adelie    Adelie    Gentoo    Gentoo   \n[155] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[162] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[169] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[176] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[183] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[190] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[197] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[204] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[211] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[218] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[225] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[232] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[239] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[246] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[253] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[260] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[267] Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo    Gentoo   \n[274] Gentoo    Gentoo    Gentoo    Chinstrap Chinstrap Chinstrap Chinstrap\n[281] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap\n[288] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap\n[295] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap\n[302] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap\n[309] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap\n[316] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap\n[323] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap\n[330] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap\n[337] Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap Chinstrap\n[344] Chinstrap\nLevels: Adelie Chinstrap Gentoo\n\n$island\n  [1] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen\n  [8] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen\n [15] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Biscoe   \n [22] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n [29] Biscoe    Biscoe    Dream     Dream     Dream     Dream     Dream    \n [36] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n [43] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n [50] Dream     Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n [57] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n [64] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Torgersen Torgersen\n [71] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen\n [78] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen\n [85] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n [92] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n [99] Dream     Dream     Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[106] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[113] Biscoe    Biscoe    Biscoe    Biscoe    Torgersen Torgersen Torgersen\n[120] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen\n[127] Torgersen Torgersen Torgersen Torgersen Torgersen Torgersen Dream    \n[134] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[141] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[148] Dream     Dream     Dream     Dream     Dream     Biscoe    Biscoe   \n[155] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[162] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[169] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[176] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[183] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[190] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[197] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[204] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[211] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[218] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[225] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[232] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[239] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[246] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[253] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[260] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[267] Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe    Biscoe   \n[274] Biscoe    Biscoe    Biscoe    Dream     Dream     Dream     Dream    \n[281] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[288] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[295] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[302] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[309] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[316] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[323] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[330] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[337] Dream     Dream     Dream     Dream     Dream     Dream     Dream    \n[344] Dream    \nLevels: Biscoe Dream Torgersen\n\n$bill_length_mm\n              [,1]\n  [1,] -0.88320467\n  [2,] -0.80993901\n  [3,] -0.66340769\n  [4,]          NA\n  [5,] -1.32279862\n  [6,] -0.84657184\n  [7,] -0.91983750\n  [8,] -0.86488825\n  [9,] -1.79902541\n [10,] -0.35202864\n [11,] -1.12131806\n [12,] -1.12131806\n [13,] -0.51687637\n [14,] -0.97478674\n [15,] -1.70744334\n [16,] -1.34111504\n [17,] -0.95647033\n [18,] -0.26044656\n [19,] -1.74407616\n [20,]  0.38062795\n [21,] -1.12131806\n [22,] -1.13963448\n [23,] -1.46932994\n [24,] -1.04805240\n [25,] -0.93815391\n [26,] -1.57922843\n [27,] -0.60845845\n [28,] -0.62677486\n [29,] -1.10300165\n [30,] -0.62677486\n [31,] -0.80993901\n [32,] -1.23121655\n [33,] -0.80993901\n [34,] -0.55350920\n [35,] -1.37774787\n [36,] -0.86488825\n [37,] -0.93815391\n [38,] -0.31539581\n [39,] -1.15795089\n [40,] -0.75498976\n [41,] -1.35943145\n [42,] -0.57182562\n [43,] -1.45101353\n [44,]  0.03261607\n [45,] -1.26784938\n [46,] -0.79162259\n [47,] -0.51687637\n [48,] -1.17626731\n [49,] -1.45101353\n [50,] -0.29707939\n [51,] -0.79162259\n [52,] -0.70004052\n [53,] -1.63417768\n [54,] -0.35202864\n [55,] -1.72575975\n [56,] -0.46192713\n [57,] -0.90152108\n [58,] -0.60845845\n [59,] -1.35943145\n [60,] -1.15795089\n [61,] -1.50596277\n [62,] -0.48024354\n [63,] -1.15795089\n [64,] -0.51687637\n [65,] -1.37774787\n [66,] -0.42529430\n [67,] -1.54259560\n [68,] -0.51687637\n [69,] -1.46932994\n [70,] -0.38866147\n [71,] -1.90892390\n [72,] -0.77330618\n [73,] -0.79162259\n [74,]  0.34399512\n [75,] -1.54259560\n [76,] -0.20549732\n [77,] -0.55350920\n [78,] -1.23121655\n [79,] -1.41438070\n [80,] -0.33371222\n [81,] -1.70744334\n [82,] -0.18718091\n [83,] -1.32279862\n [84,] -1.61586126\n [85,] -1.21290014\n [86,] -0.48024354\n [87,] -1.39606428\n [88,] -1.28616579\n [89,] -1.02973599\n [90,] -0.91983750\n [91,] -1.50596277\n [92,] -0.51687637\n [93,] -1.81734182\n [94,] -0.79162259\n [95,] -1.41438070\n [96,] -0.57182562\n [97,] -1.06636882\n [98,] -0.66340769\n [99,] -1.98218956\n[100,] -0.13223166\n[101,] -1.63417768\n[102,] -0.53519279\n[103,] -1.13963448\n[104,] -1.12131806\n[105,] -1.10300165\n[106,] -0.77330618\n[107,] -0.97478674\n[108,] -1.04805240\n[109,] -1.06636882\n[110,] -0.13223166\n[111,] -1.06636882\n[112,]  0.30736229\n[113,] -0.77330618\n[114,] -0.31539581\n[115,] -0.79162259\n[116,] -0.22381374\n[117,] -0.97478674\n[118,] -1.21290014\n[119,] -1.50596277\n[120,] -0.51687637\n[121,] -1.41438070\n[122,] -1.13963448\n[123,] -0.68172411\n[124,] -0.46192713\n[125,] -1.59754485\n[126,] -0.60845845\n[127,] -0.93815391\n[128,] -0.44361071\n[129,] -0.90152108\n[130,]  0.03261607\n[131,] -0.99310316\n[132,] -0.15054808\n[133,] -1.30448221\n[134,] -1.17626731\n[135,] -1.06636882\n[136,] -0.51687637\n[137,] -1.52427919\n[138,] -0.68172411\n[139,] -1.26784938\n[140,] -0.77330618\n[141,] -0.68172411\n[142,] -0.60845845\n[143,] -2.16535371\n[144,] -0.59014203\n[145,] -1.21290014\n[146,] -0.90152108\n[147,] -0.86488825\n[148,] -1.34111504\n[149,] -1.45101353\n[150,] -1.12131806\n[151,] -1.45101353\n[152,] -0.44361071\n[153,]  0.39894437\n[154,]  1.11328455\n[155,]  0.87517115\n[156,]  1.11328455\n[157,]  0.67369059\n[158,]  0.47221003\n[159,]  0.27072946\n[160,]  0.50884286\n[161,] -0.11391525\n[162,]  0.52715927\n[163,] -0.55350920\n[164,]  0.93012040\n[165,]  0.28904588\n[166,]  0.82022191\n[167,]  0.34399512\n[168,]  0.98506964\n[169,] -0.35202864\n[170,]  0.96675323\n[171,]  0.41726078\n[172,]  0.87517115\n[173,]  1.14991738\n[174,]  0.21578022\n[175,]  0.47221003\n[176,]  0.43557720\n[177,] -0.18718091\n[178,]  0.39894437\n[179,]  0.10588173\n[180,]  0.71032342\n[181,]  0.78358908\n[182,]  1.11328455\n[183,]  0.61874135\n[184,] -0.20549732\n[185,]  0.21578022\n[186,]  2.87166037\n[187,]  0.94843681\n[188,]  0.82022191\n[189,] -0.24213015\n[190,]  0.08756532\n[191,]  0.01429966\n[192,]  0.87517115\n[193,] -0.22381374\n[194,]  1.04001889\n[195,]  0.25241305\n[196,]  1.04001889\n[197,]  1.20486662\n[198,] -0.05896600\n[199,]  0.28904588\n[200,]  1.20486662\n[201,]  0.17914739\n[202,]  0.23409663\n[203,]  0.49052644\n[204,]  0.83853832\n[205,]  0.21578022\n[206,]  1.13160096\n[207,]  0.47221003\n[208,]  0.19746381\n[209,] -0.02233317\n[210,]  0.28904588\n[211,] -0.13223166\n[212,]  1.18655021\n[213,]  0.25241305\n[214,]  0.41726078\n[215,]  0.32567871\n[216,]  1.90089038\n[217,]  0.34399512\n[218,]  1.07665172\n[219,]  0.41726078\n[220,]  1.02170247\n[221,] -0.07728242\n[222,]  1.24149945\n[223,]  0.69200701\n[224,]  0.45389361\n[225,]  0.78358908\n[226,]  0.47221003\n[227,]  0.45389361\n[228,]  0.85685474\n[229,]  0.65537418\n[230,]  1.31476511\n[231,]  0.23409663\n[232,]  0.23409663\n[233,]  0.94843681\n[234,]  1.57119492\n[235,]  0.63705776\n[236,]  1.11328455\n[237,]  0.17914739\n[238,]  1.25981586\n[239,] -0.09559883\n[240,]  1.35139794\n[241,]  0.65537418\n[242,]  1.49792926\n[243,]  0.65537418\n[244,]  1.51624567\n[245,]  0.28904588\n[246,]  1.02170247\n[247,]  0.10588173\n[248,]  1.25981586\n[249,]  1.00338606\n[250,]  0.54547569\n[251,]  0.82022191\n[252,]  1.31476511\n[253,]  0.83853832\n[254,]  2.19395302\n[255,]  0.60042493\n[256,]  0.94843681\n[257,]  0.61874135\n[258,]  0.52715927\n[259,] -0.40697788\n[260,]  1.73604265\n[261,] -0.11391525\n[262,]  0.76527266\n[263,]  1.20486662\n[264,]  1.07665172\n[265,] -0.07728242\n[266,]  1.38803077\n[267,]  0.41726078\n[268,]  2.04742170\n[269,]  0.10588173\n[270,]  0.89348757\n[271,]  0.60042493\n[272,]          NA\n[273,]  0.52715927\n[274,]  1.18655021\n[275,]  0.23409663\n[276,]  1.09496813\n[277,]  0.47221003\n[278,]  1.11328455\n[279,]  1.35139794\n[280,]  0.27072946\n[281,]  1.60782775\n[282,]  0.23409663\n[283,]  0.39894437\n[284,]  1.35139794\n[285,]  0.38062795\n[286,]  1.35139794\n[287,]  0.49052644\n[288,]  1.42466360\n[289,]  0.56379210\n[290,]  1.47961284\n[291,]  0.36231154\n[292,]  1.20486662\n[293,]  1.16823379\n[294,]  2.57859773\n[295,]  0.45389361\n[296,]  0.96675323\n[297,] -0.27876298\n[298,]  0.83853832\n[299,] -0.13223166\n[300,]  1.22318303\n[301,]  0.50884286\n[302,]  1.47961284\n[303,]  1.20486662\n[304,]  1.02170247\n[305,]  0.45389361\n[306,]  1.62614416\n[307,] -0.55350920\n[308,]  1.88257397\n[309,] -0.26044656\n[310,]  1.29644869\n[311,]  1.05833530\n[312,]  0.65537418\n[313,]  0.67369059\n[314,]  1.47961284\n[315,]  0.54547569\n[316,]  1.75435906\n[317,]  0.93012040\n[318,]  0.41726078\n[319,]  1.27813228\n[320,]  0.28904588\n[321,]  1.27813228\n[322,]  1.25981586\n[323,]  1.13160096\n[324,]  0.93012040\n[325,]  1.38803077\n[326,]  1.07665172\n[327,]  0.76527266\n[328,]  1.36971435\n[329,]  0.32567871\n[330,]  1.24149945\n[331,] -0.26044656\n[332,]  1.51624567\n[333,]  0.23409663\n[334,]  0.98506964\n[335,]  1.14991738\n[336,]  0.30736229\n[337,]  1.46129643\n[338,]  0.52715927\n[339,]  0.32567871\n[340,]  2.17563660\n[341,] -0.07728242\n[342,]  1.04001889\n[343,]  1.25981586\n[344,]  1.14991738\nattr(,\"scaled:center\")\n[1] 43.92193\nattr(,\"scaled:scale\")\n[1] 5.459584\n\n$bill_depth_mm\n              [,1]\n  [1,]  0.78430007\n  [2,]  0.12600328\n  [3,]  0.42983257\n  [4,]          NA\n  [5,]  1.08812936\n  [6,]  1.74642615\n  [7,]  0.32855614\n  [8,]  1.24004400\n  [9,]  0.48047078\n [10,]  1.54387329\n [11,] -0.02591137\n [12,]  0.07536506\n [13,]  0.22727971\n [14,]  2.05025544\n [15,]  1.99961722\n [16,]  0.32855614\n [17,]  0.93621471\n [18,]  1.79706436\n [19,]  0.63238542\n [20,]  2.20217008\n [21,]  0.58174721\n [22,]  0.78430007\n [23,]  1.03749114\n [24,]  0.48047078\n [25,]  0.02472685\n [26,]  0.88557650\n [27,]  0.73366185\n [28,]  0.37919435\n [29,]  0.73366185\n [30,]  0.88557650\n [31,] -0.22846423\n [32,]  0.48047078\n [33,]  0.32855614\n [34,]  0.88557650\n [35,] -0.07654958\n [36,]  1.99961722\n [37,]  1.44259686\n [38,]  0.68302364\n [39,]  1.08812936\n [40,]  0.98685293\n [41,]  0.42983257\n [42,]  0.63238542\n [43,]  0.68302364\n [44,]  1.29068222\n [45,] -0.12718780\n [46,]  0.83493828\n [47,]  0.93621471\n [48,]  0.88557650\n [49,]  0.37919435\n [50,]  2.05025544\n [51,]  0.27791792\n [52,]  0.88557650\n [53,]  0.37919435\n [54,]  1.18940579\n [55,]  0.48047078\n [56,]  0.73366185\n [57,]  0.17664149\n [58,]  0.83493828\n [59,] -0.27910244\n [60,]  0.98685293\n [61,] -0.12718780\n [62,]  1.99961722\n [63,] -0.07654958\n [64,]  0.53110900\n [65,] -0.02591137\n [66,]  0.42983257\n [67,] -0.48165530\n [68,]  0.98685293\n [69,] -0.27910244\n [70,]  1.13876757\n [71,]  0.93621471\n [72,]  0.63238542\n [73,]  0.02472685\n [74,]  0.88557650\n [75,]  0.17664149\n [76,]  0.68302364\n [77,] -0.17782601\n [78,]  1.13876757\n [79,] -0.53229351\n [80,]  0.98685293\n [81,]  0.02472685\n [82,]  0.22727971\n [83,]  0.83493828\n [84,]  1.13876757\n [85,]  0.32855614\n [86,]  1.59451151\n [87,]  1.18940579\n [88,]  0.73366185\n [89,]  1.03749114\n [90,]  0.83493828\n [91,]  0.42983257\n [92,]  0.48047078\n [93,] -0.02591137\n [94,]  0.48047078\n [95,]  0.07536506\n [96,]  0.88557650\n [97,]  0.73366185\n [98,]  0.68302364\n [99,] -0.53229351\n[100,]  0.68302364\n[101,]  0.37919435\n[102,]  1.44259686\n[103,] -0.58293173\n[104,]  1.44259686\n[105,]  0.73366185\n[106,]  0.88557650\n[107,]  0.02472685\n[108,]  1.44259686\n[109,] -0.07654958\n[110,]  0.93621471\n[111,] -0.32974066\n[112,]  1.59451151\n[113,]  0.27791792\n[114,]  1.18940579\n[115,]  1.79706436\n[116,]  0.58174721\n[117,] -0.07654958\n[118,]  1.69578793\n[119,] -0.07654958\n[120,]  0.73366185\n[121,]  0.02472685\n[122,]  1.34132043\n[123,] -0.07654958\n[124,]  0.68302364\n[125,] -0.63356994\n[126,]  0.93621471\n[127,]  0.22727971\n[128,]  0.58174721\n[129,] -0.02591137\n[130,]  0.42983257\n[131,]  0.37919435\n[132,]  1.03749114\n[133,]  0.68302364\n[134,]  0.68302364\n[135,]  0.22727971\n[136,]  0.17664149\n[137,]  0.17664149\n[138,]  1.49323508\n[139,] -0.32974066\n[140,]  0.37919435\n[141,] -0.02591137\n[142,]  0.02472685\n[143,] -0.83612280\n[144,] -0.07654958\n[145,] -0.17782601\n[146,]  0.78430007\n[147,]  0.73366185\n[148,]  0.63238542\n[149,]  0.32855614\n[150,]  0.48047078\n[151,] -0.02591137\n[152,]  0.68302364\n[153,] -2.00080174\n[154,] -0.43101709\n[155,] -1.54505781\n[156,] -0.98803745\n[157,] -1.34250495\n[158,] -1.84888710\n[159,] -1.29186674\n[160,] -0.93739923\n[161,] -1.89952531\n[162,] -0.88676102\n[163,] -1.74761067\n[164,] -0.53229351\n[165,] -1.74761067\n[166,] -1.29186674\n[167,] -1.29186674\n[168,] -0.73484637\n[169,] -1.84888710\n[170,] -0.98803745\n[171,] -1.34250495\n[172,] -1.03867566\n[173,] -1.44378138\n[174,] -1.34250495\n[175,] -1.34250495\n[176,] -0.68420816\n[177,] -2.05143996\n[178,] -1.03867566\n[179,] -1.44378138\n[180,] -1.08931388\n[181,] -1.44378138\n[182,] -0.93739923\n[183,] -0.93739923\n[184,] -1.49441960\n[185,] -1.34250495\n[186,] -0.07654958\n[187,] -1.19059031\n[188,] -0.43101709\n[189,] -1.74761067\n[190,]  0.07536506\n[191,] -1.79824888\n[192,] -0.73484637\n[193,] -1.74761067\n[194,] -0.58293173\n[195,] -1.74761067\n[196,] -1.08931388\n[197,] -0.63356994\n[198,] -1.64633424\n[199,] -1.64633424\n[200,] -0.63356994\n[201,] -1.95016353\n[202,] -0.68420816\n[203,] -1.49441960\n[204,] -1.54505781\n[205,] -1.39314317\n[206,] -1.08931388\n[207,] -1.39314317\n[208,] -0.88676102\n[209,] -1.64633424\n[210,] -1.08931388\n[211,] -1.34250495\n[212,] -0.93739923\n[213,] -1.69697245\n[214,] -1.13995209\n[215,] -1.64633424\n[216,] -0.73484637\n[217,] -1.49441960\n[218,] -0.17782601\n[219,] -1.39314317\n[220,] -0.48165530\n[221,] -1.49441960\n[222,] -1.08931388\n[223,] -1.08931388\n[224,] -0.78548459\n[225,] -0.78548459\n[226,] -1.19059031\n[227,] -1.08931388\n[228,] -0.58293173\n[229,] -1.49441960\n[230,] -0.43101709\n[231,] -1.69697245\n[232,] -0.38037887\n[233,] -1.34250495\n[234,] -0.78548459\n[235,] -1.29186674\n[236,] -0.63356994\n[237,] -1.69697245\n[238,]  0.07536506\n[239,] -1.39314317\n[240,] -1.49441960\n[241,] -1.59569603\n[242,] -0.07654958\n[243,] -1.08931388\n[244,] -0.02591137\n[245,] -1.34250495\n[246,] -0.53229351\n[247,] -1.24122852\n[248,] -0.73484637\n[249,] -0.68420816\n[250,] -1.29186674\n[251,] -1.39314317\n[252,] -0.32974066\n[253,] -1.08931388\n[254,] -0.07654958\n[255,] -0.83612280\n[256,] -1.08931388\n[257,] -1.69697245\n[258,] -0.53229351\n[259,] -1.24122852\n[260,] -0.68420816\n[261,] -1.59569603\n[262,] -1.03867566\n[263,] -0.98803745\n[264,] -0.63356994\n[265,] -0.98803745\n[266,] -0.43101709\n[267,] -1.54505781\n[268,] -0.58293173\n[269,] -0.73484637\n[270,] -0.48165530\n[271,] -1.74761067\n[272,]          NA\n[273,] -1.44378138\n[274,] -0.73484637\n[275,] -1.19059031\n[276,] -0.53229351\n[277,]  0.37919435\n[278,]  1.18940579\n[279,]  1.03749114\n[280,]  0.78430007\n[281,]  1.34132043\n[282,]  0.32855614\n[283,]  0.53110900\n[284,]  0.53110900\n[285,]  0.88557650\n[286,]  1.39195865\n[287,]  0.32855614\n[288,]  1.59451151\n[289,]  0.07536506\n[290,]  0.48047078\n[291,] -0.02591137\n[292,]  1.24004400\n[293,]  1.44259686\n[294,]  0.32855614\n[295,]  0.73366185\n[296,]  0.53110900\n[297,]  0.07536506\n[298,]  0.17664149\n[299,] -0.27910244\n[300,]  1.13876757\n[301,]  0.37919435\n[302,]  0.93621471\n[303,]  0.63238542\n[304,]  0.93621471\n[305,]  0.32855614\n[306,]  1.44259686\n[307,] -0.27910244\n[308,]  1.84770258\n[309,] -0.22846423\n[310,]  0.83493828\n[311,]  0.73366185\n[312,] -0.17782601\n[313,]  0.58174721\n[314,]  1.79706436\n[315,] -0.27910244\n[316,]  1.39195865\n[317,]  1.18940579\n[318,]  0.17664149\n[319,]  0.98685293\n[320,] -0.07654958\n[321,]  0.37919435\n[322,]  0.68302364\n[323,]  0.37919435\n[324,]  1.24004400\n[325,]  0.78430007\n[326,]  0.07536506\n[327,] -0.38037887\n[328,]  0.93621471\n[329,]  0.07536506\n[330,]  1.29068222\n[331,]  0.07536506\n[332,]  0.83493828\n[333,] -0.27910244\n[334,]  1.39195865\n[335,]  0.83493828\n[336,]  1.13876757\n[337,]  1.18940579\n[338,] -0.32974066\n[339,] -0.07654958\n[340,]  1.34132043\n[341,]  0.48047078\n[342,]  0.53110900\n[343,]  0.93621471\n[344,]  0.78430007\nattr(,\"scaled:center\")\n[1] 17.15117\nattr(,\"scaled:scale\")\n[1] 1.974793\n\n$flipper_length_mm\n               [,1]\n  [1,] -1.416271525\n  [2,] -1.060696087\n  [3,] -0.420660299\n  [4,]           NA\n  [5,] -0.562890474\n  [6,] -0.776235737\n  [7,] -1.416271525\n  [8,] -0.420660299\n  [9,] -0.562890474\n [10,] -0.776235737\n [11,] -1.060696087\n [12,] -1.487386613\n [13,] -1.345156438\n [14,] -0.705120649\n [15,] -0.207315036\n [16,] -1.131811175\n [17,] -0.420660299\n [18,] -0.278430124\n [19,] -1.202926262\n [20,] -0.491775386\n [21,] -1.914077138\n [22,] -1.487386613\n [23,] -0.847350824\n [24,] -1.131811175\n [25,] -1.487386613\n [26,] -0.989581000\n [27,] -1.274041350\n [28,] -0.989581000\n [29,] -2.056307313\n [30,] -1.487386613\n [31,] -1.629616788\n [32,] -1.629616788\n [33,] -0.918465912\n [34,] -1.202926262\n [35,] -0.420660299\n [36,] -0.349545211\n [37,] -0.776235737\n [38,] -1.487386613\n [39,] -1.416271525\n [40,] -1.202926262\n [41,] -1.345156438\n [42,] -0.420660299\n [43,] -1.060696087\n [44,] -0.349545211\n [45,] -1.131811175\n [46,] -0.776235737\n [47,] -1.345156438\n [48,] -1.558501700\n [49,] -0.776235737\n [50,] -0.705120649\n [51,] -1.060696087\n [52,] -0.918465912\n [53,] -0.776235737\n [54,] -0.065084861\n [55,] -0.989581000\n [56,] -0.705120649\n [57,] -1.060696087\n [58,] -0.562890474\n [59,] -1.416271525\n [60,] -0.491775386\n [61,] -1.131811175\n [62,] -0.420660299\n [63,] -1.131811175\n [64,] -0.634005562\n [65,] -1.202926262\n [66,] -0.634005562\n [67,] -0.420660299\n [68,] -0.918465912\n [69,] -0.776235737\n [70,] -0.207315036\n [71,] -0.776235737\n [72,] -0.776235737\n [73,] -0.349545211\n [74,] -0.278430124\n [75,] -0.776235737\n [76,] -0.420660299\n [77,] -0.705120649\n [78,] -1.202926262\n [79,] -0.989581000\n [80,] -0.420660299\n [81,] -0.847350824\n [82,] -0.349545211\n [83,] -0.989581000\n [84,] -0.562890474\n [85,] -0.705120649\n [86,] -0.491775386\n [87,] -0.776235737\n [88,] -0.847350824\n [89,] -0.847350824\n [90,] -0.776235737\n [91,]  0.077145314\n [92,]  0.290490577\n [93,] -1.131811175\n [94,] -1.060696087\n [95,] -0.989581000\n [96,]  0.503835840\n [97,] -0.776235737\n [98,] -0.349545211\n [99,] -1.629616788\n[100,] -0.634005562\n[101,] -0.634005562\n[102,]  0.148260402\n[103,] -1.274041350\n[104,] -0.776235737\n[105,] -0.562890474\n[106,] -1.202926262\n[107,] -0.136199948\n[108,] -0.776235737\n[109,] -1.416271525\n[110,] -0.278430124\n[111,] -0.207315036\n[112,] -0.705120649\n[113,] -0.562890474\n[114,] -0.278430124\n[115,] -0.705120649\n[116,] -0.349545211\n[117,] -0.918465912\n[118,] -0.136199948\n[119,] -0.847350824\n[120,] -0.847350824\n[121,] -0.989581000\n[122,] -0.207315036\n[123,] -1.771846963\n[124,]  0.077145314\n[125,] -1.060696087\n[126,] -0.136199948\n[127,] -0.705120649\n[128,] -0.420660299\n[129,] -0.705120649\n[130,]  0.646066015\n[131,] -0.776235737\n[132,] -0.278430124\n[133,] -0.562890474\n[134,] -0.136199948\n[135,] -0.989581000\n[136,] -0.776235737\n[137,] -0.705120649\n[138,] -0.065084861\n[139,] -1.131811175\n[140,] -0.562890474\n[141,] -0.562890474\n[142,] -0.989581000\n[143,] -0.918465912\n[144,] -0.776235737\n[145,] -0.634005562\n[146,] -1.131811175\n[147,] -0.776235737\n[148,] -1.202926262\n[149,] -0.420660299\n[150,] -0.562890474\n[151,] -0.989581000\n[152,]  0.006030227\n[153,]  0.717181103\n[154,]  2.068367767\n[155,]  0.646066015\n[156,]  1.214986716\n[157,]  1.001641453\n[158,]  0.646066015\n[159,]  0.717181103\n[160,]  1.286101803\n[161,]  0.574950927\n[162,]  1.001641453\n[163,]  0.930526365\n[164,]  1.072756541\n[165,]  0.930526365\n[166,]  0.859411278\n[167,]  0.646066015\n[168,]  1.143871628\n[169,]  0.646066015\n[170,]  1.428331979\n[171,]  0.574950927\n[172,]  1.499447066\n[173,]  1.214986716\n[174,]  1.001641453\n[175,]  0.859411278\n[176,]  1.001641453\n[177,]  1.001641453\n[178,]  1.001641453\n[179,]  1.072756541\n[180,]  1.001641453\n[181,]  0.646066015\n[182,]  1.357216891\n[183,]  1.499447066\n[184,]  0.574950927\n[185,]  0.432720752\n[186,]  2.068367767\n[187,]  1.357216891\n[188,]  1.357216891\n[189,]  0.859411278\n[190,]  1.286101803\n[191,]  0.503835840\n[192,]  0.503835840\n[193,]  0.503835840\n[194,]  1.712792329\n[195,]  0.646066015\n[196,]  1.072756541\n[197,]  1.499447066\n[198,]  1.143871628\n[199,]  0.646066015\n[200,]  1.712792329\n[201,]  0.859411278\n[202,]  1.001641453\n[203,]  0.646066015\n[204,]  1.357216891\n[205,]  0.646066015\n[206,]  1.712792329\n[207,]  1.143871628\n[208,]  1.357216891\n[209,]  0.503835840\n[210,]  1.357216891\n[211,]  0.503835840\n[212,]  1.641677241\n[213,]  0.503835840\n[214,]  1.428331979\n[215,]  0.930526365\n[216,]  2.139482854\n[217,]  1.286101803\n[218,]  2.068367767\n[219,]  0.930526365\n[220,]  1.997252679\n[221,]  1.357216891\n[222,]  1.570562154\n[223,]  1.072756541\n[224,]  1.428331979\n[225,]  1.428331979\n[226,]  1.143871628\n[227,]  1.072756541\n[228,]  2.068367767\n[229,]  0.574950927\n[230,]  1.357216891\n[231,]  1.001641453\n[232,]  1.570562154\n[233,]  0.788296190\n[234,]  1.428331979\n[235,]  0.788296190\n[236,]  1.641677241\n[237,]  0.788296190\n[238,]  1.926137592\n[239,]  1.214986716\n[240,]  1.214986716\n[241,]  0.788296190\n[242,]  2.068367767\n[243,]  1.214986716\n[244,]  1.926137592\n[245,]  0.788296190\n[246,]  1.641677241\n[247,]  0.930526365\n[248,]  1.783907417\n[249,]  1.072756541\n[250,]  1.499447066\n[251,]  0.148260402\n[252,]  1.712792329\n[253,]  1.286101803\n[254,]  1.926137592\n[255,]  1.001641453\n[256,]  1.926137592\n[257,]  1.072756541\n[258,]  1.001641453\n[259,]  0.646066015\n[260,]  1.286101803\n[261,]  0.503835840\n[262,]  0.574950927\n[263,]  1.072756541\n[264,]  1.997252679\n[265,]  0.859411278\n[266,]  2.068367767\n[267,]  1.143871628\n[268,]  2.068367767\n[269,]  1.143871628\n[270,]  1.499447066\n[271,]  0.930526365\n[272,]           NA\n[273,]  1.001641453\n[274,]  1.499447066\n[275,]  0.788296190\n[276,]  0.859411278\n[277,] -0.634005562\n[278,] -0.349545211\n[279,] -0.562890474\n[280,] -0.918465912\n[281,] -0.278430124\n[282,] -0.207315036\n[283,] -1.629616788\n[284,] -0.278430124\n[285,] -0.420660299\n[286,] -0.207315036\n[287,] -0.562890474\n[288,] -0.491775386\n[289,] -1.131811175\n[290,]  0.006030227\n[291,] -0.776235737\n[292,]  0.006030227\n[293,] -0.278430124\n[294,] -1.416271525\n[295,] -0.776235737\n[296,] -0.420660299\n[297,] -1.416271525\n[298,] -0.705120649\n[299,] -0.989581000\n[300,] -0.562890474\n[301,] -0.420660299\n[302,] -0.278430124\n[303,] -0.065084861\n[304,] -0.065084861\n[305,] -0.705120649\n[306,]  0.290490577\n[307,] -0.989581000\n[308,]  0.006030227\n[309,] -0.989581000\n[310,]  0.148260402\n[311,] -0.420660299\n[312,] -0.136199948\n[313,] -0.420660299\n[314,]  0.646066015\n[315,] -0.634005562\n[316,]  0.290490577\n[317,]  0.646066015\n[318,] -0.989581000\n[319,] -0.349545211\n[320,] -0.349545211\n[321,] -0.349545211\n[322,]  0.006030227\n[323,] -0.776235737\n[324,]  0.788296190\n[325,] -0.989581000\n[326,] -0.207315036\n[327,] -0.136199948\n[328,]  0.006030227\n[329,] -0.562890474\n[330,]  0.148260402\n[331,] -0.989581000\n[332,] -0.278430124\n[333,] -0.705120649\n[334,]  0.148260402\n[335,]  0.077145314\n[336,] -0.491775386\n[337,]  0.361605665\n[338,] -0.847350824\n[339,] -0.420660299\n[340,]  0.432720752\n[341,]  0.077145314\n[342,] -0.562890474\n[343,]  0.646066015\n[344,] -0.207315036\nattr(,\"scaled:center\")\n[1] 200.9152\nattr(,\"scaled:scale\")\n[1] 14.06171\n\n$body_mass_g\n               [,1]\n  [1,] -0.563316704\n  [2,] -0.500969030\n  [3,] -1.186793445\n  [4,]           NA\n  [5,] -0.937402749\n  [6,] -0.688012052\n  [7,] -0.719185889\n  [8,]  0.590115266\n  [9,] -0.906228912\n [10,]  0.060160036\n [11,] -1.124445771\n [12,] -0.625664378\n [13,] -1.249141119\n [14,] -0.500969030\n [15,]  0.247203059\n [16,] -0.625664378\n [17,] -0.937402749\n [18,]  0.371898407\n [19,] -1.093271934\n [20,] -0.002187638\n [21,] -0.999750423\n [22,] -0.750359726\n [23,] -0.500969030\n [24,] -0.313926008\n [25,] -0.500969030\n [26,] -0.500969030\n [27,] -0.812707400\n [28,] -1.249141119\n [29,] -1.311488793\n [30,] -0.313926008\n [31,] -1.186793445\n [32,] -0.376273682\n [33,] -1.124445771\n [34,] -0.376273682\n [35,] -1.093271934\n [36,] -0.064535312\n [37,] -0.313926008\n [38,] -0.812707400\n [39,] -1.124445771\n [40,]  0.558941429\n [41,] -1.311488793\n [42,] -0.376273682\n [43,] -1.373836467\n [44,]  0.247203059\n [45,] -1.498531815\n [46,]  0.496593755\n [47,] -0.968576586\n [48,] -1.529705652\n [49,] -0.937402749\n [50,] -0.064535312\n [51,] -0.875055074\n [52,]  0.122507710\n [53,] -0.937402749\n [54,] -0.189230660\n [55,] -1.623227163\n [56,] -0.625664378\n [57,] -0.812707400\n [58,] -0.500969030\n [59,] -1.685574837\n [60,] -0.563316704\n [61,] -1.311488793\n [62,]  0.247203059\n [63,] -0.750359726\n [64,] -0.189230660\n [65,] -1.685574837\n [66,] -0.313926008\n [67,] -1.062098097\n [68,] -0.126882986\n [69,] -1.436184141\n [70,]  0.309550733\n [71,] -0.750359726\n [72,] -0.376273682\n [73,] -0.812707400\n [74,] -0.064535312\n [75,] -0.625664378\n [76,]  0.060160036\n [77,] -0.625664378\n [78,] -0.376273682\n [79,] -0.812707400\n [80,] -0.251578334\n [81,] -1.249141119\n [82,]  0.621289103\n [83,] -0.500969030\n [84,] -0.002187638\n [85,] -1.062098097\n [86,] -0.812707400\n [87,] -0.500969030\n [88,] -0.875055074\n [89,] -0.313926008\n [90,] -0.750359726\n [91,] -0.812707400\n [92,]  0.122507710\n [93,] -0.999750423\n [94,]  0.309550733\n [95,] -1.124445771\n [96,]  0.122507710\n [97,] -0.625664378\n [98,]  0.184855384\n [99,] -1.623227163\n[100,] -0.126882986\n[101,] -0.594490541\n[102,]  0.652462940\n[103,] -1.405010304\n[104,]  0.060160036\n[105,] -1.592053326\n[106,] -0.812707400\n[107,] -0.563316704\n[108,] -0.376273682\n[109,] -1.280314956\n[110,]  0.714810614\n[111,] -0.469795193\n[112,]  0.496593755\n[113,] -1.249141119\n[114,]  0.091333873\n[115,] -0.376273682\n[116,] -0.158056823\n[117,] -1.623227163\n[118,] -0.532142867\n[119,] -1.062098097\n[120,] -1.093271934\n[121,] -1.311488793\n[122,] -0.875055074\n[123,] -0.937402749\n[124,] -0.407447519\n[125,] -1.436184141\n[126,] -0.251578334\n[127,] -1.155619608\n[128,]  0.122507710\n[129,] -1.436184141\n[130,] -0.251578334\n[131,] -1.093271934\n[132,] -0.875055074\n[133,] -0.875055074\n[134,]  0.340724570\n[135,] -0.968576586\n[136,] -0.376273682\n[137,] -1.280314956\n[138,] -0.282752171\n[139,] -0.999750423\n[140,]  0.060160036\n[141,] -0.999750423\n[142,] -0.906228912\n[143,] -1.436184141\n[144,] -0.594490541\n[145,] -1.498531815\n[146,] -0.688012052\n[147,]  0.060160036\n[148,] -0.906228912\n[149,] -0.937402749\n[150,] -0.563316704\n[151,] -0.625664378\n[152,] -0.251578334\n[153,]  0.371898407\n[154,]  1.868242584\n[155,]  0.309550733\n[156,]  1.868242584\n[157,]  1.494156540\n[158,]  0.434246081\n[159,]  0.745984451\n[160,]  1.244765843\n[161,]  0.247203059\n[162,]  1.182418169\n[163,]  0.558941429\n[164,]  1.681199562\n[165,]  0.558941429\n[166,]  2.055285606\n[167,] -0.002187638\n[168,]  2.055285606\n[169,] -0.064535312\n[170,]  2.616414673\n[171,]  0.745984451\n[172,]  1.431808866\n[173,]  1.868242584\n[174,]  0.995375147\n[175,]  0.247203059\n[176,]  1.057722821\n[177,]  0.995375147\n[178,]  1.120070495\n[179,] -0.126882986\n[180,]  1.805894910\n[181,]  0.496593755\n[182,]  1.681199562\n[183,]  1.307113518\n[184,]  0.621289103\n[185,]  1.057722821\n[186,]  2.304676302\n[187,]  1.182418169\n[188,]  1.494156540\n[189,]  0.933027473\n[190,]  1.307113518\n[191,]  0.184855384\n[192,]  1.431808866\n[193,] -0.313926008\n[194,]  1.868242584\n[195,]  0.122507710\n[196,]  0.683636777\n[197,]  1.681199562\n[198,]  0.870679799\n[199,] -0.002187638\n[200,]  1.494156540\n[201,]  1.120070495\n[202,]  1.369461192\n[203,]  0.808332125\n[204,]  1.369461192\n[205,]  0.247203059\n[206,]  0.995375147\n[207,]  0.870679799\n[208,]  1.057722821\n[209,]  0.122507710\n[210,]  0.995375147\n[211,]  0.309550733\n[212,]  1.681199562\n[213,] -0.002187638\n[214,]  1.369461192\n[215,]  0.247203059\n[216,]  1.805894910\n[217,]  0.621289103\n[218,]  1.868242584\n[219,]  0.558941429\n[220,]  1.992937932\n[221,]  0.621289103\n[222,]  1.681199562\n[223,]  0.683636777\n[224,]  0.995375147\n[225,]  1.120070495\n[226,]  1.244765843\n[227,]  0.621289103\n[228,]  1.992937932\n[229,]  0.496593755\n[230,]  2.242328628\n[231,]  0.683636777\n[232,]  2.179980954\n[233,]  0.527767592\n[234,]  1.556504214\n[235,]  0.652462940\n[236,]  1.431808866\n[237,]  0.683636777\n[238,]  1.743547236\n[239,]  0.496593755\n[240,]  1.369461192\n[241,]  0.839505962\n[242,]  1.681199562\n[243,]  0.933027473\n[244,]  1.494156540\n[245,]  0.683636777\n[246,]  1.805894910\n[247,]  0.808332125\n[248,]  1.244765843\n[249,]  0.901853636\n[250,]  0.839505962\n[251,]  0.527767592\n[252,]  1.307113518\n[253,]  0.808332125\n[254,]  1.743547236\n[255,]  0.964201310\n[256,]  1.618851888\n[257,]  0.652462940\n[258,]  1.618851888\n[259,]  0.621289103\n[260,]  1.618851888\n[261,]  0.465419918\n[262,]  1.618851888\n[263,]  0.995375147\n[264,]  2.179980954\n[265,]  0.558941429\n[266,]  1.618851888\n[267,]  0.216029222\n[268,]  2.055285606\n[269,]  0.839505962\n[270,]  2.242328628\n[271,]  0.901853636\n[272,]           NA\n[273,]  0.808332125\n[274,]  1.930590258\n[275,]  1.244765843\n[276,]  1.494156540\n[277,] -0.875055074\n[278,] -0.376273682\n[279,] -0.688012052\n[280,] -0.843881237\n[281,] -0.594490541\n[282,] -0.313926008\n[283,] -1.186793445\n[284,] -0.563316704\n[285,] -0.064535312\n[286,] -0.625664378\n[287,] -0.500969030\n[288,] -0.532142867\n[289,] -0.625664378\n[290,] -0.189230660\n[291,] -0.781533563\n[292,] -0.189230660\n[293,] -1.124445771\n[294,] -0.625664378\n[295,] -0.937402749\n[296,]  0.247203059\n[297,] -0.750359726\n[298,] -0.999750423\n[299,] -1.623227163\n[300,] -0.500969030\n[301,] -1.124445771\n[302,] -0.064535312\n[303,] -0.999750423\n[304,] -0.500969030\n[305,] -0.625664378\n[306,]  0.434246081\n[307,] -1.249141119\n[308,]  0.122507710\n[309,] -1.062098097\n[310,] -0.126882986\n[311,] -0.750359726\n[312,] -0.376273682\n[313,] -0.438621356\n[314,]  0.745984451\n[315,] -1.872617859\n[316,]  0.371898407\n[317,] -0.313926008\n[318,] -0.688012052\n[319,] -0.812707400\n[320,] -0.875055074\n[321,] -0.656838215\n[322,]  0.309550733\n[323,] -0.999750423\n[324,]  0.122507710\n[325,] -1.186793445\n[326,] -0.656838215\n[327,] -1.093271934\n[328,] -0.313926008\n[329,] -0.750359726\n[330,] -0.189230660\n[331,] -1.062098097\n[332,] -0.937402749\n[333,] -1.186793445\n[334,] -0.189230660\n[335,] -0.500969030\n[336,] -0.843881237\n[337,] -0.313926008\n[338,] -0.688012052\n[339,] -0.688012052\n[340,] -0.251578334\n[341,] -0.999750423\n[342,] -0.532142867\n[343,] -0.126882986\n[344,] -0.532142867\nattr(,\"scaled:center\")\n[1] 4201.754\nattr(,\"scaled:scale\")\n[1] 801.9545\n\n$sex\n  [1] male   female female &lt;NA&gt;   female male   female male   &lt;NA&gt;   &lt;NA&gt;  \n [11] &lt;NA&gt;   &lt;NA&gt;   female male   male   female female male   female male  \n [21] female male   female male   male   female male   female female male  \n [31] female male   female male   female male   male   female female male  \n [41] female male   female male   female male   male   &lt;NA&gt;   female male  \n [51] female male   female male   female male   female male   female male  \n [61] female male   female male   female male   female male   female male  \n [71] female male   female male   female male   female male   female male  \n [81] female male   female male   female male   male   female male   female\n [91] female male   female male   female male   female male   female male  \n[101] female male   female male   female male   female male   female male  \n[111] female male   female male   female male   female male   female male  \n[121] female male   female male   female male   female male   female male  \n[131] female male   female male   female male   female male   female male  \n[141] female male   female male   female male   male   female female male  \n[151] female male   female male   female male   male   female female male  \n[161] female male   female male   female male   female male   female male  \n[171] female male   male   female female male   female male   &lt;NA&gt;   male  \n[181] female male   male   female female male   female male   female male  \n[191] female male   female male   female male   male   female female male  \n[201] female male   female male   female male   female male   female male  \n[211] female male   female male   female male   female male   &lt;NA&gt;   male  \n[221] female male   female male   male   female female male   female male  \n[231] female male   female male   female male   female male   female male  \n[241] female male   female male   female male   female male   male   female\n[251] female male   female male   female male   &lt;NA&gt;   male   female male  \n[261] female male   female male   female male   female male   &lt;NA&gt;   male  \n[271] female &lt;NA&gt;   female male   female male   female male   male   female\n[281] male   female female male   female male   female male   female male  \n[291] female male   male   female female male   female male   female male  \n[301] female male   female male   female male   female male   female male  \n[311] male   female female male   female male   male   female male   female\n[321] female male   female male   male   female female male   female male  \n[331] female male   female male   male   female male   female female male  \n[341] female male   male   female\nLevels: female male\n\n$year\n              [,1]\n  [1,] -1.25748435\n  [2,] -1.25748435\n  [3,] -1.25748435\n  [4,] -1.25748435\n  [5,] -1.25748435\n  [6,] -1.25748435\n  [7,] -1.25748435\n  [8,] -1.25748435\n  [9,] -1.25748435\n [10,] -1.25748435\n [11,] -1.25748435\n [12,] -1.25748435\n [13,] -1.25748435\n [14,] -1.25748435\n [15,] -1.25748435\n [16,] -1.25748435\n [17,] -1.25748435\n [18,] -1.25748435\n [19,] -1.25748435\n [20,] -1.25748435\n [21,] -1.25748435\n [22,] -1.25748435\n [23,] -1.25748435\n [24,] -1.25748435\n [25,] -1.25748435\n [26,] -1.25748435\n [27,] -1.25748435\n [28,] -1.25748435\n [29,] -1.25748435\n [30,] -1.25748435\n [31,] -1.25748435\n [32,] -1.25748435\n [33,] -1.25748435\n [34,] -1.25748435\n [35,] -1.25748435\n [36,] -1.25748435\n [37,] -1.25748435\n [38,] -1.25748435\n [39,] -1.25748435\n [40,] -1.25748435\n [41,] -1.25748435\n [42,] -1.25748435\n [43,] -1.25748435\n [44,] -1.25748435\n [45,] -1.25748435\n [46,] -1.25748435\n [47,] -1.25748435\n [48,] -1.25748435\n [49,] -1.25748435\n [50,] -1.25748435\n [51,] -0.03552216\n [52,] -0.03552216\n [53,] -0.03552216\n [54,] -0.03552216\n [55,] -0.03552216\n [56,] -0.03552216\n [57,] -0.03552216\n [58,] -0.03552216\n [59,] -0.03552216\n [60,] -0.03552216\n [61,] -0.03552216\n [62,] -0.03552216\n [63,] -0.03552216\n [64,] -0.03552216\n [65,] -0.03552216\n [66,] -0.03552216\n [67,] -0.03552216\n [68,] -0.03552216\n [69,] -0.03552216\n [70,] -0.03552216\n [71,] -0.03552216\n [72,] -0.03552216\n [73,] -0.03552216\n [74,] -0.03552216\n [75,] -0.03552216\n [76,] -0.03552216\n [77,] -0.03552216\n [78,] -0.03552216\n [79,] -0.03552216\n [80,] -0.03552216\n [81,] -0.03552216\n [82,] -0.03552216\n [83,] -0.03552216\n [84,] -0.03552216\n [85,] -0.03552216\n [86,] -0.03552216\n [87,] -0.03552216\n [88,] -0.03552216\n [89,] -0.03552216\n [90,] -0.03552216\n [91,] -0.03552216\n [92,] -0.03552216\n [93,] -0.03552216\n [94,] -0.03552216\n [95,] -0.03552216\n [96,] -0.03552216\n [97,] -0.03552216\n [98,] -0.03552216\n [99,] -0.03552216\n[100,] -0.03552216\n[101,]  1.18644003\n[102,]  1.18644003\n[103,]  1.18644003\n[104,]  1.18644003\n[105,]  1.18644003\n[106,]  1.18644003\n[107,]  1.18644003\n[108,]  1.18644003\n[109,]  1.18644003\n[110,]  1.18644003\n[111,]  1.18644003\n[112,]  1.18644003\n[113,]  1.18644003\n[114,]  1.18644003\n[115,]  1.18644003\n[116,]  1.18644003\n[117,]  1.18644003\n[118,]  1.18644003\n[119,]  1.18644003\n[120,]  1.18644003\n[121,]  1.18644003\n[122,]  1.18644003\n[123,]  1.18644003\n[124,]  1.18644003\n[125,]  1.18644003\n[126,]  1.18644003\n[127,]  1.18644003\n[128,]  1.18644003\n[129,]  1.18644003\n[130,]  1.18644003\n[131,]  1.18644003\n[132,]  1.18644003\n[133,]  1.18644003\n[134,]  1.18644003\n[135,]  1.18644003\n[136,]  1.18644003\n[137,]  1.18644003\n[138,]  1.18644003\n[139,]  1.18644003\n[140,]  1.18644003\n[141,]  1.18644003\n[142,]  1.18644003\n[143,]  1.18644003\n[144,]  1.18644003\n[145,]  1.18644003\n[146,]  1.18644003\n[147,]  1.18644003\n[148,]  1.18644003\n[149,]  1.18644003\n[150,]  1.18644003\n[151,]  1.18644003\n[152,]  1.18644003\n[153,] -1.25748435\n[154,] -1.25748435\n[155,] -1.25748435\n[156,] -1.25748435\n[157,] -1.25748435\n[158,] -1.25748435\n[159,] -1.25748435\n[160,] -1.25748435\n[161,] -1.25748435\n[162,] -1.25748435\n[163,] -1.25748435\n[164,] -1.25748435\n[165,] -1.25748435\n[166,] -1.25748435\n[167,] -1.25748435\n[168,] -1.25748435\n[169,] -1.25748435\n[170,] -1.25748435\n[171,] -1.25748435\n[172,] -1.25748435\n[173,] -1.25748435\n[174,] -1.25748435\n[175,] -1.25748435\n[176,] -1.25748435\n[177,] -1.25748435\n[178,] -1.25748435\n[179,] -1.25748435\n[180,] -1.25748435\n[181,] -1.25748435\n[182,] -1.25748435\n[183,] -1.25748435\n[184,] -1.25748435\n[185,] -1.25748435\n[186,] -1.25748435\n[187,] -0.03552216\n[188,] -0.03552216\n[189,] -0.03552216\n[190,] -0.03552216\n[191,] -0.03552216\n[192,] -0.03552216\n[193,] -0.03552216\n[194,] -0.03552216\n[195,] -0.03552216\n[196,] -0.03552216\n[197,] -0.03552216\n[198,] -0.03552216\n[199,] -0.03552216\n[200,] -0.03552216\n[201,] -0.03552216\n[202,] -0.03552216\n[203,] -0.03552216\n[204,] -0.03552216\n[205,] -0.03552216\n[206,] -0.03552216\n[207,] -0.03552216\n[208,] -0.03552216\n[209,] -0.03552216\n[210,] -0.03552216\n[211,] -0.03552216\n[212,] -0.03552216\n[213,] -0.03552216\n[214,] -0.03552216\n[215,] -0.03552216\n[216,] -0.03552216\n[217,] -0.03552216\n[218,] -0.03552216\n[219,] -0.03552216\n[220,] -0.03552216\n[221,] -0.03552216\n[222,] -0.03552216\n[223,] -0.03552216\n[224,] -0.03552216\n[225,] -0.03552216\n[226,] -0.03552216\n[227,] -0.03552216\n[228,] -0.03552216\n[229,] -0.03552216\n[230,] -0.03552216\n[231,] -0.03552216\n[232,] -0.03552216\n[233,]  1.18644003\n[234,]  1.18644003\n[235,]  1.18644003\n[236,]  1.18644003\n[237,]  1.18644003\n[238,]  1.18644003\n[239,]  1.18644003\n[240,]  1.18644003\n[241,]  1.18644003\n[242,]  1.18644003\n[243,]  1.18644003\n[244,]  1.18644003\n[245,]  1.18644003\n[246,]  1.18644003\n[247,]  1.18644003\n[248,]  1.18644003\n[249,]  1.18644003\n[250,]  1.18644003\n[251,]  1.18644003\n[252,]  1.18644003\n[253,]  1.18644003\n[254,]  1.18644003\n[255,]  1.18644003\n[256,]  1.18644003\n[257,]  1.18644003\n[258,]  1.18644003\n[259,]  1.18644003\n[260,]  1.18644003\n[261,]  1.18644003\n[262,]  1.18644003\n[263,]  1.18644003\n[264,]  1.18644003\n[265,]  1.18644003\n[266,]  1.18644003\n[267,]  1.18644003\n[268,]  1.18644003\n[269,]  1.18644003\n[270,]  1.18644003\n[271,]  1.18644003\n[272,]  1.18644003\n[273,]  1.18644003\n[274,]  1.18644003\n[275,]  1.18644003\n[276,]  1.18644003\n[277,] -1.25748435\n[278,] -1.25748435\n[279,] -1.25748435\n[280,] -1.25748435\n[281,] -1.25748435\n[282,] -1.25748435\n[283,] -1.25748435\n[284,] -1.25748435\n[285,] -1.25748435\n[286,] -1.25748435\n[287,] -1.25748435\n[288,] -1.25748435\n[289,] -1.25748435\n[290,] -1.25748435\n[291,] -1.25748435\n[292,] -1.25748435\n[293,] -1.25748435\n[294,] -1.25748435\n[295,] -1.25748435\n[296,] -1.25748435\n[297,] -1.25748435\n[298,] -1.25748435\n[299,] -1.25748435\n[300,] -1.25748435\n[301,] -1.25748435\n[302,] -1.25748435\n[303,] -0.03552216\n[304,] -0.03552216\n[305,] -0.03552216\n[306,] -0.03552216\n[307,] -0.03552216\n[308,] -0.03552216\n[309,] -0.03552216\n[310,] -0.03552216\n[311,] -0.03552216\n[312,] -0.03552216\n[313,] -0.03552216\n[314,] -0.03552216\n[315,] -0.03552216\n[316,] -0.03552216\n[317,] -0.03552216\n[318,] -0.03552216\n[319,] -0.03552216\n[320,] -0.03552216\n[321,]  1.18644003\n[322,]  1.18644003\n[323,]  1.18644003\n[324,]  1.18644003\n[325,]  1.18644003\n[326,]  1.18644003\n[327,]  1.18644003\n[328,]  1.18644003\n[329,]  1.18644003\n[330,]  1.18644003\n[331,]  1.18644003\n[332,]  1.18644003\n[333,]  1.18644003\n[334,]  1.18644003\n[335,]  1.18644003\n[336,]  1.18644003\n[337,]  1.18644003\n[338,]  1.18644003\n[339,]  1.18644003\n[340,]  1.18644003\n[341,]  1.18644003\n[342,]  1.18644003\n[343,]  1.18644003\n[344,]  1.18644003\nattr(,\"scaled:center\")\n[1] 2008.029\nattr(,\"scaled:scale\")\n[1] 0.8183559\n\n\n\n\n\n\n\npenguins |&gt; \n  map_if(is.numeric, scale) |&gt; \n  bind_cols()\n\n\n\n# A tibble: 8 × 5\n  species island    bill_length_mm[,1] bill_depth_mm[,1] sex   \n  &lt;fct&gt;   &lt;fct&gt;                  &lt;dbl&gt;             &lt;dbl&gt; &lt;fct&gt; \n1 Adelie  Torgersen             -0.883             0.784 male  \n2 Adelie  Torgersen             -0.810             0.126 female\n3 Adelie  Torgersen             -0.663             0.430 female\n4 Adelie  Torgersen             NA                NA     &lt;NA&gt;  \n5 Adelie  Torgersen             -1.32              1.09  female\n6 Adelie  Torgersen             -0.847             1.75  male  \n7 Adelie  Torgersen             -0.920             0.329 female\n8 Adelie  Torgersen             -0.865             1.24  male"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#the-pmap-family",
+    "href": "slides/week-9/iteration-part-1.html#the-pmap-family",
+    "title": "Iteration",
+    "section": "The pmap() Family",
+    "text": "The pmap() Family\nThese functions take in a list of vectors and a function.\n\nThe function must accept a number of arguments equal to the length of the list,"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#the-pmap-family-1",
+    "href": "slides/week-9/iteration-part-1.html#the-pmap-family-1",
+    "title": "Iteration",
+    "section": "The pmap() Family",
+    "text": "The pmap() Family\nThe vectors need to have the same names as the arguments of the function you are applying.\n\n\nfruit &lt;- data.frame(string = c(\"apple\", \"banana\", \"cherry\"),\n                    pattern = c(\"p\", \"n\", \"h\"),\n                    replacement = c(\"P\", \"N\", \"H\"))\nfruit\n\n  string pattern replacement\n1  apple       p           P\n2 banana       n           N\n3 cherry       h           H\n\n\n\n. . .\n\n\nfruit |&gt; \n  pmap_chr(str_replace_all)\n\n[1] \"aPPle\"  \"baNaNa\" \"cHerry\""
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#use-functional-programming",
+    "href": "slides/week-9/iteration-part-1.html#use-functional-programming",
+    "title": "Iteration",
+    "section": "Use functional programming!",
+    "text": "Use functional programming!"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#pa-8-the-twelve-days-of-christmas",
+    "href": "slides/week-9/iteration-part-1.html#pa-8-the-twelve-days-of-christmas",
+    "title": "Iteration",
+    "section": "PA 8: The Twelve Days of Christmas",
+    "text": "PA 8: The Twelve Days of Christmas"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#glue",
+    "href": "slides/week-9/iteration-part-1.html#glue",
+    "title": "Iteration",
+    "section": "glue()",
+    "text": "glue()\n\n\nThe glue package embeds R expressions in curly brackets that are then evaluated and inserted into the argument string.\n\n\n\n\n\n\n\n\n\n\n\n\n\nlibrary(glue)\n\nname &lt;- \"Dr. Theobold\"\nglue('My name is {name}.')\n\nMy name is Dr. Theobold.\n\n\n\nThis will be a handy function (and package) for putting our song together!"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#pa-8",
+    "href": "slides/week-9/iteration-part-1.html#pa-8",
+    "title": "Iteration",
+    "section": "PA 8",
+    "text": "PA 8\n\nYou will write two functions, one helper function and one body function, to assist you in singing phrases from the 12 Days of Christmas.\nMany of the functions have been started for you, but none of them are complete as is.\n\n. . .\n\n\n\nThis activity will require knowledge of:\n\ndetecting patterns in strings\nreplacing patterns in strings\nconditional operations (if, else if, else)\nfunction syntax\nfunction arguments\n\n\n\n\n\n \nNone of us have all these abilities. Each of us has some of these abilities."
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#task-card",
+    "href": "slides/week-9/iteration-part-1.html#task-card",
+    "title": "Iteration",
+    "section": "Task Card",
+    "text": "Task Card\nEvery group should have a task card!\nOn the front:\n\nReminders about string functions from stringr\nReminders about regular expressions\n\n. . .\nOn the back:\n\nif(), else if(), and else() statements\nif_else() and case_when() functions"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#getting-started",
+    "href": "slides/week-9/iteration-part-1.html#getting-started",
+    "title": "Iteration",
+    "section": "Getting Started",
+    "text": "Getting Started\nThe partner who has the most vowels in their name starts as the Coder (dictating their proposed solution to the Developer (typing and listening).\nIf you are tied, play rock-paper-scissors. :)\n\nThe Coder does not type.\n\nThe collaborative editing feature should allow you to track what is being typed.\n\nThe Developer only types what they are told to type."
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-1.html#submission",
+    "href": "slides/week-9/iteration-part-1.html#submission",
+    "title": "Iteration",
+    "section": "Submission",
+    "text": "Submission\n\nYour full_phrase column is the answer to this week’s Practice Activity.\n\n\nEach person will copy and paste your full_phrase column to show me the phrases your group made!\nThe person who last occupied the role of Developer will download and submit the PA-8-iteration.html file for the group.\n\nOnly one submission per group!"
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html",
+    "href": "slides/week-11/final-portfolio.html",
+    "title": "Final Portfolio Week",
+    "section": "",
+    "text": "Past due!"
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#think-about-font",
+    "href": "slides/week-11/final-portfolio.html#think-about-font",
+    "title": "Final Portfolio Week",
+    "section": "Think about Font",
+    "text": "Think about Font"
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#make-your-font-consistent",
+    "href": "slides/week-11/final-portfolio.html#make-your-font-consistent",
+    "title": "Final Portfolio Week",
+    "section": "Make Your Font Consistent",
+    "text": "Make Your Font Consistent\n\n. . .\n\n\n\n\n\n\nSan serif fonts (e.g., calibri, arial) are more accessible than serif fonts (e.g., times new roman)."
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#modification-to-learning-targets",
+    "href": "slides/week-11/final-portfolio.html#modification-to-learning-targets",
+    "title": "Final Portfolio Week",
+    "section": "Modification to Learning Targets",
+    "text": "Modification to Learning Targets\n\nNone of the lab assignments had a setting where a full_join() was appropriate.\n\nRemove the full_join() section of your reflection_template.qmd file"
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#when-locating-code",
+    "href": "slides/week-11/final-portfolio.html#when-locating-code",
+    "title": "Final Portfolio Week",
+    "section": "When locating code…",
+    "text": "When locating code…\n\nfind 1-2 high quality examples (quality &gt; quantity)\nfind examples that hit on multiple learning targets at the same time"
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#for-example",
+    "href": "slides/week-11/final-portfolio.html#for-example",
+    "title": "Final Portfolio Week",
+    "section": "For example…",
+    "text": "For example…\n\nthe code below could be used to demonstrate proficiency with:\n\nPE-2 (writing functions)\nR-2 (well documented code)\nDSSM-1 (simulating data)\n\n\nrandomBabies &lt;- function(nBabies) {\n  # Create a vector representing the parents\n  parents &lt;- 1:nBabies\n  \n  # Shuffle the babies randomly\n  babies &lt;- sample(parents)\n  \n  # Count how many babies are correctly returned\n  sum(parents == babies)\n}"
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#includes-thoughtful-reflections-on-why-revisions-are-being-requested.",
+    "href": "slides/week-11/final-portfolio.html#includes-thoughtful-reflections-on-why-revisions-are-being-requested.",
+    "title": "Final Portfolio Week",
+    "section": "“Includes thoughtful reflections on why revisions are being requested.”",
+    "text": "“Includes thoughtful reflections on why revisions are being requested.”\n\nFeel free to include reflections you are proud of!"
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#determining-your-grade-1",
+    "href": "slides/week-11/final-portfolio.html#determining-your-grade-1",
+    "title": "Final Portfolio Week",
+    "section": "Determining Your Grade",
+    "text": "Determining Your Grade\n\nI believe my grade equivalent to course work evidenced below to be an __.\n\n. . .\nYour goal is to argue, convincingly and with concrete evidence, that you have met the criteria for both content proficiency, evidence of continued learning, and growth as a team member that goes with a particular grade."
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#plus-minus-modifiers",
+    "href": "slides/week-11/final-portfolio.html#plus-minus-modifiers",
+    "title": "Final Portfolio Week",
+    "section": "Plus / Minus Modifiers",
+    "text": "Plus / Minus Modifiers\n\n\n\n+\n\nYou’ve met all the criteria for the letter grade along with a significant amount, but not all, of the criteria for the next letter grade up.\n\n\n\n\n\n\n-\n\nYou have met the requirements for a letter grade but only in a way that you believe is a bare minimum.\nYou’ve met almost all the requirements for the letter grade except for a small number of minor criteria."
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#what-if-we-dont-agree",
+    "href": "slides/week-11/final-portfolio.html#what-if-we-dont-agree",
+    "title": "Final Portfolio Week",
+    "section": "What if we don’t agree?",
+    "text": "What if we don’t agree?\nThere are two ways this might happen.\n\n\n\n\nYou ask for a grade that is higher than the evidence supports.\n\n\nThat is, you grade yourself too highly. For example, you believe you earned an A in the course, but I do not feel the evidence you’ve provided supports this grade.\n\n\nIn this case, I’ll ask you to explain how you would modify a portion of the code you’ve included in your portfolio to be more efficient.\n\n\n\n\n\n\n\n \n\n\nIf your response communicates that you understand this key concept, I will award you the grade you proposed.\n\n \n\nIf your response communicates that you do not understand this key concept, I will award you the highest grade I believe the evidence in your portfolio supports."
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#what-if-we-dont-agree-1",
+    "href": "slides/week-11/final-portfolio.html#what-if-we-dont-agree-1",
+    "title": "Final Portfolio Week",
+    "section": "What if we don’t agree?",
+    "text": "What if we don’t agree?\n\n\n\nYou ask for a grade that was lower than your actual performance indicates.\n\n\n\n\nThat is, you “lowball” yourself, for example you say you earned a B+ when in fact I think you earned an A-.\n\n\n\n\n\n  \n\n\nIn this case, I will tell you what grade I believe you have earned and why."
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#final-portfolio-deadline",
+    "href": "slides/week-11/final-portfolio.html#final-portfolio-deadline",
+    "title": "Final Portfolio Week",
+    "section": "Final Portfolio Deadline",
+    "text": "Final Portfolio Deadline\nThe link to your Final Portfolio repository is due by Sunday at 11:59pm.\n\n\n\n\n\n\nDeadline extensions will not be accepted.\n\n\n\nIf you do not submit a Final Portfolio by the deadline, I will use your Midterm Portfolio as well as completion of assignments from Week 7 - 10 to guide my decision."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html",
+    "href": "slides/week-10/data-simulation-part-1.html",
+    "title": "Simulating Data in R",
+    "section": "",
+    "text": "Today we will…\n\nPlan for Week 9 & 10\nNew Material\n\nStatistical Distributions\nSimulating Data\n\nPA 9: Instrument Con"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html#tuesday-november-19",
+    "href": "slides/week-10/data-simulation-part-1.html#tuesday-november-19",
+    "title": "Simulating Data in R",
+    "section": "",
+    "text": "Today we will…\n\nPlan for Week 9 & 10\nNew Material\n\nStatistical Distributions\nSimulating Data\n\nPA 9: Instrument Con"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html#statistical-distributions-1",
+    "href": "slides/week-10/data-simulation-part-1.html#statistical-distributions-1",
+    "title": "Simulating Data in R",
+    "section": "Statistical Distributions",
+    "text": "Statistical Distributions\nRecall from your statistics classes…\n\nRandom VariableDistribution\n\n\nA random variable is a value we don’t know until we take a sample.\n\nCoin flip: could be heads (0) or tails (1)\nPerson’s height: could be anything from 0 feet to 10 feet.\nAnnual income of a US worker: could be anything from $0 to $1.6 billion\n\n\n\nThe distribution of a random variable tells us its possible values and how likely they are to occur.\n\n\n\nCoin flip: 50% chance of heads and tails.\nHeights follow a bell curve centered at 5 foot 7.\nMost American workers make under $100,000."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html#statistical-distributions-with-names",
+    "href": "slides/week-10/data-simulation-part-1.html#statistical-distributions-with-names",
+    "title": "Simulating Data in R",
+    "section": "Statistical Distributions with Names!",
+    "text": "Statistical Distributions with Names!\n\nunifnormtchisqbinom\n\n\nUniform Distribution\n\n\n\nWhen you know the range of values, but not much else.\nAll values in the range are equally likely to occur.\n\n\n\n\nWarning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.\nℹ Please use `after_stat(density)` instead.\n\n\n\n\n\n\n\n\n\n\n\n\n\nNormal Distribution\n\n\n\nWhen you expect values to fall near the center.\nFrequency of values follows a bell shaped curve.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nt-Distribution\n\n\n\nA slightly wider bell curve.\nBasically used in the same context as the Normal distribution, but more common with real data (when the standard deviation is unknown).\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nChi-Square Distribution\n\n\n\nSomewhat skewed, and only allows values above zero.\nUsed in testing count data.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nBinomial Distribution\n\n\n\n\nAppears when you have two possible outcomes, and you are counting how many times each outcome occurred.\nThis is a discrete distribution, as there can only be whole number values!"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html#distribution-functions-in-r",
+    "href": "slides/week-10/data-simulation-part-1.html#distribution-functions-in-r",
+    "title": "Simulating Data in R",
+    "section": "Distribution Functions in R",
+    "text": "Distribution Functions in R\n\nrpqd\n\n\nr is for random sampling.\n\n\nGenerate random values from a distribution.\nWe use this to simulate data (create pretend observations).\n\n\n\n\n\n\nrunif(n = 3, min = 10, max = 20)\n\n[1] 14.83393 17.44299 12.96170\n\nrnorm(n = 3)\n\n[1] -1.732044 -1.919351 -1.961987\n\nrnorm(n = 3, mean = -100, sd = 50)\n\n[1] -190.6170 -101.9037 -144.9406\n\n\n\n\n\n\nrt(n = 3, df = 11)\n\n[1] -1.38694004  1.30472575 -0.01982039\n\nrbinom(n = 3, size = 10, prob = 0.7)\n\n[1] 7 7 6\n\nrchisq(n = 3, df = 11)\n\n[1]  6.415303 19.668654  7.372493\n\n\n\n\n\n\n\np is for probability.\n\nCompute the chances of observing a value less than x.\nWe use this for calculating p-values.\n\n\n\n\npnorm(q = 1.5)\n\n[1] 0.9331928\n\npnorm(q = 70, mean = 67, sd = 3)\n\n[1] 0.8413447\n\n\n\n\n1 - pnorm(q = 70, mean = 67, sd = 3)\n\n[1] 0.1586553\n\npnorm(q = 70, mean = 67, sd = 3, lower.tail = FALSE)\n\n[1] 0.1586553\n\n\n\n\n\n\nq is for quantile.\n\nGiven a probability \\(p\\), compute \\(x\\) such that \\(P(X &lt; x) = p\\).\nThe q functions are “backwards” of the p functions.\n\n\nqnorm(p = 0.95)\n\n[1] 1.644854\n\nqnorm(p = 0.95, mean = 67, sd = 3)\n\n[1] 71.93456\n\n\n\n\nd is for density.\n\n\nCompute the height of a distribution curve at a given \\(x\\).\nFor discrete dist: probability of getting exactly \\(x\\).\nFor continuous dist: usually meaningless.\n\n\nProbability of exactly 12 heads in 20 coin tosses, with a 70% chance of tails?\n\ndbinom(x = 12, size = 20, prob = 0.3)\n\n[1] 0.003859282"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html#simulate-a-dataset",
+    "href": "slides/week-10/data-simulation-part-1.html#simulate-a-dataset",
+    "title": "Simulating Data in R",
+    "section": "Simulate a Dataset",
+    "text": "Simulate a Dataset\n\nThe Ideaset.seed()tibblevisualize\n\n\nWe can generate fake data based on the assumption that a variable follows a certain distribution.\n\nWe randomly sample observations from the distribution.\n\n\nage &lt;- runif(1000, min = 15, max = 75)\n\n\n\n\nSince there is randomness involved, we will get a different result each time we run the code.\n\n\n\n\n\nrunif(3, min = 15, max = 75)\n\n[1] 73.38901 73.61325 32.36954\n\n\n\n\n\n\nrunif(3, min = 15, max = 75)\n\n[1] 34.15332 59.18846 36.89515\n\n\n\n\n\n\n\n\nTo make a reproducible random sample, we first set the seed:\n\n\n\n\n\nset.seed(93401)\nrunif(3, min = 15, max = 75)\n\n[1] 20.84739 51.61768 42.68515\n\n\n\n\n\n\nset.seed(93401)\nrunif(3, min = 15, max = 75)\n\n[1] 20.84739 51.61768 42.68515\n\n\n\n\n\n\n\n\n\n\nset.seed(435)\n\nfake_data &lt;- tibble(names   = charlatan::ch_name(1000),\n                    height  = rnorm(1000, mean = 67, sd = 3),\n                    age     = runif(1000, min = 15, max = 75),\n                    measure = rbinom(1000, size = 1, prob = 0.6)\n                    ) |&gt; \n  mutate(supports_measure_A = ifelse(measure == 1, \"yes\", \"no\"))\n\nhead(fake_data)\n\n# A tibble: 6 × 5\n  names                 height   age measure supports_measure_A\n  &lt;chr&gt;                  &lt;dbl&gt; &lt;dbl&gt;   &lt;int&gt; &lt;chr&gt;             \n1 Elbridge Kautzer        67.4  66.3       1 yes               \n2 Brandon King            65.0  61.5       0 no                \n3 Phyllis Thompson        68.1  53.8       1 yes               \n4 Humberto Corwin         67.5  33.9       1 yes               \n5 Theresia Koelpin        71.4  16.1       1 yes               \n6 Hayden O'Reilly-Johns   66.2  37.0       0 no                \n\n\n\n\n\nCheck to see the ages look uniformly distributed.\n\n\n\nCode\nfake_data |&gt; \n  ggplot(mapping = aes(x = age,\n                       fill = supports_measure_A)) +\n  geom_histogram(show.legend = F) +\n  facet_wrap(~ supports_measure_A,\n             ncol = 1) +\n  scale_fill_brewer(palette = \"Paired\") +\n  theme_bw() +\n  labs(x = \"Age (years)\",\n       y = \"\",\n       subtitle = \"Number of Individuals Supportng Measure A for Different Ages\",)\n\n\n`stat_bin()` using `bins = 30`. Pick better value `binwidth`."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html#pa-9",
+    "href": "slides/week-10/data-simulation-part-1.html#pa-9",
+    "title": "Simulating Data in R",
+    "section": "PA 9",
+    "text": "PA 9\n\nIn this practice activity you and your partner will write a function to simulate the weight of various band instruments, with the goal of identifying whether a particular shipment of instruments has a “reasonable” weight.\n\n. . .\n\n\n\nThis activity will require knowledge of:\n\nnamed distributions\nprobability calculations related to distributions\nfunction documentation\nfunction syntax\nfunction arguments\n\n\n\n\n\n \nNone of us have all these abilities. Each of us has some of these abilities."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html#task-card",
+    "href": "slides/week-10/data-simulation-part-1.html#task-card",
+    "title": "Simulating Data in R",
+    "section": "Task Card",
+    "text": "Task Card\nEvery group should have a task card!\n\nThe table on distributions provides pictures on what each function (e.g., p, d, q) means\nThe list of distributions should help you decide what function to use (e.g., pchisq())"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html#getting-started",
+    "href": "slides/week-10/data-simulation-part-1.html#getting-started",
+    "title": "Simulating Data in R",
+    "section": "Getting Started",
+    "text": "Getting Started\nThe person who whose birthday is closest to today starts as the Coder (giving instructions on what to type to the Developer)!\n\nThe Coder does not type.\n\nThe collaborative editing feature should allow you to track what is being typed.\n\nThe Developer only types what they are told to type."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-1.html#submission",
+    "href": "slides/week-10/data-simulation-part-1.html#submission",
+    "title": "Simulating Data in R",
+    "section": "Submission",
+    "text": "Submission\nYou and your partner together should address the following questions:\n\nHow many of these samples had a weight less than or equal to Professor Hill’s shipment?\n\n\nDo you beleive Professor Hill ordered genuine instruments?"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html",
+    "href": "slides/week-10/data-simulation-part-2.html",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "",
+    "text": "Today we will…"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#our-task",
+    "href": "slides/week-10/data-simulation-part-2.html#our-task",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Our Task",
+    "text": "Our Task\nSimulate the approximate probability that at least two people have the same birthday (same day of the year, not considering year of birth or leap years)."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#writing-a-function-to",
+    "href": "slides/week-10/data-simulation-part-2.html#writing-a-function-to",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Writing a function to…",
+    "text": "Writing a function to…\n\nsimulate the birthdays of 50 people.\ncount how many birthdays are shared.\nreturn whether or not a shared birthday exists."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#step-1-simulate-the-birthdays-of-50-people",
+    "href": "slides/week-10/data-simulation-part-2.html#step-1-simulate-the-birthdays-of-50-people",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Step 1 – simulate the birthdays of 50 people",
+    "text": "Step 1 – simulate the birthdays of 50 people\n\nget_shared_birthdays &lt;- function(n = 50){\n  \n  bday_data &lt;- tibble(person = 1:n,\n                      bday   = sample(1:365, \n                                      size = n, \n                                      replace = TRUE)\n                      )\n}\n\n. . .\n\n\n\n\n\n\nWhy did I set replace = TRUE for the sample() function?"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#step-2-count-how-many-birthdays-are-shared",
+    "href": "slides/week-10/data-simulation-part-2.html#step-2-count-how-many-birthdays-are-shared",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Step 2 – count how many birthdays are shared",
+    "text": "Step 2 – count how many birthdays are shared\n\nget_shared_birthdays &lt;- function(n = 50){\n  \n  bday_data &lt;- tibble(person = 1:n,\n                      bday   = sample(1:365, \n                                      size = n, \n                                      replace = TRUE)\n                      )\n  \n  double_bdays &lt;- bday_data |&gt; \n    count(bday) |&gt; \n    filter(n &gt;= 2) |&gt; \n    nrow()\n  \n}"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#step-3-return-whether-or-not-a-shared-birthday-exists",
+    "href": "slides/week-10/data-simulation-part-2.html#step-3-return-whether-or-not-a-shared-birthday-exists",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Step 3 – return whether or not a shared birthday exists",
+    "text": "Step 3 – return whether or not a shared birthday exists\n\n\nget_shared_birthdays &lt;- function(n = 50){\n  bday_data &lt;- tibble(person = 1:n,\n                      bday   = sample(1:365, \n                                      size = n, \n                                      replace = T)\n                      )\n  \n  double_bdays &lt;- bday_data |&gt; \n    count(bday) |&gt; \n    filter(n &gt;= 2) |&gt; \n    nrow()\n  \n  return(double_bdays &gt; 0)\n}\n\n\n. . .\n\n\n\n\n\n\nWhat type of output is this function returning?"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#using-function-to-simulate-many-probabilities",
+    "href": "slides/week-10/data-simulation-part-2.html#using-function-to-simulate-many-probabilities",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Using Function to Simulate Many Probabilities",
+    "text": "Using Function to Simulate Many Probabilities\nUse a map() function to simulate 1000 datasets.\n\n\nsim_results &lt;- map_lgl(.x = 1:1000,\n                       .f = ~ get_shared_birthdays(n = 50))\n\n\n. . .\n\n\nWhat proportion of these datasets contain at least two people with the same birthday?\n\n\n\nsum(sim_results) / 1000\n\n[1] 0.965"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-1",
+    "href": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-1",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Simulate Multiple Datasets - Step 1",
+    "text": "Simulate Multiple Datasets - Step 1\n\nWrite a function to simulate height data from a population with some mean and SD height.\nThe user should be able to input:\n\nhow many observations to simulate\nthe mean and standard deviation of the Normal distribution to use when simulating\n\n\n\n\n\n\n\nPencil out your function!\n\n\n\n\n\n\n\n\n\n\n\n\nsim_ht &lt;- function(n = 200, avg, std){\n  tibble(person = 1:n,\n         ht = rnorm(n = n, mean = avg, sd = std))\n}\n\n\n\n\n\n\n\n\n\nsim_ht(n = 5, \n        avg = 66, \n        std = 3)\n\n# A tibble: 5 × 2\n  person    ht\n   &lt;int&gt; &lt;dbl&gt;\n1      1  70.9\n2      2  61.6\n3      3  62.4\n4      4  71.3\n5      5  64.1"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-2",
+    "href": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-2",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Simulate Multiple Datasets - Step 2",
+    "text": "Simulate Multiple Datasets - Step 2\nCreate a set of parameters (mean and SD) for each population.\n\ncrossing(mean_ht = seq(from = 60, to = 78, by = 6),\n            std_ht  = c(3, 6))\n\n# A tibble: 8 × 2\n  mean_ht std_ht\n    &lt;dbl&gt;  &lt;dbl&gt;\n1      60      3\n2      60      6\n3      66      3\n4      66      6\n5      72      3\n6      72      6\n7      78      3\n8      78      6"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-3",
+    "href": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-3",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Simulate Multiple Datasets - Step 3",
+    "text": "Simulate Multiple Datasets - Step 3\nSimulate datasets with different mean and SD heights.\n\n\ncrossing(mean_ht = seq(from = 60, to = 78, by = 6),\n         std_ht  = c(3, 6)\n         ) |&gt; \n mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht), \n                       .f = sim_ht\n                       )\n        )\n\n# A tibble: 8 × 3\n  mean_ht std_ht ht_data           \n    &lt;dbl&gt;  &lt;dbl&gt; &lt;list&gt;            \n1      60      3 &lt;tibble [200 × 2]&gt;\n2      60      6 &lt;tibble [200 × 2]&gt;\n3      66      3 &lt;tibble [200 × 2]&gt;\n4      66      6 &lt;tibble [200 × 2]&gt;\n5      72      3 &lt;tibble [200 × 2]&gt;\n6      72      6 &lt;tibble [200 × 2]&gt;\n7      78      3 &lt;tibble [200 × 2]&gt;\n8      78      6 &lt;tibble [200 × 2]&gt;\n\n\n\n. . .\n\n\n\n\n\n\n\nWhy am I getting a tibble in the ht_data column?"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-4",
+    "href": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-4",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Simulate Multiple Datasets - Step 4",
+    "text": "Simulate Multiple Datasets - Step 4\nExtract the contents of each list!\n\n\ncrossing(mean_ht = seq(from = 60, to = 78, by = 6),\n         std_ht  = c(3, 6)\n         ) |&gt; \n mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht), \n                       .f = sim_ht\n                       )\n        ) |&gt; \n  unnest(cols = ht_data) |&gt; \n  slice_sample(n = 10)\n\n\n\n\n\n\n\n# A tibble: 10 × 4\n   mean_ht std_ht person    ht\n     &lt;dbl&gt;  &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt;\n 1      60      3      1  61.1\n 2      60      3      2  59.0\n 3      60      3      3  64.2\n 4      60      3      4  60.6\n 5      60      3      5  58.5\n 6      60      3      6  59.9\n 7      60      3      7  60.5\n 8      60      3      8  59.1\n 9      60      3      9  58.4\n10      60      3     10  60.8\n\n\n\n\n\n\n\n\nWhy do I now have person and ht columns?\n\n\nHow many rows should I have for each mean_ht, std_ht combo?"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#nest-and-unnest",
+    "href": "slides/week-10/data-simulation-part-2.html#nest-and-unnest",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "nest() and unnest()",
+    "text": "nest() and unnest()\n\nWe can pair functions from the map() family very nicely with two tidyr functions: nest() and unnest().\nThese allow us to easily map functions onto subsets of the data."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#nest",
+    "href": "slides/week-10/data-simulation-part-2.html#nest",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "nest()",
+    "text": "nest()\nNest subsets of the data (as tibbles) inside a tibble.\n\nSpecify the column(s) to create subsets on.\n\n\n\n\nmtcars |&gt; \n  nest(.by = cyl)\n\n\n\n\n# A tibble: 3 × 2\n    cyl data              \n  &lt;dbl&gt; &lt;list&gt;            \n1     6 &lt;tibble [7 × 10]&gt; \n2     4 &lt;tibble [11 × 10]&gt;\n3     8 &lt;tibble [14 × 10]&gt;"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#unnest",
+    "href": "slides/week-10/data-simulation-part-2.html#unnest",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "unnest()",
+    "text": "unnest()\nUn-nest the data by row binding the subsets back together.\n\nSpecify the column(s) that contains the subsets.\n\n\n\n\n\nmtcars |&gt; \n  nest(.by = cyl) |&gt; \n  unnest(data) |&gt; \n  slice_head(n = 10)\n\n\n\n\n\n\n\n\n# A tibble: 10 × 11\n     cyl   mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb\n   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1     6  21    160    110  3.9   2.62  16.5     0     1     4     4\n 2     6  21    160    110  3.9   2.88  17.0     0     1     4     4\n 3     6  21.4  258    110  3.08  3.22  19.4     1     0     3     1\n 4     6  18.1  225    105  2.76  3.46  20.2     1     0     3     1\n 5     6  19.2  168.   123  3.92  3.44  18.3     1     0     4     4\n 6     6  17.8  168.   123  3.92  3.44  18.9     1     0     4     4\n 7     6  19.7  145    175  3.62  2.77  15.5     0     1     5     6\n 8     4  22.8  108     93  3.85  2.32  18.6     1     1     4     1\n 9     4  24.4  147.    62  3.69  3.19  20       1     0     4     2\n10     4  22.8  141.    95  3.92  3.15  22.9     1     0     4     2"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-5",
+    "href": "slides/week-10/data-simulation-part-2.html#simulate-multiple-datasets---step-5",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Simulate Multiple Datasets - Step 5",
+    "text": "Simulate Multiple Datasets - Step 5\nPlot the samples simulated from each population.\n\n\n\nCode\nfake_ht_data |&gt; \n  mutate(across(.cols = mean_ht:std_ht, \n                .fns = ~as.character(.x)), \n         mean_ht = fct_recode(mean_ht, \n                              `Mean = 60` = \"60\", \n                              `Mean = 66` = \"66\", \n                              `Mean = 72` = \"72\", \n                              `Mean = 78` = \"78\"), \n         std_ht = fct_recode(std_ht, \n                             `Std = 3` = \"3\", \n                             `Std = 6` = \"6\")\n         ) |&gt; \n  ggplot(mapping = aes(x = ht)) +\n  geom_histogram(color = \"white\") +\n  facet_grid(std_ht ~ mean_ht) +\n  labs(x = \"Height (in)\",\n       y = \"\",\n       subtitle = \"Frequency of Observations\",\n       title = \"Simulated Heights from Eight Different Populations\")\n\n\n`stat_bin()` using `bins = 30`. Pick better value `binwidth`."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#in-line-code",
+    "href": "slides/week-10/data-simulation-part-2.html#in-line-code",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "In-line Code",
+    "text": "In-line Code\nWe can automatically include code output in the written portion of a Quarto document using `r`.\n. . .\n\n\nmy_rand &lt;- rnorm(1, mean = 0, sd = 1)\nmy_rand\n\n[1] -1.936856\n\n\n\nType this: My random number is `r my_rand`.\nTo get this: My random number is -1.936856."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html",
+    "href": "slides/week-8/week-8-data-frame-functions.html",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "",
+    "text": "Today we will…\n\nDiscuss Groupt Project + Group Contract\nNew Material\n\nCalling Functions on Datasets\nThinking About Missing Data\n\nLab 7: Functions and Fish"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#wednesday-may-15",
+    "href": "slides/week-8/week-8-data-frame-functions.html#wednesday-may-15",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "",
+    "text": "Today we will…\n\nDiscuss Groupt Project + Group Contract\nNew Material\n\nCalling Functions on Datasets\nThinking About Missing Data\n\nLab 7: Functions and Fish"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#group-project-details",
+    "href": "slides/week-8/week-8-data-frame-functions.html#group-project-details",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Group Project Details",
+    "text": "Group Project Details\nCheck out the Canvas page outlining the group project!\n\n\nGroups have been assigned.\nYour group contract is due on Monday!"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#last-time",
+    "href": "slides/week-8/week-8-data-frame-functions.html#last-time",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Last Time…",
+    "text": "Last Time…\nWe wrote a function called find_car_make() that takes in the name of a car and returns the “make” of the car (the company that created it).\n\nfind_car_make(\"Toyota Camry\") returns “Toyota”.\nfind_car_make(\"Ford Anglica\") returns “Ford”.\n\n\nfind_car_make &lt;- function(car_name){\n  make &lt;- str_extract(string = car_name, \n                      pattern = \"[:alpha:]*\")\n  return(make)\n}"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#pair-our-function-with-dplyr",
+    "href": "slides/week-8/week-8-data-frame-functions.html#pair-our-function-with-dplyr",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Pair Our Function with dplyr",
+    "text": "Pair Our Function with dplyr\nConsider the mtcars data.\n\ndata(mtcars)\nhead(mtcars, n = 3)\n\n               mpg cyl disp  hp drat    wt  qsec vs am gear carb\nMazda RX4     21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\nMazda RX4 Wag 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\nDatsun 710    22.8   4  108  93 3.85 2.320 18.61  1  1    4    1\n\n\n. . .\nLet’s use our new function:\n\nmtcars |&gt; \n  rownames_to_column(\"make_model\") |&gt; \n  mutate(make = find_car_make(make_model),\n         .after = make_model) |&gt; \n  head(n = 3)\n\n     make_model   make  mpg cyl disp  hp drat    wt  qsec vs am gear carb\n1     Mazda RX4  Mazda 21.0   6  160 110 3.90 2.620 16.46  0  1    4    4\n2 Mazda RX4 Wag  Mazda 21.0   6  160 110 3.90 2.875 17.02  0  1    4    4\n3    Datsun 710 Datsun 22.8   4  108  93 3.85 2.320 18.61  1  1    4    1"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#recall-the-penguins-data",
+    "href": "slides/week-8/week-8-data-frame-functions.html#recall-the-penguins-data",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Recall the penguins Data",
+    "text": "Recall the penguins Data\n\nlibrary(palmerpenguins)\ndata(penguins)\npenguins |&gt; \n  head()\n\n# A tibble: 6 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;int&gt;       &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7               181        3750\n2 Adelie  Torgersen           39.5          17.4               186        3800\n3 Adelie  Torgersen           40.3          18                 195        3250\n4 Adelie  Torgersen           NA            NA                  NA          NA\n5 Adelie  Torgersen           36.7          19.3               193        3450\n6 Adelie  Torgersen           39.3          20.6               190        3650\n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#function-to-standardize-data",
+    "href": "slides/week-8/week-8-data-frame-functions.html#function-to-standardize-data",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Function to Standardize Data",
+    "text": "Function to Standardize Data\nWe want to take in a vector of numbers and standardize it – make all values be between 0 and 1.\n. . .\n\nstd_to_01 &lt;- function(var) {\n  stopifnot(is.numeric(var))\n  \n  num &lt;- var - min(var, na.rm = TRUE)\n  denom &lt;- max(var, na.rm = TRUE) - min(var, na.rm = TRUE)\n  \n  return(num / denom)\n}"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#standardizing-variables",
+    "href": "slides/week-8/week-8-data-frame-functions.html#standardizing-variables",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Standardizing Variables",
+    "text": "Standardizing Variables\nIs it a good idea to standardize (scale) variables in a data analysis?\n\n\nWhy standardize?\n\nEasier to compare across variables.\nEasier to model – standardizes the amount of variability.\n\n\nWhy not standardize?\n\nMore difficult to interpret the values.\n\n\n\n. . .\nE.g., a penguin with a bill length of 35 mm (std to 0.11) and a mass of 5500 g (std to 0.78)."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#pair-our-function-with-dplyr-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#pair-our-function-with-dplyr-1",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Pair Our Function with dplyr",
+    "text": "Pair Our Function with dplyr\nLet’s standardize penguin measurements.\n\npenguins |&gt; \n  mutate(bill_length_mm    = std_to_01(bill_length_mm), \n         bill_depth_mm     = std_to_01(bill_depth_mm), \n         flipper_length_mm = std_to_01(flipper_length_mm), \n         body_mass_g       = std_to_01(body_mass_g))\n\n\nUgh. Still copy-pasting!\n\n. . .\nRecall across()!\n\npenguins |&gt; \n  mutate(across(.cols = bill_length_mm:body_mass_g,\n                .fns = ~ std_to_01(.x))) |&gt; \n  slice_head(n = 4)\n\n# A tibble: 4 × 8\n  species island    bill_length_mm bill_depth_mm flipper_length_mm body_mass_g\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;             &lt;dbl&gt;       &lt;dbl&gt;\n1 Adelie  Torgersen          0.255         0.667             0.153       0.292\n2 Adelie  Torgersen          0.269         0.512             0.237       0.306\n3 Adelie  Torgersen          0.298         0.583             0.390       0.153\n4 Adelie  Torgersen         NA            NA                NA          NA    \n# ℹ 2 more variables: sex &lt;fct&gt;, year &lt;int&gt;"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#use-variables-as-function-arguments",
+    "href": "slides/week-8/week-8-data-frame-functions.html#use-variables-as-function-arguments",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Use variables as function arguments?",
+    "text": "Use variables as function arguments?\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n  \n  data &lt;- data |&gt; \n    mutate(variable = std_to_01(variable))\n  return(data)\n}\n\n\n\n\n\n\n\nNote\n\n\n\nI used the existing function std_to_01() inside the new function for clarity!\n\n\n. . .\nBut it didn’t work…\n\nstd_column_01(penguins, body_mass_g)\n\nError in `mutate()`:\nℹ In argument: `variable = std_to_01(variable)`.\nCaused by error:\n! object 'body_mass_g' not found"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#tidy-evaluation",
+    "href": "slides/week-8/week-8-data-frame-functions.html#tidy-evaluation",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Tidy Evaluation",
+    "text": "Tidy Evaluation\nFunctions using unquoted variable names as arguments are said to use nonstandard evaluation or tidy evaluation.\n\n\nTidy:\n\npenguins |&gt; \n  pull(body_mass_g)\n\n  OR\n\npenguins$body_mass_g\n\n\nUntidy:\n\npenguins[, \"body_mass_g\"]\n\n  OR\n\npenguins[[\"body_mass_g\"]]\n\n\n\n\n. . .\nTidy evaluation isn’t naturally supported when writing your own functions."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#defused-r-code",
+    "href": "slides/week-8/week-8-data-frame-functions.html#defused-r-code",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Defused R Code",
+    "text": "Defused R Code\nWhen a piece of code is defused, R doesn’t return its value like normal.\n\nInstead it returns an expression that describes how to evaluate it.\n\n. . .\n\n\nEvaluated code:\n\n1 + 1\n\n[1] 2\n\n\n\nDefused code:\n\nexpr(1 + 1)\n\n1 + 1\n\n\n\n\n. . .\nWe produce defused code when we use tidy evaluation and our own functions don’t know how to handle it."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#solution-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#solution-1",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Solution 1",
+    "text": "Solution 1\nDon’t use tidy evaluation in your own functions.\n\nThis is more complicated to read and use, but it’s safe.\n\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n  \n  data[[variable]] &lt;- std_to_01(data[[variable]])\n  return(data)\n}\n\nstd_column_01(penguins, \"bill_length_mm\")"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang",
+    "href": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Solution 2: rlang",
+    "text": "Solution 2: rlang\nUse the rlang package!\n\n\n\nThis package provides operators that simplify writing functions around tidyverse pipelines.\n\n\n\nknitr::include_graphics(\"https://github.com/rstudio/hex-stickers/blob/main/thumbs/rlang.png?raw=true\")\n\n\n\n\n\n\n\n\n\n\n\nRead more about using this package for function writing here!"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang-1",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Solution 2: rlang",
+    "text": "Solution 2: rlang\nTwo ways to get around the issue of defused code:\n\nEmbrace Operator ({ })\n\n\nWith { }, you can transport a variable from one function to another.\n\n. . .\n\nDefuse and Inject\n\n\nYou can first use enquo(arg) to defuse the variable.\nThen use !!arg to inject the variable."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang-2",
+    "href": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang-2",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Solution 2: rlang",
+    "text": "Solution 2: rlang\nIf we use either of these solutions, we also need to use the walrus operator (:=).\n\nThis means we have to use := instead of = in any dplyr verb containing one of these rlang fixes."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#recall-our-broken-function",
+    "href": "slides/week-8/week-8-data-frame-functions.html#recall-our-broken-function",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Recall Our Broken Function",
+    "text": "Recall Our Broken Function\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n  \n  data &lt;- data |&gt; \n    mutate(variable = std_to_01(variable))\n  return(data)\n}\n\nstd_column_01(penguins, body_mass_g)\n\nError in `mutate()`:\nℹ In argument: `variable = std_to_01(variable)`.\nCaused by error:\n! object 'body_mass_g' not found\n\n\n\nThe code is defused, so mutate() doesn’t know what body_mass_g is.\nWe need to modify variable to make this work correctly!"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#fixing-our-broken-function",
+    "href": "slides/week-8/week-8-data-frame-functions.html#fixing-our-broken-function",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Fixing Our Broken Function",
+    "text": "Fixing Our Broken Function\n\nEmbrace OperatorDefuse + Inject\n\n\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n\n  data &lt;- data |&gt;\n    mutate({{variable}} := std_to_01({{variable}}))\n  return(data)\n}\n\nstd_column_01(penguins, body_mass_g)\n\n\n\n# A tibble: 6 × 7\n  species island    bill_length_mm bill_depth_mm body_mass_g sex     year\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7       0.292 male    2007\n2 Adelie  Torgersen           39.5          17.4       0.306 female  2007\n3 Adelie  Torgersen           40.3          18         0.153 female  2007\n4 Adelie  Torgersen           NA            NA        NA     &lt;NA&gt;    2007\n5 Adelie  Torgersen           36.7          19.3       0.208 female  2007\n6 Adelie  Torgersen           39.3          20.6       0.264 male    2007\n\n\n\n\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n  \n  variable &lt;- enquo(variable)\n\n  data &lt;- data |&gt;\n    mutate(!!variable := std_to_01(!!variable))\n  return(data)\n}\n\nstd_column_01(penguins, body_mass_g)\n\n\n\n# A tibble: 6 × 7\n  species island    bill_length_mm bill_depth_mm body_mass_g sex     year\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7       0.292 male    2007\n2 Adelie  Torgersen           39.5          17.4       0.306 female  2007\n3 Adelie  Torgersen           40.3          18         0.153 female  2007\n4 Adelie  Torgersen           NA            NA        NA     &lt;NA&gt;    2007\n5 Adelie  Torgersen           36.7          19.3       0.208 female  2007\n6 Adelie  Torgersen           39.3          20.6       0.264 male    2007"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#inject-multiple-variables",
+    "href": "slides/week-8/week-8-data-frame-functions.html#inject-multiple-variables",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Inject Multiple Variables",
+    "text": "Inject Multiple Variables\nWhat if I want to modify multiple columns?\n\nUse across()!\n\n\nstd_column_01 &lt;- function(data, variables) {\n  stopifnot(is.data.frame(data))\n  \n  data &lt;- data |&gt; \n    mutate(across(.cols = {{variables}},\n                  .fns = ~ std_to_01(.x)))\n  return(data)\n}\n\nstd_column_01(penguins, bill_length_mm:body_mass_g)\n\n\n\n# A tibble: 5 × 7\n  species island    bill_length_mm bill_depth_mm body_mass_g sex     year\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;int&gt;\n1 Adelie  Torgersen          0.255         0.667       0.292 male    2007\n2 Adelie  Torgersen          0.269         0.512       0.306 female  2007\n3 Adelie  Torgersen          0.298         0.583       0.153 female  2007\n4 Adelie  Torgersen         NA            NA          NA     &lt;NA&gt;    2007\n5 Adelie  Torgersen          0.167         0.738       0.208 female  2007"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#types-of-missing-data",
+    "href": "slides/week-8/week-8-data-frame-functions.html#types-of-missing-data",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Types of Missing Data",
+    "text": "Types of Missing Data\n\nMissing Completely at Random (MCAR)\n\nNo difference between missing and observed values.\nMissing observations are a random subset of all observations.\n\nMissing at Random (MAR)\n\nSystematic difference between missing and observed values, but can be entirely explained by other observed variables.\n\nMissing Not at Random (MNAR)\n\nMissingness is directly related to the unobserved value."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#types-of-missing-data-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#types-of-missing-data-1",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Types of Missing Data",
+    "text": "Types of Missing Data\nConsider a study of depression.\n\nMissing Completely at Random (MCAR)\n\nSome subjects have missing lab values because a batch of samples was processed improperly.\n\nMissing at Random (MAR)\n\nSubjects who identify as men are less likely to complete a survey on depression severity.\n\nMissing Not at Random (MNAR)\n\nSubjects with more severe depression are less likely to complete a survey on depression severity."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#when-we-remove-missing-data",
+    "href": "slides/week-8/week-8-data-frame-functions.html#when-we-remove-missing-data",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "When we remove missing data…",
+    "text": "When we remove missing data…\nWe implicitly assume observations are missing completely at random!\n\nWe might be mostly removing data from subjects who identify as men.\nWe might be mostly removing data from subjects with severe depression.\nWe are inadvertently making our data less representative.\n\n. . .\nWe need to take more care when dealing with missing values!"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#dealing-with-missing-data",
+    "href": "slides/week-8/week-8-data-frame-functions.html#dealing-with-missing-data",
+    "title": "Writing Data Frame / Plotting Functions",
+    "section": "Dealing with Missing Data",
+    "text": "Dealing with Missing Data\n\nLook for patterns!\n\nDo observations with missing values have similar traits?\n\n\n. . .\n\nConsider outside explanations!\n\nWhy might missing data exist?\nShould we have a “missing” category in our analysis?\n\n\n. . .\n\nCan we impute values?\n\nIf depression is MCAR within gender, age, and education level, then the distribution of depression will be similar for people of the same gender, age, and education level."
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html",
+    "href": "slides/week-9/iteration-part-2.html",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "",
+    "text": "Today we will…"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#vectorized-function-checks",
+    "href": "slides/week-9/iteration-part-2.html#vectorized-function-checks",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Vectorized Function Checks",
+    "text": "Vectorized Function Checks\n\n\nrescale_01 &lt;- function(vec) {\n  \n  if(!is.numeric(vec)) {\n    stop(\"Input vector is not numeric\")\n  }\n  \n  if(length(vec) &lt;= 1) {\n    stop(\"Input vector length must have at least two elements\")\n  }\n  \n  range &lt;- range(vec, na.rm = TRUE)\n  \n  return((vec - range[1]) / (range[2] - range[1]))\n}\n\n\n. . .\nHow would you transform these input checks so the rescale_01() function is vectorized?"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#function-checks-for-data-frames",
+    "href": "slides/week-9/iteration-part-2.html#function-checks-for-data-frames",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Function Checks for Data Frames",
+    "text": "Function Checks for Data Frames\n\n\nrescale_column &lt;- function(df, var) {\n  \n  df &lt;- df |&gt;\n    dplyr::mutate(across(.cols = {{ var }}, .fns = ~rescale_01(..x)\n                         )\n                  )\n  \n  return(df)\n}\n\n\n. . .\nHow would you check if the input df was a data frame?"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#function-checks-for-data-frames-columns",
+    "href": "slides/week-9/iteration-part-2.html#function-checks-for-data-frames-columns",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Function Checks for Data Frames – Columns",
+    "text": "Function Checks for Data Frames – Columns\n\n\nrescale_column &lt;- function(df, cols){\n  \n  stopifnot(is.data.frame(df))\n  \n  df &lt;- df |&gt;\n    dplyr::mutate(across(.cols = {{ cols }}, .fns = ~rescale_01(.x)\n                         )\n                  )\n  \n  return(df)\n}\n\n\n. . .\nHow would you check if the input cols were columns that existed in df?"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#stacked-bars-with-color",
+    "href": "slides/week-9/iteration-part-2.html#stacked-bars-with-color",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Stacked Bars with Color!",
+    "text": "Stacked Bars with Color!\n\n\n\n\n\n\n\nNotice how their facets have more informative titles?"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#more-stacked-bars-with-color",
+    "href": "slides/week-9/iteration-part-2.html#more-stacked-bars-with-color",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "More Stacked Bars with Color!",
+    "text": "More Stacked Bars with Color!\n\n\n\n\n\n\n\nNotice how every year with measurements is displayed?"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#combining-year-and-trip",
+    "href": "slides/week-9/iteration-part-2.html#combining-year-and-trip",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Combining Year and Trip",
+    "text": "Combining Year and Trip"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#faceting-by-year",
+    "href": "slides/week-9/iteration-part-2.html#faceting-by-year",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Faceting by Year!",
+    "text": "Faceting by Year!"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#a-line-plot-with-colors",
+    "href": "slides/week-9/iteration-part-2.html#a-line-plot-with-colors",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "A Line Plot with Colors!",
+    "text": "A Line Plot with Colors!"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#do-you-want-your-legend-on-the-left",
+    "href": "slides/week-9/iteration-part-2.html#do-you-want-your-legend-on-the-left",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Do you want your legend on the left?",
+    "text": "Do you want your legend on the left?\n\n\n\nCode\nfish |&gt;\n  group_by(year, section, trip) |&gt;\n  summarize(missing_count = sum(is.na(weight)), .groups = \"drop\") |&gt;\n  mutate(trip = case_when(\n    trip == 1 ~ \"Trip 1\",\n    trip == 2 ~ \"Trip 2\")) |&gt;\n  ggplot(aes(x = year, y = missing_count, color = section)) +\n  geom_line(linewidth = 1) +\n  scale_color_brewer(palette = \"Set2\") +\n  labs(\n    title = \"Number of Missing Weight Measurements of Trout Species (Blackfoot River)\",\n    x = \"\",\n    subtitle = \"Across Sections of River and Trip Number\",\n    y = \"\",\n    color = \"Section\") +\n  facet_wrap(~ trip) +\n  theme_minimal() +\n  theme(legend.position = \"top\")"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#could-you-remove-your-legend",
+    "href": "slides/week-9/iteration-part-2.html#could-you-remove-your-legend",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Could you remove your legend?",
+    "text": "Could you remove your legend?\n\n\n\nCode\nplot &lt;- fish |&gt;\n  group_by(year, section, trip) |&gt;\n  summarize(missing_count = sum(is.na(weight)), .groups = \"drop\") |&gt;\n  mutate(trip = case_when(\n    trip == 1 ~ \"Trip 1\",\n    trip == 2 ~ \"Trip 2\")) |&gt;\n  ggplot(aes(x = year, y = missing_count, color = section)) +\n  geom_line(linewidth = 1) +\n  scale_color_brewer(palette = \"Set2\") +\n  labs(\n    title = \"Missing Fish Weights for Trout Species on the Blackfoot River\",\n    x = \"Year\",\n    y = \"\",\n    color = \"Section\") +\n  facet_wrap(~ trip) +\n  theme_minimal()\n\n\nannotate_text &lt;- data.frame(year = c(1994, 1993), \n                            missing_count = c(150, 40),\n                            trip = factor(c(\"Trip 2\", \"Trip 2\"), \n                                          levels = c(\"Trip 1\",\"Trip 2\"), \n                                          ), \n                            section = factor(c(\"Johnsrud\", \"ScottyBrown\"), \n                                             levels = c(\"Johnsrud\", \"ScottyBrown\"))\n                            )\nplot + \n  geom_text(data = annotate_text, label = c(\"Johnsrud\", \"ScottyBrown\")) + \n  theme(legend.position = \"none\", \n        plot.title = element_text(size = 12), \n        axis.text.x = element_text(size = 12), \n        axis.text.y = element_text(size = 12), \n        axis.title = element_text(size = 12),\n        strip.text.x = element_text(size = 12)\n        )"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#could-you-remove-your-legend-1",
+    "href": "slides/week-9/iteration-part-2.html#could-you-remove-your-legend-1",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Could you remove your legend?",
+    "text": "Could you remove your legend?\n\n\n\nCode\nlibrary(ggtext)\n\nfish |&gt;\n  group_by(year, section, trip) |&gt;\n  summarize(missing_count = sum(is.na(weight)), .groups = \"drop\") |&gt;\n  mutate(trip = case_when(\n    trip == 1 ~ \"Trip 1\",\n    trip == 2 ~ \"Trip 2\")) |&gt;\n  ggplot(aes(x = year, y = missing_count, color = section)) +\n  geom_line(linewidth = 1) +\n  scale_color_brewer(palette = \"Set2\") +\n  labs(\n    title = str_c(\"Missing Fish Weights for the \",\n      \"&lt;span style = 'color:#66C2A5'&gt;**Johnsrud**&lt;/span&gt;\",\n      \" and &lt;span style = 'color:#FC8D62'&gt;**ScottyBrown**&lt;/span&gt;\",\n      \" Sections of the Blackfoot River\"),\n    x = \"Year\",\n    y = \"\",\n    color = \"Section\") +\n  facet_wrap(~ trip) +\n  theme_minimal() + \n  theme(plot.title = ggtext::element_markdown(size = 16), \n        legend.position = \"none\",\n        axis.text.x = element_text(size = 12), \n        axis.text.y = element_text(size = 12), \n        axis.title = element_text(size = 12),\n        strip.text.x = element_text(size = 12)\n        )"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#function-formatting",
+    "href": "slides/week-9/iteration-part-2.html#function-formatting",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Function Formatting",
+    "text": "Function Formatting\n\nThere should be a new line after the opening {\nThe closing } should be on its own line\nThe body of the function should be indented\nThe code uses whitespace around all commas and arithmetic operators\nThe code uses new lines (returns) to eliminate character wrapping"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#good",
+    "href": "slides/week-9/iteration-part-2.html#good",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Good",
+    "text": "Good\n\nrescale_01 &lt;- function(x) {\n  if (!is.numeric(x)) {\n    stop(\"Input must be a numeric vector\")\n  }\n  \n  if (length(x) &lt;= 1) {\n    stop(\"Length of the input vector is not greater than 1\")\n  }\n  \n  get_range &lt;- range(x, na.rm = TRUE)\n  (x - get_range[1]) / (get_range[2] - get_range[1])\n}"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#not-so-good",
+    "href": "slides/week-9/iteration-part-2.html#not-so-good",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "Not so good",
+    "text": "Not so good\n\nrescale_01 &lt;- function(x) \n{\n  if (!is.numeric(x)) {\n    stop(\"Input must be a numeric vector\")\n  }\n  \n  if (length(x) &lt;= 1) {\n    stop(\"Length of the input vector is not greater than 1\")\n  }\n  \n  get_range &lt;- range(x, na.rm=TRUE)\n  (x-get_range[1]) / (get_range[2]-get_range[1])}"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#if-on-a-single-line",
+    "href": "slides/week-9/iteration-part-2.html#if-on-a-single-line",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "if() on a single line?",
+    "text": "if() on a single line?\n\nrescale_01 &lt;- function(x) {\n  \n  if(!is.numeric(x)) stop(\"Input vector must be numeric.\")\n  if(length(x) &lt;= 1) stop(\"Input vector requires more than one element.\")\n  \n  range_1 &lt;- range(x, na.rm = TRUE)\n  \n  (x - range_1[1]) / (range_1[2] - range_1[1])\n}\n\nThis technically works because the stop() is on the same line as if().\n. . .\nBut what if you have multiple things that happen if the condition is met?"
+  },
+  {
+    "objectID": "slides/week-9/iteration-part-2.html#if-on-multiple-lines",
+    "href": "slides/week-9/iteration-part-2.html#if-on-multiple-lines",
+    "title": "Cool Plots & Searching for Efficiency",
+    "section": "if() on multiple lines",
+    "text": "if() on multiple lines\n\npluralize_gift &lt;- function(gift){\n\n  # Check if the word ends in a y\n  if(str_detect(gift, \"y$\")){\n    \n    # Replace the y at the end with an ies\n    gift &lt;- str_replace(gift, \n                        pattern = \"y\",\n                        replacement = \"ies\")\n    } \n  # Check for a oo (goose)\n  else if(str_detect(gift,\"oo\")){ \n    \n    # Replace the oo with a ee\n    gift &lt;- str_replace(gift, \n                        pattern = \"oo\",\n                        replacement = \"ee\")\n    } \n  else{\n    # Add an s to the end of the gift\n    gift &lt;- str_c(gift, replacement = \"s\")\n    }\n\n  return(gift)\n\n}"
   }
 ]

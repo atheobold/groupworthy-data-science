@@ -15,19 +15,15 @@ set of packages. This week, we're going to learn more about the functionality
 of "base R," which will likely come in handy when we are writing our own
 functions. By the end of this coursework you should be able to:
 
++ explain the differences between double, integer, character, and factor data
+types
++ explain the difference between a vector, a data frame, and a list
 + use `[]` to extract elements from a vector
-+ use `[]` and `$` to extract elements from a dataframe
-+ explain the difference in behavior between a `tibble` and a `data.frame`
-+ write one or more `if()` statements
-+ write one or more `else if()` statement
-+ write an `else()` statement
-+ explain the difference between using `if()` + `else if()` and using `if_else()`
-
++ use `[]` and `$` to extract elements from a data frame
+<!-- + explain the difference in behavior between a `tibble` and a `data.frame` -->
 
 ::: columns
 ::: {.column width="60%"}
-#### 📽 Watch Videos: 20 minutes
-
 #### 📖 Readings: 60-75 minutes
 
 :::
@@ -36,16 +32,229 @@ functions. By the end of this coursework you should be able to:
 :::
 
 ::: {.column width="35%"}
-#### ✅   Preview Activities: 1
+#### ✅   Preview Activities: 2
 :::
 :::
 
-## Working with Base R Tools
+# Working with Base R Tools
 
-<!-- https://r4ds.hadley.nz/base-R.html -->
+In this part of the course you are going to learn more about R as a programming
+language. We are going to take the foundational programming ideas you learned 
+in your CS-1 course and see how they are implemented in R. 
 
-<!-- https://stat545.com/r-objects.html -->
+To get us there, we are first going to go back to the very beginning. So far, 
+we've worked extensively with data frames (or tibbles) in R, but we haven't 
+dedicated time to learning about the **data structure** that is the backbone
+of a data frame. This week, we are going to remedy that!
 
-## Conditional Statements
+## Objects in R
 
-<!-- https://bradleyboehmke.github.io/uc-bana-7025/lesson-6a-conditional-statements.html -->
+Let's start by reading about the different types of objects in R:
+
+### 📖 [Required Reading: *Hands-on Programming with R* -- Base R](https://rstudio-education.github.io/hopr/r-objects.html)
+
+### ✅   **Check-in 7.1**: Objects in R
+
+1. What data type will this atomic vector have?
+
+```{r}
+#| echo: true
+#| label: data-type
+z <- c(1, 2, 3, 4, 5, 6)
+```
+
+- double
+- logical
+- character
+- factor
+
+2. In R, some vectors have a names attribute. What does it mean for a vector to
+have names?
+
+- Each element of the vector is stored as a name–value pair, like a dictionary 
+or key–value map.
+- The vector’s names attribute provides labels for its elements — metadata that
+does not change the underlying one-dimensional structure of the vector.
+- The vector becomes equivalent to a one-row data frame, with the names serving
+as column headers.
+- The vector can now hold elements of different types, since the names give each
+element its own type context.
+
+
+4. Using the vector `x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)`, what 
+code would recreate the matrix below?
+
+```{r}
+#| echo: false
+#| label: make-matrix
+
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+matrix(x, nrow = 3, byrow = TRUE)
+```
+
+
+5. Which of the following attributes does a matrix have?
+
+- names
+- class
+- row.names
+- dim
+
+6. What data type will the elements of `x` below be coerced into?
+
+```{r}
+#| echo: true
+#| label: coercion
+
+x <- c(3, 4, TRUE, "cat")
+```
+
+- double
+- logical
+- character
+- factor
+
+7. Both lists and data frames in R are types of lists under the hood. Which
+statement best describes how they differ?
+
+- A list and a data frame are identical — both can contain elements of different
+types and lengths.
+- A data frame is a list whose elements (columns) must all have the same length,
+while a regular list can contain elements of different lengths or structures.
+- A list can only contain atomic vectors, whereas a data frame can contain other
+data frames or lists as elements.
+- A data frame is one-dimensional, while a list is two-dimensional.
+
+8. What are the attributes of a data frame? Feel free to use the code below to
+explore!
+
+```{r}
+#| echo: true
+#| label: df-attributes
+
+df <- data.frame(num = c(1, 2, 3),
+                 letter = c("A", "B", "C"), 
+                 logic = c(TRUE, FALSE, TRUE)
+                 )
+
+```
+
+- names
+- class
+- row.names
+- dim
+
+## Extracting Elements of an Object
+
+Alright, now that we've learned more about the types of objects in R, let's 
+learn about the "base R" tools for extracting elements from these objects. 
+
+### 📖 [Required Reading: *R4DS* -- Base R](https://r4ds.hadley.nz/base-R.html)
+
+::: {.callout-important}
+# Only read Sections 27.2 and 27.3
+:::
+
+::: {.callout-tip collapse="true"}
+# Extra resources
+
+If you are still a bit confused about the difference between a `$` and `[[]]`, 
+I would recommend this section of *Hands-on Programming with R*: [Dollar Signs & Double Brackets](https://rstudio-education.github.io/hopr/r-notation.html#dollar-signs-and-double-brackets)
+:::
+
+### ✅   **Check-in 7.2**: Extracting Elements of Vectors & Data Frames
+
+```{r}
+x <- c(10, 3, NA, 5, 8, 1, NA)
+```
+
+1. Which output will `!is.na(x)` return?
+
+- `TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE`
+- `1 2 4 5 6`
+- `10 3 5 8 1`
+
+2. Which output will `x[c(3, 2, 5)]` return?
+
+- `FALSE  TRUE TRUE  FALSE TRUE  FALSE FALSE`
+- `3 2 5`
+- `NA 3 8`
+
+3. Which output will `x[c(-1, -3, -5)]` return? 
+
+- `FALSE  TRUE FALSE  TRUE  FALSE  TRUE TRUE`
+- `-1 -2 -5`
+- `3 5 1 NA`
+
+Suppose we decided to give the elements of `x` names:
+
+```{r}
+#| echo: true
+#| label: named-vector
+
+x <- c(a = 1, b = 2, c = 5)
+```
+
+4. Which of the following code would extract the `a` and `c` elements? Select
+all that apply!
+
+- `x[1, 2]`
+- `x[c(1, 2)]`
+- `x[-3]`
+- `x[c("a", "c")]`
+- `x["a", "c"]`
+- `x[-c("b")]`
+
+Suppose we have the following data frame:
+
+```{r}
+#| echo: true
+#| label: data-frame
+
+df <- tibble::tibble(
+  x = 1:5, 
+  y = c("a", "e", "f", "k", "z"), 
+  z = runif(5)
+)
+
+df
+```
+
+5. Suppose I wanted to filter `df` so that the values of `x` were greater than 3. Previously we would have used `df |> filter(x > 3)`. What base R code 
+would we use? Select all that apply!
+
+- `df[df$x >= 4, ]`
+- `df[ , df$x >= 4]`
+- `df[df$x > 3, ]`
+- `df[ , df$x > 3]`
+- - `df[df$x > 3]`
+- `df[which(df$x > 3), ]`
+
+6. Suppose I wanted to select the `y` and `z` columns of `df`. Previously, we
+would have used `df |> select(y, z)`. What base R code would we use? Select all
+that apply!
+
+- `df[c("y", "z")]`
+- `df[c("y", "z") , ]`
+- `df[ , c("y", "z")]`
+- `df["y", "z"]`
+
+<!-- selecting one column with a $ SAME AS PULL --> 
+
+7. Previously, we could remove columns we were not interested in using a `-`
+inside of `select()`. The code below produces an error. 
+
+```{r}
+#| echo: true
+#| label: extraction-error
+#| error: true
+
+df[-c("x")]
+```
+
+Which of the following best explains why?
+
+- tibble objects cannot use negative indices
+- `"x"` is not a valid column name, so R can’t find it.
+- Negative indices in R work only with numeric positions, not character names.
+- You need to use double brackets (`df[[-"x"]]`) to remove a column by name.

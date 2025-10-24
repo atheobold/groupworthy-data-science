@@ -64,6 +64,7 @@ z <- c(1, 2, 3, 4, 5, 6)
 ```
 
 - double
+- integer
 - logical
 - character
 - factor
@@ -73,7 +74,7 @@ have names?
 
 - Each element of the vector is stored as a name–value pair, like a dictionary 
 or key–value map.
-- The vector’s names attribute provides labels for its elements — metadata that
+- The vector’s names attribute provides labels for its elements—metadata that
 does not change the underlying one-dimensional structure of the vector.
 - The vector becomes equivalent to a one-row data frame, with the names serving
 as column headers.
@@ -81,7 +82,7 @@ as column headers.
 element its own type context.
 
 
-4. Using the vector `x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)`, what 
+3. Using the vector `x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12)`, what 
 code would recreate the matrix below?
 
 ```{r}
@@ -93,14 +94,14 @@ matrix(x, nrow = 3, byrow = TRUE)
 ```
 
 
-5. Which of the following attributes does a matrix have?
+4. Which of the following attributes does a matrix have? Select all that apply!
 
 - names
 - class
 - row.names
 - dim
 
-6. What data type will the elements of `x` below be coerced into?
+5. What data type will the elements of `x` below be coerced into?
 
 ```{r}
 #| echo: true
@@ -110,11 +111,12 @@ x <- c(3, 4, TRUE, "cat")
 ```
 
 - double
+- integer
 - logical
 - character
 - factor
 
-7. Both lists and data frames in R are types of lists under the hood. Which
+6. Both lists and data frames in R are types of lists under the hood. Which
 statement best describes how they differ?
 
 - A list and a data frame are identical — both can contain elements of different
@@ -125,7 +127,7 @@ while a regular list can contain elements of different lengths or structures.
 data frames or lists as elements.
 - A data frame is one-dimensional, while a list is two-dimensional.
 
-8. What are the attributes of a data frame? Feel free to use the code below to
+7. What are the attributes of a data frame? Feel free to use the code below to
 explore!
 
 ```{r}
@@ -180,10 +182,10 @@ x <- c(10, 3, NA, 5, 8, 1, NA)
 - `3 2 5`
 - `NA 3 8`
 
-3. Which output will `x[c(-1, -3, -5)]` return? 
+3. Which output will `x[-c(1, 3, 5)]` return? 
 
 - `FALSE  TRUE FALSE  TRUE  FALSE  TRUE TRUE`
-- `-1 -2 -5`
+- `-1 -3 -5`
 - `3 5 1 NA`
 
 Suppose we decided to give the elements of `x` names:
@@ -198,12 +200,12 @@ x <- c(a = 1, b = 2, c = 5)
 4. Which of the following code would extract the `a` and `c` elements? Select
 all that apply!
 
-- `x[1, 2]`
-- `x[c(1, 2)]`
-- `x[-3]`
+- `x[1, 3]`
+- `x[c(1, 3)]`
+- `x[-2]`
 - `x[c("a", "c")]`
 - `x["a", "c"]`
-- `x[-c("b")]`
+- `x[-"b"]`
 
 Suppose we have the following data frame:
 
@@ -227,7 +229,7 @@ would we use? Select all that apply!
 - `df[ , df$x >= 4]`
 - `df[df$x > 3, ]`
 - `df[ , df$x > 3]`
-- - `df[df$x > 3]`
+- `df[df$x > 3]`
 - `df[which(df$x > 3), ]`
 
 6. Suppose I wanted to select the `y` and `z` columns of `df`. Previously, we

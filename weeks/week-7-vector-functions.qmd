@@ -35,6 +35,12 @@ you will take your knowledge of functions and modify your code to work with
 
 By the end of the week, you should have a grasp of: 
 
+<!-- + write one or more `if()` statements -->
+<!-- + write one or more `else if()` statement -->
+<!-- + write an `else()` statement -->
+<!-- + explain the difference between using `if()` + `else if()` and using `if_else()` -->
+
+
 -   Writing your own functions in R
 
 -   Making good decisions about function arguments and returns
@@ -313,6 +319,10 @@ As you can see, the order of the arguments doesn't much matter, as long as you u
 When you write a function, you often assume that your parameters will be of a certain type. But you can't guarantee that the person using your function knows that they need a certain type of input. In these cases, it's best to **validate** your function input.
 
 In R, you can use `stopifnot()` to check for certain essential conditions. If you want to provide a more illuminating error message, you can check your conditions using `if()` or `if(){ } else{ }` and then use `stop("better error message")` in the body of the `if` or `else` statement. 
+
+<!-- ## Conditional Statements -->
+
+<!-- https://bradleyboehmke.github.io/uc-bana-7025/lesson-6a-conditional-statements.html -->
 
 ::: panel-tabset
 

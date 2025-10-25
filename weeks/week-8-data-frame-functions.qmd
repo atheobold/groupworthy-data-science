@@ -19,9 +19,15 @@ library(lubridate)
 
 ```
 
-The second half of this week's coursework focuses on writing functions that work with *data frames*.
+This week we're going to take the skills for writing **vector** functions we
+learned last week and consider how we might write functions that operate on 
+**data frames**.
 
 By the end of the week you should have a grasp of:
+
+<!-- add learning outcomes about using [[]] versus {{ }} to grab variables -->
+
+<!-- add learning outcome about diffusion? -->
 
 -   What the "embracing" (`{{{ }}}`) operator is
 
@@ -29,15 +35,20 @@ By the end of the week you should have a grasp of:
 
 -   Why we need to use the `{{{ }}}` operator when writing data frame functions
 
-------------------------------------------------------------------------
-
+::: columns
+::: {.column width="60%"}
 #### 📽 Watch Videos: 20 minutes
 
 #### 📖 Readings: 60-75 minutes
+:::
 
-#### ✅  Preview Activities: 1 (broken into two parts)
+::: {.column width="5%"}
+:::
 
-------------------------------------------------------------------------
+::: {.column width="35%"}
+#### ✅  Preview Activities: 1 (broken into three sections)
+:::
+:::
 
 # Writing Data Frame Functions in R
 
@@ -148,7 +159,8 @@ nycflights |>
 ```{r}
 #| eval: false
 
-scatterplot <- function(df, x_var, y_var) {
+labeled_scatterplot <- function(df, x_var, y_var) {
+  
   label <- rlang::englue("A scatterplot of _____ and _____, including a line of best fit.")
   
   df |> 

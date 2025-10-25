@@ -28,18 +28,11 @@ library(lubridate)
 <!-- - https://stat545.com/functions-part3.html (maybe optional?) -->
 <!-- - https://stat545.com/functions-practicum.html (interesting project?) -->
 
-This week's coursework is broken into two parts. First you will learn how to 
-write functions that work with *vectors*. Then, in the second half of the week, 
-you will take your knowledge of functions and modify your code to work with 
-*data frames*. 
+This week, we're going to learn about how we can write our own user-defined 
+functions in R. We're going to start with writing functions that operate on 
+*vectors*. 
 
 By the end of the week, you should have a grasp of: 
-
-<!-- + write one or more `if()` statements -->
-<!-- + write one or more `else if()` statement -->
-<!-- + write an `else()` statement -->
-<!-- + explain the difference between using `if()` + `else if()` and using `if_else()` -->
-
 
 -   Writing your own functions in R
 
@@ -47,17 +40,24 @@ By the end of the week, you should have a grasp of:
 
 -   Including side effects and / or error messages in your functions
 
+-   The differences between vectorized and non-vectorized functions
+
 -   Good R coding style for functions
 
-------------------------------------------------------------------------
-
+::: columns
+::: {.column width="60%"}
 #### 📽 Watch Videos: 20 minutes
 
 #### 📖 Readings: 60-75 minutes
+:::
 
+::: {.column width="5%"}
+:::
+
+::: {.column width="35%"}
 #### ✅  Preview Activities: 1 (broken into three sections)
-
-------------------------------------------------------------------------
+:::
+:::
 
 # Part 1: Why Write a Function?
 
@@ -80,7 +80,8 @@ this idea in a slightly different way:
 > Anything that is repeated in two or more places is more difficult to maintain.
 > Every time a change or correction is made, multiple locations must be updated, 
 > which increases the chance of errors and inconsistencies. To avoid this, 
-> programmers follow the DRY Principle, which applies to both data and code.
+> programmers follow the DRY (Don't Repeat Yourself) Principle, which applies to
+> both data and code.
 
 The DRY Principle applies at two scales: small and large. At small scales,
 researchers (**you**) should work to modularize code instead of copying and
@@ -91,7 +92,7 @@ easily re-purposed for other projects. At larger scales, it is vital that
 scientific programmers (**you**) re-use code instead of rewriting it (Wilson et
 al., 2014).
 
-::: {.callout-note}
+::: {.callout-tip}
 # Reading more about scientific computing "best practices"
 
 If you are interested in reading more about these "best practices" you can find
@@ -107,13 +108,13 @@ the article here: <https://journals.plos.org/plosbiology/article?id=10.1371/jour
 ::: 
 
 In R, functions are defined (or assigned names) the same as other variables,
-using `<-`, but we specify the arguments a function takes by using the
-`function()` statement. The contents of the function are contained within
+using a `<-`. We specify the arguments a function takes by using the
+`function()` statement. The contents (body) of the function are contained within
 `{` and `}`. If the function returns a value, a `return()` statement can be
 used; alternately, if there is no return statement, the last computation in the
-function will be returned.
+function will be returned (unless it was stored into an object!).
 
-![R syntax for defining functions. Portions of the command that indicate the function name, function scope, and return statement are highlighted.](images/week-7/annotating_function_syntax.png){fig-alt="The image describes the structure of writing functions in R. It explains that functions are defined using the syntax function_name <- function(function_parameter1, function_parameter2), where the word 'function' indicates the definition of a function. The parameters are enclosed within parentheses and listed as function_parameter1 and function_parameter2. The function body, which contains the operations or code the function executes, is enclosed in curly braces. The return(function_value) statement specifies what value the function should return. However, if no return statement is provided, the last line of the function body is returned automatically. The image uses color-coded annotations to explain each part of the function structure."}
+![R syntax for defining functions. Portions of the command that indicate the function name, function body, and return statement are highlighted.](images/week-7/annotating_function_syntax.png){fig-alt="The image describes the structure of writing functions in R. It explains that functions are defined using the syntax function_name <- function(function_parameter1, function_parameter2), where the word 'function' indicates the definition of a function. The parameters are enclosed within parentheses and listed as function_parameter1 and function_parameter2. The function body, which contains the operations or code the function executes, is enclosed in curly braces. The return(function_value) statement specifies what value the function should return. However, if no return statement is provided, the last line of the function body is returned automatically. The image uses color-coded annotations to explain each part of the function structure."}
 
 ::: column-margin
 {{< video https://www.youtube.com/embed/D6NC4_S4m9g?si=64o-sHjV_tLFF9hg >}} 
@@ -150,14 +151,14 @@ In this example R function, when we call `goodpup(dog)`, `dog` is the argument.
 ![A sketch of the execution of the program `goodpup`, showing that `name` is only defined within the local environment that is created while `goodpup` is running. We can never access `name` in our global environment.](images/week-7/function_argument_parameters.png){fig-alt="The image illustrates the concept of function environments versus the global environment in R. It starts by showing a variable dog in the global environment, set to 'Eddie', and a function goodpup defined as function(name) { paste(name, 'is a good pup!') }. When res <- goodpup(dog) is called, the function creates a temporary local environment where the variable name is assigned the value 'Eddie'. The paste function combines name with the string 'is a good pup!, returning 'Eddie is a good pup', which is then stored in res in the global environment. The image emphasizes that the local environment of the function only exists during the function call. The variable name is never defined in the global environment, meaning it cannot be accessed outside of the goodpup function. Annotations highlight that variables in the global environment, such as dog and res, are accessible globally, while local variables, like name, are temporary and exist solely within the function’s scope."}
 
 This is why the distinction between **arguments** and **parameters** matters. 
-Parameters are only accessible while inside of the function - and in that local
-environment, we need to call the object by the parameter name, not the name we
-use outside the function (the argument name). 
+**Parameters are only accessible while inside of the function**. In that 
+local environment, we need to call the object by the parameter name, not the 
+name we use outside the function (the argument name). 
 
 We can even call a function with an argument that isn't defined outside of the
-function call: `goodpup("Tesla")` produces "`r goodpup("Tesla")`". Here, I do
-not have a variable storing the string `"Tesla"`, but I can make the function
-run anyways. So `"Tesla"` here is an argument to `goodpup` but it is not a
+function call: `goodpup("Walle")` produces "`r goodpup("Walle")`". Here, I do
+not have a variable storing the string `"Walle"`, but I can make the function
+run anyways. So `"Walle"` here is an argument to `goodpup` but it is not a
 variable in my environment.
 
 This is a confusing set of concepts and it's ok if you only just sort of get
@@ -195,9 +196,9 @@ my_mean(1:10)
 ### Answer
 
 - Function name: `my_mean`
-- Function parameters: x
-- Function arguments: 1:10
-- Function output: an average value for the censor_x numerical vector *(varies
+- Function parameters: `x`
+- Function arguments: `1:10`
+- Function output: an average value for the `censor_x` numerical vector *(varies
 each time the function is run unless you set the seed)*
 
 ```{r}
@@ -221,7 +222,7 @@ rescale01 <- function(x) {
   rng <- range(x, na.rm = TRUE, finite = TRUE)
   
   rescale_out <- case_when(
-    is.numeric(x) _____ ~ (x - rng[1] ) / (rng[2] - rng[1]),
+    is.numeric(x) ~ (x - rng[1] ) / (rng[2] - rng[1]),
     x _____ ~ 0,
     x _____ ~ 1)
   
@@ -282,7 +283,7 @@ both_na <- function(x, y) {
 ## Named Arguments and Parameter Order
 
 In the examples above, you didn't have to worry about what order parameters were
-passed into the function, because there were 0 and 1 parameters, respectively.
+passed into the function, because there were 0 or 1 parameters, respectively.
 But what happens when we have a function with multiple parameters?
 
 ```{r}
@@ -318,11 +319,15 @@ As you can see, the order of the arguments doesn't much matter, as long as you u
 
 When you write a function, you often assume that your parameters will be of a certain type. But you can't guarantee that the person using your function knows that they need a certain type of input. In these cases, it's best to **validate** your function input.
 
-In R, you can use `stopifnot()` to check for certain essential conditions. If you want to provide a more illuminating error message, you can check your conditions using `if()` or `if(){ } else{ }` and then use `stop("better error message")` in the body of the `if` or `else` statement. 
+The heart of input validation are two functions---`stopifnot()` and `stop()`. 
+While these functions have similar behavior they are used in quite different
+ways. Before we explore these differences, let's do a refresher on conditional
+statements and learn about the `if()`, `else()`, and `else if()` functions in
+R. 
 
-<!-- ## Conditional Statements -->
+### 📖 [Required Reading: *R4DS* -- Conditional Statements](https://bradleyboehmke.github.io/uc-bana-7025/lesson-6a-conditional-statements.html)
 
-<!-- https://bradleyboehmke.github.io/uc-bana-7025/lesson-6a-conditional-statements.html -->
+In R, you can use `stopifnot()` to check for certain essential conditions. If you want to provide a more illuminating error message, you can check your conditions using an `if()` statement (or `if(){ } else{ }`) combined with `stop("better error message")` in the body of the `if()` statement. 
 
 ::: panel-tabset
 
@@ -348,22 +353,22 @@ add("tmp", 3)
 add(3, 4)
 ```
 
-### `if(){ } else { }`
+<!-- ### `if(){ } else { }` -->
 
-```{r}
-#| error: true
+<!-- ```{r} -->
+<!-- #| error: true -->
 
-add <- function(x, y) {
-  if(is.numeric(x) & is.numeric(y)) {
-    x + y
-  } else {
-    stop("Argument input for x or y is not numeric")
-  }
-}
+<!-- add <- function(x, y) { -->
+<!--   if(is.numeric(x) & is.numeric(y)) { -->
+<!--     x + y -->
+<!--   } else { -->
+<!--     stop("Argument input for x or y is not numeric") -->
+<!--   } -->
+<!-- } -->
 
-add("tmp", 3)
-add(3, 4)
-```
+<!-- add("tmp", 3) -->
+<!-- add(3, 4) -->
+<!-- ``` -->
 
 ### `if(){stop()}`
 

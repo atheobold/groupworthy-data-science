@@ -264,14 +264,14 @@ positions that have an `NA` in both vectors.
 
 both_na <- function(x, y) {
   
-  na_matches <- which(is.na(x)) %in% which(is.na(y))
+  # This will produce a logical vector 
+  # TRUE = indices of x and y that both have missing values
+  # FALSE = indices of x that have missing values that don't have matches in y
+  na_matches <- ____(is.na(x)) ____ ____(is.na(y))
   
   return(
-    # Find the number (sum) of the positions with matches
-    sum(
-      ## Convert logical values to 0s and 1s
-      _____(na_matches)
-      )
+    # Add up logical values of matches
+    sum(na_matches)
     )
 }
 ```
@@ -325,7 +325,11 @@ ways. Before we explore these differences, let's do a refresher on conditional
 statements and learn about the `if()`, `else()`, and `else if()` functions in
 R. 
 
-### 📖 [Required Reading: *R4DS* -- Conditional Statements](https://bradleyboehmke.github.io/uc-bana-7025/lesson-6a-conditional-statements.html)
+### Conditional Statements
+
+#### 📖 [Required Reading: *R4DS* -- Conditional Statements](https://bradleyboehmke.github.io/uc-bana-7025/lesson-6a-conditional-statements.html)
+
+### `stop()` & `stopifnot()`
 
 In R, you can use `stopifnot()` to check for certain essential conditions. If you want to provide a more illuminating error message, you can check your conditions using an `if()` statement (or `if(){ } else{ }`) combined with `stop("better error message")` in the body of the `if()` statement. 
 
@@ -397,7 +401,7 @@ misused. If you're interested, Wikipedia has [more about defensive programming](
 ### ✅  **Check-in 7.1: Writing Vector Functions**
 
 ::: {.callout-caution}
-# Questions 4 through 6
+# Questions 4 through 7
 :::
 
 ```{r addtwo}
@@ -434,11 +438,14 @@ For the three calls to the `add_or_subtract()` function, which of the following 
 ```{r}
 #| eval: false
 
+## Question 4
 add_or_subtract(5, 6, 
                 type = "subtract")
 
+## Question 5
 add_or_subtract("orange")
 
+## Question 6
 add_or_subtract(5, 
                 6, 
                 type = "multiply")
@@ -446,6 +453,9 @@ add_or_subtract(5,
 ```
 :::
 :::
+
+7. In the `add_or_subtract()` function, `first_num` is a [required / optional]
+argument whereas `second_num` and `type` are [required / optional] arguments.
 
 
 ## Scope
@@ -461,7 +471,7 @@ variable.
 
 > A variable is only available from inside the region it is created.
 
-What do I mean by the part of a program? The **lexical scope** is the portion
+What do I mean by the region of a program? The **lexical scope** is the portion
 of the code (the set of lines of code) where the name is valid.
 
 The concept of scope is best demonstrated through a series of examples, so in
@@ -471,8 +481,6 @@ concepts that help you figure out what "scope" actually means in practice.
 ### Name Masking
 
 Scope is most clearly demonstrated when we use the same variable name inside and outside a function. Note that this is 1) bad programming practice, and 2) fairly easily avoided if you can make your names even slightly more creative than `a`, `b`, and so on. But, for the purposes of demonstration, I hope you'll forgive my lack of creativity in this area so that you can see how name masking works.
-
-::: ex
 
 What does this function return, 10 or 20? 
 
@@ -514,8 +522,6 @@ a
 
 :::
 
-:::
-
 The lexical scope of the function is the area that is between the braces. 
 Outside the function, `a` has the value of 10, but inside the function, `a` has
 the value of 20. So when we call `myfun()`, we get 20, because the scope of
@@ -553,8 +559,7 @@ What does this output?
 
 #### Sketch
 
-![When we define myfun, we create a template for an environment with variables and code to excecute. Each time `myfun()` is called, that template is used to create a new environment. This prevents successive calls to `myfun()` from affecting each other -- which means `a = 1` every time.](images/week-7/function-scope-environment.png){fig-alt="
-The image explains how repeated calls to the myfun() function in R yield the same output because the function does not create or store an object in the global environment. The function myfun() uses an if-else statement: if the variable aa does not exist, it assigns aa the value 1; otherwise, it increments aa by 1. Each time myfun() is called, a new, independent copy of the function’s environment is created. The image depicts two separate calls to myfun(), both initializing aa to 1 because aa is not stored in either the function enviroment (where the function looks first) or in the global environment (where the function looks next) and therefore does not persist between calls. As a result, aa is always reset to 1 during each function invocation, with no accumulation occurring across different calls. The image emphasizes that the local environment created by the function is temporary and does not affect the global environment."}
+![When we define myfun, we create a template for an environment with variables and code to excecute. Each time `myfun()` is called, that template is used to create a new environment. This prevents successive calls to `myfun()` from affecting each other -- which means `a = 1` every time.](images/week-7/function-scope-environment.png){fig-alt="The image explains how repeated calls to the myfun() function in R yield the same output because the function does not create or store an object in the global environment. The function myfun() uses an if-else statement: if the variable aa does not exist, it assigns aa the value 1; otherwise, it increments aa by 1. Each time myfun() is called, a new, independent copy of the function’s environment is created. The image depicts two separate calls to myfun(), both initializing aa to 1 because aa is not stored in either the function enviroment (where the function looks first) or in the global environment (where the function looks next) and therefore does not persist between calls. As a result, aa is always reset to 1 during each function invocation, with no accumulation occurring across different calls. The image emphasizes that the local environment created by the function is temporary and does not affect the global environment."}
 
 
 #### R Function
@@ -577,10 +582,10 @@ myfun()
 
 ### Dynamic Lookup
 
-Scoping determines where to look for values -- when, however, is determined by
-the sequence of steps in the code. When a function is called, the
-**calling environment** (the global environment or set of environments at the
-time the function is called) determines what values are used. 
+Scoping determines where to look for values. However, when to look for values
+is determined by the sequence of steps in the code. When a function is called, 
+the **calling environment** (the global environment or set of environments at
+the time the function is called) determines what values are used. 
 
 If an object doesn't exist in the function's environment, the global environment
 will be searched next; if there is no object in the global environment, the
@@ -676,7 +681,7 @@ f(10)
 ### ✅  **Check-in 7.1: Writing Vector Functions**
 
 ::: {.callout-caution}
-# Questions 7 through 10
+# Questions 8 through 11
 :::
 
 ::: columns
@@ -685,6 +690,7 @@ Consider the following code:
 
 ```{r}
 first_num <- 5
+
 second_num <- 3
 
 result <- 8
@@ -762,7 +768,9 @@ f(10)
 ### General Debugging Strategies
 
 > Debugging: Being the detective in a crime movie where you are also the
-> murderer. - some t-shirt I saw once
+> murderer. 
+>
+> A t-shirt I saw once
 
 The overall process is well described in 
 [Advanced R](https://adv-r.hadley.nz/debugging.html) by H. Wickham; I've copied
@@ -795,55 +803,54 @@ of `print()` statements.
 doesn't pop back up in a future version of your code. Generate an example that
 will test for the error, and add it to your documentation. 
 
-There are several other general strategies for debugging:
+<!-- There are several other general strategies for debugging: -->
 
-- Retype (from scratch) your code    
-    + This works well if it's a short function or a couple of lines of code, but
-    it's less useful if you have a big script full of code to debug. However,
-    it does sometimes fix really silly typos that are hard to spot, like having
-    typed `<--` instead of `<-` in R and then wondering why your answers are
-    negative. 
+<!-- - Retype (from scratch) your code     -->
+<!--     + This works well if it's a short function or a couple of lines of code, but -->
+<!--     it's less useful if you have a big script full of code to debug. However, -->
+<!--     it does sometimes fix really silly typos that are hard to spot, like having -->
+<!--     typed `<--` instead of `<-` in R and then wondering why your answers are -->
+<!--     negative.  -->
 
-- Visualize your data as it moves through the program. 
-    + This may be done using `print()` statements, or the debugger, or some
-    other strategy depending on your application.
+<!-- - Visualize your data as it moves through the program.  -->
+<!--     + This may be done using `print()` statements, or the debugger, or some -->
+<!--     other strategy depending on your application. -->
 
-- Tracing statements. 
-    + Again, this is part of `print()` debugging, but these messages indicate
-    progress - "got into function x", "returning from function y", and so on. 
+<!-- - Tracing statements.  -->
+<!--     + Again, this is part of `print()` debugging, but these messages indicate -->
+<!--     progress - "got into function x", "returning from function y", and so on.  -->
 
-- Rubber ducking. 
-    + Have you ever tried to explain a problem you're having to someone else,
-    only to have a moment of insight and "oh, never mind"? Hopefully so, 
-    because this is exactly how your pair programming sessions should be going! 
-    Rubber ducking outsources the problem to a nonjudgmental entity, such as a
-    rubber duck. You simply explain, in terms simple enough for your rubber duck
-    to understand, exactly what your code does, line by line, until you've found
-    the problem. [A more thorough explanation can be found at gitduck.com](https://gitduck.com/blog/improve-how-to-code-with-rubber-duck-debugging/). 
+<!-- - Rubber ducking.  -->
+<!--     + Have you ever tried to explain a problem you're having to someone else, -->
+<!--     only to have a moment of insight and "oh, never mind"? Hopefully so,  -->
+<!--     because this is exactly how your pair programming sessions should be going!  -->
+<!--     Rubber ducking outsources the problem to a nonjudgmental entity, such as a -->
+<!--     rubber duck. You simply explain, in terms simple enough for your rubber duck -->
+<!--     to understand, exactly what your code does, line by line, until you've found -->
+<!--     the problem. [A more thorough explanation can be found at gitduck.com](https://gitduck.com/blog/improve-how-to-code-with-rubber-duck-debugging/).  -->
 
-![You may find it helpful to procure a rubber duck expert for each language you work in. I use color-your-own rubber ducks to endow my ducks with certain language expertise. Other people use plain rubber ducks and give them capes.](images/week-7/rubber_duck_cape.png){width="50%" fig-alt="An image of a rubber duck with a red cape saying 'java'."}
+<!-- ![You may find it helpful to procure a rubber duck expert for each language you work in. I use color-your-own rubber ducks to endow my ducks with certain language expertise. Other people use plain rubber ducks and give them capes.](images/week-7/rubber_duck_cape.png){width="50%" fig-alt="An image of a rubber duck with a red cape saying 'java'."} -->
 
 
-Do not be surprised if, in the process of debugging, you encounter new bugs. 
-This is a problem that's well-known it has an [xkcd comic](https://xkcd.com/1739/). 
-At some point, getting up and going for a walk may help. Redesigning your code
-to be more modular and more organized is also a good idea. 
+<!-- Do not be surprised if, in the process of debugging, you encounter new bugs.  -->
+<!-- This is a problem that's well-known it has an [xkcd comic](https://xkcd.com/1739/).  -->
+<!-- At some point, getting up and going for a walk may help. Redesigning your code -->
+<!-- to be more modular and more organized is also a good idea.  -->
 
 ::: {.callout-note collapse=TRUE}
 # Making Minimal Reproducible Examples 
 
 These section is included as FYI, but you don't have to read it just now. 
-It;s important, but not urgent, if that makes sense.
+It's important, but not urgent, if that makes sense.
 
 If all else has failed, and you can't figure out what is causing your error,
 it's probably time to ask for help. If you have a friend or buddy that knows the
-language you're working in, by all means ask for help sooner - use them as a 
-rubber duck if you have to. But when you ask for help online, often you're
-asking people who are much more knowledgeable about the topic - members of R
-core browse StackOverflow and may drop in and help you out. Under those
-circumstances, it's better to make the task of helping you as easy as possible
-because it shows respect for their time. The same thing goes for your
-supervisors and professors. 🙃
+language you're working in, by all means ask for help sooner. But when you ask
+for help online, often you're asking people who are much more knowledgeable
+about the topic - members of R core browse StackOverflow and may drop in and
+help you out. Under those circumstances, it's better to make the task of 
+helping you as easy as possible because it shows respect for their time. The
+same thing goes for your supervisors and professors. 🙃
 
 ![The reprex R package will help you make a reproducible example (drawing by Allison Horst)](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/reprex.png){fig-alt="A side-by-side comparison of a monster providing problematic code to tech support when it is on a bunch of crumpled, disorganized papers, with both monsters looking sad and very stressed (left), compared to victorious looking monsters celebrating when code is provided in a nice box with a bow labeled 'reprex'. Title text reads 'reprex: make reproducible examples. Help them help everyone!'"}
 
@@ -921,7 +928,7 @@ Designing functions is somewhat subjective, but there are a few principles that 
 
 ### ✅  **Check-in 7.1: Writing Vector Functions**
 
-**Question 11** -- Which of the tidyverse style guidelines does this function
+**Question 12** -- Which of the tidyverse style guidelines does this function
 violate?
 
 ```{r}
@@ -939,6 +946,7 @@ b) Arguments should be nouns
 c) Body of the function should be indented 2 spaces
 d) Closing `}` should be on its own line
 e) Spaces around `=` signs
+f) There shouldn't be a return statement
 
 
 <!-- ### Dividing Problems into Smaller Parts -->

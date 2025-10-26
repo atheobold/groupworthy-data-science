@@ -1,5 +1,5 @@
 ---
-title: "Lab 9: Simulation Exploration"
+title: "Lab 8: Searching for Efficiency"
 author: "Instructions"
 format: 
   html:
@@ -13,202 +13,256 @@ execute:
   warning: false
 ---
 
-```{r, setup}
+```{r}
+#| label: packages
+
 library(tidyverse)
-library(broom)
 ```
 
-[Download .qmd starter file](../../student-versions/labs/lab9-simulation.qmd)
+[Download .qmd starter file](../../student-versions/labs/lab8-iteration.qmd)
 
-## Random Babies Simulation
+## The Data
 
-Perhaps you have seen the [Random Babies applet](https://www.rossmanchance.com/applets/2021/randombabies/RandomBabies.html)? 
-Suppose one night at a hospital some number of babies are born. The hospital is not very
-organized and looses track of which baby belongs to each parent(s), so they 
-decide to return the babies to parents *at random*. Here, we are interested in the
-number of babies that are correctly returned to their respective parent(s).
+For this week's lab, we will be **revisiting questions from previous lab assignments**, 
+with the purpose of using functions from the `map()` family to 
+iterate over certain tasks. To do this, we will need to load in the data from 
+Lab 2, Lab 3, and Lab 7.
 
-**1. Simulate the distribution of the number of babies that are correctly returned if there were four babies born in a night at our disorganized hospital. Use 10,000 simulations. Make sure to add a line of code to make your simulation reproducible every time you run it.**
+Edit the code below to read in the appropriate datsets that you should have saved from the previous labs!
+
+
+
+```{r}
+#| label: read-in-old-data
+
+# Data from Lab 2
+surveys <- read_csv("../lab2/surveys.csv")
+
+# Data from Lab 3
+evals <- read_csv("../lab3/input/teacher_evals.csv") |> 
+  rename(sex = gender)
+
+# Data from Lab 7
+fish <- read_csv("../lab7/BlackfootFish.csv")
+```
+
+
+## Formatting Tables
+
+In this lab, we will also practice making nice, report worthy, tables!
+
+
+I would recommend you think of tables no different from the visualizations
+you've been making. We want **all** aspects of our tables to be clear to the
+reader, so the comparisons we want them to make are straightforward. You should be thinking
+about:
+
+- Column headers
+- Grouping headers
+- Order of columns
+- Order of rows
+- Number of decimals included for numeric entries
+- etc.
+
+Tables are
+also a great avenue to display creativity! In fact, there is a yearly [RStudio table contest](https://www.rstudio.com/blog/rstudio-table-contest-2022/), and [here](https://community.rstudio.com/c/table-gallery/64) is a gallery of the
+award winning tables!
+
+There are many packages for
+generating tables but I recommend either `kable()` function from the **knitr** package or `gt()` function from the **gt** package and their add-ons.
+
+**For simple tables**
+
+-   the `kable()` function from the **knitr** package for *simple* tables
+-   the `gt()` function from the **gt** package
+
+**For more sophisticated tables**
+
+-   styling functions from the **kableExtra** package (e.g., `kable_styling()`, `kable_classic()`)
+-   add-on functions from the **gt** package (e.g., `cols_label()`, `tab_header()`, `fmt_percent()`)
+
+::: callout-warning
+
+Quarto doesn't play nice with some options for formatting HTML tables in other packages. 
+
+To make sure that your tables render as expected, we need to specify `html-table-processing: none` in the YAML header. You will notice that I already included that in this lab.
+
+I also recommend using the **Source Editor** for this lab.
+:::
+
+
+
+## Lab 2
+
+First up, we're going to revisit Question 2 from Lab 2. This question asked:
+
+> What are the data types of the variables in this dataset?
+
+**1. Using `map_chr()`, produce a table of the data type of each variable in the `surveys` dataset.** Specifically, the table should have two columns `var_name` and `type` with a row for each variable and be displayed using `kable()`.
 
 ::: callout-tip
-First, write a function to accomplish one simulation (i.e. one night), given a number of babies (`n_babies`) that were born in a hospital on a given night . 
-
-Then use `map_int()` to run 10,000 simulations assuming 4 babies were born. 
-
-Keep in mind that your function needs to output a single number (not data frame) 
-for it to be compatible with `map_int()`!
+You will want to check out the `enframe()` function to help with this task.
 :::
 
 ```{r}
-#| label: function-for-random-babies
+#| label: map-data-types-of-surveys
 
-randomBabies <- function(n_babies){
-  ...
-}
+# Q1 code
 ```
 
-```{r}
-#| label: full-simulation-for-random-babies
 
-results <- map_int(.x = 1:10000,
-                   .f = 
-                  )
-```
-
-**2. Create a table displaying the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).** 
-
-::: callout-tip
-The output of your `map_int()` is a vector, but to make a nice table (and plot) 
-you need this to be a data frame! Luckily, the `enframe()` function does just 
-that--it converts a vector to a data frame. 
-:::
+**2. Format the table nicely!** Think about the order of the rows to make the information easy to take in. Using either `kable()` and functions in the **kableExtra** package or `gt()` and functions from the **gt** package to make a table that includes a caption or header, and nice, bolded column names. **Note that you should assign the column names when creating the table, not by renaming columns in the dataset itself because we hate variable names with spaces in them!**
 
 ```{r}
-#| label: table-for-random-babies
+#| label: formatted-var-tab
 
 # Q2 code
 ```
 
-**3. Now create a barplot showing the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).** Don't forget a title and appropriate axis labels.
 
+
+## Lab 3
+
+Now, were on to Lab 3 where we will revisit two questions. 
+
+In the original version of Lab 3, Question 4 asked you to:
+
+> Change data types in whichever way you see fit (e.g., is the instructor ID
+> really a numeric data type?)
+
+**3. Using `map_at()` or `map_if()`, convert the `course_id`, `weekday`, `academic_degree`, `time_of_day`, and `sex` columns to factors. In other words, convert all character variables into factors. DO NOT PRINT OUT YOUR NEW DATA FRAME, just show the code.** 
+Hint: You will need to use `bind_cols()` to transform the 
+list output back into a data frame. 
 
 ```{r}
-#| label: visualization-for-random-babies
+#| label: map-to-mutate-columns
 
 # Q3 code
 ```
 
+Next up, we're going revisit Question 7 which asked:
 
+> What are the demographics of the instructors in this study? Investigate the
+> variables `academic_degree`, `seniority`, and `sex` and summarize your
+> findings in ~3 complete sentences.
 
-## Simulating Coverage
+Many people created **multiple** tables of counts for each of these
+demographics, but in this exercise we are going to create **one** table with 
+every demographic.
 
-Many students struggle with the definition of a confidence interval when first learning the concept. The interpretation that a lot of textbooks include is somthing like "if we were to repeat the study many many times, 95% of the confidence intervals would contain the true population parameter."
+**4. Recreate the (mainly unformatted) table below using one pipeline. It is okay if the rows are not in the same order in your table.** 
 
-We are going to implement a simulation that illustrates this statistical concept using confidence intervals for the slope parameter in a linear regression model.
+![](images/unformatted-demographics.png){width=50%}
 
-Let's break it down into a couple of steps.
+:::callout-note
+Repeat the data cleaning steps that we did in Lab 3 before question 7 to recreate this exact table. And remember that we needed to first only keep one row per instructor.
+:::
 
+:::callout-tip
 
-As a reminder, the typical population model that we assume for a linear regression is:
+There are two main ways (that I have thought of) to approach this efficiently:
 
-$$Y = \beta_0 + \beta_1 X + \varepsilon$$
-Where $\beta_0$ and $\beta_1$ are the population intercept and slope parameters and and $\varepsilon \sim N(0, \sigma^2)$ is random noise that is normally distributed with mean 0 and variance $\sigma^2$.
+1. Using the `map_at()` funtion. The `list_rbind()` function and the `names_to` argument in that will be helpful!
 
+2. Using both `pivot_wider()` and `pivot_longer()`.
 
-We will design a simulation that uses this "data generating model."
+It is easiest to start with creating a dataframe that has the `variable`, `level`, and `count` columns and then calculate `prop`, the proportion of professors that are in each group.
 
-**4. Fill in the code below to generate a synthetic dataset with 100 observations. We will assume that the explanatory variable $X$ is uniformly distributed from 0 to 1 and that $\sigma^2$ = 1. The synthetic data should be a dataframe with 100 rows and two columns: `x` and `y`.**
-
-```{r}
-#| label: data-generation
-
-# define slope and intercept parameters
-intercept = 2
-slope = 1
-
-# generate x vector
-
-
-# generate noise `ep` vector
-
-
-# generate outcome from population model
-y = intercept + x*slope + ep
-
-
-# create an "observed data" dataframe with only the x and y vectors
-
+Final tip (not required) - I used the following options in `kable_styling()` to output this table:
 ```
+  kable_styling(full_width = F,
+                bootstrap_options = "striped")
+```                
 
-**5. Fit a simple linear regression model of the outcome `y` on `x`. Use `tidy()` from the `broom` package to extract a dataframe from the `lm()` output that includes the slope estimate and a 95% confidence interval for the slope estimate.**
-
-```{r}
-#| label: test-linear-model
-
-# Q5 code
-```
+:::
 
 
-**6. Check whether the true population slope is inside of the estimated 95% confidence interval for that simulated dataset. Specifically, *add* a variable called `cover` to the dataframe of estimates you created in the last question (Q5) that is `1` if the population slope is in the interval and `0` if not.**  
 
-::: callout-tip
-As a reminder, we set `slope = 1` in the data generation (Q4) so the true population slope is $\beta_1 = 1$.
+
+
+::: {.callout-note}
+# Same classification as Lab 3 
+
+I'm using the `sen_level` classification from Lab 3
+
+- `"junior"` = `seniority` is 4 or less (inclusive)
+- `"senior"` = `seniority` is between 4 and 8 (inclusive)
+- `"very senior"` = `seniority` is greater than 8.
 :::
 
 ```{r}
-#| label: check-coverage
+#| label: summary-table
+
+# Q4 code
+```
+
+**5. Now turn that into a very nice table, like one of the examples below using `kable()` and `kableExtra` or `gt`.** 
+
+::: {layout-ncol=2}
+
+![Example 1](images/formatted-demo-1.png){width=80%}
+
+![Example 2](images/formatted-demo-2.png)
+:::
+
+
+
+Your table does not need to copy one of these exactly but it should include:
+
+- Some way of clearly indicating the three variable types as row groups
+- Giving nice column names
+- Using a column header that spans the count and % columns 
+- Nicely formatting the % column
+- Giving it a title or a caption
+
+
+```{r}
+#| label: fancy-demo-table
+
+#Q5 code
+```
+
+## Lab 5
+
+In lab 5 we got to solve a mystery using a bunch of different related data sets. Remember how we got the data?
+
+> This code chunk will read in all of the tables of data for you. Don't modify or remove this!
+
+This was also a mystery at the time! The code chunk given loaded an `.Rdata` file that included all of the data frames. However, your data may not always be saved in a nice `.Rdata` file~ Let's write a more general function to read in lots of datasets ourselves!
+
+**6. Write a function whose only argument is a directory that will read in all .csv files in that directory and return a *list* of the data frames.**
+
+Specifically your function should:
+
+  1. Find the names of all .csv files in that directory (the `list.files()` function will be helpful).
+  2. Use `map()` to efficiently read all of the files into R and save them in a **list**
+  3. Rename the elements of the list with the names of each file 
+  4. Return the list
+
+**Test your function on a directory that has at least two .csv files in it and show us that it works! DO NOT print full datasets. Show us that the output is a list and that the names of the list are file names. Your function should be able to handle if a directory includes files that aren't only csv's**
+
+```{r}
+#| label: data-read-fun
 
 # Q6 code
 ```
 
-**7. Now put this all together into a function called `mycifun`! Run the check provided to ensure that it works correctly**
-
-- The function should have three required arguments: `beta0`, `beta1`, and `n` (the number of observations in the simulated data). 
-- The function should complete the steps in Q4-6 given these arguments:
-  
-  1. generate one synthetic dataset based on the data generating model as above
-  2. fit a linear regression model
-  3. check that the **population slope** is contained in the estimated 95% confidence interval for the sample slope
-  
-- The output of the function should be a dataframe/tibble with one row and four columns: the slope estimate, lower bound of the CI, upper bound of the CI, and whether the population slope is within the CI.
-
-```{r}
-#| label: ci-sim-function
-
-# Q7 code
-```
-
-```{r}
-#| label: small-test-ci-fun
-
-mycifun(beta0 = 1, beta1 = 2, n = 1000)
-```
-
-
-**8a. Now run this simulation  1,000 times using `map_dfr()` and the function you wrote (`mycifun()`). Generate data with $\beta_0 = 3$, $\beta_1 = .5$ and $n = 100$. Make sure to add a line of code to make your simulation reproducible every time you run it.** 
-
-```{r}
-#| label: run-ci-sim
-
-
-ci_dat <- map_dfr(.x = 1:1000,
-                  .f = 
-                    )
-```
-
-**8b. What does one row in the resulting `ci_dat` represent?**
-
-
-
-**8c. What is your simulated coverage rate? In otherwords, for what proportion of the iterations was the population slope within the estimated 95% confidence interval? Write your answer as a sentence in Markdown using inline code!**
-
-```{r}
-#| label: sim-cov
-
-
-```
-
-
-**9. Create a visualization to illustrate the coverage rate.**
-
-You can create any visualization that effectively illustrates the concept. I included a plot below with my idea of an effective plot to illustrate the concept of coverage. Actually, a professor showed me a plot like this in undergrad and I have always remembered it! 
-
-
-
-:::callout-tip
-You do not need to exactly copy the plot, even if you choose to do something like it.  A couple of hints to get you started on making a plot like this one:
-
-- Check out `geom_errorbar()`
-- Check out `geom_vline()` for the line indicating the true population slope
-- See [this slide](https://atheobold.github.io/groupworthy-data-science/slides/week-8/iteration-part-2.html#/could-you-remove-your-legend-1) for code from Dr. Theobold to include colors in a title rather than a legend.
-- I took a random sample of 100 simulations to make it easier to look at.
+:::callout-note
+For example, if I have a directory `data/` that has `surveys.csv`, `teacher_evals.csv`, and `bCH_murder_data.Rdata` in it, the function should return a list with two elements - the surveys and teacher_evals data frames. The names of the list elements should be `"surveys"` and `"teacher_evals"`.
 :::
 
-![Example Plot](ci_plot.png)
+## Lab 7
+
+For our last problem, we will revisit a question from the most recent lab. 
+Question 1 asked you to use `across()` to make a table which summarized: 
+
+> What variable(s) have missing values present?  
+> How many observations have missing values?
+
+**7. Using `map_int()`, produce a nicely formatted table of the number of missing values for each variable in the `fish` data.** 
 
 ```{r}
-#| label: cov-plot
+#| label: map-missing-values-of-fish
 
-# Q9 code
+#Q7 code
 ```
-

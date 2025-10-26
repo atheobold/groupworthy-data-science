@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.22">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Instructions">
 
-<title>Lab 9: Simulation Exploration – Introduction to Statistical Computing in R</title>
+<title>Lab 8: Searching for Efficiency – Introduction to Statistical Computing in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -68,14 +68,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../../images/stat-331-hex.png" rel="icon" type="image/png">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../site_libs/bootstrap/bootstrap-9d3871c3a33628a85db1522934fdc5ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-be11573b6374e633292ee320d3d6b571.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -104,35 +105,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -143,6 +115,8 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Introduction to Statistical Computing in R</span>
     </a>
@@ -212,8 +186,12 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#random-babies-simulation" id="toc-random-babies-simulation" class="nav-link active" data-scroll-target="#random-babies-simulation">Random Babies Simulation</a></li>
-  <li><a href="#simulating-coverage" id="toc-simulating-coverage" class="nav-link" data-scroll-target="#simulating-coverage">Simulating Coverage</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data">The Data</a></li>
+  <li><a href="#formatting-tables" id="toc-formatting-tables" class="nav-link" data-scroll-target="#formatting-tables">Formatting Tables</a></li>
+  <li><a href="#lab-2" id="toc-lab-2" class="nav-link" data-scroll-target="#lab-2">Lab 2</a></li>
+  <li><a href="#lab-3" id="toc-lab-3" class="nav-link" data-scroll-target="#lab-3">Lab 3</a></li>
+  <li><a href="#lab-5" id="toc-lab-5" class="nav-link" data-scroll-target="#lab-5">Lab 5</a></li>
+  <li><a href="#lab-7" id="toc-lab-7" class="nav-link" data-scroll-target="#lab-7">Lab 7</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -222,7 +200,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 9: Simulation Exploration</h1>
+<h1 class="title">Lab 8: Searching for Efficiency</h1>
 </div>
 
 
@@ -246,92 +224,72 @@ window.Quarto = {
 
 
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><a href="../../student-versions/labs/lab9-simulation.qmd">Download .qmd starter file</a></p>
-<section id="random-babies-simulation" class="level2">
-<h2 class="anchored" data-anchor-id="random-babies-simulation">Random Babies Simulation</h2>
-<p>Perhaps you have seen the <a href="https://www.rossmanchance.com/applets/2021/randombabies/RandomBabies.html">Random Babies applet</a>? Suppose one night at a hospital some number of babies are born. The hospital is not very organized and looses track of which baby belongs to each parent(s), so they decide to return the babies to parents <em>at random</em>. Here, we are interested in the number of babies that are correctly returned to their respective parent(s).</p>
-<p><strong>1. Simulate the distribution of the number of babies that are correctly returned if there were four babies born in a night at our disorganized hospital. Use 10,000 simulations. Make sure to add a line of code to make your simulation reproducible every time you run it.</strong></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>First, write a function to accomplish one simulation (i.e.&nbsp;one night), given a number of babies (<code>n_babies</code>) that were born in a hospital on a given night .</p>
-<p>Then use <code>map_int()</code> to run 10,000 simulations assuming 4 babies were born.</p>
-<p>Keep in mind that your function needs to output a single number (not data frame) for it to be compatible with <code>map_int()</code>!</p>
-</div>
-</div>
+<p><a href="../../student-versions/labs/lab8-iteration.qmd">Download .qmd starter file</a></p>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
+<p>For this week’s lab, we will be <strong>revisiting questions from previous lab assignments</strong>, with the purpose of using functions from the <code>map()</code> family to iterate over certain tasks. To do this, we will need to load in the data from Lab 2, Lab 3, and Lab 7.</p>
+<p>Edit the code below to read in the appropriate datsets that you should have saved from the previous labs!</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>randomBabies <span class="ot">&lt;-</span> <span class="cf">function</span>(n_babies){</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  ...</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">map_int</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.f =</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>2. Create a table displaying the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).</strong></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The output of your <code>map_int()</code> is a vector, but to make a nice table (and plot) you need this to be a data frame! Luckily, the <code>enframe()</code> function does just that–it converts a vector to a data frame.</p>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q2 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>3. Now create a barplot showing the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).</strong> Don’t forget a title and appropriate axis labels.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data from Lab 2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../lab2/surveys.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Data from Lab 3</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>evals <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../lab3/input/teacher_evals.csv"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">sex =</span> gender)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Data from Lab 7</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>fish <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../lab7/BlackfootFish.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
-<section id="simulating-coverage" class="level2">
-<h2 class="anchored" data-anchor-id="simulating-coverage">Simulating Coverage</h2>
-<p>Many students struggle with the definition of a confidence interval when first learning the concept. The interpretation that a lot of textbooks include is somthing like “if we were to repeat the study many many times, 95% of the confidence intervals would contain the true population parameter.”</p>
-<p>We are going to implement a simulation that illustrates this statistical concept using confidence intervals for the slope parameter in a linear regression model.</p>
-<p>Let’s break it down into a couple of steps.</p>
-<p>As a reminder, the typical population model that we assume for a linear regression is:</p>
-<p><span class="math display">\[Y = \beta_0 + \beta_1 X + \varepsilon\]</span> Where <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are the population intercept and slope parameters and and <span class="math inline">\(\varepsilon \sim N(0, \sigma^2)\)</span> is random noise that is normally distributed with mean 0 and variance <span class="math inline">\(\sigma^2\)</span>.</p>
-<p>We will design a simulation that uses this “data generating model.”</p>
-<p><strong>4. Fill in the code below to generate a synthetic dataset with 100 observations. We will assume that the explanatory variable <span class="math inline">\(X\)</span> is uniformly distributed from 0 to 1 and that <span class="math inline">\(\sigma^2\)</span> = 1. The synthetic data should be a dataframe with 100 rows and two columns: <code>x</code> and <code>y</code>.</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define slope and intercept parameters</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># generate x vector</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># generate noise `ep` vector</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># generate outcome from population model</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> intercept <span class="sc">+</span> x<span class="sc">*</span>slope <span class="sc">+</span> ep</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># create an "observed data" dataframe with only the x and y vectors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="formatting-tables" class="level2">
+<h2 class="anchored" data-anchor-id="formatting-tables">Formatting Tables</h2>
+<p>In this lab, we will also practice making nice, report worthy, tables!</p>
+<p>I would recommend you think of tables no different from the visualizations you’ve been making. We want <strong>all</strong> aspects of our tables to be clear to the reader, so the comparisons we want them to make are straightforward. You should be thinking about:</p>
+<ul>
+<li>Column headers</li>
+<li>Grouping headers</li>
+<li>Order of columns</li>
+<li>Order of rows</li>
+<li>Number of decimals included for numeric entries</li>
+<li>etc.</li>
+</ul>
+<p>Tables are also a great avenue to display creativity! In fact, there is a yearly <a href="https://www.rstudio.com/blog/rstudio-table-contest-2022/">RStudio table contest</a>, and <a href="https://community.rstudio.com/c/table-gallery/64">here</a> is a gallery of the award winning tables!</p>
+<p>There are many packages for generating tables but I recommend either <code>kable()</code> function from the <strong>knitr</strong> package or <code>gt()</code> function from the <strong>gt</strong> package and their add-ons.</p>
+<p><strong>For simple tables</strong></p>
+<ul>
+<li>the <code>kable()</code> function from the <strong>knitr</strong> package for <em>simple</em> tables</li>
+<li>the <code>gt()</code> function from the <strong>gt</strong> package</li>
+</ul>
+<p><strong>For more sophisticated tables</strong></p>
+<ul>
+<li>styling functions from the <strong>kableExtra</strong> package (e.g., <code>kable_styling()</code>, <code>kable_classic()</code>)</li>
+<li>add-on functions from the <strong>gt</strong> package (e.g., <code>cols_label()</code>, <code>tab_header()</code>, <code>fmt_percent()</code>)</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p><strong>5. Fit a simple linear regression model of the outcome <code>y</code> on <code>x</code>. Use <code>tidy()</code> from the <code>broom</code> package to extract a dataframe from the <code>lm()</code> output that includes the slope estimate and a 95% confidence interval for the slope estimate.</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q5 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Warning
 </div>
-<p><strong>6. Check whether the true population slope is inside of the estimated 95% confidence interval for that simulated dataset. Specifically, <em>add</em> a variable called <code>cover</code> to the dataframe of estimates you created in the last question (Q5) that is <code>1</code> if the population slope is in the interval and <code>0</code> if not.</strong></p>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quarto doesn’t play nice with some options for formatting HTML tables in other packages.</p>
+<p>To make sure that your tables render as expected, we need to specify <code>html-table-processing: none</code> in the YAML header. You will notice that I already included that in this lab.</p>
+<p>I also recommend using the <strong>Source Editor</strong> for this lab.</p>
+</div>
+</div>
+</section>
+<section id="lab-2" class="level2">
+<h2 class="anchored" data-anchor-id="lab-2">Lab 2</h2>
+<p>First up, we’re going to revisit Question 2 from Lab 2. This question asked:</p>
+<blockquote class="blockquote">
+<p>What are the data types of the variables in this dataset?</p>
+</blockquote>
+<p><strong>1. Using <code>map_chr()</code>, produce a table of the data type of each variable in the <code>surveys</code> dataset.</strong> Specifically, the table should have two columns <code>var_name</code> and <code>type</code> with a row for each variable and be displayed using <code>kable()</code>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -342,66 +300,166 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>As a reminder, we set <code>slope = 1</code> in the data generation (Q4) so the true population slope is <span class="math inline">\(\beta_1 = 1\)</span>.</p>
+<p>You will want to check out the <code>enframe()</code> function to help with this task.</p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q6 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q1 code</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>7. Now put this all together into a function called <code>mycifun</code>! Run the check provided to ensure that it works correctly</strong></p>
-<ul>
-<li><p>The function should have three required arguments: <code>beta0</code>, <code>beta1</code>, and <code>n</code> (the number of observations in the simulated data).</p></li>
-<li><p>The function should complete the steps in Q4-6 given these arguments:</p>
+<p><strong>2. Format the table nicely!</strong> Think about the order of the rows to make the information easy to take in. Using either <code>kable()</code> and functions in the <strong>kableExtra</strong> package or <code>gt()</code> and functions from the <strong>gt</strong> package to make a table that includes a caption or header, and nice, bolded column names. <strong>Note that you should assign the column names when creating the table, not by renaming columns in the dataset itself because we hate variable names with spaces in them!</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q2 code</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="lab-3" class="level2">
+<h2 class="anchored" data-anchor-id="lab-3">Lab 3</h2>
+<p>Now, were on to Lab 3 where we will revisit two questions.</p>
+<p>In the original version of Lab 3, Question 4 asked you to:</p>
+<blockquote class="blockquote">
+<p>Change data types in whichever way you see fit (e.g., is the instructor ID really a numeric data type?)</p>
+</blockquote>
+<p><strong>3. Using <code>map_at()</code> or <code>map_if()</code>, convert the <code>course_id</code>, <code>weekday</code>, <code>academic_degree</code>, <code>time_of_day</code>, and <code>sex</code> columns to factors. In other words, convert all character variables into factors. DO NOT PRINT OUT YOUR NEW DATA FRAME, just show the code.</strong> Hint: You will need to use <code>bind_cols()</code> to transform the list output back into a data frame.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3 code</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Next up, we’re going revisit Question 7 which asked:</p>
+<blockquote class="blockquote">
+<p>What are the demographics of the instructors in this study? Investigate the variables <code>academic_degree</code>, <code>seniority</code>, and <code>sex</code> and summarize your findings in ~3 complete sentences.</p>
+</blockquote>
+<p>Many people created <strong>multiple</strong> tables of counts for each of these demographics, but in this exercise we are going to create <strong>one</strong> table with every demographic.</p>
+<p><strong>4. Recreate the (mainly unformatted) table below using one pipeline. It is okay if the rows are not in the same order in your table.</strong></p>
+<p><img src="images/unformatted-demographics.png" class="img-fluid" style="width:50.0%"></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Repeat the data cleaning steps that we did in Lab 3 before question 7 to recreate this exact table. And remember that we needed to first only keep one row per instructor.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There are two main ways (that I have thought of) to approach this efficiently:</p>
 <ol type="1">
-<li>generate one synthetic dataset based on the data generating model as above</li>
-<li>fit a linear regression model</li>
-<li>check that the <strong>population slope</strong> is contained in the estimated 95% confidence interval for the sample slope</li>
-</ol></li>
-<li><p>The output of the function should be a dataframe/tibble with one row and four columns: the slope estimate, lower bound of the CI, upper bound of the CI, and whether the population slope is within the CI.</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q7 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li><p>Using the <code>map_at()</code> funtion. The <code>list_rbind()</code> function and the <code>names_to</code> argument in that will be helpful!</p></li>
+<li><p>Using both <code>pivot_wider()</code> and <code>pivot_longer()</code>.</p></li>
+</ol>
+<p>It is easiest to start with creating a dataframe that has the <code>variable</code>, <code>level</code>, and <code>count</code> columns and then calculate <code>prop</code>, the proportion of professors that are in each group.</p>
+<p>Final tip (not required) - I used the following options in <code>kable_styling()</code> to output this table:</p>
+<pre><code>  kable_styling(full_width = F,
+                bootstrap_options = "striped")</code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mycifun</span>(<span class="at">beta0 =</span> <span class="dv">1</span>, <span class="at">beta1 =</span> <span class="dv">2</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>8a. Now run this simulation 1,000 times using <code>map_dfr()</code> and the function you wrote (<code>mycifun()</code>). Generate data with <span class="math inline">\(\beta_0 = 3\)</span>, <span class="math inline">\(\beta_1 = .5\)</span> and <span class="math inline">\(n = 100\)</span>. Make sure to add a line of code to make your simulation reproducible every time you run it.</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ci_dat <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.f =</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>8b. What does one row in the resulting <code>ci_dat</code> represent?</strong></p>
-<p><strong>8c. What is your simulated coverage rate? In otherwords, for what proportion of the iterations was the population slope within the estimated 95% confidence interval? Write your answer as a sentence in Markdown using inline code!</strong></p>
-<p><strong>9. Create a visualization to illustrate the coverage rate.</strong></p>
-<p>You can create any visualization that effectively illustrates the concept. I included a plot below with my idea of an effective plot to illustrate the concept of coverage. Actually, a professor showed me a plot like this in undergrad and I have always remembered it!</p>
-<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Note</span>Same classification as Lab 3
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>You do not need to exactly copy the plot, even if you choose to do something like it. A couple of hints to get you started on making a plot like this one:</p>
+<p>I’m using the <code>sen_level</code> classification from Lab 3</p>
 <ul>
-<li>Check out <code>geom_errorbar()</code></li>
-<li>Check out <code>geom_vline()</code> for the line indicating the true population slope</li>
-<li>See <a href="https://atheobold.github.io/groupworthy-data-science/slides/week-8/iteration-part-2.html#/could-you-remove-your-legend-1">this slide</a> for code from Dr.&nbsp;Theobold to include colors in a title rather than a legend.</li>
-<li>I took a random sample of 100 simulations to make it easier to look at.</li>
+<li><code>"junior"</code> = <code>seniority</code> is 4 or less (inclusive)</li>
+<li><code>"senior"</code> = <code>seniority</code> is between 4 and 8 (inclusive)</li>
+<li><code>"very senior"</code> = <code>seniority</code> is greater than 8.</li>
 </ul>
 </div>
 </div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q4 code</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>5. Now turn that into a very nice table, like one of the examples below using <code>kable()</code> and <code>kableExtra</code> or <code>gt</code>.</strong></p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ci_plot.png" class="img-fluid figure-img"></p>
-<figcaption>Example Plot</figcaption>
+<p><img src="images/formatted-demo-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Example 1</figcaption>
 </figure>
 </div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/formatted-demo-2.png" class="img-fluid figure-img"></p>
+<figcaption>Example 2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>Your table does not need to copy one of these exactly but it should include:</p>
+<ul>
+<li>Some way of clearly indicating the three variable types as row groups</li>
+<li>Giving nice column names</li>
+<li>Using a column header that spans the count and % columns</li>
+<li>Nicely formatting the % column</li>
+<li>Giving it a title or a caption</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q9 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Q5 code</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="lab-5" class="level2">
+<h2 class="anchored" data-anchor-id="lab-5">Lab 5</h2>
+<p>In lab 5 we got to solve a mystery using a bunch of different related data sets. Remember how we got the data?</p>
+<blockquote class="blockquote">
+<p>This code chunk will read in all of the tables of data for you. Don’t modify or remove this!</p>
+</blockquote>
+<p>This was also a mystery at the time! The code chunk given loaded an <code>.Rdata</code> file that included all of the data frames. However, your data may not always be saved in a nice <code>.Rdata</code> file~ Let’s write a more general function to read in lots of datasets ourselves!</p>
+<p><strong>6. Write a function whose only argument is a directory that will read in all .csv files in that directory and return a <em>list</em> of the data frames.</strong></p>
+<p>Specifically your function should:</p>
+<ol type="1">
+<li>Find the names of all .csv files in that directory (the <code>list.files()</code> function will be helpful).</li>
+<li>Use <code>map()</code> to efficiently read all of the files into R and save them in a <strong>list</strong></li>
+<li>Rename the elements of the list with the names of each file</li>
+<li>Return the list</li>
+</ol>
+<p><strong>Test your function on a directory that has at least two .csv files in it and show us that it works! DO NOT print full datasets. Show us that the output is a list and that the names of the list are file names. Your function should be able to handle if a directory includes files that aren’t only csv’s</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q6 code</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For example, if I have a directory <code>data/</code> that has <code>surveys.csv</code>, <code>teacher_evals.csv</code>, and <code>bCH_murder_data.Rdata</code> in it, the function should return a list with two elements - the surveys and teacher_evals data frames. The names of the list elements should be <code>"surveys"</code> and <code>"teacher_evals"</code>.</p>
+</div>
+</div>
+</section>
+<section id="lab-7" class="level2">
+<h2 class="anchored" data-anchor-id="lab-7">Lab 7</h2>
+<p>For our last problem, we will revisit a question from the most recent lab. Question 1 asked you to use <code>across()</code> to make a table which summarized:</p>
+<blockquote class="blockquote">
+<p>What variable(s) have missing values present?<br>
+How many observations have missing values?</p>
+</blockquote>
+<p><strong>7. Using <code>map_int()</code>, produce a nicely formatted table of the number of missing values for each variable in the <code>fish</code> data.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Q7 code</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 
 

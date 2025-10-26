@@ -50,6 +50,13 @@ Mark-recapture is a common method used by ecologists to estimate a population's 
 
 </center>
 
+<!-- Or maybe you just want to make a common pattern easier to remember by giving it a memorable name: -->
+
+<!-- # https://twitter.com/gbganalyst/status/1571619641390252033 -->
+<!-- n_missing <- function(x) { -->
+<!--   sum(is.na(x)) -->
+<!-- }  -->
+
 ## Data Exploration
 
 The measurements of each captured fish were taken by a biologist on a raft in the river. The lack of a laboratory setting opens the door to the possibility of measurement errors.

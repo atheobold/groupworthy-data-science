@@ -131,6 +131,12 @@ nycflights |>
   standardize_time(arr_time)
 ```
 
+<!-- count_prop <- function(df, var, sort = FALSE) { -->
+<!--   df |> -->
+<!--     count({{ var }}, sort = sort) |> -->
+<!--     mutate(prop = n / sum(n)) -->
+<!-- } -->
+
 **Question 3**: For each of the following functions determine if the function uses data-masking or tidy-selection:
 
 -   `distinct()`

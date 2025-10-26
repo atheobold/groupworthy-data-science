@@ -48,3 +48,28 @@ fish |>
 # Code for Q9.
 
 ```
+
+<!-- Another convenient use of pick() is to make a 2d table of counts. Here we count using all the variables in the rows and columns, then use pivot_wider() to rearrange the counts into a grid: -->
+
+<!-- # https://twitter.com/pollicipes/status/1571606508944719876 -->
+<!-- count_wide <- function(data, rows, cols) { -->
+<!--   data |>  -->
+<!--     count(pick(c({{ rows }}, {{ cols }}))) |>  -->
+<!--     pivot_wider( -->
+<!--       names_from = {{ cols }},  -->
+<!--       values_from = n, -->
+<!--       names_sort = TRUE, -->
+<!--       values_fill = 0 -->
+<!--     ) -->
+<!-- } -->
+
+<!-- It’s straightforward to add more variables to the mix. For example, maybe you want an easy way to eyeball whether or not a dataset is linear by overlaying a smooth line and a straight line: -->
+
+<!-- # https://twitter.com/tyler_js_smith/status/1574377116988104704 -->
+<!-- linearity_check <- function(df, x, y) { -->
+<!--   df |> -->
+<!--     ggplot(aes(x = {{ x }}, y = {{ y }})) + -->
+<!--     geom_point() + -->
+<!--     geom_smooth(method = "loess", formula = y ~ x, color = "red", se = FALSE) + -->
+<!--     geom_smooth(method = "lm", formula = y ~ x, color = "blue", se = FALSE)  -->
+<!-- } -->

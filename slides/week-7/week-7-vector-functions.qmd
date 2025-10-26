@@ -815,7 +815,7 @@ group's Colab notebook.
 ## Team Assignments - 9am
 
 ::: {.centered}
-![](images/section-70-seats-pt2.png){width=75%}
+<!-- ![](images/section-70-seats-pt2.png){width=75%} -->
 :::
 
 ::: {.small}
@@ -825,7 +825,7 @@ The partner who has the most siblings starts as the Talker!
 ## Team Assignments - 12pm
 
 ::: {.centered}
-![](images/section-71-seats-pt2.png){width=75%}
+<!-- ![](images/section-71-seats-pt2.png){width=75%} -->
 :::
 
 ::: {.small}

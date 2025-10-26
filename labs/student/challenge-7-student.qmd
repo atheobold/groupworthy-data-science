@@ -36,9 +36,7 @@ $$\text{condition index} = \frac{weight}{length^3} \times 100$$
 
 **If a value falls outside these bounds, you should replace it with an `NA`.**
 
-::: callout-tip
-If you are struggling with the structure of your function, I would suggest reading the [Mutating Function](https://r4ds.hadley.nz/functions.html#mutate-functions) from R4DS.
-:::
+**Hint:** If you are struggling with the structure of your function, I would suggest reading the [Mutating Function](https://r4ds.hadley.nz/functions.html#mutate-functions) from R4DS.
 
 ```{r}
 #| label: function-to-change-impossible-measurements-to-NA
@@ -52,26 +50,15 @@ If you are struggling with the structure of your function, I would suggest readi
 
 ```
 
-**3. Write a function to calculate the condition index of a fish, given inputs of weight and length.**
-
-::: callout-warning
-Consider whether you will write a function that works with vectors (accepting
-vectors as inputs) or a function that works with data frames (accepting a 
-dataset and variable names as inputs)!
-:::
+**4. Write a function to calculate the condition index of a fish, given inputs of weight and length.**
 
 ```{r}
 #| label: condition-function
 
 ```
 
-**4. Make a thoughtful visualization of how fish conditions have varied over the duration of this study.**
+**5. Make a thoughtful visualization of how fish conditions have varied over the duration of this study.** To be thoughtful...you need to use at least a third variable!
 
-::: callout-warning
-### To be thoughtful...
-
-... you need to use at least a third variable!
-:::
 
 ```{r}
 #| label: condition-indices-over-time

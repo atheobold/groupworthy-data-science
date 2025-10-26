@@ -76,8 +76,6 @@ The measurements of each captured fish were taken by a biologist on a raft in th
 + **How many observations have missing values?**
 + **What variable(s) have missing values present?**
 
-<!-- add a pivot to the table! -->
-
 ::: callout-tip
 Hint: use `across()`.
 :::
@@ -96,8 +94,9 @@ Hint: use `across()`.
 
 ```
 
-::: callout-tip
-Hint: use `pivot_wider()`.
+::: callout-important
+Make sure your table has intuitive column names that **describe** their
+contents!
 :::
 
 **3. Create ONE thoughtful visualization that explores the frequency of missing values across the different years, sections, and trips.**

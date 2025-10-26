@@ -353,8 +353,11 @@ ca_childcare <- ca_childcare |>
 ## Amazing Tables
 
 <!-- This table is brought to us by Shafay Syed! I thought their table stood out for -->
+
 <!-- a few reasons. First, they are using `kable()` to get a nicely formatted HTML -->
+
 <!-- table. Second, they gave their columns more intuitive names. Finally, they -->
+
 <!-- organized / arranged the table in an intuitive way.  -->
 
 ```{r}
@@ -391,12 +394,7 @@ knitr::kable(summary_table,
 
 ## Amazing Plots
 
-This plot is brought to us by Marietta Nikolskaya! I was really excited to see 
-someone create a "lollipop" plot, since they are what we (Statisticians) make
-to compare how different a summary statistic is between groups. When plotting 
-statistics like the mean, median, or difference, we generally advocate for this
-type of plot over a barplot since barplots are typically reserved for plots of 
-counts or proportions. 
+This plot is brought to us by Marietta Nikolskaya! I was really excited to see someone create a "lollipop" plot, since they are what we (Statisticians) make to compare how different a summary statistic is between groups. When plotting statistics like the mean, median, or difference, we generally advocate for this type of plot over a barplot since barplots are typically reserved for plots of counts or proportions.
 
 ```{r}
 #| code-fold: true
@@ -430,10 +428,7 @@ ca_childcare_new |>
   theme_minimal()
 ```
 
-This plot is brought to us by Devin Hadley! I thought this plot was really 
-creative in their use of a non-standard geometry (`geom_ribbon()`) to fill the 
-space between the lines. I also appreciated that they moved the legend to the 
-top of the plot to make it easier to see! 
+This plot is brought to us by Devin Hadley! I thought this plot was really creative in their use of a non-standard geometry (`geom_ribbon()`) to fill the space between the lines. I also appreciated that they moved the legend to the top of the plot to make it easier to see!
 
 ```{r}
 #| code-fold: true
@@ -487,8 +482,7 @@ ggplot(summary_table_long, aes(x = study_year, y = median_price, color = care_ty
   )
 ```
 
-This plot is brought to us by Isaiah Woodard! I really appreciated how Isaiah
-took the skills they learned in Challenge 2 and applied them to a new setting!
+This plot is brought to us by Isaiah Woodard! I really appreciated how Isaiah took the skills they learned in Challenge 2 and applied them to a new setting!
 
 ```{r}
 #| code-fold: true
@@ -503,6 +497,45 @@ plot_data <- ca_childcare %>%
   pivot_longer(cols = c(median_mcsa, median_mfccsa),
                names_to = "category",
                values_to = "medians")
+```
+
+In a similar setting, Lucy also took the ideas from Challenge 2 and applied 
+them to make an exciting plot!
+
+```{r}
+#| code-fold: true
+
+# Here is the data wrangling that happened to make this plot!
+
+challenge <- ca_childcare |>
+  rename(CenterBased = mcsa,
+         Family = mfccsa) |>
+  pivot_longer(cols = CenterBased:Family,
+               names_to = "type_of_care",
+               values_to = "Median_price")
+```
+
+
+```{r}
+colors <- c("#6C88C4", "#FF828B")
+
+challenge |>
+ mutate(year = as.factor(study_year)) |>
+  ggplot(mapping = aes(x = year,
+                       y = Median_price,
+                       color = type_of_care)) +
+          
+  theme_bw() +
+  geom_jitter (alpha = 0.5, aes(color = type_of_care), show.legend = FALSE) +
+  geom_boxplot(outliers = FALSE) +
+  labs(x = "Study Year",
+       y = "",
+       color = "Type of Childcare",
+       subtitle = "Weekly Median Price ($) for <span style = 'color:#6C88C4;'>Center Based</span> vs <span style = 'color:#FF828B;'>Family</span> Childcare") +
+    scale_color_manual(values = colors) +
+  theme(legend.position = "none", 
+        plot.subtitle = element_markdown(),
+        panel.grid.major.x = element_blank()) 
 ```
 
 
@@ -525,10 +558,7 @@ plot_data %>%
         legend.position = "")
 ```
 
-This plot is brought to us by Rayan Tahir! I thought Rayan's plot was very
-clear and easy to understand. Moreover, their use of $ on the axis labels and
-moving the legend to the top of the plot made it even easier to understand 
-what was being plotted. 
+This plot is brought to us by Rayan Tahir! I thought Rayan's plot was very clear and easy to understand. Moreover, their use of \$ on the axis labels and moving the legend to the top of the plot made it even easier to understand what was being plotted.
 
 ```{r}
 #| code-fold: true

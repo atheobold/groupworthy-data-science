@@ -4756,8 +4756,8 @@
     "objectID": "slides/week-7/week-7-vector-functions.html#tuesday-november-2",
     "href": "slides/week-7/week-7-vector-functions.html#tuesday-november-2",
     "title": "Writing Vector Functions",
-    "section": "",
-    "text": "Today we will…\n\nNew Material\n\nFunction Basics\nVariable Scope + Environment\n\nPA 7: Writing Functions"
+    "section": "Tuesday, November 2",
+    "text": "Tuesday, November 2\nToday we will…\n\nNew Material\n\nFunction Basics\nVariable Scope + Environment\n\nPA 7: Writing Functions"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#midterm-portfolio-meetings-1",
@@ -4798,22 +4798,22 @@
     "objectID": "slides/week-7/week-7-vector-functions.html#a-very-simple-function",
     "href": "slides/week-7/week-7-vector-functions.html#a-very-simple-function",
     "title": "Writing Vector Functions",
-    "section": "A (very) Simple Function",
-    "text": "A (very) Simple Function\nLet’s define a function.\n\nYou run the code to define the function just once.\n\n\nadd_two &lt;- function(x){\n  x + 2\n}\n\n\n. . .\nLet’s call the function!\n\nadd_two(5)\n\n[1] 7"
+    "section": "A (Very) Simple Function",
+    "text": "A (Very) Simple Function\n \n\nWrite a function named add_two() that will add 2 to whatever number is input.\n\n\n\n\n−+\n03:00\n\n\n\n\n\n\n\n\n\n\n\nCompare Your Function with Your Neighbor\n\n\nIn what ways are your functions the same? In what ways do they differ?"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#naming-add_two",
     "href": "slides/week-7/week-7-vector-functions.html#naming-add_two",
     "title": "Writing Vector Functions",
     "section": "Naming: add_two",
-    "text": "Naming: add_two\nThe name of the function is chosen by the author.\n\nadd_two &lt;- function(x){\n  x + 2\n}\n\n. . .\n\n\n\n\n\n\nFunction names have no inherent meaning.\n\n\n\nThe name you give to a function does not affect what the function does.\n\nadd_three &lt;- function(x){\n  x + 7\n}\n\n\n\nadd_three(5)\n\n[1] 12"
+    "text": "Naming: add_two\nThe name of the function is chosen by the author.\n\n\nadd_two &lt;- function(x){\n  \n  return(x + 2)\n\n}\n\n\n\n\n\n\n\n\n\n\nFunction names have no inherent meaning.\n\n\nThe name you give to a function does not affect what the function does.\n\nadd_three &lt;- function(x){\n  return(x + 7)\n}\n\n\nadd_three(5)\n\n[1] 12"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#arguments",
     "href": "slides/week-7/week-7-vector-functions.html#arguments",
     "title": "Writing Vector Functions",
     "section": "Arguments",
-    "text": "Arguments\nThe argument(s) of the function are chosen by the author.\n\nArguments are how we pass external values into the function.\nThey are temporary variables that only exist inside the function body.\n\n. . .\n\n\n\n\nWe give them general names:\n\nx, y, z – vectors\ndf – data frame\ni, j – indices\n\n\n\n\n\n\nadd_two &lt;- function(x){\n  x + 2\n}"
+    "text": "Arguments\nThe argument(s) of the function are chosen by the author.\n\nArguments are how we pass external values into the function.\nThey are temporary variables that only exist inside the function body.\n\n\n\n\n\n\nWe give them general names:\n\nx, y, z – vectors\ndf – data frame\ni, j – indices\n\n\n\n\n\n\nadd_two &lt;- function(x){\n  x + 2\n}"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#arguments-1",
@@ -4827,21 +4827,21 @@
     "href": "slides/week-7/week-7-vector-functions.html#body",
     "title": "Writing Vector Functions",
     "section": "Body: {  }",
-    "text": "Body: {  }\nThe body of the function is where the action happens.\n\nThe body must be specified within a set of curly brackets.\nThe code in the body will be executed (in order) whenever the function is called.\n\n\nadd_two &lt;- function(x){\n  x + 2\n}"
+    "text": "Body: {  }\nThe body of the function is where the action happens.\n\nThe body must be specified within a set of curly brackets.\nThe code in the body will be executed (in order) whenever the function is called.\n\n\nadd_something &lt;- function(x, something = 2){\n  x + something\n}"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#output-return",
     "href": "slides/week-7/week-7-vector-functions.html#output-return",
     "title": "Writing Vector Functions",
     "section": "Output: return()",
-    "text": "Output: return()\nYour function will give back what would normally print out…\n\nadd_two &lt;- function(x){\n  x + 2\n}\n\n\n\n\n\n7 + 2\n\n[1] 9\n\n\n\n\nadd_two(7)\n\n[1] 9\n\n\n\n\n\n. . .\n…but it’s better to be explicit and use return()*.\n\nadd_two &lt;- function(x){\n  return(x + 2)\n}"
+    "text": "Output: return()\nIf you are coming to R from a background in Python, C, or Java then an explicit return may feel more natural to you.\n\nadd_something &lt;- function(x, something = 2){\n  return(x + something)\n}"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#function-style-using-returns",
     "href": "slides/week-7/week-7-vector-functions.html#function-style-using-returns",
     "title": "Writing Vector Functions",
     "section": "Function Style – Using return()s",
-    "text": "Function Style – Using return()s\n\n\n“Only use return() for early returns. Otherwise, rely on R to return the result of the last evaluated expression.”\n\n\n. . .\n\n\n\n\n\n# Good\nfind_abs &lt;- function(x) {\n  if (x &gt; 0) {\n    return(x)\n  }\n  x * -1\n}\n\n\n\n\n\n\n\n# Bad\nadd_two &lt;- function(x, y) {\n  return(x + y)\n}\n\n\n\n\n. . .\n\n\n\n\n\n\n\nI tend to disagree…\n\n\n\nI prefer to use return() statements because it saves me from accidentally writing a function that outputs nothing."
+    "text": "Function Style – Using return()s\n\n\n“Only use return() for early returns. Otherwise, rely on R to return the result of the last evaluated expression.”\n\n\n\n\n\nsafe_square &lt;- function(x) {\n  if (!is.numeric(x)) return(NA)\n  x^2\n}"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#output-return-1",
@@ -4876,7 +4876,7 @@
     "href": "slides/week-7/week-7-vector-functions.html#global-environment",
     "title": "Writing Vector Functions",
     "section": "Global Environment",
-    "text": "Global Environment\n\nThe top right pane of Rstudio shows you the global environment.\n\nThis is the current state of all objects you have created.\nThese objects can be accessed anywhere.\n\n\n\nknitr::include_graphics(\"images/environment.jpg\")"
+    "text": "Global Environment\n\nThe top right pane of Rstudio shows you the global environment.\n\nThis is the current state of all objects you have created.\nThese objects can be accessed anywhere."
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#function-environment",
@@ -4890,21 +4890,21 @@
     "href": "slides/week-7/week-7-vector-functions.html#function-environment-1",
     "title": "Writing Vector Functions",
     "section": "Function Environment",
-    "text": "Function Environment\nWe cannot access variables created inside a function outside of the function.\n\nadd_two &lt;- function(x) {\n  my_result &lt;- x + 2\n  return(my_result)\n}\n\n\n\n\n\nadd_two(9)\n\n[1] 11\n\n\n\n\n\n\n\nmy_result\n\nError: object 'my_result' not found"
+    "text": "Function Environment\nWe cannot access variables created inside a function outside of the function.\n\nadd_two &lt;- function(x) {\n  my_result &lt;- x + 2\n  return(my_result)\n}\n\n\n\n\n\nadd_two(9)\n\n[1] 11\n\n\n\n\n\n\n\nmy_result\n\nError in eval(expr, envir, enclos): object 'my_result' not found"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#name-masking",
     "href": "slides/week-7/week-7-vector-functions.html#name-masking",
     "title": "Writing Vector Functions",
     "section": "Name Masking",
-    "text": "Name Masking\n\nName masking occurs when an object in the function environment has the same name as an object in the global environment.\n\n\n\nadd_two &lt;- function(x) {\n  my_result &lt;- x + 2\n  return(my_result)\n}\n\n\n\n\n\nmy_result &lt;- 2000\n\n\n\n\n. . .\n\n\nThe my_result created inside the function is different from the my_result created outside.\n\n\n\nadd_two(5)\n\n[1] 7\n\n\n\n\nmy_result\n\n[1] 2000"
+    "text": "Name Masking\n\nName masking occurs when an object in the function environment has the same name as an object in the global environment.\n\n\n\nadd_two &lt;- function(x) {\n  my_result &lt;- x + 2\n  return(my_result)\n}\n\n\n\n\n\nmy_result &lt;- 2000\n\n\n\n\n\n\nThe my_result created inside the function is different from the my_result created outside.\n\n\n\nadd_two(5)\n\n[1] 7\n\n\n\n\nmy_result\n\n[1] 2000"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#dynamic-lookup",
     "href": "slides/week-7/week-7-vector-functions.html#dynamic-lookup",
     "title": "Writing Vector Functions",
     "section": "Dynamic Lookup",
-    "text": "Dynamic Lookup\n\nFunctions look for objects FIRST in the function environment and SECOND in the global environment.\n\n\n\nIf the object doesn’t exist in either, the code will give an error.\n\n\nadd_two &lt;- function() {\n  return(x + 2)\n}\n\nadd_two()\n\nError in add_two(): object 'x' not found\n\n\n\n\n\nIf it doesn’t exist in the function environment, then it will look in the global environment\n\n\nx &lt;- 10\n\nadd_two()\n\n[1] 12\n\n\n\n\n\n\n. . .\n\n\n\n\n\n\n\nIt is not good practice to rely on global environment objects inside a function!"
+    "text": "Dynamic Lookup\n\nFunctions look for objects FIRST in the function environment and SECOND in the global environment.\n\n\n\nIf the object doesn’t exist in either, the code will give an error.\n\n\nadd_two &lt;- function() {\n  return(x + 2)\n}\n\nadd_two()\n\n [1] 17 18 19 20 21 22 23 24 25 26 27\n\n\n\n\n\nIf it doesn’t exist in the function environment, then it will look in the global environment\n\n\nx &lt;- 10\n\nadd_two()\n\n[1] 12\n\n\n\n\n\n\n\n\n\n\n\n\n\nIt is not good practice to rely on global environment objects inside a function!"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#debugging-1",
@@ -4918,7 +4918,7 @@
     "href": "slides/week-7/week-7-vector-functions.html#debugging-strategies",
     "title": "Writing Vector Functions",
     "section": "Debugging Strategies",
-    "text": "Debugging Strategies\nWhen you have a concept that you want to turn into a function…\n\n\nWrite a simple example of the code without the function framework.\nGeneralize the example by assigning variables.\nWrite the code into a function.\nCall the function on the desired arguments\n\n\n. . .\nThis structure allows you to address issues as you go."
+    "text": "Debugging Strategies\nWhen you have a concept that you want to turn into a function…\n\nWrite a simple example of the code without the function framework.\nGeneralize the example by assigning variables.\nWrite the code into a function.\nCall the function on the desired arguments\n\n\nThis structure allows you to address issues as you go."
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#an-example",
@@ -4946,7 +4946,7 @@
     "href": "slides/week-7/week-7-vector-functions.html#pa-7",
     "title": "Writing Vector Functions",
     "section": "PA 7",
-    "text": "PA 7\nYou will write several small functions, then use them to unscramble a message. Many of the functions have been started for you, but none of them are complete as is.\n. . .\n\n\n\nThis activity will require knowledge of:\n\nSummary functions\nFunction documentation (for optional arguments)\nFunction syntax\nmodulus division (and remainders)\nif () & else if() statements\nUsing [] and logical values to extract elements of a vector\nNegating logical statements\n\n\n\n\n\n \nNone of us have all these abilities. Each of us has some of these abilities."
+    "text": "PA 7\n\nYou will write several small functions, then use them to unscramble a message. Many of the functions have been started for you, but none of them are complete as is.\n\n\n\n\n\nThis activity will require knowledge of:\n\nSummary functions\nFunction documentation (for optional arguments)\nFunction syntax\nmodulus division (and remainders)\nif () & else if() statements\nUsing [] and logical values to extract elements of a vector\nNegating logical statements\n\n\n\n\n\n \nNone of us have all these abilities. Each of us has some of these abilities."
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#base-r-resources",
@@ -4967,7 +4967,7 @@
     "href": "slides/week-7/week-7-vector-functions.html#submission",
     "title": "Writing Vector Functions",
     "section": "Submission",
-    "text": "Submission\n\nSubmit the name of the television show the six numbers are asssociated with.\n\n\nEach person will input the full name of the TV show into the PA 7 quiz.\nThe person who last occupied the role of Developer will download and submit the PA-7-functions.html file for the group.\n\nOnly one submission per group!"
+    "text": "Submission\n\nSubmit the name of the television show the six numbers are asssociated with.\n\n\nEach person will input the full name of the TV show into the PA 7 quiz.\nThe person who last occupied the role of Typer will submit the link to your group’s Colab notebook.\n\nPlease don’t forget to put your names at the top!"
   },
   {
     "objectID": "slides/week-7/week-7-vector-functions.html#lab-7-challenge-7-functions-fish",
@@ -5563,5 +5563,229 @@
     "title": "Writing Vector Functions",
     "section": "Debugging",
     "text": "Debugging\nYou will make mistakes (create bugs) when coding.\n\nUnfortunately, it becomes more and more complicated to debug your code as your code gets more sophisticated.\nThis is especially true with functions!"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#thursday-october-30",
+    "href": "slides/week-7/week-7-vector-functions.html#thursday-october-30",
+    "title": "Writing Vector Functions",
+    "section": "Thursday, October 30",
+    "text": "Thursday, October 30\nToday we will…\n\nNew Material\n\nFunction Basics\n\nPractice writing functions!\n\n[] Refresher\nseq_along()\nif() and else if() Refresher\n\nPA 7: Writing Functions\nExtra Slides for Lab 7\n\nVariable Scope + Environment"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#compare-your-function-with-your-neighbor",
+    "href": "slides/week-7/week-7-vector-functions.html#compare-your-function-with-your-neighbor",
+    "title": "Writing Vector Functions",
+    "section": "Compare Your Function with Your Neighbor",
+    "text": "Compare Your Function with Your Neighbor"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#a-very-simple-function-1",
+    "href": "slides/week-7/week-7-vector-functions.html#a-very-simple-function-1",
+    "title": "Writing Vector Functions",
+    "section": "A (Very) Simple Function",
+    "text": "A (Very) Simple Function\n\nYou run the code to define the function once.\n\n\n\nadd_two &lt;- function(x){\n  \n  return(x + 2)\n\n}\n\n\n\nLet’s call the function!\n\nadd_two(5)\n\n[1] 7"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#my-simple-function",
+    "href": "slides/week-7/week-7-vector-functions.html#my-simple-function",
+    "title": "Writing Vector Functions",
+    "section": "My Simple Function",
+    "text": "My Simple Function\n\n\nadd_two &lt;- function(x){\n  \n  return(x + 2)\n\n}\n\n\n\nLet’s call the function!\n\nadd_two(5)\n\n[1] 7"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#function-names",
+    "href": "slides/week-7/week-7-vector-functions.html#function-names",
+    "title": "Writing Vector Functions",
+    "section": "Function Names",
+    "text": "Function Names\nThe name of the function is chosen by the author.\n\n\nadd_two &lt;- function(x){\n  \n  return(x + 2)\n\n}\n\n\n\n\n\n\n\n\n\n\nFunction names have no inherent meaning.\n\n\nThe name you give to a function does not affect what the function does.\n\nadd_three &lt;- function(x){\n  return(x + 7)\n}\n\n\nadd_three(5)\n\n[1] 12"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#function-arguments",
+    "href": "slides/week-7/week-7-vector-functions.html#function-arguments",
+    "title": "Writing Vector Functions",
+    "section": "Function Arguments",
+    "text": "Function Arguments\nThe argument(s) of the function are chosen by the author.\n\nArguments are how we pass external values into the function.\nThey are temporary variables that only exist inside the function body.\n\n\n\n\n\n\nWe give them general names:\n\nx, y, z – vectors\ndf – data frame\ni, j – indices\n\n\n\n\n\n\nadd_two &lt;- function(x){\n  return(x + 2)\n}"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#function-arguments-1",
+    "href": "slides/week-7/week-7-vector-functions.html#function-arguments-1",
+    "title": "Writing Vector Functions",
+    "section": "Function Arguments",
+    "text": "Function Arguments\nWhat if we wanted to write a more general function, named add_something(). The function would take two inputs:\n\nx the vector to add to\nsomething the value to add to x\n\nHow would your function change?\n\n\n\n−+\n02:00"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#function-arguments-2",
+    "href": "slides/week-7/week-7-vector-functions.html#function-arguments-2",
+    "title": "Writing Vector Functions",
+    "section": "Function Arguments",
+    "text": "Function Arguments\n\nRequired ArgumentsOptional Arguments\n\n\n\nIf we do not supply a default value when defining the function, the argument is required when calling the function.\n\nadd_something &lt;- function(x, something){\n  x + something\n}\n\n\n\n\n\n\n\n\nadd_something(x = 2, \n              something = 3)\n\n[1] 5\n\n\n\n\nadd_something(x = 2)\n\nError in add_something(x = 2): argument \"something\" is missing, with no default\n\n\n\n\n\n\n\n\nIf we supply a default value when defining the function, the argument is optional when calling the function.\n\nadd_something &lt;- function(x, something = 2){\n  return(x + something)\n}\n\n\n\n\n\n\n\n\nadd_something(x = 5, \n              something = 6)\n\n[1] 11\n\n\n\nIf a value is not supplied, something defaults to 2.\n\nadd_something(x = 5)\n\n[1] 7"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#function-writing-advice",
+    "href": "slides/week-7/week-7-vector-functions.html#function-writing-advice",
+    "title": "Writing Vector Functions",
+    "section": "Function Writing Advice",
+    "text": "Function Writing Advice\nWhen you have a concept that you want to turn into a function…\n\nWrite a simple example of the code without the function framework.\nGeneralize the example by assigning variables.\nWrite the code into a function.\nCall the function on the desired arguments\n\n\nThis structure allows you to address issues as you go."
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#output",
+    "href": "slides/week-7/week-7-vector-functions.html#output",
+    "title": "Writing Vector Functions",
+    "section": "Output",
+    "text": "Output\nYour function will give back what would normally print out…\n\nadd_something &lt;- function(x, something = 2){\n  x + something\n}\n\n\n\n\n\n7 + 2\n\n[1] 9\n\n\n\n\nadd_something(7)\n\n[1] 9\n\n\n\n\n\n…but some of us might prefer an explicit return()."
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#output-last-value",
+    "href": "slides/week-7/week-7-vector-functions.html#output-last-value",
+    "title": "Writing Vector Functions",
+    "section": "Output: Last Value",
+    "text": "Output: Last Value\nYour function will give back what would normally print out…\n\nadd_something &lt;- function(x, something = 2){\n  x + something\n}\n\n\n\n\n\n7 + 2\n\n[1] 9\n\n\n\n\nadd_something(7)\n\n[1] 9\n\n\n\n\n\n…but some of us might prefer an explicit return()."
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#explicit-returns-vs.-implicit-returns",
+    "href": "slides/week-7/week-7-vector-functions.html#explicit-returns-vs.-implicit-returns",
+    "title": "Writing Vector Functions",
+    "section": "Explicit Returns vs. Implicit Returns",
+    "text": "Explicit Returns vs. Implicit Returns\n\n\n\n\n✅ Pros of Using return()\n\nClarity and explicit intent\nEarly returns / branching logic\nConsistency with other languages\n\n\n\n⚠️ Cons of Using return()\n\nMore typing / slightly less idiomatic use of R\nCan be overused in simple functions\nCan complicate control flow unnecessarily\n\n\n\n\n✅ Pros of Implicit Return (no return())\n\nConcise and idiomatic\nEncourages “last expression” thinking\n\n\n\n⚠️ Cons of Implicit Return\n\nLess obvious for beginners\nHarder to do early exits"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#general-function-writing-advice",
+    "href": "slides/week-7/week-7-vector-functions.html#general-function-writing-advice",
+    "title": "Writing Vector Functions",
+    "section": "General Function Writing Advice",
+    "text": "General Function Writing Advice\nWhen you have a concept that you want to turn into a function…\n\nWrite a simple example of the code without the function framework.\nGeneralize the example by assigning variables.\nWrite the code into a function.\nCall the function on the desired arguments\n\n\nThis structure allows you to address issues as you go."
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#base-r-refresher",
+    "href": "slides/week-7/week-7-vector-functions.html#base-r-refresher",
+    "title": "Writing Vector Functions",
+    "section": "Base R Refresher",
+    "text": "Base R Refresher\n\n\nWe can extract components of a vector using [ ]\n\nThe inputs can be:\n\nlogical values (TRUE, FALSE)\nindices (e.g., 1, 2, 3)\n\n\n\n\n\n\n\nWe can grab the indices of a vector using the seq_along() function\n\n\nx &lt;- 15:25\n\nseq_along(x)\n\n [1]  1  2  3  4  5  6  7  8  9 10 11"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#above_average",
+    "href": "slides/week-7/week-7-vector-functions.html#above_average",
+    "title": "Writing Vector Functions",
+    "section": "above_average()",
+    "text": "above_average()\n\n\nGoal: Keep only the elements of x greater than the mean.\n\n\n\n\nFill in the code to create a function named above_average(). The function should keep only the elements of x greater than the mean.\n\nabove_average &lt;- function(x) {\n  # Step 1: Compute mean of x\n  \n  \n  # Step 2: Subset x to keep only values &gt; mean\n  \n  \n  # Step 3: Return the result\n  \n}"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#above_average-1",
+    "href": "slides/week-7/week-7-vector-functions.html#above_average-1",
+    "title": "Writing Vector Functions",
+    "section": "above_average()",
+    "text": "above_average()\nStep 1: Find values larger than the mean\n\nx &gt; mean(x)\n\n [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE\n\n\n\nStep 2: Use this output to extract the desired values from x"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#every_third",
+    "href": "slides/week-7/week-7-vector-functions.html#every_third",
+    "title": "Writing Vector Functions",
+    "section": "every_third()",
+    "text": "every_third()\n\nGoal: Return every third element from a vector.\n\n\n\nWrite down the steps you would need to create a function named every_third() that takes in a vector and returns every third element from that vector (i.e., indices 1, 4, 7, 10, etc.).\nThink about:\n\nWhat inputs the function should take.\nHow to identify which positions in the vector are “every third.”\nHow to select those elements from the vector.\n\n\n\n\n\n−+\n03:00"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#option-1-using-logical-values",
+    "href": "slides/week-7/week-7-vector-functions.html#option-1-using-logical-values",
+    "title": "Writing Vector Functions",
+    "section": "Option 1: Using Logical Values",
+    "text": "Option 1: Using Logical Values\n\nStep 1: Find locations where values of x are larger than the mean\n\nx &gt; mean(x)\n\n [1] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE\n\n\n\n\n\nStep 2: Use this output to extract the desired values from x\n\nx[x &gt; mean(x)]\n\n[1] 21 22 23 24 25\n\n\n\n\n\n\nStep 3: Make a function\n\nabove_average &lt;- function(x) {\n  x[x &gt; mean(x)]\n}"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#option-2-using-indices",
+    "href": "slides/week-7/week-7-vector-functions.html#option-2-using-indices",
+    "title": "Writing Vector Functions",
+    "section": "Option 2: Using Indices",
+    "text": "Option 2: Using Indices\n\nStep 1: Find indices where values of x are larger than the mean\n\nwhich(x &gt; mean(x))\n\n[1]  7  8  9 10 11\n\n\n\n\n\nStep 2: Use this output to extract the desired values from x\n\nx[which(x &gt; mean(x))]\n\n[1] 21 22 23 24 25\n\n\n\n\n\n\nStep 3: Make a function\n\nabove_average &lt;- function(x) {\n  x[which(x &gt; mean(x))]\n}"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#generate-positions",
+    "href": "slides/week-7/week-7-vector-functions.html#generate-positions",
+    "title": "Writing Vector Functions",
+    "section": "Generate Positions",
+    "text": "Generate Positions\n\nRepresent the positions of each element of x\n\n\nseq_along(x)\n\n [1]  1  2  3  4  5  6  7  8  9 10 11"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#identify-every-third-position",
+    "href": "slides/week-7/week-7-vector-functions.html#identify-every-third-position",
+    "title": "Writing Vector Functions",
+    "section": "Identify Every Third Position",
+    "text": "Identify Every Third Position\n\nIdentify which positions are “every third.”\n\n\n\n\n\n\nindex\nRemainder (index %% 3)\nKeep?\n\n\n\n\n1\n1\n✅\n\n\n2\n2\n❌\n\n\n3\n0\n❌\n\n\n4\n1\n✅\n\n\n5\n2\n❌\n\n\n6\n0\n❌\n\n\n7\n1\n✅"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#subset-x",
+    "href": "slides/week-7/week-7-vector-functions.html#subset-x",
+    "title": "Writing Vector Functions",
+    "section": "Subset x",
+    "text": "Subset x\n\nGrab the elements of x we want to keep.\n\n\nx\n\n [1] 15 16 17 18 19 20 21 22 23 24 25\n\n\n\n\nx[ \n  seq_along(x) %% 3 == 1\n]\n\n[1] 15 18 21 24"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#return-result",
+    "href": "slides/week-7/week-7-vector-functions.html#return-result",
+    "title": "Writing Vector Functions",
+    "section": "Return Result",
+    "text": "Return Result\n\nevery_third &lt;- function(x) {\n  \n  x[ \n  seq_along(x) %% 3 == 1\n  ]\n\n  }"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#section",
+    "href": "slides/week-7/week-7-vector-functions.html#section",
+    "title": "Writing Vector Functions",
+    "section": "",
+    "text": "What goes inside the brackets?"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#section-1",
+    "href": "slides/week-7/week-7-vector-functions.html#section-1",
+    "title": "Writing Vector Functions",
+    "section": "",
+    "text": "What goes inside the brackets?"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#generate-indices",
+    "href": "slides/week-7/week-7-vector-functions.html#generate-indices",
+    "title": "Writing Vector Functions",
+    "section": "Generate Indices",
+    "text": "Generate Indices\n\nRepresent the indices (positions) of each element of x.\n\n\n\nx\n\n [1] 15 16 17 18 19 20 21 22 23 24 25\n\nseq_along(x)\n\n [1]  1  2  3  4  5  6  7  8  9 10 11"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#identify-every-third-position-1",
+    "href": "slides/week-7/week-7-vector-functions.html#identify-every-third-position-1",
+    "title": "Writing Vector Functions",
+    "section": "Identify Every Third Position",
+    "text": "Identify Every Third Position\n\nIdentify which positions are “every third.”\n\n\nseq_along(x) %% 3 == 1\n\n [1]  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#make-it-into-a-function",
+    "href": "slides/week-7/week-7-vector-functions.html#make-it-into-a-function",
+    "title": "Writing Vector Functions",
+    "section": "Make it into a function!",
+    "text": "Make it into a function!\n\nevery_third &lt;- function(x) {\n  \n  x[ \n  seq_along(x) %% 3 == 1\n  ]\n\n  }"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#pair-programming-expectations",
+    "href": "slides/week-7/week-7-vector-functions.html#pair-programming-expectations",
+    "title": "Writing Vector Functions",
+    "section": "Pair Programming Expectations",
+    "text": "Pair Programming Expectations"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#external-resources",
+    "href": "slides/week-7/week-7-vector-functions.html#external-resources",
+    "title": "Writing Vector Functions",
+    "section": "External Resources",
+    "text": "External Resources\nDuring the Practice Activity, you are not permitted to use Google or ChatGPT for help.\n\nYou are permitted to use:\n\ntoday’s handout,\nthe course slides,\nthe base R cheatsheet, and\nthe course textbook"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#team-assignments---9am",
+    "href": "slides/week-7/week-7-vector-functions.html#team-assignments---9am",
+    "title": "Writing Vector Functions",
+    "section": "Team Assignments - 9am",
+    "text": "Team Assignments - 9am\n\n\n\n\nThe partner who has the most siblings starts as the Talker!"
+  },
+  {
+    "objectID": "slides/week-7/week-7-vector-functions.html#team-assignments---12pm",
+    "href": "slides/week-7/week-7-vector-functions.html#team-assignments---12pm",
+    "title": "Writing Vector Functions",
+    "section": "Team Assignments - 12pm",
+    "text": "Team Assignments - 12pm\n\n\n\n\nThe partner who has the most siblings starts as the Talker!"
   }
 ]

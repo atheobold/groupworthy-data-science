@@ -8,7 +8,7 @@
 
 <meta name="author" content="Instructions">
 
-<title>Lab 8: Searching for Efficiency – Introduction to Statistical Computing in R</title>
+<title>Lab 8: Data Frame Functions + Fish – Introduction to Statistical Computing in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -183,12 +183,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data">The Data</a></li>
-  <li><a href="#formatting-tables" id="toc-formatting-tables" class="nav-link" data-scroll-target="#formatting-tables">Formatting Tables</a></li>
-  <li><a href="#lab-2" id="toc-lab-2" class="nav-link" data-scroll-target="#lab-2">Lab 2</a></li>
-  <li><a href="#lab-3" id="toc-lab-3" class="nav-link" data-scroll-target="#lab-3">Lab 3</a></li>
-  <li><a href="#lab-5" id="toc-lab-5" class="nav-link" data-scroll-target="#lab-5">Lab 5</a></li>
-  <li><a href="#lab-7" id="toc-lab-7" class="nav-link" data-scroll-target="#lab-7">Lab 7</a></li>
+  <li><a href="#use-variables-within-a-dataset" id="toc-use-variables-within-a-dataset" class="nav-link active" data-scroll-target="#use-variables-within-a-dataset">Use Variables within a Dataset</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -197,7 +192,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 8: Searching for Efficiency</h1>
+<h1 class="title">Lab 8: Data Frame Functions + Fish</h1>
 </div>
 
 
@@ -220,50 +215,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="use-variables-within-a-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="use-variables-within-a-dataset">Use Variables within a Dataset</h2>
+<p>Suppose you would like for your <code>rescale()</code> function to perform operations on a <strong>variable within a dataset</strong>. Ideally, your function would take in a dataframe and a variable name as inputs and return a dataframe where the variable has been rescaled.</p>
+<p><strong>8. Create a <code>rescale_column()</code> function that accepts two arguments: (1) a dataframe and (2) the name(s) of the variable(s) to be rescaled. The body of the function should call the original <code>rescale_01()</code> function you wrote previously. Your solution MUST use one of the <code>rlang</code> options from class.</strong></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<p><a href="../../student-versions/labs/lab8-iteration.qmd">Download .qmd starter file</a></p>
-<section id="the-data" class="level2">
-<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
-<p>For this week’s lab, we will be <strong>revisiting questions from previous lab assignments</strong>, with the purpose of using functions from the <code>map()</code> family to iterate over certain tasks. To do this, we will need to load in the data from Lab 2, Lab 3, and Lab 7.</p>
-<p>Edit the code below to read in the appropriate datsets that you should have saved from the previous labs!</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data from Lab 2</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>surveys <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../lab2/surveys.csv"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Data from Lab 3</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>evals <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../lab3/input/teacher_evals.csv"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">sex =</span> gender)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Data from Lab 7</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>fish <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../lab7/BlackfootFish.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout-title-container flex-fill">
+Tip
 </div>
-</section>
-<section id="formatting-tables" class="level2">
-<h2 class="anchored" data-anchor-id="formatting-tables">Formatting Tables</h2>
-<p>In this lab, we will also practice making nice, report worthy, tables!</p>
-<p>I would recommend you think of tables no different from the visualizations you’ve been making. We want <strong>all</strong> aspects of our tables to be clear to the reader, so the comparisons we want them to make are straightforward. You should be thinking about:</p>
-<ul>
-<li>Column headers</li>
-<li>Grouping headers</li>
-<li>Order of columns</li>
-<li>Order of rows</li>
-<li>Number of decimals included for numeric entries</li>
-<li>etc.</li>
-</ul>
-<p>Tables are also a great avenue to display creativity! In fact, there is a yearly <a href="https://www.rstudio.com/blog/rstudio-table-contest-2022/">RStudio table contest</a>, and <a href="https://community.rstudio.com/c/table-gallery/64">here</a> is a gallery of the award winning tables!</p>
-<p>There are many packages for generating tables but I recommend either <code>kable()</code> function from the <strong>knitr</strong> package or <code>gt()</code> function from the <strong>gt</strong> package and their add-ons.</p>
-<p><strong>For simple tables</strong></p>
-<ul>
-<li>the <code>kable()</code> function from the <strong>knitr</strong> package for <em>simple</em> tables</li>
-<li>the <code>gt()</code> function from the <strong>gt</strong> package</li>
-</ul>
-<p><strong>For more sophisticated tables</strong></p>
-<ul>
-<li>styling functions from the <strong>kableExtra</strong> package (e.g., <code>kable_styling()</code>, <code>kable_classic()</code>)</li>
-<li>add-on functions from the <strong>gt</strong> package (e.g., <code>cols_label()</code>, <code>tab_header()</code>, <code>fmt_percent()</code>)</li>
-</ul>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you are struggling with this task, I recommend looking <a href="https://rlang.r-lib.org/reference/topic-defuse.html">here</a> and at the slides from class on Wednesday!</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for Q8.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>9. Use your <code>rescale_column()</code> function to rescale <em>both</em> the <code>length</code> and <code>weight</code> columns.</strong></p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -274,190 +246,40 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Quarto doesn’t play nice with some options for formatting HTML tables in other packages.</p>
-<p>To make sure that your tables render as expected, we need to specify <code>html-table-processing: none</code> in the YAML header. You will notice that I already included that in this lab.</p>
-<p>I also recommend using the <strong>Source Editor</strong> for this lab.</p>
-</div>
-</div>
-</section>
-<section id="lab-2" class="level2">
-<h2 class="anchored" data-anchor-id="lab-2">Lab 2</h2>
-<p>First up, we’re going to revisit Question 2 from Lab 2. This question asked:</p>
-<blockquote class="blockquote">
-<p>What are the data types of the variables in this dataset?</p>
-</blockquote>
-<p><strong>1. Using <code>map_chr()</code>, produce a table of the data type of each variable in the <code>surveys</code> dataset.</strong> Specifically, the table should have two columns <code>var_name</code> and <code>type</code> with a row for each variable and be displayed using <code>kable()</code>.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>You will want to check out the <code>enframe()</code> function to help with this task.</p>
+<p>I expect that you carry out this process by calling the <code>rescale_column()</code> function only ONE time!</p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q1 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># original values</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fish <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(length<span class="sc">:</span>weight) <span class="sc">|&gt;</span> </span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>()</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># rescaled values</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for Q9.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>2. Format the table nicely!</strong> Think about the order of the rows to make the information easy to take in. Using either <code>kable()</code> and functions in the <strong>kableExtra</strong> package or <code>gt()</code> and functions from the <strong>gt</strong> package to make a table that includes a caption or header, and nice, bolded column names. <strong>Note that you should assign the column names when creating the table, not by renaming columns in the dataset itself because we hate variable names with spaces in them!</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q2 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="lab-3" class="level2">
-<h2 class="anchored" data-anchor-id="lab-3">Lab 3</h2>
-<p>Now, were on to Lab 3 where we will revisit two questions.</p>
-<p>In the original version of Lab 3, Question 4 asked you to:</p>
-<blockquote class="blockquote">
-<p>Change data types in whichever way you see fit (e.g., is the instructor ID really a numeric data type?)</p>
-</blockquote>
-<p><strong>3. Using <code>map_at()</code> or <code>map_if()</code>, convert the <code>course_id</code>, <code>weekday</code>, <code>academic_degree</code>, <code>time_of_day</code>, and <code>sex</code> columns to factors. In other words, convert all character variables into factors. DO NOT PRINT OUT YOUR NEW DATA FRAME, just show the code.</strong> Hint: You will need to use <code>bind_cols()</code> to transform the list output back into a data frame.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Next up, we’re going revisit Question 7 which asked:</p>
-<blockquote class="blockquote">
-<p>What are the demographics of the instructors in this study? Investigate the variables <code>academic_degree</code>, <code>seniority</code>, and <code>sex</code> and summarize your findings in ~3 complete sentences.</p>
-</blockquote>
-<p>Many people created <strong>multiple</strong> tables of counts for each of these demographics, but in this exercise we are going to create <strong>one</strong> table with every demographic.</p>
-<p><strong>4. Recreate the (mainly unformatted) table below using one pipeline. It is okay if the rows are not in the same order in your table.</strong></p>
-<p><img src="images/unformatted-demographics.png" class="img-fluid" style="width:50.0%"></p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Repeat the data cleaning steps that we did in Lab 3 before question 7 to recreate this exact table. And remember that we needed to first only keep one row per instructor.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>There are two main ways (that I have thought of) to approach this efficiently:</p>
-<ol type="1">
-<li><p>Using the <code>map_at()</code> funtion. The <code>list_rbind()</code> function and the <code>names_to</code> argument in that will be helpful!</p></li>
-<li><p>Using both <code>pivot_wider()</code> and <code>pivot_longer()</code>.</p></li>
-</ol>
-<p>It is easiest to start with creating a dataframe that has the <code>variable</code>, <code>level</code>, and <code>count</code> columns and then calculate <code>prop</code>, the proportion of professors that are in each group.</p>
-<p>Final tip (not required) - I used the following options in <code>kable_styling()</code> to output this table:</p>
-<pre><code>  kable_styling(full_width = F,
-                bootstrap_options = "striped")</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Same classification as Lab 3
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I’m using the <code>sen_level</code> classification from Lab 3</p>
-<ul>
-<li><code>"junior"</code> = <code>seniority</code> is 4 or less (inclusive)</li>
-<li><code>"senior"</code> = <code>seniority</code> is between 4 and 8 (inclusive)</li>
-<li><code>"very senior"</code> = <code>seniority</code> is greater than 8.</li>
-</ul>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q4 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>5. Now turn that into a very nice table, like one of the examples below using <code>kable()</code> and <code>kableExtra</code> or <code>gt</code>.</strong></p>
-<div class="quarto-layout-panel" data-layout-ncol="2">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/formatted-demo-1.png" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Example 1</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/formatted-demo-2.png" class="img-fluid figure-img"></p>
-<figcaption>Example 2</figcaption>
-</figure>
-</div>
-</div>
-</div>
-</div>
-<p>Your table does not need to copy one of these exactly but it should include:</p>
-<ul>
-<li>Some way of clearly indicating the three variable types as row groups</li>
-<li>Giving nice column names</li>
-<li>Using a column header that spans the count and % columns</li>
-<li>Nicely formatting the % column</li>
-<li>Giving it a title or a caption</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Q5 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="lab-5" class="level2">
-<h2 class="anchored" data-anchor-id="lab-5">Lab 5</h2>
-<p>In lab 5 we got to solve a mystery using a bunch of different related data sets. Remember how we got the data?</p>
-<blockquote class="blockquote">
-<p>This code chunk will read in all of the tables of data for you. Don’t modify or remove this!</p>
-</blockquote>
-<p>This was also a mystery at the time! The code chunk given loaded an <code>.Rdata</code> file that included all of the data frames. However, your data may not always be saved in a nice <code>.Rdata</code> file~ Let’s write a more general function to read in lots of datasets ourselves!</p>
-<p><strong>6. Write a function whose only argument is a directory that will read in all .csv files in that directory and return a <em>list</em> of the data frames.</strong></p>
-<p>Specifically your function should:</p>
-<ol type="1">
-<li>Find the names of all .csv files in that directory (the <code>list.files()</code> function will be helpful).</li>
-<li>Use <code>map()</code> to efficiently read all of the files into R and save them in a <strong>list</strong></li>
-<li>Rename the elements of the list with the names of each file</li>
-<li>Return the list</li>
-</ol>
-<p><strong>Test your function on a directory that has at least two .csv files in it and show us that it works! DO NOT print full datasets. Show us that the output is a list and that the names of the list are file names. Your function should be able to handle if a directory includes files that aren’t only csv’s</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q6 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>For example, if I have a directory <code>data/</code> that has <code>surveys.csv</code>, <code>teacher_evals.csv</code>, and <code>bCH_murder_data.Rdata</code> in it, the function should return a list with two elements - the surveys and teacher_evals data frames. The names of the list elements should be <code>"surveys"</code> and <code>"teacher_evals"</code>.</p>
-</div>
-</div>
-</section>
-<section id="lab-7" class="level2">
-<h2 class="anchored" data-anchor-id="lab-7">Lab 7</h2>
-<p>For our last problem, we will revisit a question from the most recent lab. Question 1 asked you to use <code>across()</code> to make a table which summarized:</p>
-<blockquote class="blockquote">
-<p>What variable(s) have missing values present?<br>
-How many observations have missing values?</p>
-</blockquote>
-<p><strong>7. Using <code>map_int()</code>, produce a nicely formatted table of the number of missing values for each variable in the <code>fish</code> data.</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Q7 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<!-- Another convenient use of pick() is to make a 2d table of counts. Here we count using all the variables in the rows and columns, then use pivot_wider() to rearrange the counts into a grid: -->
+<!-- # https://twitter.com/pollicipes/status/1571606508944719876 -->
+<!-- count_wide <- function(data, rows, cols) { -->
+<!--   data |>  -->
+<!--     count(pick(c({{ rows }}, {{ cols }}))) |>  -->
+<!--     pivot_wider( -->
+<!--       names_from = {{ cols }},  -->
+<!--       values_from = n, -->
+<!--       names_sort = TRUE, -->
+<!--       values_fill = 0 -->
+<!--     ) -->
+<!-- } -->
+<!-- It’s straightforward to add more variables to the mix. For example, maybe you want an easy way to eyeball whether or not a dataset is linear by overlaying a smooth line and a straight line: -->
+<!-- # https://twitter.com/tyler_js_smith/status/1574377116988104704 -->
+<!-- linearity_check <- function(df, x, y) { -->
+<!--   df |> -->
+<!--     ggplot(aes(x = {{ x }}, y = {{ y }})) + -->
+<!--     geom_point() + -->
+<!--     geom_smooth(method = "loess", formula = y ~ x, color = "red", se = FALSE) + -->
+<!--     geom_smooth(method = "lm", formula = y ~ x, color = "blue", se = FALSE)  -->
+<!-- } -->
 
 
 </section>

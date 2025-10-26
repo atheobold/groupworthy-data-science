@@ -8,7 +8,7 @@
 
 <meta name="author" content="Instructions">
 
-<title>Lab 7: Functions + Fish – Introduction to Statistical Computing in R</title>
+<title>Lab 9: Simulation Exploration – Introduction to Statistical Computing in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -212,10 +212,8 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data">The Data</a></li>
-  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link" data-scroll-target="#data-exploration">Data Exploration</a></li>
-  <li><a href="#rescaling-the-data" id="toc-rescaling-the-data" class="nav-link" data-scroll-target="#rescaling-the-data">Rescaling the Data</a></li>
-  <li><a href="#test-your-function" id="toc-test-your-function" class="nav-link" data-scroll-target="#test-your-function">Test Your Function</a></li>
+  <li><a href="#random-babies-simulation" id="toc-random-babies-simulation" class="nav-link active" data-scroll-target="#random-babies-simulation">Random Babies Simulation</a></li>
+  <li><a href="#simulating-coverage" id="toc-simulating-coverage" class="nav-link" data-scroll-target="#simulating-coverage">Simulating Coverage</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -224,7 +222,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 7: Functions + Fish</h1>
+<h1 class="title">Lab 9: Simulation Exploration</h1>
 </div>
 
 
@@ -247,44 +245,15 @@ window.Quarto = {
 </header>
 
 
-<p><a href="../../student-versions/labs/lab7-functions.qmd">Download .qmd starter file</a></p>
-<p><a href="BlackfootFish.csv">Download <code>BlackfootFish.csv</code></a></p>
-<p>The goal of this lab is learn more about exploring missing data and writing modular code.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>fish <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"BlackfootFish.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="the-data" class="level2">
-<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
-<p>This lab’s data concerns mark-recapture data on four species of trout from the Blackfoot River outside of Helena, Montana. These four species are <strong>rainbow trout (RBT)</strong>, <strong>westslope cutthroat trout (WCT)</strong>, <strong>bull trout</strong>, and <strong>brown trout</strong>.</p>
-<p><img src="https://github.com/earobinson95/stat331-calpoly/blob/master/lab-assignments/lab7/images/blackfoot_river.jpg?raw=true" class="img-fluid"></p>
-<p>Mark-recapture is a common method used by ecologists to estimate a population’s size when it is impossible to conduct a census (count every animal). This method works by <em>tagging</em> animals with a tracking device so that scientists can track their movement and presence.</p>
-<center>
-<div class="columns">
-<div class="column" style="width:25%;">
-<p><img src="https://github.com/earobinson95/stat331-calpoly/blob/master/lab-assignments/lab7/images/grizzly.jpg?raw=true" class="img-fluid"></p>
-</div><div class="column" style="width:25%;">
-<p><img src="https://github.com/earobinson95/stat331-calpoly/blob/master/lab-assignments/lab7/images/condor.jpg?raw=true" class="img-fluid"></p>
-</div><div class="column" style="width:25%;">
-<p><img src="https://github.com/earobinson95/stat331-calpoly/blob/master/lab-assignments/lab7/images/fish.PNG?raw=true" class="img-fluid"></p>
-</div>
-</div>
-</center>
-<!-- Or maybe you just want to make a common pattern easier to remember by giving it a memorable name: -->
-<!-- # https://twitter.com/gbganalyst/status/1571619641390252033 -->
-<!-- n_missing <- function(x) { -->
-<!--   sum(is.na(x)) -->
-<!-- }  -->
-</section>
-<section id="data-exploration" class="level2">
-<h2 class="anchored" data-anchor-id="data-exploration">Data Exploration</h2>
-<p>The measurements of each captured fish were taken by a biologist on a raft in the river. The lack of a laboratory setting opens the door to the possibility of measurement errors.</p>
-<p><strong>1. Let’s look for missing values in the dataset. Output ONE table that answers BOTH of the following questions:</strong></p>
-<ul>
-<li><strong>How many observations have missing values?</strong></li>
-<li><strong>What variable(s) have missing values present?</strong></li>
-</ul>
-<!-- add a pivot to the table! -->
+<p><a href="../../student-versions/labs/lab9-simulation.qmd">Download .qmd starter file</a></p>
+<section id="random-babies-simulation" class="level2">
+<h2 class="anchored" data-anchor-id="random-babies-simulation">Random Babies Simulation</h2>
+<p>Perhaps you have seen the <a href="https://www.rossmanchance.com/applets/2021/randombabies/RandomBabies.html">Random Babies applet</a>? Suppose one night at a hospital some number of babies are born. The hospital is not very organized and looses track of which baby belongs to each parent(s), so they decide to return the babies to parents <em>at random</em>. Here, we are interested in the number of babies that are correctly returned to their respective parent(s).</p>
+<p><strong>1. Simulate the distribution of the number of babies that are correctly returned if there were four babies born in a night at our disorganized hospital. Use 10,000 simulations. Make sure to add a line of code to make your simulation reproducible every time you run it.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -295,16 +264,22 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hint: use <code>across()</code>.</p>
+<p>First, write a function to accomplish one simulation (i.e.&nbsp;one night), given a number of babies (<code>n_babies</code>) that were born in a hospital on a given night .</p>
+<p>Then use <code>map_int()</code> to run 10,000 simulations assuming 4 babies were born.</p>
+<p>Keep in mind that your function needs to output a single number (not data frame) for it to be compatible with <code>map_int()</code>!</p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for Q1.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>randomBabies <span class="ot">&lt;-</span> <span class="cf">function</span>(n_babies){</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  ...</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>2. Create ONE thoughtful visualization that explores the frequency of missing values across the different years, sections, and trips.</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for Q2.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">map_int</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.f =</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>2. Create a table displaying the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -315,31 +290,48 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hint: The data you want to be plotting are only the data with missing values!</p>
+<p>The output of your <code>map_int()</code> is a vector, but to make a nice table (and plot) you need this to be a data frame! Luckily, the <code>enframe()</code> function does just that–it converts a vector to a data frame.</p>
 </div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q2 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>3. Now create a barplot showing the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).</strong> Don’t forget a title and appropriate axis labels.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="rescaling-the-data" class="level2">
-<h2 class="anchored" data-anchor-id="rescaling-the-data">Rescaling the Data</h2>
-<p>If I wanted to rescale every quantitative variable in my dataset so that they only have values between 0 and 1, I could use this formula:</p>
-<p><br></p>
-<p><span class="math display">\[y_{scaled} = \frac{y_i - min\{y_1, y_2,..., y_n\}}{max\{y_1, y_2,..., y_n\}
-- min\{y_1, y_2,..., y_n\}}\]</span></p>
-<p><br></p>
-<p>I might write the following <code>R</code> code to carry out the rescaling procedure for the <code>length</code> and <code>weight</code> columns of the <code>BlackfootFish</code> data:</p>
+<section id="simulating-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-coverage">Simulating Coverage</h2>
+<p>Many students struggle with the definition of a confidence interval when first learning the concept. The interpretation that a lot of textbooks include is somthing like “if we were to repeat the study many many times, 95% of the confidence intervals would contain the true population parameter.”</p>
+<p>We are going to implement a simulation that illustrates this statistical concept using confidence intervals for the slope parameter in a linear regression model.</p>
+<p>Let’s break it down into a couple of steps.</p>
+<p>As a reminder, the typical population model that we assume for a linear regression is:</p>
+<p><span class="math display">\[Y = \beta_0 + \beta_1 X + \varepsilon\]</span> Where <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are the population intercept and slope parameters and and <span class="math inline">\(\varepsilon \sim N(0, \sigma^2)\)</span> is random noise that is normally distributed with mean 0 and variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>We will design a simulation that uses this “data generating model.”</p>
+<p><strong>4. Fill in the code below to generate a synthetic dataset with 100 observations. We will assume that the explanatory variable <span class="math inline">\(X\)</span> is uniformly distributed from 0 to 1 and that <span class="math inline">\(\sigma^2\)</span> = 1. The synthetic data should be a dataframe with 100 rows and two columns: <code>x</code> and <code>y</code>.</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>fish <span class="ot">&lt;-</span> fish <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">length =</span> (length <span class="sc">-</span> <span class="fu">min</span>(length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           (<span class="fu">max</span>(length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)), </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">weight =</span> (weight <span class="sc">-</span> <span class="fu">min</span>(weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">/</span> </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>           (<span class="fu">max</span>(weight, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> <span class="fu">min</span>(length, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define slope and intercept parameters</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># generate x vector</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># generate noise `ep` vector</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># generate outcome from population model</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> intercept <span class="sc">+</span> x<span class="sc">*</span>slope <span class="sc">+</span> ep</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># create an "observed data" dataframe with only the x and y vectors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>This process of duplicating an action multiple times can make it difficult to understand the intent of the process. <em>Additionally, it can make it very difficult to spot mistakes. When you find yourself copy-pasting lines of code, it’s time to write a function, instead!</em></p>
-<p><strong>3. Transform the repeated process above into a <code>rescale_01()</code> function. Your function should…</strong></p>
-<ul>
-<li><strong>… take a single vector as input.</strong></li>
-<li><strong>… return the rescaled vector.</strong></li>
-</ul>
+<p><strong>5. Fit a simple linear regression model of the outcome <code>y</code> on <code>x</code>. Use <code>tidy()</code> from the <code>broom</code> package to extract a dataframe from the <code>lm()</code> output that includes the slope estimate and a 95% confidence interval for the slope estimate.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q5 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>6. Check whether the true population slope is inside of the estimated 95% confidence interval for that simulated dataset. Specifically, <em>add</em> a variable called <code>cover</code> to the dataframe of estimates you created in the last question (Q5) that is <code>1</code> if the population slope is in the interval and <code>0</code> if not.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -350,82 +342,66 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Think about the <strong>efficiency</strong> of your function. Are you calling the <strong>same</strong> function multiple times?</p>
-<p>Look into the function <code>range()</code>.</p>
+<p>As a reminder, we set <code>slope = 1</code> in the data generation (Q4) so the true population slope is <span class="math inline">\(\beta_1 = 1\)</span>.</p>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for Q4 and Q5.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q6 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>4. Let’s incorporate some input validation into your function. Modify your previous code so that the function stops if …</strong></p>
+<p><strong>7. Now put this all together into a function called <code>mycifun</code>! Run the check provided to ensure that it works correctly</strong></p>
 <ul>
-<li><strong>… the input vector is not numeric.</strong></li>
-<li><strong>… the length of the input vector is not greater than 1.</strong></li>
-</ul>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Do not create a new code chunk here – simply add these stops to your function above!</p>
-</div>
-</div>
-</section>
-<section id="test-your-function" class="level2">
-<h2 class="anchored" data-anchor-id="test-your-function">Test Your Function</h2>
-<p><strong>5. Run the code below to test your function. Verify that the maximum of your rescaled vector is 1 and the minimum is 0!</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, <span class="cn">NA</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>rescaled <span class="ot">&lt;-</span> <span class="fu">rescale_01</span>(x)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(rescaled, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(rescaled, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Next, let’s test the function on the <code>length</code> column of the <code>BlackfootFish</code> data.</p>
-<p><strong>6. The code below makes a histogram of the original values of <code>length</code>. Add a plot of the rescaled values of <code>length</code>. Output your plots side-by-side, so the reader can confirm the only aspect that has changed is the scale.</strong></p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This will require you to call your <code>rescale_01()</code> function within a <code>mutate()</code> statement to create a <code>length_scaled</code> variable.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
+<li><p>The function should have three required arguments: <code>beta0</code>, <code>beta1</code>, and <code>n</code> (the number of observations in the simulated data).</p></li>
+<li><p>The function should complete the steps in Q4-6 given these arguments:</p>
 <ol type="1">
-<li><p>Set the y-axis limits for both plots to go from 0 to 4000 to allow for direct comparison across plots.</p></li>
-<li><p>Pay attention to <code>binwidth</code>! Adjust it so that the plots are comparable (they may not look exactly the same).</p></li>
-<li><p>Look for a Quarto code-chunk option to put the plots side-by-side.</p></li>
-</ol>
-</div>
+<li>generate one synthetic dataset based on the data generating model as above</li>
+<li>fit a linear regression model</li>
+<li>check that the <strong>population slope</strong> is contained in the estimated 95% confidence interval for the sample slope</li>
+</ol></li>
+<li><p>The output of the function should be a dataframe/tibble with one row and four columns: the slope estimate, lower bound of the CI, upper bound of the CI, and whether the population slope is within the CI.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q7 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>fish <span class="sc">|&gt;</span>  </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> length)) <span class="sc">+</span> </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">45</span>) <span class="sc">+</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Original Values of Fish Length (mm)"</span>) <span class="sc">+</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">4000</span>))</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for Q7 plot.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mycifun</span>(<span class="at">beta0 =</span> <span class="dv">1</span>, <span class="at">beta1 =</span> <span class="dv">2</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>8a. Now run this simulation 1,000 times using <code>map_dfr()</code> and the function you wrote (<code>mycifun()</code>). Generate data with <span class="math inline">\(\beta_0 = 3\)</span>, <span class="math inline">\(\beta_1 = .5\)</span> and <span class="math inline">\(n = 100\)</span>. Make sure to add a line of code to make your simulation reproducible every time you run it.</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ci_dat <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.f =</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>8b. What does one row in the resulting <code>ci_dat</code> represent?</strong></p>
+<p><strong>8c. What is your simulated coverage rate? In otherwords, for what proportion of the iterations was the population slope within the estimated 95% confidence interval? Write your answer as a sentence in Markdown using inline code!</strong></p>
+<p><strong>9. Create a visualization to illustrate the coverage rate.</strong></p>
+<p>You can create any visualization that effectively illustrates the concept. I included a plot below with my idea of an effective plot to illustrate the concept of coverage. Actually, a professor showed me a plot like this in undergrad and I have always remembered it!</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You do not need to exactly copy the plot, even if you choose to do something like it. A couple of hints to get you started on making a plot like this one:</p>
+<ul>
+<li>Check out <code>geom_errorbar()</code></li>
+<li>Check out <code>geom_vline()</code> for the line indicating the true population slope</li>
+<li>See <a href="https://atheobold.github.io/groupworthy-data-science/slides/week-8/iteration-part-2.html#/could-you-remove-your-legend-1">this slide</a> for code from Dr.&nbsp;Theobold to include colors in a title rather than a legend.</li>
+<li>I took a random sample of 100 simulations to make it easier to look at.</li>
+</ul>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="ci_plot.png" class="img-fluid figure-img"></p>
+<figcaption>Example Plot</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q9 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

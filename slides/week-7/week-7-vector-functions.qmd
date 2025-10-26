@@ -14,32 +14,23 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
-## New Seating Chart
+<!-- make sure seq_along() is included -->
+<!-- do a refresher of [] for vectors  -->
+<!-- - using logical values  -->
+<!-- - using indices -->
+<!-- refresher on if() and else if() -->
+<!-- include optional versus required arguments -->
 
-![](images/week-7-seats.png)
 
 ## Tuesday, November 2
 
 Today we will...
 
-+ Reminder: Midterm Portfolio Meetings
 + New Material
   + Function Basics
   + Variable Scope + Environment
 + PA 7: Writing Functions
   
-# Midterm Portfolio Meetings
-
-## Midterm Portfolio Meetings
-
-::: {.incremental}
-- No in-person class on Thursday
-  + Remember the time you signed up for: [Google Sheet with Sign-up Times](https://docs.google.com/spreadsheets/d/1b4fUfPIT_05niJlpHNnne_y5HXXB-43Nzph6_FWZf80/edit?usp=sharing)    
-  + Deadline to sign-up (or move your time) is Tuesday at 5pm.
-- Meetings scheduled between 8am and 11am will be **in Dr. T's office (25-105)**. 
-- Meetings scheduled between 12pm and 3pm will be **in our classroom (this room)**.
-:::
-
 # Functions
 
 ## Why write functions?
@@ -391,6 +382,251 @@ min_max(vec)
 ```
 :::
 
+
+
+## Debugging
+
+You **will** make mistakes (create bugs) when coding.
+
++ Unfortunately, it becomes more and more complicated to **debug** your code as your code gets more sophisticated.
++ This is especially true with functions!
+
+
+
+## Debugging Strategies
+
+When you have a concept that you want to turn into a function...
+
+::: {.incremental}
+1. Write a simple **example** of the code without the function framework.
+
+2. **Generalize** the example by assigning variables.
+
+3. **Write** the code into a function.
+
+4. **Call** the function on the desired arguments
+:::
+
+. . .
+
+**This structure allows you to address issues as you go.**
+
+
+## An Example
+
+Write a function called `find_car_make()` that takes in the name of a car and 
+returns the “make” of the car (the company that created it).
+
++ `find_car_make("Toyota Camry")` should return "Toyota".
++ `find_car_make("Ford Anglica")` should return "Ford".
+
+
+## An Example
+
+::: panel-tabset
+
+### Simple Examples
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+make <- word(string = "Toyota Camry",
+             start = 1, 
+             end = 1)
+make
+
+make <- word(string = "Ford Anglica",
+             start = 1, 
+             end = 1)
+make
+```
+
+### Generalize
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+car_name <- "Toyota Camry"
+
+make <- word(string = car_name, 
+             start = 1, 
+             end = 1)
+make
+```
+
+### Write + Call Funciton
+
+Taking these examples, write a `find_car_make()` function that will output the
+maker / manufacturer of any car. 
+
+Once you've got a function written, can you add input validation to your
+function?
+:::
+
+## `find_car_make()`
+
+::: {.midi}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+find_car_make <- function(car_name){
+  # Check if there is a space in the string (so there are separate parts)
+  stopifnot(
+    stringr::str_detect(car_name, pattern = "\\w")
+            )
+  # Grab the first word of the car name (assuming Toyota Camry style input)
+  make <- word(string = car_name, 
+               start = 1, 
+               end = 1)
+  
+  return(make)
+}
+```
+:::
+
+</br> 
+
+::: columns
+::: {.column width="45%"}
+::: {.midi}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+find_car_make("Toyota Camry")
+```
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="45%"}
+::: {.midi}
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+find_car_make("Ford Anglica")
+```
+:::
+:::
+:::
+
+# [PA 7: Writing Functions](../../group-activities/week-7/PA-7-functions.qmd)
+
+![](images/number-tiles.png){fig-alt=""}
+
+## PA 7
+
+You will write several small functions, then use them to unscramble a message. 
+Many of the functions have been started for you, but **none** of them are
+complete as is.
+
+. . .
+
+::: columns
+::: {.column width="55%"}
+::: {.small}
+This activity will require knowledge of:
+
+- Summary functions
+- Function documentation (for optional arguments)
+- Function syntax
+- modulus division (and remainders)
+- `if ()` & `else if()` statements
+- Using `[]` and logical values to extract elements of a vector
+- Negating logical statements
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="40%"}
+</br>
+</br>
+
+[**None of us have all these abilities. Each of us has some of these abilities.**]{.midi}
+
+:::
+:::
+
+## Base R Resources
+
+::: columns
+::: {.column width="60%"}
+Every group should have a **base R** cheatsheet!
+
+::: {.fragment}
+::: {.small}
+**On the front middle**:
+
+- ***Selecting Vectors*** can refresh your memory on using `[]` to extract
+elements of a vector
+:::
+:::
+
+::: {.fragment}
+::: {.small}
+**On the front right**:
+
+- ***If Statements*** can help you write conditional checks / returns for your
+functions
+- ***Functions*** can help you remember the syntax for creating a function
+:::
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="35%"}
+![](images/base-r-cheatsheet.png){fig-alt="A Base R Cheat Sheet with various R programming syntax and examples. It covers topics such as reading and writing data (e.g., read.csv, write.csv), accessing help with R functions (e.g., ?mean), using control structures like for loops and if statements, defining functions, vector operations, using libraries, and working with different data types like lists, matrices, and data frames. There are examples of matrix operations, conditions, statistical functions (e.g., mean, sd), and plotting basics (e.g., plot, hist). The cheat sheet includes tips on environment management and converting between data types."}
+:::
+:::
+
+## Getting Started
+
+The partner who lives the furthest from SLO starts as the Developer (typing
+and listening to instructions from the Coder)!
+
+- The Coder **does not type**. 
+  * The collaborative editing feature should allow you to track what is being 
+  typed. 
+- The Developer **only types what they are told to type**. 
+
+## Submission
+
+> Submit the name of the television show the six numbers are asssociated with.
+
+- Each person will input the full name of the TV show into the PA 7 quiz. 
+- The person who last occupied the role of Developer will download and submit 
+the `PA-7-functions.html` file for the group.
+  + Only one submission per group!
+
+## [Lab 7](../../labs/instructions/lab-7-instructions.qmd) & [Challenge 7: Functions + Fish](../../labs/instructions/challenge-7-instructions.qmd)
+
+::: {.centered}
+![](https://github.com/earobinson95/stat331-calpoly/blob/master/lab-assignments/lab7/images/blackfoot_river.jpg?raw=true){fig-alt="A serene scene of the Blackfoot River in Montana, with a small raft carrying two people navigating the gentle current. The river winds through a landscape of rugged, rocky shores and lush, green pine forests. Rolling hills and distant mountains frame the background under a lightly clouded sky."}
+:::
+
+## To do...
+  
++ **PA 7: Functions**
+  + Due Thursday, 11/4 by 12:10pm
+  
++ **Attend Your Midterm Portfolio Meeting**
+  + [Your Scheduled time on Thursday](https://docs.google.com/spreadsheets/d/1b4fUfPIT_05niJlpHNnne_y5HXXB-43Nzph6_FWZf80/edit?usp=sharing)
+  
++ **Lab 7: Functions + Fish**
+  + Due Sunday, 11/10 at 11:59pm.
+  
+# Slides for Lab 7
+
 ## Input Validation
 
 
@@ -684,269 +920,6 @@ add_two()
 
 knitr::include_graphics("https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/51084276-ab7f-4c57-a0e7-5cf14a277359_rw_1920.png?h=825c5593149a63edef46664796766751")
 ```
-
-
-## Debugging
-
-You **will** make mistakes (create bugs) when coding.
-
-+ Unfortunately, it becomes more and more complicated to **debug** your code as your code gets more sophisticated.
-+ This is especially true with functions!
-
-
-<!-- ## Debugging Strategies -->
-
-<!-- ::: {.small} -->
-<!-- + Interactive coding -->
-<!--   + Highlight lines within your function and run them one-by-one to see what -->
-<!--   happens. -->
-<!--   + You can run individual lines (or groups) of code by highlighting and hitting -->
-<!--   [Command + Return] or [Control + Enter].  -->
-<!-- ::: -->
-
-<!-- . . . -->
-
-<!-- ::: {.small} -->
-<!-- + `print()` debugging -->
-<!--   + Add `print()` statements throughout your code to make sure the values are what you expect. -->
-<!-- ::: -->
-
-<!-- . . . -->
-
-<!-- ::: {.small} -->
-<!-- + Rubber Ducking -->
-<!--   + Verbally explain your code line by line to a rubber duck (or a human). -->
-<!--   + This is what we do in our Practice Activities!!! -->
-<!-- ::: -->
-
-## Debugging Strategies
-
-When you have a concept that you want to turn into a function...
-
-::: {.incremental}
-1. Write a simple **example** of the code without the function framework.
-
-2. **Generalize** the example by assigning variables.
-
-3. **Write** the code into a function.
-
-4. **Call** the function on the desired arguments
-:::
-
-. . .
-
-**This structure allows you to address issues as you go.**
-
-
-## An Example
-
-Write a function called `find_car_make()` that takes in the name of a car and returns the “make” of the car (the company that created it).
-
-+ `find_car_make("Toyota Camry")` should return "Toyota".
-+ `find_car_make("Ford Anglica")` should return "Ford".
-
-
-## An Example
-
-::: panel-tabset
-
-### Simple Examples
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-make <- word(string = "Toyota Camry",
-             start = 1, 
-             end = 1)
-make
-
-make <- word(string = "Ford Anglica",
-             start = 1, 
-             end = 1)
-make
-```
-
-### Generalize
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-car_name <- "Toyota Camry"
-
-make <- word(string = car_name, 
-             start = 1, 
-             end = 1)
-make
-```
-
-### Write + Call Funciton
-
-Taking these examples, write a `find_car_make()` function that will output the
-maker / manufacturer of any car. 
-
-Once you've got a function written, can you add input validation to your
-function?
-:::
-
-## `find_car_make()`
-
-::: {.midi}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-find_car_make <- function(car_name){
-  # Check if there is a space in the string (so there are separate parts)
-  stopifnot(
-    stringr::str_detect(car_name, pattern = "\\w")
-            )
-  # Grab the first word of the car name (assuming Toyota Camry style input)
-  make <- word(string = car_name, 
-               start = 1, 
-               end = 1)
   
-  return(make)
-}
-```
-:::
-
-</br> 
-
-::: columns
-::: {.column width="45%"}
-::: {.midi}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-find_car_make("Toyota Camry")
-```
-:::
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="45%"}
-::: {.midi}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-find_car_make("Ford Anglica")
-```
-:::
-:::
-:::
-
-# [PA 7: Writing Functions](../../group-activities/week-7/PA-7-functions.qmd)
-
-![](images/number-tiles.png){fig-alt=""}
-
-## PA 7
-
-You will write several small functions, then use them to unscramble a message. 
-Many of the functions have been started for you, but **none** of them are
-complete as is.
-
-. . .
-
-::: columns
-::: {.column width="55%"}
-::: {.small}
-This activity will require knowledge of:
-
-- Summary functions
-- Function documentation (for optional arguments)
-- Function syntax
-- modulus division (and remainders)
-- `if ()` & `else if()` statements
-- Using `[]` and logical values to extract elements of a vector
-- Negating logical statements
-:::
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="40%"}
-</br>
-</br>
-
-[**None of us have all these abilities. Each of us has some of these abilities.**]{.midi}
-
-:::
-:::
-
-## Base R Resources
-
-::: columns
-::: {.column width="60%"}
-Every group should have a **base R** cheatsheet!
-
-::: {.fragment}
-::: {.small}
-**On the front middle**:
-
-- ***Selecting Vectors*** can refresh your memory on using `[]` to extract
-elements of a vector
-:::
-:::
-
-::: {.fragment}
-::: {.small}
-**On the front right**:
-
-- ***If Statements*** can help you write conditional checks / returns for your
-functions
-- ***Functions*** can help you remember the syntax for creating a function
-:::
-:::
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="35%"}
-![](images/base-r-cheatsheet.png){fig-alt="A Base R Cheat Sheet with various R programming syntax and examples. It covers topics such as reading and writing data (e.g., read.csv, write.csv), accessing help with R functions (e.g., ?mean), using control structures like for loops and if statements, defining functions, vector operations, using libraries, and working with different data types like lists, matrices, and data frames. There are examples of matrix operations, conditions, statistical functions (e.g., mean, sd), and plotting basics (e.g., plot, hist). The cheat sheet includes tips on environment management and converting between data types."}
-:::
-:::
-
-## Getting Started
-
-The partner who lives the furthest from SLO starts as the Developer (typing
-and listening to instructions from the Coder)!
-
-- The Coder **does not type**. 
-  * The collaborative editing feature should allow you to track what is being 
-  typed. 
-- The Developer **only types what they are told to type**. 
-
-## Submission
-
-> Submit the name of the television show the six numbers are asssociated with.
-
-- Each person will input the full name of the TV show into the PA 7 quiz. 
-- The person who last occupied the role of Developer will download and submit 
-the `PA-7-functions.html` file for the group.
-  + Only one submission per group!
-
-## [Lab 7](../../labs/instructions/lab-7-instructions.qmd) & [Challenge 7: Functions + Fish](../../labs/instructions/challenge-7-instructions.qmd)
-
-::: {.centered}
-![](https://github.com/earobinson95/stat331-calpoly/blob/master/lab-assignments/lab7/images/blackfoot_river.jpg?raw=true){fig-alt="A serene scene of the Blackfoot River in Montana, with a small raft carrying two people navigating the gentle current. The river winds through a landscape of rugged, rocky shores and lush, green pine forests. Rolling hills and distant mountains frame the background under a lightly clouded sky."}
-:::
-
-## To do...
   
-+ **PA 7: Functions**
-  + Due Thursday, 11/4 by 12:10pm
-  
-+ **Attend Your Midterm Portfolio Meeting**
-  + [Your Scheduled time on Thursday](https://docs.google.com/spreadsheets/d/1b4fUfPIT_05niJlpHNnne_y5HXXB-43Nzph6_FWZf80/edit?usp=sharing)
-  
-+ **Lab 7: Functions + Fish**
-  + Due Sunday, 11/10 at 11:59pm.
   

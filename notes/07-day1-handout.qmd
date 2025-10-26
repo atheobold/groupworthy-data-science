@@ -25,7 +25,7 @@ input.
 
 - Function Name:
 - Function Argument(s):
-- Function Body
+- Function Body:
 - Function Return:
 
 

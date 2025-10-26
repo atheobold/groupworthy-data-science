@@ -11,15 +11,25 @@ execute:
   eval: false
   message: false
   warning: false
+resources: 
+  - ../student/lab-4-student.qmd
+  - data/BlackfootFish.csv
 ---
 
-[Download .qmd starter file](../../student-versions/labs/lab7-functions.qmd)
+## Accessing the Lab
 
-[Download `BlackfootFish.csv`](BlackfootFish.csv)
+Download the template Lab 7 Quarto file here: <a href="../student/lab-7-student.qmd" download>`lab-7-student.qmd`</a> 
 
-The goal of this lab is learn more about exploring missing data and writing modular code.
+Download the data for the lab here: [`BlackfootFish.csv`](data/BlackfootFish.csv) 
 
-```{r setup}
+::: {.callout-important}
+Be sure to save these in the Lab 7 folder, inside your Week 7 folder, 
+inside your STAT 331 folder! 
+:::
+
+```{r}
+#| label: setup
+
 library(tidyverse)
 fish <- read.csv("BlackfootFish.csv")
 ```
@@ -73,13 +83,29 @@ Hint: use `across()`.
 :::
 
 ```{r}
-# Code for Q1.
+#| label: Q1
+
+
 ```
 
-**2. Create ONE thoughtful visualization that explores the frequency of missing values across the different years, sections, and trips.**
+**2. Use a pivot to transform your summary table from Question 1 into a table that is easier to read.**
 
 ```{r}
-# Code for Q2.
+#| label: Q2
+
+
+```
+
+::: callout-tip
+Hint: use `pivot_wider()`.
+:::
+
+**3. Create ONE thoughtful visualization that explores the frequency of missing values across the different years, sections, and trips.**
+
+```{r}
+#| label: Q3
+
+
 ```
 
 ::: callout-tip
@@ -113,7 +139,7 @@ fish <- fish |>
 
 This process of duplicating an action multiple times can make it difficult to understand the intent of the process. *Additionally, it can make it very difficult to spot mistakes. When you find yourself copy-pasting lines of code, it's time to write a function, instead!*
 
-**3. Transform the repeated process above into a `rescale_01()` function. Your function should...**
+**4. Transform the repeated process above into a `rescale_01()` function. Your function should...**
 
 + **... take a single vector as input.**
 + **... return the rescaled vector.**
@@ -121,16 +147,16 @@ This process of duplicating an action multiple times can make it difficult to un
 ::: callout-tip
 
 Think about the **efficiency** of your function. Are you calling the **same** function multiple times?
-
-Look into the function `range()`.
-
 :::
 
 ```{r}
-# Code for Q4 and Q5.
+#| label: Q4-Q5
+
+
 ```
 
-**4. Let's incorporate some input validation into your function. Modify your previous code so that the function stops if ...**
+
+**5. Let's incorporate some input validation into your function. Modify your previous code so that the function stops if ...**
 
 + **... the input vector is not numeric.**
 + **... the length of the input vector is not greater than 1.**
@@ -141,9 +167,11 @@ Do not create a new code chunk here -- simply add these stops to your function a
 
 ## Test Your Function
 
-**5. Run the code below to test your function. Verify that the maximum of your rescaled vector is 1 and the minimum is 0!**
+**6. Run the code below to test your function. Verify that the maximum of your rescaled vector is 1 and the minimum is 0!**
 
 ```{r}
+#| label: Q6
+
 x <- c(1:25, NA)
 
 rescaled <- rescale_01(x)
@@ -153,7 +181,7 @@ max(rescaled, na.rm = TRUE)
 
 Next, let's test the function on the `length` column of the `BlackfootFish` data.
 
-**6. The code below makes a histogram of the original values of `length`. Add a plot of the rescaled values of `length`. Output your plots side-by-side, so the reader can confirm the only aspect that has changed is the scale.**
+**7. The code below makes a histogram of the original values of `length`. Add a plot of the rescaled values of `length`. Output your plots side-by-side, so the reader can confirm the only aspect that has changed is the scale.**
 
 ::: callout-warning
 
@@ -172,8 +200,9 @@ This will require you to call your `rescale_01()` function within a `mutate()` s
 :::
 
 ```{r}
+#| label: Q7
 fish |>  
-  ggplot(aes(x = length)) + 
+  ggplot(mapping = aes(x = length)) + 
   geom_histogram(binwidth = 45) +
   labs(x = "Original Values of Fish Length (mm)") +
   scale_y_continuous(limits = c(0, 4000))

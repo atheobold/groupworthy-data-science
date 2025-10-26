@@ -18,8 +18,7 @@ complete as is.
 
 ***This task is complex. It requires many different types of abilities. Everyone will be good at some of these abilities but nobody will be good at all of them. In order to produce the best product possible, you will need to use the skills of each member of your group.***
 
-<!-- The person who who lives the furthest from SLO starts as the Developer (typing and
-listening to instructions from the Coder)!  -->
+<!-- The person who has the most siblings will start as the Coder (explaining their ideas to the Computer)!  -->
 
 **1. Write code to manipulate the vector of numbers `nums`. Your code should divide each element in the vector by the smallest element and round the results to the nearest whole number.** Hint: This code should not be a function.
 
@@ -79,11 +78,14 @@ no_nines_or_twelves(test)
 
 <!-- Swap roles -- Developer becomes Coder, Coder becomes Developer! -->
 
-**7. Write a function called `every_other()`. This function should take in a vector and return every other value in the vector. Include an optional argument called `start` which lets you choose where to start skipping; that is, if `start = 1`, the function returns the 1st, 3rd, 5th, etc. values and if `start = 2`, the function returns the 2nd, 4th, 6th, etc. values.** Fill in the skeleton below.
+**7. Write code to manipulate the vector of numbers `nums`. Your code should generate the sequence of indices of `nums` using `seq_along()`. You should then determine which indices are even numbers using `%%`.**
 
-Hint: **Do not** use a `for()` loop to do this! Accomplish this with the
-`seq_along()` function, bracket subsetting (`[]`), and modulus arithmetic
-(`%%`).
+```{r}
+nums <- 9:18
+
+```
+
+**8. Turn you code from Q7 into a function called `every_other()`. This function should take in a vector and return every other value in the vector. The function should include an optional argument called `start` which lets you choose where to start skipping. That is, if `start = 1`, the function returns the 1st, 3rd, 5th, etc. values and if `start = 2`, the function returns the 2nd, 4th, 6th, etc. values.** Fill in the skeleton below.
 
 ```{r}
 #| label: q7
@@ -91,20 +93,22 @@ Hint: **Do not** use a `for()` loop to do this! Accomplish this with the
 every_other <- function(vec){
   
   if(start == 2){
+
     vec[]
   } else if(start == 1) {
+    
     vec[]
   }
   
 }
 ```
 
-**8. Test your function by running the code below.**
+**9. Test your function by running the code below.**
 
 ```{r}
 #| label: q8
 
-test <- c(1:10)
+test <- 1:10
 
 every_other(test)
 every_other(test, start = 2)
@@ -112,21 +116,31 @@ every_other(test, start = 2)
 
 <!-- Swap roles -- Developer becomes Coder, Coder becomes Developer! -->
 
-**9. Write a function called `shorten()`. This function should take in a vector, drop all values BEFORE the cumulative sum is greater than a provided number, and return the remaining values from the original vector.**
+**10. Write code to manipulate the vector of numbers `nums`. Your code should, compute the running total at each position using the `cumsum()` function, and check where the cumulative sum is larger than 25.**
 
-Hint: **Do not** use a `while()` loop to do this! Accomplish this with the
-`cumsum()` function and bracketing.
+```{r}
+nums <- 1:15
+
+```
+
+**11. Turn your code from Q10 into a function called `shorten()`. The function should take in a vector, drop all values BEFORE the cumulative sum is greater than a provided number, and return the remaining values from the original vector.**
 
 ```{r}
 #| label: q9
 
-shorten <- function(x, sum){
+shorten <- function(vec, sum){
+
+  # Calculate the cumulative sum
+
+  # Find the indices that exceed the limit
+  
+  # Keep indices from first exceedance onward
   
 }
 
 ```
 
-**10. Test your function by running the code below.**
+**12. Test your function by running the code below.**
 
 ```{r}
 #| label: q10
@@ -135,7 +149,7 @@ test <- 20:50
 shorten(test, 350)
 ```
 
-**11. Once you have written your four functions correctly, run the following code:**
+**13. Once you have written your four functions correctly, run the following code:**
 
 ```{r}
 #| label: q11

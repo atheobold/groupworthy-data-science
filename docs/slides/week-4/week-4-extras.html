@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Untitled</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-f563837468303362081e247dddd440d0.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -248,7 +248,7 @@
 <h2>Creating a Factor – <code>fct</code></h2>
 <p>You can also <strong>specify non-present levels</strong>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="3,13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>eras_data <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb1" data-code-line-numbers="3,13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a>eras_data <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a></a>  <span class="fu">pull</span>(Album) <span class="sc">|&gt;</span> </span>
 <span id="cb1-3"><a></a>  <span class="fu">fct</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Taylor Swift"</span>,</span>
 <span id="cb1-4"><a></a>                 <span class="st">"Fearless"</span>,</span>
@@ -261,7 +261,7 @@
 <span id="cb1-11"><a></a>                 <span class="st">"Evermore"</span>,</span>
 <span id="cb1-12"><a></a>                 <span class="st">"Midnights"</span>,</span>
 <span id="cb1-13"><a></a>                 <span class="st">"The Tortured Poets Department"</span>)</span>
-<span id="cb1-14"><a></a>      ) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-14"><a></a>      ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="re-coding-a-factor-fct_recode" class="slide level2">
@@ -272,12 +272,12 @@
 <div class="fragment">
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span></span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Album =</span> <span class="fu">fct_recode</span>(<span class="at">.f =</span> Album,</span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a>                            <span class="st">"folklore"</span> <span class="ot">=</span> <span class="st">"Folklore"</span>,</span>
 <span id="cb2-4"><a aria-hidden="true" tabindex="-1"></a>                            <span class="st">"evermore"</span> <span class="ot">=</span> <span class="st">"Evermore"</span>,</span>
 <span id="cb2-5"><a aria-hidden="true" tabindex="-1"></a>                            <span class="st">"reputation"</span> <span class="ot">=</span> <span class="st">"Reputation"</span>)</span>
-<span id="cb2-6"><a aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-6"><a aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -290,13 +290,13 @@
 <div class="fragment">
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Album =</span> <span class="fu">case_when</span>(Album <span class="sc">==</span> <span class="st">"Folklore"</span> <span class="sc">~</span> <span class="st">"folklore"</span>,</span>
 <span id="cb3-3"><a aria-hidden="true" tabindex="-1"></a>                           Album <span class="sc">==</span> <span class="st">"Evermore"</span> <span class="sc">~</span> <span class="st">"evermore"</span>,</span>
 <span id="cb3-4"><a aria-hidden="true" tabindex="-1"></a>                           Album <span class="sc">==</span> <span class="st">"Reputation"</span> <span class="sc">~</span> <span class="st">"reputation"</span>,</span>
 <span id="cb3-5"><a aria-hidden="true" tabindex="-1"></a>                           <span class="at">.default =</span> Album),</span>
 <span id="cb3-6"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">Album =</span> <span class="fu">fct</span>(Album)) <span class="sc">|&gt;</span> </span>
-<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Album)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Album)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -309,15 +309,15 @@
 <div class="tab-content">
 <div id="tabset-1-1">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Album) <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">levels</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">levels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2">
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a>eras_data <span class="sc">|&gt;</span> </span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Album) <span class="sc">|&gt;</span></span>
 <span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">fct_relevel</span>(<span class="fu">c</span>(<span class="st">"Fearless"</span>,</span>
 <span id="cb5-4"><a aria-hidden="true" tabindex="-1"></a>                <span class="st">"1989"</span>,</span>
@@ -330,7 +330,7 @@
 <span id="cb5-11"><a aria-hidden="true" tabindex="-1"></a>                <span class="st">"Lover"</span>,</span>
 <span id="cb5-12"><a aria-hidden="true" tabindex="-1"></a>                <span class="st">"Evermore"</span>)</span>
 <span id="cb5-13"><a aria-hidden="true" tabindex="-1"></a>              ) <span class="sc">|&gt;</span> </span>
-<span id="cb5-14"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">levels</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-14"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">levels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -346,7 +346,7 @@
 <p>The bars follow the default factor levels.</p>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>full_eras <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>full_eras <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a></a>  <span class="fu">mutate</span>(<span class="at">Album =</span> <span class="fu">fct</span>(Album)) <span class="sc">|&gt;</span> </span>
 <span id="cb6-3"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> Album,</span>
 <span id="cb6-4"><a></a>               <span class="at">fill =</span> Album)</span>
@@ -356,7 +356,7 @@
 <span id="cb6-8"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
 <span id="cb6-9"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
 <span id="cb6-10"><a></a>       <span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb6-11"><a></a>       <span class="at">title =</span> <span class="st">"Number of Songs Played on the Eras Tour by Album"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-11"><a></a>       <span class="at">title =</span> <span class="st">"Number of Songs Played on the Eras Tour by Album"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -367,7 +367,7 @@
 <div class="small">
 <p>We can order factor levels to order the bar plot.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" data-code-line-numbers="2-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>full_eras <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="2-13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>full_eras <span class="sc">|&gt;</span> </span>
 <span id="cb7-2"><a></a>  <span class="fu">mutate</span>(<span class="at">Album =</span> <span class="fu">fct</span>(Album,</span>
 <span id="cb7-3"><a></a>                     <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Fearless"</span>,</span>
 <span id="cb7-4"><a></a>                                <span class="st">"Speak Now"</span>,</span>
@@ -388,7 +388,7 @@
 <span id="cb7-19"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
 <span id="cb7-20"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>,</span>
 <span id="cb7-21"><a></a>       <span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb7-22"><a></a>       <span class="at">title =</span> <span class="st">"Number of Songs Played on the Eras Tour by Album"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-22"><a></a>       <span class="at">title =</span> <span class="st">"Number of Songs Played on the Eras Tour by Album"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -410,7 +410,7 @@
 <div class="small">
 <p>The ridge plots follow the order of the factor levels.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>full_eras <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>full_eras <span class="sc">|&gt;</span> </span>
 <span id="cb8-2"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Length, </span>
 <span id="cb8-3"><a></a>                       <span class="at">y =</span> Album, </span>
 <span id="cb8-4"><a></a>                       <span class="at">fill =</span> Album)</span>
@@ -420,7 +420,7 @@
 <span id="cb8-8"><a></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)<span class="sc">+</span></span>
 <span id="cb8-9"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Song Length (mins)"</span>,</span>
 <span id="cb8-10"><a></a>       <span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb8-11"><a></a>       <span class="at">title =</span> <span class="st">"Length of Songs Played on the Eras Tour by Album"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb8-11"><a></a>       <span class="at">title =</span> <span class="st">"Length of Songs Played on the Eras Tour by Album"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -620,7 +620,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

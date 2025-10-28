@@ -7,30 +7,34 @@ format:
 editor: source
 ---
 
-```{r setup}
+```{r}
 #| include: false
 #| message: false
+#| label: set-up
+
 library(tidyverse)
 library(palmerpenguins)
+library(countdown)
+
 ```
 
-<!-- make sure seq_along() is included -->
-<!-- do a refresher of [] for vectors  -->
-<!-- - using logical values  -->
-<!-- - using indices -->
-<!-- refresher on if() and else if() -->
-<!-- include optional versus required arguments -->
-
-
-## Tuesday, November 2
+## Thursday, October 30
 
 Today we will...
 
 + New Material
   + Function Basics
-  + Variable Scope + Environment
-+ PA 7: Writing Functions
++ Practice writing functions!
+  + `[]` Refresher
+  + `seq_along()`
+  + `if()` and `else if()` Refresher
+
   
++ PA 7: Writing Functions
+
++ Extra Slides for Lab 7
+  + Variable Scope + Environment
+
 # Functions
 
 ## Why write functions?
@@ -65,52 +69,65 @@ Functions allow you to automate common tasks!
 ![](images/func_structure.png){fig-alt="Illustration of R function syntax. The image explains the parts of a function in R using labeled arrows and colors. At the top, the name 'func_name' is assigned using '<-' to a function. An arrow points to 'func_name' with the label 'assign the function a NAME.' The keyword 'function' is highlighted, with an arrow labeled 'indicate we are creating a function.' The parentheses contain 'func_arg1, func_arg2,' which are labeled as 'specify ARGUMENTS of the function.' The body of the function is placed between curly brackets and labeled 'write the BODY of the function between curly brackets.' Finally, the 'return(func_value)' statement is labeled 'return a value as the OUTPUT of the function."}
 
 
-## A (very) Simple Function
+## A (Very) Simple Function
 
-Let's **define** a function.
+</br>
+</br>
 
-+ You run the code to define the function just **once**.
+::: {.large}
+Write a function named `add_two()` that will add `2` to whatever number is
+input. 
+:::
 
-
-```{r my_fun}
-#| echo: true
-#| code-line-numbers: false
-
-add_two <- function(x){
-  x + 2
-}
+```{r}
+countdown(minutes = 3)
 ```
 
-<br>
 
 . . .
 
-Let's **call** the function!
+</br>
 
-```{r}
-#| echo: true
-#| code-line-numbers: false
+::: {.callout-tip}
+# Compare Your Function with Your Neighbor
 
-add_two(5)
-```
+In what ways are your functions the same? In what ways do they differ?
+:::
 
+<!-- ::: {.midi} -->
+<!-- ```{r my_fun} -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: false -->
 
-## Naming: `add_two`
+<!-- add_two <- function(x){ -->
+
+<!--   return(x + 2) -->
+
+<!-- } -->
+<!-- ``` -->
+<!-- ::: -->
+
+## Function Names
 
 The **name** of the function is chosen by the author.
 
+::: {.midi}
 ```{r}
 #| echo: true
 #| eval: false
 #| code-line-numbers: false
 
 add_two <- function(x){
-  x + 2
+  
+  return(x + 2)
+
 }
 ```
+:::
 
 . . .
 
+::: {.midi}
 ::: {.callout-caution}
 ## Function names have no inherent meaning.
 
@@ -121,19 +138,18 @@ The name you give to a function does not affect what the function does.
 #| code-line-numbers: false
 
 add_three <- function(x){
-  x + 7
+  return(x + 7)
 }
 ```
-
-</br>
 
 ```{r}
 #| echo: true
 add_three(5)
 ```
 :::
+:::
 
-## Arguments 
+## Function Arguments 
 
 The **argument(s)** of the function are chosen by the author.
 
@@ -161,18 +177,81 @@ The **argument(s)** of the function are chosen by the author.
 #| code-line-numbers: false
 
 add_two <- function(x){
-  x + 2
+  return(x + 2)
 }
 ```
 
 :::
 ::::
 
-## Arguments 
+## Function Arguments 
+
+What if we wanted to write a more general function, named `add_something()`. 
+The function would take **two** inputs: 
+
+1. `x` the vector to add to
+2. `something` the value to add to `x`
+
+How would your function change?
+
+```{r}
+countdown(minutes = 2)
+```
+
+
+
+## Function Arguments 
 
 ::: panel-tabset
 
-### Optional arguments
+### Required Arguments
+
+::: {.midi}
+If we **do not** supply a default value when *defining* the function, the
+argument is **required** when *calling* the function.
+
+```{r}
+#| echo: true
+#| error: true
+#| code-line-numbers: false
+
+add_something <- function(x, something){
+  x + something
+}
+```
+:::
+
+</br> 
+
+::: {.midi}
+::: {.fragment}
+::: columns
+::: {.column width="50%"}
+```{r}
+#| code-line-numbers: false
+#| echo: true
+
+add_something(x = 2, 
+              something = 3)
+```
+
+:::
+
+::: {.column width="50%"}
+```{r}
+#| error: true
+#| code-line-numbers: false
+#| echo: true
+
+add_something(x = 2)
+```
+
+:::
+:::
+:::
+:::
+
+### Optional Arguments
 
 ::: {.midi}
 If we supply a **default** value when *defining* the function, the argument is
@@ -188,46 +267,36 @@ add_something <- function(x, something = 2){
 ```
 :::
 
-::: {.fragment}
+</br>
+
 ::: {.midi}
+::: {.fragment}
+::: columns
+::: {.column width="50%"}
+```{r}
+#| code-line-numbers: false
+#| echo: true
+
+add_something(x = 5, 
+              something = 6)
+```
+:::
+
+::: {.column width="50%"}
 If a value is not supplied, `something` defaults to 2.
 
 ```{r}
-#| echo: true
+#| error: true
 #| code-line-numbers: false
+#| echo: true
 
 add_something(x = 5)
 ```
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-add_something(x = 5, something = 6)
-```
 :::
 :::
-
-### Required arguments
-
-::: {.midi}
-If we **do not** supply a default value when *defining* the function, the
-argument is **required** when *calling* the function.
-
-```{r}
-#| echo: true
-#| error: true
-#| code-line-numbers: false
-
-add_something <- function(x, something){
-  x + something
-}
-
-add_something(x = 2)
-```
 :::
 :::
-
+:::
 
 ## Body: `{  }`
 
@@ -241,20 +310,22 @@ called.
 #| echo: true
 #| eval: false
 #| code-line-numbers: "2"
-add_two <- function(x){
-  x + 2
+
+add_something <- function(x, something = 2){
+  x + something
 }
 ```
 
 
-## Output: `return()`
+## Output: Last Value
 
 Your function will *give back* what would normally *print out*...
 
 ```{r}
 #| echo: true
-add_two <- function(x){
-  x + 2
+
+add_something <- function(x, something = 2){
+  x + something
 }
 ```
 
@@ -274,24 +345,29 @@ add_two <- function(x){
 #| echo: true
 #| code-line-numbers: false
 
-add_two(7)
+add_something(7)
 ```
 :::
 ::::
 
-<br>
-
 . . .
 
-...but it's better to be explicit and use `return()`*.
+</br>
+
+...but some of us might prefer an explicit `return()`.
+
+## Output: `return()`
+
+If you are coming to R from a background in Python, C, or Java then an 
+explicit return may feel more natural to you.
 
 ```{r}
 #| echo: true
 #| eval: false
 #| code-line-numbers: "2"
 
-add_two <- function(x){
-  return(x + 2)
+add_something <- function(x, something = 2){
+  return(x + something)
 }
 ```
 
@@ -305,95 +381,58 @@ add_two <- function(x){
 
 </br> 
 
-::: columns
-::: {.column width="45%"}
-::: {.midi}
 ```{r}
 #| code-line-numbers: false
 #| echo: true
 
-# Good
-find_abs <- function(x) {
-  if (x > 0) {
-    return(x)
-  }
-  x * -1
+safe_square <- function(x) {
+  if (!is.numeric(x)) return(NA)
+  x^2
 }
 
 ```
-:::
-:::
 
-::: {.column width="5%"}
-:::
-
-::: {.column width="45%"}
-::: {.midi}
-```{r}
-#| code-line-numbers: false
-#| echo: true
-
-# Bad
-add_two <- function(x, y) {
-  return(x + y)
-}
-```
-:::
-:::
-:::
-
-. . .
-
-::: {.midi}
-::: {.callout-tip}
-# I tend to disagree...
-
-I prefer to use `return()` statements because it saves me from accidentally 
-writing a function that outputs nothing. 
-:::
-:::
-
-## Output: `return()`
-
-::: {.midi}
-If you need to return **more than one object** from a function, wrap those
-objects in a **list**.
-:::
+## Explicit Returns vs. Implicit Returns
 
 ::: {.small}
-```{r}
-#| echo: true
-#| eval: true
-#| code-line-numbers: "4"
+::: columns
+::: {.column width="50%"}
+::: {.fragment}
+✅ Pros of Using `return()`
 
-min_max <- function(x){
-  lowest <- min(x)
-  highest <- max(x)
-  return(list(lowest, highest))
-}
-
-vec <- c(346,
-         547,
-         865, 
-         112, 
-         58)
-
-min_max(vec)
-```
+- Clarity and explicit intent
+- Early returns / branching logic
+- Consistency with other languages
 :::
 
+::: {.fragment}
+⚠️ Cons of Using `return()`
 
+- More typing / slightly less idiomatic use of R
+- Can be overused in simple functions
+- Can complicate control flow unnecessarily
+:::
+:::
 
-## Debugging
+::: {.column width="50%"}
+::: {.fragment}
+✅ Pros of Implicit Return (no `return()`)
 
-You **will** make mistakes (create bugs) when coding.
+- Concise and idiomatic
+- Encourages "last expression" thinking
+:::
 
-+ Unfortunately, it becomes more and more complicated to **debug** your code as your code gets more sophisticated.
-+ This is especially true with functions!
+::: {.fragment}
+⚠️ Cons of Implicit Return
 
+- Less obvious for beginners
+- Harder to do early exits
+:::
+:::
+:::
+:::
 
-
-## Debugging Strategies
+## General Function Writing Advice
 
 When you have a concept that you want to turn into a function...
 
@@ -411,110 +450,255 @@ When you have a concept that you want to turn into a function...
 
 **This structure allows you to address issues as you go.**
 
+# Let's Practice
 
-## An Example
+<!-- make sure seq_along() is included -->
+<!-- do a refresher of [] for vectors  -->
+<!-- - using logical values  -->
+<!-- - using indices -->
+<!-- refresher on if() and else if() -->
+<!-- include optional versus required arguments -->
 
-Write a function called `find_car_make()` that takes in the name of a car and 
-returns the “make” of the car (the company that created it).
-
-+ `find_car_make("Toyota Camry")` should return "Toyota".
-+ `find_car_make("Ford Anglica")` should return "Ford".
-
-
-## An Example
-
-::: panel-tabset
-
-### Simple Examples
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-make <- word(string = "Toyota Camry",
-             start = 1, 
-             end = 1)
-make
-
-make <- word(string = "Ford Anglica",
-             start = 1, 
-             end = 1)
-make
-```
-
-### Generalize
-
-```{r}
-#| echo: true
-#| code-line-numbers: false
-
-car_name <- "Toyota Camry"
-
-make <- word(string = car_name, 
-             start = 1, 
-             end = 1)
-make
-```
-
-### Write + Call Funciton
-
-Taking these examples, write a `find_car_make()` function that will output the
-maker / manufacturer of any car. 
-
-Once you've got a function written, can you add input validation to your
-function?
-:::
-
-## `find_car_make()`
+## Base R Refresher 
 
 ::: {.midi}
+- We can extract components of a vector using `[ ]`
+  + The inputs can be:
+      - logical values (`TRUE`, `FALSE`)
+      - indices (e.g., `1`, `2`, `3`)
+:::
+
+. . .
+
+::: {.midi}
+- We can grab the indices of a vector using the `seq_along()` function
+
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
-find_car_make <- function(car_name){
-  # Check if there is a space in the string (so there are separate parts)
-  stopifnot(
-    stringr::str_detect(car_name, pattern = "\\w")
-            )
-  # Grab the first word of the car name (assuming Toyota Camry style input)
-  make <- word(string = car_name, 
-               start = 1, 
-               end = 1)
+x <- 15:25
+
+seq_along(x)
+```
+:::
+
+## `above_average()`
+
+::: {.midi}
+> Goal: Keep only the elements of `x` greater than the mean.
+:::
+
+. . .
+
+::: {.midi}
+Fill in the code to create a function named `above_average()`. The
+function should keep only the elements of `x` greater than the mean.
+
+```{r}
+#| echo: true
+
+above_average <- function(x) {
+  # Step 1: Compute mean of x
   
-  return(make)
+  
+  # Step 2: Subset x to keep only values > mean
+  
+  
+  # Step 3: Return the result
+  
 }
 ```
 :::
 
-</br> 
+## Option 1: Using Logical Values
 
-::: columns
-::: {.column width="45%"}
 ::: {.midi}
+**Step 1:** Find locations where values of `x` are larger than the mean
+
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
-find_car_make("Toyota Camry")
+x > mean(x)
 ```
 :::
-:::
 
-::: {.column width="5%"}
-:::
+. . .
 
-::: {.column width="45%"}
 ::: {.midi}
+**Step 2:** Use this output to extract the desired values from `x`
+
 ```{r}
 #| echo: true
 #| code-line-numbers: false
 
-find_car_make("Ford Anglica")
+x[x > mean(x)]
 ```
 :::
+
+. . .
+
+::: {.midi}
+**Step 3:** Make a function
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+above_average <- function(x) {
+  x[x > mean(x)]
+}
+```
 :::
+
+## Option 2: Using Indices
+
+::: {.midi}
+**Step 1:** Find indices where values of `x` are larger than the mean
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+which(x > mean(x))
+```
 :::
+
+. . .
+
+::: {.midi}
+**Step 2:** Use this output to extract the desired values from `x`
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+x[which(x > mean(x))]
+```
+:::
+
+. . .
+
+::: {.midi}
+**Step 3:** Make a function
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+above_average <- function(x) {
+  x[which(x > mean(x))]
+}
+```
+:::
+
+## `every_third()`
+
+> Goal: Return every third element from a vector.
+
+. . .
+
+::: {.midi}
+Write down the steps you would need to create a function named `every_third()` 
+that takes in a vector and returns every third element from that vector 
+(i.e., indices 1, 4, 7, 10, etc.). 
+
+**Think about:**
+
+- What inputs the function should take.
+- How to identify which positions in the vector are "every third."
+- How to select those elements from the vector.
+
+:::
+
+```{r}
+countdown(minutes = 3)
+```
+
+
+## Generate Indices
+
+> Represent the indices (positions) of each element of `x`.
+
+. . .
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+x
+
+seq_along(x)
+```
+
+## Identify Every Third Position
+
+> Identify which positions are "every third."
+
+. . .
+
+::: {.midi}
+
+| index | Remainder (`index %% 3`) | Keep? |
+| :---: | :----------------------: | :---: |
+|   1   |             1            |   ✅   |
+|   2   |             2            |   ❌   |
+|   3   |             0            |   ❌   |
+|   4   |             1            |   ✅   |
+|   5   |             2            |   ❌   |
+|   6   |             0            |   ❌   |
+|   7   |             1            |   ✅   |
+
+:::
+
+## Identify Every Third Position
+
+> Identify which positions are "every third."
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+seq_along(x) %% 3 == 1
+```
+
+## Subset `x`
+
+> Grab the elements of `x` we want to keep. 
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+x
+```
+
+</br>
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+x[ 
+  seq_along(x) %% 3 == 1
+]
+```
+
+## Make it into a function!
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+
+every_third <- function(x) {
+  
+  x[ 
+  seq_along(x) %% 3 == 1
+  ]
+
+  }
+```
 
 # [PA 7: Writing Functions](../../group-activities/week-7/PA-7-functions.qmd)
 
@@ -522,9 +706,11 @@ find_car_make("Ford Anglica")
 
 ## PA 7
 
+::: {.midi}
 You will write several small functions, then use them to unscramble a message. 
 Many of the functions have been started for you, but **none** of them are
 complete as is.
+:::
 
 . . .
 
@@ -555,77 +741,104 @@ This activity will require knowledge of:
 :::
 :::
 
-## Base R Resources
+<!-- ## Base R Resources -->
 
-::: columns
-::: {.column width="60%"}
-Every group should have a **base R** cheatsheet!
+<!-- ::: columns -->
+<!-- ::: {.column width="60%"} -->
+<!-- Every group should have a **base R** cheatsheet! -->
 
-::: {.fragment}
-::: {.small}
-**On the front middle**:
+<!-- ::: {.fragment} -->
+<!-- ::: {.small} -->
+<!-- **On the front middle**: -->
 
-- ***Selecting Vectors*** can refresh your memory on using `[]` to extract
-elements of a vector
-:::
-:::
+<!-- - ***Selecting Vectors*** can refresh your memory on using `[]` to extract -->
+<!-- elements of a vector -->
+<!-- ::: -->
+<!-- ::: -->
 
-::: {.fragment}
-::: {.small}
-**On the front right**:
+<!-- ::: {.fragment} -->
+<!-- ::: {.small} -->
+<!-- **On the front right**: -->
 
-- ***If Statements*** can help you write conditional checks / returns for your
-functions
-- ***Functions*** can help you remember the syntax for creating a function
-:::
-:::
-:::
+<!-- - ***If Statements*** can help you write conditional checks / returns for your -->
+<!-- functions -->
+<!-- - ***Functions*** can help you remember the syntax for creating a function -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::: -->
 
-::: {.column width="5%"}
-:::
+<!-- ::: {.column width="5%"} -->
+<!-- ::: -->
 
-::: {.column width="35%"}
-![](images/base-r-cheatsheet.png){fig-alt="A Base R Cheat Sheet with various R programming syntax and examples. It covers topics such as reading and writing data (e.g., read.csv, write.csv), accessing help with R functions (e.g., ?mean), using control structures like for loops and if statements, defining functions, vector operations, using libraries, and working with different data types like lists, matrices, and data frames. There are examples of matrix operations, conditions, statistical functions (e.g., mean, sd), and plotting basics (e.g., plot, hist). The cheat sheet includes tips on environment management and converting between data types."}
-:::
-:::
+<!-- ::: {.column width="35%"} -->
+<!-- ![](images/base-r-cheatsheet.png){fig-alt="A Base R Cheat Sheet with various R programming syntax and examples. It covers topics such as reading and writing data (e.g., read.csv, write.csv), accessing help with R functions (e.g., ?mean), using control structures like for loops and if statements, defining functions, vector operations, using libraries, and working with different data types like lists, matrices, and data frames. There are examples of matrix operations, conditions, statistical functions (e.g., mean, sd), and plotting basics (e.g., plot, hist). The cheat sheet includes tips on environment management and converting between data types."} -->
+<!-- ::: -->
+<!-- ::: -->
 
-## Getting Started
+## Pair Programming Expectations
 
-The partner who lives the furthest from SLO starts as the Developer (typing
-and listening to instructions from the Coder)!
+```{r}
+#| echo: false
+#| fig-alt: "A diagram shows a collaborative software development process in four stages arranged in a cycle. At the top, a woman speaks with the label 'VOCALIZE.' To the right, she points to a diagram with the label 'EXPLAIN.' At the bottom, a man types on a laptop with the label 'IMPLEMENT.' On the left, a computer monitor displays a bug symbol with the label 'DEBUG.' Arrows connect the stages in a loop: Vocalize → Explain → Implement → Debug → back to Vocalize."
+#| out-width: 80%
 
-- The Coder **does not type**. 
-  * The collaborative editing feature should allow you to track what is being 
-  typed. 
-- The Developer **only types what they are told to type**. 
+knitr::include_graphics(here::here("group-activities", 
+                                   "collab-process.png")
+                        )
+```
+
+## External Resources
+
+During the Practice Activity, you **are not** permitted to use Google or ChatGPT
+for help. 
+
+</br> 
+
+You **are** permitted to use:
+
+- today's handout, 
+- the course slides, 
+- the `base R` cheatsheet, and 
+- the course textbook
 
 ## Submission
 
 > Submit the name of the television show the six numbers are asssociated with.
 
 - Each person will input the full name of the TV show into the PA 7 quiz. 
-- The person who last occupied the role of Developer will download and submit 
-the `PA-7-functions.html` file for the group.
-  + Only one submission per group!
+- The person who last occupied the role of Typer will submit the link to your
+group's Colab notebook.
+  + Please don't forget to put your names at the top!
 
-## [Lab 7](../../labs/instructions/lab-7-instructions.qmd) & [Challenge 7: Functions + Fish](../../labs/instructions/challenge-7-instructions.qmd)
+# 5-minute break
+
+## Team Assignments - 9am
+
+::: {.centered}
+<!-- ![](images/section-70-seats-pt2.png){width=75%} -->
+:::
+
+::: {.small}
+The partner who has the most siblings starts as the Talker!
+:::
+
+## Team Assignments - 12pm
+
+::: {.centered}
+<!-- ![](images/section-71-seats-pt2.png){width=75%} -->
+:::
+
+::: {.small}
+The partner who has the most siblings starts as the Talker!
+:::
+
+# Lab 7 Bonus Slides
+
+## Lab 7 & Challenge 7: Functions + Fish
 
 ::: {.centered}
 ![](https://github.com/earobinson95/stat331-calpoly/blob/master/lab-assignments/lab7/images/blackfoot_river.jpg?raw=true){fig-alt="A serene scene of the Blackfoot River in Montana, with a small raft carrying two people navigating the gentle current. The river winds through a landscape of rugged, rocky shores and lush, green pine forests. Rolling hills and distant mountains frame the background under a lightly clouded sky."}
 :::
-
-## To do...
-  
-+ **PA 7: Functions**
-  + Due Thursday, 11/4 by 12:10pm
-  
-+ **Attend Your Midterm Portfolio Meeting**
-  + [Your Scheduled time on Thursday](https://docs.google.com/spreadsheets/d/1b4fUfPIT_05niJlpHNnne_y5HXXB-43Nzph6_FWZf80/edit?usp=sharing)
-  
-+ **Lab 7: Functions + Fish**
-  + Due Sunday, 11/10 at 11:59pm.
-  
-# Slides for Lab 7
 
 ## Input Validation
 
@@ -909,17 +1122,3 @@ add_two()
 ## It is not good practice to rely on global environment objects inside a function!
 :::
 :::
-
-# Debugging
-
-```{r}
-#| fig-align: center
-#| out-width: 75%
-#| fig-cap: "Image by Allison Horst"
-#| fig-alt: "A cartoon of a fuzzy round monster face showing 10 different emotions experienced during the process of debugging code. The progression goes from (1) 'I got this' - looking determined and optimistic; (2) 'Huh. Really thought that was it.' - looking a bit baffled; (3) '...' - looking up at the ceiling in thought; (4) 'Fine. Restarting.' - looking a bit annoyed; (5) 'OH WTF.' Looking very frazzled and frustrated; (6) 'Zombie meltdown.' - looking like a full meltdown; (7) (blank) - sleeping; (8) 'A NEW HOPE!' - a happy looking monster with a lightbulb above; (9) 'insert awesome theme song' - looking determined and typing away; (10) 'I love coding' - arms raised in victory with a big smile, with confetti falling."
-
-knitr::include_graphics("https://cdn.myportfolio.com/45214904-6a61-4e23-98d6-b140f8654a40/51084276-ab7f-4c57-a0e7-5cf14a277359_rw_1920.png?h=825c5593149a63edef46664796766751")
-```
-  
-  
-  

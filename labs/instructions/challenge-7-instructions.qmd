@@ -12,7 +12,11 @@ execute:
   echo: true
   message: false
   warning: false
+resources: 
+  - ../student/challenge-4-student.qmd
 ---
+
+Download the template Challenge 7 Quarto file here: <a href="../student/challenge-7-student.qmd" download>`challenge-7-student.qmd`</a> 
 
 ```{r}
 #| label: setup
@@ -67,12 +71,6 @@ If you are struggling with the structure of your function, I would suggest readi
 ```
 
 **4. Write a function to calculate the condition index of a fish, given inputs of weight and length.**
-
-::: callout-warning
-Consider whether you will write a function that works with vectors (accepting
-vectors as inputs) or a function that works with data frames (accepting a 
-dataset and variable names as inputs)!
-:::
 
 ```{r}
 #| label: condition-function

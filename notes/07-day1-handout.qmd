@@ -1,0 +1,75 @@
+---
+title: "Week 7: Writing Your Own (Vector) Functions"
+format: docx
+execute: 
+  eval: false
+---
+
+# Writing Functions in R
+
+![](images/func_structure.png){fig-alt="Illustration of R function syntax. The image explains the parts of a function in R using labeled arrows and colors. At the top, the name 'func_name' is assigned using '<-' to a function. An arrow points to 'func_name' with the label 'assign the function a NAME.' The keyword 'function' is highlighted, with an arrow labeled 'indicate we are creating a function.' The parentheses contain 'func_arg1, func_arg2,' which are labeled as 'specify ARGUMENTS of the function.' The body of the function is placed between curly brackets and labeled 'write the BODY of the function between curly brackets.' Finally, the 'return(func_value)' statement is labeled 'return a value as the OUTPUT of the function."}
+
+
+1. Write a function named `add_two()` that will add `2` to whatever number is
+input. 
+
+```{r}
+
+
+
+
+```
+
+
+2. In your function what is the:
+
+- Function Name:
+- Function Argument(s):
+- Function Body:
+- Function Return:
+
+
+3. What if we wanted to write a more general function, named `add_something()`. 
+The function would take **two** inputs: 
+
+1. `x` the vector to add to
+2. `something` the value to add to `x`
+
+How would your function change?
+
+
+4. Are your arguments ***optional*** or ***required***?
+
+5. What is the difference? 
+
+6. What are the two ways you can return a value in a function?
+
+7. Which method for returning a value makes more sense to you?
+
+## Function Practice
+
+8. Fill in the code below to create a function named `above_average()`. The
+function should keep only the elements of `x` greater than the mean.
+
+```{r}
+#| echo: true
+
+above_average <- function(x) {
+
+  
+  
+  
+}
+```
+
+
+9. Write down the steps you would need to create a function named `every_third()` 
+that takes in a vector and returns every third element from that vector 
+(i.e., indices 1, 4, 7, 10, etc.). 
+
+**Think about:**
+
+- What inputs the function should take.
+- How to identify which positions in the vector are "every third."
+- How to select those elements from the vector.
+

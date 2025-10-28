@@ -207,6 +207,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#amazing-tables" id="toc-amazing-tables" class="nav-link" data-scroll-target="#amazing-tables">Amazing Tables</a></li>
   <li><a href="#amazing-plots" id="toc-amazing-plots" class="nav-link" data-scroll-target="#amazing-plots">Amazing Plots</a></li>
   </ul></li>
+  <li><a href="#lab-5" id="toc-lab-5" class="nav-link" data-scroll-target="#lab-5">Lab 5</a>
+  <ul class="collapse">
+  <li><a href="#multiple-filters" id="toc-multiple-filters" class="nav-link" data-scroll-target="#multiple-filters">Multiple Filters</a></li>
+  <li><a href="#featuring-lubridate-functions" id="toc-featuring-lubridate-functions" class="nav-link" data-scroll-target="#featuring-lubridate-functions">Featuring Lubridate Functions</a></li>
+  <li><a href="#if_any" id="toc-if_any" class="nav-link" data-scroll-target="#if_any"><code>if_any()</code></a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -800,6 +806,129 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
+</div>
+</section>
+</section>
+<section id="lab-5" class="level1">
+<h1>Lab 5</h1>
+<section id="multiple-filters" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-filters">Multiple Filters</h2>
+<p>This code is brought to us by a variety of students—Garrett, Jake, Liam, Lucy, and an anonymous student! I appreciated how each student managed to (efficiently) grab <strong>both</strong> witness interviews in one pipeline!</p>
+<p><strong>Garrett’s Version:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>person <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="at">y =</span> interview,</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">join_by</span>(id <span class="sc">==</span> person_id)) <span class="sc">|&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((address_street_name <span class="sc">==</span> <span class="st">"Northwestern Dr"</span> <span class="sc">&amp;</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>            address_number <span class="sc">==</span> <span class="fu">max</span>(address_number)) <span class="sc">|</span> <span class="co">#find interview for either the person in the last house on Northwestern Dr or Annabel on Franklin Ave</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>           (address_street_name <span class="sc">==</span> <span class="st">"Franklin Ave"</span> <span class="sc">&amp;</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>              <span class="fu">str_detect</span>(name, <span class="st">"Annabel"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(name, transcript)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Jake’s Version:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in this chunk of code I joined the interview data set with the person data set</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># so that I could narrow down the witnesses and extract their interviews to find more clues</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>witnesses <span class="ot">&lt;-</span> <span class="fu">full_join</span>(person, interview, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"id"</span> <span class="ot">=</span> <span class="st">"person_id"</span>)) <span class="sc">|&gt;</span>  </span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((<span class="fu">str_detect</span>(name, <span class="at">pattern =</span> <span class="st">"Annabel"</span>) <span class="sc">&amp;</span> address_street_name <span class="sc">==</span> <span class="st">"Franklin Ave"</span>) <span class="sc">|</span>  </span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>        address_street_name <span class="sc">==</span> <span class="st">"Northwestern Dr"</span> <span class="sc">&amp;</span> address_number <span class="sc">==</span> <span class="fu">max</span>(address_number)) <span class="sc">|&gt;</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(transcript)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Liam’s Version:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(<span class="at">x =</span> person,</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">y =</span> interview,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">by =</span> <span class="fu">join_by</span>(id <span class="sc">==</span> person_id)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">%&gt;%</span> <span class="co"># Inner join by `id` and `person_id`</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((<span class="fu">str_detect</span>(name, <span class="at">pattern =</span> <span class="st">"Annabel"</span>) <span class="sc">&amp;</span> address_street_name <span class="sc">==</span> <span class="st">"Franklin Ave"</span>) <span class="sc">|</span> </span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>          (address_street_name <span class="sc">==</span> <span class="st">"Northwestern Dr"</span> <span class="sc">&amp;</span> address_number <span class="sc">==</span> <span class="fu">max</span>(address_number))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">%&gt;%</span> <span class="co"># Filter for witness 1 (Annabel on Franklin Ave) and witness 2 (last house on Northwestern Dr)</span></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(transcript) <span class="co"># Extract transcripts for witnesses</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Lucy’s Version:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#join interview data table with person to connect their interviews to their addresses/names. Save to object to be used to interview suspects later</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>interviewpeople <span class="ot">&lt;-</span> interview <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(<span class="at">y =</span> person,</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">by =</span> <span class="fu">join_by</span>(person_id <span class="sc">==</span> id)) </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a><span class="co">#filter witnesses to find the ones that match the descriptions above</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>interviewpeople <span class="sc">|&gt;</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((<span class="fu">str_detect</span>(name, <span class="at">pattern =</span> <span class="st">"Annabel"</span>) <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>         address_street_name <span class="sc">==</span> <span class="st">"Franklin Ave"</span>) <span class="sc">|</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>        (address_street_name <span class="sc">==</span> <span class="st">"Northwestern Dr"</span> <span class="sc">&amp;</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>         address_number <span class="sc">==</span> <span class="fu">max</span>(address_number))) <span class="sc">|&gt;</span></span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(transcript)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>Anonymous Version:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>interview <span class="sc">|&gt;</span> </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(person, <span class="fu">join_by</span>(person_id <span class="sc">==</span> id)) <span class="sc">|&gt;</span> </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>((<span class="fu">str_detect</span>(name, <span class="at">pattern =</span> <span class="st">"Annabel"</span>) <span class="sc">&amp;</span> address_street_name <span class="sc">==</span> <span class="st">"Franklin Ave"</span>) <span class="sc">|</span> </span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>           (address_street_name <span class="sc">==</span> <span class="st">"Northwestern Dr"</span> <span class="sc">&amp;</span> address_number <span class="sc">==</span> <span class="fu">max</span>(address_number, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)))  <span class="sc">|&gt;</span> </span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(transcript)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="featuring-lubridate-functions" class="level2">
+<h2 class="anchored" data-anchor-id="featuring-lubridate-functions">Featuring Lubridate Functions</h2>
+<p>This code comes to us from Karthik Balaji! I appreciated Karthik’s extensive use of functions from <strong>lubridate</strong> when filtering these data:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>get_fit_now_member <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(get_fit_now_check_in, <span class="at">by =</span> <span class="fu">join_by</span>(id <span class="sc">==</span> membership_id)) <span class="sc">|&gt;</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">check_in_date =</span> <span class="fu">ymd</span>(check_in_date)) <span class="sc">|&gt;</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">month</span>(check_in_date) <span class="sc">==</span> <span class="dv">1</span>,</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">day</span>(check_in_date) <span class="sc">==</span> <span class="dv">9</span>,</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>         membership_status <span class="sc">==</span> <span class="st">"gold"</span>,</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>         <span class="fu">str_detect</span>(id, <span class="at">pattern =</span> <span class="st">"48Z"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(person, <span class="at">by =</span> <span class="fu">join_by</span>(person_id <span class="sc">==</span> id)) <span class="sc">|&gt;</span></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(drivers_license, <span class="at">by =</span> <span class="fu">join_by</span>(license_id <span class="sc">==</span> id)) <span class="sc">|&gt;</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(plate_number, <span class="at">pattern =</span> <span class="st">"H42W"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(interview, <span class="at">by =</span> <span class="st">"person_id"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(transcript)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This code is brought to us by Rayan Tahir and May Thu Thu Kyaw! I thought it was so cool that both of them found a way to create an interval of time and filter for dates within that interval!</p>
+<p><strong>Rayan’s Version:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>concert_mastermind <span class="ot">&lt;-</span> facebook_event_checkin <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>    event_name <span class="sc">==</span> <span class="st">"SQL Symphony Concert"</span>, </span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ymd</span>(date) <span class="sc">%within%</span> <span class="fu">interval</span>(<span class="fu">ymd</span>(<span class="st">"2017-12-01"</span>), </span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>                                <span class="fu">ymd</span>(<span class="st">"2017-12-31"</span>))</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">|&gt;</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(person_id, <span class="at">name =</span> <span class="st">"visits"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(visits <span class="sc">&gt;=</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(person, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"person_id"</span> <span class="ot">=</span> <span class="st">"id"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(drivers_license, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"license_id"</span> <span class="ot">=</span>   <span class="st">"id"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(hair_color <span class="sc">==</span> <span class="st">"red"</span>, <span class="fu">between</span>(height, <span class="dv">65</span>, <span class="dv">67</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>May’s Version:</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co">#Find people who attended SQL Symphony Concert 3 times in Dec 2017 </span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>concert_3x_dec <span class="ot">&lt;-</span> facebook_event_checkin <span class="sc">|&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">mutate</span>(<span class="at">date =</span> <span class="fu">ymd</span>(date)) <span class="sc">|&gt;</span>      <span class="co">#convert numeric dates (like 20171210) into proper Date objects            </span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    event_name <span class="sc">==</span> <span class="st">"SQL Symphony Concert"</span>, </span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    date <span class="sc">%within%</span> <span class="fu">interval</span>(<span class="fu">ymd</span>(<span class="st">"2017-12-01"</span>), <span class="fu">ymd</span>(<span class="st">"2017-12-31"</span>)) <span class="co">#between these dates </span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(person_id, <span class="at">name =</span> <span class="st">"n"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(n <span class="sc">==</span> <span class="dv">3</span>) <span class="sc">|&gt;</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(person_id) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="if_any" class="level2">
+<h2 class="anchored" data-anchor-id="if_any"><code>if_any()</code></h2>
+<p>This code is brought to us by Isaiah Woodard! I loved how Isaiah found a new setting to use <code>if_any()</code> in combination with <code>!is.na()</code> to check for missing values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>suspects <span class="ot">&lt;-</span> get_fit_now_member <span class="sc">%&gt;%</span> </span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(membership_status <span class="sc">==</span> <span class="st">"gold"</span>, <span class="co"># includes only gold members</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>         <span class="fu">str_detect</span>(id, <span class="at">pattern =</span> <span class="st">"^48Z"</span>)) <span class="sc">%&gt;%</span> <span class="co"># includes only members whose ID starts with 48Z</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="at">y =</span> get_fit_now_check_in,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">join_by</span>(id <span class="sc">==</span> membership_id)) <span class="sc">%&gt;%</span> </span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(<span class="at">y =</span> interview,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="fu">join_by</span>(person_id)) <span class="sc">%&gt;%</span>  <span class="co"># joins to access additional data</span></span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">if_any</span>(</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.cols =</span> transcript,</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.fns =</span> <span class="sc">~</span> <span class="sc">!</span><span class="fu">is.na</span>(.x) <span class="co"># Checks for individuals with interviews. Removes those without. </span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>  ))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!-- # Lab 7 -->
 

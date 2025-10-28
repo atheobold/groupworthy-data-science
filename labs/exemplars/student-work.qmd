@@ -499,8 +499,7 @@ plot_data <- ca_childcare %>%
                values_to = "medians")
 ```
 
-In a similar setting, Lucy also took the ideas from Challenge 2 and applied 
-them to make an exciting plot!
+In a similar setting, Lucy also took the ideas from Challenge 2 and applied them to make an exciting plot!
 
 ```{r}
 #| code-fold: true
@@ -514,7 +513,6 @@ challenge <- ca_childcare |>
                names_to = "type_of_care",
                values_to = "Median_price")
 ```
-
 
 ```{r}
 colors <- c("#6C88C4", "#FF828B")
@@ -537,7 +535,6 @@ challenge |>
         plot.subtitle = element_markdown(),
         panel.grid.major.x = element_blank()) 
 ```
-
 
 ```{r}
 plot_data %>% 
@@ -606,6 +603,179 @@ theme(
 )
 ```
 
+# Lab 5
+
+```{r}
+#| eval: false
+#| echo: false
+
+source("https://raw.githubusercontent.com/atheobold/groupworthy-data-science/main/labs/instructions/lab-5-setup.R")
+```
+
+## Multiple Filters
+
+This code is brought to us by a variety of students---Garrett, Jake, Liam, Lucy,
+and an anonymous student! I appreciated how each student managed to
+(efficiently) grab **both** witness interviews in one pipeline!
+
+**Garrett's Version:**
+```{r}
+#| echo: true
+#| eval: false
+
+person |>
+  left_join(y = interview,
+            join_by(id == person_id)) |>
+  filter((address_street_name == "Northwestern Dr" &
+            address_number == max(address_number)) | #find interview for either the person in the last house on Northwestern Dr or Annabel on Franklin Ave
+           (address_street_name == "Franklin Ave" &
+              str_detect(name, "Annabel"))) |>
+  pull(name, transcript)
+```
+
+**Jake's Version:**
+```{r}
+#| echo: true
+#| eval: false
+
+# in this chunk of code I joined the interview data set with the person data set
+# so that I could narrow down the witnesses and extract their interviews to find more clues
+witnesses <- full_join(person, interview, by = c("id" = "person_id")) |>  
+  filter((str_detect(name, pattern = "Annabel") & address_street_name == "Franklin Ave") |  
+        address_street_name == "Northwestern Dr" & address_number == max(address_number)) |>
+  select(transcript)
+```
+
+**Liam's Version:**
+```{r}
+#| echo: true
+#| eval: false
+
+inner_join(x = person,
+           y = interview,
+           by = join_by(id == person_id)
+           ) %>% # Inner join by `id` and `person_id`
+  filter((str_detect(name, pattern = "Annabel") & address_street_name == "Franklin Ave") | 
+          (address_street_name == "Northwestern Dr" & address_number == max(address_number))
+         ) %>% # Filter for witness 1 (Annabel on Franklin Ave) and witness 2 (last house on Northwestern Dr)
+  pull(transcript) # Extract transcripts for witnesses
+```
+
+**Lucy's Version:**
+```{r}
+#| echo: true
+#| eval: false
+
+#join interview data table with person to connect their interviews to their addresses/names. Save to object to be used to interview suspects later
+interviewpeople <- interview |>
+inner_join(y = person,
+          by = join_by(person_id == id)) 
+#filter witnesses to find the ones that match the descriptions above
+interviewpeople |>
+  filter((str_detect(name, pattern = "Annabel") == TRUE &
+         address_street_name == "Franklin Ave") |
+        (address_street_name == "Northwestern Dr" &
+         address_number == max(address_number))) |>
+  pull(transcript)
+```
+
+**Anonymous Version:**
+```{r}
+#| echo: true
+#| eval: false
+
+interview |> 
+  left_join(person, join_by(person_id == id)) |> 
+  filter((str_detect(name, pattern = "Annabel") & address_street_name == "Franklin Ave") | 
+           (address_street_name == "Northwestern Dr" & address_number == max(address_number, na.rm = TRUE)))  |> 
+  pull(transcript)
+```
+
+
+## Featuring Lubridate Functions
+
+This code comes to us from Karthik Balaji! I appreciated Karthik's extensive 
+use of functions from **lubridate** when filtering these data:
+
+```{r}
+#| echo: true
+#| eval: false
+
+get_fit_now_member |>
+  left_join(get_fit_now_check_in, by = join_by(id == membership_id)) |>
+  mutate(check_in_date = ymd(check_in_date)) |>
+  filter(month(check_in_date) == 1,
+         day(check_in_date) == 9,
+         membership_status == "gold",
+         str_detect(id, pattern = "48Z")) |>
+  left_join(person, by = join_by(person_id == id)) |>
+  left_join(drivers_license, by = join_by(license_id == id)) |>
+  filter(str_detect(plate_number, pattern = "H42W")) |>
+  left_join(interview, by = "person_id") |>
+  select(transcript)
+```
+
+This code is brought to us by Rayan Tahir and May Thu Thu Kyaw! I thought it was
+so cool that both of them found a way to create an interval of time and filter
+for dates within that  interval! 
+
+**Rayan's Version:**
+```{r}
+#| echo: true
+#| eval: false
+
+concert_mastermind <- facebook_event_checkin |>
+  filter(
+    event_name == "SQL Symphony Concert", 
+    ymd(date) %within% interval(ymd("2017-12-01"), 
+                                ymd("2017-12-31"))
+    ) |>
+  count(person_id, name = "visits") |>
+  filter(visits >= 3) |>
+  inner_join(person, by = c("person_id" = "id")) |>
+  inner_join(drivers_license, by = c("license_id" =   "id")) |>
+  filter(hair_color == "red", between(height, 65, 67))
+```
+
+**May's Version:**
+```{r}
+#| echo: true
+#| eval: false
+
+#Find people who attended SQL Symphony Concert 3 times in Dec 2017 
+concert_3x_dec <- facebook_event_checkin |>
+ mutate(date = ymd(date)) |>      #convert numeric dates (like 20171210) into proper Date objects            
+  filter(
+    event_name == "SQL Symphony Concert", 
+    date %within% interval(ymd("2017-12-01"), ymd("2017-12-31")) #between these dates 
+  ) |>
+  count(person_id, name = "n") |>
+  filter(n == 3) |>
+  select(person_id) 
+```
+
+## `if_any()`
+
+This code is brought to us by Isaiah Woodard! I loved how Isaiah found a new
+setting to use `if_any()` in combination with `!is.na()` to check for missing
+values. 
+
+```{r}
+#| echo: true
+#| eval: false
+
+suspects <- get_fit_now_member %>% 
+  filter(membership_status == "gold", # includes only gold members
+         str_detect(id, pattern = "^48Z")) %>% # includes only members whose ID starts with 48Z
+  left_join(y = get_fit_now_check_in,
+            by = join_by(id == membership_id)) %>% 
+  left_join(y = interview,
+            by = join_by(person_id)) %>%  # joins to access additional data
+  filter(if_any(
+    .cols = transcript,
+    .fns = ~ !is.na(.x) # Checks for individuals with interviews. Removes those without. 
+  ))
+```
 
 <!-- # Lab 7 -->
 

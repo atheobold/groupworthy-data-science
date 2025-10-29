@@ -22,18 +22,16 @@ library(countdown)
 
 Today we will...
 
-+ New Material
-  + Function Basics
+::: {.midi}
++ Review function basics
 + Practice writing functions!
-  + `[]` Refresher
+  + `[]` refresher
   + `seq_along()`
-  + `if()` and `else if()` Refresher
-
-  
+  + `if()` and `else if()` refresher
 + PA 7: Writing Functions
-
 + Extra Slides for Lab 7
   + Variable Scope + Environment
+:::
 
 # Functions
 
@@ -41,11 +39,7 @@ Today we will...
 
 Functions allow you to automate common tasks!
 
-+ We've been using functions since Day 1, but when we write our own, we can
-**customize** them!
-+ Have you found yourself copy-pasting code and only changing small parts?
-
-## Why write functions?
+</br>
 
 **Writing functions has three big advantages over copy-paste:**
 
@@ -144,6 +138,7 @@ add_three <- function(x){
 
 ```{r}
 #| echo: true
+#| code-line-numbers: false
 add_three(5)
 ```
 :::
@@ -298,6 +293,26 @@ add_something(x = 5)
 :::
 :::
 
+## Optional Arguments
+
+A lot of the functions we've been working with so far actually have **a lot**
+of optional arguments: 
+
+::: {.midi}
+```
+geom_point(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  ...,
+  na.rm = FALSE,
+  show.legend = NA,
+  inherit.aes = TRUE
+)
+```
+:::
+
 ## Body: `{  }`
 
 The **body** of the function is where the action happens.
@@ -360,6 +375,8 @@ add_something(7)
 
 If you are coming to R from a background in Python, C, or Java then an 
 explicit return may feel more natural to you.
+
+</br>
 
 ```{r}
 #| echo: true
@@ -478,7 +495,7 @@ When you have a concept that you want to turn into a function...
 #| code-line-numbers: false
 
 x <- 15:25
-
+x
 seq_along(x)
 ```
 :::
@@ -510,6 +527,11 @@ above_average <- function(x) {
 }
 ```
 :::
+
+```{r}
+countdown(minutes = 5)
+```
+
 
 ## Option 1: Using Logical Values
 
@@ -719,13 +741,12 @@ complete as is.
 ::: {.small}
 This activity will require knowledge of:
 
-- Summary functions
-- Function documentation (for optional arguments)
 - Function syntax
-- modulus division (and remainders)
-- `if ()` & `else if()` statements
+- Optional and required arguments
+- Modulus division (and remainders)
 - Using `[]` and logical values to extract elements of a vector
 - Negating logical statements
+- `if ()` & `else if()` statements
 :::
 :::
 
@@ -815,7 +836,7 @@ group's Colab notebook.
 ## Team Assignments - 9am
 
 ::: {.centered}
-<!-- ![](images/section-70-seats-pt2.png){width=75%} -->
+![](images/section-70-seats.png){width=75%}
 :::
 
 ::: {.small}
@@ -825,7 +846,7 @@ The partner who has the most siblings starts as the Talker!
 ## Team Assignments - 12pm
 
 ::: {.centered}
-<!-- ![](images/section-71-seats-pt2.png){width=75%} -->
+![](images/section-71-seats.png){width=75%}
 :::
 
 ::: {.small}

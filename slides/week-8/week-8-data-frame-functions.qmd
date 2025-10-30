@@ -15,6 +15,11 @@ library(tidyverse)
 library(palmerpenguins)
 ```
 
+
+<!-- move to an activity exploring how to remedy various aspects of input issues with -->
+<!-- data frame functions -->
+
+
 ## Wednesday, May 15
 
 Today we will...

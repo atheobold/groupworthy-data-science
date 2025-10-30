@@ -19,6 +19,31 @@ library(lubridate)
 
 ```
 
+
+<!-- Advanced R on lazy evaluation: https://adv-r.hadley.nz/functions.html#lazy-evaluation -->
+
+<!-- where to use pick() and where to use across() -->
+<!-- With pick(), you typically apply a function to the full data frame. -->
+<!-- With across(), you typically apply a function to each column. -->
+
+<!-- # `pick()` is also useful as a bridge between data-masking functions (like -->
+<!-- # `mutate()` or `group_by()`) and functions with tidy-select behavior (like -->
+<!-- # `select()`). For example, you can use `pick()` to create a wrapper around -->
+<!-- # `group_by()` that takes a tidy-selection of columns to group on. -->
+
+<!-- https://r4ds.hadley.nz/iteration.html#across-in-functions -->
+
+<!-- - := for mutate() in functions -->
+<!-- := "name injection": https://dplyr.tidyverse.org/articles/programming.html#name-injection -->
+
+<!-- all_of() -->
+<!-- any_of()  -->
+<!-- for character vector -->
+
+<!-- What is data-masking and why do I need {{? -->
+<!-- https://rlang.r-lib.org/reference/topic-data-mask.html -->
+
+
 This week we're going to take the skills for writing **vector** functions we
 learned last week and consider how we might write functions that operate on 
 **data frames**.
@@ -52,13 +77,18 @@ By the end of the week you should have a grasp of:
 
 # Writing Data Frame Functions in R
 
+<!-- makes a common task easier at the cost of making a less common task harder -->
+
 ### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#data-frame-functions)
 
 ::: callout-caution
-# Read only Section 3 (Data frame functions)!
+# Read only Section 3 -- Data Frame Functions!
 :::
 
-## Tidy Evaluation
+<!-- Article on the difference between data masking and tidy evaluation: https://dplyr.tidyverse.org/articles/programming.html -->
+
+
+## Tidy Evaluation & Data Masking
 
 Writing functions that work with data frames **and** call on the functions we've become used to (e.g., `filter()`, `select()`, `summarise()`) requires we learn about tidy evaluation. To write these functions you will need to know, at a high level, whether the function you are trying to incorporate uses data masking or tidy selection.
 
@@ -69,11 +99,27 @@ Your intuition about which functions use tidy evaluation should be good for many
 If you are interested in learning more about tidy evaluation, I would highly recommend:
 
 -   this [video by Jenny Bryan](https://youtu.be/2BXPLnLMTYo?si=ry4tHOD77DWagvxn)
-    -   I do want to note that this video is from 2019 and some things have changed since then. Namely, we used to need to use the `enquo()` function to inject\
-        variable names into `dplyr` functions, whereas we now use embracing `{{}}`. 🤗
+    -   I do want to note that this video is from 2019 and some things have changed since then.
+    Namely, we used to need to use the `enquo()` function to inject variable names into `dplyr` 
+    functions, whereas we now use embracing `{{}}`. 🤗
 -   this [vignette for tidy evaluation with `dplyr`](https://dplyr.tidyverse.org/articles/programming.html#:~:text=arrange()%20%2C%20count()%20%2C%20filter,my_variable%20not%20df%24my_variable%20)
 
 ### ✅  **Check-in 7.2: Writing Data Frame Functions**
+
+<!-- Add questions on: -->
+
+<!-- - what it means to be data masking -->
+<!-- - what it means to use tidy evaluation -->
+
+
+**Question 3**: For each of the following functions determine if the function uses data-masking or tidy-selection:
+
+-   `distinct()`
+-   `count()`
+-   `group_by()`
+-   `select()`
+-   `rename_with()`
+-   `across()`
 
 ::: callout-note
 # Data Structure
@@ -137,24 +183,16 @@ nycflights |>
 <!--     mutate(prop = n / sum(n)) -->
 <!-- } -->
 
-**Question 3**: For each of the following functions determine if the function uses data-masking or tidy-selection:
 
--   `distinct()`
--   `count()`
--   `group_by()`
--   `select()`
--   `rename_with()`
--   `across()`
+<!-- # Writing Plotting Functions in R -->
 
-# Writing Plotting Functions in R
+<!-- ### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions) -->
 
-### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions)
+<!-- ::: callout-caution -->
+<!-- # Read only Section 4 (Data frame functions)! -->
+<!-- ::: -->
 
-::: callout-caution
-# Read only Section 4 (Data frame functions)!
-:::
-
-### ✅  **Check-in 7.2: Writing Data Frame Functions**
+<!-- ### ✅  **Check-in 7.2: Writing Data Frame Functions** -->
 
 **Question 4**: Fill in the code below to build a rich plotting function which:
 

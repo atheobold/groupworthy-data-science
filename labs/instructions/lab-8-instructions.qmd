@@ -13,6 +13,10 @@ execute:
   warning: false
 ---
 
+<!-- add question about pivoted table function -->
+<!-- add question about sorted barplot function -->
+
+
 ## Use Variables within a Dataset
 
 Suppose you would like for your `rescale()` function to perform operations on a **variable within a dataset**. Ideally, your function would take in a dataframe and a variable name as inputs and return a dataframe where the variable has been rescaled.

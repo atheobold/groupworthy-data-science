@@ -298,6 +298,26 @@ add_something(x = 5)
 A lot of the functions we've been working with so far actually have **a lot**
 of optional arguments: 
 
+::: columns
+::: {.column width="40%"}
+::: {.midi}
+```
+mean(x, 
+     trim = 0, 
+     na.rm = FALSE, ...)
+```
+
+```
+max(..., na.rm = FALSE)
+min(..., na.rm = FALSE)
+```
+:::
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
 ::: {.midi}
 ```
 geom_point(
@@ -311,6 +331,8 @@ geom_point(
   inherit.aes = TRUE
 )
 ```
+:::
+:::
 :::
 
 ## Body: `{  }`

@@ -1,34 +1,16 @@
 ---
 title: "Challenge 7: Incorporating Multiple Inputs"
 subtitle: "Functions + Fish"
-format: 
-  html:
-    self-contained: true
-    code-tools: true
-    toc: true
+author: "Your name here!"
+format: html
 editor: source
-execute: 
-  error: true
-  echo: true
-  message: false
-  warning: false
-resources: 
-  - ../student/challenge-7-student.qmd
+embed-resources: true
 ---
-
-Download the template Challenge 7 Quarto file here: <a href="../student/challenge-7-student.qmd" download>`challenge-7-student.qmd`</a> 
 
 ```{r}
 #| label: setup
-#| echo: false
 
-library(tidyverse)
 
-fish <- read_csv(here::here("labs",
-                            "instructions", 
-                            "data", 
-                            "BlackfootFish.csv")
-                 )
 ```
 
 ## Condition Index
@@ -54,9 +36,7 @@ $$\text{condition index} = \frac{weight}{length^3} \times 100$$
 
 **If a value falls outside these bounds, you should replace it with an `NA`.**
 
-::: callout-tip
-If you are struggling with the structure of your function, I would suggest reading the [Mutating Function](https://r4ds.hadley.nz/functions.html#mutate-functions) from R4DS.
-:::
+**Hint:** If you are struggling with the structure of your function, I would suggest reading the [Mutating Function](https://r4ds.hadley.nz/functions.html#mutate-functions) from R4DS.
 
 ```{r}
 #| label: function-to-change-impossible-measurements-to-NA
@@ -77,13 +57,8 @@ If you are struggling with the structure of your function, I would suggest readi
 
 ```
 
-**5. Make a thoughtful visualization of how fish conditions have varied over the duration of this study.**
+**5. Make a thoughtful visualization of how fish conditions have varied over the duration of this study.** To be thoughtful...you need to use at least a third variable!
 
-::: callout-warning
-### To be thoughtful...
-
-... you need to use at least a third variable!
-:::
 
 ```{r}
 #| label: condition-indices-over-time

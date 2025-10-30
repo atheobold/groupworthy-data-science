@@ -12,7 +12,7 @@ execute:
   message: false
   warning: false
 resources: 
-  - ../student/lab-4-student.qmd
+  - ../student/lab-7-student.qmd
   - data/BlackfootFish.csv
 ---
 

@@ -22,37 +22,22 @@ library(lubridate)
 
 <!-- Advanced R on lazy evaluation: https://adv-r.hadley.nz/functions.html#lazy-evaluation -->
 
-<!-- where to use pick() and where to use across() -->
-<!-- With pick(), you typically apply a function to the full data frame. -->
-<!-- With across(), you typically apply a function to each column. -->
-
-<!-- # `pick()` is also useful as a bridge between data-masking functions (like -->
-<!-- # `mutate()` or `group_by()`) and functions with tidy-select behavior (like -->
-<!-- # `select()`). For example, you can use `pick()` to create a wrapper around -->
-<!-- # `group_by()` that takes a tidy-selection of columns to group on. -->
-
-<!-- https://r4ds.hadley.nz/iteration.html#across-in-functions -->
-
-<!-- - := for mutate() in functions -->
-<!-- := "name injection": https://dplyr.tidyverse.org/articles/programming.html#name-injection -->
-
-<!-- all_of() -->
-<!-- any_of()  -->
-<!-- for character vector -->
-
 <!-- What is data-masking and why do I need {{? -->
 <!-- https://rlang.r-lib.org/reference/topic-data-mask.html -->
 
+This week, we’re going to learn how to write our own dplyr-like
+functions---functions that behave the way dplyr verbs do. To do this, we’ll dive
+into some of the deeper ideas that power the tidyverse, 
+especially how functions in dplyr interpret and evaluate code. These
+ideas---collectively known as tidy evaluation---make the tidyverse so expressive 
+and intuitive for common data-analysis tasks, but they can also make
+programming with it more challenging.
 
-This week we're going to take the skills for writing **vector** functions we
-learned last week and consider how we might write functions that operate on 
-**data frames**.
+This week, we’re moving from using tidyverse functions for "common" tasks to
+learning how to build our own functions for the "less common" ones. By the end, 
+you’ll understand not only how to use dplyr, but how to extend it.
 
 By the end of the week you should have a grasp of:
-
-<!-- add learning outcomes about using [[]] versus {{ }} to grab variables -->
-
-<!-- add learning outcome about diffusion? -->
 
 -   What the "embracing" (`{{{ }}}`) operator is
 
@@ -60,24 +45,43 @@ By the end of the week you should have a grasp of:
 
 -   Why we need to use the `{{{ }}}` operator when writing data frame functions
 
+-   What "data masking" is 
+
+-   What functions use data masking
+
+-   What "tidy selection" is
+
+-   What functions use tidy selection
+
+-   How to use `across()` in functions
+
+-   How to use `pick()` in functions
+
 ::: columns
 ::: {.column width="60%"}
-#### 📽 Watch Videos: 20 minutes
+#### 📖 Readings: 60-90 minutes
 
-#### 📖 Readings: 60-75 minutes
+#### 📽 Watch Videos: 20 minutes
 :::
 
 ::: {.column width="5%"}
 :::
 
 ::: {.column width="35%"}
-#### ✅  Preview Activities: 1 (broken into three sections)
+#### ✅  Preview Activities: 3
 :::
 :::
 
 # Writing Data Frame Functions in R
 
-<!-- makes a common task easier at the cost of making a less common task harder -->
+
+Now that we've learned at a high level how to write functions that operate on a
+we're going to take this a step further and learn how to work with "tidy 
+evaluation." 
+
+Since there isn't a dedicated chapter to writing data frame functions, I've 
+compiled a compilation of resources for each topic I want us to cover. First, 
+let's learn some of the "big picture" ideas of writing data frame functions.
 
 ### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#data-frame-functions)
 
@@ -85,55 +89,28 @@ By the end of the week you should have a grasp of:
 # Read only Section 3 -- Data Frame Functions!
 :::
 
-<!-- Article on the difference between data masking and tidy evaluation: https://dplyr.tidyverse.org/articles/programming.html -->
-
-
-## Tidy Evaluation & Data Masking
-
-Writing functions that work with data frames **and** call on the functions we've become used to (e.g., `filter()`, `select()`, `summarise()`) requires we learn about tidy evaluation. To write these functions you will need to know, at a high level, whether the function you are trying to incorporate uses data masking or tidy selection.
-
-At a high level, data masking is used in functions like `arrange()`, `filter()`, and `summarize()` that compute with variables. Whereas, tidy selection is used for functions like `select()` and `rename()` that select variables.
-
-Your intuition about which functions use tidy evaluation should be good for many of these functions. If you can input `c(var1, var2, var3)` into the function (e.g., `select(mtcars, c(vs, am, gear))`), then the function uses tidy selection! If you **cannot** input `c(var1, var2, var3)` into the function, then the function is performing computations on the data and uses data masking.
-
-If you are interested in learning more about tidy evaluation, I would highly recommend:
-
--   this [video by Jenny Bryan](https://youtu.be/2BXPLnLMTYo?si=ry4tHOD77DWagvxn)
-    -   I do want to note that this video is from 2019 and some things have changed since then.
-    Namely, we used to need to use the `enquo()` function to inject variable names into `dplyr` 
-    functions, whereas we now use embracing `{{}}`. 🤗
--   this [vignette for tidy evaluation with `dplyr`](https://dplyr.tidyverse.org/articles/programming.html#:~:text=arrange()%20%2C%20count()%20%2C%20filter,my_variable%20not%20df%24my_variable%20)
-
-### ✅  **Check-in 7.2: Writing Data Frame Functions**
-
-<!-- Add questions on: -->
-
-<!-- - what it means to be data masking -->
-<!-- - what it means to use tidy evaluation -->
-
-
-**Question 3**: For each of the following functions determine if the function uses data-masking or tidy-selection:
-
--   `distinct()`
--   `count()`
--   `group_by()`
--   `select()`
--   `rename_with()`
--   `across()`
+### ✅  **Check-in 7.1 Writing Data Frame Functions** 
 
 ::: callout-note
 # Data Structure
 
-Note for Questions 1 & 2, I am assuming the `flight` data has a similar structure to the `nycflights` data from the openintro R package.
+Note for these questions I am assuming the `flight` data has a similar
+structure to the `nycflights` data from the openintro R package.
 
 ```{r}
+#| echo: true
+#| eval: false
+
 head(openintro::nycflights)
 ```
 :::
 
-**Question 1**: Fill in the code below to write a function that finds all flights that were cancelled or delayed by more than a user supplied number of hours:
+**Question 1**: Fill in the code below to write a function that finds all 
+flights that were cancelled or delayed by more than a user supplied number of
+hours:
 
 ```{r}
+#| echo: true
 #| eval: false
 
 filter_severe <- function(df, hours) { 
@@ -146,29 +123,29 @@ nycflights |>
   filter_severe(hours = 2)
 ```
 
-**Question 2**: Fill in the code below to write a function that converts the user supplied variable that uses clock time (e.g., `dep_time`, `arr_time`, etc.) into a decimal time (i.e. hours + (minutes / 60)).
+**Question 2**: Fill in the code below to write a function that converts the
+user supplied variable that uses clock time (e.g., `dep_time`, `arr_time`, etc.)
+into a decimal time (i.e. hours + (minutes / 60)).
 
 ```{r}
+#| echo: true
 #| eval: false
+
 
 standardize_time <- function(df, time_var) {
   df |> 
-    # Times are stored as 2008 for 8
+    # Times are stored as 2008 for 8:08pm
     mutate( {{ time_var }} := 
-              as.numeric(
-                ## Grab first two numbers for hour
+              ## Grab first two numbers for hour
                 str_sub(
-                  {{ time_var }}, 
-                  start = 1, 
-                  end = 2)
-                ) +  
-              as.numeric(
-                ## Grab second two numbers for minutes
+                  ____, 
+                  start = ____, 
+                  end = ____) +  
+              ## Grab second two numbers for minutes
                 str_sub(
-                  {{ time_var }}, 
-                  start = 3, 
-                  end = 4)
-                ) / 60
+                  ____, 
+                  start = ____, 
+                  end = ____) / 60
             )
   
 }
@@ -177,24 +154,261 @@ nycflights |>
   standardize_time(arr_time)
 ```
 
-<!-- count_prop <- function(df, var, sort = FALSE) { -->
-<!--   df |> -->
-<!--     count({{ var }}, sort = sort) |> -->
-<!--     mutate(prop = n / sum(n)) -->
-<!-- } -->
+
+# Tidy Selection & Data Masking
+
+Now that we’ve learned how to write functions that operate on entire data
+frames, we’re going to take this a step further and look more closely at tidy
+evaluation---the system that powers how many tidyverse functions interpret and
+evaluate your code.
+
+At a high level:
+
+- **Data masking** is used in functions that compute with variables, such as
+`arrange()`, `filter()`, and `summarise()`. Inside these functions, you can
+refer to column names directly (e.g., `filter(mpg > 20)`) because dplyr
+temporarily "masks" the data frame’s columns so they behave like regular
+variables.
+
+- **Tidy selection** is used in functions that select variables, such as 
+`select()` and `across()`. These functions let you choose columns using helpers
+like `starts_with()`, `where(is.numeric)`, or vectors of column names.
+
+A quick way to tell which system is in play:
+
+- If the function accepts a **vector of column names** 
+(e.g., `select(mtcars, c(vs, am, gear)))`, it uses tidy selection.
+
+- If it does not accept a vector of column names and instead
+**works on column values** (e.g., `filter(mtcars, mpg > 20))`, it uses data
+masking.
+
+Understanding which type of tidy evaluation a function uses will help you write
+your own functions that behave just like tidyverse ones. 
+
+Let's read this guide on tidy evaluation which breaks down what tidy selection
+and data masking are and how they are used in dplyr functions. 
+
+### 📖 [Programming with **dplyr**: Tidy Selection & Data Masking](https://dplyr.tidyverse.org/articles/programming.html)
+
+::: {.column-margin}
+**If you are interested in a video on tidy evaluation here is a talk by Jenny 
+Bryan**
+{{< video https://youtu.be/2BXPLnLMTYo?si=ry4tHOD77DWagvxn >}} 
+
+::: {.callout-important}
+I do want to note that this video is from 2019 and some things have changed 
+since then. Namely, we used to need to use the `enquo()` function to inject
+variable names into `dplyr` functions, whereas we now use embracing `{{}}`. 🤗
+:::
+:::
+
+### ✅  **Check-in 7.2: Tidy Evaluation & Data Masking**
+
+**Question 1:** Suppose you want to write a function that selects specific
+columns from a data frame using a character vector of column names stored in 
+`cols` (e.g., `cols = c("species", "bill_length_mm")`). Which of the following
+code snippets will correctly select only those columns inside a function using
+tidy selection?
+
+```{r}
+#| echo: true
+#| eval: false
+
+my_select <- function(df, cols) {
+  # your code here
+}
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+## Option A
+df %>% select(cols)
+
+## Option B
+df %>% select(all_of(cols))
+
+## Option C
+df %>% select({{ cols }})
+
+## Option D
+df %>% select(.data[[cols]])
+
+```
+
+<!-- (A) fails because select() interprets cols as a column name, not as a vector of names. -->
+
+<!-- (B) is correct because tidy selection works with column-selection helpers and special functions like all_of() or any_of() when the names are stored as character vectors. -->
+
+<!-- (C) fails because {{ cols }} is for data masking — unquoted symbols, not strings. -->
+
+<!-- (D) fails because .data[[cols]] is used in data masking contexts (e.g., inside mutate() or filter()), not for selecting multiple columns. -->
+
+**Question 2:** You’re writing a function that filters rows in a data frame based on a 
+column specified by the user. The function should take the data frame (`df`), a 
+column name (`var`), and a numeric threshold (`threshold`), and return all rows where
+that column’s value is greater than the threshold. The function call should look
+something like: `my_filter(penguins, bill_length_mm, 50)`
+
+```{r}
+#| echo: true
+#| eval: false
+
+my_filter <- function(df, var, threshold) {
+  # your code here
+}
+```
+
+```{r}
+#| echo: true
+#| eval: false
+
+## Option A
+df %>% filter(var > x)
+
+## Option B
+df %>% filter(.data[[var]] > x)
+
+## Option C
+df %>% filter({{ var }} > x)
+
+## Option D
+df %>% filter(df[[var]] > x)
+
+```
+
+<!-- (A) fails because filter() treats var literally (not as a variable referring to a column). -->
+
+<!-- (B) fails because .data[[var]] is used when the column name is stored as a character string rather than a symbol. -->
+
+<!-- (C) is correct because {{ var }} (the curly-curly or "embracing" syntax) is used for data masking—it allows you to use a column name passed as an unquoted argument inside a tidyverse verb. -->
+
+<!-- (D) works in base R but not with dplyr’s data masking, which expects unquoted column references. -->
+
+**Question 3**: For each of the following functions determine if the function
+uses data-masking or tidy-selection:
+
+-   `distinct()`
+-   `count()`
+-   `group_by()`
+-   `select()`
+-   `rename()`
+-   `across()`
 
 
-<!-- # Writing Plotting Functions in R -->
+**Question 4**: Suppose I wanted to write a function that added a standardized
+version of a specified (numeric) column into a data frame. Which of the
+following functions would accomplish this task?
 
-<!-- ### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions) -->
+```{r}
+#| echo: true
+#| eval: false
 
-<!-- ::: callout-caution -->
-<!-- # Read only Section 4 (Data frame functions)! -->
-<!-- ::: -->
+## Option A
+add_std_col <- function(df, var){
+  mutate(df, 
+         std_col = scale({{var}}, center = TRUE, scale = TRUE)
+         )
+}
 
-<!-- ### ✅  **Check-in 7.2: Writing Data Frame Functions** -->
+## Option B
+add_std_col <- function(df, var){
+  mutate(df, 
+         std_col = scale(var, center = TRUE, scale = TRUE)
+         )
+}
 
-**Question 4**: Fill in the code below to build a rich plotting function which:
+## Option C
+add_std_col <- function(df, var){
+  mutate(df, 
+         std_col := scale({{var}}, center = TRUE, scale = TRUE)
+         ) 
+}
+
+## Option D
+add_std_col <- function(df, var){
+  mutate(df, 
+         std_col := scale(var, center = TRUE, scale = TRUE)
+         )
+}
+
+```
+
+<!-- (A) fails because you need to have a := to modify a variable -->
+<!-- (B) fails because you need to use {{}} to grab the column AND you need := to modify the variable -->
+<!-- (C) is correct because it uses := to modify the variable AND uses {{}} to grab the variable -->
+<!-- (D) fails because you need to use {{}} to grab the column -->
+
+**Question 5**: Suppose I wanted to scale my function from Question 4 into a
+function that standardizes **every** numeric column from a specified data frame.
+Which of the following functions would accomplish this task?
+
+```{r}
+#| echo: true
+#| eval: false
+
+## Option A
+standardize_df <- function(df){
+  mutate(df, 
+         across(.cols = where(is.numeric), 
+                .fns = ~ scale(.x, center = TRUE, scale = TRUE), 
+                .names = "{.col}_std"
+         )
+         )
+}
+
+## Option B
+standardize_df <- function(df){
+  mutate(df, 
+         across(.cols = pick(where(is.numeric)), 
+                .fns = ~ scale(.x, center = TRUE, scale = TRUE), 
+                .names = "{.col}_std"
+         )
+         )
+}
+
+## Option C
+standardize_df <- function(df){
+  mutate(df,
+         std = scale(pick(where(is.numeric)), 
+                     center = TRUE, 
+                     scale = TRUE)
+         )
+}
+
+## Option D
+standardize_df <- function(df){
+  mutate(df,
+         across(.cols = where(is.numeric),
+                .fns = ~ scale(pick(where(is.numeric)), 
+                               center = TRUE, 
+                               scale = TRUE),
+      .names = "{.col}_std"
+    )
+  )
+}
+```
+
+This question is all about whether or not to use pick(). 
+
+<!-- (A) is correct because where() selects the numeric columns using tidy select -->
+<!-- (B) is incorrect because pick() returns a data frame and across() expects tidy selected columns  -->
+<!-- (C) is incorrect because it hands all selected columns together to scale(), producing a matrix (or list-col) stuffed into one column std. The task is per-column standardization and should use across(). -->
+<!-- (D) is incorrect because .fns function is called once per column and should operate on the vector .x. Instead, it ignores .x and passes a data frame of many columns (pick(...)) to scale().  -->
+
+# Writing Plotting Functions in R
+
+### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions)
+
+::: callout-caution
+# Read only Section 4 (Data frame functions)!
+:::
+
+### ✅  **Check-in 7.2: Writing Plotting Functions**
+
+**Question 1**: Fill in the code below to build a rich plotting function which:
 
 -   draws a scatterplot given dataset and x and y variables,
 -   adds a line of best fit (i.e. a linear model with no standard errors)

@@ -185,16 +185,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#writing-data-frame-functions-in-r" id="toc-writing-data-frame-functions-in-r" class="nav-link active" data-scroll-target="#writing-data-frame-functions-in-r"><span class="header-section-number">1</span> Writing Data Frame Functions in R</a>
   <ul class="collapse">
   <li><a href="#required-reading-r4ds-functions" id="toc-required-reading-r4ds-functions" class="nav-link" data-scroll-target="#required-reading-r4ds-functions">📖 Required Reading: <em>R4DS</em> – Functions</a></li>
-  <li><a href="#tidy-evaluation-data-masking" id="toc-tidy-evaluation-data-masking" class="nav-link" data-scroll-target="#tidy-evaluation-data-masking"><span class="header-section-number">1.1</span> Tidy Evaluation &amp; Data Masking</a>
-  <ul class="collapse">
-  <li><a href="#check-in-7.2-writing-data-frame-functions" id="toc-check-in-7.2-writing-data-frame-functions" class="nav-link" data-scroll-target="#check-in-7.2-writing-data-frame-functions">✅ <strong>Check-in 7.2: Writing Data Frame Functions</strong></a></li>
+  <li><a href="#check-in-7.1-writing-data-frame-functions" id="toc-check-in-7.1-writing-data-frame-functions" class="nav-link" data-scroll-target="#check-in-7.1-writing-data-frame-functions">✅ <strong>Check-in 7.1 Writing Data Frame Functions</strong></a></li>
   </ul></li>
+  <li><a href="#tidy-selection-data-masking" id="toc-tidy-selection-data-masking" class="nav-link" data-scroll-target="#tidy-selection-data-masking"><span class="header-section-number">2</span> Tidy Selection &amp; Data Masking</a>
+  <ul class="collapse">
+  <li><a href="#programming-with-dplyr-tidy-selection-data-masking" id="toc-programming-with-dplyr-tidy-selection-data-masking" class="nav-link" data-scroll-target="#programming-with-dplyr-tidy-selection-data-masking">📖 Programming with <strong>dplyr</strong>: Tidy Selection &amp; Data Masking</a></li>
+  <li><a href="#check-in-7.2-tidy-evaluation-data-masking" id="toc-check-in-7.2-tidy-evaluation-data-masking" class="nav-link" data-scroll-target="#check-in-7.2-tidy-evaluation-data-masking">✅ <strong>Check-in 7.2: Tidy Evaluation &amp; Data Masking</strong></a></li>
+  </ul></li>
+  <li><a href="#writing-plotting-functions-in-r" id="toc-writing-plotting-functions-in-r" class="nav-link" data-scroll-target="#writing-plotting-functions-in-r"><span class="header-section-number">3</span> Writing Plotting Functions in R</a>
+  <ul class="collapse">
+  <li><a href="#required-reading-r4ds-functions-1" id="toc-required-reading-r4ds-functions-1" class="nav-link" data-scroll-target="#required-reading-r4ds-functions-1">📖 Required Reading: <em>R4DS</em> – Functions</a></li>
+  <li><a href="#check-in-7.2-writing-plotting-functions" id="toc-check-in-7.2-writing-plotting-functions" class="nav-link" data-scroll-target="#check-in-7.2-writing-plotting-functions">✅ <strong>Check-in 7.2: Writing Plotting Functions</strong></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -216,49 +223,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <!-- Advanced R on lazy evaluation: https://adv-r.hadley.nz/functions.html#lazy-evaluation -->
-<!-- where to use pick() and where to use across() -->
-<!-- With pick(), you typically apply a function to the full data frame. -->
-<!-- With across(), you typically apply a function to each column. -->
-<!-- # `pick()` is also useful as a bridge between data-masking functions (like -->
-<!-- # `mutate()` or `group_by()`) and functions with tidy-select behavior (like -->
-<!-- # `select()`). For example, you can use `pick()` to create a wrapper around -->
-<!-- # `group_by()` that takes a tidy-selection of columns to group on. -->
-<!-- https://r4ds.hadley.nz/iteration.html#across-in-functions -->
-<!-- - := for mutate() in functions -->
-<!-- := "name injection": https://dplyr.tidyverse.org/articles/programming.html#name-injection -->
-<!-- all_of() -->
-<!-- any_of()  -->
-<!-- for character vector -->
 <!-- What is data-masking and why do I need {{? -->
 <!-- https://rlang.r-lib.org/reference/topic-data-mask.html -->
-<p>This week we’re going to take the skills for writing <strong>vector</strong> functions we learned last week and consider how we might write functions that operate on <strong>data frames</strong>.</p>
+<p>This week, we’re going to learn how to write our own dplyr-like functions—functions that behave the way dplyr verbs do. To do this, we’ll dive into some of the deeper ideas that power the tidyverse, especially how functions in dplyr interpret and evaluate code. These ideas—collectively known as tidy evaluation—make the tidyverse so expressive and intuitive for common data-analysis tasks, but they can also make programming with it more challenging.</p>
+<p>This week, we’re moving from using tidyverse functions for “common” tasks to learning how to build our own functions for the “less common” ones. By the end, you’ll understand not only how to use dplyr, but how to extend it.</p>
 <p>By the end of the week you should have a grasp of:</p>
-<!-- add learning outcomes about using [[]] versus {{ }} to grab variables -->
-<!-- add learning outcome about diffusion? -->
 <ul>
 <li><p>What the “embracing” (<code>{{ }}</code>) operator is</p></li>
 <li><p>How to use the <code>{{ }}</code> operator in data frame functions</p></li>
 <li><p>Why we need to use the <code>{{ }}</code> operator when writing data frame functions</p></li>
+<li><p>What “data masking” is</p></li>
+<li><p>What functions use data masking</p></li>
+<li><p>What “tidy selection” is</p></li>
+<li><p>What functions use tidy selection</p></li>
+<li><p>How to use <code>across()</code> in functions</p></li>
+<li><p>How to use <code>pick()</code> in functions</p></li>
 </ul>
 <div class="columns">
 <div class="column" style="width:60%;">
+<section id="readings-60-90-minutes" class="level4">
+<h4 class="anchored" data-anchor-id="readings-60-90-minutes">📖 Readings: 60-90 minutes</h4>
+</section>
 <section id="watch-videos-20-minutes" class="level4">
 <h4 class="anchored" data-anchor-id="watch-videos-20-minutes">📽 Watch Videos: 20 minutes</h4>
-</section>
-<section id="readings-60-75-minutes" class="level4">
-<h4 class="anchored" data-anchor-id="readings-60-75-minutes">📖 Readings: 60-75 minutes</h4>
 </section>
 </div><div class="column" style="width:5%;">
 
 </div><div class="column" style="width:35%;">
-<section id="preview-activities-1-broken-into-three-sections" class="level4">
-<h4 class="anchored" data-anchor-id="preview-activities-1-broken-into-three-sections">✅ Preview Activities: 1 (broken into three sections)</h4>
+<section id="preview-activities-3" class="level4">
+<h4 class="anchored" data-anchor-id="preview-activities-3">✅ Preview Activities: 3</h4>
 </section>
 </div>
 </div>
 <section id="writing-data-frame-functions-in-r" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Writing Data Frame Functions in R</h1>
-<!-- makes a common task easier at the cost of making a less common task harder -->
+<p>Now that we’ve learned at a high level how to write functions that operate on a we’re going to take this a step further and learn how to work with “tidy evaluation.”</p>
+<p>Since there isn’t a dedicated chapter to writing data frame functions, I’ve compiled a compilation of resources for each topic I want us to cover. First, let’s learn some of the “big picture” ideas of writing data frame functions.</p>
 <section id="required-reading-r4ds-functions" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading-r4ds-functions">📖 <a href="https://r4ds.hadley.nz/functions#data-frame-functions">Required Reading: <em>R4DS</em> – Functions</a></h3>
 <div class="callout callout-style-default callout-caution callout-titled">
@@ -274,35 +274,9 @@ Read only Section 3 – Data Frame Functions!
 
 </div>
 </div>
-<!-- Article on the difference between data masking and tidy evaluation: https://dplyr.tidyverse.org/articles/programming.html -->
 </section>
-<section id="tidy-evaluation-data-masking" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="tidy-evaluation-data-masking"><span class="header-section-number">1.1</span> Tidy Evaluation &amp; Data Masking</h2>
-<p>Writing functions that work with data frames <strong>and</strong> call on the functions we’ve become used to (e.g., <code>filter()</code>, <code>select()</code>, <code>summarise()</code>) requires we learn about tidy evaluation. To write these functions you will need to know, at a high level, whether the function you are trying to incorporate uses data masking or tidy selection.</p>
-<p>At a high level, data masking is used in functions like <code>arrange()</code>, <code>filter()</code>, and <code>summarize()</code> that compute with variables. Whereas, tidy selection is used for functions like <code>select()</code> and <code>rename()</code> that select variables.</p>
-<p>Your intuition about which functions use tidy evaluation should be good for many of these functions. If you can input <code>c(var1, var2, var3)</code> into the function (e.g., <code>select(mtcars, c(vs, am, gear))</code>), then the function uses tidy selection! If you <strong>cannot</strong> input <code>c(var1, var2, var3)</code> into the function, then the function is performing computations on the data and uses data masking.</p>
-<p>If you are interested in learning more about tidy evaluation, I would highly recommend:</p>
-<ul>
-<li>this <a href="https://youtu.be/2BXPLnLMTYo?si=ry4tHOD77DWagvxn">video by Jenny Bryan</a>
-<ul>
-<li>I do want to note that this video is from 2019 and some things have changed since then. Namely, we used to need to use the <code>enquo()</code> function to inject variable names into <code>dplyr</code> functions, whereas we now use embracing <code>{{}}</code>. 🤗</li>
-</ul></li>
-<li>this <a href="https://dplyr.tidyverse.org/articles/programming.html#:~:text=arrange()%20%2C%20count()%20%2C%20filter,my_variable%20not%20df%24my_variable%20">vignette for tidy evaluation with <code>dplyr</code></a></li>
-</ul>
-<section id="check-in-7.2-writing-data-frame-functions" class="level3">
-<h3 class="anchored" data-anchor-id="check-in-7.2-writing-data-frame-functions">✅ <strong>Check-in 7.2: Writing Data Frame Functions</strong></h3>
-<!-- Add questions on: -->
-<!-- - what it means to be data masking -->
-<!-- - what it means to use tidy evaluation -->
-<p><strong>Question 3</strong>: For each of the following functions determine if the function uses data-masking or tidy-selection:</p>
-<ul>
-<li><code>distinct()</code></li>
-<li><code>count()</code></li>
-<li><code>group_by()</code></li>
-<li><code>select()</code></li>
-<li><code>rename_with()</code></li>
-<li><code>across()</code></li>
-</ul>
+<section id="check-in-7.1-writing-data-frame-functions" class="level3">
+<h3 class="anchored" data-anchor-id="check-in-7.1-writing-data-frame-functions">✅ <strong>Check-in 7.1 Writing Data Frame Functions</strong></h3>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -313,98 +287,266 @@ Data Structure
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Note for Questions 1 &amp; 2, I am assuming the <code>flight</code> data has a similar structure to the <code>nycflights</code> data from the openintro R package.</p>
+<p>Note for these questions I am assuming the <code>flight</code> data has a similar structure to the <code>nycflights</code> data from the openintro R package.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(openintro<span class="sc">::</span>nycflights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 16
-   year month   day dep_time dep_delay arr_time arr_delay carrier tailnum flight
-  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;    &lt;int&gt;
-1  2013     6    30      940        15     1216        -4 VX      N626VA     407
-2  2013     5     7     1657        -3     2104        10 DL      N3760C     329
-3  2013    12     8      859        -1     1238        11 DL      N712TW     422
-4  2013     5    14     1841        -4     2122       -34 DL      N914DL    2391
-5  2013     7    21     1102        -3     1230        -8 9E      N823AY    3652
-6  2013     1     1     1817        -3     2008         3 AA      N3AXAA     353
-# ℹ 6 more variables: origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
-#   hour &lt;dbl&gt;, minute &lt;dbl&gt;</code></pre>
-</div>
 </div>
 </div>
 </div>
 <p><strong>Question 1</strong>: Fill in the code below to write a function that finds all flights that were cancelled or delayed by more than a user supplied number of hours:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>filter_severe <span class="ot">&lt;-</span> <span class="cf">function</span>(df, hours) { </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(dep_delay _____)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>nycflights <span class="sc">|&gt;</span> </span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_severe</span>(<span class="at">hours =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>filter_severe <span class="ot">&lt;-</span> <span class="cf">function</span>(df, hours) { </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(dep_delay _____)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>nycflights <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_severe</span>(<span class="at">hours =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>Question 2</strong>: Fill in the code below to write a function that converts the user supplied variable that uses clock time (e.g., <code>dep_time</code>, <code>arr_time</code>, etc.) into a decimal time (i.e.&nbsp;hours + (minutes / 60)).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>standardize_time <span class="ot">&lt;-</span> <span class="cf">function</span>(df, time_var) {</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Times are stored as 2008 for 8</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>( {{ time_var }} <span class="sc">:</span><span class="er">=</span> </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>              <span class="fu">as.numeric</span>(</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                <span class="do">## Grab first two numbers for hour</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>                <span class="fu">str_sub</span>(</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                  {{ time_var }}, </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="dv">1</span>, </span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                  <span class="at">end =</span> <span class="dv">2</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">+</span>  </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>              <span class="fu">as.numeric</span>(</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>                <span class="do">## Grab second two numbers for minutes</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                <span class="fu">str_sub</span>(</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                  {{ time_var }}, </span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> <span class="dv">3</span>, </span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>                  <span class="at">end =</span> <span class="dv">4</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>                ) <span class="sc">/</span> <span class="dv">60</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>            )</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>nycflights <span class="sc">|&gt;</span> </span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">standardize_time</span>(arr_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>standardize_time <span class="ot">&lt;-</span> <span class="cf">function</span>(df, time_var) {</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Times are stored as 2008 for 8:08pm</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>( {{ time_var }} <span class="sc">:</span><span class="er">=</span> </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>              <span class="do">## Grab first two numbers for hour</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                <span class="fu">str_sub</span>(</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>                  ____, </span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> ____, </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>                  <span class="at">end =</span> ____) <span class="sc">+</span>  </span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>              <span class="do">## Grab second two numbers for minutes</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>                <span class="fu">str_sub</span>(</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>                  ____, </span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>                  <span class="at">start =</span> ____, </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>                  <span class="at">end =</span> ____) <span class="sc">/</span> <span class="dv">60</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>nycflights <span class="sc">|&gt;</span> </span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">standardize_time</span>(arr_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<!-- count_prop <- function(df, var, sort = FALSE) { -->
-<!--   df |> -->
-<!--     count({{ var }}, sort = sort) |> -->
-<!--     mutate(prop = n / sum(n)) -->
-<!-- } -->
-<!-- # Writing Plotting Functions in R -->
-<!-- ### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions) -->
-<!-- ::: callout-caution -->
-<!-- # Read only Section 4 (Data frame functions)! -->
-<!-- ::: -->
-<!-- ### ✅  **Check-in 7.2: Writing Data Frame Functions** -->
-<p><strong>Question 4</strong>: Fill in the code below to build a rich plotting function which:</p>
+</section>
+</section>
+<section id="tidy-selection-data-masking" class="level1 page-columns page-full" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Tidy Selection &amp; Data Masking</h1>
+<p>Now that we’ve learned how to write functions that operate on entire data frames, we’re going to take this a step further and look more closely at tidy evaluation—the system that powers how many tidyverse functions interpret and evaluate your code.</p>
+<p>At a high level:</p>
+<ul>
+<li><p><strong>Data masking</strong> is used in functions that compute with variables, such as <code>arrange()</code>, <code>filter()</code>, and <code>summarise()</code>. Inside these functions, you can refer to column names directly (e.g., <code>filter(mpg &gt; 20)</code>) because dplyr temporarily “masks” the data frame’s columns so they behave like regular variables.</p></li>
+<li><p><strong>Tidy selection</strong> is used in functions that select variables, such as <code>select()</code> and <code>across()</code>. These functions let you choose columns using helpers like <code>starts_with()</code>, <code>where(is.numeric)</code>, or vectors of column names.</p></li>
+</ul>
+<p>A quick way to tell which system is in play:</p>
+<ul>
+<li><p>If the function accepts a <strong>vector of column names</strong> (e.g., <code>select(mtcars, c(vs, am, gear)))</code>, it uses tidy selection.</p></li>
+<li><p>If it does not accept a vector of column names and instead <strong>works on column values</strong> (e.g., <code>filter(mtcars, mpg &gt; 20))</code>, it uses data masking.</p></li>
+</ul>
+<p>Understanding which type of tidy evaluation a function uses will help you write your own functions that behave just like tidyverse ones.</p>
+<p>Let’s read this guide on tidy evaluation which breaks down what tidy selection and data masking are and how they are used in dplyr functions.</p>
+<section id="programming-with-dplyr-tidy-selection-data-masking" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="programming-with-dplyr-tidy-selection-data-masking">📖 <a href="https://dplyr.tidyverse.org/articles/programming.html">Programming with <strong>dplyr</strong>: Tidy Selection &amp; Data Masking</a></h3>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p><strong>If you are interested in a video on tidy evaluation here is a talk by Jenny Bryan</strong> </p><div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/2BXPLnLMTYo?si=ry4tHOD77DWagvxn" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I do want to note that this video is from 2019 and some things have changed since then. Namely, we used to need to use the <code>enquo()</code> function to inject variable names into <code>dplyr</code> functions, whereas we now use embracing <code>{{}}</code>. 🤗</p>
+</div>
+</div>
+</div></div></section>
+<section id="check-in-7.2-tidy-evaluation-data-masking" class="level3">
+<h3 class="anchored" data-anchor-id="check-in-7.2-tidy-evaluation-data-masking">✅ <strong>Check-in 7.2: Tidy Evaluation &amp; Data Masking</strong></h3>
+<p><strong>Question 1:</strong> Suppose you want to write a function that selects specific columns from a data frame using a character vector of column names stored in <code>cols</code> (e.g., <code>cols = c("species", "bill_length_mm")</code>). Which of the following code snippets will correctly select only those columns inside a function using tidy selection?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_select <span class="ot">&lt;-</span> <span class="cf">function</span>(df, cols) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># your code here</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(cols)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Option B</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">all_of</span>(cols))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Option C</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>({{ cols }})</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Option D</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(.data[[cols]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- (A) fails because select() interprets cols as a column name, not as a vector of names. -->
+<!-- (B) is correct because tidy selection works with column-selection helpers and special functions like all_of() or any_of() when the names are stored as character vectors. -->
+<!-- (C) fails because {{ cols }} is for data masking — unquoted symbols, not strings. -->
+<!-- (D) fails because .data[[cols]] is used in data masking contexts (e.g., inside mutate() or filter()), not for selecting multiple columns. -->
+<p><strong>Question 2:</strong> You’re writing a function that filters rows in a data frame based on a column specified by the user. The function should take the data frame (<code>df</code>), a column name (<code>var</code>), and a numeric threshold (<code>threshold</code>), and return all rows where that column’s value is greater than the threshold. The function call should look something like: <code>my_filter(penguins, bill_length_mm, 50)</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>my_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, threshold) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># your code here</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(var <span class="sc">&gt;</span> x)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Option B</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.data[[var]] <span class="sc">&gt;</span> x)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Option C</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>({{ var }} <span class="sc">&gt;</span> x)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Option D</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(df[[var]] <span class="sc">&gt;</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- (A) fails because filter() treats var literally (not as a variable referring to a column). -->
+<!-- (B) fails because .data[[var]] is used when the column name is stored as a character string rather than a symbol. -->
+<!-- (C) is correct because {{ var }} (the curly-curly or "embracing" syntax) is used for data masking—it allows you to use a column name passed as an unquoted argument inside a tidyverse verb. -->
+<!-- (D) works in base R but not with dplyr’s data masking, which expects unquoted column references. -->
+<p><strong>Question 3</strong>: For each of the following functions determine if the function uses data-masking or tidy-selection:</p>
+<ul>
+<li><code>distinct()</code></li>
+<li><code>count()</code></li>
+<li><code>group_by()</code></li>
+<li><code>select()</code></li>
+<li><code>rename()</code></li>
+<li><code>across()</code></li>
+</ul>
+<p><strong>Question 4</strong>: Suppose I wanted to write a function that added a standardized version of a specified (numeric) column into a data frame. Which of the following functions would accomplish this task?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>add_std_col <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var){</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df, </span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">std_col =</span> <span class="fu">scale</span>({{var}}, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="do">## Option B</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>add_std_col <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var){</span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df, </span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">std_col =</span> <span class="fu">scale</span>(var, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Option C</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>add_std_col <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var){</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df, </span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>         <span class="at">std_col :=</span> <span class="fu">scale</span>({{var}}, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>         ) </span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Option D</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>add_std_col <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var){</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df, </span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">std_col :=</span> <span class="fu">scale</span>(var, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- (A) fails because you need to have a := to modify a variable -->
+<!-- (B) fails because you need to use {{}} to grab the column AND you need := to modify the variable -->
+<!-- (C) is correct because it uses := to modify the variable AND uses {{}} to grab the variable -->
+<!-- (D) fails because you need to use {{}} to grab the column -->
+<p><strong>Question 5</strong>: Suppose I wanted to scale my function from Question 4 into a function that standardizes <strong>every</strong> numeric column from a specified data frame. Which of the following functions would accomplish this task?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>standardize_df <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df, </span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">where</span>(is.numeric), </span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">scale</span>(.x, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">.names =</span> <span class="st">"{.col}_std"</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Option B</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>standardize_df <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df, </span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">pick</span>(<span class="fu">where</span>(is.numeric)), </span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>                <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">scale</span>(.x, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>                <span class="at">.names =</span> <span class="st">"{.col}_std"</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Option C</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a>standardize_df <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df,</span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a>         <span class="at">std =</span> <span class="fu">scale</span>(<span class="fu">pick</span>(<span class="fu">where</span>(is.numeric)), </span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a>                     <span class="at">center =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a>                     <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Option D</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a>standardize_df <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df,</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">where</span>(is.numeric),</span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a>                <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">scale</span>(<span class="fu">pick</span>(<span class="fu">where</span>(is.numeric)), </span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a>                               <span class="at">center =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a>                               <span class="at">scale =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}_std"</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This question is all about whether or not to use pick().</p>
+<!-- (A) is correct because where() selects the numeric columns using tidy select -->
+<!-- (B) is incorrect because pick() returns a data frame and across() expects tidy selected columns  -->
+<!-- (C) is incorrect because it hands all selected columns together to scale(), producing a matrix (or list-col) stuffed into one column std. The task is per-column standardization and should use across(). -->
+<!-- (D) is incorrect because .fns function is called once per column and should operate on the vector .x. Instead, it ignores .x and passes a data frame of many columns (pick(...)) to scale().  -->
+</section>
+</section>
+<section id="writing-plotting-functions-in-r" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Writing Plotting Functions in R</h1>
+<section id="required-reading-r4ds-functions-1" class="level3">
+<h3 class="anchored" data-anchor-id="required-reading-r4ds-functions-1">📖 <a href="https://r4ds.hadley.nz/functions#plot-functions">Required Reading: <em>R4DS</em> – Functions</a></h3>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Read only Section 4 (Data frame functions)!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</section>
+<section id="check-in-7.2-writing-plotting-functions" class="level3">
+<h3 class="anchored" data-anchor-id="check-in-7.2-writing-plotting-functions">✅ <strong>Check-in 7.2: Writing Plotting Functions</strong></h3>
+<p><strong>Question 1</strong>: Fill in the code below to build a rich plotting function which:</p>
 <ul>
 <li>draws a scatterplot given dataset and x and y variables,</li>
 <li>adds a line of best fit (i.e.&nbsp;a linear model with no standard errors)</li>
 <li>add a title.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>labeled_scatterplot <span class="ot">&lt;-</span> <span class="cf">function</span>(df, x_var, y_var) {</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  label <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">englue</span>(<span class="st">"A scatterplot of _____ and _____, including a line of best fit."</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> _____, </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">y =</span> _____</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>                         )</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span> </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, _____) <span class="sc">+</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> _____)</span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>labeled_scatterplot <span class="ot">&lt;-</span> <span class="cf">function</span>(df, x_var, y_var) {</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  label <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">englue</span>(<span class="st">"A scatterplot of _____ and _____, including a line of best fit."</span>)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> _____, </span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">y =</span> _____</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                         )</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, _____) <span class="sc">+</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> _____)</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
-</section>
 </section>
 </section>
 

@@ -266,16 +266,16 @@ my_filter <- function(df, var, threshold) {
 #| eval: false
 
 ## Option A
-df %>% filter(var > x)
+df %>% filter(var > threshold)
 
 ## Option B
-df %>% filter(.data[[var]] > x)
+df %>% filter(.data[[var]] > threshold)
 
 ## Option C
-df %>% filter({{ var }} > x)
+df %>% filter({{ var }} > threshold)
 
 ## Option D
-df %>% filter(df[[var]] > x)
+df %>% filter(df[[var]] > threshold)
 
 ```
 
@@ -290,13 +290,12 @@ df %>% filter(df[[var]] > x)
 **Question 3**: For each of the following functions determine if the function
 uses data-masking or tidy-selection:
 
--   `distinct()`
--   `count()`
--   `group_by()`
--   `select()`
--   `rename()`
 -   `across()`
-
+-   `count()`
+-   `distinct()`
+-   `group_by()`
+-   `rename()`
+-   `select()`
 
 **Question 4**: Suppose I wanted to write a function that added a standardized
 version of a specified (numeric) column into a data frame. Which of the
@@ -391,43 +390,8 @@ standardize_df <- function(df){
 }
 ```
 
-This question is all about whether or not to use pick(). 
-
+<!-- This question is all about whether or not to use pick().  -->
 <!-- (A) is correct because where() selects the numeric columns using tidy select -->
 <!-- (B) is incorrect because pick() returns a data frame and across() expects tidy selected columns  -->
 <!-- (C) is incorrect because it hands all selected columns together to scale(), producing a matrix (or list-col) stuffed into one column std. The task is per-column standardization and should use across(). -->
 <!-- (D) is incorrect because .fns function is called once per column and should operate on the vector .x. Instead, it ignores .x and passes a data frame of many columns (pick(...)) to scale().  -->
-
-# Writing Plotting Functions in R
-
-### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions)
-
-::: callout-caution
-# Read only Section 4 (Data frame functions)!
-:::
-
-### ✅  **Check-in 7.2: Writing Plotting Functions**
-
-**Question 1**: Fill in the code below to build a rich plotting function which:
-
--   draws a scatterplot given dataset and x and y variables,
--   adds a line of best fit (i.e. a linear model with no standard errors)
--   add a title.
-
-```{r}
-#| eval: false
-
-labeled_scatterplot <- function(df, x_var, y_var) {
-  
-  label <- rlang::englue("A scatterplot of _____ and _____, including a line of best fit.")
-  
-  df |> 
-    ggplot(mapping = aes(x = _____, 
-                         y = _____
-                         )
-           ) + 
-    geom_point() + 
-    geom_smooth(method = "lm", _____) +
-    labs(title = _____)
-}
-```

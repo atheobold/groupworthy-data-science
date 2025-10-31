@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.8.22">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -67,14 +67,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../images/stat-331-hex.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-9d3871c3a33628a85db1522934fdc5ee.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-be11573b6374e633292ee320d3d6b571.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -113,6 +114,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Introduction to Statistical Computing in R</span>
     </a>
@@ -192,11 +195,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#programming-with-dplyr-tidy-selection-data-masking" id="toc-programming-with-dplyr-tidy-selection-data-masking" class="nav-link" data-scroll-target="#programming-with-dplyr-tidy-selection-data-masking">📖 Programming with <strong>dplyr</strong>: Tidy Selection &amp; Data Masking</a></li>
   <li><a href="#check-in-7.2-tidy-evaluation-data-masking" id="toc-check-in-7.2-tidy-evaluation-data-masking" class="nav-link" data-scroll-target="#check-in-7.2-tidy-evaluation-data-masking">✅ <strong>Check-in 7.2: Tidy Evaluation &amp; Data Masking</strong></a></li>
   </ul></li>
-  <li><a href="#writing-plotting-functions-in-r" id="toc-writing-plotting-functions-in-r" class="nav-link" data-scroll-target="#writing-plotting-functions-in-r"><span class="header-section-number">3</span> Writing Plotting Functions in R</a>
-  <ul class="collapse">
-  <li><a href="#required-reading-r4ds-functions-1" id="toc-required-reading-r4ds-functions-1" class="nav-link" data-scroll-target="#required-reading-r4ds-functions-1">📖 Required Reading: <em>R4DS</em> – Functions</a></li>
-  <li><a href="#check-in-7.2-writing-plotting-functions" id="toc-check-in-7.2-writing-plotting-functions" class="nav-link" data-scroll-target="#check-in-7.2-writing-plotting-functions">✅ <strong>Check-in 7.2: Writing Plotting Functions</strong></a></li>
-  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -261,13 +259,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Since there isn’t a dedicated chapter to writing data frame functions, I’ve compiled a compilation of resources for each topic I want us to cover. First, let’s learn some of the “big picture” ideas of writing data frame functions.</p>
 <section id="required-reading-r4ds-functions" class="level3">
 <h3 class="anchored" data-anchor-id="required-reading-r4ds-functions">📖 <a href="https://r4ds.hadley.nz/functions#data-frame-functions">Required Reading: <em>R4DS</em> – Functions</a></h3>
-<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout callout-style-default callout-caution callout-empty-content callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Read only Section 3 – Data Frame Functions!
+<span class="screen-reader-only">Caution</span>Read only Section 3 – Data Frame Functions!
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -283,30 +281,30 @@ Read only Section 3 – Data Frame Functions!
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Data Structure
+<span class="screen-reader-only">Note</span>Data Structure
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>Note for these questions I am assuming the <code>flight</code> data has a similar structure to the <code>nycflights</code> data from the openintro R package.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(openintro<span class="sc">::</span>nycflights)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(openintro<span class="sc">::</span>nycflights)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </div>
 </div>
 <p><strong>Question 1</strong>: Fill in the code below to write a function that finds all flights that were cancelled or delayed by more than a user supplied number of hours:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>filter_severe <span class="ot">&lt;-</span> <span class="cf">function</span>(df, hours) { </span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>filter_severe <span class="ot">&lt;-</span> <span class="cf">function</span>(df, hours) { </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(dep_delay _____)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>nycflights <span class="sc">|&gt;</span> </span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_severe</span>(<span class="at">hours =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter_severe</span>(<span class="at">hours =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p><strong>Question 2</strong>: Fill in the code below to write a function that converts the user supplied variable that uses clock time (e.g., <code>dep_time</code>, <code>arr_time</code>, etc.) into a decimal time (i.e.&nbsp;hours + (minutes / 60)).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>standardize_time <span class="ot">&lt;-</span> <span class="cf">function</span>(df, time_var) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>standardize_time <span class="ot">&lt;-</span> <span class="cf">function</span>(df, time_var) {</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Times are stored as 2008 for 8:08pm</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>( {{ time_var }} <span class="sc">:</span><span class="er">=</span> </span>
@@ -325,7 +323,7 @@ Data Structure
 <span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>nycflights <span class="sc">|&gt;</span> </span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">standardize_time</span>(arr_time)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">standardize_time</span>(arr_time)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 </section>
@@ -367,12 +365,12 @@ Important
 <h3 class="anchored" data-anchor-id="check-in-7.2-tidy-evaluation-data-masking">✅ <strong>Check-in 7.2: Tidy Evaluation &amp; Data Masking</strong></h3>
 <p><strong>Question 1:</strong> Suppose you want to write a function that selects specific columns from a data frame using a character vector of column names stored in <code>cols</code> (e.g., <code>cols = c("species", "bill_length_mm")</code>). Which of the following code snippets will correctly select only those columns inside a function using tidy selection?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_select <span class="ot">&lt;-</span> <span class="cf">function</span>(df, cols) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_select <span class="ot">&lt;-</span> <span class="cf">function</span>(df, cols) {</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># your code here</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(cols)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Option B</span></span>
@@ -382,7 +380,7 @@ Important
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>({{ cols }})</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Option D</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(.data[[cols]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">select</span>(.data[[cols]])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- (A) fails because select() interprets cols as a column name, not as a vector of names. -->
 <!-- (B) is correct because tidy selection works with column-selection helpers and special functions like all_of() or any_of() when the names are stored as character vectors. -->
@@ -390,22 +388,22 @@ Important
 <!-- (D) fails because .data[[cols]] is used in data masking contexts (e.g., inside mutate() or filter()), not for selecting multiple columns. -->
 <p><strong>Question 2:</strong> You’re writing a function that filters rows in a data frame based on a column specified by the user. The function should take the data frame (<code>df</code>), a column name (<code>var</code>), and a numeric threshold (<code>threshold</code>), and return all rows where that column’s value is greater than the threshold. The function call should look something like: <code>my_filter(penguins, bill_length_mm, 50)</code></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>my_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, threshold) {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>my_filter <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var, threshold) {</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># your code here</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(var <span class="sc">&gt;</span> x)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(var <span class="sc">&gt;</span> threshold)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Option B</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.data[[var]] <span class="sc">&gt;</span> x)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(.data[[var]] <span class="sc">&gt;</span> threshold)</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Option C</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>({{ var }} <span class="sc">&gt;</span> x)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>({{ var }} <span class="sc">&gt;</span> threshold)</span>
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Option D</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(df[[var]] <span class="sc">&gt;</span> x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(df[[var]] <span class="sc">&gt;</span> threshold)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- (A) fails because filter() treats var literally (not as a variable referring to a column). -->
 <!-- (B) fails because .data[[var]] is used when the column name is stored as a character string rather than a symbol. -->
@@ -413,16 +411,16 @@ Important
 <!-- (D) works in base R but not with dplyr’s data masking, which expects unquoted column references. -->
 <p><strong>Question 3</strong>: For each of the following functions determine if the function uses data-masking or tidy-selection:</p>
 <ul>
-<li><code>distinct()</code></li>
-<li><code>count()</code></li>
-<li><code>group_by()</code></li>
-<li><code>select()</code></li>
-<li><code>rename()</code></li>
 <li><code>across()</code></li>
+<li><code>count()</code></li>
+<li><code>distinct()</code></li>
+<li><code>group_by()</code></li>
+<li><code>rename()</code></li>
+<li><code>select()</code></li>
 </ul>
 <p><strong>Question 4</strong>: Suppose I wanted to write a function that added a standardized version of a specified (numeric) column into a data frame. Which of the following functions would accomplish this task?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>add_std_col <span class="ot">&lt;-</span> <span class="cf">function</span>(df, var){</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df, </span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">std_col =</span> <span class="fu">scale</span>({{var}}, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
@@ -448,7 +446,7 @@ Important
 <span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df, </span>
 <span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a>         <span class="at">std_col :=</span> <span class="fu">scale</span>(var, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>         )</span>
-<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <!-- (A) fails because you need to have a := to modify a variable -->
 <!-- (B) fails because you need to use {{}} to grab the column AND you need := to modify the variable -->
@@ -456,7 +454,7 @@ Important
 <!-- (D) fails because you need to use {{}} to grab the column -->
 <p><strong>Question 5</strong>: Suppose I wanted to scale my function from Question 4 into a function that standardizes <strong>every</strong> numeric column from a specified data frame. Which of the following functions would accomplish this task?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Option A</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>standardize_df <span class="ot">&lt;-</span> <span class="cf">function</span>(df){</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(df, </span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">where</span>(is.numeric), </span>
@@ -495,56 +493,13 @@ Important
 <span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a>      <span class="at">.names =</span> <span class="st">"{.col}_std"</span></span>
 <span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>This question is all about whether or not to use pick().</p>
+<!-- This question is all about whether or not to use pick().  -->
 <!-- (A) is correct because where() selects the numeric columns using tidy select -->
 <!-- (B) is incorrect because pick() returns a data frame and across() expects tidy selected columns  -->
 <!-- (C) is incorrect because it hands all selected columns together to scale(), producing a matrix (or list-col) stuffed into one column std. The task is per-column standardization and should use across(). -->
 <!-- (D) is incorrect because .fns function is called once per column and should operate on the vector .x. Instead, it ignores .x and passes a data frame of many columns (pick(...)) to scale().  -->
-</section>
-</section>
-<section id="writing-plotting-functions-in-r" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> Writing Plotting Functions in R</h1>
-<section id="required-reading-r4ds-functions-1" class="level3">
-<h3 class="anchored" data-anchor-id="required-reading-r4ds-functions-1">📖 <a href="https://r4ds.hadley.nz/functions#plot-functions">Required Reading: <em>R4DS</em> – Functions</a></h3>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Read only Section 4 (Data frame functions)!
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-</section>
-<section id="check-in-7.2-writing-plotting-functions" class="level3">
-<h3 class="anchored" data-anchor-id="check-in-7.2-writing-plotting-functions">✅ <strong>Check-in 7.2: Writing Plotting Functions</strong></h3>
-<p><strong>Question 1</strong>: Fill in the code below to build a rich plotting function which:</p>
-<ul>
-<li>draws a scatterplot given dataset and x and y variables,</li>
-<li>adds a line of best fit (i.e.&nbsp;a linear model with no standard errors)</li>
-<li>add a title.</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>labeled_scatterplot <span class="ot">&lt;-</span> <span class="cf">function</span>(df, x_var, y_var) {</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  label <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">englue</span>(<span class="st">"A scatterplot of _____ and _____, including a line of best fit."</span>)</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> _____, </span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                         <span class="at">y =</span> _____</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>                         )</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>           ) <span class="sc">+</span> </span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, _____) <span class="sc">+</span></span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> _____)</span>
-<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 
 
 </section>

@@ -1,0 +1,48 @@
+---
+title: "Writing Plotting Functions in R"
+format: html
+number-sections: true
+number-depth: 2
+bibliography: references.bib
+editor: source
+execute: 
+  echo: true
+  include: true
+---
+
+For the final part of this week, we are going to take what we've learned 
+about data frame functions and create functions that produce visualizations.
+
+### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions)
+
+::: callout-caution
+# Read only Section 4 (Plot functions)!
+:::
+
+### ✅  **Check-in 7.3: Writing Plotting Functions**
+
+**Question 1**: Fill in the code below to build a rich plotting function which:
+
+-   draws a scatterplot given dataset and x and y variables,
+-   adds a line of best fit (i.e. a linear model with no standard errors)
+-   add a title.
+
+```{r}
+#| eval: false
+
+labeled_scatterplot <- function(df, x_var, y_var) {
+  
+  label <- rlang::englue("A scatterplot of _____ and _____, including a line of best fit.")
+  
+  df |> 
+    ggplot(mapping = aes(x = _____, 
+                         y = _____
+                         )
+           ) + 
+    geom_point() + 
+    geom_smooth(method = "lm", _____) +
+    labs(title = _____)
+}
+```
+
+<!-- add a function that does ordered barplots -->

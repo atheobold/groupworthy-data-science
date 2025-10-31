@@ -10,8 +10,7 @@ execute:
   include: true
 ---
 
-For the final part of this week, we are going to take what we've learned 
-about data frame functions and create functions that produce visualizations.
+For the final part of this week, we are going to take what we've learned about data frame functions and create functions that produce visualizations.
 
 ### 📖 [Required Reading: *R4DS* -- Functions](https://r4ds.hadley.nz/functions#plot-functions)
 
@@ -19,7 +18,7 @@ about data frame functions and create functions that produce visualizations.
 # Read only Section 4 (Plot functions)!
 :::
 
-### ✅  **Check-in 7.3: Writing Plotting Functions**
+### ✅ **Check-in 7.3: Writing Plotting Functions**
 
 **Question 1**: Fill in the code below to build a rich plotting function which:
 
@@ -45,4 +44,50 @@ labeled_scatterplot <- function(df, x_var, y_var) {
 }
 ```
 
-<!-- add a function that does ordered barplots -->
+**Question 1**: Fill in the code below to build a rich plotting function which:
+
+-   creates a barplot of the counts of each level of a categorical variable
+-   sorts the bars in ascending order (smallest to largest)
+-   capitalizes the names of the levels of the variable
+
+```{r}
+#| eval: false
+#| echo: true
+
+ascending_bars <- function(df, cat_var) {
+  
+  # To make the y-axis label of the 
+  y_title <- as_label(enquo(cat_var))
+  
+  df |> 
+    mutate(
+      ## Order the levels based on the number of observations
+      {{ cat_var }} := ____({{ cat_var }}),
+      
+      ## Relabel the levels to be capitalized 
+      {{ cat_var }} := ____({{ cat_var }}, 
+                            .fun = ~ str_to_title(.x)
+                            )
+           )  |>
+    ggplot(aes(y = {{ cat_var }})) +
+    geom_bar() +
+    labs(x = "Number of Observations",
+         y = str_to_title(y_title)
+         )
+}
+```
+
+<!-- (A) `fct_infreq` -- orders levels based on number of observations (largest first) -->
+<!-- (B) `fct_relabel` -- uses a function to do the relabeling -->
+
+::: callout-tip
+You'll notice that I can't use `y = str_to_title({{ cat_var }})`. That is because the `labs()` function expects **string** inputs. So, I needed to transform the input variable (`cat_var`) into a string (e.g., "species").
+
+Here is how this process works:
+
+| Step | Code | Action |
+|--------------|----------------------------|------------------|
+| 1 | `ensym(cat_var)` | Turns the argument you passed into the function (e.g., `cat_var = species`) into the **symbol** `species`. |
+| 2 | `as_label(ensym(cat_var))` | Turns the symbol `species` into the string `"species"` |
+| 3 | `str_to_title(as_label(ensym(cat_var)))` | Capitalizes the string (`"species"` becomes `"Species"`) |
+:::

@@ -252,7 +252,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> _____)</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<!-- add a function that does ordered barplots -->
+<p><strong>Question 1</strong>: Fill in the code below to build a rich plotting function which:</p>
+<ul>
+<li>creates a barplot of the counts of each level of a categorical variable</li>
+<li>sorts the bars in ascending order (smallest to largest)</li>
+<li>capitalizes the names of the levels of the variable</li>
+</ul>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ascending_bars <span class="ot">&lt;-</span> <span class="cf">function</span>(df, cat_var) {</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># To make the y-axis label of the </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  y_title <span class="ot">&lt;-</span> <span class="fu">as_label</span>(<span class="fu">enquo</span>(cat_var))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="do">## Order the levels based on the number of observations</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>      {{ cat_var }} <span class="sc">:</span><span class="er">=</span> <span class="fu">____</span>({{ cat_var }}),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>      <span class="do">## Relabel the levels to be capitalized </span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      {{ cat_var }} <span class="sc">:</span><span class="er">=</span> <span class="fu">____</span>({{ cat_var }}, </span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.fun =</span> <span class="sc">~</span> <span class="fu">str_to_title</span>(.x)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>                            )</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>           )  <span class="sc">|&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> {{ cat_var }})) <span class="sc">+</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_bar</span>() <span class="sc">+</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Number of Observations"</span>,</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>         <span class="at">y =</span> <span class="fu">str_to_title</span>(y_title)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>         )</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<!-- (A) `fct_infreq` -- orders levels based on number of observations (largest first) -->
+<!-- (B) `fct_relabel` -- uses a function to do the relabeling -->
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You’ll notice that I can’t use <code>y = str_to_title({{ cat_var }})</code>. That is because the <code>labs()</code> function expects <strong>string</strong> inputs. So, I needed to transform the input variable (<code>cat_var</code>) into a string (e.g., “species”).</p>
+<p>Here is how this process works:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 46%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Code</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><code>ensym(cat_var)</code></td>
+<td>Turns the argument you passed into the function (e.g., <code>cat_var = species</code>) into the <strong>symbol</strong> <code>species</code>.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><code>as_label(ensym(cat_var))</code></td>
+<td>Turns the symbol <code>species</code> into the string <code>"species"</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><code>str_to_title(as_label(ensym(cat_var)))</code></td>
+<td>Capitalizes the string (<code>"species"</code> becomes <code>"Species"</code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
 </section>

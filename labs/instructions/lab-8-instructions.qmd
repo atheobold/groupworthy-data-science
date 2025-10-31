@@ -13,67 +13,180 @@ execute:
   warning: false
 ---
 
-<!-- add question about pivoted table function -->
-<!-- add question about sorted barplot function -->
+```{r}
+library(palmerpenguins)
+```
+
+## Function to Standardize Variables in a Data Frame
+
+Last week, you wrote a `rescale_01()` function which would rescale the values of
+a numeric variable to be between 0 and 1. This function worked on vectors, so 
+to use it we needed to pair the function with `mutate()` if we wanted to make
+changes to the data. This week, we are going to use this function as a helper
+function for a larger `rescale_column()` function that will rescale variables in
+a given data frame. 
+
+**Question 1: Create a `rescale_column()` function that accepts two arguments:**
+
+- **a data frame**
+- **the names of the variables that should be rescaled**
+
+**The body of the function should call the original `rescale_01()` function you wrote previously.**
+
+::: callout-important
+
+Your solution MUST use one of the `rlang` (tidy evaluation) options from class.**
+
+If you are struggling with this task, I recommend looking back over the 
+[section on `{{ }}` from the textbook](https://r4ds.hadley.nz/functions#sec-embracing) and  at the slides from class!
+:::
+
+```{r}
+#| label: df-rescale-function
 
 
-## Use Variables within a Dataset
+```
 
-Suppose you would like for your `rescale()` function to perform operations on a **variable within a dataset**. Ideally, your function would take in a dataframe and a variable name as inputs and return a dataframe where the variable has been rescaled.
+**Test Your Function:** Use your `rescale_column()` function to rescale the 
+`bill_length_mm`, `bill_depth_mm`, `flipper_length_mm`, and `body_mass_g` 
+columns of the `penguins` dataset. *Hint:* You should only call the 
+`rescale_column()` function once!
 
-**8. Create a `rescale_column()` function that accepts two arguments: (1) a dataframe and (2) the name(s) of the variable(s) to be rescaled. The body of the function should call the original `rescale_01()` function you wrote previously. Your solution MUST use one of the `rlang` options from class.**
+```{r}
+#| label: rescale-column-test
 
-::: callout-tip
+rescale_column(penguins, 
+               cols = c(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)
+               )
 
-If you are struggling with this task, I recommend looking [here](https://rlang.r-lib.org/reference/topic-defuse.html) and  at the slides from class on Wednesday!
+
+```
+
+## Function to Create a Table
+
+We've started to get more sophisticated with making tables, so let's see if 
+we can take these skills and create a function that outputs a pivoted table of 
+counts. 
+
+**Question 2: Write a `pivot_table()` function which takes in two categorical variables, 
+counts the number of observations in each group, and outputs a table of counts
+that has been pivoted wider.** 
+
+**Your function should accept three arguments:**
+
+- **a data frame**
+- **a row variable (the categorical variable that should be included in the rows)**
+- **a column variable (the categorical variable that should be included in the columns)**
+
+**Your function should also:**
+
+- **Replace `NA`s (where there are no counts) with a `0`**
+- **Add row and column totals (see the `adorn_totals()` function from the janitor package)**
+
+```{r}
+#| label: pivot-table-function
+
+
+```
+
+```{r}
+#| echo: false
+#| label: my-pivot
+
+pivot_table <- function(data, rows, cols) {
+  data |>
+    count(pick(c({{ rows }}, {{ cols }}))) |>
+    pivot_wider(
+      names_from = {{ cols }},
+      values_from = n,
+      names_sort = TRUE,
+      values_fill = 0
+    ) |> 
+    janitor::adorn_totals(where = "both")
+}
+
+```
+
+**Test Your Function:**Use your `pivot_table()` function to display a table of
+counts for the `species` and `sex` of the penguins from the `penguins` dataset.
+
+```{r}
+#| label: pivot-table-test
+
+pivot_table(penguins, row = sex, col = species)
+```
+
+
+## Function to Create a Plot
+
+<!-- DIY with criteria -->
+
+## Function to Style a Plot
+
+For this final section, I want you to write a wrapper function that can 
+style any `ggplot` object you create. 
+
+**Question 4: Write a `style_plot()` function which accepts four arguments:**
+
+- **a `ggplot` object**
+- **a theme function (e.g., `theme_bw`)**
+- **a vector of colors (e.g., `RColorBrewer::brewer.pal(8, "Accent")`)**
+- **a string indicating what aesthetic the colors should be applied to---"fill" or
+"color"**
+
+**The function should return the styled plot!**
+
+::: {.callout-tip}
+# Optional vs. Required Arguments
+
+The styling of this function is up to you! You can choose if you want to 
+declare "base line" themes and colors that will be used if the user doesn't
+specify any. You can also choose the default aesthetic that the colors will be
+applied to. 
 
 :::
 
 ```{r}
-# Code for Q8.
+#| echo: false
+#| eval: false
+#| label: style-plot-from-chat
+
+style_plot <- function(plot, theme_fn = theme_bw, palette = NULL, aesthetic = "fill") {
+  # Apply the theme
+  styled_plot <- plot + theme_fn()
+  
+  # Apply color palette if provided
+  if (!is.null(palette)) {
+    if (aesthetic == "fill") {
+      styled_plot <- styled_plot + scale_fill_manual(values = palette)
+    } else if (aesthetic == "color") {
+      styled_plot <- styled_plot + scale_color_manual(values = palette)
+    } else {
+      warning("Aesthetic must be either 'fill' or 'color'")
+    }
+  }
+  
+  return(styled_plot)
+}
 ```
 
-**9. Use your `rescale_column()` function to rescale *both* the `length` and `weight` columns.**
 
-::: callout-warning
-
-I expect that you carry out this process by calling the `rescale_column()` function only ONE time!
-
-:::
+**Test Your Function:** I've created a basic filled bar plot for you to use to
+test your function. Carry out the two tests below for your `style_plot()` 
+function. *Note: You may need to change the names of the arguments if you chose
+different names!*
 
 ```{r}
-# original values
-fish |> 
- select(length:weight) |> 
- head()
+my_plot <- ggplot(penguins, mapping = aes(x = species, fill = sex)) + 
+  geom_bar()
 
-# rescaled values
+## Required test: Specify **both** a theme **and** a color palette
 
-# Code for Q9.
+style_plot(my_plot, 
+           theme = theme_bw, 
+           palette = brewer.pal(4, "Accent"), 
+           aesthetic = "fill")
+
 
 ```
 
-<!-- Another convenient use of pick() is to make a 2d table of counts. Here we count using all the variables in the rows and columns, then use pivot_wider() to rearrange the counts into a grid: -->
-
-<!-- # https://twitter.com/pollicipes/status/1571606508944719876 -->
-<!-- count_wide <- function(data, rows, cols) { -->
-<!--   data |>  -->
-<!--     count(pick(c({{ rows }}, {{ cols }}))) |>  -->
-<!--     pivot_wider( -->
-<!--       names_from = {{ cols }},  -->
-<!--       values_from = n, -->
-<!--       names_sort = TRUE, -->
-<!--       values_fill = 0 -->
-<!--     ) -->
-<!-- } -->
-
-<!-- It’s straightforward to add more variables to the mix. For example, maybe you want an easy way to eyeball whether or not a dataset is linear by overlaying a smooth line and a straight line: -->
-
-<!-- # https://twitter.com/tyler_js_smith/status/1574377116988104704 -->
-<!-- linearity_check <- function(df, x, y) { -->
-<!--   df |> -->
-<!--     ggplot(aes(x = {{ x }}, y = {{ y }})) + -->
-<!--     geom_point() + -->
-<!--     geom_smooth(method = "loess", formula = y ~ x, color = "red", se = FALSE) + -->
-<!--     geom_smooth(method = "lm", formula = y ~ x, color = "blue", se = FALSE)  -->
-<!-- } -->

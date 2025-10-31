@@ -186,7 +186,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#use-variables-within-a-dataset" id="toc-use-variables-within-a-dataset" class="nav-link active" data-scroll-target="#use-variables-within-a-dataset">Use Variables within a Dataset</a></li>
+  <li><a href="#function-to-standardize-variables-in-a-data-frame" id="toc-function-to-standardize-variables-in-a-data-frame" class="nav-link active" data-scroll-target="#function-to-standardize-variables-in-a-data-frame">Function to Standardize Variables in a Data Frame</a></li>
+  <li><a href="#function-to-create-a-table" id="toc-function-to-create-a-table" class="nav-link" data-scroll-target="#function-to-create-a-table">Function to Create a Table</a></li>
+  <li><a href="#function-to-create-a-plot" id="toc-function-to-create-a-plot" class="nav-link" data-scroll-target="#function-to-create-a-plot">Function to Create a Plot</a></li>
+  <li><a href="#function-to-style-a-plot" id="toc-function-to-style-a-plot" class="nav-link" data-scroll-target="#function-to-style-a-plot">Function to Style a Plot</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -218,73 +221,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<!-- add question about pivoted table function -->
-<!-- add question about sorted barplot function -->
-<section id="use-variables-within-a-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="use-variables-within-a-dataset">Use Variables within a Dataset</h2>
-<p>Suppose you would like for your <code>rescale()</code> function to perform operations on a <strong>variable within a dataset</strong>. Ideally, your function would take in a dataframe and a variable name as inputs and return a dataframe where the variable has been rescaled.</p>
-<p><strong>8. Create a <code>rescale_column()</code> function that accepts two arguments: (1) a dataframe and (2) the name(s) of the variable(s) to be rescaled. The body of the function should call the original <code>rescale_01()</code> function you wrote previously. Your solution MUST use one of the <code>rlang</code> options from class.</strong></p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="function-to-standardize-variables-in-a-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="function-to-standardize-variables-in-a-data-frame">Function to Standardize Variables in a Data Frame</h2>
+<p>Last week, you wrote a <code>rescale_01()</code> function which would rescale the values of a numeric variable to be between 0 and 1. This function worked on vectors, so to use it we needed to pair the function with <code>mutate()</code> if we wanted to make changes to the data. This week, we are going to use this function as a helper function for a larger <code>rescale_column()</code> function that will rescale variables in a given data frame.</p>
+<p><strong>Question 1: Create a <code>rescale_column()</code> function that accepts two arguments:</strong></p>
+<ul>
+<li><strong>a data frame</strong></li>
+<li><strong>the names of the variables that should be rescaled</strong></li>
+</ul>
+<p><strong>The body of the function should call the original <code>rescale_01()</code> function you wrote previously.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your solution MUST use one of the <code>rlang</code> (tidy evaluation) options from class.**</p>
+<p>If you are struggling with this task, I recommend looking back over the <a href="https://r4ds.hadley.nz/functions#sec-embracing">section on <code>{ }</code> from the textbook</a> and at the slides from class!</p>
+</div>
+</div>
+<p><strong>Test Your Function:</strong> Use your <code>rescale_column()</code> function to rescale the <code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code>, and <code>body_mass_g</code> columns of the <code>penguins</code> dataset. <em>Hint:</em> You should only call the <code>rescale_column()</code> function once!</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale_column</span>(penguins, </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">cols =</span> <span class="fu">c</span>(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>               )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="function-to-create-a-table" class="level2">
+<h2 class="anchored" data-anchor-id="function-to-create-a-table">Function to Create a Table</h2>
+<p>We’ve started to get more sophisticated with making tables, so let’s see if we can take these skills and create a function that outputs a pivoted table of counts.</p>
+<p><strong>Question 2: Write a <code>pivot_table()</code> function which takes in two categorical variables, counts the number of observations in each group, and outputs a table of counts that has been pivoted wider.</strong></p>
+<p><strong>Your function should accept three arguments:</strong></p>
+<ul>
+<li><strong>a data frame</strong></li>
+<li><strong>a row variable (the categorical variable that should be included in the rows)</strong></li>
+<li><strong>a column variable (the categorical variable that should be included in the columns)</strong></li>
+</ul>
+<p><strong>Your function should also:</strong></p>
+<ul>
+<li><strong>Replace <code>NA</code>s (where there are no counts) with a <code>0</code></strong></li>
+<li><strong>Add row and column totals (see the <code>adorn_totals()</code> function from the janitor package)</strong></li>
+</ul>
+<p><strong>Test Your Function:</strong>Use your <code>pivot_table()</code> function to display a table of counts for the <code>species</code> and <code>sex</code> of the penguins from the <code>penguins</code> dataset.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_table</span>(penguins, <span class="at">row =</span> sex, <span class="at">col =</span> species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="function-to-create-a-plot" class="level2">
+<h2 class="anchored" data-anchor-id="function-to-create-a-plot">Function to Create a Plot</h2>
+<!-- DIY with criteria -->
+</section>
+<section id="function-to-style-a-plot" class="level2">
+<h2 class="anchored" data-anchor-id="function-to-style-a-plot">Function to Style a Plot</h2>
+<p>For this final section, I want you to write a wrapper function that can style any <code>ggplot</code> object you create.</p>
+<p><strong>Question 4: Write a <code>style_plot()</code> function which accepts four arguments:</strong></p>
+<ul>
+<li><strong>a <code>ggplot</code> object</strong></li>
+<li><strong>a theme function (e.g., <code>theme_bw</code>)</strong></li>
+<li><strong>a vector of colors (e.g., <code>RColorBrewer::brewer.pal(8, "Accent")</code>)</strong></li>
+<li><strong>a string indicating what aesthetic the colors should be applied to—“fill” or “color”</strong></li>
+</ul>
+<p><strong>The function should return the styled plot!</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+<span class="screen-reader-only">Tip</span>Optional vs.&nbsp;Required Arguments
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If you are struggling with this task, I recommend looking <a href="https://rlang.r-lib.org/reference/topic-defuse.html">here</a> and at the slides from class on Wednesday!</p>
+<p>The styling of this function is up to you! You can choose if you want to declare “base line” themes and colors that will be used if the user doesn’t specify any. You can also choose the default aesthetic that the colors will be applied to.</p>
 </div>
 </div>
+<p><strong>Test Your Function:</strong> I’ve created a basic filled bar plot for you to use to test your function. Carry out the two tests below for your <code>style_plot()</code> function. <em>Note: You may need to change the names of the arguments if you chose different names!</em></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for Q8.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">fill =</span> sex)) <span class="sc">+</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Required test: Specify **both** a theme **and** a color palette</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">style_plot</span>(my_plot, </span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">theme =</span> theme_bw, </span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">palette =</span> <span class="fu">brewer.pal</span>(<span class="dv">4</span>, <span class="st">"Accent"</span>), </span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">aesthetic =</span> <span class="st">"fill"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p><strong>9. Use your <code>rescale_column()</code> function to rescale <em>both</em> the <code>length</code> and <code>weight</code> columns.</strong></p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I expect that you carry out this process by calling the <code>rescale_column()</code> function only ONE time!</p>
-</div>
-</div>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># original values</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>fish <span class="sc">|&gt;</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">select</span>(length<span class="sc">:</span>weight) <span class="sc">|&gt;</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">head</span>()</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># rescaled values</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Code for Q9.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<!-- Another convenient use of pick() is to make a 2d table of counts. Here we count using all the variables in the rows and columns, then use pivot_wider() to rearrange the counts into a grid: -->
-<!-- # https://twitter.com/pollicipes/status/1571606508944719876 -->
-<!-- count_wide <- function(data, rows, cols) { -->
-<!--   data |>  -->
-<!--     count(pick(c({{ rows }}, {{ cols }}))) |>  -->
-<!--     pivot_wider( -->
-<!--       names_from = {{ cols }},  -->
-<!--       values_from = n, -->
-<!--       names_sort = TRUE, -->
-<!--       values_fill = 0 -->
-<!--     ) -->
-<!-- } -->
-<!-- It’s straightforward to add more variables to the mix. For example, maybe you want an easy way to eyeball whether or not a dataset is linear by overlaying a smooth line and a straight line: -->
-<!-- # https://twitter.com/tyler_js_smith/status/1574377116988104704 -->
-<!-- linearity_check <- function(df, x, y) { -->
-<!--   df |> -->
-<!--     ggplot(aes(x = {{ x }}, y = {{ y }})) + -->
-<!--     geom_point() + -->
-<!--     geom_smooth(method = "loess", formula = y ~ x, color = "red", se = FALSE) + -->
-<!--     geom_smooth(method = "lm", formula = y ~ x, color = "blue", se = FALSE)  -->
-<!-- } -->
 
 
 </section>

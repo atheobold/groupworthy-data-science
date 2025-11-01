@@ -81,7 +81,7 @@ ascending_bars <- function(df, cat_var) {
 <!-- (B) `fct_relabel` -- uses a function to do the relabeling -->
 
 ::: callout-tip
-You'll notice that I can't use `y = str_to_title({{ cat_var }})`. That is because the `labs()` function expects **string** inputs. So, I needed to transform the input variable (`cat_var`) into a string (e.g., "species").
+You'll notice that I can't use `y = str_to_title({{ cat_var }})`. That is because the `str_to_title()` function expects **string** inputs. So, I needed to transform the input variable (`cat_var`) into a string (e.g., "species").
 
 Here is how this process works:
 

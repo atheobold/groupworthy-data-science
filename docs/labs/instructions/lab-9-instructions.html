@@ -8,7 +8,7 @@
 
 <meta name="author" content="Instructions">
 
-<title>Lab 8: Searching for Efficiency – Introduction to Statistical Computing in R</title>
+<title>Lab 9: Searching for Efficiency – Introduction to Statistical Computing in R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -187,7 +187,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#the-data" id="toc-the-data" class="nav-link active" data-scroll-target="#the-data">The Data</a></li>
-  <li><a href="#formatting-tables" id="toc-formatting-tables" class="nav-link" data-scroll-target="#formatting-tables">Formatting Tables</a></li>
   <li><a href="#lab-2" id="toc-lab-2" class="nav-link" data-scroll-target="#lab-2">Lab 2</a></li>
   <li><a href="#lab-3" id="toc-lab-3" class="nav-link" data-scroll-target="#lab-3">Lab 3</a></li>
   <li><a href="#lab-5" id="toc-lab-5" class="nav-link" data-scroll-target="#lab-5">Lab 5</a></li>
@@ -200,7 +199,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lab 8: Searching for Efficiency</h1>
+<h1 class="title">Lab 9: Searching for Efficiency</h1>
 </div>
 
 
@@ -241,46 +240,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Data from Lab 7</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>fish <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"../lab7/BlackfootFish.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-</section>
-<section id="formatting-tables" class="level2">
-<h2 class="anchored" data-anchor-id="formatting-tables">Formatting Tables</h2>
-<p>In this lab, we will also practice making nice, report worthy, tables!</p>
-<p>I would recommend you think of tables no different from the visualizations you’ve been making. We want <strong>all</strong> aspects of our tables to be clear to the reader, so the comparisons we want them to make are straightforward. You should be thinking about:</p>
-<ul>
-<li>Column headers</li>
-<li>Grouping headers</li>
-<li>Order of columns</li>
-<li>Order of rows</li>
-<li>Number of decimals included for numeric entries</li>
-<li>etc.</li>
-</ul>
-<p>Tables are also a great avenue to display creativity! In fact, there is a yearly <a href="https://www.rstudio.com/blog/rstudio-table-contest-2022/">RStudio table contest</a>, and <a href="https://community.rstudio.com/c/table-gallery/64">here</a> is a gallery of the award winning tables!</p>
-<p>There are many packages for generating tables but I recommend either <code>kable()</code> function from the <strong>knitr</strong> package or <code>gt()</code> function from the <strong>gt</strong> package and their add-ons.</p>
-<p><strong>For simple tables</strong></p>
-<ul>
-<li>the <code>kable()</code> function from the <strong>knitr</strong> package for <em>simple</em> tables</li>
-<li>the <code>gt()</code> function from the <strong>gt</strong> package</li>
-</ul>
-<p><strong>For more sophisticated tables</strong></p>
-<ul>
-<li>styling functions from the <strong>kableExtra</strong> package (e.g., <code>kable_styling()</code>, <code>kable_classic()</code>)</li>
-<li>add-on functions from the <strong>gt</strong> package (e.g., <code>cols_label()</code>, <code>tab_header()</code>, <code>fmt_percent()</code>)</li>
-</ul>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Warning
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Quarto doesn’t play nice with some options for formatting HTML tables in other packages.</p>
-<p>To make sure that your tables render as expected, we need to specify <code>html-table-processing: none</code> in the YAML header. You will notice that I already included that in this lab.</p>
-<p>I also recommend using the <strong>Source Editor</strong> for this lab.</p>
-</div>
 </div>
 </section>
 <section id="lab-2" class="level2">

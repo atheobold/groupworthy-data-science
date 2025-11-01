@@ -603,6 +603,126 @@ theme(
 )
 ```
 
+This plot is brought to us by a student who wishes to remain anonymous. I 
+thought this plot was both incredibly clear and rather creative. They used a 
+non-standard geom (`geom_violin`) which shows the density of each group's 
+distribution. Moreover, they plot a horizontal line at the median and annotate
+the median value (with dollar signs!). 
+
+```{r}
+#| code-fold: true
+
+# Here is the data wrangling that happened to make this plot!
+
+plot_data <- ca_childcare |>
+  select(mc_infant, mc_toddler, mc_preschool,
+         mfcc_infant, mfcc_toddler, mfcc_preschool) |>
+  pivot_longer(
+    cols = everything(),
+    names_to = "age_group",
+    values_to = "weekly_price"
+  ) |>
+  mutate(
+    age_group = recode(
+      age_group,
+      mc_infant = "Center_Infant",
+      mc_toddler = "Center_Toddler",
+      mc_preschool = "Center_Preschool",
+      mfcc_infant = "Family_Infant",
+      mfcc_toddler = "Family_Toddler",
+      mfcc_preschool = "Family_Preschool"
+    ),
+    setting = if_else(str_detect(age_group, "Center"), "Center-Based", "Family (In-Home)"),
+    age_group = case_when(
+      str_detect(age_group, "Infant") ~ "Infant",
+      str_detect(age_group, "Toddler") ~ "Toddler",
+      str_detect(age_group, "Preschool") ~ "Preschool"
+    ),
+    age_group = fct_relevel(age_group, "Infant", "Toddler", "Preschool")
+  )
+```
+
+```{r}
+library(RColorBrewer)
+custom_colors <- colorRampPalette(brewer.pal(8, "Accent"))(10)
+
+ggplot(plot_data, aes(x = age_group, y = weekly_price, fill = age_group)) +
+  geom_violin(trim = TRUE, alpha = 0.8, linewidth = 0.5) +
+  stat_summary(fun = median, fun.min = median, fun.max = median,
+               geom = "errorbar", width = 0.45, color = "black", linewidth = 0.5) +
+  stat_summary(fun = median, geom = "text",
+               aes(label = scales::dollar(after_stat(y))),
+               vjust = -0.6, size = 3, color = "black") +
+  facet_wrap(~ setting, ncol = 2) +
+  scale_y_continuous(labels = scales::dollar) +
+  scale_fill_manual(values = custom_colors) +   
+  scale_color_manual(values = custom_colors) +
+  labs(
+    title = "Distribution of Full-Time Weekly Childcare Costs in California (2008–2018)",
+    subtitle = "Violin shows distribution shape; bold line and label mark the median",
+    x = "Age Group of Children",
+    y = "Full-Time Weekly Cost"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.border = element_rect(color = "grey60", fill = NA, linewidth = 0.7),
+    strip.background = element_rect(fill = "grey95", color = "grey70"),
+    plot.title = element_text(face = "bold", size = 15),
+    plot.subtitle = element_text(face = "italic", color = "grey30"),
+    axis.title = element_text(face = "bold"),
+    axis.line = element_line(color = "grey60"),
+    panel.grid.minor = element_blank()
+  )
+```
+
+This plot is brought to us by Sebastien Montgrain! I really appreciated all the
+effort Sebastien put into getting the themes for the plot to be as clean as
+possible!
+
+```{r}
+#| code-fold: true
+
+# Here is the data wrangling that happened to make this plot!
+
+clean_data <- counties |>
+  left_join(childcare_costs, join_by(county_fips_code)) |>
+  filter(state_name == "California") |>
+  group_by(study_year) |>
+  summarise(mcsa = median(mcsa, na.rm = TRUE), 
+            mfccsa = median(mfccsa, na.rm = TRUE), 
+            mhi_2018 = median(mhi_2018, na.rm = TRUE)) |>
+  select(study_year, mcsa, mfccsa, mhi_2018) |>
+  rename('Weekly Center Based Care Price' = mcsa, 'Weekly Family Based Care Price' = mfccsa, 'Median Income' = mhi_2018) |>
+  pivot_longer(cols = -study_year, names_to = "Variable", values_to = "value") |>
+  mutate(Variable = fct_relevel(Variable, 
+                                "Weekly Center Based Care Price", 
+                                "Weekly Family Based Care Price", 
+                                "Median Income")
+         )
+
+```
+
+```{r}
+library(scales)
+
+ggplot(clean_data, aes(study_year, value, color = Variable)) +
+  geom_line() +
+  scale_y_continuous(labels = label_dollar()) +
+  labs(x = "Year", y = "", title = "Trends in Childcare Cost and Median Income", subtitle = "Measurments in US Dollars") +
+  facet_wrap(~ Variable, scales = "free_y", nrow = 1) +
+  theme_linedraw() +
+  scale_x_continuous(breaks = unique(clean_data$study_year)) +
+  theme(plot.title = element_text(margin = margin(b = 13), face = "bold"), 
+        plot.subtitle = element_text(size = 10),
+        legend.position = "none",
+        aspect.ratio = 0.9,
+        axis.text.x = element_text(size = 7, angle = 45, hjust = 1)) +
+  scale_color_manual(values = c("orange", "coral1", "steelblue2"))
+```
+
+
+
 # Lab 5
 
 ```{r}
@@ -614,11 +734,10 @@ source("https://raw.githubusercontent.com/atheobold/groupworthy-data-science/mai
 
 ## Multiple Filters
 
-This code is brought to us by a variety of students---Garrett, Jake, Liam, Lucy,
-and an anonymous student! I appreciated how each student managed to
-(efficiently) grab **both** witness interviews in one pipeline!
+This code is brought to us by a variety of students---Garrett, Jake, Liam, Lucy, and an anonymous student! I appreciated how each student managed to (efficiently) grab **both** witness interviews in one pipeline!
 
 **Garrett's Version:**
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -634,6 +753,7 @@ person |>
 ```
 
 **Jake's Version:**
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -647,6 +767,7 @@ witnesses <- full_join(person, interview, by = c("id" = "person_id")) |>
 ```
 
 **Liam's Version:**
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -662,6 +783,7 @@ inner_join(x = person,
 ```
 
 **Lucy's Version:**
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -680,6 +802,7 @@ interviewpeople |>
 ```
 
 **Anonymous Version:**
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -691,11 +814,9 @@ interview |>
   pull(transcript)
 ```
 
-
 ## Featuring Lubridate Functions
 
-This code comes to us from Karthik Balaji! I appreciated Karthik's extensive 
-use of functions from **lubridate** when filtering these data:
+This code comes to us from Karthik Balaji! I appreciated Karthik's extensive use of functions from **lubridate** when filtering these data:
 
 ```{r}
 #| echo: true
@@ -715,11 +836,10 @@ get_fit_now_member |>
   select(transcript)
 ```
 
-This code is brought to us by Rayan Tahir and May Thu Thu Kyaw! I thought it was
-so cool that both of them found a way to create an interval of time and filter
-for dates within that  interval! 
+This code is brought to us by Rayan Tahir and May Thu Thu Kyaw! I thought it was so cool that both of them found a way to create an interval of time and filter for dates within that interval!
 
 **Rayan's Version:**
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -738,6 +858,7 @@ concert_mastermind <- facebook_event_checkin |>
 ```
 
 **May's Version:**
+
 ```{r}
 #| echo: true
 #| eval: false
@@ -756,9 +877,7 @@ concert_3x_dec <- facebook_event_checkin |>
 
 ## `if_any()`
 
-This code is brought to us by Isaiah Woodard! I loved how Isaiah found a new
-setting to use `if_any()` in combination with `!is.na()` to check for missing
-values. 
+This code is brought to us by Isaiah Woodard! I loved how Isaiah found a new setting to use `if_any()` in combination with `!is.na()` to check for missing values.
 
 ```{r}
 #| echo: true

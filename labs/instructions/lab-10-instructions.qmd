@@ -1,5 +1,5 @@
 ---
-title: "Lab 9: Simulation Exploration"
+title: "Lab 10: Simulation Exploration"
 author: "Instructions"
 format: 
   html:

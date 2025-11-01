@@ -76,3 +76,6 @@ Luckily, the gt package has an easy function for changing proportions to
 percentages (`fmt_percent()`) that you might want to use for your table from 
 Question 2. 
 :::
+
+<!-- link to learning outcomes on creativity in tables -->
+<!-- add colors to the table -->

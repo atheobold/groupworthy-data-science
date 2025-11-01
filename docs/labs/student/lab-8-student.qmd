@@ -184,8 +184,7 @@ style any `ggplot` object you create.
     + **the function should set a default theme (e.g., `theme_minimal()`)**
 - **a vector of colors (e.g., `RColorBrewer::brewer.pal(8, "Accent")`)**
     + **the function should set a default color palette**
-- **a string indicating which aesthetic the colors should be applied to ("fill" or
-"color")**
+- **a string indicating which aesthetic the colors should be applied to ("fill" or "color")**
 
 **Your function should:**
 

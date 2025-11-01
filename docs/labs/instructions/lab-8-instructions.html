@@ -186,10 +186,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#function-to-standardize-variables-in-a-data-frame" id="toc-function-to-standardize-variables-in-a-data-frame" class="nav-link active" data-scroll-target="#function-to-standardize-variables-in-a-data-frame">Function to Standardize Variables in a Data Frame</a></li>
-  <li><a href="#function-to-create-a-table" id="toc-function-to-create-a-table" class="nav-link" data-scroll-target="#function-to-create-a-table">Function to Create a Table</a></li>
-  <li><a href="#function-to-create-a-plot" id="toc-function-to-create-a-plot" class="nav-link" data-scroll-target="#function-to-create-a-plot">Function to Create a Plot</a></li>
-  <li><a href="#function-to-style-a-plot" id="toc-function-to-style-a-plot" class="nav-link" data-scroll-target="#function-to-style-a-plot">Function to Style a Plot</a></li>
+  <li><a href="#accessing-the-lab" id="toc-accessing-the-lab" class="nav-link active" data-scroll-target="#accessing-the-lab">Accessing the Lab</a></li>
+  <li><a href="#function-to-standardize-variables-in-a-data-frame" id="toc-function-to-standardize-variables-in-a-data-frame" class="nav-link" data-scroll-target="#function-to-standardize-variables-in-a-data-frame">Function to Standardize Variables in a Data Frame</a></li>
+  <li><a href="#function-to-create-a-table" id="toc-function-to-create-a-table" class="nav-link" data-scroll-target="#function-to-create-a-table">Function to Create a Table</a>
+  <ul class="collapse">
+  <li><a href="#test-your-function" id="toc-test-your-function" class="nav-link" data-scroll-target="#test-your-function">Test Your Function</a></li>
+  </ul></li>
+  <li><a href="#function-to-create-a-plot" id="toc-function-to-create-a-plot" class="nav-link" data-scroll-target="#function-to-create-a-plot">Function to Create a Plot</a>
+  <ul class="collapse">
+  <li><a href="#test-your-function-1" id="toc-test-your-function-1" class="nav-link" data-scroll-target="#test-your-function-1">Test Your Function</a></li>
+  </ul></li>
+  <li><a href="#function-to-style-a-plot" id="toc-function-to-style-a-plot" class="nav-link" data-scroll-target="#function-to-style-a-plot">Function to Style a Plot</a>
+  <ul class="collapse">
+  <li><a href="#test-your-function-2" id="toc-test-your-function-2" class="nav-link" data-scroll-target="#test-your-function-2">Test Your Function</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -222,17 +232,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<section id="function-to-standardize-variables-in-a-data-frame" class="level2">
-<h2 class="anchored" data-anchor-id="function-to-standardize-variables-in-a-data-frame">Function to Standardize Variables in a Data Frame</h2>
-<p>Last week, you wrote a <code>rescale_01()</code> function which would rescale the values of a numeric variable to be between 0 and 1. This function worked on vectors, so to use it we needed to pair the function with <code>mutate()</code> if we wanted to make changes to the data. This week, we are going to use this function as a helper function for a larger <code>rescale_column()</code> function that will rescale variables in a given data frame.</p>
-<p><strong>Question 1: Create a <code>rescale_column()</code> function that accepts two arguments:</strong></p>
-<ul>
-<li><strong>a data frame</strong></li>
-<li><strong>the names of the variables that should be rescaled</strong></li>
-</ul>
-<p><strong>The body of the function should call the original <code>rescale_01()</code> function you wrote previously.</strong></p>
+<section id="accessing-the-lab" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-the-lab">Accessing the Lab</h2>
+<p>Download the template Lab 8 Quarto file here: <a href="../student/lab-8-student.qmd" download=""><code>lab-8-student.qmd</code></a></p>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -243,15 +248,55 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Your solution MUST use one of the <code>rlang</code> (tidy evaluation) options from class.**</p>
-<p>If you are struggling with this task, I recommend looking back over the <a href="https://r4ds.hadley.nz/functions#sec-embracing">section on <code>{ }</code> from the textbook</a> and at the slides from class!</p>
+<p>Be sure to save this in the Lab 8 folder, inside your Week 8 folder, inside your STAT 331 folder!</p>
 </div>
 </div>
-<p><strong>Test Your Function:</strong> Use your <code>rescale_column()</code> function to rescale the <code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code>, and <code>body_mass_g</code> columns of the <code>penguins</code> dataset. <em>Hint:</em> You should only call the <code>rescale_column()</code> function once!</p>
+</section>
+<section id="function-to-standardize-variables-in-a-data-frame" class="level2">
+<h2 class="anchored" data-anchor-id="function-to-standardize-variables-in-a-data-frame">Function to Standardize Variables in a Data Frame</h2>
+<p>Last week, you wrote a <code>rescale_01()</code> function which would rescale the values of a numeric variable to be between 0 and 1. This function worked on vectors, so to use it we needed to pair the function with <code>mutate()</code> if we wanted to make changes to the data. This week, we are going to use this function as a helper function for a larger <code>rescale_column()</code> function that will rescale variables in a given data frame.</p>
+<p><strong>Question 1: Create a <code>rescale_column()</code> function that accepts two arguments:</strong></p>
+<ul>
+<li><strong>a data frame</strong></li>
+<li><strong>one or more variable names to rescale</strong></li>
+</ul>
+<p><strong>The body of the function should call the original <code>rescale_01()</code> function you wrote previously and return the original data frame with those columns replaced by their rescaled versions.</strong></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your function call must look like one of these two options:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale_column</span>(penguins, </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">cols =</span> <span class="fu">c</span>(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>               )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy (unquoted) variable names</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale_column</span>(df, <span class="fu">c</span>(height, weight))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Quoted variable names</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale_column</span>(df, <span class="fu">c</span>(<span class="st">"height"</span>, <span class="st">"weight"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>To achieve this, you function must use one of the <code>rlang</code> (tidy evaluation) options from class.</p>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rescale_column <span class="ot">&lt;-</span> <span class="cf">function</span>(data, cols){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  data <span class="sc">|&gt;</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">across</span>(<span class="at">.cols =</span> {{ cols }}, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">.fns =</span> <span class="sc">~</span> <span class="fu">scale</span>(.x, <span class="at">center =</span> <span class="cn">TRUE</span>, <span class="at">scale =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>             )</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><strong>Test Your Function:</strong> Use your <code>rescale_column()</code> function to rescale the <code>bill_length_mm</code>, <code>bill_depth_mm</code>, <code>flipper_length_mm</code>, and <code>body_mass_g</code> columns of the <code>penguins</code> dataset. <em>Note:</em> You may need to change the function inputs if you chose to use a character vector.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rescale_column</span>(penguins, </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">cols =</span> <span class="fu">c</span>(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>               )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="function-to-create-a-table" class="level2">
@@ -261,61 +306,119 @@ Important
 <p><strong>Your function should accept three arguments:</strong></p>
 <ul>
 <li><strong>a data frame</strong></li>
-<li><strong>a row variable (the categorical variable that should be included in the rows)</strong></li>
-<li><strong>a column variable (the categorical variable that should be included in the columns)</strong></li>
+<li><strong>a row variable (categorical variable to appear in the rows)</strong></li>
+<li><strong>a column variable (categorical variable to appear in the columns)</strong></li>
 </ul>
-<p><strong>Your function should also:</strong></p>
+<p><strong>Your function should:</strong></p>
 <ul>
-<li><strong>Replace <code>NA</code>s (where there are no counts) with a <code>0</code></strong></li>
-<li><strong>Add row and column totals (see the <code>adorn_totals()</code> function from the janitor package)</strong></li>
+<li><strong>count the number of observations for each combination of the two variables</strong></li>
+<li><strong>pivot the results wider so that the row variable forms rows and the column variable forms columns</strong></li>
+<li><strong>replace any missing counts (<code>NA</code>) with 0</strong></li>
+<li><strong>add row and column totals using <code>janitor::adorn_totals()</code></strong></li>
 </ul>
-<p><strong>Test Your Function:</strong>Use your <code>pivot_table()</code> function to display a table of counts for the <code>species</code> and <code>sex</code> of the penguins from the <code>penguins</code> dataset.</p>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_table</span>(penguins, <span class="at">row =</span> sex, <span class="at">col =</span> species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Your function call must look like one of these two options:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tidy (unquoted) variable names</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_table</span>(df, <span class="fu">c</span>(species, island))</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Quoted variable names</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_table</span>(df, <span class="fu">c</span>(<span class="st">"species"</span>, <span class="st">"island"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>To achieve this, you function must use one of the <code>rlang</code> (tidy evaluation) options from class.</p>
+</div>
+</div>
+<section id="test-your-function" class="level3">
+<h3 class="anchored" data-anchor-id="test-your-function">Test Your Function</h3>
+<p>Use your <code>pivot_table()</code> function to display a table of counts for the <code>species</code> and <code>sex</code> of the penguins from the <code>penguins</code> dataset. <em>Note:</em> You may need to modify the names of the arguments!</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_table</span>(penguins, <span class="at">row =</span> sex, <span class="at">col =</span> species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 </section>
 <section id="function-to-create-a-plot" class="level2">
 <h2 class="anchored" data-anchor-id="function-to-create-a-plot">Function to Create a Plot</h2>
-<!-- DIY with criteria -->
+<p>In the chapter you saw a few different types of plotting functions—creating histograms with a specified <code>binwidth</code>, checking the linearity of a scatterplot, using hexagons to avoid over plotting in a scatterplot, and sorting bars from least to greatest in a barplot.</p>
+<p>For this section, you are going to use these functions as inspiration to write your own plotting function.</p>
+<p><strong>Question 3: Your plotting function must meet the following criteria:</strong></p>
+<ul>
+<li><strong>a data frame must be the first argument</strong></li>
+<li><strong>two additional arguments for variables (can be numeric or categorical)</strong></li>
+<li><strong>the plot must map one of the variables to color (or fill)</strong></li>
+<li><strong>axis labels and the plot title should be descriptive (e.g., use <code>labs()</code> to replace raw variable names with human-readable labels)</strong></li>
+<li><strong>return a ggplot object</strong></li>
+</ul>
+<p>You may choose the plot type (e.g., scatterplot, barplot, boxplot), as long as it meets the criteria above. You can also choose whether your function accepts quoted or unquoted variable names, but you must use one of the <code>rlang</code> (tidy evaluation) options from class.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Double Encoding
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you choose to assign a <code>color</code> or <code>fill</code> aesthetic to a variable that has already been mapped to another aesthetic (e.g., <code>x</code>, <code>y</code>), then you are expected to remove the legend from your plot. Technically, your legend has redundant information that we don’t want to include in the plot!</p>
+</div>
+</div>
+<section id="test-your-function-1" class="level3">
+<h3 class="anchored" data-anchor-id="test-your-function-1">Test Your Function</h3>
+<p>Test your function using variables from the <code>penguins</code> dataset.</p>
+</section>
 </section>
 <section id="function-to-style-a-plot" class="level2">
 <h2 class="anchored" data-anchor-id="function-to-style-a-plot">Function to Style a Plot</h2>
 <p>For this final section, I want you to write a wrapper function that can style any <code>ggplot</code> object you create.</p>
 <p><strong>Question 4: Write a <code>style_plot()</code> function which accepts four arguments:</strong></p>
 <ul>
-<li><strong>a <code>ggplot</code> object</strong></li>
-<li><strong>a theme function (e.g., <code>theme_bw</code>)</strong></li>
-<li><strong>a vector of colors (e.g., <code>RColorBrewer::brewer.pal(8, "Accent")</code>)</strong></li>
-<li><strong>a string indicating what aesthetic the colors should be applied to—“fill” or “color”</strong></li>
+<li><strong>a ggplot object</strong></li>
+<li><strong>a theme function (e.g., <code>theme_bw()</code>)</strong>
+<ul>
+<li><strong>the function should set a default theme (e.g., <code>theme_minimal()</code>)</strong></li>
+</ul></li>
+<li><strong>a vector of colors (e.g., <code>RColorBrewer::brewer.pal(8, "Accent")</code>)</strong>
+<ul>
+<li><strong>the function should set a default color palette</strong></li>
+</ul></li>
+<li><strong>a string indicating which aesthetic the colors should be applied to (“fill” or “color”)</strong></li>
 </ul>
-<p><strong>The function should return the styled plot!</strong></p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Optional vs.&nbsp;Required Arguments
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The styling of this function is up to you! You can choose if you want to declare “base line” themes and colors that will be used if the user doesn’t specify any. You can also choose the default aesthetic that the colors will be applied to.</p>
-</div>
-</div>
-<p><strong>Test Your Function:</strong> I’ve created a basic filled bar plot for you to use to test your function. Carry out the two tests below for your <code>style_plot()</code> function. <em>Note: You may need to change the names of the arguments if you chose different names!</em></p>
+<p><strong>Your function should:</strong></p>
+<ul>
+<li><strong>Apply the given (or default) theme to the plot</strong></li>
+<li><strong>Apply the colors to the specified aesthetic (fill or color)</strong></li>
+<li><strong>Return the styled plot</strong></li>
+</ul>
+<section id="test-your-function-2" class="level3">
+<h3 class="anchored" data-anchor-id="test-your-function-2">Test Your Function</h3>
+<p>Carry out the two tests below for your <code>style_plot()</code> function. <em>Note:</em> You may need to modify the names of the arguments!</p>
+<p><strong>Test 1:</strong> My plot</p>
+<p>I’ve created a barplot that is stored as <code>my_plot</code>. Test your function using this plot.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>my_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">fill =</span> sex)) <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Required test: Specify **both** a theme **and** a color palette</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">style_plot</span>(my_plot, </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">theme =</span> theme_bw, </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>           <span class="at">palette =</span> <span class="fu">brewer.pal</span>(<span class="dv">4</span>, <span class="st">"Accent"</span>), </span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>           <span class="at">aesthetic =</span> <span class="st">"fill"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>my_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> species, <span class="at">fill =</span> sex)) <span class="sc">+</span> </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">style_plot</span>(my_plot, </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">theme_fn =</span> theme_bw, </span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">palette =</span> <span class="fu">brewer.pal</span>(<span class="dv">3</span>, <span class="st">"Paired"</span>), </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>           <span class="at">aesthetic =</span> <span class="st">"fill"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p><strong>Test 2:</strong> Your plot</p>
+<p>Copy the code from your test of your plotting function (<span class="citation" data-cites="plot-function-test">@plot-function-test</span>) and use your <code>style_plot()</code> function to style the plot! Your test <strong>should not</strong> save any objects!</p>
+<!-- The will learn that the base R pipe (|>) has higher precedence than + -->
+<!-- a + b |> f() is not f(a+ b) it is a + f(b) -->
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

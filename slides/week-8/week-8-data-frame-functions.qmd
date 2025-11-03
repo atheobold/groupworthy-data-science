@@ -266,9 +266,10 @@ df |>
 #| eval: true
 #| code-line-numbers: false
 
-tidy_table <- function(df, row_var, col_var){
+tidy_table <- function(df, col_var, row_var){
+  
   df |> 
-    count(row_var, col_var) |> 
+    count(col_var, row_var) |> 
     pivot_wider(names_from = col_var, 
                 values_from = n, 
                 values_fill = 0)
@@ -285,8 +286,8 @@ tidy_table <- function(df, row_var, col_var){
 #| code-line-numbers: false
 
 tidy_table(df = penguins, 
-           row_var = species, 
-           col_var = island)
+           col_var = island, 
+           row_var = species)
 ```
 
 ::: {.fragment}
@@ -295,8 +296,8 @@ tidy_table(df = penguins,
 #| error: true
 
 tidy_table(df = penguins, 
-           row_var = species, 
-           col_var = island)
+           col_var = island, 
+           row_var = species)
 ```
 :::
 :::
@@ -338,7 +339,7 @@ the argument.
 #| eval: false
 #| code-line-numbers: false
 
-count({{ row_var }}, {{ col_var }})
+count({{ col_var }}, {{ row_var }})
 ```
 :::
 :::
@@ -351,6 +352,8 @@ in an intermediate variable (e.g., `col_var = island`).
 :::
 
 . . .
+
+</br>
 
 ::: {.midi}
 When you have the `data-variable` (`col_var`) in an `env-variable` (`df`) that
@@ -375,14 +378,18 @@ pivot_wider(names_from = {{ col_var }},
 #| eval: true
 #| code-line-numbers: false
 
-tidy_table <- function(df, row_var, col_var){
+tidy_table <- function(df, col_var, row_var){
   df |> 
-    count({{ row_var }}, {{ col_var }}) |> 
+    count({{ col_var }}, {{ row_var }}) |> 
     pivot_wider(names_from = {{ col_var }}, 
                 values_from = n, 
                 values_fill = 0)
 }
 ```
+
+::: {.callout-important}
+# Update your `tidy_table()` function in your Colab notebook!
+:::
 
 
 ## Let's give it another go!
@@ -396,6 +403,117 @@ tidy_table(df = penguins,
            row_var = species, 
            col_var = island)
 ```
+
+## What if only one variable was input?
+
+```{r}
+#| echo: true
+#| eval: true
+#| error: true
+#| code-line-numbers: false
+
+tidy_table(df = penguins, species)
+```
+
+. . .
+
+::: {.callout-important}
+# Why didn't this result in an error?
+:::
+
+<!-- argument order -->
+<!-- plus col_var is the only variable needed for pivoting -->
+
+## Argument order matters!
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: "|1"
+
+tidy_table <- function(df, row_var, col_var){
+  df |> 
+    count({{ col_var }}, {{ row_var }}) |> 
+    pivot_wider(names_from = {{ col_var }}, 
+                values_from = n, 
+                values_fill = 0)
+}
+```
+:::
+
+</br> 
+
+. . .
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+#| error: true
+
+tidy_table(df = penguins, species)
+```
+:::
+
+## Check if `row_var` is `missing()`
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_table <- function(df, col_var, row_var){
+  
+  if(missing(row_var)){
+    df |> 
+    count({{ col_var }}) |> 
+    pivot_wider(names_from = {{ col_var }}, 
+                values_from = n, 
+                values_fill = 0)
+  }
+  else {
+    df |> 
+    count({{ col_var }}, {{ row_var }}) |> 
+    pivot_wider(names_from = {{ col_var }}, 
+                values_from = n, 
+                values_fill = 0)
+  }
+}
+```
+:::
+
+::: {.callout-important}
+# Update your `tidy_table()` function in your Colab notebook!
+:::
+
+## Let's try it!
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_table(df = penguins, col_var = species)
+```
+:::
+
+. . .
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_table(df = penguins, 
+           row_var = island, 
+           col_var = species)
+```
+:::
 
 ## What if we wanted to use quoted variable names?
 
@@ -468,6 +586,10 @@ quote_table <- function(df, row_var, col_var){
                 values_fill = 0)
 }
 ```
+:::
+
+::: {.callout-important}
+# Add the `quote_table()` function in your Colab notebook!
 :::
 
 ## Did it work???
@@ -683,7 +805,7 @@ df |>
 #| eval: true
 #| code-line-numbers: false
  
-tidy_prop_table <- function(df, row_var, col_var){
+tidy_prop_table <- function(df, col_var, row_var){
   
   df |> 
     count({{ row_var }}, {{ col_var }}) |> 
@@ -711,55 +833,148 @@ tidy_prop_table(df = penguins,
                 col_var = island)
 ```
 
+## What if I wanted to get marginal proportions for the `row_var`?
 
-<!-- ## In prop.table() when no margin is specified the proportions are joint (not conditional) -->
-<!-- ## margin = 1 is conditional on the ROWS -->
-<!-- ## margin = 2 is conditional on the COLUMNS -->
+. . .
 
-<!-- my_table <- function(df, row_var, col_var, margin = NULL){ -->
+</br>
 
-<!--   # Default to joint proportions -->
-<!--   if(is.null(margin)){ -->
-<!--     df |>  -->
-<!--     count({{ row_var }}, {{ col_var }}) |>  -->
-<!--     mutate(prop = n / sum(n)) |>  -->
-<!--     ungroup() |>  -->
-<!--     select(-n) |>  -->
-<!--     pivot_wider(id_cols = {{ row_var }},  -->
-<!--                 names_from = {{ col_var }}, -->
-<!--                 values_from = prop,  -->
-<!--                 values_fill = 0) -->
-<!--   } -->
-<!--   else if(margin == "row"){ -->
-<!--     df |>  -->
-<!--       count({{ row_var }}, {{ col_var }}) |>  -->
-<!--       group_by({{ row_var }}) |>  -->
-<!--       mutate(prop = n / sum(n)) |>  -->
-<!--       ungroup() |>  -->
-<!--       select(-n) |>  -->
-<!--       pivot_wider(id_cols = {{ row_var }},  -->
-<!--                   names_from = {{ col_var }}, -->
-<!--                   values_from = prop,  -->
-<!--                   values_fill = 0) |>  -->
-<!--       print() -->
-<!--   } -->
-<!--   else{ -->
-<!--     df |>  -->
-<!--       count({{ row_var }}, {{ col_var }}) |>  -->
-<!--       group_by({{ col_var }}) |>  -->
-<!--       mutate(prop = n / sum(n)) |>  -->
-<!--       ungroup() |>  -->
-<!--       select(-n) |>  -->
-<!--       pivot_wider(id_cols = {{ row_var }},  -->
-<!--                   names_from = {{ col_var }}, -->
-<!--                   values_from = prop,  -->
-<!--                   values_fill = 0) -->
-<!--   } -->
+::: {.midi}
+The `margin` argument of `prop.table()` has the following behavior:
 
-<!-- } -->
+- when no margin is specified the proportions are joint
+- when `margin = 1` the proportions are conditional on the **rows**
+- when `margin = 2` the proportions are conditional on the **columns**
+:::
 
-<!-- my_table(penguins, species, island) -->
-<!-- my_table(penguins, species, island, margin = "row") -->
-<!-- my_table(penguins, species, island, margin = "col") -->
-<!-- I don't think I'll talk about the walrus operator -->
+## A Pseudocode Design
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+if( margin is missing){
+  calculate joint proportions
+} 
+
+else if(margin is rows){
+  calculate marginal proportions based on row variable
+}
+
+else {
+  calculate marginal proportions based on column variable
+}
+```
+
+## Moving into R Code
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_prop_table <- function(df, col_var, row_var, margin = NULL){
+
+  # Default to joint proportions
+  if(is.null(margin)){
+    df |>
+    count({{ row_var }}, {{ col_var }}) |>
+    mutate(prop = n / sum(n)) |>
+    ungroup() |>
+    select(-n) |>
+    pivot_wider(id_cols = {{ row_var }},
+                names_from = {{ col_var }},
+                values_from = prop,
+                values_fill = 0)
+  }
+  else if(margin == "row"){
+    df |>
+      count({{ row_var }}, {{ col_var }}) |>
+      group_by({{ row_var }}) |>
+      mutate(prop = n / sum(n)) |>
+      ungroup() |>
+      select(-n) |>
+      pivot_wider(id_cols = {{ row_var }},
+                  names_from = {{ col_var }},
+                  values_from = prop,
+                  values_fill = 0) |>
+      print()
+  }
+  else{
+    df |>
+      count({{ row_var }}, {{ col_var }}) |>
+      group_by({{ col_var }}) |>
+      mutate(prop = n / sum(n)) |>
+      ungroup() |>
+      select(-n) |>
+      pivot_wider(id_cols = {{ row_var }},
+                  names_from = {{ col_var }},
+                  values_from = prop,
+                  values_fill = 0)
+  }
+
+}
+
+```
+
+
+## How'd we do?
+
+**Joint Proportions**
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_prop_table(df = penguins, 
+                col_var = species, 
+                row_var = island)
+```
+:::
+
+## How'd we do?
+
+**Marginal Proportions -- Rows**
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_prop_table(df = penguins, 
+                col_var = species, 
+                row_var = island, 
+                margin = "row")
+
+```
+:::
+
+## How'd we do?
+
+**Marginal Proportions -- Columns**
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_prop_table(df = penguins, 
+                col_var = species, 
+                row_var = island, 
+                margin = "col")
+```
+:::
+
+
+# What questions do we have?
+
+<!-- # Lab 8 -->
+
+<!-- ## Functions  -->
+<!-- I didn't talk about the walrus operator -->
 

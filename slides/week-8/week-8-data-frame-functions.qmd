@@ -1,533 +1,765 @@
 ---
-title: "Writing Data Frame / Plotting Functions"
+title: "Taming the Curly Braces: Writing Your Own Tidyverse Functions"
 format: 
   revealjs:
-    theme: default
-    auto-stretch: false
+      theme: [simple, ../style.scss]
+      auto-stretch: false
 editor: source
-embed-resources: true
+execute: 
+  eval: false
 ---
 
-```{r setup}
+```{r}
 #| include: false
 #| message: false
+#| eval: true
+
 library(tidyverse)
 library(palmerpenguins)
 ```
 
 
-<!-- move to an activity exploring how to remedy various aspects of input issues with -->
-<!-- data frame functions -->
+## Tuesday, November 4
 
-
-## Wednesday, May 15
-
-Today we will...
-
-+ Discuss Groupt Project + Group Contract
-+ New Material
-  + Calling Functions on Datasets
-  + Thinking About Missing Data
-+ Lab 7: Functions and Fish
-
-
-## Group Project Details
-
-Check out the Canvas page outlining the group project!
-
-<br>
-
-+ Groups have been assigned.
-+ Your group contract is due on Monday!
-
-
-# Calling Functions on Datasets
-
-
-## Last Time...
-
-We wrote a function called `find_car_make()` that takes in the name of a car and returns the “make” of the car (the company that created it).
-
-+ `find_car_make("Toyota Camry")` returns "Toyota".
-+ `find_car_make("Ford Anglica")` returns "Ford".
-
-```{r}
-#| echo: true
-find_car_make <- function(car_name){
-  make <- str_extract(string = car_name, 
-                      pattern = "[:alpha:]*")
-  return(make)
-}
-```
-
-
-## Pair Our Function with `dplyr`
-
-Consider the `mtcars` data.
-
-```{r}
-#| echo: true
-data(mtcars)
-head(mtcars, n = 3)
-```
+Today we are going to do a hands-on coding activity! We will create our own
+versions of the `table()` and `prop.table()` base R functions. 
 
 . . .
 
-Let's use our new function:
+This will help us...
 
-```{r}
-#| echo: true
-mtcars |> 
-  rownames_to_column("make_model") |> 
-  mutate(make = find_car_make(make_model),
-         .after = make_model) |> 
-  head(n = 3)
-```
+- explore lazy evaluation
+- learn more about the `{{ }}` operator 
+- figure out when we need to use functions like `all_of()` and `pick()`
+- write more complex functions
 
+# Last Week...
 
-## Recall the `penguins` Data
+## We learned about writing functions!
 
-```{r}
-#| echo: true
-library(palmerpenguins)
-data(penguins)
-penguins |> 
-  head()
-```
+::: {.midi}
+Specifically, we learned about: 
 
-
-## Function to Standardize Data
-
-We want to take in a vector of numbers and **standardize** it -- make all values be between 0 and 1.
-
-. . .
-
-```{r}
-#| echo: true
-std_to_01 <- function(var) {
-  stopifnot(is.numeric(var))
-  
-  num <- var - min(var, na.rm = TRUE)
-  denom <- max(var, na.rm = TRUE) - min(var, na.rm = TRUE)
-  
-  return(num / denom)
-}
-```
-
-
-## Standardizing Variables
-
-Is it a good idea to standardize (scale) variables in a data analysis?
-
-:::: columns
-::: column
-**Why standardize?**
-
-+ Easier to compare across variables.
-+ Easier to model -- standardizes the amount of variability.
-:::
-::: column
-**Why not standardize?**
-
-+ More difficult to interpret the values.
-:::
-::::
-
-. . .
-
-E.g., a penguin with a bill length of 35 mm (std to 0.11) and a mass of 5500 g (std to 0.78).
-
-
-## Pair Our Function with `dplyr`
-
-Let's standardize penguin measurements.
-
-```{r}
-#| eval: false
-#| echo: true
-penguins |> 
-  mutate(bill_length_mm    = std_to_01(bill_length_mm), 
-         bill_depth_mm     = std_to_01(bill_depth_mm), 
-         flipper_length_mm = std_to_01(flipper_length_mm), 
-         body_mass_g       = std_to_01(body_mass_g))
-```
-
-+ Ugh. Still copy-pasting!
-
-. . .
-
-Recall `across()`!
-
-```{r}
-#| echo: true
-penguins |> 
-  mutate(across(.cols = bill_length_mm:body_mass_g,
-                .fns = ~ std_to_01(.x))) |> 
-  slice_head(n = 4)
-```
-
-
-## Use variables as function arguments?
-
-```{r stdcol}
-#| echo: true
-std_column_01 <- function(data, variable) {
-  stopifnot(is.data.frame(data))
-  
-  data <- data |> 
-    mutate(variable = std_to_01(variable))
-  return(data)
-}
-```
-
-::: callout-note
-I used the existing function `std_to_01()` inside the new
-function for clarity!
+::: columns
+::: {.column width="50%"}
+- function syntax
+- optional & required arguments
 :::
 
-. . . 
-
-But it didn't work...
+::: {.column width="50%"}
+- input validation
+- last expression returns
+:::
+:::
 
 ```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+add_something <- function(x, something = 2){
+  stopifnot(is.numeric(x), is.numeric(something))
+  
+  x + something
+}
+```
+:::
+
+</br>
+
+::: {.small}
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+x <- 15:22
+```
+
+::: columns
+::: {.column width="40%"}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+add_something(x)
+```
+:::
+
+
+::: {.column width="55%"}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
 #| error: true
-#| echo: true
-std_column_01(penguins, body_mass_g)
-```
 
-
-## Tidy Evaluation
-
-Functions using **unquoted** variable names as arguments are said to use
-***nonstandard evaluation*** or ***tidy evaluation***.
-
-:::: columns
-::: column
-**Tidy**:
-
-```{r}
-#| echo: true
-#| eval: false
-penguins |> 
-  pull(body_mass_g)
-```
-
-&emsp; OR
-
-```{r}
-#| echo: true
-#| eval: false
-penguins$body_mass_g
+add_something(x, something = "dog")
 ```
 :::
-::: column
-**Untidy**: 
-
-```{r}
-#| echo: true
-#| eval: false
-penguins[, "body_mass_g"]
-```
-
-&emsp; OR
-
-```{r}
-#| echo: true
-#| eval: false
-penguins[["body_mass_g"]]
-```
 :::
-::::
+:::
 
-<br>
+# Writing Data Frame Functions
+
+## Moving Beyond Vectors
+
+This week, we're writing functions that take a data frame and variable names as
+arguments. 
+
+These functions can be incredibly powerful, but they require us 
+to learn some interesting details about how some of the functions we've grown
+very accustomed to (e.g., `select()`, `mutate()`, `group_by()`) work
+"behind the scenes."
 
 . . .
 
-Tidy evaluation isn't naturally supported when writing your own functions.
+</br>
 
+We are going to use a hands-on activity to explore these concepts! 
 
-## Defused R Code
+## Open the "Tidy Eval" Colab Notebook Posted on Canvas
 
-When a piece of code is **defused**, R doesn't return its value like normal. 
+In the Week 8 Module, navigate to the "Lecture Slides" section. 
 
-+ Instead it returns an expression that describes how to evaluate it.
+Click on the "Tidy Eval" Colab Notebook link. 
+
+Make a copy of the notebook (like you do for Practice Activities)!
+
+```{r}
+#| echo: false
+#| eval: true
+
+countdown::countdown(minutes = 2)
+```
+
+# Our Goal
 
 . . .
 
-:::: columns
-::: column
-Evaluated code:
+> Recreate the `table()` function in R
 
-```{r}
-#| echo: true
-1 + 1
-```
-:::
-::: column
-Defused code:
 
-```{r}
-#| echo: true
-expr(1 + 1)
-```
-:::
-::::
+## Let's Explore the `table()` Function First
+
+Let's start with **one** categorical variable.
 
 . . .
 
-We produce defused code when we use tidy evaluation and our own functions don't know how to handle it.
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
 
+table(penguins$species)
+```
 
-## Solution 1
+. . .
 
-Don't use tidy evaluation in your own functions.
+</br>
 
-+ This is more complicated to read and use, but it's  safe.
+::: {.callout-tip}
+# Function Design
+What do you notice about the layout of the table?
+:::
+
+## Let's Explore the `table()` Function First
+
+Okay, let's add a second categorical variable. 
 
 ```{r}
 #| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+table(penguins$species, penguins$island)
+```
+
+</br>
+
+. . .
+
+::: {.callout-tip}
+# Function Design
+What do you notice about the layout of the table?
+:::
+
+## Designing a `tidy_table()` Function
+
+Based on this exploration, it seems like our function should have the following
+qualities:
+
+- accept a data frame
+- accept variable names as inputs
+- pivot the output to a wide format
+
+## Writing **dplyr** & **tidyr** Code to Accomplish the Task
+
+Using the `penguins` data, write code which will:
+
+- `count()` the number of penguins for each **species** and **island**
+- pivot the table to a **wide** format
+- replace `NA` values with `0`s
+
+```{r}
+#| eval: true
+countdown::countdown(minutes = 5)
+```
+
+## A Working Solution
+
+```{r}
+#| eval: true
+#| echo: true
+#| code-line-numbers: false
+
+penguins |>
+  count(species, island) |>
+  pivot_wider(names_from = island, 
+              values_from = n, 
+              values_fill = 0)
+```
+
+## Now let's generalize
+
+::: {.midi}
+Now that we have a working example, let's try and generalize our code. 
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
 #| eval: false
-#| code-line-numbers: "4,8"
-std_column_01 <- function(data, variable) {
-  stopifnot(is.data.frame(data))
-  
-  data[[variable]] <- std_to_01(data[[variable]])
-  return(data)
+
+df |> 
+  count(var1, var2) |> 
+  pivot_wider(names_from = var2, 
+              values_from = n, 
+              values_fill = 0)
+```
+:::
+
+. . .
+
+::: {.midi}
+This works, but maybe we should be more specific about what variables go
+where...
+
+```{r}
+#| echo: true
+#| code-line-numbers: false
+#| eval: false
+
+df |> 
+  count(row_var, col_var) |> 
+  pivot_wider(names_from = col_var, 
+              values_from = n, 
+              values_fill = 0)
+```
+:::
+
+## Let's make a function
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_table <- function(df, row_var, col_var){
+  df |> 
+    count(row_var, col_var) |> 
+    pivot_wider(names_from = col_var, 
+                values_from = n, 
+                values_fill = 0)
 }
-
-std_column_01(penguins, "bill_length_mm")
 ```
 
+## Let's try it out! 
 
-## Solution 2: `rlang`
-
-Use the `rlang` package!
-
-:::: {.columns}
-::: {.column width="70%"}
-+ This package provides operators that simplify writing functions around `tidyverse` pipelines. 
-:::
-::: {.column width="30%"}
+::: columns
+::: {.column width="60%"}
 ```{r}
-#| fig-align: center
-#| out-width: 50%
-knitr::include_graphics("https://github.com/rstudio/hex-stickers/blob/main/thumbs/rlang.png?raw=true")
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+tidy_table(df = penguins, 
+           row_var = species, 
+           col_var = island)
 ```
-:::
-::::
 
-+ Read more about using this package for function writing [here](https://rlang.r-lib.org/reference/topic-defuse.html)!
-
-
-## Solution 2: `rlang`
-
-Two ways to get around the issue of defused code:
-
-1. Embrace Operator (`{{ }}`)
-  + With `{{ }}`, you can **transport** a variable from one function to another.
-
-. . .
-
-2. Defuse and Inject
-  + You can first use `enquo(arg)` to **defuse** the variable.
-  + Then use `!!arg` to **inject** the variable.
-
-
-## Solution 2: `rlang`
-
-If we use either of these solutions, we also need to use the **walrus operator** (`:=`).
-
-+ This means we have to use `:=` instead of `=` in any `dplyr` verb containing one of these `rlang` fixes.
-
-
-## Recall Our Broken Function
-
+::: {.fragment}
 ```{r}
+#| eval: true
 #| error: true
-#| echo: true
-std_column_01 <- function(data, variable) {
-  stopifnot(is.data.frame(data))
-  
-  data <- data |> 
-    mutate(variable = std_to_01(variable))
-  return(data)
-}
 
-std_column_01(penguins, body_mass_g)
+tidy_table(df = penguins, 
+           row_var = species, 
+           col_var = island)
 ```
-
-+ The code is defused, so `mutate()` doesn't know what `body_mass_g` is.
-+ We need to modify `variable` to make this work correctly!
-
-
-## Fixing Our Broken Function
-
-::: panel-tabset
-
-### Embrace Operator
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "5"
-std_column_01 <- function(data, variable) {
-  stopifnot(is.data.frame(data))
-
-  data <- data |>
-    mutate({{variable}} := std_to_01({{variable}}))
-  return(data)
-}
-
-std_column_01(penguins, body_mass_g)
-```
-
-```{r}
-#| echo: false
-std_column_01 <- function(data, variable) {
-  stopifnot(is.data.frame(data))
-
-  data <- data |>
-    mutate({{variable}} := std_to_01({{variable}}))
-  return(data)
-}
-
-tmp <- penguins |> 
-  select(-flipper_length_mm)
-std_column_01(tmp, body_mass_g) |> 
-  head()
-```
-
-### Defuse + Inject
-
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: "4,7"
-std_column_01 <- function(data, variable) {
-  stopifnot(is.data.frame(data))
-  
-  variable <- enquo(variable)
-
-  data <- data |>
-    mutate(!!variable := std_to_01(!!variable))
-  return(data)
-}
-
-std_column_01(penguins, body_mass_g)
-```
-
-
-```{r}
-#| echo: false
-std_column_01 <- function(data, variable) {
-  stopifnot(is.data.frame(data))
-  
-  variable <- enquo(variable)
-
-  data <- data |>
-    mutate(!!variable := std_to_01(!!variable))
-  return(data)
-}
-
-tmp <- penguins |> 
-  select(-flipper_length_mm)
-std_column_01(tmp, body_mass_g) |> 
-  head()
-```
-
-
+:::
 :::
 
-## Inject Multiple Variables
+::: {.column width="40%"}
+::: {.fragment}
+![](images/obama-wtf.gif)
+:::
+:::
+:::
 
-What if I want to modify multiple columns?
+# Indirection
 
-+ Use `across()`!
+# Indirection
+
+::: {.midi}
+The **tidyverse** functions use either "tidy selection" or "data masking." Both
+of these features makes common tasks easier at the cost of making less commons
+tasks harder. 
+:::
+
+## Data Masking -- `count()`
+
+::: {.midi}
+Blurs the line between the two different meanings of the word "variable":
+
+- `env-variables` -- "programming" variables that live in an environment
+  * These are typically created using a `<-`.
+
+- `data-variables` --- "statistical" variables that live in a data frame. 
+    * These come from data files or are created manipulating existing variables.
+    
+::: {.fragment}
+When you have the `data-variable` in a function argument, you need to embrace
+the argument. 
 
 ```{r}
 #| echo: true
 #| eval: false
-#| code-line-numbers: "5-6"
-std_column_01 <- function(data, variables) {
-  stopifnot(is.data.frame(data))
-  
-  data <- data |> 
-    mutate(across(.cols = {{variables}},
-                  .fns = ~ std_to_01(.x)))
-  return(data)
-}
+#| code-line-numbers: false
 
-std_column_01(penguins, bill_length_mm:body_mass_g)
+count({{ row_var }}, {{ col_var }})
 ```
+:::
+:::
+
+## Tidy Select -- `pivot_wider()`
+
+::: {.midi}
+In the case of our function, the name of the columns we want to use are stored
+in an intermediate variable (e.g., `col_var = island`). 
+:::
+
+. . .
+
+::: {.midi}
+When you have the `data-variable` (`col_var`) in an `env-variable` (`df`) that
+is a function argument, you embrace the argument by surrounding it in doubled
+braces. 
 
 ```{r}
-#| echo: false
-std_column_01 <- function(data, variables) {
-  stopifnot(is.data.frame(data))
-  
-  data <- data |> 
-    mutate(across({{variables}}, std_to_01))
-  return(data)
-}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
 
-tmp <- penguins |> 
-  select(-flipper_length_mm)
-std_column_01(tmp, bill_length_mm:body_mass_g) |> 
-  head(n = 5)
+pivot_wider(names_from = {{ col_var }}, 
+            values_from = n, 
+            values_fill = 0)
+```
+:::
+
+## Our Updated Function
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_table <- function(df, row_var, col_var){
+  df |> 
+    count({{ row_var }}, {{ col_var }}) |> 
+    pivot_wider(names_from = {{ col_var }}, 
+                values_from = n, 
+                values_fill = 0)
+}
 ```
 
 
-# Missing Data
+## Let's give it another go!
 
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
 
-## Types of Missing Data
+tidy_table(df = penguins, 
+           row_var = species, 
+           col_var = island)
+```
 
-1. **Missing Completely at Random** (MCAR)
-    + *No difference* between missing and observed values.
-    + Missing observations are a random subset of all observations.
-2. **Missing at Random** (MAR)
-    + *Systematic difference* between missing and observed values, but can be entirely explained by other observed variables.
-3. **Missing Not at Random** (MNAR)
-    + Missingness is *directly* related to the unobserved value.
+## What if we wanted to use quoted variable names?
 
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+#| error: true
 
-## Types of Missing Data
+tidy_table(df = penguins, 
+           row_var = "species", 
+           col_var = "island")
+```
 
-Consider a study of depression.
+## We need some helper functions!
 
-1. **Missing Completely at Random** (MCAR)
-    + Some subjects have missing lab values because a batch of samples was processed improperly.
-2. **Missing at Random** (MAR)
-    + Subjects who *identify as men* are less likely to complete a survey on depression severity.
-3. **Missing Not at Random** (MNAR)
-    + Subjects *with more severe depression* are less likely to complete a survey on depression severity.
+- For tidy selection, we need to use `all_of()`
 
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
 
-## When we remove missing data...
-
-We implicitly assume observations are missing **completely** at random!
-
-+ We might be mostly removing data from subjects who identify as men.
-+ We might be mostly removing data from subjects with severe depression.
-+ We are inadvertently making our data **less representative**.
-
-. . .
-
-**We need to take more care when dealing with missing values!**
-
-
-## Dealing with Missing Data
-
-+ Look for patterns!
-    + Do observations with missing values have similar traits?
+pivot_wider(names_from = all_of(col_var), 
+                values_from = n, 
+                values_fill = 0)
+```
+:::
 
 . . .
 
-+ Consider outside explanations!
-    + Why might missing data exist?
-    + Should we have a "missing" category in our analysis?
+- For data masking, we need to combine `all_of()` with `pick()`
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+count(
+  pick(
+    all_of( 
+      c(row_var, col_var)
+      )
+    )
+  )
+```
+:::
+
+## A Character Vector Function
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+quote_table <- function(df, row_var, col_var){
+  df |> 
+    count(
+      pick(
+        all_of(
+          c(row_var, col_var)
+          )
+        )
+      ) |> 
+    pivot_wider(names_from = all_of(col_var), 
+                values_from = n, 
+                values_fill = 0)
+}
+```
+:::
+
+## Did it work???
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+quote_table(df = penguins, 
+            row_var = "species", 
+            col_var = "island")
+```
+
+# Let's take a 5-minute break!
+
+# Our Next Goal
 
 . . .
 
-+ Can we impute values?
-    + If depression is MCAR *within* gender, age, and education level, then the distribution of depression will be similar for people of the same gender, age, and education level.
+> Recreate the `prop.table()` function in R
+
+
+## Let's Explore the `prop.table()` Function First
+
+Let's start with **one** categorical variable.
+
+. . .
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+table(penguins$species) |> 
+  prop.table()
+```
+
+. . .
+
+</br>
+
+::: {.callout-tip}
+# Function Design
+What do you notice about the proportions?
+:::
+
+## Let's Explore the `prop.table()` Function First
+
+Okay, let's add a second categorical variable. 
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+table(penguins$species, penguins$island) |> 
+  prop.table()
+```
+::: {.callout-tip}
+# Function Design
+What do you notice about the proportions?
+:::
+
+## An Optional Argument
+
+The `prop.table()` function has an optional `margin` argument. 
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+table(penguins$species, penguins$island) |> 
+  prop.table(margin = 1)
+```
+
+::: {.callout-tip}
+# Function Design
+What do you notice about the proportions?
+:::
+
+## Designing a `tidy_prop_table()` Function
+
+Based on this exploration, it seems like our function should have the following
+qualities:
+
+- accept a data frame
+- accept variable names as inputs
+- pivot the output to a wide format
+- calculate joint or marginal proportions for each group
+
+## Writing **dplyr** & **tidyr** Code to Accomplish the Task
+
+Using the `penguins` data, write code which will:
+
+- `count()` the number of penguins for each **species** and **island**
+- add a column for the proportion of each group
+
+```{r}
+#| eval: true
+countdown::countdown(minutes = 3)
+```
+
+## A Working Solution 
+
+::: {.midi}
+These give proportions for the entire table.
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+penguins |> 
+  count(species, island) |> 
+  mutate(prop = n / sum(n)) 
+```
+:::
+
+. . .
+
+**What if I wanted marginal proportions for each species?**
+
+## Marginal Proportions for `species`
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+penguins |> 
+  count(species, island) |> 
+  group_by(species) |> 
+  mutate(prop = n / sum(n)) 
+```
+
+::: {.callout-important}
+# Notice that there is still a grouping variable?
+
+What should I add to my code?
+:::
+:::
+
+## Much better!
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+penguins |> 
+  count(species, island) |> 
+  group_by(species) |> 
+  mutate(prop = n / sum(n)) |> 
+  ungroup()
+```
+
+
+## What about pivoting? 
+
+For this table, we don't care about the counts. Let's add some code that:
+
+- removes the column of counts
+- pivots the table to a **wide** format
+- replaces `NA` values with `0`s
+
+## A Working Solution 
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+penguins |> 
+  count(species, island) |> 
+  group_by(species) |> 
+  mutate(prop = n / sum(n)) |> 
+  ungroup() |> 
+  select(-n) |> 
+  pivot_wider(names_from = island, 
+              values_from = prop, 
+              values_fill = 0)
+
+```
+:::
+
+
+## Now let's generalize!
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+df |> 
+  count(row_var, col_var) |> 
+  group_by(col_var) |> 
+  mutate(prop = n / sum(n)) |> 
+  ungroup() |> 
+  select(-n) |> 
+  pivot_wider(names_from = col_var,
+              values_from = prop, 
+              values_fill = 0)
+```
+
+## Let's make a function
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+ 
+tidy_prop_table <- function(df, row_var, col_var){
+  
+  df |> 
+    count({{ row_var }}, {{ col_var }}) |> 
+    group_by({{ col_var }}) |> 
+    mutate(prop = n / sum(n)) |> 
+    ungroup() |> 
+    select(-n) |> 
+    pivot_wider(names_from = {{ col_var }},
+                values_from = prop, 
+                values_fill = 0)
+  
+}
+
+```
+
+## Let's try it out!
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_prop_table(df = penguins, 
+                row_var = species, 
+                col_var = island)
+```
+
+
+<!-- ## In prop.table() when no margin is specified the proportions are joint (not conditional) -->
+<!-- ## margin = 1 is conditional on the ROWS -->
+<!-- ## margin = 2 is conditional on the COLUMNS -->
+
+<!-- my_table <- function(df, row_var, col_var, margin = NULL){ -->
+
+<!--   # Default to joint proportions -->
+<!--   if(is.null(margin)){ -->
+<!--     df |>  -->
+<!--     count({{ row_var }}, {{ col_var }}) |>  -->
+<!--     mutate(prop = n / sum(n)) |>  -->
+<!--     ungroup() |>  -->
+<!--     select(-n) |>  -->
+<!--     pivot_wider(id_cols = {{ row_var }},  -->
+<!--                 names_from = {{ col_var }}, -->
+<!--                 values_from = prop,  -->
+<!--                 values_fill = 0) -->
+<!--   } -->
+<!--   else if(margin == "row"){ -->
+<!--     df |>  -->
+<!--       count({{ row_var }}, {{ col_var }}) |>  -->
+<!--       group_by({{ row_var }}) |>  -->
+<!--       mutate(prop = n / sum(n)) |>  -->
+<!--       ungroup() |>  -->
+<!--       select(-n) |>  -->
+<!--       pivot_wider(id_cols = {{ row_var }},  -->
+<!--                   names_from = {{ col_var }}, -->
+<!--                   values_from = prop,  -->
+<!--                   values_fill = 0) |>  -->
+<!--       print() -->
+<!--   } -->
+<!--   else{ -->
+<!--     df |>  -->
+<!--       count({{ row_var }}, {{ col_var }}) |>  -->
+<!--       group_by({{ col_var }}) |>  -->
+<!--       mutate(prop = n / sum(n)) |>  -->
+<!--       ungroup() |>  -->
+<!--       select(-n) |>  -->
+<!--       pivot_wider(id_cols = {{ row_var }},  -->
+<!--                   names_from = {{ col_var }}, -->
+<!--                   values_from = prop,  -->
+<!--                   values_fill = 0) -->
+<!--   } -->
+
+<!-- } -->
+
+<!-- my_table(penguins, species, island) -->
+<!-- my_table(penguins, species, island, margin = "row") -->
+<!-- my_table(penguins, species, island, margin = "col") -->
+<!-- I don't think I'll talk about the walrus operator -->
+

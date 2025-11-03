@@ -5126,16 +5126,16 @@
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#tidy-evaluation",
     "href": "slides/week-8/week-8-data-frame-functions.html#tidy-evaluation",
-    "title": "Writing Data Frame / Plotting Functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Tidy Evaluation",
     "text": "Tidy Evaluation\nFunctions using unquoted variable names as arguments are said to use nonstandard evaluation or tidy evaluation.\n\n\nTidy:\n\npenguins |&gt; \n  pull(body_mass_g)\n\n  OR\n\npenguins$body_mass_g\n\n\nUntidy:\n\npenguins[, \"body_mass_g\"]\n\n  OR\n\npenguins[[\"body_mass_g\"]]\n\n\n\n\nTidy evaluation isn’t naturally supported when writing your own functions."
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#defused-r-code",
     "href": "slides/week-8/week-8-data-frame-functions.html#defused-r-code",
-    "title": "Writing Data Frame / Plotting Functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Defused R Code",
-    "text": "Defused R Code\nWhen a piece of code is defused, R doesn’t return its value like normal.\n\nInstead it returns an expression that describes how to evaluate it.\n\n\n\n\nEvaluated code:\n\n1 + 1\n\n[1] 2\n\n\n\nDefused code:\n\nexpr(1 + 1)\n\n1 + 1\n\n\n\n\n\nWe produce defused code when we use tidy evaluation and our own functions don’t know how to handle it."
+    "text": "Defused R Code\nWhen a piece of code is defused, R doesn’t return its value like normal.\n\nInstead it returns an expression that describes how to evaluate it.\n\n\n\n\nEvaluated code:\n\n1 + 1\n\n\nDefused code:\n\nexpr(1 + 1)\n\n\n\n\nWe produce defused code when we use tidy evaluation and our own functions don’t know how to handle it."
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#solution-1",
@@ -5147,37 +5147,37 @@
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang",
     "href": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang",
-    "title": "Writing Data Frame / Plotting Functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Solution 2: rlang",
-    "text": "Solution 2: rlang\nUse the rlang package!\n\n\n\nThis package provides operators that simplify writing functions around tidyverse pipelines.\n\n\n\n\n\n\n\n\n\n\n\n\n\nRead more about using this package for function writing here!"
+    "text": "Solution 2: rlang\nTwo ways to get around the issue of defused code:\n\nEmbrace Operator ({ })\n\n\nWith { }, you can transport a variable from one function to another."
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang-1",
     "href": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang-1",
-    "title": "Writing Data Frame / Plotting Functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Solution 2: rlang",
-    "text": "Solution 2: rlang\nTwo ways to get around the issue of defused code:\n\nEmbrace Operator ({ })\n\n\nWith { }, you can transport a variable from one function to another.\n\n\n\nDefuse and Inject\n\n\nYou can first use enquo(arg) to defuse the variable.\nThen use !!arg to inject the variable."
+    "text": "Solution 2: rlang\nIf we use either of these solutions, we also need to use the walrus operator (:=).\n\nThis means we have to use := instead of = in any dplyr verb containing one of these rlang fixes."
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang-2",
     "href": "slides/week-8/week-8-data-frame-functions.html#solution-2-rlang-2",
-    "title": "Writing Data Frame / Plotting Functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Solution 2: rlang",
     "text": "Solution 2: rlang\nIf we use either of these solutions, we also need to use the walrus operator (:=).\n\nThis means we have to use := instead of = in any dplyr verb containing one of these rlang fixes."
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#recall-our-broken-function",
     "href": "slides/week-8/week-8-data-frame-functions.html#recall-our-broken-function",
-    "title": "Writing Data Frame / Plotting Functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Recall Our Broken Function",
-    "text": "Recall Our Broken Function\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n  \n  data &lt;- data |&gt; \n    mutate(variable = std_to_01(variable))\n  return(data)\n}\n\nstd_column_01(penguins, body_mass_g)\n\nError in `mutate()`:\nℹ In argument: `variable = std_to_01(variable)`.\nCaused by error:\n! object 'body_mass_g' not found\n\n\n\nThe code is defused, so mutate() doesn’t know what body_mass_g is.\nWe need to modify variable to make this work correctly!"
+    "text": "Recall Our Broken Function\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n  \n  data &lt;- data |&gt; \n    mutate(variable = std_to_01(variable))\n  return(data)\n}\n\nstd_column_01(penguins, body_mass_g)\n\n\nThe code is defused, so mutate() doesn’t know what body_mass_g is.\nWe need to modify variable to make this work correctly!"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#fixing-our-broken-function",
     "href": "slides/week-8/week-8-data-frame-functions.html#fixing-our-broken-function",
-    "title": "Writing Data Frame / Plotting Functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Fixing Our Broken Function",
-    "text": "Fixing Our Broken Function\n\nEmbrace OperatorDefuse + Inject\n\n\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n\n  data &lt;- data |&gt;\n    mutate({{variable}} := std_to_01({{variable}}))\n  return(data)\n}\n\nstd_column_01(penguins, body_mass_g)\n\n\n\n# A tibble: 6 × 7\n  species island    bill_length_mm bill_depth_mm body_mass_g sex     year\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7       0.292 male    2007\n2 Adelie  Torgersen           39.5          17.4       0.306 female  2007\n3 Adelie  Torgersen           40.3          18         0.153 female  2007\n4 Adelie  Torgersen           NA            NA        NA     &lt;NA&gt;    2007\n5 Adelie  Torgersen           36.7          19.3       0.208 female  2007\n6 Adelie  Torgersen           39.3          20.6       0.264 male    2007\n\n\n\n\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n  \n  variable &lt;- enquo(variable)\n\n  data &lt;- data |&gt;\n    mutate(!!variable := std_to_01(!!variable))\n  return(data)\n}\n\nstd_column_01(penguins, body_mass_g)\n\n\n\n# A tibble: 6 × 7\n  species island    bill_length_mm bill_depth_mm body_mass_g sex     year\n  &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  &lt;int&gt;\n1 Adelie  Torgersen           39.1          18.7       0.292 male    2007\n2 Adelie  Torgersen           39.5          17.4       0.306 female  2007\n3 Adelie  Torgersen           40.3          18         0.153 female  2007\n4 Adelie  Torgersen           NA            NA        NA     &lt;NA&gt;    2007\n5 Adelie  Torgersen           36.7          19.3       0.208 female  2007\n6 Adelie  Torgersen           39.3          20.6       0.264 male    2007"
+    "text": "Fixing Our Broken Function\n\nEmbrace OperatorDefuse + Inject\n\n\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n\n  data &lt;- data |&gt;\n    mutate({{variable}} := std_to_01({{variable}}))\n  return(data)\n}\n\nstd_column_01(penguins, body_mass_g)\n\n\n\n\nstd_column_01 &lt;- function(data, variable) {\n  stopifnot(is.data.frame(data))\n  \n  variable &lt;- enquo(variable)\n\n  data &lt;- data |&gt;\n    mutate(!!variable := std_to_01(!!variable))\n  return(data)\n}\n\nstd_column_01(penguins, body_mass_g)"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#inject-multiple-variables",
@@ -5591,5 +5591,306 @@
     "title": "Lab 8: Data Frame Functions",
     "section": "Accessing the Lab",
     "text": "Accessing the Lab\nDownload the template Lab 8 Quarto file here: lab-8-student.qmd\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save this in the Lab 8 folder, inside your Week 8 folder, inside your STAT 331 folder!"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#tuesday-november-4",
+    "href": "slides/week-8/week-8-data-frame-functions.html#tuesday-november-4",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Tuesday, November 4",
+    "text": "Tuesday, November 4\nToday we are going to do a hands-on coding activity! We will create our own versions of the table() and prop.table() base R functions.\n\nThis will help us…\n\nexplore lazy evaluation\nlearn more about the { } operator\nfigure out when we need to use functions like all_of() and pick()\nwrite more complex functions"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#stuff-about-vector-functions",
+    "href": "slides/week-8/week-8-data-frame-functions.html#stuff-about-vector-functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Stuff about vector functions",
+    "text": "Stuff about vector functions"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#we-learned-about-writing-functions",
+    "href": "slides/week-8/week-8-data-frame-functions.html#we-learned-about-writing-functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "We learned about writing functions!",
+    "text": "We learned about writing functions!\n\nSpecifically, we learned about:\n\n\n\nfunction syntax\noptional & required arguments\n\n\n\ninput validation\nlast expression returns\n\n\n\nadd_something &lt;- function(x, something = 2){\n  stopifnot(is.numeric(x), is.numeric(something))\n  \n  x + something\n}\n\n\n\n\n\nx &lt;- 15:22\n\n\n\n\nadd_something(x)\n\n[1] 17 18 19 20 21 22 23 24\n\n\n\n\nadd_something(x, something = \"dog\")\n\nError in add_something(x, something = \"dog\"): is.numeric(something) is not TRUE"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#moving-beyond-vectors",
+    "href": "slides/week-8/week-8-data-frame-functions.html#moving-beyond-vectors",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Moving Beyond Vectors",
+    "text": "Moving Beyond Vectors\nThis week, we’re writing functions that take a data frame and variable names as arguments.\nThese functions can be incredibly powerful, but they require us to learn some interesting details about how some of the functions we’ve grown very accustomed to (e.g., select(), mutate(), group_by()) work “behind the scenes.”\n\n\nWe are going to use a hands-on activity to explore these concepts!"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#open-the-tidy-eval-colab-notebook-posted-on-canvas",
+    "href": "slides/week-8/week-8-data-frame-functions.html#open-the-tidy-eval-colab-notebook-posted-on-canvas",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Open the “Tidy Eval” Colab Notebook Posted on Canvas",
+    "text": "Open the “Tidy Eval” Colab Notebook Posted on Canvas\nIn the Week 8 Module, navigate to the “Lecture Slides” section.\nClick on the “Tidy Eval” Colab Notebook link.\nMake a copy of the notebook (like you do for Practice Activities)!\n\n\n\n−+\n02:00"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-explore-the-table-function-first",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-explore-the-table-function-first",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s Explore the table() Function First",
+    "text": "Let’s Explore the table() Function First\nLet’s start with one categorical variable.\n\n\ntable(penguins$species)\n\n\n   Adelie Chinstrap    Gentoo \n      152        68       124 \n\n\n\n\n\n\n\n\n\n\n\nFunction Design\n\n\nWhat do you notice about the layout of the table?"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-explore-the-table-function-first-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-explore-the-table-function-first-1",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s Explore the table() Function First",
+    "text": "Let’s Explore the table() Function First\nOkay, let’s add a second categorical variable.\n\ntable(penguins$species, penguins$island)\n\n           \n            Biscoe Dream Torgersen\n  Adelie        44    56        52\n  Chinstrap      0    68         0\n  Gentoo       124     0         0\n\n\n\n\n\n\n\n\n\n\nFunction Design\n\n\nWhat do you notice about the layout of the table?"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#designing-a-tidy_table-function",
+    "href": "slides/week-8/week-8-data-frame-functions.html#designing-a-tidy_table-function",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Designing a tidy_table() Function",
+    "text": "Designing a tidy_table() Function\nBased on this exploration, it seems like our function should have the following qualities:\n\naccept a data frame\naccept variable names as inputs\npivot the output to a wide format"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#writing-dplyr-tidyr-code-to-accomplish-the-task",
+    "href": "slides/week-8/week-8-data-frame-functions.html#writing-dplyr-tidyr-code-to-accomplish-the-task",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Writing dplyr & tidyr Code to Accomplish the Task",
+    "text": "Writing dplyr & tidyr Code to Accomplish the Task\nUsing the penguins data, write code which will:\n\ncount() the number of penguins for each species and island\npivot the table to a wide format\nreplace NA values with 0s\n\n\n\n\n−+\n05:00"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#a-working-solution",
+    "href": "slides/week-8/week-8-data-frame-functions.html#a-working-solution",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "A Working Solution",
+    "text": "A Working Solution\n\npenguins |&gt;\n  count(species, island) |&gt;\n  pivot_wider(names_from = island, \n              values_from = n, \n              values_fill = 0)\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;int&gt; &lt;int&gt;     &lt;int&gt;\n1 Adelie        44    56        52\n2 Chinstrap      0    68         0\n3 Gentoo       124     0         0"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#now-lets-generalize",
+    "href": "slides/week-8/week-8-data-frame-functions.html#now-lets-generalize",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Now let’s generalize",
+    "text": "Now let’s generalize\n\nNow that we have a working example, let’s try and generalize our code.\n\ndf |&gt; \n  count(var1, var2) |&gt; \n  pivot_wider(names_from = var2, \n              values_from = n, \n              values_fill = 0)\n\n\n\n\nThis works, but maybe we should be more specific about what variables go where…\n\ndf |&gt; \n  count(row_var, col_var) |&gt; \n  pivot_wider(names_from = col_var, \n              values_from = n, \n              values_fill = 0)"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#make-a-function",
+    "href": "slides/week-8/week-8-data-frame-functions.html#make-a-function",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Make a Function",
+    "text": "Make a Function\n\ntidy_table &lt;- function(df, row_var, col_var){\n  df |&gt; \n    count(row_var, col_var) |&gt; \n    pivot_wider(names_from = col_var, \n                values_from = n, \n                values_fill = 0)\n}"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-try-it-out",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-try-it-out",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s try it out!",
+    "text": "Let’s try it out!\n\n\n\ntidy_table(df = penguins, \n           row_var = species, \n           col_var = island)\n\n\n\n\nError in `count()`:\n! Must group by variables found in `.data`.\nColumn `row_var` is not found.\nColumn `col_var` is not found."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#indirection",
+    "href": "slides/week-8/week-8-data-frame-functions.html#indirection",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Indirection",
+    "text": "Indirection\n\nThe tidyverse functions use either “tidy selection” or “data masking.” Both of these features makes common tasks easier at the cost of making less commons tasks harder.\n\n\n\nData Masking – count()\nBlurs the line between the two different meanings of the word “variable”:\n\nenv-variables – “programming” variables that live in an environment\n\nThese are typically created using a &lt;-.\n\ndata-variables — “statistical” variables that live in a data frame.\n\nThese come from data files or are created manipulating existing variables.\n\n\nWhen you have the data-variable in a function argument, you need to embrace the argument (e.g., { col_var })"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#solution",
+    "href": "slides/week-8/week-8-data-frame-functions.html#solution",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Solution : { }",
+    "text": "Solution : { }\nUse the rlang package!\n\n\n\nThis package provides operators that simplify writing functions around tidyverse pipelines.\n\n\n\n\n\nRead more about using this package for function writing here!"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#indirection-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#indirection-1",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Indirection",
+    "text": "Indirection\n\nTidy Select – pivot_wider()\n\nsave on typing\ntidy selection"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#data-masking-count",
+    "href": "slides/week-8/week-8-data-frame-functions.html#data-masking-count",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Data Masking – count()",
+    "text": "Data Masking – count()\n\nBlurs the line between the two different meanings of the word “variable”:\n\nenv-variables – “programming” variables that live in an environment\n\nThese are typically created using a &lt;-.\n\ndata-variables — “statistical” variables that live in a data frame.\n\nThese come from data files or are created manipulating existing variables.\n\n\n\nWhen you have the data-variable in a function argument, you need to embrace the argument.\n\ncount({{ row_var }}, {{ col_var }})"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#tidy-select-pivot_wider",
+    "href": "slides/week-8/week-8-data-frame-functions.html#tidy-select-pivot_wider",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Tidy Select – pivot_wider()",
+    "text": "Tidy Select – pivot_wider()\n\nIn the case of our function, the name of the columns we want to use are stored in an intermediate variable (e.g., col_var = island).\n\n\n\nWhen you have the data-variable (col_var) in an env-variable (df) that is a function argument, you embrace the argument by surrounding it in doubled braces.\n\npivot_wider(names_from = {{ col_var }}, \n            values_from = n, \n            values_fill = 0)"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#our-updated-function",
+    "href": "slides/week-8/week-8-data-frame-functions.html#our-updated-function",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Our Updated Function",
+    "text": "Our Updated Function\n\ntidy_table &lt;- function(df, row_var, col_var){\n  df |&gt; \n    count({{ row_var }}, {{ col_var }}) |&gt; \n    pivot_wider(names_from = {{ col_var }}, \n                values_from = n, \n                values_fill = 0)\n}"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-give-it-another-go",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-give-it-another-go",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s give it another go!",
+    "text": "Let’s give it another go!\n\ntidy_table(df = penguins, \n           row_var = species, \n           col_var = island)\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;int&gt; &lt;int&gt;     &lt;int&gt;\n1 Adelie        44    56        52\n2 Chinstrap      0    68         0\n3 Gentoo       124     0         0"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#what-if-we-wanted-to-use-quoted-variable-names",
+    "href": "slides/week-8/week-8-data-frame-functions.html#what-if-we-wanted-to-use-quoted-variable-names",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "What if we wanted to use quoted variable names?",
+    "text": "What if we wanted to use quoted variable names?\n\ntidy_table(df = penguins, \n           row_var = \"species\", \n           col_var = \"island\")\n\nError in `pivot_wider()`:\n! Can't select columns that don't exist.\n✖ Column `island` doesn't exist."
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#we-need-some-helper-functions",
+    "href": "slides/week-8/week-8-data-frame-functions.html#we-need-some-helper-functions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "We need some helper functions!",
+    "text": "We need some helper functions!\n\nFor tidy selection, we need to use all_of()\n\n\n\npivot_wider(names_from = all_of(col_var), \n                values_from = n, \n                values_fill = 0)\n\n\n\n\nFor data masking, we need to combine all_of() with pick()\n\n\n\ncount(\n  pick(\n    all_of( \n      c(row_var, col_var)\n      )\n    )\n  )"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#a-character-vector-function",
+    "href": "slides/week-8/week-8-data-frame-functions.html#a-character-vector-function",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "A Character Vector Function",
+    "text": "A Character Vector Function\n\n\nquote_table &lt;- function(df, row_var, col_var){\n  df |&gt; \n    count(\n      pick(\n        all_of(\n          c(row_var, col_var)\n          )\n        )\n      ) |&gt; \n    pivot_wider(names_from = all_of(col_var), \n                values_from = n, \n                values_fill = 0)\n}"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#did-it-work",
+    "href": "slides/week-8/week-8-data-frame-functions.html#did-it-work",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Did it work???",
+    "text": "Did it work???\n\nquote_table(df = penguins, \n            row_var = \"species\", \n            col_var = \"island\")\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;int&gt; &lt;int&gt;     &lt;int&gt;\n1 Adelie        44    56        52\n2 Chinstrap      0    68         0\n3 Gentoo       124     0         0"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-explore-the-prop.table-function-first",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-explore-the-prop.table-function-first",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s Explore the prop.table() Function First",
+    "text": "Let’s Explore the prop.table() Function First\nLet’s start with one categorical variable.\n\n\ntable(penguins$species) |&gt; \n  prop.table()\n\n\n   Adelie Chinstrap    Gentoo \n0.4418605 0.1976744 0.3604651 \n\n\n\n\n\n\n\n\n\n\n\nFunction Design\n\n\nWhat do you notice about the proportions?"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-explore-the-prop.table-function-first-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-explore-the-prop.table-function-first-1",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s Explore the prop.table() Function First",
+    "text": "Let’s Explore the prop.table() Function First\nOkay, let’s add a second categorical variable.\n\ntable(penguins$species, penguins$island) |&gt; \n  prop.table()\n\n           \n               Biscoe     Dream Torgersen\n  Adelie    0.1279070 0.1627907 0.1511628\n  Chinstrap 0.0000000 0.1976744 0.0000000\n  Gentoo    0.3604651 0.0000000 0.0000000\n\n\n\n\n\n\n\n\nFunction Design\n\n\nWhat do you notice about the proportions?"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-add-some-proportions-to-our-table",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-add-some-proportions-to-our-table",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s add some proportions to our table!",
+    "text": "Let’s add some proportions to our table!"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#these-are-proportions-for-the-entire-table",
+    "href": "slides/week-8/week-8-data-frame-functions.html#these-are-proportions-for-the-entire-table",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "These are proportions for the entire table",
+    "text": "These are proportions for the entire table\npenguins |&gt; count(species, island) |&gt; mutate(prop = n / sum(n))"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#i-want-proportions-within-each-group",
+    "href": "slides/week-8/week-8-data-frame-functions.html#i-want-proportions-within-each-group",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "I want proportions within each group",
+    "text": "I want proportions within each group\npenguins |&gt; count(species, island) |&gt; group_by(species) |&gt; mutate(prop = n / sum(n))"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#notice-that-there-is-still-a-grouping-variable",
+    "href": "slides/week-8/week-8-data-frame-functions.html#notice-that-there-is-still-a-grouping-variable",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Notice that there is still a grouping variable?",
+    "text": "Notice that there is still a grouping variable?\npenguins |&gt; count(species, island) |&gt; group_by(species) |&gt; mutate(prop = n / sum(n)) |&gt; ungroup()"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#only-want-the-proportions",
+    "href": "slides/week-8/week-8-data-frame-functions.html#only-want-the-proportions",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Only want the proportions…",
+    "text": "Only want the proportions…\npenguins |&gt; count(species, island) |&gt; group_by(species) |&gt; mutate(prop = n / sum(n)) |&gt; ungroup() |&gt; select(-n) |&gt; pivot_wider(id_cols = species, names_from = island, values_from = prop, values_fill = 0)"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#an-optional-argument",
+    "href": "slides/week-8/week-8-data-frame-functions.html#an-optional-argument",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "An Optional Argument",
+    "text": "An Optional Argument\nThe prop.table() function has an optional margin argument.\n\ntable(penguins$species, penguins$island) |&gt; \n  prop.table(margin = 1)\n\n           \n               Biscoe     Dream Torgersen\n  Adelie    0.2894737 0.3684211 0.3421053\n  Chinstrap 0.0000000 1.0000000 0.0000000\n  Gentoo    1.0000000 0.0000000 0.0000000\n\n\n\n\n\n\n\n\nFunction Design\n\n\nWhat do you notice about the proportions?"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#designing-a-tidy_prop_table-function",
+    "href": "slides/week-8/week-8-data-frame-functions.html#designing-a-tidy_prop_table-function",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Designing a tidy_prop_table() Function",
+    "text": "Designing a tidy_prop_table() Function\nBased on this exploration, it seems like our function should have the following qualities:\n\naccept a data frame\naccept variable names as inputs\npivot the output to a wide format\ncalculate joint or marginal proportions for each group"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#writing-dplyr-tidyr-code-to-accomplish-the-task-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#writing-dplyr-tidyr-code-to-accomplish-the-task-1",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Writing dplyr & tidyr Code to Accomplish the Task",
+    "text": "Writing dplyr & tidyr Code to Accomplish the Task\nUsing the penguins data, write code which will:\n\ncount() the number of penguins for each species and island\nadd a column for the proportion of each group\n\n\n\n\n−+\n03:00"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#a-working-solution-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#a-working-solution-1",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "A Working Solution",
+    "text": "A Working Solution\n\nThese give proportions for the entire table.\n\npenguins |&gt; \n  count(species, island) |&gt; \n  mutate(prop = n / sum(n)) \n\n# A tibble: 5 × 4\n  species   island        n  prop\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;\n1 Adelie    Biscoe       44 0.128\n2 Adelie    Dream        56 0.163\n3 Adelie    Torgersen    52 0.151\n4 Chinstrap Dream        68 0.198\n5 Gentoo    Biscoe      124 0.360\n\n\n\n\nWhat if I wanted marginal proportions for each species?"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#marginal-proportions-for-species",
+    "href": "slides/week-8/week-8-data-frame-functions.html#marginal-proportions-for-species",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Marginal Proportions for species",
+    "text": "Marginal Proportions for species\n\n\npenguins |&gt; \n  count(species, island) |&gt; \n  group_by(species) |&gt; \n  mutate(prop = n / sum(n)) \n\n# A tibble: 5 × 4\n# Groups:   species [3]\n  species   island        n  prop\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;\n1 Adelie    Biscoe       44 0.289\n2 Adelie    Dream        56 0.368\n3 Adelie    Torgersen    52 0.342\n4 Chinstrap Dream        68 1    \n5 Gentoo    Biscoe      124 1    \n\n\n\n\n\n\n\n\nNotice that there is still a grouping variable?\n\n\nWhat should I add to my code?"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#much-better",
+    "href": "slides/week-8/week-8-data-frame-functions.html#much-better",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Much better!",
+    "text": "Much better!\n\npenguins |&gt; \n  count(species, island) |&gt; \n  group_by(species) |&gt; \n  mutate(prop = n / sum(n)) |&gt; \n  ungroup()\n\n# A tibble: 5 × 4\n  species   island        n  prop\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;\n1 Adelie    Biscoe       44 0.289\n2 Adelie    Dream        56 0.368\n3 Adelie    Torgersen    52 0.342\n4 Chinstrap Dream        68 1    \n5 Gentoo    Biscoe      124 1"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#a-working-solution-2",
+    "href": "slides/week-8/week-8-data-frame-functions.html#a-working-solution-2",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "A Working Solution",
+    "text": "A Working Solution\n\n\npenguins |&gt; \n  count(species, island) |&gt; \n  group_by(species) |&gt; \n  mutate(prop = n / sum(n)) |&gt; \n  ungroup() |&gt; \n  select(-n) |&gt; \n  pivot_wider(names_from = island, \n              values_from = prop, \n              values_fill = 0)\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;\n1 Adelie     0.289 0.368     0.342\n2 Chinstrap  0     1         0    \n3 Gentoo     1     0         0"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#what-about-pivoting",
+    "href": "slides/week-8/week-8-data-frame-functions.html#what-about-pivoting",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "What about pivoting?",
+    "text": "What about pivoting?\nFor this table, we don’t care about the counts. Let’s add some code that:\n\nremoves the column of counts\npivots the table to a wide format\nreplaces NA values with 0s"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-make-a-function",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-make-a-function",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s make a function",
+    "text": "Let’s make a function\n\ntidy_table &lt;- function(df, row_var, col_var){\n  df |&gt; \n    count(row_var, col_var) |&gt; \n    pivot_wider(names_from = col_var, \n                values_from = n, \n                values_fill = 0)\n}"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#now-lets-generalize-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#now-lets-generalize-1",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Now let’s generalize!",
+    "text": "Now let’s generalize!\n\ndf |&gt; \n  count(row_var, col_var) |&gt; \n  group_by(col_var) |&gt; \n  mutate(prop = n / sum(n)) |&gt; \n  ungroup() |&gt; \n  select(-n) |&gt; \n  pivot_wider(names_from = col_var,\n              values_from = prop, \n              values_fill = 0)"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-make-a-function-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-make-a-function-1",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s make a function",
+    "text": "Let’s make a function\n\ntidy_prop_table &lt;- function(df, row_var, col_var){\n  \n  df |&gt; \n    count({{ row_var }}, {{ col_var }}) |&gt; \n    group_by({{ col_var }}) |&gt; \n    mutate(prop = n / sum(n)) |&gt; \n    ungroup() |&gt; \n    select(-n) |&gt; \n    pivot_wider(names_from = {{ col_var }},\n                values_from = prop, \n                values_fill = 0)\n  \n}"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-try-it-out-1",
+    "href": "slides/week-8/week-8-data-frame-functions.html#lets-try-it-out-1",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Let’s try it out!",
+    "text": "Let’s try it out!\n\ntidy_prop_table(df = penguins, \n                row_var = species, \n                col_var = island)\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;\n1 Adelie     0.262 0.452         1\n2 Chinstrap  0     0.548         0\n3 Gentoo     0.738 0             0"
   }
 ]

@@ -1,0 +1,13 @@
+---
+title: "Week 8: Writing Your Own Data Frame Functions"
+format: docx
+execute: 
+  eval: false
+---
+
+| Issue | Fix | Function(s) to Use |
+|----|----|----|
+| The name of the  `data-variable` (e.g., `col_var`) isn't injected into the `environment-variable` (e.g., `df`). |  |  |
+| My function uses two arguments, but only one of them is absolutely necessary. |  |  |
+| The inputs to a function are quoted (e.g., `c("species", "island")` when the function expects unquoted variable names. |  |  |
+| I want to include an argument that is optional and I want to specify a default value for it. |  |  |

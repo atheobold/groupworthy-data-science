@@ -482,6 +482,85 @@ ggplot(summary_table_long, aes(x = study_year, y = median_price, color = care_ty
   )
 ```
 
+This plot is brought to us by Haley Wong! Haley also featured a non-standard geometry (`geom_ribbon()`) to fill the space between the lines on this plot! I really appreciated Haley's attention to detail in making titles and labels on the plot that made the context very clear to the reader---$ on the y-axis labels and a subtitle explaining what the gap represents. 
+
+```{r}
+#| code-fold: true
+
+# Here is the data wrangling that happened to make this plot!
+table <- ca_childcare |>
+  pivot_longer(
+    cols = mc_infant:mfcc_preschool,
+    names_to = "type_age",
+    values_to = "median_price"
+  ) |>
+  mutate(
+    type = case_when(
+      str_detect(type_age, "^mc_") ~ "center_based",
+      str_detect(type_age, "^mfcc_") ~ "family"
+    ),
+    age = case_when(
+      str_detect(type_age, "infant$") ~ "infant",
+      str_detect(type_age, "toddler$") ~ "toddler",
+      str_detect(type_age, "preschool$") ~ "preschool"
+    )
+  ) |>
+  group_by(study_year, age, type) |>
+  summarise(median_price = median(median_price, na.rm = TRUE), .groups = "drop") |>
+  pivot_wider(names_from = type, values_from = median_price) |>
+  mutate(difference = center_based - family)
+
+prices_long <- table |>
+  pivot_longer(
+    cols = c(center_based, family),
+    names_to = "setting_type",
+    values_to = "median_price"
+  ) |>
+  mutate(
+    setting_label = fct_recode(
+      setting_type,
+      "Center-based" = "center_based",
+      "Family (In-home)" = "family"
+    ),
+    age = factor(age, levels = c("infant", "toddler", "preschool"))
+  )
+
+```
+
+```{r}
+ggplot(prices_long, aes(x = study_year, y = median_price, color = setting_label)) +
+  geom_ribbon(
+    data = table |> 
+      mutate(age = factor(age, levels = c("infant", "toddler", "preschool"))),
+    aes(x = study_year, ymin = family, ymax = center_based, fill = "Price Gap"),
+    alpha = 0.15,
+    inherit.aes = FALSE
+  ) +
+  geom_line(size = 1.2) +
+  geom_point(size = 2.5, alpha = 0.9) +
+  facet_wrap(~ age, nrow = 1) +
+  scale_color_brewer(palette = "Set1") +
+  scale_fill_manual(values = c("Price Gap" = "gray70")) +
+  scale_y_continuous(labels = scales::label_dollar()) +
+  scale_x_continuous(breaks = seq(2008, 2018, 4)) +
+  labs(
+    title = "Center-Based vs Family Childcare Costs Over Time",
+    subtitle = "Shaded area shows median price gap by age group (California)",
+    x = "Study Year",
+    y = "Median Weekly Price (USD)",
+    color = "Care Setting",
+    fill = ""
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
+    plot.subtitle = element_text(size = 13, hjust = 0.5),
+    axis.text.x = element_text(size = 10),
+    legend.position = "right"
+  )
+```
+
+
 This plot is brought to us by Isaiah Woodard! I really appreciated how Isaiah took the skills they learned in Challenge 2 and applied them to a new setting!
 
 ```{r}
@@ -603,11 +682,7 @@ theme(
 )
 ```
 
-This plot is brought to us by a student who wishes to remain anonymous. I 
-thought this plot was both incredibly clear and rather creative. They used a 
-non-standard geom (`geom_violin`) which shows the density of each group's 
-distribution. Moreover, they plot a horizontal line at the median and annotate
-the median value (with dollar signs!). 
+This plot is brought to us by a student who wishes to remain anonymous. I thought this plot was both incredibly clear and rather creative. They used a non-standard geom (`geom_violin`) which shows the density of each group's distribution. Moreover, they plot a horizontal line at the median and annotate the median value (with dollar signs!).
 
 ```{r}
 #| code-fold: true
@@ -676,9 +751,7 @@ ggplot(plot_data, aes(x = age_group, y = weekly_price, fill = age_group)) +
   )
 ```
 
-This plot is brought to us by Sebastien Montgrain! I really appreciated all the
-effort Sebastien put into getting the themes for the plot to be as clean as
-possible!
+This plot is brought to us by Sebastien Montgrain! I really appreciated all the effort Sebastien put into getting the themes for the plot to be as clean as possible!
 
 ```{r}
 #| code-fold: true
@@ -720,8 +793,6 @@ ggplot(clean_data, aes(study_year, value, color = Variable)) +
         axis.text.x = element_text(size = 7, angle = 45, hjust = 1)) +
   scale_color_manual(values = c("orange", "coral1", "steelblue2"))
 ```
-
-
 
 # Lab 5
 

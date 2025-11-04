@@ -197,7 +197,8 @@ qualities:
 
 ## Writing **dplyr** & **tidyr** Code to Accomplish the Task
 
-Using the `penguins` data, write code which will:
+Using the `penguins` data, write **dplyr** code (not `table()`) and **tidyr**
+code which will:
 
 - `count()` the number of penguins for each **species** and **island**
 - pivot the table to a **wide** format
@@ -274,6 +275,17 @@ tidy_table <- function(df, col_var, row_var){
                 values_from = n, 
                 values_fill = 0)
 }
+```
+
+. . .
+
+::: {.callout-important}
+# Copy the `tidy_table()` function in your Colab notebook!
+:::
+
+```{r}
+#| eval: true
+countdown::countdown(minutes = 2)
 ```
 
 ## Let's try it out! 
@@ -387,9 +399,16 @@ tidy_table <- function(df, col_var, row_var){
 }
 ```
 
+. . .
+
 ::: {.callout-important}
 # Update your `tidy_table()` function in your Colab notebook!
 :::
+
+```{r}
+#| eval: true
+countdown::countdown(minutes = 1)
+```
 
 
 ## Let's give it another go!
@@ -457,7 +476,25 @@ tidy_table(df = penguins, species)
 ```
 :::
 
-## Check if `row_var` is `missing()`
+## Arguments that are **absolutely necessary** should come first!
+
+::: {.midi}
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+tidy_table <- function(df, col_var, row_var){
+  df |> 
+    count({{ col_var }}, {{ row_var }}) |> 
+    pivot_wider(names_from = {{ col_var }}, 
+                values_from = n, 
+                values_fill = 0)
+}
+```
+:::
+
+## To be more defensive you could check if `row_var` is `missing()`
 
 ::: {.midi}
 ```{r}
@@ -485,35 +522,35 @@ tidy_table <- function(df, col_var, row_var){
 ```
 :::
 
-::: {.callout-important}
-# Update your `tidy_table()` function in your Colab notebook!
-:::
+<!-- ::: {.callout-important} -->
+<!-- # Update your `tidy_table()` function in your Colab notebook! -->
+<!-- ::: -->
 
-## Let's try it!
+<!-- ## Let's try it! -->
 
-::: {.midi}
-```{r}
-#| echo: true
-#| eval: true
-#| code-line-numbers: false
+<!-- ::: {.midi} -->
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: true -->
+<!-- #| code-line-numbers: false -->
 
-tidy_table(df = penguins, col_var = species)
-```
-:::
+<!-- tidy_table(df = penguins, col_var = species) -->
+<!-- ``` -->
+<!-- ::: -->
 
-. . .
+<!-- . . . -->
 
-::: {.midi}
-```{r}
-#| echo: true
-#| eval: true
-#| code-line-numbers: false
+<!-- ::: {.midi} -->
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: true -->
+<!-- #| code-line-numbers: false -->
 
-tidy_table(df = penguins, 
-           col_var = species, 
-           row_var = island)
-```
-:::
+<!-- tidy_table(df = penguins,  -->
+<!--            col_var = species,  -->
+<!--            row_var = island) -->
+<!-- ``` -->
+<!-- ::: -->
 
 ## What if we wanted to use quoted variable names?
 
@@ -528,6 +565,16 @@ tidy_table(df = penguins,
 tidy_table(df = penguins, 
            row_var = "species", 
            col_var = "island")
+```
+## What's going on?
+
+```{r}
+#| echo: true
+#| eval: true
+#| code-line-numbers: false
+
+penguins |> 
+    count("species", "island")
 ```
 
 ## We need some helper functions!
@@ -593,6 +640,11 @@ quote_table <- function(df, row_var, col_var){
 ::: {.callout-important}
 # Add the `quote_table()` function in your Colab notebook!
 :::
+
+```{r}
+#| eval: true
+countdown::countdown(minutes = 2)
+```
 
 ## Did it work???
 
@@ -660,6 +712,8 @@ What do you notice about the proportions?
 
 The `prop.table()` function has an optional `margin` argument. 
 
+. . .
+
 ```{r}
 #| echo: true
 #| eval: true
@@ -668,6 +722,8 @@ The `prop.table()` function has an optional `margin` argument.
 table(penguins$species, penguins$island) |> 
   prop.table(margin = 1)
 ```
+
+. . .
 
 ::: {.callout-tip}
 # Function Design
@@ -681,12 +737,13 @@ qualities:
 
 - accept a data frame
 - accept variable names as inputs
-- pivot the output to a wide format
 - calculate joint or marginal proportions for each group
+- pivot the output to a wide format
 
-## Writing **dplyr** & **tidyr** Code to Accomplish the Task
+## Writing **dplyr** Code to Accomplish the Task
 
-Using the `penguins` data, write code which will:
+Using the `penguins` data, write **dplyr** code (not `table()` or `prop.table()`)
+which will:
 
 - `count()` the number of penguins for each **species** and **island**
 - add a column for the ***joint*** proportion of each group

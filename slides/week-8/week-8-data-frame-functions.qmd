@@ -29,7 +29,7 @@ versions of the `table()` and `prop.table()` base R functions.
 This will help us...
 
 - explore lazy evaluation
-- learn more about the `{{ }}` operator 
+- learn more about the `{{{ }}}` operator 
 - figure out when we need to use functions like `all_of()` and `pick()`
 - write more complex functions
 
@@ -122,9 +122,9 @@ We are going to use a hands-on activity to explore these concepts!
 
 ## Open the "Tidy Eval" Colab Notebook Posted on Canvas
 
-In the Week 8 Module, navigate to the "Lecture Slides" section. 
+In the Week 8 Module, navigate to the ***Lecture Activity*** section. 
 
-Click on the "Tidy Eval" Colab Notebook link. 
+Click on the ***Tidy Eval*** Colab Notebook link. 
 
 Make a copy of the notebook (like you do for Practice Activities)!
 
@@ -135,7 +135,7 @@ Make a copy of the notebook (like you do for Practice Activities)!
 countdown::countdown(minutes = 2)
 ```
 
-# Our Goal
+# Goal #1
 
 . . .
 
@@ -400,8 +400,8 @@ tidy_table <- function(df, col_var, row_var){
 #| code-line-numbers: false
 
 tidy_table(df = penguins, 
-           row_var = species, 
-           col_var = island)
+           col_var = island, 
+           row_var = species)
 ```
 
 ## What if only one variable was input?
@@ -418,7 +418,7 @@ tidy_table(df = penguins, species)
 . . .
 
 ::: {.callout-important}
-# Why didn't this result in an error?
+# Which argument is `species` being inserted into?
 :::
 
 <!-- argument order -->
@@ -510,12 +510,14 @@ tidy_table(df = penguins, col_var = species)
 #| code-line-numbers: false
 
 tidy_table(df = penguins, 
-           row_var = island, 
-           col_var = species)
+           col_var = species, 
+           row_var = island)
 ```
 :::
 
 ## What if we wanted to use quoted variable names?
+
+. . .
 
 ```{r}
 #| echo: true
@@ -606,7 +608,7 @@ quote_table(df = penguins,
 
 # Let's take a 5-minute break!
 
-# Our Next Goal
+# Goal #2
 
 . . .
 
@@ -687,7 +689,7 @@ qualities:
 Using the `penguins` data, write code which will:
 
 - `count()` the number of penguins for each **species** and **island**
-- add a column for the proportion of each group
+- add a column for the ***joint*** proportion of each group
 
 ```{r}
 #| eval: true
@@ -697,7 +699,7 @@ countdown::countdown(minutes = 3)
 ## A Working Solution 
 
 ::: {.midi}
-These give proportions for the entire table.
+These give joint proportions for the entire table.
 
 ```{r}
 #| echo: true
@@ -712,7 +714,7 @@ penguins |>
 
 . . .
 
-**What if I wanted marginal proportions for each species?**
+**What if I wanted marginal proportions for each species?** (i.e., within a species, the proportions should add to 1)
 
 ## Marginal Proportions for `species`
 
@@ -728,10 +730,12 @@ penguins |>
   mutate(prop = n / sum(n)) 
 ```
 
+::: {.fragment}
 ::: {.callout-important}
 # Notice that there is still a grouping variable?
 
 What should I add to my code?
+:::
 :::
 :::
 
@@ -757,6 +761,11 @@ For this table, we don't care about the counts. Let's add some code that:
 - removes the column of counts
 - pivots the table to a **wide** format
 - replaces `NA` values with `0`s
+
+```{r}
+#| eval: true
+countdown::countdown(minutes = 3)
+```
 
 ## A Working Solution 
 
@@ -829,8 +838,8 @@ tidy_prop_table <- function(df, col_var, row_var){
 #| code-line-numbers: false
 
 tidy_prop_table(df = penguins, 
-                row_var = species, 
-                col_var = island)
+                col_var = island, 
+                row_var = species)
 ```
 
 ## What if I wanted to get marginal proportions for the `row_var`?
@@ -883,8 +892,7 @@ tidy_prop_table <- function(df, col_var, row_var, margin = NULL){
     mutate(prop = n / sum(n)) |>
     ungroup() |>
     select(-n) |>
-    pivot_wider(id_cols = {{ row_var }},
-                names_from = {{ col_var }},
+    pivot_wider(names_from = {{ col_var }},
                 values_from = prop,
                 values_fill = 0)
   }
@@ -895,8 +903,7 @@ tidy_prop_table <- function(df, col_var, row_var, margin = NULL){
       mutate(prop = n / sum(n)) |>
       ungroup() |>
       select(-n) |>
-      pivot_wider(id_cols = {{ row_var }},
-                  names_from = {{ col_var }},
+      pivot_wider(names_from = {{ col_var }},
                   values_from = prop,
                   values_fill = 0) |>
       print()
@@ -908,8 +915,7 @@ tidy_prop_table <- function(df, col_var, row_var, margin = NULL){
       mutate(prop = n / sum(n)) |>
       ungroup() |>
       select(-n) |>
-      pivot_wider(id_cols = {{ row_var }},
-                  names_from = {{ col_var }},
+      pivot_wider(names_from = {{ col_var }},
                   values_from = prop,
                   values_fill = 0)
   }

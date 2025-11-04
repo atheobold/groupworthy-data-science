@@ -5597,7 +5597,7 @@
     "href": "slides/week-8/week-8-data-frame-functions.html#tuesday-november-4",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Tuesday, November 4",
-    "text": "Tuesday, November 4\nToday we are going to do a hands-on coding activity! We will create our own versions of the table() and prop.table() base R functions.\n\nThis will help us…\n\nexplore lazy evaluation\nlearn more about the { } operator\nfigure out when we need to use functions like all_of() and pick()\nwrite more complex functions"
+    "text": "Tuesday, November 4\nToday we are going to do a hands-on coding activity! We will create our own versions of the table() and prop.table() base R functions.\n\nThis will help us…\n\nexplore lazy evaluation\nlearn more about the {{ }} operator\nfigure out when we need to use functions like all_of() and pick()\nwrite more complex functions"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#stuff-about-vector-functions",
@@ -5625,7 +5625,7 @@
     "href": "slides/week-8/week-8-data-frame-functions.html#open-the-tidy-eval-colab-notebook-posted-on-canvas",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Open the “Tidy Eval” Colab Notebook Posted on Canvas",
-    "text": "Open the “Tidy Eval” Colab Notebook Posted on Canvas\nIn the Week 8 Module, navigate to the “Lecture Slides” section.\nClick on the “Tidy Eval” Colab Notebook link.\nMake a copy of the notebook (like you do for Practice Activities)!\n\n\n\n−+\n02:00"
+    "text": "Open the “Tidy Eval” Colab Notebook Posted on Canvas\nIn the Week 8 Module, navigate to the Lecture Activity section.\nClick on the Tidy Eval Colab Notebook link.\nMake a copy of the notebook (like you do for Practice Activities)!\n\n\n\n−+\n02:00"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-explore-the-table-function-first",
@@ -5730,14 +5730,14 @@
     "href": "slides/week-8/week-8-data-frame-functions.html#lets-give-it-another-go",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Let’s give it another go!",
-    "text": "Let’s give it another go!\n\ntidy_table(df = penguins, \n           row_var = species, \n           col_var = island)\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;int&gt; &lt;int&gt;     &lt;int&gt;\n1 Adelie        44    56        52\n2 Gentoo       124     0         0\n3 Chinstrap      0    68         0"
+    "text": "Let’s give it another go!\n\ntidy_table(df = penguins, \n           col_var = island, \n           row_var = species)\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;int&gt; &lt;int&gt;     &lt;int&gt;\n1 Adelie        44    56        52\n2 Gentoo       124     0         0\n3 Chinstrap      0    68         0"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#what-if-we-wanted-to-use-quoted-variable-names",
     "href": "slides/week-8/week-8-data-frame-functions.html#what-if-we-wanted-to-use-quoted-variable-names",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "What if we wanted to use quoted variable names?",
-    "text": "What if we wanted to use quoted variable names?\n\ntidy_table(df = penguins, \n           row_var = \"species\", \n           col_var = \"island\")\n\nError in `pivot_wider()`:\n! Can't select columns that don't exist.\n✖ Column `island` doesn't exist."
+    "text": "What if we wanted to use quoted variable names?\n\n\ntidy_table(df = penguins, \n           row_var = \"species\", \n           col_var = \"island\")\n\nError in `pivot_wider()`:\n! Can't select columns that don't exist.\n✖ Column `island` doesn't exist."
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#we-need-some-helper-functions",
@@ -5828,21 +5828,21 @@
     "href": "slides/week-8/week-8-data-frame-functions.html#writing-dplyr-tidyr-code-to-accomplish-the-task-1",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Writing dplyr & tidyr Code to Accomplish the Task",
-    "text": "Writing dplyr & tidyr Code to Accomplish the Task\nUsing the penguins data, write code which will:\n\ncount() the number of penguins for each species and island\nadd a column for the proportion of each group\n\n\n\n\n−+\n03:00"
+    "text": "Writing dplyr & tidyr Code to Accomplish the Task\nUsing the penguins data, write code which will:\n\ncount() the number of penguins for each species and island\nadd a column for the joint proportion of each group\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#a-working-solution-1",
     "href": "slides/week-8/week-8-data-frame-functions.html#a-working-solution-1",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "A Working Solution",
-    "text": "A Working Solution\n\nThese give proportions for the entire table.\n\npenguins |&gt; \n  count(species, island) |&gt; \n  mutate(prop = n / sum(n)) \n\n# A tibble: 5 × 4\n  species   island        n  prop\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;\n1 Adelie    Biscoe       44 0.128\n2 Adelie    Dream        56 0.163\n3 Adelie    Torgersen    52 0.151\n4 Chinstrap Dream        68 0.198\n5 Gentoo    Biscoe      124 0.360\n\n\n\n\nWhat if I wanted marginal proportions for each species?"
+    "text": "A Working Solution\n\nThese give joint proportions for the entire table.\n\npenguins |&gt; \n  count(species, island) |&gt; \n  mutate(prop = n / sum(n)) \n\n# A tibble: 5 × 4\n  species   island        n  prop\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;\n1 Adelie    Biscoe       44 0.128\n2 Adelie    Dream        56 0.163\n3 Adelie    Torgersen    52 0.151\n4 Chinstrap Dream        68 0.198\n5 Gentoo    Biscoe      124 0.360\n\n\n\n\nWhat if I wanted marginal proportions for each species? (i.e., within a species, the proportions should add to 1)"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#marginal-proportions-for-species",
     "href": "slides/week-8/week-8-data-frame-functions.html#marginal-proportions-for-species",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Marginal Proportions for species",
-    "text": "Marginal Proportions for species\n\n\npenguins |&gt; \n  count(species, island) |&gt; \n  group_by(species) |&gt; \n  mutate(prop = n / sum(n)) \n\n# A tibble: 5 × 4\n# Groups:   species [3]\n  species   island        n  prop\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;\n1 Adelie    Biscoe       44 0.289\n2 Adelie    Dream        56 0.368\n3 Adelie    Torgersen    52 0.342\n4 Chinstrap Dream        68 1    \n5 Gentoo    Biscoe      124 1    \n\n\n\n\n\n\n\n\nNotice that there is still a grouping variable?\n\n\nWhat should I add to my code?"
+    "text": "Marginal Proportions for species\n\n\npenguins |&gt; \n  count(species, island) |&gt; \n  group_by(species) |&gt; \n  mutate(prop = n / sum(n)) \n\n# A tibble: 5 × 4\n# Groups:   species [3]\n  species   island        n  prop\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;\n1 Adelie    Biscoe       44 0.289\n2 Adelie    Dream        56 0.368\n3 Adelie    Torgersen    52 0.342\n4 Chinstrap Dream        68 1    \n5 Gentoo    Biscoe      124 1    \n\n\n\n\n\n\n\n\n\nNotice that there is still a grouping variable?\n\n\nWhat should I add to my code?"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#much-better",
@@ -5863,7 +5863,7 @@
     "href": "slides/week-8/week-8-data-frame-functions.html#what-about-pivoting",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "What about pivoting?",
-    "text": "What about pivoting?\nFor this table, we don’t care about the counts. Let’s add some code that:\n\nremoves the column of counts\npivots the table to a wide format\nreplaces NA values with 0s"
+    "text": "What about pivoting?\nFor this table, we don’t care about the counts. Let’s add some code that:\n\nremoves the column of counts\npivots the table to a wide format\nreplaces NA values with 0s\n\n\n\n\n−+\n03:00"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#lets-make-a-function",
@@ -5891,14 +5891,14 @@
     "href": "slides/week-8/week-8-data-frame-functions.html#lets-try-it-out-1",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Let’s try it out!",
-    "text": "Let’s try it out!\n\ntidy_prop_table(df = penguins, \n                row_var = species, \n                col_var = island)\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;\n1 Adelie     0.262 0.452         1\n2 Chinstrap  0     0.548         0\n3 Gentoo     0.738 0             0"
+    "text": "Let’s try it out!\n\ntidy_prop_table(df = penguins, \n                col_var = island, \n                row_var = species)\n\n# A tibble: 3 × 4\n  species   Biscoe Dream Torgersen\n  &lt;fct&gt;      &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;\n1 Adelie     0.262 0.452         1\n2 Chinstrap  0     0.548         0\n3 Gentoo     0.738 0             0"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#what-if-only-one-variable-was-input",
     "href": "slides/week-8/week-8-data-frame-functions.html#what-if-only-one-variable-was-input",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "What if only one variable was input?",
-    "text": "What if only one variable was input?\n\ntidy_table(df = penguins, species)\n\n# A tibble: 1 × 3\n  Adelie Chinstrap Gentoo\n   &lt;int&gt;     &lt;int&gt;  &lt;int&gt;\n1    152        68    124\n\n\n\n\n\n\n\n\n\nWhy didn’t this result in an error?"
+    "text": "What if only one variable was input?\n\ntidy_table(df = penguins, species)\n\n# A tibble: 1 × 3\n  Adelie Chinstrap Gentoo\n   &lt;int&gt;     &lt;int&gt;  &lt;int&gt;\n1    152        68    124\n\n\n\n\n\n\n\n\n\nWhich argument is species being inserted into?"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#making-row_var-optional",
@@ -5912,7 +5912,7 @@
     "href": "slides/week-8/week-8-data-frame-functions.html#lets-try-it",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Let’s try it!",
-    "text": "Let’s try it!\n\n\ntidy_table(df = penguins, col_var = species)\n\n# A tibble: 1 × 3\n  Adelie Chinstrap Gentoo\n   &lt;int&gt;     &lt;int&gt;  &lt;int&gt;\n1    152        68    124\n\n\n\n\n\n\ntidy_table(df = penguins, \n           row_var = island, \n           col_var = species)\n\n# A tibble: 3 × 4\n  island    Adelie Chinstrap Gentoo\n  &lt;fct&gt;      &lt;int&gt;     &lt;int&gt;  &lt;int&gt;\n1 Biscoe        44         0    124\n2 Dream         56        68      0\n3 Torgersen     52         0      0"
+    "text": "Let’s try it!\n\n\ntidy_table(df = penguins, col_var = species)\n\n# A tibble: 1 × 3\n  Adelie Chinstrap Gentoo\n   &lt;int&gt;     &lt;int&gt;  &lt;int&gt;\n1    152        68    124\n\n\n\n\n\n\ntidy_table(df = penguins, \n           col_var = species, \n           row_var = island)\n\n# A tibble: 3 × 4\n  island    Adelie Chinstrap Gentoo\n  &lt;fct&gt;      &lt;int&gt;     &lt;int&gt;  &lt;int&gt;\n1 Biscoe        44         0    124\n2 Dream         56        68      0\n3 Torgersen     52         0      0"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#check-if-row_var-is-missing",
@@ -5947,7 +5947,7 @@
     "href": "slides/week-8/week-8-data-frame-functions.html#moving-into-r-code",
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "Moving into R Code",
-    "text": "Moving into R Code\n\ntidy_prop_table &lt;- function(df, col_var, row_var, margin = NULL){\n\n  # Default to joint proportions\n  if(is.null(margin)){\n    df |&gt;\n    count({{ row_var }}, {{ col_var }}) |&gt;\n    mutate(prop = n / sum(n)) |&gt;\n    ungroup() |&gt;\n    select(-n) |&gt;\n    pivot_wider(id_cols = {{ row_var }},\n                names_from = {{ col_var }},\n                values_from = prop,\n                values_fill = 0)\n  }\n  else if(margin == \"row\"){\n    df |&gt;\n      count({{ row_var }}, {{ col_var }}) |&gt;\n      group_by({{ row_var }}) |&gt;\n      mutate(prop = n / sum(n)) |&gt;\n      ungroup() |&gt;\n      select(-n) |&gt;\n      pivot_wider(id_cols = {{ row_var }},\n                  names_from = {{ col_var }},\n                  values_from = prop,\n                  values_fill = 0) |&gt;\n      print()\n  }\n  else{\n    df |&gt;\n      count({{ row_var }}, {{ col_var }}) |&gt;\n      group_by({{ col_var }}) |&gt;\n      mutate(prop = n / sum(n)) |&gt;\n      ungroup() |&gt;\n      select(-n) |&gt;\n      pivot_wider(id_cols = {{ row_var }},\n                  names_from = {{ col_var }},\n                  values_from = prop,\n                  values_fill = 0)\n  }\n\n}"
+    "text": "Moving into R Code\n\ntidy_prop_table &lt;- function(df, col_var, row_var, margin = NULL){\n\n  # Default to joint proportions\n  if(is.null(margin)){\n    df |&gt;\n    count({{ row_var }}, {{ col_var }}) |&gt;\n    mutate(prop = n / sum(n)) |&gt;\n    ungroup() |&gt;\n    select(-n) |&gt;\n    pivot_wider(names_from = {{ col_var }},\n                values_from = prop,\n                values_fill = 0)\n  }\n  else if(margin == \"row\"){\n    df |&gt;\n      count({{ row_var }}, {{ col_var }}) |&gt;\n      group_by({{ row_var }}) |&gt;\n      mutate(prop = n / sum(n)) |&gt;\n      ungroup() |&gt;\n      select(-n) |&gt;\n      pivot_wider(names_from = {{ col_var }},\n                  values_from = prop,\n                  values_fill = 0) |&gt;\n      print()\n  }\n  else{\n    df |&gt;\n      count({{ row_var }}, {{ col_var }}) |&gt;\n      group_by({{ col_var }}) |&gt;\n      mutate(prop = n / sum(n)) |&gt;\n      ungroup() |&gt;\n      select(-n) |&gt;\n      pivot_wider(names_from = {{ col_var }},\n                  values_from = prop,\n                  values_fill = 0)\n  }\n\n}"
   },
   {
     "objectID": "slides/week-8/week-8-data-frame-functions.html#section",
@@ -5976,5 +5976,12 @@
     "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
     "section": "How’d we do?",
     "text": "How’d we do?\nMarginal Proportions – Columns\n\n\ntidy_prop_table(df = penguins, \n                col_var = species, \n                row_var = island, \n                margin = \"col\")\n\n# A tibble: 3 × 4\n  island    Adelie Gentoo Chinstrap\n  &lt;fct&gt;      &lt;dbl&gt;  &lt;dbl&gt;     &lt;dbl&gt;\n1 Biscoe     0.289      1         0\n2 Dream      0.368      0         1\n3 Torgersen  0.342      0         0"
+  },
+  {
+    "objectID": "slides/week-8/week-8-data-frame-functions.html#marginal-proportions-for-island",
+    "href": "slides/week-8/week-8-data-frame-functions.html#marginal-proportions-for-island",
+    "title": "Taming the Curly Braces: Writing Your Own Tidyverse Functions",
+    "section": "Marginal Proportions for island",
+    "text": "Marginal Proportions for island\n\n\npenguins |&gt; \n  count(species, island) |&gt; \n  group_by(island) |&gt; \n  mutate(prop = n / sum(n)) \n\n# A tibble: 5 × 4\n# Groups:   island [3]\n  species   island        n  prop\n  &lt;fct&gt;     &lt;fct&gt;     &lt;int&gt; &lt;dbl&gt;\n1 Adelie    Biscoe       44 0.262\n2 Adelie    Dream        56 0.452\n3 Adelie    Torgersen    52 1    \n4 Chinstrap Dream        68 0.548\n5 Gentoo    Biscoe      124 0.738\n\n\n\n\n\n\n\n\n\nNotice that there is still a grouping variable?\n\n\nWhat should I add to my code?"
   }
 ]

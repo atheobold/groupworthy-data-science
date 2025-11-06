@@ -64,6 +64,7 @@ To achieve this, you function must use one of the `rlang` (tidy evaluation) opti
 
 ```{r}
 #| label: df-rescale-function
+#| echo: false
 
 rescale_column <- function(data, cols){
   data |> 
@@ -119,10 +120,10 @@ Your function call must look like one of these two options:
 
 ```{r}
 # Tidy (unquoted) variable names
-pivot_table(df, c(species, island))
+pivot_table(df, species, island)
 
 # Quoted variable names
-pivot_table(df, c("species", "island"))
+pivot_table(df, "species", "island")
 ```
 
 To achieve this, you function must use one of the `rlang` (tidy evaluation) options from class.

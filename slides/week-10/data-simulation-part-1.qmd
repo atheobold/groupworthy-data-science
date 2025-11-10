@@ -15,6 +15,10 @@ execute:
 library(tidyverse)
 ```
 
+<!-- # Survey Consent Form -->
+
+<!-- https://forms.office.com/r/TckhG81y7q -->
+
 # Same Seating Chart!
 
 ![](../week-7/images/week-7-seats.png){width=70%}
@@ -598,3 +602,5 @@ You and your partner together should address the following questions:
 
 
 > Do you beleive Professor Hill ordered genuine instruments?
+
+

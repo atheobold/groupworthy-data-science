@@ -26,7 +26,7 @@ library(tidyverse)
 
 There are many packages for
 generating tables, but I prefer the `kable()` function from the **knitr**
-package for *simple* tables and the `gt()` function from the **DT** package for
+package for *simple* tables and the `gt()` function from the **GT** package for
 *more sophisticated* tables.
 
 I would recommend you think of tables no different from the visualizations

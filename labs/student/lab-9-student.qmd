@@ -71,7 +71,7 @@ First up, we're going to revisit Question 2 from Lab 2. This question asked:
 
 > What are the data types of the variables in this dataset?
 
-**Question 2: Using `map_chr()`, produce a table of the data type of each variable in the `surveys` dataset. Specifically, the table should have two columns: `var_name` and `type` with a row for each variable. The table should be displayed using the `kable()` function from the knitr package.**
+**Question 2: Using `map_chr()`, produce a table of the data type of each variable in the `surveys` dataset. Specifically, the table should have two columns `Variable` and `Data Type` with a row for each variable and be displayed using `kable()`.**
 
 *Hint: You will want to check out the `enframe()` function to help with this task.*
 

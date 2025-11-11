@@ -482,7 +482,7 @@ ggplot(summary_table_long, aes(x = study_year, y = median_price, color = care_ty
   )
 ```
 
-This plot is brought to us by Haley Wong! Haley also featured a non-standard geometry (`geom_ribbon()`) to fill the space between the lines on this plot! I really appreciated Haley's attention to detail in making titles and labels on the plot that made the context very clear to the reader---$ on the y-axis labels and a subtitle explaining what the gap represents. 
+This plot is brought to us by Haley Wong! Haley also featured a non-standard geometry (`geom_ribbon()`) to fill the space between the lines on this plot! I really appreciated Haley's attention to detail in making titles and labels on the plot that made the context very clear to the reader---\$ on the y-axis labels and a subtitle explaining what the gap represents.
 
 ```{r}
 #| code-fold: true
@@ -559,7 +559,6 @@ ggplot(prices_long, aes(x = study_year, y = median_price, color = setting_label)
     legend.position = "right"
   )
 ```
-
 
 This plot is brought to us by Isaiah Woodard! I really appreciated how Isaiah took the skills they learned in Challenge 2 and applied them to a new setting!
 
@@ -967,7 +966,7 @@ suspects <- get_fit_now_member %>%
   ))
 ```
 
-<!-- # Lab 7 -->
+# Lab 7
 
 ```{r}
 #| echo: false
@@ -981,3 +980,117 @@ fish <- read_csv(here::here("labs",
                             "BlackfootFish.csv")
                  )
 ```
+
+## Exemplary Plots of Missing Data
+
+This plot is brought to us by Abel Magallon! I thought this plot was 
+great because it (1) is easy to read, and (2) has a lot of detailed information. The annotations are great, plot title and subtitle describe the context of what is being plotted, and the facet labels are easy to understand.
+
+```{r}
+#| code-fold: true
+
+fish |>
+  mutate(has_missing = if_any(weight, is.na),
+         trip = fct_recode(factor(trip),
+                      "First Survey (Trip 1)" = "1",
+                      "Second Survey (Trip 2)" = "2")) |>
+  group_by(year, section, trip) |>
+  summarize(
+    n_missing = sum(has_missing),
+    n_total = n(),
+    pct_missing = (n_missing / n_total) * 100,
+    .groups = "drop"
+  ) |>
+  ggplot(aes(x = factor(year), 
+             y = n_missing, 
+             fill = section)) +
+  geom_col(position = "dodge", 
+           color = "white", 
+           linewidth = 0.3) +
+  geom_text(aes(label = n_missing), 
+            position = position_dodge(width = 0.9),
+            vjust = -0.5, 
+            size = 3) +
+  facet_wrap(~trip) +
+  labs(
+    x = "",
+    y = "",
+    fill = "River Section",
+    title = "Missing Values in Fish Measurements by Year, Section, and Trip",
+    subtitle = "Rainbow and brown trout measurements across the Blackfoot River"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 13),
+    plot.subtitle = element_text(size = 10, color = "gray40"),
+    strip.text = element_text(face = "bold", size = 11),
+    legend.position = "bottom"
+  ) +
+  scale_fill_brewer(palette = "Set1")
+```
+
+This plot is brought to us by Joaquin Arredondo! I really appreciated Joaquin's
+use of descriptive facet labels and their non-standard colors. The colors almost
+look like Rainbow Trout!
+
+```{r}
+#| code-fold: true
+
+fish |>
+  mutate(any_missing = if_any(everything(), is.na)) |>
+  filter(any_missing) |>
+  count(year, section, trip) |>
+  ggplot(aes(y = factor(year), 
+             x = n, 
+             fill = section)) +
+  geom_col(position = "dodge") +
+  facet_wrap(~ trip, labeller = label_both) +
+  labs(
+    y = "",
+    x = "Observations with Missing Values",
+    fill = "Section",
+    title = "Missingness Across Year, Section, and Trip"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title.y = element_text(margin = margin(t = 10))
+  ) + 
+    scale_fill_brewer(palette = "Dark2") 
+```
+
+This plot is brought to us by Samanatha Frick! I appreciated Samantha's use of a
+grid of facets, with great labels (and colors)! 
+
+```{r}
+#| code-fold: true
+
+fish_missing <- fish |>
+  filter(if_any(.cols = everything(), .fns = ~ is.na(.x))) |>
+  count(year, section, trip, name = "n_missing")
+
+ggplot(data = fish_missing,
+       mapping = aes(x = n_missing, y = factor(year), fill = section)) +
+  geom_col() + 
+  geom_text(mapping = aes(label = n_missing), hjust = -0.1, size = 2.8) + 
+  scale_x_continuous(expand = expansion(mult = c(0, 0.11))) + 
+  facet_grid(rows = vars(section),
+             cols = vars(trip),
+             scales = "free_x",
+             labeller = labeller(trip = c(`1` = "Trip 1", `2` = "Trip 2"))) +
+  labs(
+    title = "Observations Missing Weight of Fish by Year, Section, and Trip",
+    x = "Number of Observations Missing Weight",
+    y = ""
+  ) +
+  scale_fill_manual(
+    name = "Section",
+    values = c("Johnsrud" = "#603bbf", "ScottyBrown" = "#5ba0a0")) + 
+  theme_light() +
+  theme(legend.position = "none")
+```
+
+```{r}
+
+```
+
+

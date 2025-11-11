@@ -1,0 +1,96 @@
+---
+title: "Week 9 Extras"
+format: revealjs
+---
+
+<!-- ## The `pmap()` Family -->
+
+<!-- These functions take in a **list of vectors** and a **function**. -->
+
+<!-- + The function must accept a number of arguments equal to the length of the list, -->
+
+<!-- ```{r} -->
+<!-- #| fig-align: center -->
+<!-- #| out-width: 65% -->
+<!-- #| echo: false -->
+<!-- #| fig-alt: "The image illustrates the concept of a parallel mapping function, specifically pmap, which applies a function to multiple lists or vectors element-wise. On the left, there are three vertical stacks of colored blocks in different shades of orange, blue, and yellow, each representing a separate list or vector. The text `pmap( , f)` indicates that a function f will be applied to elements from each of these lists in parallel. An arrow points to the right, leading to a new layout where each row contains a function application `f( , , )` with one element from each list placed within the function. This visual demonstrates how pmap applies a function to corresponding elements from multiple inputs simultaneously." -->
+
+<!-- knitr::include_graphics("images/pmap.png") -->
+<!-- ``` -->
+
+
+<!-- ## The `pmap()` Family -->
+
+<!-- The vectors need to have the **same names** as the arguments of the function you are applying. -->
+
+<!-- ::: {.midi} -->
+<!-- ```{r} -->
+<!-- #| code-line-numbers: false -->
+
+<!-- fruit <- data.frame(string = c("apple", "banana", "cherry"), -->
+<!--                     pattern = c("p", "n", "h"), -->
+<!--                     replacement = c("P", "N", "H")) -->
+<!-- fruit -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- . . . -->
+
+<!-- </br> -->
+
+<!-- ```{r} -->
+<!-- #| code-line-numbers: false -->
+
+<!-- fruit |>  -->
+<!--   pmap_chr(str_replace_all) -->
+<!-- ``` -->
+
+
+<!-- ### `str_glue()` -->
+
+<!-- Use variables in the environment to create a string based on {expressions}. -->
+
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: false -->
+
+<!-- first <- "James" -->
+<!-- last <- "Bond" -->
+<!-- str_glue("My name is {last}, {first} {last}") -->
+<!-- ``` -->
+
+<!-- ::: callout-tip -->
+<!-- For more details, I would recommend looking up the [`glue` R package](https://glue.tidyverse.org/)! -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ## `glue()` -->
+
+<!-- :::: {.columns} -->
+<!-- ::: {.column width="70%"} -->
+
+<!-- The `glue` package embeds R expressions in curly brackets that are then -->
+<!-- evaluated and inserted into the argument string. -->
+
+<!-- ::: -->
+<!-- ::: {.column width="30%"} -->
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| fig-align: center -->
+<!-- #| out-width: 50% -->
+<!-- #| fig-alt: "The image is a hexagonal logo for the R package 'glue.' It features an illustration of a glue bottle with an orange label that reads 'glue' in white, playful font. The bottle has an orange nozzle and a gray cap, and the background of the hexagon is textured with a subtle pattern. This design conveys the package's purpose, which is to glue together strings in R, making it easier to combine text and data dynamically." -->
+
+<!-- knitr::include_graphics("images/glue.jpg") -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- ```{r} -->
+<!-- #| code-line-numbers: false -->
+
+<!-- library(glue) -->
+
+<!-- name <- "Dr. Theobold" -->
+<!-- glue('My name is {name}.') -->
+<!-- ``` -->

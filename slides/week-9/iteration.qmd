@@ -15,8 +15,6 @@ execute:
 
 library(tidyverse)
 library(palmerpenguins)
-
-fish <- read_csv(here::here("labs", "instructions", "data", "BlackfootFish.csv"))
 ```
 
 ## Today we will...
@@ -750,9 +748,86 @@ datatable(penguins)
 
 ![](images/womens-world-cup-table.png)
 
-# Creative Plots from Lab 7
+# Lab 7 & Challenge 7 Revisions
 
-## Clear Information
+## Input Checks
+
+What types of inputs do your functions expect?
+
+. . .
+
+::: {.midi}
+- numbers?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+stopifnot("Input vector must be numeric" = is.numeric(vec))
+```
+:::
+
+. . .
+
+::: {.midi}
+- values greater than 0?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+stopifnot("Input vector must be numeric" = is.numeric(vec), 
+          "Input vector must have values larger than 0" = any(vec <= 0))
+``` 
+:::
+
+. . .
+
+::: {.midi}
+- vectors of the same length?
+
+```{r}
+#| echo: true
+#| eval: false
+#| code-line-numbers: false
+
+stopifnot("Input vector must be numeric" = is.numeric(vec), 
+          "Input vector must have values larger than 0" = any(vec <= 0), 
+          "Max must be a scaler value" = length(max) > 1, 
+          "Min must be a scaler value" = length(min) > 1)
+``` 
+:::
+
+# Clear & Creative Plots
+
+```{r}
+#| label: data-function-lab-7
+
+fish <- read_csv(here::here("labs", "instructions", "data", "BlackfootFish.csv")) |> 
+  mutate(length = length / 10) 
+
+impossible_to_NA <- function(x, min, max) {
+  case_when(
+    x < min ~ NA,
+    x > max ~ NA,
+    .default = x
+  )
+}
+
+fish <- fish |> 
+  mutate(length = impossible_to_NA(length, min = 5, max = 80),
+         weight = impossible_to_NA(weight, min = 10, max = 4000)
+         )
+
+condition_index <- function(length, weight) {
+  (weight / (length^3)) * 100
+}
+```
+
+
+## Missing Values
 
 ::: {.small}
 ```{r}
@@ -800,36 +875,45 @@ fish |>
 ```
 :::
 
-## Facet Grid
+## Condition Indices
 
 ::: {.small}
 ```{r}
 #| echo: true
 #| code-fold: true
 
-fish_missing <- fish |>
-  filter(if_any(.cols = everything(), .fns = ~ is.na(.x))) |>
-  count(year, section, trip, name = "n_missing")
-
-ggplot(data = fish_missing,
-       mapping = aes(x = n_missing, y = factor(year), fill = section)) +
-  geom_col() + 
-  geom_text(mapping = aes(label = n_missing), hjust = -0.1, size = 2.8) + 
-  scale_x_continuous(expand = expansion(mult = c(0, 0.11))) + 
-  facet_grid(rows = vars(section),
-             cols = vars(trip),
-             scales = "free_x",
-             labeller = labeller(trip = c(`1` = "Trip 1", `2` = "Trip 2"))) +
-  labs(
-    title = "Observations Missing Weight of Fish by Year, Section, and Trip",
-    x = "Number of Observations Missing Weight",
-    y = ""
-  ) +
-  scale_fill_manual(
-    name = "Section",
-    values = c("Johnsrud" = "#603bbf", "ScottyBrown" = "#5ba0a0")) + 
-  theme_light() +
-  theme(legend.position = "none")
+mycolors <- RColorBrewer::brewer.pal(8, "BrBG")[c(3, 2, 1, 8)] # color palette
+  
+fish |> 
+  mutate(condition = condition_index(length, weight)) |> 
+  group_by(year, species) |> 
+  summarize(mean_condition = mean(condition, na.rm = TRUE),
+            .groups = "drop") |> 
+  mutate(species = fct_reorder2(.f = species,
+                               .x = year,
+                               .y = mean_condition)) |> 
+  ggplot(mapping = aes(x = year, y = mean_condition, color = species)) +
+  geom_rug(sides = "b", color = "gray85", lineend = "round", length = unit(100, "npc")) +
+  geom_smooth(se = FALSE) +
+  geom_point() +
+  theme_linedraw() +
+  scale_color_manual(values = mycolors,
+                     labels = c("Rainbow Trout",
+                                "Brown Trout",
+                                "Westslope Cutthroat Trout",
+                                "Bull Trout")) +
+  scale_x_continuous(breaks = seq(1988, 2007, by = 1)) +
+  theme(axis.text.x = element_text(size = 7),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.x = element_blank(),
+        plot.title = element_text(face = "bold"),
+        plot.caption.position = "plot") +
+  labs(title = "Bull Trout in Worse Condition than Other Trout Species",
+       subtitle = "Mean Condition Index",
+       x = NULL,
+       y = NULL,
+       color = "Trout Species",
+       caption = "Fish captured on the Blackfoot River outside Helena, Montana")
 ```
 :::
 

@@ -983,8 +983,7 @@ fish <- read_csv(here::here("labs",
 
 ## Exemplary Plots of Missing Data
 
-This plot is brought to us by Abel Magallon! I thought this plot was 
-great because it (1) is easy to read, and (2) has a lot of detailed information. The annotations are great, plot title and subtitle describe the context of what is being plotted, and the facet labels are easy to understand.
+This plot is brought to us by Abel Magallon! I thought this plot was great because it (1) is easy to read, and (2) has a lot of detailed information. The annotations are great, plot title and subtitle describe the context of what is being plotted, and the facet labels are easy to understand.
 
 ```{r}
 #| code-fold: true
@@ -1029,9 +1028,7 @@ fish |>
   scale_fill_brewer(palette = "Set1")
 ```
 
-This plot is brought to us by Joaquin Arredondo! I really appreciated Joaquin's
-use of descriptive facet labels and their non-standard colors. The colors almost
-look like Rainbow Trout!
+This plot is brought to us by Joaquin Arredondo! I really appreciated Joaquin's use of descriptive facet labels and their non-standard colors. The colors almost look like Rainbow Trout!
 
 ```{r}
 #| code-fold: true
@@ -1058,8 +1055,7 @@ fish |>
     scale_fill_brewer(palette = "Dark2") 
 ```
 
-This plot is brought to us by Samanatha Frick! I appreciated Samantha's use of a
-grid of facets, with great labels (and colors)! 
+This plot is brought to us by Samanatha Frick! I appreciated Samantha's use of a grid of facets, with great labels (and colors)!
 
 ```{r}
 #| code-fold: true
@@ -1089,8 +1085,279 @@ ggplot(data = fish_missing,
   theme(legend.position = "none")
 ```
 
+This plot is brought to us by Paco Jones! I appreciated Paco's use of a non-standard geom to visualize the missingness in the data. They are using a `geom_tile()` to create a heatmap of missing values. Pretty cool!
+
 ```{r}
+#| code-fold: true
+
+fish %>%
+  mutate(.row_has_na = if_any(everything(), is.na)) %>%
+  group_by(year, section, trip) %>%
+  summarize(
+    missing_count = sum(.row_has_na),
+    total = n(),
+    .groups = "drop"
+  ) %>%
+  ggplot(aes(x = section, y = factor(year), fill = missing_count)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = missing_count), size = 4, color = "white") +
+  facet_wrap(~ trip, labeller = label_both) +
+  scale_fill_viridis_c(option = "plasma") +
+  labs(
+    title = "Missing Value Counts by Year, Section, and Trip",
+    x = "Section",
+    y = "Year",
+    fill = "Missing Count"
+  ) +
+  theme_minimal(base_size = 12)
+```
+
+# Challenge 7
+
+## Great Input Checks
+
+```{r}
+#| label: from-art
+#| echo: false
+
+condition <- function(weight, length_cm) {
+  if (!is.numeric(weight) || !is.numeric(length_cm)) {
+    return("Both weight and length must be numeric.")
+  }
+  if (length(weight) != length(length_cm)) {
+    return("Vectors must be the same length.")
+  }
+
+  (weight / (length_cm^3)) * 100
+}
+```
+
+```{r}
+#| label: from-shafay
+#| echo: false
+
+condition_index <- function(weight_g, length_cm) {
+  if (!is.numeric(weight_g) || !is.numeric(length_cm)) {
+    stop("Both inputs must be numeric (weight in grams, length in centimeters).")
+  }
+  if (length(weight_g) != length(length_cm)) {
+    stop("`weight_g` and `length_cm` must have the same length.")
+  }
+  if (length(weight_g) < 1) {
+    stop("Inputs must have length >= 1.")
+  }
+  (weight_g / (length_cm^3)) * 100
+}
+```
+
+```{r}
+#| label: from-shashank
+#| echo: false
+
+condition_index <- function(weight, length_cm) {
+  if (!is.numeric(weight) | !is.numeric(length_cm)) stop("Inputs must be numeric")
+  if (length(weight) != length(length_cm)) stop("Weight and length vectors must have same length")
+  100 * weight / (length_cm^3)
+}
+```
+
+```{r}
+#| label: from-kallan
+#| echo: false
+
+condition_index <- function(weight_g, length_cm) {
+  if (!is.numeric(weight_g) || !is.numeric(length_cm)) stop("Inputs must be numeric.")
+  if (any(length_cm <= 0, na.rm = TRUE)) stop("Lengths must be > 0 cm.")
+  (weight_g / (length_cm^3)) * 100
+}
+```
+
+```{r}
+#| label: from-quinton
+#| echo: false
+
+condition_index <- function(fish_weight, fish_length) {
+  if (!is.numeric(fish_weight) | !is.numeric(fish_length)) {
+    stop("Both weight and length must be numeric")
+  }
+  
+  if (length(fish_weight) != length(fish_length)) {
+    stop("Weight and length vectors must have same length")
+  }
+  
+  if (any(fish_length <= 0, na.rm = TRUE) | any(fish_weight <= 0, na.rm = TRUE)) {
+    stop("Length of vectors must be greater than 0")
+  }
+  
+  (fish_weight * 100) / (fish_length^3)
+  
+}
+```
+
+## Cool Plots
+
+```{r}
+#| label: functions-for-plot
+#| echo: false
+
+impossible_to_NA <- function(x, min, max) {
+  case_when(
+    x < min ~ NA_real_,
+    x > max ~ NA_real_,
+    .default = x
+  )
+}
+
+condition_index <- function(length, weight) {
+  (weight / (length^3)) * 100
+}
 
 ```
 
+```{r}
+#| label: cleaning-fish-data
+#| echo: false
+
+fish <- fish |> 
+  mutate(length = length / 10, 
+         length = impossible_to_NA(length, min = 5, max = 80),
+         weight = impossible_to_NA(weight, min = 10, max = 4000)
+         ) 
+```
+
+This plot is brought to us by Connie Xian! This plot blew me away. Connie made 
+so many changes to make the plot easily understandable to the reader. The legend
+is in the order of the lines (`fct_reorder2()`!), there are vertical grey lines
+only on the years where data were collected, and the years a labeled to not make
+the reader tilt their head. The icing on the cake is the renaming of the 
+`species` variable so the reader doen't have to guess what WCT means. 🔥
+
+```{r}
+#| label: from-connie
+#| echo: true
+#| code-fold: true
+
+mycolors <- RColorBrewer::brewer.pal(8, "BrBG")[c(3,2,1,8)] # color palette
+  
+fish |> 
+  mutate(condition = condition_index(length, weight)) |> 
+  group_by(year, species) |> 
+  summarize(mean_condition = mean(condition, na.rm = TRUE),
+            .groups = "drop") |> 
+  mutate(species = fct_reorder2(.f = species,
+                               .x = year,
+                               .y = mean_condition)) |> 
+  ggplot(mapping = aes(x = year, y = mean_condition, color = species)) +
+  geom_rug(sides = "b", color = "gray85", lineend = "round", length = unit(100, "npc")) +
+  geom_smooth(se = FALSE) +
+  geom_point() +
+  theme_linedraw() +
+  scale_color_manual(values = mycolors,
+                     labels = c("Rainbow Trout",
+                                "Brown Trout",
+                                "Westslope Cutthroat Trout",
+                                "Bull Trout")) +
+  scale_x_continuous(breaks = seq(1988, 2007, by = 1)) +
+  theme(axis.text.x = element_text(size = 7),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.major.x = element_blank(),
+        plot.title = element_text(face = "bold"),
+        plot.caption.position = "plot") +
+  labs(title = "Bull Trout in Worse Condition than Other Fish",
+       subtitle = "Mean Condition Index",
+       x = "Year",
+       y = NULL,
+       color = "Trout Species",
+       caption = "Black Foot River Fish in Helena, Montana")
+
+```
+
+This plot is brought to us by a student who wishes to remain anonymous. I 
+appreciated the use of a `geom_ribbon()` in the plot to show the range of values
+for the condition indices. The calculation of a 95% confidence interval around 
+the mean condition index for each year and species was an impressive feat 
+already!
+
+```{r}
+#| label: from-agustin
+#| echo: false
+#| code-fold: true
+
+fish_data <- fish %>% 
+  mutate(species = as.factor(species), 
+         K = condition_index(weight, length)
+         )
+
+cond_year <- fish_data %>%
+  drop_na(K, year) %>%
+  group_by(year, species) %>%
+  summarise(
+    mean_K = mean(K),
+    n      = n(),
+    sd     = sd(K),
+    se     = sd / sqrt(n),
+    lower  = mean_K - 1.96 * se,
+    upper  = mean_K + 1.96 * se,
+    .groups = "drop"
+  )
+
+ggplot(cond_year, aes(x = year, y = mean_K, group = species)) +
+  geom_ribbon(aes(ymin = lower, ymax = upper, fill = species), 
+              alpha = 0.18, colour = NA, show.legend = FALSE) +
+  geom_line(aes(colour = species)) +
+  geom_point(aes(colour = species)) +
+  labs(
+    title = "Fish Condition Over Time (Fulton's K)",
+    subtitle = "Yearly means by species with 95% CI\nLength cleaned to 5–80 cm; weight cleaned to 10–4,000 g",
+    x = "Year", y = "Mean condition index (K = 100·W[g]/L[cm]^3)"
+  ) +
+  theme_minimal()
+```
+
+
+```{r}
+#| label: from-aidan #
+#| echo: false
+#| code-fold: true
+
+custom_colors <- colorRampPalette(brewer.pal(8, "Accent"))(6)
+
+fish_k <- fish |>
+  mutate(K = condition_index(length, weight)) |>
+  drop_na(K, year, section, species)
+
+species_order <- fish_k |>
+  group_by(species) |>
+  summarize(overall_median_K = median(K, na.rm = TRUE), .groups = "drop") |>
+  arrange(desc(overall_median_K)) |>
+  pull(species)
+
+yearly <- fish_k |>
+  group_by(year, section, species) |>
+  summarize(K_med = median(K, na.rm = TRUE), .groups = "drop") |>
+  mutate(species = factor(species, levels = species_order))
+
+ggplot(yearly, aes(x = year, y = K_med, color = species)) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2.2, alpha = 0.9) +
+  facet_wrap(~ section, ncol = 2) +
+  scale_color_manual(values = custom_colors) +
+  #scale_y_continuous(limits = c(0.5, 1.5)) +
+  labs(
+    title = "Fish Condition Index (K) Over Time by River Section",
+    subtitle = "Faceted by section and colored by species",
+    x = "Year",
+    y = "Median Condition Index (K)",
+    color = "Species"
+  ) +
+  theme_bw(base_size = 12) +
+  theme(
+    strip.background = element_rect(fill = "lightgray", color = NA),
+    strip.text = element_text(face = "bold"),
+    legend.position = "bottom",
+    legend.title = element_text(face = "bold"),
+    plot.title = element_text(face = "bold", size = 14),
+    plot.subtitle = element_text(size = 11, color = "gray50", face = "italic")
+  )
+```
 

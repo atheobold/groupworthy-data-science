@@ -212,8 +212,9 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#random-babies-simulation" id="toc-random-babies-simulation" class="nav-link active" data-scroll-target="#random-babies-simulation">Random Babies Simulation</a></li>
-  <li><a href="#simulating-coverage" id="toc-simulating-coverage" class="nav-link" data-scroll-target="#simulating-coverage">Simulating Coverage</a></li>
+  <li><a href="#accessing-the-lab" id="toc-accessing-the-lab" class="nav-link active" data-scroll-target="#accessing-the-lab">Accessing the Lab</a></li>
+  <li><a href="#random-babies-simulation" id="toc-random-babies-simulation" class="nav-link" data-scroll-target="#random-babies-simulation">Random Babies Simulation</a></li>
+  <li><a href="#simulating-confidence-interval-coverage" id="toc-simulating-confidence-interval-coverage" class="nav-link" data-scroll-target="#simulating-confidence-interval-coverage">Simulating Confidence Interval Coverage</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -249,7 +250,23 @@ window.Quarto = {
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><a href="../../student-versions/labs/lab9-simulation.qmd">Download .qmd starter file</a></p>
+<section id="accessing-the-lab" class="level2">
+<h2 class="anchored" data-anchor-id="accessing-the-lab">Accessing the Lab</h2>
+<p>Download the template Lab 10 Quarto file here: <a href="../student/lab-10-student.qmd" download=""><code>lab-10-student.qmd</code></a></p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Be sure to save this in the Lab 10 folder, inside your Week 10 folder, inside your STAT 331 folder!</p>
+</div>
+</div>
+</section>
 <section id="random-babies-simulation" class="level2">
 <h2 class="anchored" data-anchor-id="random-babies-simulation">Random Babies Simulation</h2>
 <p>Perhaps you have seen the <a href="https://www.rossmanchance.com/applets/2021/randombabies/RandomBabies.html">Random Babies applet</a>? Suppose one night at a hospital some number of babies are born. The hospital is not very organized and looses track of which baby belongs to each parent(s), so they decide to return the babies to parents <em>at random</em>. Here, we are interested in the number of babies that are correctly returned to their respective parent(s).</p>
@@ -264,7 +281,7 @@ Tip
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>First, write a function to accomplish one simulation (i.e.&nbsp;one night), given a number of babies (<code>n_babies</code>) that were born in a hospital on a given night .</p>
+<p>First, write a function to accomplish one simulation (i.e.&nbsp;one night), given a number of babies (<code>n_babies</code>) that were born in a hospital on a given night.</p>
 <p>Then use <code>map_int()</code> to run 10,000 simulations assuming 4 babies were born.</p>
 <p>Keep in mind that your function needs to output a single number (not data frame) for it to be compatible with <code>map_int()</code>!</p>
 </div>
@@ -279,7 +296,7 @@ Tip
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                   <span class="at">.f =</span> </span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>2. Create a table displaying the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).</strong></p>
+<p><strong>2. Create a table displaying the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).</strong> <em>Don’t forget to use the <code>fmt_percent()</code> function from the <strong>gt</strong> package to add percentage symbols to your proportion column!</em></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -293,45 +310,37 @@ Tip
 <p>The output of your <code>map_int()</code> is a vector, but to make a nice table (and plot) you need this to be a data frame! Luckily, the <code>enframe()</code> function does just that–it converts a vector to a data frame.</p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q2 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>3. Now create a barplot showing the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).</strong> Don’t forget a title and appropriate axis labels.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q3 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p><strong>3. Now create a barplot showing the proportion of simulations where 0, 1, 2, 3, and 4 babies were given to their correct parent(s).</strong> <em>Don’t forget to use the <code>label_percent()</code> function from the <strong>scales</strong> package to add percentage symbols to your y-axis labels!</em></p>
 </section>
-<section id="simulating-coverage" class="level2">
-<h2 class="anchored" data-anchor-id="simulating-coverage">Simulating Coverage</h2>
+<section id="simulating-confidence-interval-coverage" class="level2">
+<h2 class="anchored" data-anchor-id="simulating-confidence-interval-coverage">Simulating Confidence Interval Coverage</h2>
 <p>Many students struggle with the definition of a confidence interval when first learning the concept. The interpretation that a lot of textbooks include is somthing like “if we were to repeat the study many many times, 95% of the confidence intervals would contain the true population parameter.”</p>
 <p>We are going to implement a simulation that illustrates this statistical concept using confidence intervals for the slope parameter in a linear regression model.</p>
 <p>Let’s break it down into a couple of steps.</p>
 <p>As a reminder, the typical population model that we assume for a linear regression is:</p>
 <p><span class="math display">\[Y = \beta_0 + \beta_1 X + \varepsilon\]</span> Where <span class="math inline">\(\beta_0\)</span> and <span class="math inline">\(\beta_1\)</span> are the population intercept and slope parameters and and <span class="math inline">\(\varepsilon \sim N(0, \sigma^2)\)</span> is random noise that is normally distributed with mean 0 and variance <span class="math inline">\(\sigma^2\)</span>.</p>
-<p>We will design a simulation that uses this “data generating model.”</p>
-<p><strong>4. Fill in the code below to generate a synthetic dataset with 100 observations. We will assume that the explanatory variable <span class="math inline">\(X\)</span> is uniformly distributed from 0 to 1 and that <span class="math inline">\(\sigma^2\)</span> = 1. The synthetic data should be a dataframe with 100 rows and two columns: <code>x</code> and <code>y</code>.</strong></p>
+<p>We will design a simulation that uses this as a “data generating model.”</p>
+<p><strong>4. Fill in the code below to generate a synthetic dataset with 100 observations. We will assume that the explanatory variable <span class="math inline">\(X\)</span> is uniformly distributed from 0 to 1 and that <span class="math inline">\(\sigma^2\)</span> = 1. The synthetic data should be a data frame with 100 rows and two columns: <code>x</code> and <code>y</code>.</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define slope and intercept parameters</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">=</span> <span class="dv">2</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># generate x vector</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co"># generate noise `ep` vector</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># generate outcome from population model</span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> intercept <span class="sc">+</span> x<span class="sc">*</span>slope <span class="sc">+</span> ep</span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># create an "observed data" dataframe with only the x and y vectors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define slope and intercept parameters</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>intercept <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>slope <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># generate x vector</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># generate noise `ep` vector</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># generate outcome from population model</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> intercept <span class="sc">+</span> x<span class="sc">*</span>slope <span class="sc">+</span> ep</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># create an "observed data" dataframe with only the x and y vectors</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>5. Fit a simple linear regression model of the outcome <code>y</code> on <code>x</code>. Use <code>tidy()</code> from the <code>broom</code> package to extract a dataframe from the <code>lm()</code> output that includes the slope estimate and a 95% confidence interval for the slope estimate.</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q5 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>6. Check whether the true population slope is inside of the estimated 95% confidence interval for that simulated dataset. Specifically, <em>add</em> a variable called <code>cover</code> to the dataframe of estimates you created in the last question (Q5) that is <code>1</code> if the population slope is in the interval and <code>0</code> if not.</strong></p>
+<p><strong>5. Fit a simple linear regression model of the outcome <code>y</code> on <code>x</code>.</strong></p>
+<p><strong>6. Use the <code>tidy()</code> function from the <code>broom</code> package to extract a data frame from the <code>lm()</code> output that includes the slope estimate and a 95% confidence interval for the slope estimate.</strong></p>
+<p><strong>7. Check whether the true population slope is inside of the estimated 95% confidence interval for that simulated dataset. Specifically, <em>add</em> a variable called <code>cover</code> to the dataframe of estimates you created in the last question (Q6) that is <code>1</code> if the population slope is in the interval and <code>0</code> if not.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -345,35 +354,38 @@ Tip
 <p>As a reminder, we set <code>slope = 1</code> in the data generation (Q4) so the true population slope is <span class="math inline">\(\beta_1 = 1\)</span>.</p>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q6 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>7. Now put this all together into a function called <code>mycifun</code>! Run the check provided to ensure that it works correctly</strong></p>
+<p><strong>8. Now put this all together into a function called <code>mycifun()</code>! The function should have three required arguments:</strong></p>
 <ul>
-<li><p>The function should have three required arguments: <code>beta0</code>, <code>beta1</code>, and <code>n</code> (the number of observations in the simulated data).</p></li>
-<li><p>The function should complete the steps in Q4-6 given these arguments:</p>
-<ol type="1">
-<li>generate one synthetic dataset based on the data generating model as above</li>
-<li>fit a linear regression model</li>
-<li>check that the <strong>population slope</strong> is contained in the estimated 95% confidence interval for the sample slope</li>
-</ol></li>
-<li><p>The output of the function should be a dataframe/tibble with one row and four columns: the slope estimate, lower bound of the CI, upper bound of the CI, and whether the population slope is within the CI.</p></li>
+<li><code>beta0</code>,</li>
+<li><code>beta1</code>, and</li>
+<li><code>n</code> (the number of observations in the simulated data).**</li>
 </ul>
+<p><strong>The function should complete the steps in Q4-7 given these arguments:</strong></p>
+<ul>
+<li>generate one synthetic dataset based on the data generating model specified</li>
+<li>fit a linear regression model to the simulated data</li>
+<li>check that the <strong>population slope</strong> is contained in the estimated 95% confidence interval for the sample slope</li>
+</ul>
+<p><strong>The output of the function should be a data frame (or tibble) with one row and four columns:</strong></p>
+<ul>
+<li>the slope estimate,</li>
+<li>lower bound of the CI,</li>
+<li>upper bound of the CI, and</li>
+<li>whether the population slope is within the CI.</li>
+</ul>
+<p><strong>9. Run the code below to test your function.</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q7 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mycifun</span>(<span class="at">beta0 =</span> <span class="dv">1</span>, <span class="at">beta1 =</span> <span class="dv">2</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>10. Now run this simulation 1,000 times using <code>map()</code> and the function you wrote (<code>mycifun()</code>). Generate data with <span class="math inline">\(\beta_0 = 3\)</span>, <span class="math inline">\(\beta_1 = .5\)</span> and <span class="math inline">\(n = 100\)</span>. Make sure to add a line of code to make your simulation reproducible every time you run it.</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mycifun</span>(<span class="at">beta0 =</span> <span class="dv">1</span>, <span class="at">beta1 =</span> <span class="dv">2</span>, <span class="at">n =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>ci_dat <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>              <span class="at">.f =</span> </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>              )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>8a. Now run this simulation 1,000 times using <code>map_dfr()</code> and the function you wrote (<code>mycifun()</code>). Generate data with <span class="math inline">\(\beta_0 = 3\)</span>, <span class="math inline">\(\beta_1 = .5\)</span> and <span class="math inline">\(n = 100\)</span>. Make sure to add a line of code to make your simulation reproducible every time you run it.</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ci_dat <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">.f =</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>8b. What does one row in the resulting <code>ci_dat</code> represent?</strong></p>
-<p><strong>8c. What is your simulated coverage rate? In otherwords, for what proportion of the iterations was the population slope within the estimated 95% confidence interval? Write your answer as a sentence in Markdown using inline code!</strong></p>
-<p><strong>9. Create a visualization to illustrate the coverage rate.</strong></p>
+<p><strong>11. Use the <code>bind_rows()</code> function from the dplyr package to glue each row of your simulation together. The result of this step should be a data frame (or tibble) with 1,000 rows and 4 columns.</strong></p>
+<p><strong>12. What is your simulated coverage rate? In otherwords, for what proportion of the iterations was the population slope within the estimated 95% confidence interval?</strong></p>
+<p><strong>13. Create a visualization to illustrate the coverage rate.</strong></p>
 <p>You can create any visualization that effectively illustrates the concept. I included a plot below with my idea of an effective plot to illustrate the concept of coverage. Actually, a professor showed me a plot like this in undergrad and I have always remembered it!</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -389,19 +401,16 @@ Tip
 <ul>
 <li>Check out <code>geom_errorbar()</code></li>
 <li>Check out <code>geom_vline()</code> for the line indicating the true population slope</li>
-<li>See <a href="https://atheobold.github.io/groupworthy-data-science/slides/week-8/iteration-part-2.html#/could-you-remove-your-legend-1">this slide</a> for code from Dr.&nbsp;Theobold to include colors in a title rather than a legend.</li>
-<li>I took a random sample of 100 simulations to make it easier to look at.</li>
+<li>Check out the <strong>ggtext</strong> package for [including colors in a title rather than a legend](https://atheobold.github.io/groupworthy-data-science/labs/instructions/challenge-2-instructions.html#hot-embedding-the-legend-in-the-plot-title.</li>
+<li>I took a random sample of 100 simulations to make my plot easier to look at.</li>
 </ul>
 </div>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="ci_plot.png" class="img-fluid figure-img"></p>
+<p><img src="images/lab-10-ci-plot.png" class="img-fluid figure-img"></p>
 <figcaption>Example Plot</figcaption>
 </figure>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Q9 code</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

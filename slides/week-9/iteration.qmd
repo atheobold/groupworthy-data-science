@@ -22,9 +22,10 @@ library(palmerpenguins)
 + New Material
   + Performing Repeated Tasks + Vectorization
   + Functional Programming: the `map()` family
-+ Lab 9 
++ Lab 8 Recap
++ Lab 9 Preview
 
-# It's Week 8...
+# It's Week 8 (or 9)...
 
 . . .
 
@@ -804,6 +805,7 @@ stopifnot("Input vector must be numeric" = is.numeric(vec),
 
 ```{r}
 #| label: data-function-lab-7
+#| echo: false
 
 fish <- read_csv(here::here("labs", "instructions", "data", "BlackfootFish.csv")) |> 
   mutate(length = length / 10) 

@@ -1,0 +1,49 @@
+---
+title: "Week 9: Iteration & Making Great Tables"
+format: docx
+execute: 
+  eval: false
+---
+
+1. Repetition is where you 
+
+2. Iteration is where you
+
+## Vectorization
+
+3. What does it mean for a function to be vectorized?
+
+4. Are all functions vectorized?
+
+5. Can you make a function vectorized?
+
+6. What do you do if you can't vectorize your function?
+
+## Functional Programming
+
+7. Why do we not want to use loops in R?
+
+8. What does the `map()` function do?
+
+The `map_xxx()` variants allow you to specify the **type of output** you want.
+Every funciton takes in a list (`.x`) and a function (`.f`) as arguments.
+
+9. What type of output does each function produce?
+
++ `map()`: 
++ `map_chr()`:
++ `map_lgl()`:
++ `map_int()`:
++ `map_dbl()`: 
+
+10. What happens if you try and use the wrong `map_xxx()` function?
+
+11. What does `map_if()` do?
+
+12. What is the output of `map_if()`?
+
+13. How do you get the output of `map_if()` back into a data frame?
+
+14. What is the output of `map_int()`?
+
+15. How do you get the output of `map_int()` into a data frame?

@@ -146,6 +146,11 @@ In the original version of Lab 3, Question 4 asked you to:
 > Change data types in whichever way you see fit (e.g., is the instructor ID
 > really a numeric data type?)
 
+<!-- This should get changed to `modify_if()` (not `map_if()`) -->
+<!-- `modify()`: the modify() family always returns the same type as the input object. -->
+<!-- modify_if() only modifies the elements of .x that satisfy a predicate and leaves the others unchanged. 
+modify_at() only modifies elements given by names or positions. -->
+
 **Question 4: Using `map_at()` or `map_if()`, convert the `course_id`, `weekday`, 
 `academic_degree`, `time_of_day`, and `sex` columns to factors. In other words,
 convert all character variables into factors. DO NOT PRINT OUT YOUR NEW DATA

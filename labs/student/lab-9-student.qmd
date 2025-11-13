@@ -1,5 +1,5 @@
 ---
-title: "Lab 9 & Challenge 9: Searching for Efficiency & Making Great Tables"
+title: "Lab 9: Searching for Efficiency & Making Great Tables"
 author: "Your name here!"
 format: html
 editor: source

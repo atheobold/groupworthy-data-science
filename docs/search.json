@@ -2067,49 +2067,49 @@
   {
     "objectID": "labs/instructions/lab-9-instructions.html",
     "href": "labs/instructions/lab-9-instructions.html",
-    "title": "Lab 9 & Challenge 9: Searching for Efficiency & Making Great Tables",
+    "title": "Lab 9: Searching for Efficiency & Making Great Tables",
     "section": "",
     "text": "library(tidyverse)"
   },
   {
     "objectID": "labs/instructions/lab-9-instructions.html#accessing-the-lab",
     "href": "labs/instructions/lab-9-instructions.html#accessing-the-lab",
-    "title": "Lab 9 & Challenge 9: Searching for Efficiency & Making Great Tables",
+    "title": "Lab 9: Searching for Efficiency & Making Great Tables",
     "section": "Accessing the Lab",
     "text": "Accessing the Lab\nDownload the template Lab 8 Quarto file here: lab-9-student.qmd\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save this in the Lab 9 folder, inside your Week 9 folder, inside your STAT 331 folder!"
   },
   {
     "objectID": "labs/instructions/lab-9-instructions.html#formatting-tables",
     "href": "labs/instructions/lab-9-instructions.html#formatting-tables",
-    "title": "Lab 9 & Challenge 9: Searching for Efficiency & Making Great Tables",
+    "title": "Lab 9: Searching for Efficiency & Making Great Tables",
     "section": "Formatting Tables",
     "text": "Formatting Tables\nIn this lab, we will also practice making nice, report worthy, tables!\nI would recommend you think of tables no different from the visualizations you’ve been making. We want all aspects of our tables to be clear to the reader, so the comparisons we want them to make are straightforward. You should be thinking about:\n\nColumn headers\nGrouping headers\nOrder of columns\nOrder of rows\nNumber of decimals included for numeric entries\netc.\n\nTables are also a great avenue to display creativity! In fact, there is a yearly RStudio table contest, and here is a gallery of the award winning tables!\nThere are many packages for generating tables but I recommend either kable() function from the knitr package or gt() function from the gt package and their add-ons.\nFor simple tables\n\nthe kable() function from the knitr package for simple tables\nthe gt() function from the gt package\n\nFor more sophisticated tables\n\nstyling functions from the kableExtra package (e.g., kable_styling(), kable_classic())\nadd-on functions from the gt package (e.g., cols_label(), tab_header(), fmt_percent())\n\n\n\n\n\n\n\nWarning\n\n\n\nQuarto doesn’t play nice with some options for formatting HTML tables in other packages.\nTo make sure that your tables render as expected, we need to specify html-table-processing: none in the YAML header. You will notice that I already included that in this lab.\nI also recommend using the Source Editor for this lab."
   },
   {
     "objectID": "labs/instructions/lab-9-instructions.html#the-data",
     "href": "labs/instructions/lab-9-instructions.html#the-data",
-    "title": "Lab 9 & Challenge 9: Searching for Efficiency & Making Great Tables",
+    "title": "Lab 9: Searching for Efficiency & Making Great Tables",
     "section": "The Data",
     "text": "The Data\nFor this week’s lab, we will be revisiting questions from previous lab assignments, with the purpose of using functions from the map() family to iterate over certain tasks. To do this, we will need to load in the data from Lab 2, Lab 3, and Lab 7.\nQuestion 1: Edit the code below to read in the appropriate datsets that you should have saved from the previous labs!\n\n# Data from Lab 2\nsurveys &lt;- read_csv(here::here(\"Week 2\", \"Lab 2\", \"surveys.csv\"))\n\n# Data from Lab 3\nevals &lt;- read_csv(here::here(\"Week 3\", \"Lab3\", \"teacher_evals.csv\")) |&gt; \n  rename(sex = gender)\n\n# Data from Lab 7\nfish &lt;- read_csv(here::here(\"Week 7\", \"Lab 7\", \"BlackfootFish.csv\"))"
   },
   {
     "objectID": "labs/instructions/lab-9-instructions.html#lab-2",
     "href": "labs/instructions/lab-9-instructions.html#lab-2",
-    "title": "Lab 9 & Challenge 9: Searching for Efficiency & Making Great Tables",
+    "title": "Lab 9: Searching for Efficiency & Making Great Tables",
     "section": "Lab 2",
     "text": "Lab 2\nFirst up, we’re going to revisit Question 2 from Lab 2. This question asked:\n\nWhat are the data types of the variables in this dataset?\n\nQuestion 2: Using map_chr(), produce a table of the data type of each variable in the surveys dataset. Specifically, the table should have two columns Variable and Data Type with a row for each variable and be displayed using kable().\n\n\n\n\n\n\nTip\n\n\n\nYou will want to check out the enframe() function to help with this task.\n\n\n\n# Q1 code\n\nQuestion 3: Format the table nicely! Your table must use either kable() and functions in the kableExtra package or gt() and functions from the gt package to produce a table with the following qualities:\n\nrows are ordered to make the information easy to understand\ninclude a caption or header\nuse bolded column names\n\nNote that you should assign the column names when creating the table, not by renaming columns in the dataset itself because we hate variable names with spaces in them!"
   },
   {
     "objectID": "labs/instructions/lab-9-instructions.html#lab-3",
     "href": "labs/instructions/lab-9-instructions.html#lab-3",
-    "title": "Lab 9 & Challenge 9: Searching for Efficiency & Making Great Tables",
+    "title": "Lab 9: Searching for Efficiency & Making Great Tables",
     "section": "Lab 3",
     "text": "Lab 3\nNow, were on to Lab 3 where we will revisit two questions.\nIn the original version of Lab 3, Question 4 asked you to:\n\nChange data types in whichever way you see fit (e.g., is the instructor ID really a numeric data type?)\n\n\n\n\nQuestion 4: Using map_at() or map_if(), convert the course_id, weekday, academic_degree, time_of_day, and sex columns to factors. In other words, convert all character variables into factors. DO NOT PRINT OUT YOUR NEW DATA FRAME, just show the code. Hint: You will need to use bind_cols() to transform the list output back into a data frame.\nNext up, we’re going revisit Question 7 which asked:\n\nWhat are the demographics of the instructors in this study? Investigate the variables academic_degree, seniority, and sex and summarize your findings in ~3 complete sentences.\n\nMany people created multiple tables of counts for each of these demographics, but in this exercise we are going to create one table with every demographic.\nQuestion 5: Recreate the (mainly unformatted) table below using one pipeline. It is okay if the rows are not in the same order in your table, but the rest of the table should match mine. Meaning, you will need to do some renaming of the names of the variables and their levels.\n\n\n\n\n\n\n\n\n\n\n\nSame Data Cleaning as Lab 3\n\n\n\nRepeat the data cleaning steps that we did before question 7 to recreate this exact table. Remember that we needed to first only keep one row per instructor!\nI’m using the sen_level classification from Challenge 3:\n\n\"junior\" = seniority is 4 or less (inclusive)\n\"senior\" = seniority is between 4 and 8 (inclusive)\n\"very senior\" = seniority is greater than 8.\n\n\n\n\n\n\n\n\n\nTip\n\n\n\n\n\n\n\n\n\n\n\nI used the following options in kable_styling() (from the kableExtra package) to output this table:\n  kable_styling(full_width = FALSE,\n                bootstrap_options = \"striped\")\n\n\nQuestion 6: Now turn your output into a very nice table, like one of the examples below using kable() and kableExtra or gt().\n\n\n\n\n\nExample 1, produced with the kable() function and functions from the kableExtra package\n\n\n\n\n\n\n\n\nExample 2, produced with the gt package\n\n\n\n\nYour table does not need to copy one of these exactly but it should include all of the following:\n\nSome way of clearly indicating the three variable types as row groups\nGiving nice column names\nUsing a column header that spans the Count and % columns\nNicely formatting the % column to include % signs and only 1-2 digits\nGiving the table a title or a caption"
   },
   {
     "objectID": "labs/instructions/lab-9-instructions.html#lab-7",
     "href": "labs/instructions/lab-9-instructions.html#lab-7",
-    "title": "Lab 9 & Challenge 9: Searching for Efficiency & Making Great Tables",
+    "title": "Lab 9: Searching for Efficiency & Making Great Tables",
     "section": "Lab 7",
     "text": "Lab 7\nFor our last problem, we will revisit a question from the most recent lab. Question 1 asked you to use across() to make a table which summarized:\n\nWhat variable(s) have missing values present?\nHow many observations have missing values?\n\nQuestion 7: Using map_int(), produce a nicely formatted table of the number of missing values for each variable in the fish data.\nQuestion 8: Now turn your output into a very nice table, like the example below using the gt package. Specifically, your table should color the cells with 0 missing values green and cells with &gt; 0 missing values red.\n\n\n\n\n\n\n\n\n\n\n\ndata_color()\n\n\n\nYou will find this documentation page helpful! https://gt.rstudio.com/reference/data_color.html"
   },

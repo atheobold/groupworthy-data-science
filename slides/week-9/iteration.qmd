@@ -780,7 +780,7 @@ stopifnot("Input vector must be numeric" = is.numeric(vec))
 #| code-line-numbers: false
 
 stopifnot("Input vector must be numeric" = is.numeric(vec), 
-          "Input vector must have values larger than 0" = any(vec <= 0))
+          "Input vector must have values larger than 0" = any(vec > 0))
 ``` 
 :::
 
@@ -795,9 +795,9 @@ stopifnot("Input vector must be numeric" = is.numeric(vec),
 #| code-line-numbers: false
 
 stopifnot("Input vector must be numeric" = is.numeric(vec), 
-          "Input vector must have values larger than 0" = any(vec <= 0), 
-          "Max must be a scaler value" = length(max) > 1, 
-          "Min must be a scaler value" = length(min) > 1)
+          "Input vector must have values larger than 0" = any(vec > 0), 
+          "Max must be a scaler value" = length(max) == 1, 
+          "Min must be a scaler value" = length(min) == 1)
 ``` 
 :::
 

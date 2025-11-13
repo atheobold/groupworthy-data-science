@@ -334,6 +334,10 @@ Tip
 <blockquote class="blockquote">
 <p>Change data types in whichever way you see fit (e.g., is the instructor ID really a numeric data type?)</p>
 </blockquote>
+<!-- This should get changed to `modify_if()` (not `map_if()`) -->
+<!-- `modify()`: the modify() family always returns the same type as the input object. -->
+<!-- modify_if() only modifies the elements of .x that satisfy a predicate and leaves the others unchanged. 
+modify_at() only modifies elements given by names or positions. -->
 <p><strong>Question 4: Using <code>map_at()</code> or <code>map_if()</code>, convert the <code>course_id</code>, <code>weekday</code>, <code>academic_degree</code>, <code>time_of_day</code>, and <code>sex</code> columns to factors. In other words, convert all character variables into factors. DO NOT PRINT OUT YOUR NEW DATA FRAME, just show the code.</strong> <em>Hint: You will need to use <code>bind_cols()</code> to transform the list output back into a data frame.</em></p>
 <p>Next up, we’re going revisit Question 7 which asked:</p>
 <blockquote class="blockquote">

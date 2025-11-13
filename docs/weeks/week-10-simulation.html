@@ -219,18 +219,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>know functions for simulating some of the common distributions (e.g., Normal, t, Chi-Square, Binomial)</li>
 <li>know what each of the <code>r</code>, <code>p</code>, <code>d</code>, and <code>q</code> functions do when simulating data from different statistical distributions</li>
 </ul>
-<hr>
+<div class="columns">
+<div class="column" style="width:60%;">
 <section id="watch-videos-17-minutes" class="level4">
 <h4 class="anchored" data-anchor-id="watch-videos-17-minutes">📽 Watch Videos: 17 minutes</h4>
 </section>
 <section id="readings-15-20-minutes" class="level4">
 <h4 class="anchored" data-anchor-id="readings-15-20-minutes">📖 Readings: 15-20 minutes</h4>
 </section>
-<section id="check-ins-1" class="level4">
-<h4 class="anchored" data-anchor-id="check-ins-1">✅ Check-ins: 1</h4>
+</div><div class="column" style="width:5%;">
+
+</div><div class="column" style="width:35%;">
+<section id="preview-activities-1" class="level4">
+<h4 class="anchored" data-anchor-id="preview-activities-1">✅ Preview Activities: 1</h4>
+</section>
+</div>
+</div>
 <hr>
 <p>In statistics, we often want to simulate data (or create fake data) for a variety of purposes. For example, in your first statistics course, you may have flipped coins to “simulate” a 50-50 chance. This week, we will learn how to simulate data from statistical distributions using R.</p>
-</section>
 <section id="simulation-in-r" class="level2 page-columns page-full" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="simulation-in-r"><span class="header-section-number">1</span> Simulation in R</h2>
 <section id="required-reading-r-programming-for-data-science-simulation" class="level3 page-columns page-full">
@@ -267,20 +273,20 @@ Tip
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.256714</code></pre>
+<pre><code>[1] 0.1674964</code></pre>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3983054</code></pre>
+<pre><code>[1] -1.034704</code></pre>
 </div>
 </div>
 <p>Fortunately, pseudo-randomness depends on a <strong>seed</strong>, which is an arbitrary number where the randomizing process starts. Normally, R will choose the seed for you, from a pre-generated vector:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(.Random.seed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]       10403           4  -286892503 -1610378120  1090965926   261551041</code></pre>
+<pre><code>[1]      10403          4 -289986644 1792831151 -575443867  779459612</code></pre>
 </div>
 </div>
 <p>However, you can also choose your own seed using the <code>set.seed()</code> function. This guarantees your results will be consistent across runs (and hopefully computers):</p>
@@ -326,7 +332,7 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <p>Note, though, that this only guarantees your rendered results will be the same <em>if the code has not changed</em>.</p>
-<p>Changing up any part of the code will re-randomize everything that comes after it!</p>
+<p>Changing any part of the code will re-randomize everything that comes after it!</p>
 </div>
 </div>
 <p>When writing up a report which includes results from a random generation process, in order to ensure reproducibility in your document, use <code>`{r}`</code> or <code>`r`</code> to include your output within your written description with <a href="https://quarto.org/docs/computations/inline-code.html">inline code</a>.</p>
@@ -359,24 +365,42 @@ Reproducibility: inline code example
 </section>
 <section id="plotting-distributions" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="plotting-distributions"><span class="header-section-number">2</span> Plotting Distributions</h2>
-<p>Here is the code that made one of the plots from the lecture video:</p>
+<p>Here is the code is what I made to create the density plot from the lecture video:</p>
+<p>First, I created a tibble of 100 heights randomly simulated (read drawn) from a normal distribution with a mean of 67 and standard deviation of 3.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>my_samples <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> <span class="dv">100</span>, </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">mean =</span> <span class="dv">67</span>, </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sd =</span> <span class="dv">3</span>)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                     )</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>my_samples <span class="sc">%&gt;%</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), </span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="fl">1.75</span>, <span class="at">fill =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="sc">~</span> <span class="fu">dnorm</span>(., <span class="at">mean =</span> <span class="dv">67</span>, <span class="at">sd =</span> <span class="dv">3</span>), </span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">"cornflowerblue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">80</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">93401</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>my_samples <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">height =</span> <span class="fu">rnorm</span>(<span class="at">n    =</span> <span class="dv">100</span>, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">mean =</span> <span class="dv">67</span>, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="at">sd   =</span> <span class="dv">3</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>my_samples <span class="sc">|&gt;</span> </span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 1
+  height
+   &lt;dbl&gt;
+1   63.1
+2   66.7
+3   68.2
+4   63.4
+5   68.9
+6   71.4</code></pre>
+</div>
+</div>
+<p>To visualize the simulated heights, we can look at the density of the values. We plot the simulated values using <code>geom_histogram()</code> and define a local aesthetic to calculate and plot the density of these values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>my_samples <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> height)) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">y =</span> ..density..), </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">binwidth =</span> <span class="fl">1.75</span>, <span class="at">fill =</span> <span class="st">"grey"</span>) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_function</span>(<span class="at">fun =</span> <span class="sc">~</span> <span class="fu">dnorm</span>(., <span class="at">mean =</span> <span class="dv">67</span>, <span class="at">sd =</span> <span class="dv">3</span>), </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">col =</span> <span class="st">"cornflowerblue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>) <span class="sc">+</span> </span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="fu">c</span>(<span class="dv">55</span>, <span class="dv">80</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="week-10-simulation_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="week-10-simulation_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>

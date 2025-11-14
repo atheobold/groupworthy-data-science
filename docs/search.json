@@ -955,22 +955,22 @@
     "objectID": "slides/week-5/week-5-dates.html#thursday-october-16",
     "href": "slides/week-5/week-5-dates.html#thursday-october-16",
     "title": "Using lubridate to Work with Dates",
-    "section": "Thursday, October 16",
-    "text": "Thursday, October 16\nToday we will…\n\n\n\nReminder About Lab 3 / Challenge 3 Revisions\nReminder About Lab 4 Peer Code Review\nWeek 6 Layout\n\nWhat to Expect\nMidterm Portfolios\nHow to Get Started\n\n\n\n\n\n\nNew Material\n\nWorking with Date & Time Variables\n\nPA 5.2: Jewel Heist"
+    "section": "",
+    "text": "Today we will…\n\n\n\nReminder About Lab 3 / Challenge 3 Revisions\nReminder About Lab 4 Peer Code Review\nWeek 6 Layout\n\nWhat to Expect\nMidterm Portfolios\nHow to Get Started\n\n\n\n\n\n\nNew Material\n\nWorking with Date & Time Variables\n\nPA 5.2: Jewel Heist"
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#what-to-expect",
     "href": "slides/week-5/week-5-dates.html#what-to-expect",
     "title": "Using lubridate to Work with Dates",
     "section": "What to Expect",
-    "text": "What to Expect\nYou will create a Midterm Portfolio, with code covering the learning targets we have covered thus far in the course.\n\n\nYour code will be pulled from your Lab and Challenge assignments.\n\n\n\n\nYou will write reflections on how you’ve:\n\nrevised your thinking\nextended your thinking\nsupported and collaborated with your peers"
+    "text": "What to Expect\nYou will create a Midterm Portfolio, with code covering the learning targets we have covered thus far in the course.\n. . .\n\nYour code will be pulled from your Lab and Challenge assignments.\n\n. . .\n\nYou will write reflections on how you’ve:\n\nrevised your thinking\nextended your thinking\nsupported and collaborated with your peers"
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#getting-started",
     "href": "slides/week-5/week-5-dates.html#getting-started",
     "title": "Using lubridate to Work with Dates",
     "section": "Getting Started",
-    "text": "Getting Started\n\nFollow these directions to install git and sign-up for a GitHub account\nFollow these directions to fork a copy of the Final Portfolio repository.\nStart finding excerpts of code you wrote for the Labs or Challenges that fit each learning target.\nSign-up for a time to meet with Dr. T during Week 7"
+    "text": "Getting Started\n\n\nFollow these directions to install git and sign-up for a GitHub account\nFollow these directions to fork a copy of the Final Portfolio repository.\nStart finding excerpts of code you wrote for the Labs or Challenges that fit each learning target.\nSign-up for a time to meet with Dr. T during Week 7"
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#why-are-dates-and-times-tricky",
@@ -984,28 +984,28 @@
     "href": "slides/week-5/week-5-dates.html#lubridate",
     "title": "Using lubridate to Work with Dates",
     "section": "lubridate",
-    "text": "lubridate\n\n\n\nConvert a date-like variable (“May 8, 1995”) to a date or date-time object.\nFind the weekday, month, year, etc from a date-time object.\nConvert between time zones.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nThe lubridate package installs and loads with the tidyverse."
+    "text": "lubridate\n\n\n\nConvert a date-like variable (“May 8, 1995”) to a date or date-time object.\nFind the weekday, month, year, etc from a date-time object.\nConvert between time zones.\n\n\n\nknitr::include_graphics(\"https://github.com/rstudio/hex-stickers/blob/main/thumbs/lubridate.png?raw=true\")\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nThe lubridate package installs and loads with the tidyverse."
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#creating-date-time-objects",
     "href": "slides/week-5/week-5-dates.html#creating-date-time-objects",
     "title": "Using lubridate to Work with Dates",
     "section": "Creating date-time Objects",
-    "text": "Creating date-time Objects\n\nFrom individual components:\n\nmake_date(year = 1995, month = 05, day = 08)\n\n[1] \"1995-05-08\"\n\n\n\n\n\nFrom a string:\n\nmdy(\"August 29, 1991\")\n\n[1] \"1991-08-29\"\n\n\n\n\n\n\nWith a time zone:\n\ndmy(\"29-August-1991\", \n    tz = \"America/Denver\")\n\n[1] \"1991-08-29 MDT\"\n\n\n\ndmy_hms(\"29-August-1991 9:32:12\", \n        tz = \"America/Denver\")\n\n[1] \"1991-08-29 09:32:12 MDT\""
+    "text": "Creating date-time Objects\n\nFrom individual components:\n\nmake_date(year = 1995, month = 05, day = 08)\n\n[1] \"1995-05-08\"\n\n\n\n. . .\n\nFrom a string:\n\nmdy(\"August 29, 1991\")\n\n[1] \"1991-08-29\"\n\n\n\n. . .\n\nWith a time zone:\n\ndmy(\"29-August-1991\", \n    tz = \"America/Denver\")\n\n[1] \"1991-08-29 MDT\"\n\n\n\ndmy_hms(\"29-August-1991 9:32:12\", \n        tz = \"America/Denver\")\n\n[1] \"1991-08-29 09:32:12 MDT\""
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#common-mistake-with-dates",
     "href": "slides/week-5/week-5-dates.html#common-mistake-with-dates",
     "title": "Using lubridate to Work with Dates",
     "section": "Common Mistake with Dates",
-    "text": "Common Mistake with Dates\n\n\n\nas_datetime(2023-02-6)\n\n[1] \"1970-01-01 00:33:35 UTC\"\n\n\n\n\n\n\nmy_date &lt;- 2023-02-6\nmy_date\n\n[1] 2015\n\n\n\n\n\nWhat’s wrong here?\n\n\n\nMake sure you use quotes!\n\n2,015 seconds \\(\\approx\\) 33.5 minutes"
+    "text": "Common Mistake with Dates\n\n\n\nas_datetime(2023-02-6)\n\n[1] \"1970-01-01 00:33:35 UTC\"\n\n\n\n\n\n\nmy_date &lt;- 2023-02-6\nmy_date\n\n[1] 2015\n\n\n\n\n\n\nWhat’s wrong here?\n\n\n. . .\nMake sure you use quotes!\n\n2,015 seconds \\(\\approx\\) 33.5 minutes"
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#extracting-date-time-components",
     "href": "slides/week-5/week-5-dates.html#extracting-date-time-components",
     "title": "Using lubridate to Work with Dates",
     "section": "Extracting date-time Components",
-    "text": "Extracting date-time Components\n\nbday &lt;- ymd_hms(\"1989-01-14 12:03:12\", \n                tz = \"America/Denver\")\nbday\n\n[1] \"1989-01-14 12:03:12 MST\"\n\n\n\n\n\n\n\n\nyear(bday)\n\n[1] 1989\n\nmonth(bday)\n\n[1] 1\n\nday(bday)\n\n[1] 14\n\nhour(bday)\n\n[1] 12\n\n\n\n\n\n\n\nwday(bday)\n\n[1] 7\n\nwday(bday, \n     label = TRUE, \n     abbr = FALSE)\n\n[1] Saturday\n7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday"
+    "text": "Extracting date-time Components\n\nbday &lt;- ymd_hms(\"1989-01-14 12:03:12\", \n                tz = \"America/Denver\")\nbday\n\n[1] \"1989-01-14 12:03:12 MST\"\n\n\n. . .\n\n\n\n\n\nyear(bday)\n\n[1] 1989\n\nmonth(bday)\n\n[1] 1\n\nday(bday)\n\n[1] 14\n\nhour(bday)\n\n[1] 12\n\n\n\n\n\n\n\nwday(bday)\n\n[1] 7\n\nwday(bday, \n     label = TRUE, \n     abbr = FALSE)\n\n[1] Saturday\n7 Levels: Sunday &lt; Monday &lt; Tuesday &lt; Wednesday &lt; Thursday &lt; ... &lt; Saturday"
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#subtraction-with-date-time-objects",
@@ -1019,14 +1019,14 @@
     "href": "slides/week-5/week-5-dates.html#how-old-am-i",
     "title": "Using lubridate to Work with Dates",
     "section": "How old am I?",
-    "text": "How old am I?\n\ntoday() - mdy(\"01-14-1989\")\n\nTime difference of 13449 days\n\n\n\n\nHow long did it take me to type this slide?\n\nbegin &lt;- mdy_hms(\"10/13/2025 6:40:34\")\nfinish &lt;- mdy_hms(\"10/13/2025 6:43:11\")\n\nfinish - begin\n\nTime difference of 2.616667 mins"
+    "text": "How old am I?\n\ntoday() - mdy(\"01-14-1989\")\n\nTime difference of 13453 days\n\n\n. . .\n\nHow long did it take me to type this slide?\n\nbegin &lt;- mdy_hms(\"10/13/2025 6:40:34\")\nfinish &lt;- mdy_hms(\"10/13/2025 6:43:11\")\n\nfinish - begin\n\nTime difference of 2.616667 mins"
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#durations-and-periods",
     "href": "slides/week-5/week-5-dates.html#durations-and-periods",
     "title": "Using lubridate to Work with Dates",
     "section": "Durations and Periods",
-    "text": "Durations and Periods\nDurations will always give the exact number of seconds.\n\n\nas.duration(\n  mdy_hms(\"10-16-2025 12:10:00\", tz = \"America/Los_Angeles\") - \n    mdy_hms(\"01-14-1989 12:03:12\", tz = \"America/Denver\")\n            )\n\n[1] \"1159834008s (~36.75 years)\"\n\n\n\n\n\nPeriods give more approximate, human readable times.\n\n\nas.period(\n  mdy_hms(\"10-16-2025 12:10:00\", tz = \"America/Los_Angeles\") - \n    mdy_hms(\"01-14-1989 12:03:12\", tz = \"America/Denver\")\n            )\n\n[1] \"13424d 0H 6M 48S\""
+    "text": "Durations and Periods\nDurations will always give the exact number of seconds.\n\n\nas.duration(\n  mdy_hms(\"10-16-2025 12:10:00\", tz = \"America/Los_Angeles\") - \n    mdy_hms(\"01-14-1989 12:03:12\", tz = \"America/Denver\")\n            )\n\n[1] \"1159834008s (~36.75 years)\"\n\n\n\n. . .\n\nPeriods give more approximate, human readable times.\n\n\nas.period(\n  mdy_hms(\"10-16-2025 12:10:00\", tz = \"America/Los_Angeles\") - \n    mdy_hms(\"01-14-1989 12:03:12\", tz = \"America/Denver\")\n            )\n\n[1] \"13424d 0H 6M 48S\""
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#durations-and-periods-1",
@@ -1040,28 +1040,28 @@
     "href": "slides/week-5/week-5-dates.html#intervals-of-time",
     "title": "Using lubridate to Work with Dates",
     "section": "Intervals of Time",
-    "text": "Intervals of Time\n\nSuppose American Airlines requires members to travel within 4 weeks before or after their birthday to earn a “Birthday Bonus Flight.”\n\n\n\nWell, we first need to make an interval of time around my birthday.\n\nbday \n\n[1] \"1989-01-14 12:03:12 MST\"\n\nbonus_flight_window &lt;- interval(\n  bday - weeks(4),\n  bday + weeks(4)\n  )\n\n\n\n\n\nThen I can check if today is within this interval.\n\ntoday() %within% bonus_flight_window\n\n[1] FALSE"
+    "text": "Intervals of Time\n\nSuppose American Airlines requires members to travel within 4 weeks before or after their birthday to earn a “Birthday Bonus Flight.”\n\n. . .\n\nWell, we first need to make an interval of time around my birthday.\n\nbday \n\n[1] \"1989-01-14 12:03:12 MST\"\n\nbonus_flight_window &lt;- interval(\n  bday - weeks(4),\n  bday + weeks(4)\n  )\n\n\n. . .\n\nThen I can check if today is within this interval.\n\ntoday() %within% bonus_flight_window\n\n[1] FALSE"
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#time-zones",
     "href": "slides/week-5/week-5-dates.html#time-zones",
     "title": "Using lubridate to Work with Dates",
     "section": "Time Zones…",
-    "text": "Time Zones…\n…are complicated!\n\nSpecify time zones in the form:\n\n{continent}/{city} – “America/Denver”, “Africa/Nairobi”\n{ocean}/{city} – “Pacific/Auckland”\n\n\nWhat time zone does R think I’m in?\n\nSys.timezone()\n\n[1] \"America/Los_Angeles\""
+    "text": "Time Zones…\n…are complicated!\n\nSpecify time zones in the form:\n\n{continent}/{city} – “America/Denver”, “Africa/Nairobi”\n{ocean}/{city} – “Pacific/Auckland”\n\n. . .\nWhat time zone does R think I’m in?\n\nSys.timezone()\n\n[1] \"America/Los_Angeles\""
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#time-zones-1",
     "href": "slides/week-5/week-5-dates.html#time-zones-1",
     "title": "Using lubridate to Work with Dates",
     "section": "Time Zones",
-    "text": "Time Zones\n\nYou can change the time zone of a date in two ways:\n\nx &lt;- ymd_hms(\"2025-10-13 18:00:00\", \n             tz = \"Europe/Copenhagen\")\n\n\n\n\n\nwith_tz()\n\nKeeps the instant in time the same, but modifies the representation based on the new time zone\n\nx |&gt; \n  with_tz(tzone = \"America/Los_Angeles\")\n\n[1] \"2025-10-13 09:00:00 PDT\"\n\nx |&gt; \n  with_tz(tzone = \"Asia/Kolkata\")\n\n[1] \"2025-10-13 21:30:00 IST\"\n\n\n\n\n\n\n\nforce_tz()\n\nChanges the instant in time by forcing a time zone change.\n\nx |&gt; \n  force_tz(tzone = \"America/Los_Angeles\")\n\n[1] \"2025-10-13 18:00:00 PDT\"\n\nx |&gt; \n  force_tz(tzone = \"Asia/Kolkata\")\n\n[1] \"2025-10-13 18:00:00 IST\""
+    "text": "Time Zones\n\nYou can change the time zone of a date in two ways:\n\nx &lt;- ymd_hms(\"2025-10-13 18:00:00\", \n             tz = \"Europe/Copenhagen\")\n\n\n. . .\n\n\nwith_tz()\n\nKeeps the instant in time the same, but modifies the representation based on the new time zone\n\nx |&gt; \n  with_tz(tzone = \"America/Los_Angeles\")\n\n[1] \"2025-10-13 09:00:00 PDT\"\n\nx |&gt; \n  with_tz(tzone = \"Asia/Kolkata\")\n\n[1] \"2025-10-13 21:30:00 IST\"\n\n\n\n\n\n\n\nforce_tz()\n\nChanges the instant in time by forcing a time zone change.\n\nx |&gt; \n  force_tz(tzone = \"America/Los_Angeles\")\n\n[1] \"2025-10-13 18:00:00 PDT\"\n\nx |&gt; \n  force_tz(tzone = \"Asia/Kolkata\")\n\n[1] \"2025-10-13 18:00:00 IST\""
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#common-mistake-with-dates-1",
     "href": "slides/week-5/week-5-dates.html#common-mistake-with-dates-1",
     "title": "Using lubridate to Work with Dates",
     "section": "Common Mistake with Dates",
-    "text": "Common Mistake with Dates\n\nWhen you read data in or create a new date-time object, the default time zone (if not specified) is UTC (Universal Time Coordinated)*.\n\n\n*UTC is the same as GMT (Greenwich Mean Time) which is where Iceland is located\n\n\n\n\nSo, make sure you specify your desired time zone!\n\nx &lt;- dmy(\"20/11/1993\")\ntz(x)\n\n[1] \"UTC\"\n\n\n\nx &lt;- force_tz(x, \n              tz = \"America/Los_Angeles\")\ntz(x)\n\n[1] \"America/Los_Angeles\""
+    "text": "Common Mistake with Dates\n\nWhen you read data in or create a new date-time object, the default time zone (if not specified) is UTC (Universal Time Coordinated)*.\n\n\n*UTC is the same as GMT (Greenwich Mean Time) which is where Iceland is located\n\n. . .\n\n\nSo, make sure you specify your desired time zone!\n\nx &lt;- dmy(\"20/11/1993\")\ntz(x)\n\n[1] \"UTC\"\n\n\n\nx &lt;- force_tz(x, \n              tz = \"America/Los_Angeles\")\ntz(x)\n\n[1] \"America/Los_Angeles\""
   },
   {
     "objectID": "slides/week-5/week-5-dates.html#this-activity-will-require-knowledge-of",
@@ -2601,7 +2601,7 @@
     "href": "course-materials/calendar.html",
     "title": " Schedule",
     "section": "",
-    "text": "This page contains an outline of the topics, content, and assignments for the quarter. Note that this schedule will be updated as the quarter progresses, with all changes documented here.\n\n\n\n\n\nweek\n\n\ndate\n\n\ntopic\n\n\nprepare\n\n\nslides\n\n\nnotes\n\n\nactivity\n\n\nlab\n\n\nchallenge\n\n\nportfolio\n\n\n\n\n\n\n0\n\n\n16 September\n\n\nCourse Set-up\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to R & RStudio\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to Quarto & R Projects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n22 September\n\n\nLab 1 & Challenge 1 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n23 September\n\n\nData Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n25 September\n\n\nData Import\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n29 September\n\n\nLab 2 & Challenge 2 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n30 September\n\n\nData Wrangling with dplyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n2 October\n\n\nExtending Data Wrangling Verbs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n6 October\n\n\nLab 3 & Challenge 3 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n7 October\n\n\nData Joins & Transformations with tidyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n9 October\n\n\nWorking with Categorical Variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n13 October\n\n\nLab 4 & Challenge 4 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n14 October\n\n\nWorking with Strings\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n16 October\n\n\nWorking with Dates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n20 October\n\n\nLab 5 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n21 October\n\n\nVersion Control\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n23 October\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n27 October\n\n\nMidterm Portfolio Due\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n28 October\n\n\nBase R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n30 October\n\n\nVector Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3 November\n\n\nLab 7 & Challenge 7 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n4 November\n\n\nData Frame Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n6 November\n\n\nPlotting Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n10 November\n\n\nLab 8 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n13 November\n\n\nIntroduction to Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n17 November\n\n\nLab 9 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n18 November\n\n\nSimulating Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n20 November\n\n\nSimulations & Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n24 November\n\n\nLab 10 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n2 December\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n5 December\n\n\nFinal Portfolio Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n6 December\n\n\nFinal Portfolio Conferences"
+    "text": "This page contains an outline of the topics, content, and assignments for the quarter. Note that this schedule will be updated as the quarter progresses, with all changes documented here.\n\n\n\n\n\nweek\n\n\ndate\n\n\ntopic\n\n\nprepare\n\n\nslides\n\n\nnotes\n\n\nactivity\n\n\nlab\n\n\nchallenge\n\n\nportfolio\n\n\n\n\n\n\n0\n\n\n16 September\n\n\nCourse Set-up\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to R & RStudio\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n18 September\n\n\nIntro to Quarto & R Projects\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n1\n\n\n22 September\n\n\nLab 1 & Challenge 1 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n23 September\n\n\nData Visualization with ggplot2\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n25 September\n\n\nData Import\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n2\n\n\n29 September\n\n\nLab 2 & Challenge 2 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n30 September\n\n\nData Wrangling with dplyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n2 October\n\n\nExtending Data Wrangling Verbs\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3\n\n\n6 October\n\n\nLab 3 & Challenge 3 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n7 October\n\n\nData Joins & Transformations with tidyr\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n9 October\n\n\nWorking with Categorical Variables\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n4\n\n\n13 October\n\n\nLab 4 & Challenge 4 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n14 October\n\n\nWorking with Strings\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n16 October\n\n\nWorking with Dates\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n5\n\n\n20 October\n\n\nLab 5 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n21 October\n\n\nVersion Control\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n23 October\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n6\n\n\n27 October\n\n\nMidterm Portfolio Due\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n28 October\n\n\nBase R\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n7\n\n\n30 October\n\n\nVector Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n3 November\n\n\nLab 7 & Challenge 7 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n4 November\n\n\nData Frame Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n6 November\n\n\nPlotting Functions\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n8\n\n\n10 November\n\n\nLab 8 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n13 November\n\n\nIntroduction to Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n9\n\n\n17 November\n\n\nLab 9 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n18 November\n\n\nSimulating Data\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n20 November\n\n\nSimulations & Iteration\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n10\n\n\n24 November\n\n\nLab 10 Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n2 December\n\n\nPortfolio Week\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n5 December\n\n\nFinal Portfolio Due by 5pm\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n11\n\n\n6 December\n\n\nFinal Portfolio Conferences"
   },
   {
     "objectID": "code-review/code-review-guidelines.html",
@@ -6277,5 +6277,12 @@
     "title": "Iteration",
     "section": "Enter purrr",
     "text": "Enter purrr\n\n\nThe functions in the purrr package iterate over the elements of .x, but don’t use a for() loop at the wrapper level.\n\nInstead, the looping happens inside an internal helper function (map_()), which is written in C++.\n\n\n\n\n\n\n\nSo, the loops run much faster than loops written in R.\n\n\n\n\n\n\nThe use of C++ code is not unique to purrr!\n\n\nThe dplyr, tidyr, data.table, and rstan packages also use C code."
+  },
+  {
+    "objectID": "slides/week-5/week-5-dates.html",
+    "href": "slides/week-5/week-5-dates.html",
+    "title": "Using lubridate to Work with Dates",
+    "section": "",
+    "text": "Today we will…\n\n\n\nReminder About Lab 3 / Challenge 3 Revisions\nReminder About Lab 4 Peer Code Review\nWeek 6 Layout\n\nWhat to Expect\nMidterm Portfolios\nHow to Get Started\n\n\n\n\n\n\nNew Material\n\nWorking with Date & Time Variables\n\nPA 5.2: Jewel Heist"
   }
 ]

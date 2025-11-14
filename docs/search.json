@@ -5968,7 +5968,7 @@
     "href": "slides/week-9/iteration.html#purrr",
     "title": "Iteration",
     "section": "purrr",
-    "text": "purrr\n\n\nThe purrr package breaks common list manipulations into small, independent pieces.\n\nThis strategy involves two steps:\n\n\n\n\n\nBreak a complex problem into smaller sub-problems.\n\n\n\n\nSolve each sub-problem for a single element of a list.\n\nOnce done, purrr will generalize the solution to every element in the list."
+    "text": "purrr\n\n\nThe functions in the purrr package iterate over the elements of .x, but don’t use a for() loop at the wrapper level.\n\nInstead, the looping happens inside an internal helper function (map_()), which is written in C++.\n\n\n\n\n\n\n\nSo, the loops run much faster than loops written in R.\n\n\n\n\n\n\nThe use of C++ code is not unique to purrr!\n\n\nThe dplyr, tidyr, data.table, and rstan packages also use C code."
   },
   {
     "objectID": "slides/week-9/iteration.html#map",
@@ -6228,5 +6228,54 @@
     "title": "Simulating Data in R",
     "section": "A reminder about boolean values…",
     "text": "A reminder about boolean values…\nHow many values were below 3?\n\n\n\n\nsims &lt; 3\n\n   [1] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE\n  [13]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE\n  [25] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE\n  [37] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE\n  [49] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE\n  [61] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE\n  [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n  [85] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n  [97] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE\n [109] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE\n [121] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [133]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE\n [145] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE\n [157] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE\n [169] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE\n [181] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE\n [193] FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE\n [205]  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [217] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE\n [229] FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE\n [241]  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE\n [253] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE\n [265] FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE\n [277] FALSE  TRUE  TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [289] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [301]  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE\n [313] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE\n [325] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE\n [337] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE\n [349] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [361] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [373] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [385] FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE\n [397] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE\n [409] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE\n [421] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE\n [433]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE\n [445] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [457] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE\n [469] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE\n [481] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE\n [493]  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE\n [505] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE\n [517] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [529] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE\n [541] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE\n [553]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [565]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE\n [577] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE\n [589]  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [601] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE\n [613] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE\n [625] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE\n [637] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE\n [649] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE\n [661]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE\n [673] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [685]  TRUE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE  TRUE\n [697]  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [709] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE\n [721] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE\n [733] FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE  TRUE\n [745] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE\n [757]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE\n [769] FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [781] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE  TRUE FALSE FALSE\n [793] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE\n [805] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE\n [817] FALSE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE  TRUE FALSE FALSE FALSE\n [829] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [841] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE\n [853] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [865] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [877] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [889] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE\n [901]  TRUE FALSE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE\n [913] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [925]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [937] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE\n [949] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE\n [961] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE\n [973] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE\n [985] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE\n [997] FALSE  TRUE FALSE FALSE\n\n\n\n\n\n\n\nsum(sims &lt; 3)\n\n[1] 167\n\n\n\n\n\nsum(sims &lt; 3) / length(sims)\n\n[1] 0.167\n\n\n\n\n\n( sum(sims &lt; 3) / length(sims) ) * 100\n\n[1] 16.7"
+  },
+  {
+    "objectID": "slides/week-9/iteration.html#which-is-easier-to-understand",
+    "href": "slides/week-9/iteration.html#which-is-easier-to-understand",
+    "title": "Iteration",
+    "section": "Which is easier to understand?",
+    "text": "Which is easier to understand?\n\n\n\nFor the génoise sponge\n\n4 large eggs\n100g caster sugar\nPinch of salt\n1 tsp vanilla extract\n80g plain flour\n35g cornflour\n30g unsalted butter, melted\n\nFor the soaking syrup\n\n50g caster sugar\n3 tbsp water\n2 tbsp raspberry liqueur\n\nFor the pistachio paste\n\n100g pistachios\n2 tsp pistachio oil\n15 drops pistachio extract\n\n\n\n\nFor the crème mousseline\n\n500ml whole milk\n1 vanilla pod, halved & seeds scraped\n4 egg yolks\n100g caster sugar\n40g cornflour\n200g unsalted butter, softened\n\nFor the filling\n\n450g fresh large raspberries\n\nFor the marzipan\n\n100g ground almonds\n100g icing sugar, plus extra for dusting\n20g–25g pasteurised egg white\nPistachio green food colouring\n\nFor the sugar dome\n\n50g water\n100g caster sugar\n50g glucose"
+  },
+  {
+    "objectID": "slides/week-9/iteration.html#a-long-recipe",
+    "href": "slides/week-9/iteration.html#a-long-recipe",
+    "title": "Iteration",
+    "section": "A long recipe",
+    "text": "A long recipe\n\n\n\nFor the génoise sponge\n\n4 large eggs\n100g caster sugar\nPinch of salt\n1 tsp vanilla extract\n80g plain flour\n35g cornflour\n30g unsalted butter, melted\n\nFor the soaking syrup\n\n50g caster sugar\n3 tbsp water\n2 tbsp raspberry liqueur\n\nFor the pistachio paste\n\n100g pistachios\n2 tsp pistachio oil\n15 drops pistachio extract\n\n\n\n\nFor the crème mousseline\n\n500ml whole milk\n1 vanilla pod, halved & seeds scraped\n4 egg yolks\n100g caster sugar\n40g cornflour\n200g unsalted butter, softened\n\nFor the filling\n\n450g fresh large raspberries\n\nFor the marzipan\n\n100g ground almonds\n100g icing sugar, plus extra for dusting\n20g–25g pasteurised egg white\nPistachio green food colouring\n\nFor the sugar dome\n\n50g water\n100g caster sugar\n50g glucose"
+  },
+  {
+    "objectID": "slides/week-9/iteration.html#a-picture",
+    "href": "slides/week-9/iteration.html#a-picture",
+    "title": "Iteration",
+    "section": "A picture",
+    "text": "A picture"
+  },
+  {
+    "objectID": "slides/week-9/iteration.html#code-that-is-easier-to-understand",
+    "href": "slides/week-9/iteration.html#code-that-is-easier-to-understand",
+    "title": "Iteration",
+    "section": "Code that is easier to understand",
+    "text": "Code that is easier to understand\n\npenguins |&gt; \n  summarise(\n    across(.cols = everything(),\n           .fns = ~ class(.x)\n           )\n            ) |&gt;  \n  knitr::kable() |&gt;\n  kableExtra::kable_styling(font_size = 30)\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\nyear\n\n\n\n\nfactor\nfactor\nnumeric\nnumeric\ninteger\ninteger\nfactor\ninteger"
+  },
+  {
+    "objectID": "slides/week-9/iteration.html#across-is-easier-to-understand",
+    "href": "slides/week-9/iteration.html#across-is-easier-to-understand",
+    "title": "Iteration",
+    "section": "across() is easier to understand…",
+    "text": "across() is easier to understand…\n…but across() uses a for() loop which is computationally intensive!\n \n\n\nfor (j in seq_fns) {\n  fn &lt;- fns[[j]]\n  out[[k]] &lt;- fn(col, ...)\n  k &lt;- k + 1L"
+  },
+  {
+    "objectID": "slides/week-9/iteration.html#the-map-family-1",
+    "href": "slides/week-9/iteration.html#the-map-family-1",
+    "title": "Iteration",
+    "section": "The map() Family",
+    "text": "The map() Family\nThe map_xxx() variants allow you to specify the type of output you want.\n\nmap() creates a list.\nmap_chr() creates a character vector.\nmap_lgl() creates an logical vector.\nmap_int() creates a integer vector.\nmap_dbl() creates a numeric vector.\n\nAll take in a list (.x) and a function (.f) as arguments."
+  },
+  {
+    "objectID": "slides/week-9/iteration.html#enter-purrr",
+    "href": "slides/week-9/iteration.html#enter-purrr",
+    "title": "Iteration",
+    "section": "Enter purrr",
+    "text": "Enter purrr\n\n\nThe functions in the purrr package iterate over the elements of .x, but don’t use a for() loop at the wrapper level.\n\nInstead, the looping happens inside an internal helper function (map_()), which is written in C++.\n\n\n\n\n\n\n\nSo, the loops run much faster than loops written in R.\n\n\n\n\n\n\nThe use of C++ code is not unique to purrr!\n\n\nThe dplyr, tidyr, data.table, and rstan packages also use C code."
   }
 ]

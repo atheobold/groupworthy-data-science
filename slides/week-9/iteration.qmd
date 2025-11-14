@@ -241,12 +241,6 @@ pos_neg_zero <- function(x){
 pos_neg_zero(x)
 ```
 
-<!-- talk about the difference between using an if() for an input check and using if() to determine what values -->
-
-<!-- if(aes = "fill") then do this -->
-
-<!-- if(aes = "color") then do this -->
-
 ## Some functions cannot be vectorized!
 
 . . .
@@ -301,12 +295,79 @@ tibble(column = names(penguins),
 ```
 
 
-# ...but loops are computationally intensive
+# ...but loops make it difficult to understand what the code is doing
+
+# Which is easier to understand what is being made?
+
+## A long recipe
+
+::: {.tiny}
+::: columns
+::: {.column width="40%"}
+**For the génoise sponge**
+
+- 4 large eggs
+- 100g caster sugar
+- Pinch of salt
+- 1 tsp vanilla extract
+- 80g plain flour
+- 35g cornflour
+- 30g unsalted butter, melted
+
+**For the soaking syrup**
+
+- 50g caster sugar
+- 3 tbsp water
+- 2 tbsp raspberry liqueur
+
+**For the pistachio paste**
+
+- 100g pistachios
+- 2 tsp pistachio oil
+- 15 drops pistachio extract
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+**For the crème mousseline**
+
+- 500ml whole milk
+- 1 vanilla pod, halved & seeds scraped
+- 4 egg yolks
+- 100g caster sugar
+- 40g cornflour
+- 200g unsalted butter, softened
+
+**For the filling**
+
+- 450g fresh large raspberries
+
+**For the marzipan**
+
+- 100g ground almonds
+- 100g icing sugar, plus extra for dusting
+- 20g–25g pasteurised egg white
+- Pistachio green food colouring
+
+**For the sugar dome**
+
+- 50g water
+- 100g caster sugar
+- 50g glucose
+
+:::
+:::
+:::
 
 
-## What can we do instead?
+## A picture
 
-What about `across()`?
+![](images/framboisier.jpg){fig-alt="An image of Paul Hollywood's Framboisier from Season 13 of Bake Off. The cake is made of two layers of génoise sponge with a layer of crème mousseline on the inside. A layer of raspberries separates the two layers of cake. On the top of the cake there sits a clear sugar dome with a pink (candy) flower on the inside."}
+
+## Code that is easier to understand
 
 ```{r}
 #| code-line-numbers: "2-4"
@@ -321,7 +382,9 @@ penguins |>
   kableExtra::kable_styling(font_size = 30)
 ```
 
-## But `across()` uses a `for()` loop!
+## `across()` is easier to understand...
+
+...but `across()` uses a `for()` loop which is computationally intensive!
 
 </br>
 </br>
@@ -337,61 +400,42 @@ for (j in seq_fns) {
 :::
 :::
 
-# Functional Programming
+## Enter `purrr`
 
-. . .
+::: columns
+::: {.column width="75%"}
+The functions in the `purrr` package iterate over the elements of `.x`, but
+don't use a `for()` loop at the wrapper level. 
 
-> To understand computations in R, two slogans are helpful:
-> 
-> - Everything that exists is an object.
-> 
-> - Everything that happens is a function call.
-> 
-> John Chambers (creator of the pre-cursor to R)
-
-
-## Functional Programming -- Big Picture
-
-We will use **functions** as the **arguments** to other functions!
-
-<br>
-
-::: callout-note
-There are a slew of `apply()` functions you will likely come across.
-
-We will instead focus on the `purrr` package and the `map()` family of functions.
+::: {.fragment}
+Instead, the looping happens inside an internal helper function (`map_()`), 
+which is written in C++.
+:::
 :::
 
-
-## `purrr`
-
-:::: {.columns}
-::: {.column width="80%"}
-The `purrr` package breaks common list manipulations into small, independent pieces.
-
-</br>
-
-This strategy involves two steps:
-
+::: {.column width="5%"}
 :::
+
 ::: {.column width="20%"}
-![](images/purrr.png){width=80% fig-alt="The image is a hexagonal logo for the R package purrr. It features a simple, hand-drawn outline of a content, sleeping cat with closed eyes, representing the package's name, which sounds like a cat's purr. The logo's design conveys a sense of calm and ease, suggesting that the purrr package makes functional programming in R more intuitive and manageable."}
+![](images/purrr.png){fig-alt="The image is a hexagonal logo for the R package purrr. It features a simple, hand-drawn outline of a content, sleeping cat with closed eyes, representing the package's name, which sounds like a cat's purr. The logo's design conveys a sense of calm and ease, suggesting that the purrr package makes functional programming in R more intuitive and manageable."}
 :::
-::::
+:::
 
-. . .
+::: {.fragment}
+So, the loops run **much** faster than loops written in R. 
 
-1. Break a complex problem into smaller **sub-problems**.
 
-. . .
+::: {.callout-note}
+# The use of C++ code is not unique to `purrr`!
 
-2. Solve each sub-problem for **a single element** of a list.
-    + Once done, `purrr` will generalize the solution to every element in the list.
-
+The `dplyr`, `tidyr`, `data.table`, and `rstan` packages also use C code. 
+:::
+:::
 
 ## `map()`
 
-The `map()` function **iterates** through each item in a list and applies a function, then returns the new list.
+The `map()` function **iterates** through each item in a list and applies a
+function, then returns the new list.
 
 ```{r}
 #| fig-align: center

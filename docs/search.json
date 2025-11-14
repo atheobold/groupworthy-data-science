@@ -3623,7 +3623,7 @@
     "href": "slides/week-10/data-simulation-part-2.html#step-3-return-whether-or-not-a-shared-birthday-exists",
     "title": "Simulating Probabilities & Datasets",
     "section": "Step 3 – return whether or not a shared birthday exists",
-    "text": "Step 3 – return whether or not a shared birthday exists\n\n\nget_shared_birthdays &lt;- function(n = 50){\n  bday_data &lt;- tibble(person = 1:n,\n                      bday   = sample(1:365, \n                                      size = n, \n                                      replace = T)\n                      )\n  \n  double_bdays &lt;- bday_data |&gt; \n    count(bday) |&gt; \n    filter(n &gt;= 2) |&gt; \n    nrow()\n  \n  return(double_bdays &gt; 0)\n}\n\n\n\n\n\n\n\n\n\nWhat type of output is this function returning?"
+    "text": "Step 3 – return whether or not a shared birthday exists\n\n\nget_shared_birthdays &lt;- function(n = 50){\n  bday_data &lt;- tibble(person = 1:n,\n                      bday   = sample(1:365, \n                                      size = n, \n                                      replace = T)\n                      )\n  \n  double_bdays &lt;- bday_data |&gt; \n    count(bday) |&gt; \n    filter(n &gt;= 2) |&gt; \n    nrow()\n  \n  double_bdays &gt; 0\n}\n\n\n\n\n\n\n\n\n\nWhat type of output is this function returning?"
   },
   {
     "objectID": "slides/week-10/data-simulation-part-2.html#using-function-to-simulate-many-probabilities",
@@ -6144,5 +6144,40 @@
     "title": "Lab 10: Simulation Exploration",
     "section": "Accessing the Lab",
     "text": "Accessing the Lab\nDownload the template Lab 10 Quarto file here: lab-10-student.qmd\n\n\n\n\n\n\nImportant\n\n\n\nBe sure to save this in the Lab 10 folder, inside your Week 10 folder, inside your STAT 331 folder!"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#simple-linear-regression-slr",
+    "href": "slides/week-10/data-simulation-part-2.html#simple-linear-regression-slr",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Simple Linear Regression (SLR)",
+    "text": "Simple Linear Regression (SLR)\nIf we assume the relationship between \\(x\\) and \\(y\\) takes the form of a linear function…\n\\[\n  response = intercept + slope \\times explanatory + noise\n\\]\n\nWe use the following notation for this model:\n\n\nPopulation Regression Model\n\\(Y = \\beta_0 + \\beta_1 X + \\varepsilon\\)\nwhere \\(\\epsilon \\sim N(0, \\sigma)\\) is the random noise.\n\n\n\n\nFitted Regression Model\n\\(\\hat{y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)\nwhere   \\(\\widehat{}\\)   indicates the value was estimated."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#fitting-an-slr-model",
+    "href": "slides/week-10/data-simulation-part-2.html#fitting-an-slr-model",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Fitting an SLR Model",
+    "text": "Fitting an SLR Model\n\nQuestiongeom_smooth()lm()\n\n\nRegress baby birthweight (response variable) on the pregnant parent’s weight gain (explanatory variable).\n\nWe are assuming there is a linear relationship between how much weight the parent gains and how much the baby weighs at birth.\n\n\n\n\nWhen visualizing data, fit a regression line (\\(y\\) on \\(x\\)) to your scatterplot.\n\n\nncbirths |&gt; \n  ggplot(aes(x = gained, y = weight)) +\n  geom_jitter() + \n  geom_smooth(method = \"lm\") +\n  labs(x = \"Weight Gained During Pregnancy (lbs)\", \n       y = \"Birth Weight of Baby (lbs)\")\n\n\n\n\n\n\n\n\n\n\n\n\n\nThe lm() function fits a linear regression model.\n\nWe use formula notation to specify the response variable (LHS) and the explanatory variable (RHS).\nThis code creates an lm object.\n\n\nncbirth_lm &lt;- lm(weight ~ gained, \n                 data = ncbirths)"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#model-outputs",
+    "href": "slides/week-10/data-simulation-part-2.html#model-outputs",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Model Outputs",
+    "text": "Model Outputs\n\nlm objectcoefficientstidy() coefficients\n\n\n\nsummary(ncbirth_lm)\n\n\nCall:\nlm(formula = weight ~ gained, data = ncbirths)\n\nResiduals:\n    Min      1Q  Median      3Q     Max \n-6.4085 -0.6950  0.1643  0.9222  4.5158 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  6.63003    0.11120  59.620  &lt; 2e-16 ***\ngained       0.01614    0.00332   4.862 1.35e-06 ***\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 1.474 on 971 degrees of freedom\n  (27 observations deleted due to missingness)\nMultiple R-squared:  0.02377,   Adjusted R-squared:  0.02276 \nF-statistic: 23.64 on 1 and 971 DF,  p-value: 1.353e-06\n\n\n\n\n\ncoefficients(ncbirth_lm)\n\n(Intercept)      gained \n 6.63003358  0.01614049 \n\n\n\n\nTo grab the slope estimate we would need to…\n\ncoefficients(ncbirth_lm)[2]\n\n    gained \n0.01614049 \n\n\n…but we don’t have any measure of uncertainty!\n\n\n\n\nbroom::tidy(ncbirth_lm, \n            conf.int = TRUE, \n            conf.level = 0.9)\n\n\n\n\n\n\nterm\nestimate\nstd.error\nstatistic\np.value\nconf.low\nconf.high\n\n\n\n\n(Intercept)\n6.6300336\n0.1112054\n59.619718\n0.0e+00\n6.4469423\n6.8131248\n\n\ngained\n0.0161405\n0.0033195\n4.862253\n1.4e-06\n0.0106751\n0.0216059\n\n\n\n\n\n\n\n\n\n\n\n\nConfidence Level\n\n\nYou can change the confidence level for the confidence interval in the conf.level argument!"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#grabbing-model-outputs",
+    "href": "slides/week-10/data-simulation-part-2.html#grabbing-model-outputs",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Grabbing Model Outputs",
+    "text": "Grabbing Model Outputs\n\nbroom::tidy(ncbirth_lm, \n            conf.int = TRUE, \n            conf.level = 0.9) |&gt; \n  filter(term == \"gained\") |&gt; \n  select(estimate, conf.low, conf.high)\n\n# A tibble: 1 × 3\n  estimate conf.low conf.high\n     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;\n1   0.0161   0.0107    0.0216"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#our-goal",
+    "href": "slides/week-10/data-simulation-part-2.html#our-goal",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "Our Goal",
+    "text": "Our Goal"
   }
 ]

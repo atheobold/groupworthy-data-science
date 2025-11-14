@@ -187,6 +187,8 @@
       margin-right: 0; 
     }
   </style>
+  <script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -203,18 +205,14 @@
 
 <p>Today we will…</p>
 <ul>
-<li>New Material
-<ul>
 <li>Thinking through a probability simulation task</li>
-<li>Four Steps to Simulate Datasets</li>
-<li>In-line R Code</li>
-<li>Survey on Experiences in STAT 331 / 531</li>
-</ul></li>
-<li>Work Time
+<li>Introduce Lab 9
 <ul>
-<li>Lab 9</li>
-<li>Challenge 9</li>
+<li>Refresher on linear regression</li>
+<li>Tools for extracting elements from a regression</li>
 </ul></li>
+<li>Survey on Experiences in STAT 331 / 531</li>
+<li>Work time!</li>
 </ul>
 </section>
 <section>
@@ -299,7 +297,7 @@
 <span id="cb3-10"><a></a>    <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb3-11"><a></a>    <span class="fu">nrow</span>()</span>
 <span id="cb3-12"><a></a>  </span>
-<span id="cb3-13"><a></a>  <span class="fu">return</span>(double_bdays <span class="sc">&gt;</span> <span class="dv">0</span>)</span>
+<span id="cb3-13"><a></a>  double_bdays <span class="sc">&gt;</span> <span class="dv">0</span></span>
 <span id="cb3-14"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -344,327 +342,217 @@
 </div>
 </section></section>
 <section>
-<section id="four-steps-to-simualate-datasets" class="title-slide slide level1 center">
-<h1>Four Steps to Simualate Datasets</h1>
+<section id="lab-9-data-simulation-exploration" class="title-slide slide level1 center">
+<h1>Lab 9: Data Simulation Exploration</h1>
 
 </section>
-<section id="simulate-multiple-datasets---step-1" class="slide level2">
-<h2>Simulate Multiple Datasets - Step 1</h2>
-<div class="small">
-<p>Write a function to simulate height data from a population with some mean and SD height.</p>
-<p>The user should be able to input:</p>
-<ul>
-<li>how many observations to simulate</li>
-<li>the mean and standard deviation of the Normal distribution to use when simulating</li>
-</ul>
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Pencil out your function!</strong></p>
-</div>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-</div>
+<section id="simple-linear-regression-slr" class="slide level2">
+<h2>Simple Linear Regression (SLR)</h2>
+<p>If we assume the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> takes the form of a <strong>linear function</strong>…</p>
+<p><span class="math display">\[
+  response = intercept + slope \times explanatory + noise
+\]</span></p>
+<div class="fragment">
+<p>We use the following notation for this model:</p>
 <div class="columns">
-<div class="column" style="width:60%;">
-<div class="fragment">
-<div class="small">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a>sim_ht <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">200</span>, avg, std){</span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">tibble</span>(<span class="at">person =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
-<span id="cb7-3"><a aria-hidden="true" tabindex="-1"></a>         <span class="at">ht =</span> <span class="fu">rnorm</span>(<span class="at">n =</span> n, <span class="at">mean =</span> avg, <span class="at">sd =</span> std))</span>
-<span id="cb7-4"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:5%;">
+<div class="column" style="width:48%;">
+<p><strong>Population</strong> Regression Model</p>
+<p><span class="math inline">\(Y = \beta_0 + \beta_1 X + \varepsilon\)</span></p>
+<p>where <span class="math inline">\(\epsilon \sim N(0, \sigma)\)</span> is the random noise.</p>
+</div><div class="column" style="width:2%;">
 
-</div><div class="column" style="width:35%;">
-<div class="fragment">
-<div class="small">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sim_ht</span>(<span class="at">n =</span> <span class="dv">5</span>, </span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">avg =</span> <span class="dv">66</span>, </span>
-<span id="cb8-3"><a aria-hidden="true" tabindex="-1"></a>        <span class="at">std =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 5 × 2
-  person    ht
-   &lt;int&gt; &lt;dbl&gt;
-1      1  70.9
-2      2  61.6
-3      3  62.4
-4      4  71.3
-5      5  64.1</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="simulate-multiple-datasets---step-2" class="slide level2">
-<h2>Simulate Multiple Datasets - Step 2</h2>
-<p>Create a set of parameters (mean and SD) for each population.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">crossing</span>(<span class="at">mean_ht =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">60</span>, <span class="at">to =</span> <span class="dv">78</span>, <span class="at">by =</span> <span class="dv">6</span>),</span>
-<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">std_ht  =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 2
-  mean_ht std_ht
-    &lt;dbl&gt;  &lt;dbl&gt;
-1      60      3
-2      60      6
-3      66      3
-4      66      6
-5      72      3
-6      72      6
-7      78      3
-8      78      6</code></pre>
-</div>
-</div>
-</section>
-<section id="simulate-multiple-datasets---step-3" class="slide level2">
-<h2>Simulate Multiple Datasets - Step 3</h2>
-<p>Simulate datasets with different mean and SD heights.</p>
-<div class="small">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="4-7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a><span class="fu">crossing</span>(<span class="at">mean_ht =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">60</span>, <span class="at">to =</span> <span class="dv">78</span>, <span class="at">by =</span> <span class="dv">6</span>),</span>
-<span id="cb12-2"><a></a>         <span class="at">std_ht  =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>)</span>
-<span id="cb12-3"><a></a>         ) <span class="sc">|&gt;</span> </span>
-<span id="cb12-4"><a></a> <span class="fu">mutate</span>(<span class="at">ht_data =</span> <span class="fu">pmap</span>(<span class="at">.l =</span> <span class="fu">list</span>(<span class="at">avg =</span> mean_ht, <span class="at">std =</span> std_ht), </span>
-<span id="cb12-5"><a></a>                       <span class="at">.f =</span> sim_ht</span>
-<span id="cb12-6"><a></a>                       )</span>
-<span id="cb12-7"><a></a>        )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 8 × 3
-  mean_ht std_ht ht_data           
-    &lt;dbl&gt;  &lt;dbl&gt; &lt;list&gt;            
-1      60      3 &lt;tibble [200 × 2]&gt;
-2      60      6 &lt;tibble [200 × 2]&gt;
-3      66      3 &lt;tibble [200 × 2]&gt;
-4      66      6 &lt;tibble [200 × 2]&gt;
-5      72      3 &lt;tibble [200 × 2]&gt;
-6      72      6 &lt;tibble [200 × 2]&gt;
-7      78      3 &lt;tibble [200 × 2]&gt;
-8      78      6 &lt;tibble [200 × 2]&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="fragment">
-<div class="small">
-<div class="callout callout-tip callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Why am I getting a tibble in the <code>ht_data</code> column?</strong></p>
-</div>
-<div class="callout-content">
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="simulate-multiple-datasets---step-4" class="slide level2">
-<h2>Simulate Multiple Datasets - Step 4</h2>
-<p>Extract the contents of each list!</p>
-<div class="small">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a><span class="fu">crossing</span>(<span class="at">mean_ht =</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">60</span>, <span class="at">to =</span> <span class="dv">78</span>, <span class="at">by =</span> <span class="dv">6</span>),</span>
-<span id="cb14-2"><a></a>         <span class="at">std_ht  =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">6</span>)</span>
-<span id="cb14-3"><a></a>         ) <span class="sc">|&gt;</span> </span>
-<span id="cb14-4"><a></a> <span class="fu">mutate</span>(<span class="at">ht_data =</span> <span class="fu">pmap</span>(<span class="at">.l =</span> <span class="fu">list</span>(<span class="at">avg =</span> mean_ht, <span class="at">std =</span> std_ht), </span>
-<span id="cb14-5"><a></a>                       <span class="at">.f =</span> sim_ht</span>
-<span id="cb14-6"><a></a>                       )</span>
-<span id="cb14-7"><a></a>        ) <span class="sc">|&gt;</span> </span>
-<span id="cb14-8"><a></a>  <span class="fu">unnest</span>(<span class="at">cols =</span> ht_data) <span class="sc">|&gt;</span> </span>
-<span id="cb14-9"><a></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="small">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 4
-   mean_ht std_ht person    ht
-     &lt;dbl&gt;  &lt;dbl&gt;  &lt;int&gt; &lt;dbl&gt;
- 1      60      3      1  61.1
- 2      60      3      2  59.0
- 3      60      3      3  64.2
- 4      60      3      4  60.6
- 5      60      3      5  58.5
- 6      60      3      6  59.9
- 7      60      3      7  60.5
- 8      60      3      8  59.1
- 9      60      3      9  58.4
-10      60      3     10  60.8</code></pre>
-</div>
-</div>
-</div>
-</div><div class="column" style="width:5%;">
-
-</div><div class="column" style="width:45%;">
-<div class="midi">
-<div class="fragment">
-<p>Why do I now have <code>person</code> and <code>ht</code> columns?</p>
-</div>
-<div class="fragment">
-<p>How many rows should I have for each <code>mean_ht</code>, <code>std_ht</code> combo?</p>
-</div>
-</div>
-</div></div>
-</section>
-<section id="nest-and-unnest" class="slide level2">
-<h2><code>nest()</code> and <code>unnest()</code></h2>
-<ul>
-<li>We can pair functions from the <code>map()</code> family very nicely with two <code>tidyr</code> functions: <code>nest()</code> and <code>unnest()</code>.</li>
-<li>These allow us to easily map functions onto subsets of the data.</li>
-</ul>
-</section>
-<section id="nest" class="slide level2">
-<h2><code>nest()</code></h2>
-<p><strong>Nest</strong> subsets of the data (as tibbles) inside a tibble.</p>
-<ul>
-<li>Specify the column(s) to create subsets on.</li>
-</ul>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
-<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">.by =</span> cyl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-    cyl data              
-  &lt;dbl&gt; &lt;list&gt;            
-1     6 &lt;tibble [7 × 10]&gt; 
-2     4 &lt;tibble [11 × 10]&gt;
-3     8 &lt;tibble [14 × 10]&gt;</code></pre>
-</div>
+<div class="fragment">
+<p><strong>Fitted</strong> Regression Model</p>
+<p><span class="math inline">\(\hat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i\)</span></p>
+<p>where &nbsp; <span class="math inline">\(\widehat{}\)</span> &nbsp; indicates the value was estimated.</p>
 </div>
 </div></div>
+</div>
 </section>
-<section id="unnest" class="slide level2">
-<h2><code>unnest()</code></h2>
-<p><strong>Un-nest</strong> the data by row binding the subsets back together.</p>
+<section id="fitting-an-slr-model" class="slide level2">
+<h2>Fitting an SLR Model</h2>
+<div class="panel-tabset">
+<ul id="tabset-1" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-1-1">Question</a></li><li><a href="#tabset-1-2"><code>geom_smooth()</code></a></li><li><a href="#tabset-1-3"><code>lm()</code></a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1">
+<p>Regress baby birthweight (response variable) on the pregnant parent’s weight gain (explanatory variable).</p>
 <ul>
-<li>Specify the column(s) that contains the subsets.</li>
+<li>We are assuming there is a linear relationship between how much weight the parent gains and how much the baby weighs at birth.</li>
 </ul>
-<div class="columns">
-<div class="column" style="width:40%;">
-<div class="small">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>mtcars <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">nest</span>(<span class="at">.by =</span> cyl) <span class="sc">|&gt;</span> </span>
-<span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">unnest</span>(data) <span class="sc">|&gt;</span> </span>
-<span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice_head</span>(<span class="at">n =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-</div><div class="column" style="width:5%;">
-
-</div><div class="column" style="width:55%;">
-<div class="small">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 11
-     cyl   mpg  disp    hp  drat    wt  qsec    vs    am  gear  carb
-   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
- 1     6  21    160    110  3.9   2.62  16.5     0     1     4     4
- 2     6  21    160    110  3.9   2.88  17.0     0     1     4     4
- 3     6  21.4  258    110  3.08  3.22  19.4     1     0     3     1
- 4     6  18.1  225    105  2.76  3.46  20.2     1     0     3     1
- 5     6  19.2  168.   123  3.92  3.44  18.3     1     0     4     4
- 6     6  17.8  168.   123  3.92  3.44  18.9     1     0     4     4
- 7     6  19.7  145    175  3.62  2.77  15.5     0     1     5     6
- 8     4  22.8  108     93  3.85  2.32  18.6     1     1     4     1
- 9     4  24.4  147.    62  3.69  3.19  20       1     0     4     2
-10     4  22.8  141.    95  3.92  3.15  22.9     1     0     4     2</code></pre>
-</div>
-</div>
-</div>
-</div></div>
-</section>
-<section id="simulate-multiple-datasets---step-5" class="slide level2">
-<h2>Simulate Multiple Datasets - Step 5</h2>
-<p>Plot the samples simulated from each population.</p>
-<div class="small">
-<div class="cell" data-layout-align="center">
-<details class="code-fold">
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a></a>fake_ht_data <span class="sc">|&gt;</span> </span>
-<span id="cb20-2"><a></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> mean_ht<span class="sc">:</span>std_ht, </span>
-<span id="cb20-3"><a></a>                <span class="at">.fns =</span> <span class="sc">~</span><span class="fu">as.character</span>(.x)), </span>
-<span id="cb20-4"><a></a>         <span class="at">mean_ht =</span> <span class="fu">fct_recode</span>(mean_ht, </span>
-<span id="cb20-5"><a></a>                              <span class="st">`</span><span class="at">Mean = 60</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"60"</span>, </span>
-<span id="cb20-6"><a></a>                              <span class="st">`</span><span class="at">Mean = 66</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"66"</span>, </span>
-<span id="cb20-7"><a></a>                              <span class="st">`</span><span class="at">Mean = 72</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"72"</span>, </span>
-<span id="cb20-8"><a></a>                              <span class="st">`</span><span class="at">Mean = 78</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"78"</span>), </span>
-<span id="cb20-9"><a></a>         <span class="at">std_ht =</span> <span class="fu">fct_recode</span>(std_ht, </span>
-<span id="cb20-10"><a></a>                             <span class="st">`</span><span class="at">Std = 3</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"3"</span>, </span>
-<span id="cb20-11"><a></a>                             <span class="st">`</span><span class="at">Std = 6</span><span class="st">`</span> <span class="ot">=</span> <span class="st">"6"</span>)</span>
-<span id="cb20-12"><a></a>         ) <span class="sc">|&gt;</span> </span>
-<span id="cb20-13"><a></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> ht)) <span class="sc">+</span></span>
-<span id="cb20-14"><a></a>  <span class="fu">geom_histogram</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb20-15"><a></a>  <span class="fu">facet_grid</span>(std_ht <span class="sc">~</span> mean_ht) <span class="sc">+</span></span>
-<span id="cb20-16"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Height (in)"</span>,</span>
-<span id="cb20-17"><a></a>       <span class="at">y =</span> <span class="st">""</span>,</span>
-<span id="cb20-18"><a></a>       <span class="at">subtitle =</span> <span class="st">"Frequency of Observations"</span>,</span>
-<span id="cb20-19"><a></a>       <span class="at">title =</span> <span class="st">"Simulated Heights from Eight Different Populations"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div id="tabset-1-2">
+<div class="midi">
+<p>When visualizing data, fit a regression line (<span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span>) to your scatterplot.</p>
+<div class="cell columns column-output-location" data-layout-align="center">
+<div class="column">
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>ncbirths <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gained, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
+<span id="cb7-3"><a></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
+<span id="cb7-4"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb7-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Weight Gained During Pregnancy (lbs)"</span>, </span>
+<span id="cb7-6"><a></a>       <span class="at">y =</span> <span class="st">"Birth Weight of Baby (lbs)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure>
-<p><img data-src="data-simulation-part-2_files/figure-revealjs/unnamed-chunk-17-1.png" class="quarto-figure quarto-figure-center" width="768"></p>
+<p><img data-src="data-simulation-part-2_files/figure-revealjs/unnamed-chunk-6-1.png" class="quarto-figure quarto-figure-center" width="960"></p>
 </figure>
 </div>
 </div>
+</div></div>
 </div>
 </div>
-</section>
-<section id="in-line-code" class="slide level2">
-<h2>In-line Code</h2>
-<p>We can automatically include code output in the written portion of a Quarto document using <code>`r`</code>.</p>
-<div class="fragment">
-<p><br></p>
+<div id="tabset-1-3">
+<div class="midi">
+<p>The <code>lm()</code> function fits a <strong>l</strong>inear regression <strong>m</strong>odel.</p>
+<ul>
+<li>We use <em>formula</em> notation to specify the response variable (LHS) and the explanatory variable (RHS).</li>
+<li>This code creates an <code>lm</code> object.</li>
+</ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a>my_rand <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
-<span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>my_rand</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>ncbirth_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> gained, </span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> ncbirths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="model-outputs" class="slide level2">
+<h2>Model Outputs</h2>
+<div class="panel-tabset">
+<ul id="tabset-2" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-2-1"><code>lm</code> object</a></li><li><a href="#tabset-2-2">coefficients</a></li><li><a href="#tabset-2-3"><code>tidy()</code> coefficients</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ncbirth_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] -1.936856</code></pre>
+<pre><code>
+Call:
+lm(formula = weight ~ gained, data = ncbirths)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-6.4085 -0.6950  0.1643  0.9222  4.5158 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  6.63003    0.11120  59.620  &lt; 2e-16 ***
+gained       0.01614    0.00332   4.862 1.35e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.474 on 971 degrees of freedom
+  (27 observations deleted due to missingness)
+Multiple R-squared:  0.02377,   Adjusted R-squared:  0.02276 
+F-statistic: 23.64 on 1 and 971 DF,  p-value: 1.353e-06</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-2-2">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(ncbirth_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)      gained 
+ 6.63003358  0.01614049 </code></pre>
 </div>
 </div>
 <p><br></p>
-<p>Type this: My random number is <code>`r my_rand`</code>.</p>
-<p>To get this: My random number is -1.936856.</p>
+<div class="fragment">
+<p>To grab the slope estimate we would need to…</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(ncbirth_lm)[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    gained 
+0.01614049 </code></pre>
 </div>
+</div>
+<p>…but we don’t have any measure of uncertainty!</p>
+</div>
+</div>
+<div id="tabset-2-3">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(ncbirth_lm, </span>
+<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.int =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.level =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">estimate</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">std.error</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">statistic</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">p.value</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.low</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">conf.high</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">(Intercept)</td>
+<td style="text-align: right;">6.6300336</td>
+<td style="text-align: right;">0.1112054</td>
+<td style="text-align: right;">59.619718</td>
+<td style="text-align: right;">0.0e+00</td>
+<td style="text-align: right;">6.4469423</td>
+<td style="text-align: right;">6.8131248</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">gained</td>
+<td style="text-align: right;">0.0161405</td>
+<td style="text-align: right;">0.0033195</td>
+<td style="text-align: right;">4.862253</td>
+<td style="text-align: right;">1.4e-06</td>
+<td style="text-align: right;">0.0106751</td>
+<td style="text-align: right;">0.0216059</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Confidence Level</strong></p>
+</div>
+<div class="callout-content">
+<p>You can change the confidence level for the confidence interval in the <code>conf.level</code> argument!</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="grabbing-model-outputs" class="slide level2">
+<h2>Grabbing Model Outputs</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(ncbirth_lm, </span>
+<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.int =</span> <span class="cn">TRUE</span>, </span>
+<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.level =</span> <span class="fl">0.9</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"gained"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(estimate, conf.low, conf.high)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 3
+  estimate conf.low conf.high
+     &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1   0.0161   0.0107    0.0216</code></pre>
+</div>
+</div>
+</section>
+<section id="our-goal" class="slide level2">
+<h2>Our Goal</h2>
+<p><img data-src="images/ci_plot.png" alt="A horizontal plot showing 100 simulated 95% confidence intervals (CIs) for estimated regression slopes. Each horizontal line represents one simulated dataset’s estimated slope and its 95% CI. Most intervals are drawn in light blue, while a few are in red—these red lines indicate CIs that do not include the true population slope. A vertical dashed line marks the population slope at 1. The title reads '95% Confidence Intervals of Estimated Regression Slope for 100 Simulated Datasets,' and a caption explains that intervals not including the population slope are highlighted in red. The distribution of intervals is roughly centered around the true slope of 1, with a few red intervals missing it on either side."></p>
 </section></section>
-<section id="lab-9-data-simulation-exploration" class="title-slide slide level1 center">
-<h1><a href="../../labs/instructions/lab-9-instructions.html">Lab 9: Data Simulation Exploration</a></h1>
-<ul>
-<li>One <strong>required</strong> probability simulation</li>
-<li>One <em>optional</em> dataset simulation</li>
-</ul>
-</section>
-
-<section id="challenge-9-formatting-nice-tables" class="title-slide slide level1 center">
-<h1><a href="../../labs/instructions/challenge-9-instructions.html">Challenge 9: Formatting Nice Tables</a></h1>
-<ul>
-<li>Change tables from Lab 8 using <code>kable()</code></li>
-<li>Change table(s) from Lab 9 using <code>gt()</code></li>
-</ul>
-</section>
-
 <section id="survey-on-experiences-in-stat-331-531" class="title-slide slide level1 center">
 <h1><a href="https://forms.gle/wtXGQTFq5yzrX32W6">Survey on Experiences in STAT 331 / 531</a></h1>
 <div class="midi">
@@ -673,7 +561,7 @@
 <div class="fragment">
 <div class="midi">
 <blockquote>
-<p>If we get an 85% completion rate I will bring pizza to class next Thursday.</p>
+<p>If we get an 85% completion rate I will bring treats to class next Thursday!</p>
 </blockquote>
 </div>
 

@@ -22,19 +22,18 @@ fake_data <- tibble(names   = charlatan::ch_name(1000),
         measure = rbinom(1000, size = 1, prob = 0.6)) |> 
   mutate(supports_measure_A = ifelse(measure == 1, "yes", "no"))
 
+library(openintro)
+
 ```
 
 Today we will...
 
--   New Material
-    -   Thinking through a probability simulation task
-    -   Four Steps to Simulate Datasets
-    -   In-line R Code
-    -   Survey on Experiences in STAT 331 / 531
--   Work Time
-    -   Lab 9
-    -   Challenge 9
-
+-   Thinking through a probability simulation task
+-   Introduce Lab 9
+    - Refresher on linear regression
+    - Tools for extracting elements from a regression
+-   Survey on Experiences in STAT 331 / 531
+-   Work time!
 
 # The Birthday Problem
 
@@ -114,7 +113,7 @@ get_shared_birthdays <- function(n = 50){
     filter(n >= 2) |> 
     nrow()
   
-  return(double_bdays > 0)
+  double_bdays > 0
 }
 ```
 :::
@@ -153,312 +152,170 @@ sum(sim_results) / 1000
 ```
 :::
 
+# Lab 9: Data Simulation Exploration
 
+## Simple Linear Regression (SLR)
 
-# Four Steps to Simualate Datasets
+If we assume the relationship between $x$ and $y$ takes the form of a **linear function**...
 
-## Simulate Multiple Datasets - Step 1
-
-::: {.small}
-Write a function to simulate height data from a population with some mean and SD
-height. 
-
-The user should be able to input:
-
-- how many observations to simulate
-- the mean and standard deviation of the Normal distribution to use when 
-simulating
-
-::: {.callout-tip}
-## Pencil out your function! 
-:::
-:::
-
-
-
-::: columns
-::: {.column width="60%"}
-::: {.fragment}
-::: {.small}
-```{r}
-#| code-line-numbers: false
-
-sim_ht <- function(n = 200, avg, std){
-  tibble(person = 1:n,
-         ht = rnorm(n = n, mean = avg, sd = std))
-}
-```
-:::
-:::
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="35%"}
-::: {.fragment}
-::: {.small}
-```{r}
-#| code-line-numbers: false
-
-sim_ht(n = 5, 
-        avg = 66, 
-        std = 3)
-```
-:::
-:::
-:::
-:::
-
-
-
-## Simulate Multiple Datasets - Step 2
-
-Create a set of parameters (mean and SD) for each population.
-
-```{r}
-#| code-line-numbers: false
-
-crossing(mean_ht = seq(from = 60, to = 78, by = 6),
-            std_ht  = c(3, 6))
-```
-
-## Simulate Multiple Datasets - Step 3
-
-Simulate datasets with different mean and SD heights.
-
-::: {.small}
-```{r}
-#| code-line-numbers: "4-7"
-
-crossing(mean_ht = seq(from = 60, to = 78, by = 6),
-         std_ht  = c(3, 6)
-         ) |> 
- mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht), 
-                       .f = sim_ht
-                       )
-        )
-```
-:::
+$$
+  response = intercept + slope \times explanatory + noise
+$$
 
 . . .
 
-::: {.small}
-::: {.callout-tip}
-# Why am I getting a tibble in the `ht_data` column?
-:::
-:::
-
-## Simulate Multiple Datasets - Step 4
-
-Extract the contents of each list!
-
-::: {.small}
-```{r}
-#| code-line-numbers: "8"
-#| eval: false
-
-crossing(mean_ht = seq(from = 60, to = 78, by = 6),
-         std_ht  = c(3, 6)
-         ) |> 
- mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht), 
-                       .f = sim_ht
-                       )
-        ) |> 
-  unnest(cols = ht_data) |> 
-  slice_sample(n = 10)
-```
-:::
+We use the following notation for this model:
 
 ::: columns
+::: {.column width="48%"}
+**Population** Regression Model
+
+$Y = \beta_0 + \beta_1 X + \varepsilon$  
+
+where $\epsilon \sim N(0, \sigma)$ is the random noise.
+:::
+
+::: {.column width="2%"}
+:::
+
 ::: {.column width="50%"}
-::: {.small}
-```{r}
-#| echo: false
-#| eval: true
+::: {.fragment}
+**Fitted** Regression Model 
 
-crossing(mean_ht = seq(from = 60, to = 78, by = 6),
-         std_ht  = c(3, 6)
-         ) |> 
- mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht), 
-                       .f = sim_ht
-                       )
-        ) |> 
-  unnest(cols = ht_data) |> 
-  slice_head(n = 10)
-```
+$\hat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i$
+
+where &nbsp; $\widehat{}$ &nbsp; indicates the value was estimated.
+:::
 :::
 :::
 
-::: {.column width="5%"}
-:::
+## Fitting an SLR Model 
 
-::: {.column width="45%"}
+::: panel-tabset
+
+### Question
+
+Regress baby birthweight (response variable) on the pregnant parent's weight gain (explanatory variable).
+
++ We are assuming there is a linear relationship between how much weight the parent gains and how much the baby weighs at birth.
+
+### `geom_smooth()`
+
 ::: {.midi}
-::: {.fragment}
-Why do I now have `person` and `ht` columns?
-:::
-
-::: {.fragment}
-How many rows should I have for each `mean_ht`, `std_ht` combo?
-:::
-:::
-:::
-:::
-
-## `nest()` and `unnest()`
-
--   We can pair functions from the `map()` family very nicely with two `tidyr`
-functions: `nest()` and `unnest()`.
--   These allow us to easily map functions onto subsets of the data.
-
-## `nest()`
-
-**Nest** subsets of the data (as tibbles) inside a tibble.
-
--   Specify the column(s) to create subsets on.
-
-::: columns
-::: {.column width="50%"}
-```{r}
-#| echo: true
-#| code-line-numbers: false
-#| eval: false
-
-mtcars |> 
-  nest(.by = cyl)
-```
-:::
-
-::: {.column width="50%"}
-```{r}
-#| code-line-numbers: false
-#| echo: false
-
-mtcars |> 
-  nest(.by = cyl)
-```
-:::
-:::
-
-## `unnest()`
-
-**Un-nest** the data by row binding the subsets back together.
-
--   Specify the column(s) that contains the subsets.
-
-::: columns
-::: {.column width="40%"}
-::: {.small}
-```{r}
-#| echo: true
-#| eval: false
-#| code-line-numbers: false
-
-mtcars |> 
-  nest(.by = cyl) |> 
-  unnest(data) |> 
-  slice_head(n = 10)
-```
-:::
-:::
-
-::: {.column width="5%"}
-:::
-
-::: {.column width="55%"}
-::: {.small}
-```{r}
-#| echo: false
-#| code-line-numbers: false
-
-mtcars |> 
-  nest(.by = cyl) |> 
-  unnest(data) |> 
-  slice_head(n = 10)
-```
-:::
-:::
-:::
-
-## Simulate Multiple Datasets - Step 5
-
-Plot the samples simulated from each population.
-
-::: {.small}
-```{r}
-#| echo: false
-#| code-line-numbers: false
-
-fake_ht_data <- crossing(mean_ht = seq(from = 60, to = 78, by = 6),
-         std_ht  = c(3, 6)
-         ) |> 
- mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht), 
-                       .f = sim_ht
-                       )
-        ) |> 
-  unnest(cols = ht_data)
-```
+When visualizing data, fit a regression line ($y$ on $x$) to your scatterplot.
 
 ```{r}
-#| code-fold: true
-#| fig-width: 8
-#| fig-height: 4
+#| code-line-numbers: "4"
 #| fig-align: center
+#| output-location: column
 
-fake_ht_data |> 
-  mutate(across(.cols = mean_ht:std_ht, 
-                .fns = ~as.character(.x)), 
-         mean_ht = fct_recode(mean_ht, 
-                              `Mean = 60` = "60", 
-                              `Mean = 66` = "66", 
-                              `Mean = 72` = "72", 
-                              `Mean = 78` = "78"), 
-         std_ht = fct_recode(std_ht, 
-                             `Std = 3` = "3", 
-                             `Std = 6` = "6")
-         ) |> 
-  ggplot(mapping = aes(x = ht)) +
-  geom_histogram(color = "white") +
-  facet_grid(std_ht ~ mean_ht) +
-  labs(x = "Height (in)",
-       y = "",
-       subtitle = "Frequency of Observations",
-       title = "Simulated Heights from Eight Different Populations")
+ncbirths |> 
+  ggplot(aes(x = gained, y = weight)) +
+  geom_jitter() + 
+  geom_smooth(method = "lm") +
+  labs(x = "Weight Gained During Pregnancy (lbs)", 
+       y = "Birth Weight of Baby (lbs)")
 ```
 :::
 
-## In-line Code
+### `lm()`
 
-We can automatically include code output in the written portion of a Quarto
-document using `` `r` ``.
+::: {.midi}
+The `lm()` function fits a **l**inear regression **m**odel.
 
-. . .
-
-</br> 
++ We use *formula* notation to specify the response variable (LHS) and the explanatory variable (RHS).
++ This code creates an `lm` object.
 
 ```{r}
 #| code-line-numbers: false
 
-my_rand <- rnorm(1, mean = 0, sd = 1)
-my_rand
+ncbirth_lm <- lm(weight ~ gained, 
+                 data = ncbirths)
+```
+:::
+:::
+
+## Model Outputs
+
+::: panel-tabset
+
+### `lm` object
+
+```{r}
+#| code-line-numbers: false
+
+summary(ncbirth_lm)
 ```
 
-</br> 
+### coefficients
 
-Type this: My random number is `` `r knitr::inline_expr("my_rand")` ``.
+```{r}
+#| code-line-numbers: false
 
-To get this: My random number is `r my_rand`.
+coefficients(ncbirth_lm)
+```
 
-# [Lab 9: Data Simulation Exploration](../../labs/instructions/lab-9-instructions.qmd)
+</br>
 
-- One **required** probability simulation
-- One *optional* dataset simulation
+::: {.fragment}
+To grab the slope estimate we would need to...
 
-# [Challenge 9: Formatting Nice Tables](../../labs/instructions/challenge-9-instructions.qmd)
+```{r}
+#| code-line-numbers: false
 
-- Change tables from Lab 8 using `kable()`
-- Change table(s) from Lab 9 using `gt()`
+coefficients(ncbirth_lm)[2]
+```
+
+...but we don't have any measure of uncertainty!
+:::
+
+### `tidy()` coefficients
+
+```{r}
+#| eval: false
+#| code-line-numbers: false
+
+broom::tidy(ncbirth_lm, 
+            conf.int = TRUE, 
+            conf.level = 0.9)
+```
+
+```{r}
+#| echo: false
+
+broom::tidy(ncbirth_lm, 
+            conf.int = TRUE, 
+            conf.level = 0.9) |>  
+  knitr::kable() |> 
+  kableExtra::kable_styling(font_size = 30)
+```
+
+::: {.fragment}
+::: {.callout-tip}
+# Confidence Level
+
+You can change the confidence level for the confidence interval in the
+`conf.level` argument!
+:::
+:::
+::::
+
+## Grabbing Model Outputs
+
+```{r}
+#| code-line-numbers: false
+
+broom::tidy(ncbirth_lm, 
+            conf.int = TRUE, 
+            conf.level = 0.9) |> 
+  filter(term == "gained") |> 
+  select(estimate, conf.low, conf.high)
+  
+```
+
+## Our Goal
+
+![](images/ci_plot.png){fig-alt="A horizontal plot showing 100 simulated 95% confidence intervals (CIs) for estimated regression slopes. Each horizontal line represents one simulated dataset’s estimated slope and its 95% CI. Most intervals are drawn in light blue, while a few are in red—these red lines indicate CIs that do not include the true population slope. A vertical dashed line marks the population slope at 1. The title reads '95% Confidence Intervals of Estimated Regression Slope for 100 Simulated Datasets,' and a caption explains that intervals not including the population slope are highlighted in red. The distribution of intervals is roughly centered around the true slope of 1, with a few red intervals missing it on either side."}
 
 # [Survey on Experiences in STAT 331 / 531](https://forms.gle/wtXGQTFq5yzrX32W6)
 
@@ -469,5 +326,5 @@ Anonymous Google Form: <https://forms.gle/wtXGQTFq5yzrX32W6>
 . . .
 
 ::: {.midi}
-> If we get an 85% completion rate I will bring pizza to class next Thursday. 
+> If we get an 85% completion rate I will bring treats to class next Thursday!
 :::

@@ -588,39 +588,6 @@ tz(x)
 
 [**None of us have all these abilities. Each of us has some of these abilities.**]{.midi}
 
-
-<!-- ## lubridate Resources -->
-
-<!-- ::: columns -->
-<!-- ::: {.column width="60%"} -->
-<!-- Every group should have a **lubridate** cheatsheet! -->
-
-<!-- ::: {.small} -->
-<!-- **On the Front**:  -->
-
-<!-- - **Middle Column** -- functions related to "getting components" of dates -->
-<!-- - **Bottom Right** -- functions related to time zones -->
-<!-- ::: -->
-
-<!-- ::: {.fragment} -->
-<!-- ::: {.small} -->
-<!-- **On the Back**:  -->
-
-<!-- - **Left Column** -- functions related to adding / subtracting "periods" to /  -->
-<!-- from dates -->
-<!-- - **Right Column** -- functions related to creating and using intervals of time -->
-<!-- ::: -->
-<!-- ::: -->
-<!-- ::: -->
-
-<!-- ::: {.column width="5%"} -->
-<!-- ::: -->
-
-<!-- ::: {.column width="35%"} -->
-<!-- ![](images/lubridate-cheatsheet.png){fig-alt="The image is a cheat sheet for the lubridate R package, titled 'Dates and times with lubridate::CHEATSHEET.' It is packed with key information on working with dates and times using lubridate, displayed in a visually organized format."} -->
-<!-- ::: -->
-<!-- ::: -->
-
 ## Pair Programming Expectations
 
 ```{r}

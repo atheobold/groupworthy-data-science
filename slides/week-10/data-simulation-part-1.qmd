@@ -285,9 +285,8 @@ rbinom(n = 3,
 ```{r}
 #| code-line-numbers: false
 
-pnorm(q = 70, 
-      mean = 67, 
-      sd = 3)
+pchisq(q = 2, 
+      df = 8)
 ```
 :::
 :::
@@ -299,14 +298,12 @@ pnorm(q = 70,
 ```{r}
 #| code-line-numbers: false
 
-pnorm(q = 70, 
-      mean = 67, 
-      sd = 3, 
+pchisq(q = 2, 
+      df = 8, 
       lower.tail = FALSE)
 
-1 - pnorm(q = 70, 
-          mean = 67, 
-          sd = 3)
+1 - pchisq(q = 2, 
+      df = 8)
 ```
 :::
 :::
@@ -329,9 +326,8 @@ pnorm(q = 70,
 ```{r}
 #| code-line-numbers: false
 
-qnorm(p = 0.95, 
-      mean = 0, 
-      sd = 1)
+qt(p = 0.95,
+   df = 12)
 ```
 :::
 
@@ -342,9 +338,8 @@ qnorm(p = 0.95,
 ```{r}
 #| code-line-numbers: false
 
-qnorm(p = 0.95, 
-      mean = 67, 
-      sd = 3)
+qt(p = 0.95,
+   df = 30)
 ```
 :::
 :::

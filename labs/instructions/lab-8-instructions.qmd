@@ -20,6 +20,7 @@ resources:
 
 library(tidyverse)
 library(palmerpenguins)
+library(RColorBrewer)
 ```
 
 ## Accessing the Lab
@@ -189,15 +190,6 @@ it meets the criteria above. You can also choose whether your function accepts
 quoted or unquoted variable names, but you must use one of the 
 `rlang` (tidy evaluation) options from class.
 
-::: {.callout-important}
-# Double Encoding
-
-If you choose to assign a `color` or `fill` aesthetic to a variable that has 
-already been mapped to another aesthetic (e.g., `x`, `y`), then you are 
-expected to remove the legend from your plot. Technically, your legend has 
-redundant information that we don't want to include in the plot!
-:::
-
 ```{r}
 #| label: plot-function
 
@@ -226,13 +218,14 @@ style any `ggplot` object you create.
     + **the function should set a default theme (e.g., `theme_minimal()`)**
 - **a vector of colors (e.g., `RColorBrewer::brewer.pal(8, "Accent")`)**
     + **the function should set a default color palette**
-- **a string indicating which aesthetic the colors should be applied to ("fill" or
-"color")**
+- **a string indicating which aesthetic the colors should be applied to ("fill" or "color")**
+- **a logical value indicating whether the legend should be included**
 
 **Your function should:**
 
 - **Apply the given (or default) theme to the plot**
 - **Apply the colors to the specified aesthetic (fill or color)**
+- **Remove the legend (if requested to be removed)**
 - **Return the styled plot**
 
 ```{r}
@@ -240,22 +233,28 @@ style any `ggplot` object you create.
 #| eval: false
 #| label: style-plot-from-chat
 
-style_plot <- function(plot, theme_fn = theme_bw, palette = NULL, aesthetic = "fill") {
+style_plot <- function(plot, 
+                       theme_fn = theme_bw, 
+                       palette = brewer.pal(3, "Paired"), 
+                       aesthetic = "fill", 
+                       legend = TRUE) {
   # Apply the theme
   styled_plot <- plot + theme_fn()
   
   # Apply color palette if provided
-  if (!is.null(palette)) {
-    if (aesthetic == "fill") {
-      styled_plot <- styled_plot + scale_fill_manual(values = palette)
-    } else if (aesthetic == "color") {
-      styled_plot <- styled_plot + scale_color_manual(values = palette)
-    } else {
-      warning("Aesthetic must be either 'fill' or 'color'")
-    }
+  if (aesthetic == "fill") {
+    styled_plot <- styled_plot + scale_fill_manual(values = palette)
+  } else if (aesthetic == "color") {
+    styled_plot <- styled_plot + scale_color_manual(values = palette)
+  } else {
+    warning("Aesthetic must be either 'fill' or 'color'")
   }
   
-  return(styled_plot)
+  if(legend == FALSE){
+    styled_plot <- theme(legend.position = "none")
+  }
+  
+  styled_plot
 }
 ```
 
@@ -275,17 +274,23 @@ this plot.
 my_plot <- ggplot(penguins, mapping = aes(x = species, fill = sex)) + 
   geom_bar()
 
+## This will use your default theme and colors
 style_plot(my_plot, 
-           theme_fn = theme_bw, 
-           palette = brewer.pal(3, "Paired"), 
+           aesthetic = "fill")
+
+## This will use my favorite theme and colors
+style_plot(my_plot, 
+           theme_fn = theme_bw,
+           palette = brewer.pal(3, "Paired"),
            aesthetic = "fill")
 ```
 
 **Test 2:** Your plot
 
 Copy the code from your test of your plotting function (@plot-function-test) 
-and use your `style_plot()` function to style the plot! Your test **should not**
-save any objects!
+and use your `style_plot()` function to style the plot! You are expected to 
+pipe your plot into the `style_plot()` function. **Do not** use nested 
+functions or save any objects!
 
 ```{r}
 #| label: style-plot-test-2

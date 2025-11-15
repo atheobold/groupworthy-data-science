@@ -30,13 +30,21 @@ t, Chi-Square, Binomial)
 - know what each of the `r`, `p`, `d`, and `q` functions do when simulating 
 data from different statistical distributions
 
-------------------------------------------------------------------------
-
+::: columns
+::: {.column width="60%"}
 #### 📽 Watch Videos: 17 minutes
 
 #### 📖 Readings: 15-20 minutes
 
-#### ✅  Check-ins: 1 
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="35%"}
+#### ✅   Preview Activities: 1
+:::
+:::
 
 ------------------------------------------------------------------------
 
@@ -134,7 +142,7 @@ consistent.
 Note, though, that this only guarantees your rendered results will be the same
 *if the code has not changed*.
 
-Changing up any part of the code will re-randomize everything that comes after
+Changing any part of the code will re-randomize everything that comes after
 it!
 :::
 
@@ -151,28 +159,48 @@ my_rand <- rnorm(1, mean = 0, sd = 1)
 my_rand
 ```
 
-Using `{r} knitr::inline_expr('my_rand', syntax = "md")` will display the result within my text: 
+Using `{r} knitr::inline_expr('my_rand', syntax = "md")` will display the result
+within my text: 
 
 My random number is `{r} my_rand`.
 
 Alternatively, you could have put the `rnorm` code directly into the inline text
-`{r} knitr::inline_expr('rnorm(1, mean = 0, sd = 1)', syntax = "md")`, but this can get messy if
-you have a result that requires a larger chunk of code.
+`{r} knitr::inline_expr('rnorm(1, mean = 0, sd = 1)', syntax = "md")`, but this
+can get messy if you have a result that requires a larger chunk of code.
 
 ::: 
 
 ## Plotting Distributions
 
-Here is the code that made one of the plots from the lecture video:
+Here is the code is what I made to create the density plot from the lecture
+video:
+
+First, I created a tibble of 100 heights randomly simulated (read drawn) from a 
+normal distribution with a mean of 67 and standard deviation of 3.
 
 ```{r}
 #| message: false
 #| warning: false
+#| echo: true
 
-my_samples <- tibble(height = rnorm(n = 100, 
+set.seed(93401)
+my_samples <- tibble(height = rnorm(n    = 100, 
                                     mean = 67, 
-                                    sd = 3)
+                                    sd   = 3)
                      )
+
+my_samples |> 
+  head()
+```
+
+To visualize the simulated heights, we can look at the density of the values. We 
+plot the simulated values using `geom_histogram()` and define a local aesthetic
+to calculate and plot the density of these values. 
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: true
 
 my_samples %>%
   ggplot(aes(x = height)) +
@@ -186,5 +214,6 @@ my_samples %>%
 ::: callout-note
 # Adding a distribution to a plot
 
-Notice how I'm using `stat_function()` to add a specific function to the plot. Here, I'm using the `dnorm()` function, with a specified `mean` and `sd`.
+Notice how I'm using `stat_function()` to add a specific function to the plot.
+Here, I'm using the `dnorm()` function, with a specified `mean` and `sd`.
 :::

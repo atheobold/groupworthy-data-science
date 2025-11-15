@@ -15,19 +15,15 @@ execute:
 library(tidyverse)
 ```
 
+
 <!-- # Survey Consent Form -->
 
 <!-- https://forms.office.com/r/TckhG81y7q -->
 
-# Same Seating Chart!
-
-![](../week-7/images/week-7-seats.png){width=70%}
-
-## Tuesday, November 19
-
-Today we will...
+## Today we will...
 
 + Plan for Week 9 & 10
++ Survey on Group Collaborations
 + New Material
   + Statistical Distributions
   + Simulating Data
@@ -37,24 +33,49 @@ Today we will...
 
 . . .
 
-- PA 9 (today)
-- Lab 9 & Challenge 9 (last ones!)
-- Revisions on Lab 7 (due Friday) 
-- Code Review Lab 8 (due Sunday)
+- PA 10 (today)
+- Lab 10 (last one!)
+- Revisions on Lab 8 (due Friday) 
 
 # Week 10
 
 . . .
 
+- Revisions on Lab 9 (due Monday)
 - Final Portfolio Week!
 
 . . .
 
 ::: {.callout-warning}
 
-No revisions will be accepted on Lab 8 or Lab 9. You can, however, talk with me
-during class about any revisions you've made. :) 
+No revisions will be accepted on Lab 10. You can, however, talk with me
+during class about any questions you have. :) 
 :::
+
+# Researching Survey Design
+
+## 
+
+::: {style="font-size: 3em; color: #ed8402;"}
+5-minutes
+:::
+
+:::::: columns
+::: {.column width="47%"}
+If you [would]{.underline} like to participate
+
+-   Complete [consent form](https://forms.office.com/r/TckhG81y7q) (say yes)
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="47%"}
+If you [would not]{.underline} like to participate
+
+-   Complete [consent form](https://forms.office.com/r/TckhG81y7q) (say no)
+:::
+::::::
 
 # Statistical Distributions
 
@@ -84,7 +105,7 @@ The **distribution** of a random variable tells us its **possible values** and
 + Most American workers make under $100,000.
 :::
 ::: {.column width=27%}
-![](images/dist.png)
+![](images/dist.png){fig-alt="A picture of a histogram (with blue bars) that a smiling face has been superimposed on top of. The smiling face also has arms extending upward above the histogram bars."}
 :::
 ::::
 :::
@@ -122,7 +143,7 @@ ggplot(my_samples, aes(x)) +
 
 :::: columns
 ::: column
-+ When you expect values to fall **near the center**.
++ When you expect most values to fall **near the center**.
 + Frequency of values follows a **bell shaped curve**.
 :::
 ::: column
@@ -222,25 +243,34 @@ ggplot(my_samples, aes(x)) +
 
 :::: columns
 ::: column
+::: {.fragment}
 ::: {.midi}
 ```{r}
 #| code-line-numbers: false
 
-runif(n = 3, min = 10, max = 20)
-rnorm(n = 3)
-rnorm(n = 3, mean = -100, sd = 50)
+runif(n = 3, 
+      min = 10, 
+      max = 20)
+rnorm(n = 3, 
+      mean = 5, 
+      sd = 2)
 ```
+:::
 :::
 :::
 ::: column
+::: {.fragment}
 ::: {.midi}
 ```{r}
 #| code-line-numbers: false
 
-rt(n = 3, df = 11)
-rbinom(n = 3, size = 10, prob = 0.7)
-rchisq(n = 3, df = 11)
+rt(n = 3, 
+   df = 11)
+rbinom(n = 3, 
+       size = 10, 
+       prob = 0.7)
 ```
+:::
 :::
 :::
 ::::
@@ -249,25 +279,42 @@ rchisq(n = 3, df = 11)
 
 `p` is for **probability**.
 
-+ Compute the chances of observing a value less than `x`.
-+ We use this for calculating **p-values**.
+::: {.midi}
++ Compute the chances of observing a value less than (or greater than) `x`.
+:::
 
 :::: {.columns}
 ::: {.column width=45%}
+::: {.fragment}
+::: {.midi}
 ```{r}
 #| code-line-numbers: false
 
-pnorm(q = 1.5)
-pnorm(q = 70, mean = 67, sd = 3)
+pnorm(q = 70, 
+      mean = 67, 
+      sd = 3)
 ```
 :::
+:::
+:::
+
 ::: {.column width=55%}
+::: {.fragment}
+::: {.midi}
 ```{r}
 #| code-line-numbers: false
 
-1 - pnorm(q = 70, mean = 67, sd = 3)
-pnorm(q = 70, mean = 67, sd = 3, lower.tail = FALSE)
+pnorm(q = 70, 
+      mean = 67, 
+      sd = 3, 
+      lower.tail = FALSE)
+
+1 - pnorm(q = 70, 
+          mean = 67, 
+          sd = 3)
 ```
+:::
+:::
 :::
 ::::
 
@@ -275,15 +322,39 @@ pnorm(q = 70, mean = 67, sd = 3, lower.tail = FALSE)
 
 `q` is for **quantile**.
 
+::: {.midi}
 + Given a probability $p$, compute $x$ such that $P(X < x) = p$.
 + The `q` functions are "backwards" of the `p` functions.
+:::
 
+::: {.fragment}
+::: {.midi}
+::: columns
+::: {.column width="40%"}
 ```{r}
 #| code-line-numbers: false
 
-qnorm(p = 0.95)
-qnorm(p = 0.95, mean = 67, sd = 3)
+qnorm(p = 0.95, 
+      mean = 0, 
+      sd = 1)
 ```
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+```{r}
+#| code-line-numbers: false
+
+qnorm(p = 0.95, 
+      mean = 67, 
+      sd = 3)
+```
+:::
+:::
+:::
+:::
 
 ### `d`
 
@@ -295,127 +366,20 @@ qnorm(p = 0.95, mean = 67, sd = 3)
 + For **continuous** dist: usually meaningless.
 :::
 
-Probability of *exactly* 12 heads in 20 coin tosses, with a 70% chance of tails?
+::: {.fragment}
+::: {.midi}
+Probability of *exactly* 12 heads in 20 coin tosses, with a 50% chance of tails?
 
 ```{r}
 #| code-line-numbers: false
 
-dbinom(x = 12, size = 20, prob = 0.3)
+dbinom(x = 12, size = 20, prob = 0.5)
 ```
-
+:::
+:::
 :::
 
-<!-- ## Empirical vs. Theoretical Distributions -->
-
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- set.seed(435) -->
-<!-- data <- tibble(names   = charlatan::ch_name(1000), -->
-<!--         height  = rnorm(1000, mean = 67, sd = 3), -->
-<!--         age     = runif(1000, min = 15, max = 75), -->
-<!--         measure = rbinom(1000, size = 1, prob = 0.6)) |>  -->
-<!--   mutate(supports_measure_A = ifelse(measure == 1, "yes", "no")) -->
-<!-- ``` -->
-
-
-<!-- ::: panel-tabset -->
-<!-- ### Empirical Distribution -->
-
-<!-- Empirical: the observed data. -->
-
-<!-- ```{r} -->
-<!-- #| fig-align: center -->
-<!-- #| out-width: 60% -->
-<!-- #| code-fold: true -->
-<!-- data %>% -->
-<!--   ggplot(aes(x = height)) + -->
-<!--   geom_histogram(aes(y = ..density..), bins = 10, color = "white")  -->
-<!-- ``` -->
-
-<!-- ### Theoretical Distributions -->
-
-<!-- Theoretical: the distribution curve. -->
-
-<!-- ```{r} -->
-<!-- #| fig-align: center -->
-<!-- #| out-width: 60% -->
-<!-- #| code-fold: true -->
-<!-- data %>% -->
-<!--   ggplot(aes(x = height)) + -->
-<!--   stat_function(fun = ~dnorm(.x, mean = 67, sd = 3), -->
-<!--                 col = "steelblue", lwd = 2) + -->
-<!--   stat_function(fun = ~dnorm(.x, mean = 67, sd = 2), -->
-<!--                 col = "orange2", lwd = 2) -->
-<!-- ``` -->
-<!-- ::: -->
-
-
-<!-- ## Plotting Both Distributions -->
-
-<!-- ::: panel-tabset -->
-
-<!-- ### <font size = 6> `geom_histogram` </font> -->
-
-<!-- :::: {.columns} -->
-<!-- ::: {.column width=76%} -->
-<!-- ```{r hist} -->
-<!-- #| code-line-numbers: "3" -->
-<!-- #| fig-align: center -->
-<!-- #| out-width: 80% -->
-<!-- data |>  -->
-<!--   ggplot(aes(x = height)) + -->
-<!--   geom_histogram(bins = 10, color = "white") -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: {.column width=24%} -->
-<!-- 1. Plot your data. -->
-<!-- ::: -->
-<!-- :::: -->
-
-<!-- ### <font size = 6> `dnorm` </font> -->
-<!-- :::: {.columns} -->
-<!-- ::: {.column width=76%} -->
-<!-- ```{r} -->
-<!-- #| code-line-numbers: "4" -->
-<!-- #| fig-align: center -->
-<!-- #| out-width: 80% -->
-<!-- data |>  -->
-<!--   ggplot(aes(x = height)) + -->
-<!--   geom_histogram(bins = 10, color = "white") + -->
-<!--   stat_function(fun = ~ dnorm(.x, mean = 67, sd = 3), -->
-<!--                 color = "steelblue", lwd = 2) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: {.column width=24%} -->
-<!-- 2. Add a density curve. -->
-<!-- ::: -->
-<!-- :::: -->
-
-<!-- ### <font size = 6> `..density..` </font> -->
-
-<!-- :::: {.columns} -->
-<!-- ::: {.column width=76%} -->
-<!-- ```{r} -->
-<!-- #| code-line-numbers: "3" -->
-<!-- #| fig-align: center -->
-<!-- #| out-width: 80% -->
-<!-- data |>  -->
-<!--   ggplot(aes(x = height)) + -->
-<!--   geom_histogram(aes(y = ..density..), -->
-<!--                  bins = 10, color = "white") + -->
-<!--   stat_function(fun = ~ dnorm(.x, mean = 67, sd = 3), -->
-<!--                 color = "steelblue", lwd = 2) -->
-<!-- ``` -->
-<!-- ::: -->
-<!-- ::: {.column width=24%} -->
-<!-- 3. Change the y-axis of the histogram to match the y-axis of the density. -->
-<!-- ::: -->
-<!-- :::: -->
-
-<!-- ::: -->
-
 # Simulating Data
-
 
 ## Simulate a Dataset
 
@@ -430,7 +394,9 @@ We can generate fake data based on the assumption that a variable follows a cert
 ```{r}
 #| code-line-numbers: false
 
-age <- runif(1000, min = 15, max = 75)
+age <- runif(n = 1000, 
+             min = 15, 
+             max = 75)
 ```
 
 
@@ -446,7 +412,7 @@ Since there is randomness involved, we will get a different result each time we 
 ```{r}
 #| code-line-numbers: false
 
-runif(3, min = 15, max = 75)
+runif(n = 3, min = 15, max = 75)
 ```
 :::
 :::
@@ -455,7 +421,7 @@ runif(3, min = 15, max = 75)
 ```{r}
 #| code-line-numbers: false
 
-runif(3, min = 15, max = 75)
+runif(n = 3, min = 15, max = 75)
 ```
 :::
 :::
@@ -475,7 +441,7 @@ To make a **reproducible** random sample, we first **set the seed**:
 #| code-line-numbers: false
 
 set.seed(93401)
-runif(3, min = 15, max = 75)
+runif(n = 3, min = 15, max = 75)
 ```
 :::
 :::
@@ -485,26 +451,25 @@ runif(3, min = 15, max = 75)
 #| code-line-numbers: false
 
 set.seed(93401)
-runif(3, min = 15, max = 75)
+runif(n = 3, min = 15, max = 75)
 ```
 :::
 :::
 :::
 ::::
 
-### `tibble`
+### `tibble()`
 
 ::: {.small}
 ```{r}
 #| code-line-numbers: "4-6" 
 set.seed(435)
 
-fake_data <- tibble(names   = charlatan::ch_name(1000),
-                    height  = rnorm(1000, mean = 67, sd = 3),
-                    age     = runif(1000, min = 15, max = 75),
-                    measure = rbinom(1000, size = 1, prob = 0.6)
+fake_data <- tibble(names   = charlatan::ch_name(n = 1000),
+                    age     = runif(n = 1000, min = 18, max = 29),
+                    mamdani = rbinom(n = 1000, size = 1, prob = 0.75)
                     ) |> 
-  mutate(supports_measure_A = ifelse(measure == 1, "yes", "no"))
+  mutate(supports_mamdani = ifelse(mamdani == 1, "yes", "no"))
 
 head(fake_data)
 ```
@@ -521,20 +486,20 @@ Check to see the ages look uniformly distributed.
 #| out-width: 60%
 fake_data |> 
   ggplot(mapping = aes(x = age,
-                       fill = supports_measure_A)) +
+                       fill = supports_mamdani)) +
   geom_histogram(show.legend = F) +
-  facet_wrap(~ supports_measure_A,
+  facet_wrap(~ supports_mamdani,
              ncol = 1) +
   scale_fill_brewer(palette = "Paired") +
   theme_bw() +
   labs(x = "Age (years)",
        y = "",
-       subtitle = "Number of Individuals Supportng Measure A for Different Ages",)
+       subtitle = "Number of Individuals Supportng Prop 50 for Different Ages",)
 ```
 :::
 :::
 
-# [PA 9: Instrument Con](../../group-activities/week-9/PA-9.qmd)
+# PA 9: Instrument Con
 
 > Is the instrument salesman selling fake instruments?
 
@@ -573,34 +538,99 @@ This activity will require knowledge of:
 :::
 :::
 
-## Task Card
+## A reminder about boolean values...
 
-Every group should have a **task card**!
+Suppose `x` is Normally distributed with mean 5 and standard deviation 2. 
 
-- The table on distributions provides pictures on what each function (e.g., 
-`p`, `d`, `q`) means
+We would expect about `r (pnorm(3, mean = 5, sd = 2) * 100) |> round(digits = 2) |> str_c("%")` 
+percent of values to be below 3. Let's see if that is the case!
 
-- The list of distributions should help you decide what function to use (e.g., 
-`pchisq()`)
+. . .
 
-## Getting Started
+</br>
 
-The person who whose birthday is closest to today starts as the Coder 
-(giving instructions on what to type to the Developer)!
+Simulate 1000 values of `x`. 
 
-- The Coder **does not type**. 
-  * The collaborative editing feature should allow you to track what is being 
-  typed. 
-- The Developer **only types what they are told to type**. 
+```{r}
+#| code-line-numbers: false
+
+sims <- rnorm(n = 1000, mean = 5, sd = 2)
+```
+
+## A reminder about boolean values...
+
+How many values were below 3?
+
+. . .
+
+::: columns
+::: {.column width="40%"}
+```{r}
+#| code-line-numbers: false
+
+sims < 3
+```
+
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="55%"}
+::: {.fragment}
+```{r}
+#| code-line-numbers: false
+
+sum(sims < 3)
+```
+:::
+
+::: {.fragment}
+```{r}
+#| code-line-numbers: false
+
+sum(sims < 3) / length(sims)
+```
+:::
+
+::: {.fragment}
+```{r}
+#| code-line-numbers: false
+
+( sum(sims < 3) / length(sims) ) * 100
+```
+:::
+:::
+:::
 
 ## Submission
 
 You and your partner together should address the following questions:
 
-> How many of these samples had a weight less than or equal to Professor Hill's 
-> shipment? 
-
+> How many simulated shipments had a weight less than or equal to Professor
+> Hill's shipment? 
 
 > Do you beleive Professor Hill ordered genuine instruments?
 
+# 5-minute break
+
+## Team Assignments - 9am
+
+::: {.centered}
+<!-- ![](images/section-70-seats-pt2.png){width=75%} -->
+:::
+
+::: {.small}
+The partner whose birthday is the closest to today starts as the Talker!
+:::
+
+## Team Assignments - 12pm
+
+::: {.centered}
+<!-- ![](images/section-71-seats-pt2.png){width=75%} -->
+:::
+
+::: {.small}
+The partner whose birthday is the closest to today starts as the Talker!
+:::
 

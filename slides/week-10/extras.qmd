@@ -1,0 +1,298 @@
+---
+title: "Week 10 Extras"
+format: revealjs
+execute: 
+  eval: false
+---
+
+<!-- ## In-line Code -->
+
+<!-- We can automatically include code output in the written portion of a Quarto -->
+
+<!-- document using `` `r` ``. -->
+
+<!-- . . . -->
+
+<!-- </br>  -->
+
+<!-- ```{r} -->
+
+<!-- #| code-line-numbers: false -->
+
+<!-- my_rand <- rnorm(1, mean = 0, sd = 1) -->
+
+<!-- my_rand -->
+
+<!-- ``` -->
+
+<!-- </br>  -->
+
+<!-- Type this: My random number is `` `r knitr::inline_expr("my_rand")` ``. -->
+
+<!-- To get this: My random number is `r my_rand`. -->
+
+<!-- # Four Steps to Simualate Datasets -->
+
+<!-- ## Simulate Multiple Datasets - Step 1 -->
+
+<!-- :::: small -->
+<!-- Write a function to simulate height data from a population with some mean and SD height. -->
+
+<!-- The user should be able to input: -->
+
+<!-- -   how many observations to simulate -->
+<!-- -   the mean and standard deviation of the Normal distribution to use when simulating -->
+
+<!-- ::: callout-tip -->
+<!-- ## Pencil out your function! -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- :::::::::: columns -->
+<!-- ::::: {.column width="60%"} -->
+<!-- :::: fragment -->
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| code-line-numbers: false -->
+
+<!-- sim_ht <- function(n = 200, avg, std){ -->
+<!--   tibble(person = 1:n, -->
+<!--          ht = rnorm(n = n, mean = avg, sd = std)) -->
+<!-- } -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- :::: -->
+<!-- ::::: -->
+
+<!-- ::: {.column width="5%"} -->
+<!-- ::: -->
+
+<!-- ::::: {.column width="35%"} -->
+<!-- :::: fragment -->
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| code-line-numbers: false -->
+
+<!-- sim_ht(n = 5,  -->
+<!--         avg = 66,  -->
+<!--         std = 3) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- :::: -->
+<!-- ::::: -->
+<!-- :::::::::: -->
+
+<!-- ## Simulate Multiple Datasets - Step 2 -->
+
+<!-- Create a set of parameters (mean and SD) for each population. -->
+
+<!-- ```{r} -->
+<!-- #| code-line-numbers: false -->
+
+<!-- crossing(mean_ht = seq(from = 60, to = 78, by = 6), -->
+<!--             std_ht  = c(3, 6)) -->
+<!-- ``` -->
+
+<!-- ## Simulate Multiple Datasets - Step 3 -->
+
+<!-- Simulate datasets with different mean and SD heights. -->
+
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| code-line-numbers: "4-7" -->
+
+<!-- crossing(mean_ht = seq(from = 60, to = 78, by = 6), -->
+<!--          std_ht  = c(3, 6) -->
+<!--          ) |>  -->
+<!--  mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht),  -->
+<!--                        .f = sim_ht -->
+<!--                        ) -->
+<!--         ) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- . . . -->
+
+<!-- :::: small -->
+<!-- ::: callout-tip -->
+<!-- # Why am I getting a tibble in the `ht_data` column? -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- ## Simulate Multiple Datasets - Step 4 -->
+
+<!-- Extract the contents of each list! -->
+
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| code-line-numbers: "8" -->
+<!-- #| eval: false -->
+
+<!-- crossing(mean_ht = seq(from = 60, to = 78, by = 6), -->
+<!--          std_ht  = c(3, 6) -->
+<!--          ) |>  -->
+<!--  mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht),  -->
+<!--                        .f = sim_ht -->
+<!--                        ) -->
+<!--         ) |>  -->
+<!--   unnest(cols = ht_data) |>  -->
+<!--   slice_sample(n = 10) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- :::::::::: columns -->
+<!-- :::: {.column width="50%"} -->
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| eval: true -->
+
+<!-- crossing(mean_ht = seq(from = 60, to = 78, by = 6), -->
+<!--          std_ht  = c(3, 6) -->
+<!--          ) |>  -->
+<!--  mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht),  -->
+<!--                        .f = sim_ht -->
+<!--                        ) -->
+<!--         ) |>  -->
+<!--   unnest(cols = ht_data) |>  -->
+<!--   slice_head(n = 10) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- ::: {.column width="5%"} -->
+<!-- ::: -->
+
+<!-- :::::: {.column width="45%"} -->
+<!-- ::::: midi -->
+<!-- ::: fragment -->
+<!-- Why do I now have `person` and `ht` columns? -->
+<!-- ::: -->
+
+<!-- ::: fragment -->
+<!-- How many rows should I have for each `mean_ht`, `std_ht` combo? -->
+<!-- ::: -->
+<!-- ::::: -->
+<!-- :::::: -->
+<!-- :::::::::: -->
+
+<!-- ## `nest()` and `unnest()` -->
+
+<!-- -   We can pair functions from the `map()` family very nicely with two `tidyr` functions: `nest()` and `unnest()`. -->
+<!-- -   These allow us to easily map functions onto subsets of the data. -->
+
+<!-- ## `nest()` -->
+
+<!-- **Nest** subsets of the data (as tibbles) inside a tibble. -->
+
+<!-- -   Specify the column(s) to create subsets on. -->
+
+<!-- ::::: columns -->
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| code-line-numbers: false -->
+<!-- #| eval: false -->
+
+<!-- mtcars |>  -->
+<!--   nest(.by = cyl) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ::: {.column width="50%"} -->
+<!-- ```{r} -->
+<!-- #| code-line-numbers: false -->
+<!-- #| echo: false -->
+
+<!-- mtcars |>  -->
+<!--   nest(.by = cyl) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- ::::: -->
+
+<!-- ## `unnest()` -->
+
+<!-- **Un-nest** the data by row binding the subsets back together. -->
+
+<!-- -   Specify the column(s) that contains the subsets. -->
+
+<!-- :::::::: columns -->
+<!-- :::: {.column width="40%"} -->
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| echo: true -->
+<!-- #| eval: false -->
+<!-- #| code-line-numbers: false -->
+
+<!-- mtcars |>  -->
+<!--   nest(.by = cyl) |>  -->
+<!--   unnest(data) |>  -->
+<!--   slice_head(n = 10) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- :::: -->
+
+<!-- ::: {.column width="5%"} -->
+<!-- ::: -->
+
+<!-- :::: {.column width="55%"} -->
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| code-line-numbers: false -->
+
+<!-- mtcars |>  -->
+<!--   nest(.by = cyl) |>  -->
+<!--   unnest(data) |>  -->
+<!--   slice_head(n = 10) -->
+<!-- ``` -->
+<!-- ::: -->
+<!-- :::: -->
+<!-- :::::::: -->
+
+<!-- ## Simulate Multiple Datasets - Step 5 -->
+
+<!-- Plot the samples simulated from each population. -->
+
+<!-- ::: small -->
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| code-line-numbers: false -->
+
+<!-- fake_ht_data <- crossing(mean_ht = seq(from = 60, to = 78, by = 6), -->
+<!--          std_ht  = c(3, 6) -->
+<!--          ) |>  -->
+<!--  mutate(ht_data = pmap(.l = list(avg = mean_ht, std = std_ht),  -->
+<!--                        .f = sim_ht -->
+<!--                        ) -->
+<!--         ) |>  -->
+<!--   unnest(cols = ht_data) -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- #| code-fold: true -->
+<!-- #| fig-width: 8 -->
+<!-- #| fig-height: 4 -->
+<!-- #| fig-align: center -->
+
+<!-- fake_ht_data |>  -->
+<!--   mutate(across(.cols = mean_ht:std_ht,  -->
+<!--                 .fns = ~as.character(.x)),  -->
+<!--          mean_ht = fct_recode(mean_ht,  -->
+<!--                               `Mean = 60` = "60",  -->
+<!--                               `Mean = 66` = "66",  -->
+<!--                               `Mean = 72` = "72",  -->
+<!--                               `Mean = 78` = "78"),  -->
+<!--          std_ht = fct_recode(std_ht,  -->
+<!--                              `Std = 3` = "3",  -->
+<!--                              `Std = 6` = "6") -->
+<!--          ) |>  -->
+<!--   ggplot(mapping = aes(x = ht)) + -->
+<!--   geom_histogram(color = "white") + -->
+<!--   facet_grid(std_ht ~ mean_ht) + -->
+<!--   labs(x = "Height (in)", -->
+<!--        y = "", -->
+<!--        subtitle = "Frequency of Observations", -->
+<!--        title = "Simulated Heights from Eight Different Populations") -->
+<!-- ``` -->
+<!-- ::: -->

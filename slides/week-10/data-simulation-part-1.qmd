@@ -15,11 +15,6 @@ execute:
 library(tidyverse)
 ```
 
-
-<!-- # Survey Consent Form -->
-
-<!-- https://forms.office.com/r/TckhG81y7q -->
-
 ## Today we will...
 
 + Plan for Week 9 & 10
@@ -290,9 +285,8 @@ rbinom(n = 3,
 ```{r}
 #| code-line-numbers: false
 
-pnorm(q = 70, 
-      mean = 67, 
-      sd = 3)
+pchisq(q = 2, 
+      df = 8)
 ```
 :::
 :::
@@ -304,14 +298,12 @@ pnorm(q = 70,
 ```{r}
 #| code-line-numbers: false
 
-pnorm(q = 70, 
-      mean = 67, 
-      sd = 3, 
+pchisq(q = 2, 
+      df = 8, 
       lower.tail = FALSE)
 
-1 - pnorm(q = 70, 
-          mean = 67, 
-          sd = 3)
+1 - pchisq(q = 2, 
+      df = 8)
 ```
 :::
 :::
@@ -334,9 +326,8 @@ pnorm(q = 70,
 ```{r}
 #| code-line-numbers: false
 
-qnorm(p = 0.95, 
-      mean = 0, 
-      sd = 1)
+qt(p = 0.95,
+   df = 12)
 ```
 :::
 
@@ -347,9 +338,8 @@ qnorm(p = 0.95,
 ```{r}
 #| code-line-numbers: false
 
-qnorm(p = 0.95, 
-      mean = 67, 
-      sd = 3)
+qt(p = 0.95,
+   df = 30)
 ```
 :::
 :::
@@ -597,7 +587,8 @@ sum(sims < 3) / length(sims)
 ```{r}
 #| code-line-numbers: false
 
-( sum(sims < 3) / length(sims) ) * 100
+( sum(sims < 3) / 
+    length(sims) ) * 100
 ```
 :::
 :::
@@ -617,7 +608,7 @@ You and your partner together should address the following questions:
 ## Team Assignments - 9am
 
 ::: {.centered}
-<!-- ![](images/section-70-seats-pt2.png){width=75%} -->
+![](images/section-70-seats.png){width=75%}
 :::
 
 ::: {.small}
@@ -627,7 +618,7 @@ The partner whose birthday is the closest to today starts as the Talker!
 ## Team Assignments - 12pm
 
 ::: {.centered}
-<!-- ![](images/section-71-seats-pt2.png){width=75%} -->
+![](images/section-71-seats.png){width=75%}
 :::
 
 ::: {.small}

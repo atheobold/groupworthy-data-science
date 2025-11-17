@@ -1,0 +1,51 @@
+---
+title: "Week 10: Simulating Data"
+format: docx
+---
+
+## Distributions
+
+-   How does a Uniform distribution look?
+    -   What values define a Uniform distribution?
+-   How does a Normal distribution look?
+    -   What values define a Normal distribution?
+-   How does a t-distribution look?
+    -   What is the relationship between a t-distribution and a Normal distribution?
+-   How does a Chi-square distribution look?
+    -   What values define a Chi-square distribution?
+-   How is a Binomial distribution different from the other four distributions?
+    -   What values define a Binomial distribution?
+
+## Distribution Functions in R
+
+-   `r` stands for:
+
+    -   What are the inputs to the `rnorm()` function?
+
+    -   What does the `rnorm()` function return?
+
+![](images/pnorm.jpeg){width="6.6cm" height="2cm"}
+
+-   `p` stands for:
+
+    -   What are the required inputs to the `pchisq()` function?
+
+    -   What is the optional input to the `pchisq()` function?
+
+    -   What does the `pchisq()` function return?
+
+![](images/qnorm.jpeg){width="6.6cm"}
+
+-   `q` stands for:
+
+    -   What are the inputs to the `qt()` function?
+
+    -   What does the `qt()` function return?
+
+![](images/dnorm.jpeg){width="3cm" height="2cm"}
+
+-   `d` stands for:
+
+    -   What are the inputs to the `dbinom()` function?
+
+    -   What does the `dbinom()` function return?

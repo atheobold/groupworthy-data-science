@@ -1225,12 +1225,7 @@ fish <- fish |>
          ) 
 ```
 
-This plot is brought to us by Connie Xian! This plot blew me away. Connie made 
-so many changes to make the plot easily understandable to the reader. The legend
-is in the order of the lines (`fct_reorder2()`!), there are vertical grey lines
-only on the years where data were collected, and the years a labeled to not make
-the reader tilt their head. The icing on the cake is the renaming of the 
-`species` variable so the reader doen't have to guess what WCT means. 🔥
+This plot is brought to us by Connie Xian! This plot blew me away. Connie made so many changes to make the plot easily understandable to the reader. The legend is in the order of the lines (`fct_reorder2()`!), there are vertical grey lines only on the years where data were collected, and the years a labeled to not make the reader tilt their head. The icing on the cake is the renaming of the `species` variable so the reader doesn't have to guess what WCT means. 🔥
 
 ```{r}
 #| label: from-connie
@@ -1272,11 +1267,7 @@ fish |>
 
 ```
 
-This plot is brought to us by a student who wishes to remain anonymous. I 
-appreciated the use of a `geom_ribbon()` in the plot to show the range of values
-for the condition indices. The calculation of a 95% confidence interval around 
-the mean condition index for each year and species was an impressive feat 
-already!
+This plot is brought to us by a student who wishes to remain anonymous. I appreciated the use of a `geom_ribbon()` in the plot to show the range of values for the condition indices. The calculation of a 95% confidence interval around the mean condition index for each year and species was an impressive feat already!
 
 ```{r}
 #| label: from-agustin
@@ -1314,9 +1305,8 @@ ggplot(cond_year, aes(x = year, y = mean_K, group = species)) +
   theme_minimal()
 ```
 
-
 ```{r}
-#| label: from-aidan #
+#| label: from-aidan
 #| echo: false
 #| code-fold: true
 
@@ -1360,4 +1350,56 @@ ggplot(yearly, aes(x = year, y = K_med, color = species)) +
     plot.subtitle = element_text(size = 11, color = "gray50", face = "italic")
   )
 ```
+
+# Lab 8 
+
+## Awesome Function Checks
+
+## Cool Helper Functions
+
+I thought it was awesome to see quite a few students create "helper" functions
+to help make nicely formatted labels for their plot. Here are some examples!
+
+This function was written by Devin Hadley!
+
+```{r}
+#| echo: true
+
+format_name <- function(var_quo) {
+    
+    var_name <- rlang::as_name(var_quo)
+    var_name |>
+      stringr::str_replace_all("_", " ") |>
+      stringr::str_to_title()
+    
+  }
+```
+
+This function was written by Connie Xian!
+
+```{r}
+make_unit_titles <- function(var) {
+  var_unit <- var |>
+    str_replace_all(pattern = "_", replace = " ") |>
+    str_sub(start = str_length(var) - 1, 
+            end = str_length(var)) |>
+    str_trim()
+
+  var_unit_formatted <- var_unit |> 
+    str_pad(pad = "(", 
+            width = str_length(var_unit) + 1, 
+            side = "left") |>
+    str_pad(pad = ")", 
+            width = str_length(var_unit) + 2, 
+            side = "right")
+  
+  var |>
+    str_replace_all(pattern = "_", replace = " ") |>
+    str_sub(end = str_length(var) - 2) |>
+    str_to_title() |>
+    str_trim() |> 
+    str_c(var_unit_formatted, sep = " ")
+}
+```
+
 

@@ -1402,4 +1402,127 @@ make_unit_titles <- function(var) {
 }
 ```
 
+This function was written by Jared Hammett!
+
+```{r}
+format_label <- function(var) {
+    label <- var |>
+      str_replace_all("_", " ") |>
+      str_to_lower() |>                 
+      str_to_title() |>
+      str_replace("Mm", "(mm)")
+    return(label)
+  }
+```
+
+## Exemplary Plotting Functions
+
+While most students wrote a plotting function to make a specific type of plot 
+(e.g., barplot, scatterplot), two students wrote plotting functions that 
+decide what plot to make based on the data types of the variables input. So 
+cool!
+
+This function was written by Shafay Syed!
+
+```{r}
+plot_two_vars <- function(data, x, y) {
+  
+  x_lab <- names(select(data, {{ x }}))
+  y_lab <- names(select(data, {{ y }}))
+  
+  x_lab <- str_to_title(str_replace_all(x_lab, "_", " "))
+  y_lab <- str_to_title(str_replace_all(y_lab, "_", " "))
+
+  x_is_num <- is.numeric(pull(data, {{ x }}))
+  y_is_num <- is.numeric(pull(data, {{ y }}))
+
+  if (x_is_num && y_is_num) {
+    ggplot(data, aes(x = {{ x }}, y = {{ y }}, color = {{ y }})) +
+      geom_point(na.rm = TRUE, alpha = 0.7) +
+      theme(legend.position = "none") +
+      labs(x = x_lab, y = y_lab, title = paste0(y_lab, " vs ", x_lab))
+  } else if (!x_is_num && y_is_num) {
+    ggplot(data, aes(x = {{ x }}, y = {{ y }}, fill = {{ x }})) +
+      geom_boxplot(na.rm = TRUE, outlier.alpha = 0.3) +
+      theme(legend.position = "none") +
+      labs(x = x_lab, y = y_lab, title = paste0(y_lab, " by ", x_lab))
+  } else if (x_is_num && !y_is_num) {
+    ggplot(data, aes(x = {{ y }}, y = {{ x }}, fill = {{ y }})) +
+      geom_boxplot(na.rm = TRUE, outlier.alpha = 0.3) +
+      theme(legend.position = "none") +
+      labs(x = y_lab, y = x_lab, title = paste0(x_lab, " by ", y_lab))
+  } else {
+    ggplot(data, aes(x = {{ x }}, fill = {{ y }})) +
+      geom_bar(na.rm = TRUE, position = "dodge") +
+      labs(x = x_lab, y = "Count", title = paste0("Counts of ", x_lab, " by ", y_lab))
+  }
+}
+```
+
+<!-- This function was written by Karthik Balaji! -->
+
+```{r}
+#| echo: false
+create_plot <- function(df, var_1, var_2) {
+  x_is_num <- is.numeric(pull(df, {{ var_1 }}))
+  y_is_num <- is.numeric(pull(df, {{ var_2 }}))
+
+  x_lab <- str_to_title(str_replace_all(as_label(enquo(var_1)), "_", " "))
+  y_lab <- str_to_title(str_replace_all(as_label(enquo(var_2)), "_", " "))
+
+  p <- ggplot(df, aes(x = {{ var_1 }}, y = {{ var_2 }}, color = {{ var_1 }})) +
+        labs(title = glue::glue("Comparison of {y_lab} and {x_lab} for penguins"),
+             x = x_lab, 
+             y = y_lab, 
+             color = x_lab) +
+        theme_bw()
+  if (x_is_num && y_is_num) {
+      p <- p + geom_point(alpha = 0.8)
+  }
+  else if (x_is_num || y_is_num) {
+      p <- p + geom_jitter(alpha = 0.8)
+  }
+  else {
+    p <- p + geom_count()
+  }
+  
+  p + guides(color = "none")
+}
+```
+
+## Getting the Right Number of Colors
+
+For your `style_plot()` function I asked for you to allow the user to input a
+color palette to be used. But! The color palette they input might have the 
+wrong number of colors! 
+
+Amazingly, Kristen Ho figured out how to handle just this problem! Kristen's 
+function inspects the `plot` object to see how many labels the plot has, and
+uses that number to create a color palette with the right number of colors 
+(using `colorRampPalette()`)!
+
+```{r}
+style_plot <- function(plot, theme_fn = theme_bw, 
+                       palette = brewer.pal(5, "Pastel1"), 
+                       aesthetic = "fill"){
+    
+    n <- plot$data |>
+      filter(!is.na(.data[[as_label(plot$mapping[[aesthetic]])]])) |>
+      distinct(.data[[as_label(plot$mapping[[aesthetic]])]]) |>
+      nrow()
+  
+    if(aesthetic == "fill"){
+      plot <- plot +
+        theme_fn() +
+        scale_fill_manual(values = colorRampPalette(palette)(n))
+    } 
+    if(aesthetic == "color"){
+      plot <- plot +
+        theme_fn() +
+        scale_color_manual(values = colorRampPalette(palette)(n))
+    } 
+    
+  return(plot)
+}
+```
 

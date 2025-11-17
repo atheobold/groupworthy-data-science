@@ -226,6 +226,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#awesome-function-checks" id="toc-awesome-function-checks" class="nav-link" data-scroll-target="#awesome-function-checks">Awesome Function Checks</a></li>
   <li><a href="#cool-helper-functions" id="toc-cool-helper-functions" class="nav-link" data-scroll-target="#cool-helper-functions">Cool Helper Functions</a></li>
+  <li><a href="#exemplary-plotting-functions" id="toc-exemplary-plotting-functions" class="nav-link" data-scroll-target="#exemplary-plotting-functions">Exemplary Plotting Functions</a></li>
+  <li><a href="#getting-the-right-number-of-colors" id="toc-getting-the-right-number-of-colors" class="nav-link" data-scroll-target="#getting-the-right-number-of-colors">Getting the Right Number of Colors</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -1424,6 +1426,86 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb50-20"><a href="#cb50-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_trim</span>() <span class="sc">|&gt;</span> </span>
 <span id="cb50-21"><a href="#cb50-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_c</span>(var_unit_formatted, <span class="at">sep =</span> <span class="st">" "</span>)</span>
 <span id="cb50-22"><a href="#cb50-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This function was written by Jared Hammett!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>format_label <span class="ot">&lt;-</span> <span class="cf">function</span>(var) {</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>    label <span class="ot">&lt;-</span> var <span class="sc">|&gt;</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_replace_all</span>(<span class="st">"_"</span>, <span class="st">" "</span>) <span class="sc">|&gt;</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_to_lower</span>() <span class="sc">|&gt;</span>                 </span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_to_title</span>() <span class="sc">|&gt;</span></span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_replace</span>(<span class="st">"Mm"</span>, <span class="st">"(mm)"</span>)</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(label)</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a>  }</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="exemplary-plotting-functions" class="level2">
+<h2 class="anchored" data-anchor-id="exemplary-plotting-functions">Exemplary Plotting Functions</h2>
+<p>While most students wrote a plotting function to make a specific type of plot (e.g., barplot, scatterplot), two students wrote plotting functions that decide what plot to make based on the data types of the variables input. So cool!</p>
+<p>This function was written by Shafay Syed!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>plot_two_vars <span class="ot">&lt;-</span> <span class="cf">function</span>(data, x, y) {</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>  x_lab <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">select</span>(data, {{ x }}))</span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>  y_lab <span class="ot">&lt;-</span> <span class="fu">names</span>(<span class="fu">select</span>(data, {{ y }}))</span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>  x_lab <span class="ot">&lt;-</span> <span class="fu">str_to_title</span>(<span class="fu">str_replace_all</span>(x_lab, <span class="st">"_"</span>, <span class="st">" "</span>))</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>  y_lab <span class="ot">&lt;-</span> <span class="fu">str_to_title</span>(<span class="fu">str_replace_all</span>(y_lab, <span class="st">"_"</span>, <span class="st">" "</span>))</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>  x_is_num <span class="ot">&lt;-</span> <span class="fu">is.numeric</span>(<span class="fu">pull</span>(data, {{ x }}))</span>
+<span id="cb52-10"><a href="#cb52-10" aria-hidden="true" tabindex="-1"></a>  y_is_num <span class="ot">&lt;-</span> <span class="fu">is.numeric</span>(<span class="fu">pull</span>(data, {{ y }}))</span>
+<span id="cb52-11"><a href="#cb52-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-12"><a href="#cb52-12" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x_is_num <span class="sc">&amp;&amp;</span> y_is_num) {</span>
+<span id="cb52-13"><a href="#cb52-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">y =</span> {{ y }}, <span class="at">color =</span> {{ y }})) <span class="sc">+</span></span>
+<span id="cb52-14"><a href="#cb52-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb52-15"><a href="#cb52-15" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb52-16"><a href="#cb52-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> x_lab, <span class="at">y =</span> y_lab, <span class="at">title =</span> <span class="fu">paste0</span>(y_lab, <span class="st">" vs "</span>, x_lab))</span>
+<span id="cb52-17"><a href="#cb52-17" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="sc">!</span>x_is_num <span class="sc">&amp;&amp;</span> y_is_num) {</span>
+<span id="cb52-18"><a href="#cb52-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">y =</span> {{ y }}, <span class="at">fill =</span> {{ x }})) <span class="sc">+</span></span>
+<span id="cb52-19"><a href="#cb52-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">outlier.alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb52-20"><a href="#cb52-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb52-21"><a href="#cb52-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> x_lab, <span class="at">y =</span> y_lab, <span class="at">title =</span> <span class="fu">paste0</span>(y_lab, <span class="st">" by "</span>, x_lab))</span>
+<span id="cb52-22"><a href="#cb52-22" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (x_is_num <span class="sc">&amp;&amp;</span> <span class="sc">!</span>y_is_num) {</span>
+<span id="cb52-23"><a href="#cb52-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> {{ y }}, <span class="at">y =</span> {{ x }}, <span class="at">fill =</span> {{ y }})) <span class="sc">+</span></span>
+<span id="cb52-24"><a href="#cb52-24" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_boxplot</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">outlier.alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb52-25"><a href="#cb52-25" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb52-26"><a href="#cb52-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> y_lab, <span class="at">y =</span> x_lab, <span class="at">title =</span> <span class="fu">paste0</span>(x_lab, <span class="st">" by "</span>, y_lab))</span>
+<span id="cb52-27"><a href="#cb52-27" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb52-28"><a href="#cb52-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> {{ x }}, <span class="at">fill =</span> {{ y }})) <span class="sc">+</span></span>
+<span id="cb52-29"><a href="#cb52-29" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_bar</span>(<span class="at">na.rm =</span> <span class="cn">TRUE</span>, <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span></span>
+<span id="cb52-30"><a href="#cb52-30" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">x =</span> x_lab, <span class="at">y =</span> <span class="st">"Count"</span>, <span class="at">title =</span> <span class="fu">paste0</span>(<span class="st">"Counts of "</span>, x_lab, <span class="st">" by "</span>, y_lab))</span>
+<span id="cb52-31"><a href="#cb52-31" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb52-32"><a href="#cb52-32" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- This function was written by Karthik Balaji! -->
+</section>
+<section id="getting-the-right-number-of-colors" class="level2">
+<h2 class="anchored" data-anchor-id="getting-the-right-number-of-colors">Getting the Right Number of Colors</h2>
+<p>For your <code>style_plot()</code> function I asked for you to allow the user to input a color palette to be used. But! The color palette they input might have the wrong number of colors!</p>
+<p>Amazingly, Kristen Ho figured out how to handle just this problem! Kristen’s function inspects the <code>plot</code> object to see how many labels the plot has, and uses that number to create a color palette with the right number of colors (using <code>colorRampPalette()</code>)!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>style_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(plot, <span class="at">theme_fn =</span> theme_bw, </span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">palette =</span> <span class="fu">brewer.pal</span>(<span class="dv">5</span>, <span class="st">"Pastel1"</span>), </span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>                       <span class="at">aesthetic =</span> <span class="st">"fill"</span>){</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb53-5"><a href="#cb53-5" aria-hidden="true" tabindex="-1"></a>    n <span class="ot">&lt;-</span> plot<span class="sc">$</span>data <span class="sc">|&gt;</span></span>
+<span id="cb53-6"><a href="#cb53-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data[[<span class="fu">as_label</span>(plot<span class="sc">$</span>mapping[[aesthetic]])]])) <span class="sc">|&gt;</span></span>
+<span id="cb53-7"><a href="#cb53-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">distinct</span>(.data[[<span class="fu">as_label</span>(plot<span class="sc">$</span>mapping[[aesthetic]])]]) <span class="sc">|&gt;</span></span>
+<span id="cb53-8"><a href="#cb53-8" aria-hidden="true" tabindex="-1"></a>      <span class="fu">nrow</span>()</span>
+<span id="cb53-9"><a href="#cb53-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb53-10"><a href="#cb53-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(aesthetic <span class="sc">==</span> <span class="st">"fill"</span>){</span>
+<span id="cb53-11"><a href="#cb53-11" aria-hidden="true" tabindex="-1"></a>      plot <span class="ot">&lt;-</span> plot <span class="sc">+</span></span>
+<span id="cb53-12"><a href="#cb53-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_fn</span>() <span class="sc">+</span></span>
+<span id="cb53-13"><a href="#cb53-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">colorRampPalette</span>(palette)(n))</span>
+<span id="cb53-14"><a href="#cb53-14" aria-hidden="true" tabindex="-1"></a>    } </span>
+<span id="cb53-15"><a href="#cb53-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span>(aesthetic <span class="sc">==</span> <span class="st">"color"</span>){</span>
+<span id="cb53-16"><a href="#cb53-16" aria-hidden="true" tabindex="-1"></a>      plot <span class="ot">&lt;-</span> plot <span class="sc">+</span></span>
+<span id="cb53-17"><a href="#cb53-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">theme_fn</span>() <span class="sc">+</span></span>
+<span id="cb53-18"><a href="#cb53-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">colorRampPalette</span>(palette)(n))</span>
+<span id="cb53-19"><a href="#cb53-19" aria-hidden="true" tabindex="-1"></a>    } </span>
+<span id="cb53-20"><a href="#cb53-20" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb53-21"><a href="#cb53-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(plot)</span>
+<span id="cb53-22"><a href="#cb53-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 

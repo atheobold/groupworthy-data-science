@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Using stringr to Work with Strings</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-37ee00a66d7312b0b64834519157c597.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-6f08a957caa65f3d967f23cbef36bcc8.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -262,14 +262,14 @@
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>my_string <span class="ot">&lt;-</span> <span class="st">"Hi, my name is Bond!"</span></span>
-<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>my_string</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>my_string <span class="ot">&lt;-</span> <span class="st">"Hi, my name is Bond!"</span></span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>my_string</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Hi"</span>, <span class="st">"my"</span>, <span class="st">"name"</span>, <span class="st">"is"</span>, <span class="st">"Bond"</span>)</span>
-<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>my_vector</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Hi"</span>, <span class="st">"my"</span>, <span class="st">"name"</span>, <span class="st">"is"</span>, <span class="st">"Bond"</span>)</span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>my_vector</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -315,14 +315,14 @@
 <div class="column" style="width:50%;">
 <p>a string is:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>colleges<span class="sc">$</span>INSTNM[<span class="dv">214</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a>colleges<span class="sc">$</span>INSTNM[<span class="dv">214</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 </div><div class="column" style="width:50%;">
 <div class="fragment">
 <p>a character vector is:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>colleges<span class="sc">$</span>INSTNM </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>colleges<span class="sc">$</span>INSTNM </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 </div>
@@ -363,9 +363,9 @@
 <div class="midi">
 <p>None of the <code>stringr</code> functions have a <code>.data =</code> argument! These functions only accept a character vector (<code>string =</code>) as an input.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="at">data =</span> colleges, </span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(<span class="at">data =</span> colleges, </span>
 <span id="cb5-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">string =</span> INSTNM, </span>
-<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"California"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb5-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"California"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -383,7 +383,7 @@
 </ul>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(colleges<span class="sc">$</span>INSTNM, </span>
 <span id="cb6-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"Polytechnic"</span>)</span>
 <span id="cb6-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(colleges<span class="sc">$</span>INSTNM, </span>
@@ -391,7 +391,7 @@
 <span id="cb6-6"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(colleges<span class="sc">$</span>INSTNM, </span>
 <span id="cb6-8"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">pattern =</span> <span class="st">"$u"</span>, </span>
-<span id="cb6-9"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">replacement =</span> <span class="st">"U"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb6-9"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">replacement =</span> <span class="st">"U"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
@@ -457,8 +457,8 @@
 <div class="small">
 <p><code>^</code> – looks at the beginning of a string.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"^California State"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb7-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"^California State"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div><div class="column" style="width:2%;">
@@ -468,8 +468,8 @@
 <div class="small">
 <p><code>$</code> – looks at the end of a string.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"State University$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"State University$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -482,8 +482,8 @@
 <div class="column" style="width:40%;">
 <p><code>+</code> – occurs 1 or more times</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"St</span><span class="sc">\\</span><span class="st">.+"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb9-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"St</span><span class="sc">\\</span><span class="st">.+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 
@@ -494,8 +494,8 @@
 <div class="fragment">
 <p><code>*</code> – occurs 0 or more times</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s*-</span><span class="sc">\\</span><span class="st">s*"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb10-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s*-</span><span class="sc">\\</span><span class="st">s*"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 
@@ -511,8 +511,8 @@
 <div class="column" style="width:40%;">
 <p><code>{n}</code> – occurs exactly n times</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[A-Z]{4}"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[A-Z]{4}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 
@@ -523,8 +523,8 @@
 <div class="fragment">
 <p><code>{n,m}</code> – occurs between n and m times</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[A-Z]{4,6}"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb12-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[A-Z]{4,6}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -553,8 +553,8 @@
 <li>We can specify “either” / “or” within a group using <code>|</code>.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"(T|t)ech"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"(T|t)ech"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -579,14 +579,14 @@
 </div><div class="column" style="width:50%;">
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
 <span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[A-Z]{4}"</span>)</span>
 <span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
 <span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[:digit:]+"</span>)</span>
 <span id="cb14-6"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb14-8"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[:punct:]{1,}"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-8"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[:punct:]{1,}"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div></div>
@@ -601,8 +601,8 @@
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[^y]$"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"[^y]$"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:5%;">
 
@@ -612,13 +612,13 @@
 <p><br></p>
 <p><strong>Starts with “University”</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"^University"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"^University"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong><u>Does not</u> starts with “University”</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
-<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"^[^University]"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_subset</span>(colleges<span class="sc">$</span>INSTNM, </span>
+<span id="cb17-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"^[^University]"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div></div>
@@ -639,13 +639,13 @@
 <p>Returns a <strong>logical vector</strong> indicating whether the pattern was found in each element of the supplied vector.</p>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Hello,"</span>, </span>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Hello,"</span>, </span>
 <span id="cb18-2"><a aria-hidden="true" tabindex="-1"></a>               <span class="st">"my name is"</span>, </span>
 <span id="cb18-3"><a aria-hidden="true" tabindex="-1"></a>               <span class="st">"Bond"</span>, </span>
 <span id="cb18-4"><a aria-hidden="true" tabindex="-1"></a>               <span class="st">"James Bond"</span>)</span>
 <span id="cb18-5"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-6"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(my_vector, <span class="at">pattern =</span> <span class="st">"Bond"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb18-7"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_detect</span>(my_vector, <span class="at">pattern =</span> <span class="st">"Bond"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -675,8 +675,8 @@
 <p>Which colleges in the dataset have “Polytechnic” in their name?</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(INSTNM, <span class="at">pattern =</span> <span class="st">"Polytechnic"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">str_detect</span>(INSTNM, <span class="at">pattern =</span> <span class="st">"Polytechnic"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 </section>
@@ -686,12 +686,12 @@
 <p>How many colleges in the <code>colleges</code> dataset have “Polytechnic” in their name?</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
 <span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
 <span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">count_polytech =</span> <span class="fu">sum</span>(</span>
 <span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>      <span class="fu">str_detect</span>(INSTNM, <span class="at">pattern =</span> <span class="st">"Polytechnic"</span>)</span>
 <span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>      ) </span>
-<span id="cb20-6"><a aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-6"><a aria-hidden="true" tabindex="-1"></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -705,9 +705,9 @@
 <p>replace the <strong>first</strong> matched pattern in each string</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(my_vector, </span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_replace</span>(my_vector, </span>
 <span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">pattern =</span> <span class="st">"Bond"</span>, </span>
-<span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">replace =</span> <span class="st">"Franco"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">replace =</span> <span class="st">"Franco"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="str_replace-with-mutate" class="slide level2">
@@ -716,11 +716,11 @@
 <p>Make capitalization of “University” consistent</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
 <span id="cb22-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INSTNM =</span> <span class="fu">str_replace</span>(INSTNM, </span>
 <span id="cb22-3"><a aria-hidden="true" tabindex="-1"></a>                              <span class="at">pattern =</span> <span class="st">"$u"</span>, </span>
 <span id="cb22-4"><a aria-hidden="true" tabindex="-1"></a>                              <span class="at">replacement =</span> <span class="st">"U"</span>)</span>
-<span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb22-5"><a aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="str_remove" class="slide level2">
@@ -729,8 +729,8 @@
 <p>remove the <strong>first</strong> matched pattern in each string</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(my_vector, </span>
-<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"Bond"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">str_remove</span>(my_vector, </span>
+<span id="cb23-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">pattern =</span> <span class="st">"Bond"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div class="midi">
@@ -755,11 +755,11 @@
 <p>Remove “College” or “University” at the end of each name so only the main institution name remains.</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
 <span id="cb24-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INSTNM =</span> <span class="fu">str_remove</span>(INSTNM, </span>
 <span id="cb24-3"><a aria-hidden="true" tabindex="-1"></a>                             <span class="at">pattern =</span> <span class="st">"(College|University)"</span></span>
 <span id="cb24-4"><a aria-hidden="true" tabindex="-1"></a>                             )</span>
-<span id="cb24-5"><a aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb24-5"><a aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -773,11 +773,11 @@
 <p>returns number of elements (characters) of a string</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>colleges <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>colleges <span class="sc">|&gt;</span> </span>
 <span id="cb25-2"><a></a>  <span class="fu">mutate</span>(</span>
 <span id="cb25-3"><a></a>    <span class="at">name_length =</span> <span class="fu">str_length</span>(INSTNM)</span>
 <span id="cb25-4"><a></a>         ) <span class="sc">|&gt;</span> </span>
-<span id="cb25-5"><a></a>  <span class="fu">select</span>(INSTNM, name_length)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-5"><a></a>  <span class="fu">select</span>(INSTNM, name_length)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section id="change-the-length" class="title-slide slide level1 center">
@@ -793,11 +793,11 @@
 <p>Extract values of a string based on a starting and ending location.</p>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
 <span id="cb26-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">short_name =</span> <span class="fu">str_sub</span>(INSTNM, </span>
 <span id="cb26-3"><a aria-hidden="true" tabindex="-1"></a>                                  <span class="at">start =</span> <span class="dv">1</span>,</span>
 <span id="cb26-4"><a aria-hidden="true" tabindex="-1"></a>                                  <span class="at">end =</span> <span class="dv">8</span>)</span>
-<span id="cb26-5"><a aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb26-5"><a aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-2">
@@ -805,12 +805,12 @@
 <p>Make every string have a fixed length (width)</p>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
 <span id="cb27-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">long_name =</span> <span class="fu">str_pad</span>(INSTNM, </span>
 <span id="cb27-3"><a aria-hidden="true" tabindex="-1"></a>                             <span class="at">width =</span> <span class="dv">20</span>, </span>
 <span id="cb27-4"><a aria-hidden="true" tabindex="-1"></a>                             <span class="at">pad =</span> <span class="st">"_"</span>, </span>
 <span id="cb27-5"><a aria-hidden="true" tabindex="-1"></a>                             <span class="at">side =</span> <span class="st">"both"</span>)</span>
-<span id="cb27-6"><a aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb27-6"><a aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -836,8 +836,8 @@
 <p>converts all letters in a string to lowercase.</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
-<span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INSTNM =</span> <span class="fu">str_to_lower</span>(INSTNM))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INSTNM =</span> <span class="fu">str_to_lower</span>(INSTNM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -847,8 +847,8 @@
 <p>converts all letters in a string to uppercase.</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
-<span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INSTNM =</span> <span class="fu">str_to_upper</span>(INSTNM))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INSTNM =</span> <span class="fu">str_to_upper</span>(INSTNM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -858,8 +858,8 @@
 <p>converts the first letter of each word to uppercase.</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
-<span id="cb30-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INSTNM =</span> <span class="fu">str_to_title</span>(INSTNM))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<span id="cb30-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">INSTNM =</span> <span class="fu">str_to_title</span>(INSTNM))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -877,10 +877,10 @@
 <p>removes whitespace from start and end of string</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
 <span id="cb31-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb31-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">INSTNM =</span> <span class="fu">str_trim</span>(INSTNM, <span class="at">side =</span> <span class="st">"both"</span>)</span>
-<span id="cb31-4"><a aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb31-4"><a aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section>
 <section>
@@ -894,10 +894,10 @@
 <p>join multiple strings into a single character vector</p>
 </blockquote>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>colleges <span class="sc">|&gt;</span> </span>
 <span id="cb32-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
 <span id="cb32-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="at">address =</span> <span class="fu">str_c</span>(CITY, STABBR, ZIP, <span class="at">sep =</span> <span class="st">", "</span>)</span>
-<span id="cb32-4"><a aria-hidden="true" tabindex="-1"></a>         )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb32-4"><a aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -1250,7 +1250,7 @@
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

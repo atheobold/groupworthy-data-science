@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Taming the Curly Braces: Writing Your Own Tidyverse Functions</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-37ee00a66d7312b0b64834519157c597.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-6f08a957caa65f3d967f23cbef36bcc8.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -236,29 +236,29 @@
 </ul>
 </div></div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">something =</span> <span class="dv">2</span>){</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>add_something <span class="ot">&lt;-</span> <span class="cf">function</span>(x, <span class="at">something =</span> <span class="dv">2</span>){</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">stopifnot</span>(<span class="fu">is.numeric</span>(x), <span class="fu">is.numeric</span>(something))</span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>  x <span class="sc">+</span> something</span>
-<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">15</span><span class="sc">:</span><span class="dv">22</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">15</span><span class="sc">:</span><span class="dv">22</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="columns">
 <div class="column" style="width:40%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(x)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 17 18 19 20 21 22 23 24</code></pre>
 </div>
 </div>
 </div><div class="column" style="width:55%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(x, <span class="at">something =</span> <span class="st">"dog"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">add_something</span>(x, <span class="at">something =</span> <span class="st">"dog"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in add_something(x, something = "dog"): is.numeric(something) is not TRUE</code></pre>
 </div>
@@ -287,7 +287,7 @@
 <p>Make a copy of the notebook (like you do for Practice Activities)!</p>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_161fa474" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_859ad946" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -308,7 +308,7 @@
 <p>Let’s start with <strong>one</strong> categorical variable.</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    Adelie Chinstrap    Gentoo 
@@ -337,7 +337,7 @@
 <h2>Let’s Explore the <code>table()</code> Function First</h2>
 <p>Okay, let’s add a second categorical variable.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
             Biscoe Dream Torgersen
@@ -382,7 +382,7 @@
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_8fe3306a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_4f14a6f9" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">05</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -392,11 +392,11 @@
 <section id="a-working-solution" class="slide level2">
 <h2>A Working Solution</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span></span>
 <span id="cb11-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island) <span class="sc">|&gt;</span></span>
 <span id="cb11-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> island, </span>
 <span id="cb11-4"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> n, </span>
-<span id="cb11-5"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb11-5"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
   species   Biscoe Dream Torgersen
@@ -412,22 +412,22 @@
 <div class="midi">
 <p>Now that we have a working example, let’s try and generalize our code.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
 <span id="cb13-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(var1, var2) <span class="sc">|&gt;</span> </span>
 <span id="cb13-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> var2, </span>
 <span id="cb13-4"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> n, </span>
-<span id="cb13-5"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-5"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
 <div class="midi">
 <p>This works, but maybe we should be more specific about what variables go where…</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
 <span id="cb14-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(row_var, col_var) <span class="sc">|&gt;</span> </span>
 <span id="cb14-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> col_var, </span>
 <span id="cb14-4"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> n, </span>
-<span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb14-5"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -435,14 +435,14 @@
 <section id="lets-make-a-function" class="slide level2">
 <h2>Let’s make a function</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
 <span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb15-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(col_var, row_var) <span class="sc">|&gt;</span> </span>
 <span id="cb15-5"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> col_var, </span>
 <span id="cb15-6"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> n, </span>
 <span id="cb15-7"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
-<span id="cb15-8"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-8"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
@@ -460,7 +460,7 @@
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_ebd363e3" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_9f5aee2d" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -473,9 +473,9 @@
 <div class="columns">
 <div class="column" style="width:60%;">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, </span>
 <span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">col_var =</span> island, </span>
-<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">row_var =</span> species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">row_var =</span> species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell">
@@ -522,7 +522,7 @@ Column `row_var` is not found.</code></pre>
 <div class="fragment">
 <p>When you have the <code>data-variable</code> in a function argument, you need to embrace the argument.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>({{ col_var }}, {{ row_var }})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>({{ col_var }}, {{ row_var }})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -537,9 +537,9 @@ Column `row_var` is not found.</code></pre>
 <div class="midi">
 <p>When you have the <code>data-variable</code> (<code>col_var</code>) in an <code>env-variable</code> (<code>df</code>) that is a function argument, you embrace the argument by surrounding it in doubled braces.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> {{ col_var }}, </span>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> {{ col_var }}, </span>
 <span id="cb19-2"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> n, </span>
-<span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb19-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -547,13 +547,13 @@ Column `row_var` is not found.</code></pre>
 <section id="our-updated-function" class="slide level2">
 <h2>Our Updated Function</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a aria-hidden="true" tabindex="-1"></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
 <span id="cb20-2"><a aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb20-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>({{ col_var }}, {{ row_var }}) <span class="sc">|&gt;</span> </span>
 <span id="cb20-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> {{ col_var }}, </span>
 <span id="cb20-5"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> n, </span>
 <span id="cb20-6"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
-<span id="cb20-7"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb20-7"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
@@ -571,7 +571,7 @@ Column `row_var` is not found.</code></pre>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_4d69f392" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_5c410fcc" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -582,9 +582,9 @@ Column `row_var` is not found.</code></pre>
 <section id="lets-give-it-another-go" class="slide level2">
 <h2>Let’s give it another go!</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, </span>
 <span id="cb21-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">col_var =</span> island, </span>
-<span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">row_var =</span> species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb21-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">row_var =</span> species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
   species   Biscoe Dream Torgersen
@@ -598,7 +598,7 @@ Column `row_var` is not found.</code></pre>
 <section id="what-if-only-one-variable-was-input" class="slide level2">
 <h2>What if only one variable was input?</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   Adelie Chinstrap Gentoo
@@ -628,20 +628,20 @@ Column `row_var` is not found.</code></pre>
 <h2>Argument order matters!</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, row_var, col_var){</span>
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, row_var, col_var){</span>
 <span id="cb25-2"><a></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb25-3"><a></a>    <span class="fu">count</span>({{ col_var }}, {{ row_var }}) <span class="sc">|&gt;</span> </span>
 <span id="cb25-4"><a></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> {{ col_var }}, </span>
 <span id="cb25-5"><a></a>                <span class="at">values_from =</span> n, </span>
 <span id="cb25-6"><a></a>                <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
-<span id="cb25-7"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb25-7"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
 <div class="fragment">
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `pivot_wider()`:
 ! Must select at least one item.</code></pre>
@@ -654,13 +654,13 @@ Column `row_var` is not found.</code></pre>
 <h2>Arguments that are <strong>absolutely necessary</strong> should come first!</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a aria-hidden="true" tabindex="-1"></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
 <span id="cb28-2"><a aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb28-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>({{ col_var }}, {{ row_var }}) <span class="sc">|&gt;</span> </span>
 <span id="cb28-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> {{ col_var }}, </span>
 <span id="cb28-5"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> n, </span>
 <span id="cb28-6"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
-<span id="cb28-7"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb28-7"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -668,7 +668,7 @@ Column `row_var` is not found.</code></pre>
 <h2>To be more defensive you could check if <code>row_var</code> is <code>missing()</code></h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a aria-hidden="true" tabindex="-1"></a>tidy_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
 <span id="cb29-2"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb29-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">missing</span>(row_var)){</span>
 <span id="cb29-4"><a aria-hidden="true" tabindex="-1"></a>    df <span class="sc">|&gt;</span> </span>
@@ -684,7 +684,7 @@ Column `row_var` is not found.</code></pre>
 <span id="cb29-14"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> n, </span>
 <span id="cb29-15"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
 <span id="cb29-16"><a aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb29-17"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb29-17"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <!-- ::: {.callout-important} -->
@@ -715,9 +715,9 @@ Column `row_var` is not found.</code></pre>
 <h2>What if we wanted to use quoted variable names?</h2>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_table</span>(<span class="at">df =</span> penguins, </span>
 <span id="cb30-2"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">row_var =</span> <span class="st">"species"</span>, </span>
-<span id="cb30-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">col_var =</span> <span class="st">"island"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb30-3"><a aria-hidden="true" tabindex="-1"></a>           <span class="at">col_var =</span> <span class="st">"island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in `pivot_wider()`:
 ! Can't select columns that don't exist.
@@ -729,8 +729,8 @@ Column `row_var` is not found.</code></pre>
 <section id="whats-going-on" class="slide level2">
 <h2>What’s going on?</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
-<span id="cb32-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(<span class="st">"species"</span>, <span class="st">"island"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(<span class="st">"species"</span>, <span class="st">"island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   `"species"` `"island"`     n
@@ -746,9 +746,9 @@ Column `row_var` is not found.</code></pre>
 </ul>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="fu">all_of</span>(col_var), </span>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="fu">all_of</span>(col_var), </span>
 <span id="cb34-2"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> n, </span>
-<span id="cb34-3"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb34-3"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -757,13 +757,13 @@ Column `row_var` is not found.</code></pre>
 </ul>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(</span>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">count</span>(</span>
 <span id="cb35-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pick</span>(</span>
 <span id="cb35-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">all_of</span>( </span>
 <span id="cb35-4"><a aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(row_var, col_var)</span>
 <span id="cb35-5"><a aria-hidden="true" tabindex="-1"></a>      )</span>
 <span id="cb35-6"><a aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb35-7"><a aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb35-7"><a aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -772,7 +772,7 @@ Column `row_var` is not found.</code></pre>
 <h2>A Character Vector Function</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-hidden="true" tabindex="-1"></a>quote_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, row_var, col_var){</span>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a aria-hidden="true" tabindex="-1"></a>quote_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, row_var, col_var){</span>
 <span id="cb36-2"><a aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb36-3"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>(</span>
 <span id="cb36-4"><a aria-hidden="true" tabindex="-1"></a>      <span class="fu">pick</span>(</span>
@@ -784,7 +784,7 @@ Column `row_var` is not found.</code></pre>
 <span id="cb36-10"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="fu">all_of</span>(col_var), </span>
 <span id="cb36-11"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> n, </span>
 <span id="cb36-12"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
-<span id="cb36-13"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb36-13"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="callout callout-important callout-titled callout-style-default">
@@ -802,7 +802,7 @@ Column `row_var` is not found.</code></pre>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_214b6e1b" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_57cfcbf8" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -812,9 +812,9 @@ Column `row_var` is not found.</code></pre>
 <section id="did-it-work" class="slide level2">
 <h2>Did it work???</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">quote_table</span>(<span class="at">df =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">quote_table</span>(<span class="at">df =</span> penguins, </span>
 <span id="cb37-2"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">row_var =</span> <span class="st">"species"</span>, </span>
-<span id="cb37-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">col_var =</span> <span class="st">"island"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb37-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">col_var =</span> <span class="st">"island"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
   species   Biscoe Dream Torgersen
@@ -844,8 +844,8 @@ Column `row_var` is not found.</code></pre>
 <p>Let’s start with <strong>one</strong> categorical variable.</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species) <span class="sc">|&gt;</span> </span>
-<span id="cb39-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species) <span class="sc">|&gt;</span> </span>
+<span id="cb39-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
    Adelie Chinstrap    Gentoo 
@@ -874,8 +874,8 @@ Column `row_var` is not found.</code></pre>
 <h2>Let’s Explore the <code>prop.table()</code> Function First</h2>
 <p>Okay, let’s add a second categorical variable.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
-<span id="cb41-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
+<span id="cb41-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
                Biscoe     Dream Torgersen
@@ -903,8 +903,8 @@ Column `row_var` is not found.</code></pre>
 <p>The <code>prop.table()</code> function has an optional <code>margin</code> argument.</p>
 <div class="fragment">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
-<span id="cb43-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(<span class="at">margin =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(penguins<span class="sc">$</span>species, penguins<span class="sc">$</span>island) <span class="sc">|&gt;</span> </span>
+<span id="cb43-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">prop.table</span>(<span class="at">margin =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           
                Biscoe     Dream Torgersen
@@ -949,7 +949,7 @@ Column `row_var` is not found.</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_2e20db5a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_e22a79bb" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -961,9 +961,9 @@ Column `row_var` is not found.</code></pre>
 <div class="midi">
 <p>These give joint proportions for the entire table.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb45-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island) <span class="sc">|&gt;</span> </span>
-<span id="cb45-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb45-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   species   island        n  prop
@@ -984,10 +984,10 @@ Column `row_var` is not found.</code></pre>
 <h2>Marginal Proportions for <code>species</code></h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb47-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island) <span class="sc">|&gt;</span> </span>
 <span id="cb47-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
-<span id="cb47-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb47-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
 # Groups:   species [3]
@@ -1020,11 +1020,11 @@ Column `row_var` is not found.</code></pre>
 <section id="much-better" class="slide level2">
 <h2>Much better!</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb49-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island) <span class="sc">|&gt;</span> </span>
 <span id="cb49-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
 <span id="cb49-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span> </span>
-<span id="cb49-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb49-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
   species   island        n  prop
@@ -1047,7 +1047,7 @@ Column `row_var` is not found.</code></pre>
 </ul>
 <div class="cell">
 <div class="cell-output-display">
-<div class="countdown" id="timer_09b5e28e" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_3e291ea5" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">−</button><button class="countdown-bump-up">+</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -1058,7 +1058,7 @@ Column `row_var` is not found.</code></pre>
 <h2>A Working Solution</h2>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a aria-hidden="true" tabindex="-1"></a>penguins <span class="sc">|&gt;</span> </span>
 <span id="cb51-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(species, island) <span class="sc">|&gt;</span> </span>
 <span id="cb51-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">|&gt;</span> </span>
 <span id="cb51-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span> </span>
@@ -1066,7 +1066,7 @@ Column `row_var` is not found.</code></pre>
 <span id="cb51-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n) <span class="sc">|&gt;</span> </span>
 <span id="cb51-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> island, </span>
 <span id="cb51-8"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> prop, </span>
-<span id="cb51-9"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb51-9"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
   species   Biscoe Dream Torgersen
@@ -1081,7 +1081,7 @@ Column `row_var` is not found.</code></pre>
 <section id="now-lets-generalize-1" class="slide level2">
 <h2>Now let’s generalize!</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span> </span>
 <span id="cb53-2"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(row_var, col_var) <span class="sc">|&gt;</span> </span>
 <span id="cb53-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(col_var) <span class="sc">|&gt;</span> </span>
 <span id="cb53-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">prop =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n)) <span class="sc">|&gt;</span> </span>
@@ -1089,13 +1089,13 @@ Column `row_var` is not found.</code></pre>
 <span id="cb53-6"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>n) <span class="sc">|&gt;</span> </span>
 <span id="cb53-7"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> col_var,</span>
 <span id="cb53-8"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> prop, </span>
-<span id="cb53-9"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb53-9"><a aria-hidden="true" tabindex="-1"></a>              <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="lets-make-a-function-1" class="slide level2">
 <h2>Let’s make a function</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a aria-hidden="true" tabindex="-1"></a>tidy_prop_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a aria-hidden="true" tabindex="-1"></a>tidy_prop_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var){</span>
 <span id="cb54-2"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb54-3"><a aria-hidden="true" tabindex="-1"></a>  df <span class="sc">|&gt;</span> </span>
 <span id="cb54-4"><a aria-hidden="true" tabindex="-1"></a>    <span class="fu">count</span>({{ row_var }}, {{ col_var }}) <span class="sc">|&gt;</span> </span>
@@ -1107,15 +1107,15 @@ Column `row_var` is not found.</code></pre>
 <span id="cb54-10"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_from =</span> prop, </span>
 <span id="cb54-11"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
 <span id="cb54-12"><a aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb54-13"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb54-13"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="lets-try-it-out-1" class="slide level2">
 <h2>Let’s try it out!</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_prop_table</span>(<span class="at">df =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_prop_table</span>(<span class="at">df =</span> penguins, </span>
 <span id="cb55-2"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">col_var =</span> island, </span>
-<span id="cb55-3"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">row_var =</span> species)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb55-3"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">row_var =</span> species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
   species   Biscoe Dream Torgersen
@@ -1143,7 +1143,7 @@ Column `row_var` is not found.</code></pre>
 <section id="a-pseudocode-design" class="slide level2">
 <h2>A Pseudocode Design</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>( margin is missing){</span>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>( margin is missing){</span>
 <span id="cb57-2"><a aria-hidden="true" tabindex="-1"></a>  calculate joint proportions</span>
 <span id="cb57-3"><a aria-hidden="true" tabindex="-1"></a>} </span>
 <span id="cb57-4"><a aria-hidden="true" tabindex="-1"></a></span>
@@ -1153,13 +1153,13 @@ Column `row_var` is not found.</code></pre>
 <span id="cb57-8"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb57-9"><a aria-hidden="true" tabindex="-1"></a><span class="cf">else</span> {</span>
 <span id="cb57-10"><a aria-hidden="true" tabindex="-1"></a>  calculate marginal proportions based on column variable</span>
-<span id="cb57-11"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb57-11"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="moving-into-r-code" class="slide level2">
 <h2>Moving into R Code</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a aria-hidden="true" tabindex="-1"></a>tidy_prop_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var, <span class="at">margin =</span> <span class="cn">NULL</span>){</span>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a aria-hidden="true" tabindex="-1"></a>tidy_prop_table <span class="ot">&lt;-</span> <span class="cf">function</span>(df, col_var, row_var, <span class="at">margin =</span> <span class="cn">NULL</span>){</span>
 <span id="cb58-2"><a aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-3"><a aria-hidden="true" tabindex="-1"></a>  <span class="co"># Default to joint proportions</span></span>
 <span id="cb58-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="fu">is.null</span>(margin)){</span>
@@ -1196,7 +1196,7 @@ Column `row_var` is not found.</code></pre>
 <span id="cb58-35"><a aria-hidden="true" tabindex="-1"></a>                  <span class="at">values_fill =</span> <span class="dv">0</span>)</span>
 <span id="cb58-36"><a aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb58-37"><a aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb58-38"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb58-38"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="howd-we-do" class="slide level2">
@@ -1204,9 +1204,9 @@ Column `row_var` is not found.</code></pre>
 <p><strong>Joint Proportions</strong></p>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_prop_table</span>(<span class="at">df =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_prop_table</span>(<span class="at">df =</span> penguins, </span>
 <span id="cb59-2"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">col_var =</span> species, </span>
-<span id="cb59-3"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">row_var =</span> island)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb59-3"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">row_var =</span> island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
   island    Adelie Gentoo Chinstrap
@@ -1223,10 +1223,10 @@ Column `row_var` is not found.</code></pre>
 <p><strong>Marginal Proportions – Rows</strong></p>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_prop_table</span>(<span class="at">df =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_prop_table</span>(<span class="at">df =</span> penguins, </span>
 <span id="cb61-2"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">col_var =</span> species, </span>
 <span id="cb61-3"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">row_var =</span> island, </span>
-<span id="cb61-4"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">margin =</span> <span class="st">"row"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb61-4"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">margin =</span> <span class="st">"row"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
   island    Adelie Gentoo Chinstrap
@@ -1243,10 +1243,10 @@ Column `row_var` is not found.</code></pre>
 <p><strong>Marginal Proportions – Columns</strong></p>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_prop_table</span>(<span class="at">df =</span> penguins, </span>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">tidy_prop_table</span>(<span class="at">df =</span> penguins, </span>
 <span id="cb63-2"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">col_var =</span> species, </span>
 <span id="cb63-3"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">row_var =</span> island, </span>
-<span id="cb63-4"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">margin =</span> <span class="st">"col"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb63-4"><a aria-hidden="true" tabindex="-1"></a>                <span class="at">margin =</span> <span class="st">"col"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 3 × 4
   island    Adelie Gentoo Chinstrap
@@ -1455,7 +1455,7 @@ Column `row_var` is not found.</code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

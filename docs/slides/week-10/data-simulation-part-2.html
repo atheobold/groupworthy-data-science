@@ -7,8 +7,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-cd7454b418030687c631a6a7286fbe16.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.8.22">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.7.32">
 
   <title>Introduction to Statistical Computing in R – Simulating Probabilities &amp; Datasets</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -95,7 +95,7 @@
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-37ee00a66d7312b0b64834519157c597.css">
+  <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-6f08a957caa65f3d967f23cbef36bcc8.css">
   <link href="../../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="../../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
@@ -237,14 +237,14 @@
 <section id="step-1-simulate-the-birthdays-of-50-people" class="slide level2">
 <h2>Step 1 – simulate the birthdays of 50 people</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>get_shared_birthdays <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">50</span>){</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a>get_shared_birthdays <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">50</span>){</span>
 <span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>  bday_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">person =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
 <span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a>                      <span class="at">bday   =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">365</span>, </span>
 <span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a>                                      <span class="at">size =</span> n, </span>
 <span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a>                                      <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a>                      )</span>
-<span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -265,7 +265,7 @@
 <section id="step-2-count-how-many-birthdays-are-shared" class="slide level2">
 <h2>Step 2 – count how many birthdays are shared</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" data-code-line-numbers="9-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>get_shared_birthdays <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">50</span>){</span>
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="9-12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a></a>get_shared_birthdays <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">50</span>){</span>
 <span id="cb2-2"><a></a>  </span>
 <span id="cb2-3"><a></a>  bday_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">person =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
 <span id="cb2-4"><a></a>                      <span class="at">bday   =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">365</span>, </span>
@@ -278,14 +278,14 @@
 <span id="cb2-11"><a></a>    <span class="fu">filter</span>(n <span class="sc">&gt;=</span> <span class="dv">2</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb2-12"><a></a>    <span class="fu">nrow</span>()</span>
 <span id="cb2-13"><a></a>  </span>
-<span id="cb2-14"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-14"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="step-3-return-whether-or-not-a-shared-birthday-exists" class="slide level2">
 <h2>Step 3 – return whether or not a shared birthday exists</h2>
 <div class="small">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" data-code-line-numbers="13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>get_shared_birthdays <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">50</span>){</span>
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a></a>get_shared_birthdays <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">n =</span> <span class="dv">50</span>){</span>
 <span id="cb3-2"><a></a>  bday_data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">person =</span> <span class="dv">1</span><span class="sc">:</span>n,</span>
 <span id="cb3-3"><a></a>                      <span class="at">bday   =</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">365</span>, </span>
 <span id="cb3-4"><a></a>                                      <span class="at">size =</span> n, </span>
@@ -298,7 +298,7 @@
 <span id="cb3-11"><a></a>    <span class="fu">nrow</span>()</span>
 <span id="cb3-12"><a></a>  </span>
 <span id="cb3-13"><a></a>  double_bdays <span class="sc">&gt;</span> <span class="dv">0</span></span>
-<span id="cb3-14"><a></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb3-14"><a></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -322,8 +322,8 @@
 <p>Use a <code>map()</code> function to simulate 1000 datasets.</p>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>sim_results <span class="ot">&lt;-</span> <span class="fu">map_lgl</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
-<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>                       <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">get_shared_birthdays</span>(<span class="at">n =</span> <span class="dv">50</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>sim_results <span class="ot">&lt;-</span> <span class="fu">map_lgl</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>                       <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">get_shared_birthdays</span>(<span class="at">n =</span> <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -333,7 +333,7 @@
 </ul>
 <div class="midi">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sim_results) <span class="sc">/</span> <span class="dv">1000</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sim_results) <span class="sc">/</span> <span class="dv">1000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.965</code></pre>
 </div>
@@ -386,12 +386,12 @@
 <p>When visualizing data, fit a regression line (<span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span>) to your scatterplot.</p>
 <div class="cell columns column-output-location" data-layout-align="center">
 <div class="column">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>ncbirths <span class="sc">|&gt;</span> </span>
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>ncbirths <span class="sc">|&gt;</span> </span>
 <span id="cb7-2"><a></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> gained, <span class="at">y =</span> weight)) <span class="sc">+</span></span>
 <span id="cb7-3"><a></a>  <span class="fu">geom_jitter</span>() <span class="sc">+</span> </span>
 <span id="cb7-4"><a></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
 <span id="cb7-5"><a></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Weight Gained During Pregnancy (lbs)"</span>, </span>
-<span id="cb7-6"><a></a>       <span class="at">y =</span> <span class="st">"Birth Weight of Baby (lbs)"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb7-6"><a></a>       <span class="at">y =</span> <span class="st">"Birth Weight of Baby (lbs)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -411,8 +411,8 @@
 <li>This code creates an <code>lm</code> object.</li>
 </ul>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>ncbirth_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> gained, </span>
-<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> ncbirths)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a aria-hidden="true" tabindex="-1"></a>ncbirth_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(weight <span class="sc">~</span> gained, </span>
+<span id="cb8-2"><a aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> ncbirths)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -426,7 +426,7 @@
 <div class="tab-content">
 <div id="tabset-2-1">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ncbirth_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ncbirth_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -452,7 +452,7 @@ F-statistic: 23.64 on 1 and 971 DF,  p-value: 1.353e-06</code></pre>
 </div>
 <div id="tabset-2-2">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(ncbirth_lm)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(ncbirth_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>(Intercept)      gained 
  6.63003358  0.01614049 </code></pre>
@@ -462,7 +462,7 @@ F-statistic: 23.64 on 1 and 971 DF,  p-value: 1.353e-06</code></pre>
 <div class="fragment">
 <p>To grab the slope estimate we would need to…</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(ncbirth_lm)[<span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">coefficients</span>(ncbirth_lm)[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    gained 
 0.01614049 </code></pre>
@@ -473,13 +473,13 @@ F-statistic: 23.64 on 1 and 971 DF,  p-value: 1.353e-06</code></pre>
 </div>
 <div id="tabset-2-3">
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(ncbirth_lm, </span>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(ncbirth_lm, </span>
 <span id="cb15-2"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.int =</span> <span class="cn">TRUE</span>, </span>
-<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.level =</span> <span class="fl">0.9</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb15-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.level =</span> <span class="fl">0.9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<table class="table caption-top" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">term</th>
@@ -536,11 +536,11 @@ F-statistic: 23.64 on 1 and 971 DF,  p-value: 1.353e-06</code></pre>
 <section id="grabbing-model-outputs" class="slide level2">
 <h2>Grabbing Model Outputs</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(ncbirth_lm, </span>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a aria-hidden="true" tabindex="-1"></a>broom<span class="sc">::</span><span class="fu">tidy</span>(ncbirth_lm, </span>
 <span id="cb16-2"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.int =</span> <span class="cn">TRUE</span>, </span>
 <span id="cb16-3"><a aria-hidden="true" tabindex="-1"></a>            <span class="at">conf.level =</span> <span class="fl">0.9</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb16-4"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(term <span class="sc">==</span> <span class="st">"gained"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(estimate, conf.low, conf.high)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb16-5"><a aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(estimate, conf.low, conf.high)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 3
   estimate conf.low conf.high
@@ -553,15 +553,51 @@ F-statistic: 23.64 on 1 and 971 DF,  p-value: 1.353e-06</code></pre>
 <h2>Our Goal</h2>
 <p><img data-src="images/ci_plot.png" alt="A horizontal plot showing 100 simulated 95% confidence intervals (CIs) for estimated regression slopes. Each horizontal line represents one simulated dataset’s estimated slope and its 95% CI. Most intervals are drawn in light blue, while a few are in red—these red lines indicate CIs that do not include the true population slope. A vertical dashed line marks the population slope at 1. The title reads '95% Confidence Intervals of Estimated Regression Slope for 100 Simulated Datasets,' and a caption explains that intervals not including the population slope are highlighted in red. The distribution of intervals is roughly centered around the true slope of 1, with a few red intervals missing it on either side."></p>
 </section></section>
-<section id="survey-on-experiences-in-stat-331-531" class="title-slide slide level1 center">
-<h1><a href="https://forms.gle/wtXGQTFq5yzrX32W6">Survey on Experiences in STAT 331 / 531</a></h1>
+<section id="lab-8-revisions" class="title-slide slide level1 center">
+<h1>Lab 8 Revisions</h1>
+
+</section>
+
+<section id="lab-8-revisions-1" class="title-slide slide level1 center">
+<h1>Lab 8 Revisions</h1>
+<blockquote>
+<p>Only problems receiving a growing can be submitted for additional feedback!</p>
+</blockquote>
+<p>I have left many of you comments on changes to make to your code that I trust you can do on your own!</p>
+</section>
+
+<section id="lab-8-feedback" class="title-slide slide level1 center">
+<h1>Lab 8 Feedback</h1>
 <div class="midi">
-<p>Anonymous Google Form: <a href="https://forms.gle/wtXGQTFq5yzrX32W6" class="uri">https://forms.gle/wtXGQTFq5yzrX32W6</a></p>
+<p><strong>Q1:</strong> How can you make your code more clear? Argument names?</p>
+<p><strong>Q1:</strong> How can you make your code more robust? Using <code>~</code> to define a function? Using <code>.x</code> to indicate where the input should go?</p>
+</div>
+<div class="fragment">
+<div class="midi">
+<p><strong>Q1 &amp; Q3:</strong> How can you incorporate input checks into your function? Checking if the input is a data frame? Checking if the variables are the right data type? Checking if the variables are included in the data frame?</p>
+</div>
+</div>
+<div class="fragment">
+<div class="midi">
+<p><strong>Q5:</strong> Can you give your function a name that <em>describes</em> what it does? (e.g., <code>make_filled_barplot()</code>, <code>make_colored_scatterplot()</code>)</p>
+</div>
+</div>
+<div class="fragment">
+<div class="midi">
+<p><strong>Q5:</strong> We haven’t learned <code>paste()</code> or <code>paste0()</code> in this class! What functions have we learned that executed this process?</p>
+</div>
+</div>
+</section>
+
+<section id="survey-on-experiences-in-stat-331-531" class="title-slide slide level1 center">
+<h1><a href="https://forms.gle/YzZWe2oJZ5eWyTbRA">Survey on Experiences in STAT 331 / 531</a></h1>
+<div class="midi">
+<p>Anonymous Google Form: <a href="https://forms.gle/YzZWe2oJZ5eWyTbRA" class="uri">https://forms.gle/YzZWe2oJZ5eWyTbRA</a></p>
 </div>
 <div class="fragment">
 <div class="midi">
 <blockquote>
-<p>If we get an 85% completion rate I will bring treats to class next Thursday!</p>
+<p>If we get an 85% completion rate I will bring doughnuts to class next Thursday!</p>
 </blockquote>
 </div>
 
@@ -757,7 +793,7 @@ F-statistic: 23.64 on 1 and 971 DF,  p-value: 1.353e-06</code></pre>
         margin: 0.1,
 
         math: {
-          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js',
           config: 'TeX-AMS_HTML-full',
           tex2jax: {
             inlineMath: [['\\(','\\)']],

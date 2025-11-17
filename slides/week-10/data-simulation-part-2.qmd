@@ -317,14 +317,54 @@ broom::tidy(ncbirth_lm,
 
 ![](images/ci_plot.png){fig-alt="A horizontal plot showing 100 simulated 95% confidence intervals (CIs) for estimated regression slopes. Each horizontal line represents one simulated dataset’s estimated slope and its 95% CI. Most intervals are drawn in light blue, while a few are in red—these red lines indicate CIs that do not include the true population slope. A vertical dashed line marks the population slope at 1. The title reads '95% Confidence Intervals of Estimated Regression Slope for 100 Simulated Datasets,' and a caption explains that intervals not including the population slope are highlighted in red. The distribution of intervals is roughly centered around the true slope of 1, with a few red intervals missing it on either side."}
 
-# [Survey on Experiences in STAT 331 / 531](https://forms.gle/wtXGQTFq5yzrX32W6)
+# Lab 8 Revisions
+
+# Lab 8 Revisions
+
+> Only problems receiving a growing can be submitted for additional feedback!
+
+I have left many of you comments on changes to make to your code that I trust 
+you can do on your own!
+
+# Lab 8 Feedback
 
 ::: {.midi}
-Anonymous Google Form: <https://forms.gle/wtXGQTFq5yzrX32W6>
+**Q1:** How can you make your code more clear? Argument names? 
+
+**Q1:** How can you make your code more robust? Using `~` to define a function? 
+Using `.x` to indicate where the input should go?
 :::
 
 . . .
 
 ::: {.midi}
-> If we get an 85% completion rate I will bring treats to class next Thursday!
+**Q1 & Q3:** How can you incorporate input checks into your function? Checking 
+if the input is a data frame? Checking if the variables are the right data type?
+Checking if the variables are included in the data frame?
+:::
+
+. . .
+
+::: {.midi}
+**Q5:** Can you give your function a name that *describes* what it does? (e.g., 
+`make_filled_barplot()`, `make_colored_scatterplot()`)
+:::
+
+. . .
+
+::: {.midi}
+**Q5:** We haven't learned `paste()` or `paste0()` in this class! What functions
+have we learned that executed this process?
+:::
+
+# [Survey on Experiences in STAT 331 / 531](https://forms.gle/YzZWe2oJZ5eWyTbRA)
+
+::: {.midi}
+Anonymous Google Form: <https://forms.gle/YzZWe2oJZ5eWyTbRA>
+:::
+
+. . .
+
+::: {.midi}
+> If we get an 85% completion rate I will bring doughnuts to class next Thursday!
 :::

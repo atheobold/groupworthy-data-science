@@ -1351,14 +1351,13 @@ ggplot(yearly, aes(x = year, y = K_med, color = species)) +
   )
 ```
 
-# Lab 8 
+# Lab 8
 
 ## Awesome Function Checks
 
 ## Cool Helper Functions
 
-I thought it was awesome to see quite a few students create "helper" functions
-to help make nicely formatted labels for their plot. Here are some examples!
+I thought it was awesome to see quite a few students create "helper" functions to help make nicely formatted labels for their plot. Here are some examples!
 
 This function was written by Devin Hadley!
 
@@ -1415,12 +1414,22 @@ format_label <- function(var) {
   }
 ```
 
+This function was written by Nick Carboni!
+
+```{r}
+labelize <- function(var){
+  enquo(var) |>
+  as_label() |>
+  str_replace_all(pattern = "_", 
+                  replacement = " ") |>
+  str_to_title()
+}
+```
+
+
 ## Exemplary Plotting Functions
 
-While most students wrote a plotting function to make a specific type of plot 
-(e.g., barplot, scatterplot), two students wrote plotting functions that 
-decide what plot to make based on the data types of the variables input. So 
-cool!
+While most students wrote a plotting function to make a specific type of plot (e.g., barplot, scatterplot), two students wrote plotting functions that decide what plot to make based on the data types of the variables input. So cool!
 
 This function was written by Shafay Syed!
 
@@ -1492,14 +1501,9 @@ create_plot <- function(df, var_1, var_2) {
 
 ## Getting the Right Number of Colors
 
-For your `style_plot()` function I asked for you to allow the user to input a
-color palette to be used. But! The color palette they input might have the 
-wrong number of colors! 
+For your `style_plot()` function I asked for you to allow the user to input a color palette to be used. But! The color palette they input might have the wrong number of colors!
 
-Amazingly, Kristen Ho figured out how to handle just this problem! Kristen's 
-function inspects the `plot` object to see how many labels the plot has, and
-uses that number to create a color palette with the right number of colors 
-(using `colorRampPalette()`)!
+Amazingly, Kristen Ho figured out how to handle just this problem! Kristen's function inspects the `plot` object to see how many labels the plot has, and uses that number to create a color palette with the right number of colors (using `colorRampPalette()`)!
 
 ```{r}
 style_plot <- function(plot, theme_fn = theme_bw, 
@@ -1525,4 +1529,3 @@ style_plot <- function(plot, theme_fn = theme_bw,
   return(plot)
 }
 ```
-

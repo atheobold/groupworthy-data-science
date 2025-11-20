@@ -1691,14 +1691,14 @@
     "href": "slides/week-10/data-simulation-part-2.html#using-function-to-simulate-many-probabilities",
     "title": "Simulating Probabilities & Datasets",
     "section": "Using Function to Simulate Many Probabilities",
-    "text": "Using Function to Simulate Many Probabilities\nUse a map() function to simulate 1000 datasets.\n\n\nsim_results &lt;- map_lgl(.x = 1:1000,\n                       .f = ~ get_shared_birthdays(n = 50))\n\n\n\n\n\nWhat proportion of these datasets contain at least two people with the same birthday?\n\n\n\nsum(sim_results) / 1000\n\n[1] 0.965"
+    "text": "Using Function to Simulate Many Probabilities\nUse a map() function to simulate 1000 datasets.\n\n\nset.seed(14)\n\nsim_results &lt;- map_lgl(.x = 1:1000,\n                       .f = ~ get_shared_birthdays(n = 50))\n\n\n\n\n\nWhat proportion of these datasets contain at least two people with the same birthday?\n\n\n\nsum(sim_results) / length(sim_results)\n\n[1] 0.96"
   },
   {
     "objectID": "slides/week-10/data-simulation-part-2.html#simple-linear-regression-slr",
     "href": "slides/week-10/data-simulation-part-2.html#simple-linear-regression-slr",
     "title": "Simulating Probabilities & Datasets",
     "section": "Simple Linear Regression (SLR)",
-    "text": "Simple Linear Regression (SLR)\nIf we assume the relationship between \\(x\\) and \\(y\\) takes the form of a linear function…\n\\[\n  response = intercept + slope \\times explanatory + noise\n\\]\n\nWe use the following notation for this model:\n\n\nPopulation Regression Model\n\\(Y = \\beta_0 + \\beta_1 X + \\varepsilon\\)\nwhere \\(\\epsilon \\sim N(0, \\sigma)\\) is the random noise.\n\n\n\n\nFitted Regression Model\n\\(\\hat{y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)\nwhere   \\(\\widehat{}\\)   indicates the value was estimated."
+    "text": "Simple Linear Regression (SLR)\nIf we assume the relationship between \\(x\\) and \\(y\\) takes the form of a linear function…\n\\[\n  response = intercept + slope \\times explanatory + noise\n\\]"
   },
   {
     "objectID": "slides/week-10/data-simulation-part-2.html#fitting-an-slr-model",
@@ -5682,5 +5682,19 @@
     "title": "Writing Plotting Functions in R",
     "section": "",
     "text": "For the final part of this week, we are going to take what we’ve learned about data frame functions and create functions that produce visualizations.\n\n📖 Required Reading: R4DS – Functions\n\n\n\n\n\n\nRead only Section 4 (Plot functions)!\n\n\n\n\n\n\n\n\n✅ Check-in 7.3: Writing Plotting Functions\nQuestion 1: Fill in the code below to build a rich plotting function which:\n\ndraws a scatterplot given dataset and x and y variables,\nadds a line of best fit (i.e. a linear model with no standard errors)\nadd a title.\n\n\nlabeled_scatterplot &lt;- function(df, x_var, y_var) {\n  \n  label &lt;- rlang::englue(\"A scatterplot of _____ and _____, including a line of best fit.\")\n  \n  df |&gt; \n    ggplot(mapping = aes(x = _____, \n                         y = _____\n                         )\n           ) + \n    geom_point() + \n    geom_smooth(method = \"lm\", _____) +\n    labs(title = _____)\n}\n\nQuestion 1: Fill in the code below to build a rich plotting function which:\n\ncreates a barplot of the counts of each level of a categorical variable\nsorts the bars in ascending order (smallest to largest)\ncapitalizes the names of the levels of the variable\n\n\nascending_bars &lt;- function(df, cat_var) {\n  \n  # To make the y-axis label of the \n  y_title &lt;- as_label(enquo(cat_var))\n  \n  df |&gt; \n    mutate(\n      ## Order the levels based on the number of observations\n      {{ cat_var }} := ____({{ cat_var }}),\n      \n      ## Relabel the levels to be capitalized \n      {{ cat_var }} := ____({{ cat_var }}, \n                            .fun = ~ str_to_title(.x)\n                            )\n           )  |&gt;\n    ggplot(aes(y = {{ cat_var }})) +\n    geom_bar() +\n    labs(x = \"Number of Observations\",\n         y = str_to_title(y_title)\n         )\n}\n\n\n\n\n\n\n\n\n\nTip\n\n\n\nYou’ll notice that I can’t use y = str_to_title({{ cat_var }}). That is because the str_to_title() function expects string inputs. So, I needed to transform the input variable (cat_var) into a string (e.g., “species”).\nHere is how this process works:\n\n\n\n\n\n\n\n\nStep\nCode\nAction\n\n\n\n\n1\nensym(cat_var)\nTurns the argument you passed into the function (e.g., cat_var = species) into the symbol species.\n\n\n2\nas_label(ensym(cat_var))\nTurns the symbol species into the string \"species\"\n\n\n3\nstr_to_title(as_label(ensym(cat_var)))\nCapitalizes the string (\"species\" becomes \"Species\")"
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#the-birthday-problem",
+    "href": "slides/week-10/data-simulation-part-2.html#the-birthday-problem",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "The Birthday Problem",
+    "text": "The Birthday Problem\nSimulate the approximate probability that at least two people have the same birthday (same day of the year, not considering year of birth or leap years)."
+  },
+  {
+    "objectID": "slides/week-10/data-simulation-part-2.html#slr-model-notation",
+    "href": "slides/week-10/data-simulation-part-2.html#slr-model-notation",
+    "title": "Simulating Probabilities & Datasets",
+    "section": "SLR Model Notation",
+    "text": "SLR Model Notation\nIn Statistics, there are two types of models—the population model and the fitted (sample) model.\n\n\n\nPopulation Regression Model\n\\(y_i = \\beta_0 + \\beta_1 x_i + \\epsilon_i\\)\nwhere \\(\\epsilon_i \\sim N(0, \\sigma)\\) is the random noise.\n\n\n\n\nFitted Regression Model\n\\(\\widehat{y}_i = \\widehat{\\beta}_0 + \\widehat{\\beta}_1 x_i\\)\nwhere   \\(\\widehat{}\\)   indicates the value was estimated."
   }
 ]

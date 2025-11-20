@@ -14,7 +14,7 @@ execute:
 #| message: false
 library(tidyverse)
 
-set.seed(435)
+set.seed(14)
 
 fake_data <- tibble(names   = charlatan::ch_name(1000),
         height  = rnorm(1000, mean = 67, sd = 3),
@@ -28,6 +28,7 @@ library(openintro)
 
 Today we will...
 
+-   Reminder about Lab 8 (and 9 and 10) Code Review
 -   Thinking through a probability simulation task
 -   Introduce Lab 9
     - Refresher on linear regression
@@ -35,16 +36,22 @@ Today we will...
 -   Survey on Experiences in STAT 331 / 531
 -   Work time!
 
-# The Birthday Problem
+# Don't forget to complete your Lab 8 code review!
 
-> What the probability that at least two people in a group of randomly selected
-people share a birthday?
+# Don't forget to complete your Lab 8 code review!
 
-## Our Task
+</br> 
+
+> Make sure your feedback follows the [code review guidelines](../../code-review/code-review-guidelines.qmd). 
+
+**Insert your review into the comment box!**
+
+# Lab 9: Simulating Probabilities
+
+## The Birthday Problem
 
 Simulate the approximate probability that at least two people have the same
 birthday (same day of the year, not considering year of birth or leap years).
-
 
 ## Writing a function to...
 
@@ -131,6 +138,9 @@ Use a `map()` function to simulate 1000 datasets.
 ::: {.midi}
 ```{r}
 #| code-line-numbers: false
+
+set.seed(14)
+
 sim_results <- map_lgl(.x = 1:1000,
                        .f = ~ get_shared_birthdays(n = 50))
 
@@ -148,11 +158,11 @@ birthday?
 ```{r}
 #| code-line-numbers: false
 
-sum(sim_results) / 1000
+sum(sim_results) / length(sim_results)
 ```
 :::
 
-# Lab 9: Data Simulation Exploration
+# Lab 9: Simulating Confidence Interval Coverage Rates
 
 ## Simple Linear Regression (SLR)
 
@@ -162,17 +172,20 @@ $$
   response = intercept + slope \times explanatory + noise
 $$
 
-. . .
+## SLR Model Notation
 
-We use the following notation for this model:
+In Statistics, there are **two** types of models---the population model and the 
+fitted (sample) model.
+
+. . .
 
 ::: columns
 ::: {.column width="48%"}
 **Population** Regression Model
 
-$Y = \beta_0 + \beta_1 X + \varepsilon$  
+$y_i = \beta_0 + \beta_1 x_i + \epsilon_i$  
 
-where $\epsilon \sim N(0, \sigma)$ is the random noise.
+where $\epsilon_i \sim N(0, \sigma)$ is the random noise.
 :::
 
 ::: {.column width="2%"}
@@ -182,7 +195,7 @@ where $\epsilon \sim N(0, \sigma)$ is the random noise.
 ::: {.fragment}
 **Fitted** Regression Model 
 
-$\hat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i$
+$\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i$
 
 where &nbsp; $\widehat{}$ &nbsp; indicates the value was estimated.
 :::

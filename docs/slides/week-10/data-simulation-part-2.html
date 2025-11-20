@@ -205,6 +205,7 @@
 
 <p>Today we will…</p>
 <ul>
+<li>Reminder about Lab 8 (and 9 and 10) Code Review</li>
 <li>Thinking through a probability simulation task</li>
 <li>Introduce Lab 9
 <ul>
@@ -215,15 +216,27 @@
 <li>Work time!</li>
 </ul>
 </section>
-<section>
-<section id="the-birthday-problem" class="title-slide slide level1 center">
-<h1>The Birthday Problem</h1>
-<blockquote>
-<p>What the probability that at least two people in a group of randomly selected people share a birthday?</p>
-</blockquote>
+<section id="dont-forget-to-complete-your-lab-8-code-review" class="title-slide slide level1 center">
+<h1>Don’t forget to complete your Lab 8 code review!</h1>
+
 </section>
-<section id="our-task" class="slide level2">
-<h2>Our Task</h2>
+
+<section id="dont-forget-to-complete-your-lab-8-code-review-1" class="title-slide slide level1 center">
+<h1>Don’t forget to complete your Lab 8 code review!</h1>
+<p><br></p>
+<blockquote>
+<p>Make sure your feedback follows the <a href="../../code-review/code-review-guidelines.html">code review guidelines</a>.</p>
+</blockquote>
+<p><strong>Insert your review into the comment box!</strong></p>
+</section>
+
+<section>
+<section id="lab-9-simulating-probabilities" class="title-slide slide level1 center">
+<h1>Lab 9: Simulating Probabilities</h1>
+
+</section>
+<section id="the-birthday-problem" class="slide level2">
+<h2>The Birthday Problem</h2>
 <p>Simulate the approximate probability that at least two people have the same birthday (same day of the year, not considering year of birth or leap years).</p>
 </section>
 <section id="writing-a-function-to" class="slide level2">
@@ -322,8 +335,10 @@
 <p>Use a <code>map()</code> function to simulate 1000 datasets.</p>
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a>sim_results <span class="ot">&lt;-</span> <span class="fu">map_lgl</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
-<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a>                       <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">get_shared_birthdays</span>(<span class="at">n =</span> <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">14</span>)</span>
+<span id="cb4-2"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a aria-hidden="true" tabindex="-1"></a>sim_results <span class="ot">&lt;-</span> <span class="fu">map_lgl</span>(<span class="at">.x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">1000</span>,</span>
+<span id="cb4-4"><a aria-hidden="true" tabindex="-1"></a>                       <span class="at">.f =</span> <span class="sc">~</span> <span class="fu">get_shared_birthdays</span>(<span class="at">n =</span> <span class="dv">50</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="fragment">
@@ -333,17 +348,17 @@
 </ul>
 <div class="midi">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sim_results) <span class="sc">/</span> <span class="dv">1000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(sim_results) <span class="sc">/</span> <span class="fu">length</span>(sim_results)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.965</code></pre>
+<pre><code>[1] 0.96</code></pre>
 </div>
 </div>
 </div>
 </div>
 </section></section>
 <section>
-<section id="lab-9-data-simulation-exploration" class="title-slide slide level1 center">
-<h1>Lab 9: Data Simulation Exploration</h1>
+<section id="lab-9-simulating-confidence-interval-coverage-rates" class="title-slide slide level1 center">
+<h1>Lab 9: Simulating Confidence Interval Coverage Rates</h1>
 
 </section>
 <section id="simple-linear-regression-slr" class="slide level2">
@@ -352,19 +367,22 @@
 <p><span class="math display">\[
   response = intercept + slope \times explanatory + noise
 \]</span></p>
+</section>
+<section id="slr-model-notation" class="slide level2">
+<h2>SLR Model Notation</h2>
+<p>In Statistics, there are <strong>two</strong> types of models—the population model and the fitted (sample) model.</p>
 <div class="fragment">
-<p>We use the following notation for this model:</p>
 <div class="columns">
 <div class="column" style="width:48%;">
 <p><strong>Population</strong> Regression Model</p>
-<p><span class="math inline">\(Y = \beta_0 + \beta_1 X + \varepsilon\)</span></p>
-<p>where <span class="math inline">\(\epsilon \sim N(0, \sigma)\)</span> is the random noise.</p>
+<p><span class="math inline">\(y_i = \beta_0 + \beta_1 x_i + \epsilon_i\)</span></p>
+<p>where <span class="math inline">\(\epsilon_i \sim N(0, \sigma)\)</span> is the random noise.</p>
 </div><div class="column" style="width:2%;">
 
 </div><div class="column" style="width:50%;">
 <div class="fragment">
 <p><strong>Fitted</strong> Regression Model</p>
-<p><span class="math inline">\(\hat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i\)</span></p>
+<p><span class="math inline">\(\widehat{y}_i = \widehat{\beta}_0 + \widehat{\beta}_1 x_i\)</span></p>
 <p>where &nbsp; <span class="math inline">\(\widehat{}\)</span> &nbsp; indicates the value was estimated.</p>
 </div>
 </div></div>

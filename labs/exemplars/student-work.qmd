@@ -1426,7 +1426,6 @@ labelize <- function(var){
 }
 ```
 
-
 ## Exemplary Plotting Functions
 
 While most students wrote a plotting function to make a specific type of plot (e.g., barplot, scatterplot), two students wrote plotting functions that decide what plot to make based on the data types of the variables input. So cool!
@@ -1529,3 +1528,111 @@ style_plot <- function(plot, theme_fn = theme_bw,
   return(plot)
 }
 ```
+
+# Lab 9 
+
+There were a couple of small changes people made to their tables for Lab 9 that
+I thought went the extra mile. Here are a couple of them!
+
+## Consistent Capitalization
+
+It seems like a small change, but I really appreciated how Elise Donaho changed
+the capitalization of the data type column so every word had consistent 
+capitalization (instead of Date being the only capital letter). 
+
+```{r}
+library(kableExtra)
+
+surveys |> 
+  map_chr(.f = ~ class(.x)) |> 
+  enframe() |> 
+  arrange(value) |> 
+  mutate(
+    name = str_to_title(str_replace_all(name, 
+                pattern = "_", 
+                replacement = " ")),
+    value = str_to_title(value)) |> 
+  kable(
+  col.names = c("Variable", "Data Type"),
+  align = 'c',
+  caption = "Data Types in the Surveys Dataset") |> 
+  kable_styling(full_width = FALSE,
+                bootstrap_options = "striped")
+```
+
+## Formatting Numbers
+
+Another small change that Nick Carboni (and few others) made was to add commas
+to the numbers in the missing value table. There were a couple of ways to add
+the colors to the table:
+
+1. **Using the `rows` argument of `tab_style()`**
+
+```{r}
+library(gt)
+
+fish |>
+  map_int(~ sum(is.na(.x))) |>
+  enframe(name = "Variable", value = "Missing") |>
+  arrange(desc(Missing), Variable) |>
+  
+  gt() |>
+  cols_label(
+    Variable = "Measurement Variable",
+    Missing  = "Missing Values"
+  ) |>
+  fmt_number(columns = Missing, decimals = 0) |>
+  tab_header(
+    title = "Number of Missing Values for Fish Measurements",
+    subtitle = "Data Collected from 1989 to 2006 on the Blackfoot Fish River in Montana"
+  ) |>
+  tab_style(
+    style = cell_fill(color = "lightgreen"),
+    locations = cells_body(
+      columns = Missing,
+      rows = Missing == 0
+    )
+  ) |>
+  tab_style(
+    style = cell_fill(color = "tomato"),
+    locations = cells_body(
+      columns = Missing,
+      rows = Missing > 0
+    )
+  ) |>
+  opt_row_striping()
+```
+
+2. **Defining a local function inside `data_color()`**
+
+```{r}
+
+fish |>
+  map_int(~ sum(is.na(.x))) |>
+  enframe(name = "Measurement Variable", value = "Missing Values") |>
+  gt() |>
+  tab_header(
+    title = md("**Number of Missing Values for Fish Measurements**"),
+    subtitle = md("Data collected from 1989 to 2006 on the Blackfoot Fish River in Montana")
+  ) |>
+  data_color(
+    columns = "Missing Values",
+    fn = function(x) {
+        case_when(
+        x == 0 ~ "forestgreen",
+        TRUE ~ "orangered"
+      )
+    }
+  ) |>
+  fmt_number(columns = "Missing Values", decimals = 0) |>
+  cols_align(align = "right", columns = everything()) |>
+  tab_options(
+    heading.title.font.size = 16,
+    heading.subtitle.font.size = 12,
+    table.font.size = 14,
+    column_labels.font.weight = "bold",
+    table.align = "center"
+  )
+```
+
+

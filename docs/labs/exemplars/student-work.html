@@ -102,6 +102,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="../../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
 </head>
@@ -228,6 +230,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#cool-helper-functions" id="toc-cool-helper-functions" class="nav-link" data-scroll-target="#cool-helper-functions">Cool Helper Functions</a></li>
   <li><a href="#exemplary-plotting-functions" id="toc-exemplary-plotting-functions" class="nav-link" data-scroll-target="#exemplary-plotting-functions">Exemplary Plotting Functions</a></li>
   <li><a href="#getting-the-right-number-of-colors" id="toc-getting-the-right-number-of-colors" class="nav-link" data-scroll-target="#getting-the-right-number-of-colors">Getting the Right Number of Colors</a></li>
+  </ul></li>
+  <li><a href="#lab-9" id="toc-lab-9" class="nav-link" data-scroll-target="#lab-9">Lab 9</a>
+  <ul class="collapse">
+  <li><a href="#consistent-capitalization" id="toc-consistent-capitalization" class="nav-link" data-scroll-target="#consistent-capitalization">Consistent Capitalization</a></li>
+  <li><a href="#formatting-numbers" id="toc-formatting-numbers" class="nav-link" data-scroll-target="#formatting-numbers">Formatting Numbers</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/atheobold/groupworthy-data-science/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
@@ -1516,6 +1523,1174 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb54-20"><a href="#cb54-20" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb54-21"><a href="#cb54-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(plot)</span>
 <span id="cb54-22"><a href="#cb54-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+<section id="lab-9" class="level1">
+<h1>Lab 9</h1>
+<p>There were a couple of small changes people made to their tables for Lab 9 that I thought went the extra mile. Here are a couple of them!</p>
+<section id="consistent-capitalization" class="level2">
+<h2 class="anchored" data-anchor-id="consistent-capitalization">Consistent Capitalization</h2>
+<p>It seems like a small change, but I really appreciated how Elise Donaho changed the capitalization of the data type column so every word had consistent capitalization (instead of Date being the only capital letter).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>surveys <span class="sc">|&gt;</span> </span>
+<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_chr</span>(<span class="at">.f =</span> <span class="sc">~</span> <span class="fu">class</span>(.x)) <span class="sc">|&gt;</span> </span>
+<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(value) <span class="sc">|&gt;</span> </span>
+<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="fu">str_to_title</span>(<span class="fu">str_replace_all</span>(name, </span>
+<span id="cb55-9"><a href="#cb55-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">pattern =</span> <span class="st">"_"</span>, </span>
+<span id="cb55-10"><a href="#cb55-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">replacement =</span> <span class="st">" "</span>)),</span>
+<span id="cb55-11"><a href="#cb55-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">value =</span> <span class="fu">str_to_title</span>(value)) <span class="sc">|&gt;</span> </span>
+<span id="cb55-12"><a href="#cb55-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb55-13"><a href="#cb55-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Variable"</span>, <span class="st">"Data Type"</span>),</span>
+<span id="cb55-14"><a href="#cb55-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">align =</span> <span class="st">'c'</span>,</span>
+<span id="cb55-15"><a href="#cb55-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Data Types in the Surveys Dataset"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb55-16"><a href="#cb55-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb55-17"><a href="#cb55-17" aria-hidden="true" tabindex="-1"></a>                <span class="at">bootstrap_options =</span> <span class="st">"striped"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-striped caption-top table-sm small" data-quarto-postprocess="true">
+<caption>Data Types in the Surveys Dataset</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Variable</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Data Type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Date</td>
+<td style="text-align: center;">Date</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Species Id</td>
+<td style="text-align: center;">Character</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Sex</td>
+<td style="text-align: center;">Character</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Day Of Week</td>
+<td style="text-align: center;">Character</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Plot Type</td>
+<td style="text-align: center;">Character</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Genus</td>
+<td style="text-align: center;">Character</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Species</td>
+<td style="text-align: center;">Character</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Taxa</td>
+<td style="text-align: center;">Character</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Record Id</td>
+<td style="text-align: center;">Numeric</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Month</td>
+<td style="text-align: center;">Numeric</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Day</td>
+<td style="text-align: center;">Numeric</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Year</td>
+<td style="text-align: center;">Numeric</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Plot Id</td>
+<td style="text-align: center;">Numeric</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Hindfoot Length</td>
+<td style="text-align: center;">Numeric</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Weight</td>
+<td style="text-align: center;">Numeric</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="formatting-numbers" class="level2">
+<h2 class="anchored" data-anchor-id="formatting-numbers">Formatting Numbers</h2>
+<p>Another small change that Nick Carboni (and few others) made was to add commas to the numbers in the missing value table. There were a couple of ways to add the colors to the table:</p>
+<ol type="1">
+<li><strong>Using the <code>rows</code> argument of <code>tab_style()</code></strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a>fish <span class="sc">|&gt;</span></span>
+<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_int</span>(<span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.x))) <span class="sc">|&gt;</span></span>
+<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"Variable"</span>, <span class="at">value =</span> <span class="st">"Missing"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(Missing), Variable) <span class="sc">|&gt;</span></span>
+<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">Variable =</span> <span class="st">"Measurement Variable"</span>,</span>
+<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">Missing  =</span> <span class="st">"Missing Values"</span></span>
+<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> Missing, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Number of Missing Values for Fish Measurements"</span>,</span>
+<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Data Collected from 1989 to 2006 on the Blackfoot Fish River in Montana"</span></span>
+<span id="cb56-17"><a href="#cb56-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb56-18"><a href="#cb56-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb56-19"><a href="#cb56-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"lightgreen"</span>),</span>
+<span id="cb56-20"><a href="#cb56-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(</span>
+<span id="cb56-21"><a href="#cb56-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> Missing,</span>
+<span id="cb56-22"><a href="#cb56-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">rows =</span> Missing <span class="sc">==</span> <span class="dv">0</span></span>
+<span id="cb56-23"><a href="#cb56-23" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb56-24"><a href="#cb56-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb56-25"><a href="#cb56-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_style</span>(</span>
+<span id="cb56-26"><a href="#cb56-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">style =</span> <span class="fu">cell_fill</span>(<span class="at">color =</span> <span class="st">"tomato"</span>),</span>
+<span id="cb56-27"><a href="#cb56-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">locations =</span> <span class="fu">cells_body</span>(</span>
+<span id="cb56-28"><a href="#cb56-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">columns =</span> Missing,</span>
+<span id="cb56-29"><a href="#cb56-29" aria-hidden="true" tabindex="-1"></a>      <span class="at">rows =</span> Missing <span class="sc">&gt;</span> <span class="dv">0</span></span>
+<span id="cb56-30"><a href="#cb56-30" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb56-31"><a href="#cb56-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb56-32"><a href="#cb56-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">opt_row_striping</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="bmozncvmkz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bmozncvmkz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#bmozncvmkz thead, #bmozncvmkz tbody, #bmozncvmkz tfoot, #bmozncvmkz tr, #bmozncvmkz td, #bmozncvmkz th {
+  border-style: none;
+}
+
+#bmozncvmkz p {
+  margin: 0;
+  padding: 0;
+}
+
+#bmozncvmkz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#bmozncvmkz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#bmozncvmkz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#bmozncvmkz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#bmozncvmkz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#bmozncvmkz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#bmozncvmkz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#bmozncvmkz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#bmozncvmkz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#bmozncvmkz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#bmozncvmkz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#bmozncvmkz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#bmozncvmkz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#bmozncvmkz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#bmozncvmkz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bmozncvmkz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#bmozncvmkz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#bmozncvmkz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#bmozncvmkz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bmozncvmkz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#bmozncvmkz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bmozncvmkz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#bmozncvmkz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bmozncvmkz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#bmozncvmkz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#bmozncvmkz .gt_left {
+  text-align: left;
+}
+
+#bmozncvmkz .gt_center {
+  text-align: center;
+}
+
+#bmozncvmkz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#bmozncvmkz .gt_font_normal {
+  font-weight: normal;
+}
+
+#bmozncvmkz .gt_font_bold {
+  font-weight: bold;
+}
+
+#bmozncvmkz .gt_font_italic {
+  font-style: italic;
+}
+
+#bmozncvmkz .gt_super {
+  font-size: 65%;
+}
+
+#bmozncvmkz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#bmozncvmkz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#bmozncvmkz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#bmozncvmkz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#bmozncvmkz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#bmozncvmkz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#bmozncvmkz .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#bmozncvmkz .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#bmozncvmkz div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="2" class="gt_heading gt_title gt_font_normal">Number of Missing Values for Fish Measurements</th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Data Collected from 1989 to 2006 on the Blackfoot Fish River in Montana</th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="Variable" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Measurement Variable</th>
+<th id="Missing" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Missing Values</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">weight</td>
+<td class="gt_row gt_right" headers="Missing" style="background-color: #FF6347">1,838</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Variable">length</td>
+<td class="gt_row gt_right gt_striped" headers="Missing" style="background-color: #FF6347">47</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">mark</td>
+<td class="gt_row gt_right" headers="Missing" style="background-color: #90EE90">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Variable">section</td>
+<td class="gt_row gt_right gt_striped" headers="Missing" style="background-color: #90EE90">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">species</td>
+<td class="gt_row gt_right" headers="Missing" style="background-color: #90EE90">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left gt_striped" headers="Variable">trip</td>
+<td class="gt_row gt_right gt_striped" headers="Missing" style="background-color: #90EE90">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Variable">year</td>
+<td class="gt_row gt_right" headers="Missing" style="background-color: #90EE90">0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li><strong>Defining a local function inside <code>data_color()</code></strong></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>fish <span class="sc">|&gt;</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_int</span>(<span class="sc">~</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(.x))) <span class="sc">|&gt;</span></span>
+<span id="cb57-3"><a href="#cb57-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">enframe</span>(<span class="at">name =</span> <span class="st">"Measurement Variable"</span>, <span class="at">value =</span> <span class="st">"Missing Values"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb57-4"><a href="#cb57-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb57-5"><a href="#cb57-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="fu">md</span>(<span class="st">"**Number of Missing Values for Fish Measurements**"</span>),</span>
+<span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="fu">md</span>(<span class="st">"Data collected from 1989 to 2006 on the Blackfoot Fish River in Montana"</span>)</span>
+<span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb57-9"><a href="#cb57-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data_color</span>(</span>
+<span id="cb57-10"><a href="#cb57-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">columns =</span> <span class="st">"Missing Values"</span>,</span>
+<span id="cb57-11"><a href="#cb57-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">fn =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb57-12"><a href="#cb57-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">case_when</span>(</span>
+<span id="cb57-13"><a href="#cb57-13" aria-hidden="true" tabindex="-1"></a>        x <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="st">"forestgreen"</span>,</span>
+<span id="cb57-14"><a href="#cb57-14" aria-hidden="true" tabindex="-1"></a>        <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"orangered"</span></span>
+<span id="cb57-15"><a href="#cb57-15" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb57-16"><a href="#cb57-16" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb57-17"><a href="#cb57-17" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb57-18"><a href="#cb57-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fmt_number</span>(<span class="at">columns =</span> <span class="st">"Missing Values"</span>, <span class="at">decimals =</span> <span class="dv">0</span>) <span class="sc">|&gt;</span></span>
+<span id="cb57-19"><a href="#cb57-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(<span class="at">align =</span> <span class="st">"right"</span>, <span class="at">columns =</span> <span class="fu">everything</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb57-20"><a href="#cb57-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_options</span>(</span>
+<span id="cb57-21"><a href="#cb57-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.title.font.size =</span> <span class="dv">16</span>,</span>
+<span id="cb57-22"><a href="#cb57-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">heading.subtitle.font.size =</span> <span class="dv">12</span>,</span>
+<span id="cb57-23"><a href="#cb57-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.font.size =</span> <span class="dv">14</span>,</span>
+<span id="cb57-24"><a href="#cb57-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">column_labels.font.weight =</span> <span class="st">"bold"</span>,</span>
+<span id="cb57-25"><a href="#cb57-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">table.align =</span> <span class="st">"center"</span></span>
+<span id="cb57-26"><a href="#cb57-26" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div id="xcseclaaas" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#xcseclaaas table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#xcseclaaas thead, #xcseclaaas tbody, #xcseclaaas tfoot, #xcseclaaas tr, #xcseclaaas td, #xcseclaaas th {
+  border-style: none;
+}
+
+#xcseclaaas p {
+  margin: 0;
+  padding: 0;
+}
+
+#xcseclaaas .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#xcseclaaas .gt_title {
+  color: #333333;
+  font-size: 16px;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xcseclaaas .gt_subtitle {
+  color: #333333;
+  font-size: 12px;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xcseclaaas .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xcseclaaas .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: bold;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xcseclaaas .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xcseclaaas .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xcseclaaas .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xcseclaaas .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#xcseclaaas .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#xcseclaaas .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xcseclaaas .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xcseclaaas .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xcseclaaas .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xcseclaaas .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xcseclaaas .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xcseclaaas .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xcseclaaas .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#xcseclaaas .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xcseclaaas .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xcseclaaas .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xcseclaaas .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xcseclaaas .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xcseclaaas .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xcseclaaas .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xcseclaaas .gt_left {
+  text-align: left;
+}
+
+#xcseclaaas .gt_center {
+  text-align: center;
+}
+
+#xcseclaaas .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xcseclaaas .gt_font_normal {
+  font-weight: normal;
+}
+
+#xcseclaaas .gt_font_bold {
+  font-weight: bold;
+}
+
+#xcseclaaas .gt_font_italic {
+  font-style: italic;
+}
+
+#xcseclaaas .gt_super {
+  font-size: 65%;
+}
+
+#xcseclaaas .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#xcseclaaas .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xcseclaaas .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xcseclaaas .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xcseclaaas .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xcseclaaas .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xcseclaaas .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#xcseclaaas .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#xcseclaaas div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="gt_heading header">
+<th colspan="2" class="gt_heading gt_title gt_font_normal"><strong>Number of Missing Values for Fish Measurements</strong></th>
+</tr>
+<tr class="gt_heading even">
+<th colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Data collected from 1989 to 2006 on the Blackfoot Fish River in Montana</th>
+</tr>
+<tr class="gt_col_headings header">
+<th id="Measurement-Variable" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Measurement Variable</th>
+<th id="Missing-Values" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Missing Values</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_right" headers="Measurement Variable">trip</td>
+<td class="gt_row gt_right" headers="Missing Values" style="background-color: #228B22; color: #FFFFFF">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Measurement Variable">mark</td>
+<td class="gt_row gt_right" headers="Missing Values" style="background-color: #228B22; color: #FFFFFF">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Measurement Variable">length</td>
+<td class="gt_row gt_right" headers="Missing Values" style="background-color: #FF4500; color: #FFFFFF">47</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Measurement Variable">weight</td>
+<td class="gt_row gt_right" headers="Missing Values" style="background-color: #FF4500; color: #FFFFFF">1,838</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Measurement Variable">year</td>
+<td class="gt_row gt_right" headers="Missing Values" style="background-color: #228B22; color: #FFFFFF">0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_right" headers="Measurement Variable">section</td>
+<td class="gt_row gt_right" headers="Missing Values" style="background-color: #228B22; color: #FFFFFF">0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_right" headers="Measurement Variable">species</td>
+<td class="gt_row gt_right" headers="Missing Values" style="background-color: #228B22; color: #FFFFFF">0</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
 </div>
 
 

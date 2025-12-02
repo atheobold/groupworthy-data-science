@@ -9,20 +9,28 @@ execute:
   echo: true
 ---
 
-# Creativity in Tables
+# Lab 10 Recap
 
-## Think about Font
+## Informative Titles
 
-![](images/tab-with-different-fonts.png){fig-alt="A table of proportions of correctly returned babies (from last week's lab assignment on simulating data). The table uses times new roman (a serif) font for the title and calibri (a sanserif font) for the body. The use of different fonts in different places makes the table less visually appealing."}
+::: {.midi}
+Can you incorporate the context of the data into the table? 
 
-## Make Your Font Consistent
-
-![](images/tab-with-same-font.png){fig-alt="A table of proportions of correctly returned babies (from last week's lab assignment on simulating data). The table uses calibri (a san serif font) for both the title of the table and the body of the table. The use of a consistent font makes the table more visually appealing."}
+- Column names
+- Table header
+- Table subheader
+- Table caption
+:::
 
 . . .
 
-::: {.callout-tip}
-# San serif fonts (e.g., calibri, arial) are more accessible than serif fonts (e.g., times new roman).
+::: {.midi}
+Can you incorporate the context of the data into the plot? 
+
+- Axis labels
+- Plot title
+- Plot subtitle 
+- Plot caption
 :::
 
 ## On the handout...
@@ -33,13 +41,19 @@ the midterm portfolio was submitted!
 
 ## Modification to Learning Targets
 
-</br>
-
 None of the lab assignments had a setting where a `p_map()` or a `map2()` was
 needed.
 
 > Change the using a `map()` function with **more than one** input section to 
 > a **second** example of using a `map()` function with **one** input!
+
+
+## Modification to Allowable Assignments
+
+We never read in an `.xlsx` data file for a Lab or Challenge.
+
+> You can use a Practice Activity or Check-in to demonstrate
+> this target.
 
 ## When locating code...
 

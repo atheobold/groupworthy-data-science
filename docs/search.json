@@ -1593,7 +1593,7 @@
     "href": "slides/week-11/final-portfolio.html#modification-to-learning-targets",
     "title": "Final Portfolio Week",
     "section": "Modification to Learning Targets",
-    "text": "Modification to Learning Targets\n\nNone of the lab assignments had a setting where a p_map() or a map2() was needed.\n\nChange the using a map() function with more than one input section to a second example of using a map() function with one input!"
+    "text": "Modification to Learning Targets\nNone of the lab assignments had a setting where a p_map() or a map2() was needed.\n\nChange the using a map() function with more than one input section to a second example of using a map() function with one input!"
   },
   {
     "objectID": "slides/week-11/final-portfolio.html#when-locating-code",
@@ -5731,5 +5731,19 @@
     "title": "Final Portfolio Week",
     "section": "What if I have met all the criteria for a C and some of the criteria for a B?",
     "text": "What if I have met all the criteria for a C and some of the criteria for a B?\nThis would fall into the bucket of either a C+ or a B-.\n\n\n\nFor a C+\nYou’ve met all the criteria for a C along with a large amount, but not all, of the criteria for a B.\n\n\n\n\n\nFor an B-\nYou’ve met almost all the requirements for a B, except for a small number of minor criteria."
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#informative-titles",
+    "href": "slides/week-11/final-portfolio.html#informative-titles",
+    "title": "Final Portfolio Week",
+    "section": "Informative Titles",
+    "text": "Informative Titles\n\nCan you incorporate the context of the data into the table?\n\nColumn names\nTable header\nTable subheader\nTable caption\n\n\n\n\nCan you incorporate the context of the data into the plot?\n\nAxis labels\nPlot title\nPlot subtitle\nPlot caption"
+  },
+  {
+    "objectID": "slides/week-11/final-portfolio.html#modification-to-allowable-assignments",
+    "href": "slides/week-11/final-portfolio.html#modification-to-allowable-assignments",
+    "title": "Final Portfolio Week",
+    "section": "Modification to Allowable Assignments",
+    "text": "Modification to Allowable Assignments\nWe never read in an .xlsx data file for a Lab or Challenge.\n\nYou can use a Practice Activity or Check-in to demonstrate this target."
   }
 ]

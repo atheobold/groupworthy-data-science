@@ -9,14 +9,6 @@ execute:
   echo: true
 ---
 
-# Lab 8 Peer Review
-
-> Past due! 
-
-# Lab 9 Peer Review
-
-> Due by Wednesday! 
-
 # Creativity in Tables
 
 ## Think about Font
@@ -33,18 +25,45 @@ execute:
 # San serif fonts (e.g., calibri, arial) are more accessible than serif fonts (e.g., times new roman).
 :::
 
+## On the handout...
+
+The text in orange indicates learning targets that have been covered **after**
+the midterm portfolio was submitted! 
+
+
 ## Modification to Learning Targets
 
 </br>
 
-None of the lab assignments had a setting where a `full_join()` was appropriate.
+None of the lab assignments had a setting where a `p_map()` or a `map2()` was
+needed.
 
-> Remove the `full_join()` section of your `reflection_template.qmd` file
+> Change the using a `map()` function with **more than one** input section to 
+> a **second** example of using a `map()` function with **one** input!
 
 ## When locating code...
 
--   find 1-2 **high quality** examples (quality \> quantity)
--   find examples that hit on **multiple** learning targets at the same time
+::: {.midi}
+You **must** use unique examples for the following learning targets:
+
+- visualizations (DVS-1),
+- `across()` (PE-1, PE-3, DVS-4)
+- `map()` (PE-1, PE-3) 
+:::
+
+. . .
+
+::: {.midi}
+Meaning, all four plots for DVS-1 need to be different! All three examples of
+`across()` need to be different, and both examples of `map()` need to be 
+different.
+:::
+
+. . .
+
+::: {.midi}
+All other learning targets can use code included in other locations!
+:::
 
 ## For example...
 
@@ -52,7 +71,7 @@ None of the lab assignments had a setting where a `full_join()` was appropriate.
 the code below could be used to demonstrate proficiency
 with:
 
-- PE-2 (writing functions)
+- PE-2 (writing functions that operate on vectors)
 - R-2 (well documented code)
 - DSSM-1 (simulating data)
 
@@ -75,43 +94,6 @@ randomBabies <- function(nBabies) {
 ```
 :::
 
-# Creativity
-
-. . .
-
-Here are some places where you can demonstrate creativity in a visualization:
-
-- colors
-- removing a legend 
-  * (annotations or colors in title)
-- non-standard plot layout
-  * **not** non-standard plots (e.g., heatmaps)
-
-# Creativity
-
-. . .
-
-Here are some places where you can demonstrate creativity in a table:
-
-- font
-- shading
-- border
-- table title / subtitle
-- spanner labels
-- footnotes / source notes
-
-# Revising Your Thinking
-
-## "Includes thoughtful reflections on why revisions are being requested."
-
-> Feel free to include reflections you are proud of! 
-
-# Extending Your Thinking
-
-> You are making an argument about how you have extended your 
-> thinking---"pushing yourself" looks different for everyone, but you need 
-> to justify why your code went above and beyond. 
-
 # Determining Your Grade
 
 ## Determining Your Grade
@@ -124,15 +106,34 @@ Your goal is to argue, convincingly and with concrete evidence, that you have
 met the criteria for both content proficiency, evidence of continued learning, 
 and growth as a team member that goes with a particular grade. 
 
-## Plus / Minus Modifiers
+## On the handout...
+
+- Each grade level has a set of criteria.
+
+- Higher grades build on lower grades.
+
+- You earn a grade only if all criteria for that grade and all lower grades are
+satisfied.
+
+- Missing even one required criterion caps your grade at the highest level where
+all criteria are met.
+
+<!-- Think of grades as a ladder: you can’t climb to the next grade unless you’ve -->
+<!-- stepped on every rung below. -->
+
+<!-- To earn a B → you must complete all B, C, and D criteria. -->
+
+## What if I have met all the criteria for a C and some of the criteria for a B?
+
+This would fall into the bucket of either a C+ or a B-. 
 
 ::: columns
 ::: {.column width="48%"}
 ::: {.fragment}
-**+**
+**For a C+**
 
-- You’ve met all the criteria for the letter grade along with a significant
-amount, but not all, of the criteria for the next letter grade up. 
+You’ve met all the criteria for a C along with a large
+amount, but not all, of the criteria for a B. 
 :::
 :::
 
@@ -141,16 +142,13 @@ amount, but not all, of the criteria for the next letter grade up.
 
 ::: {.column width="48%"}
 ::: {.fragment}
-**-** 
+**For an B-** 
 
-- You have met the requirements for a letter grade but only in a way that you
-believe is a bare minimum. 
-- You’ve met almost all the requirements for the letter grade except for a small
+You’ve met almost all the requirements for a B, except for a small
 number of minor criteria.
 :::
 :::
 :::
-
 
 ## What if we don't agree?
 
@@ -191,17 +189,17 @@ code you've included in your portfolio to be more efficient.
 
 ::: {.small}
 ::: {.fragment}
-If your response communicates that you understand this key concept, I will award
-you the grade you proposed. 
+If your response communicates that you understand this key concept, I will
+take this as evidence in favor of the grade you proposed. 
 :::
 
 </br> 
 </br> 
 
 ::: {.fragment}
-If your response communicates that you **do not** understand this key concept, I 
-will award you the highest grade I believe the evidence in your portfolio 
-supports. 
+If your response communicates that you **do not** understand this key concept, I
+will take this as evidence against the grade you proposed. I will award you the
+highest grade I believe the evidence in your portfolio supports. 
 :::
 :::
 :::
@@ -247,22 +245,22 @@ In this case, I will tell you what grade I believe you have earned and why.
 
 . . .
 
-> Will occur from 9am - 4pm on Tuesday of Finals Week.  
-> (1-4pm is our original exam time)
+> Will occur from 9am - 4pm on Saturday, and  
+> 9am - 1pm on Monday.
 
 . . .
 
 </br> 
 
-Sign-up for your time here: [link to Google Sheet](https://docs.google.com/spreadsheets/d/1NT73H9sA57jiASJUjuCOHxf6EhXTmCCy0IPLXAycbXE/edit?usp=sharing)
+Sign-up for your time here: [link to Google Sheet](https://docs.google.com/spreadsheets/d/1lztEUpTz4kIFohzrVIyRDFjc7ssJG-2M_Qu4TSQZtug/edit?usp=sharing)
 
 ::: {.callout-warning}
-# The sign-up will close at 5pm on Thursday.
+# The sign-up will close at 5pm on Friday.
 :::
 
 ## Final Portfolio Deadline
 
-The link to your Final Portfolio repository is due by Sunday at 11:59pm. 
+The link to your Final Portfolio repository is due by Friday at 5pm. 
 
 ::: {.callout-warning}
 # Deadline extensions will not be accepted. 

@@ -24,7 +24,7 @@ resources:
 
 Download the template Lab 2 Quarto file here: <a href="../student/lab-2-student.qmd" download>`lab-2-student.qmd`</a> 
 
-Download the data for the lab here: [`surveys.csv`](../student/data/surveys.csv)
+Download the data for the lab here: [`surveys.csv`](data/surveys.csv)
 
 
 ::: {.callout-important}

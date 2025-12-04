@@ -196,13 +196,11 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="key-information">Key information</h2>
 <p><strong>Format:</strong> You’ll put all of your work — both the artifacts of past work and the responses to the writing prompts — into <strong>one</strong> GitHub repository. If you choose for this repository to be public, you only need to provide me with the link to the repo. If you choose for this repository to be private, you will need to add me as a collaborator to your repo.</p>
 <p><strong>Template:</strong> Here is a template repository you can use to guide how you should organize your portfolio: <a href="https://github.com/atheobold/STAT331_portfolio_template" class="uri">https://github.com/atheobold/STAT331_portfolio_template</a></p>
-<p><strong>Due date:</strong> The portfolio is due <strong>the Saturday before finals week</strong>. No deadline extensions are available for the Final Portfolio.</p>
+<p><strong>Due date:</strong> The portfolio is due <strong>at 5pm the Friday before finals week</strong>. No deadline extensions are available for the Final Portfolio.</p>
 <p><strong>What to include</strong>: Your portfolio needs to contain all of the following:</p>
 <ul>
-<li><p><strong>Final grade reflection</strong>: this is a document housing examples of code you’ve written which demonstrate your achievement of the course’s learning objectives, reflections about how you revised your thinking throughout the course, examples of how you extended your thinking, and reflections and examples of how you grew as a collaborator.</p></li>
-<li><p><strong>Supporting artifacts</strong> – These are all of the assignments you reference in your final grade reflection. You are able to use <strong>any</strong> Lab or Challenge assignment submitted, but please keep these focused, and be selective.</p></li>
-<li><p><strong>Essay responses</strong>. Write brief responses to each of the essay prompts listed below under <strong>Essays</strong>. Put each essay response on its own page. (All of the “Lightning Round” responses should go on the same page, however.)<br>
-</p></li>
+<li><p><strong>Final grade reflection</strong>: this is a document housing examples of code you’ve written which demonstrate your achievement of the course’s learning objectives, reflections about how you revised your thinking throughout the course, examples of how you extended your thinking, and reflections and examples of how you grew as a collaborator</p></li>
+<li><p><strong>Essay responses</strong>. Write brief (1-2 sentence) responses to each of the prompts listed in the “Lightning Round” additional Quarto file.</p></li>
 </ul>
 </section>
 <section id="final-grade-reflection" class="level2">
@@ -215,14 +213,28 @@ ul.task-list li input[type="checkbox"] {
 </ol>
 <ul>
 <li><p>Some learning targets ask for one example, some ask for two examples, and some ask for specific examples relative to particular data types.</p></li>
-<li><p><strong>Your Lab assignments and Challenge problems should be a primary source of these examples</strong>, but you can also include other items. Anything that supports your argument for a grade can be submitted.</p></li>
+<li><p><strong>Your Lab assignments and Challenge problems should be the sole source for these examples</strong>.</p>
+<ul>
 <li><p>You must indicate where the code you provided came from, including the title of the assignment and problem number either next to the code title (e.g., xlsx</p></li>
 <li><p>Lab 2 Question 1) or as a code comment at the top of the code chunk.</p></li>
 <li><p>Note, your code is not expected to run! The execute options at the top of the Quarto file are set to <code>eval: false</code>. Thus, you <strong>do not</strong> need to load in any packages or datasets in your reflection.</p></li>
+</ul></li>
 </ul>
 <ol start="3" type="1">
-<li><p><strong>How did you meet that grade’s requirements?</strong> The requirements for grades are found in the <a href="../course-materials/course-syllabus.qmd">course syllabus</a> section of the syllabus. Review the criteria carefully. Then, explain how you have satisfied the criteria for the grade you are saying you’ve earned. Be specific and thorough. List each criterion you have met and how you know you’ve met it. Refer to specific artifacts or examples in the Portfolio that support your case. Again, keep it brief and focused on concrete evidence that the criteria have been met.</p></li>
-<li><p><strong>What else?</strong> There may be some other criteria that figures into your grade request that isn’t explicitly listed in the syllabus. If so, state the criteria you’re thinking of, explain why they are useful criteria for your grade determination, and then explain how well you met those criteria (and provide evidence in the artifacts, if applicable). As with the syllabus criteria, be focused, specific, and thorough — and refer to specific artifacts that provide evidence.</p></li>
+<li><strong>How did you meet that grade’s additional requirements?</strong></li>
+</ol>
+<ul>
+<li>In addition to the learning targets, each grade has expectations related to <em>revising thinking</em>, <em>extending thinking</em>, and <em>peer collaboration</em>.
+<ul>
+<li>The requirements for each component are found in the <a href="../course-materials/course-syllabus.qmd">course syllabus</a> section of the syllabus.</li>
+</ul></li>
+<li>Review the criteria carefully. Then, in each essay, explain how you have satisfied the criteria for the grade you are saying you’ve earned. Be specific and thorough.
+<ul>
+<li>Within each component, address each criterion and how you have it. Refer to specific artifacts or examples in the Portfolio that support your case. Again, keep it brief and focused on concrete evidence that the criteria have been met.</li>
+</ul></li>
+</ul>
+<ol start="4" type="1">
+<li><strong>What else?</strong> There may be some other criteria that figures into your grade request that isn’t explicitly listed in the syllabus. If so, state the criteria you’re thinking of, explain why they are useful criteria for your grade determination, and then explain how well you met those criteria (and provide evidence in the artifacts, if applicable). As with the syllabus criteria, be focused, specific, and thorough — and refer to specific artifacts that provide evidence.</li>
 </ol>
 <p><strong>Plus/minus grades:</strong> You may argue to add a “+” or “-” modifier to your grade. Generally speaking a “+” added to a letter grade means you’ve met all the criteria for the letter grade along with a significant amount, but not all, of the criteria for the next letter grade up. And a “-” means that you have met the requirements for a letter grade but only in a way that you believe is a bare minimum, or you’ve met almost all the requirements for the letter grade except for a small number of <strong>minor</strong> criteria.</p>
 </section>
@@ -238,15 +250,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="essays" class="level2">
 <h2 class="anchored" data-anchor-id="essays"><strong>Essays</strong></h2>
 <p>In your Portfolio repository, there is a file named <code>lightening-round-essays.qmd</code>. This file contains five questions which you are asked to address. Your reponse to each question only needs to be 1-2 sentences.</p>
-<pre><code>-   Finish the sentence with another student’s name: "If \[Student\] doesn’t earn an A, then nobody should, because…" Explain your choice and your reasoning.
-
--   What was the most difficult part of the class for you? List a general topic, a specific problem, a kind of work we did, etc. and explain why.
-
--   What was the easiest part of the class for you? Explain why.
-
--   What part of the class surprised or interested you the most? Explain why.
-
--   Give one piece of advice to a student just beginning a quarter of STAT 331 that will help them be successful in learning.</code></pre>
 <!-- -   **Growth as a data scientist**: Describe how you have improved as a practitioner and student of data science this quarter through your work in the course. Focus specifically on data science concepts and the skills we employed in learning them. Don’t just give a laundry list of topics that you learned (those are in the syllabus, so we know them already). Focus instead on a small number of specific areas of growth for you that happened in STAT 331. Identify at least one artifact in your portfolio that illustrates each area of growth. Explain in this essay how this artifact shows growth in the way you are describing. -->
 <!-- -   **The power of efficiency**: As we’ve said in the class efficiency is a pivotal component of statistical computing (and data science). In this essay, give an explanation of what that term "efficiency" means in relation to statistical computing and describe some places where you encountered efficiency and understood its importance. Include: What is the definition of "efficiency"? What does efficiency look like in statistical computing / data science? What does efficiency allow you to do? Why is efficiency important? Where did you encounter efficiency, and what were some ["a-ha" moments](https://www.merriam-webster.com/dictionary/aha%20moment) you had about efficiency? (For the latter, tie each a-ha moment to an artifact in the portfolio.) -->
 </section>
